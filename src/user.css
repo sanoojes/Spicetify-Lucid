@@ -16,7 +16,7 @@
   --default-gap: 0.5rem;
 
   /* Shadow Color */
-  --black-rgb: var(--spice-rgb-card);
+  --shadow-rgb: var(--spice-rgb-contour);
   --white-rgb: 255, 255, 255;
 
   --margin-heading: 0.5rem;
@@ -205,13 +205,13 @@
   padding: var(--padding-now-playing-bar);
   bottom: var(--margin-bottom-now-playing-bar);
   border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-selected-row), 0.2);
-  background-color: rgba(var(--black-rgb), var(--bg-color-opacity));
+    rgba(var(--shadow-rgb), var(--bg-color-opacity-homeHeader));
+  background-color: rgba(var(--shadow-rgb), var(--bg-color-opacity));
   backdrop-filter: blur(var(--blur-radius)) saturate(1.2);
 }
 
 .main-contextMenu-menu {
-  background-color: rgba(var(--black-rgb), var(--bg-color-opacity));
+  background-color: rgba(var(--shadow-rgb), var(--bg-color-opacity));
 }
 
 .main-contextMenu-menu:before {
@@ -368,7 +368,7 @@
 .rX_OmqCngvY5ZCoYBZgb::before,
 .search-searchCategory-SearchCategory {
   /* background-color: rgba(
-    var(--black-rgb),
+    var(--shadow-rgb),
     var(--bg-color-opacity-homeHeader)
   ) !important; */
   backdrop-filter: blur(var(--blur-radius)) saturate(1.5);
@@ -533,7 +533,7 @@
 }
 
 .LegacyChipComponent-checkbox-chip-sm-useBrowserDefaultFocusStyle {
-  background-color: rgba(var(--black-rgb), var(--bg-color-opacity-homeHeader));
+  background-color: rgba(var(--shadow-rgb), var(--bg-color-opacity-homeHeader));
 }
 
 .playlist-playlist-searchBoxContainer {
