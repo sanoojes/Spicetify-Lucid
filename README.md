@@ -2,12 +2,39 @@
 
 Minimal Bloom theme inspired by [Bloom](https://github.com/nimsandu/spicetify-bloom)
 
+## Screenshots
+
+### Dark (default)
+
+![Dark Preview](./assets/images/base.png)
+![Dark 1 Preview](./assets/images/better-bloom-dark.png)
+![Dark 2 Preview](./assets/images/better-bloom-dark2.png)
+
+### Light
+
+![Light Preview](./assets/images/better-bloom-light.png)
+
+### Comfy
+
+![Comfy Preview](./assets/images/better-bloom-comfy.png)
+
+### Darkgreen
+
+![DarkGreen Preview](./assets/images/better-bloom-darkgreen.png)
+
+### Violet
+
+![Violet Preview](./assets/images/better-bloom-violet.png)
+
+### Dark-Fluent
+
+![Dark-Fluent Preview](./assets/images/better-bloom-dark-fluent.png)
+
+### Dark-Bloom
+
+![Dark-Bloom Preview](./assets/images/better-bloom-dark-bloom.png)
+
 ## Installation
-
-### Spicetify Marketplace
-
-Simply install [spicetify-marketplace](https://github.com/spicetify/spicetify-marketplace) by following it's
-[installation instructions](https://github.com/spicetify/spicetify-marketplace/wiki/Installation). Then look for `Better-Bloom` theme and click the install button.
 
 ### Scripts
 
@@ -19,6 +46,11 @@ iex "& { $(iwr -useb 'https://raw.githubusercontent.com/sanoojes/Better-Bloom/ma
 
 # Scripts Taken From https://github.com/nimsandu/spicetify-bloom
 ```
+
+### Spicetify Marketplace (will be added soon)
+
+Simply install [spicetify-marketplace](https://github.com/spicetify/spicetify-marketplace) by following it's
+[installation instructions](https://github.com/spicetify/spicetify-marketplace/wiki/Installation). Then look for `Better-Bloom` theme and click the install button.
 
 ### Manual Installation
 
@@ -42,7 +74,7 @@ Use this guide to install if you're having trouble using the shell commands/inst
 
 The `dark` color scheme is applied by default during the installation process. If you install Better-Bloom via PowerShell the installed color scheme depends on your Windows settings.
 
-The available color schemes are: `dark` `light` `darkgreen` `coffee` `comfy` `darkfluent` . Apply one using the following commands:
+The available color schemes are: `dark` `light` `dark-green` `coffee` `comfy` `dark-fluent` . Apply one using the following commands:
 
 ```shell
 spicetify config color_scheme <color scheme>
@@ -60,6 +92,8 @@ If you installed Better-Bloom from Marketplace you can change the color scheme o
 
 If you installed Better-Bloom from Marketplace you can change the accent color using built-in `Color.ini Editor`.
 
+## Updating Theme
+
 ### Windows (PowerShell)
 
 ```powershell
@@ -67,10 +101,10 @@ If you installed Better-Bloom from Marketplace you can change the accent color u
 iex "& { $(iwr -useb 'https://raw.githubusercontent.com/sanoojes/Better-Bloom/main/install/Better-Bloom.ps1') } -Action Update"
 ```
 
-## License
-
-[MIT License](LICENSE)
-
 ## Credits
 
 volumePercentage, quickQueue ,npvAmbience taken from [ohitstom/spicetify-extensions](https://github.com/ohitstom/spicetify-extensions)
+
+## License
+
+[MIT License](LICENSE)
