@@ -28,6 +28,7 @@
 
   --bg-color-opacity: 0.25;
   --bg-color-opacity-homeHeader: 0.5;
+  --bg-color-opacity-cards: 0.75;
 
   --blur-radius: 3rem;
 
@@ -137,10 +138,28 @@
   padding-top: calc(1.5rem + var(--panel-gap) * 2) !important;
 }
 
+.x-searchResultsTracks-root > .main-gridContainer-gridContainer,
+.main-trackList-trackList,
+.main-card-card,
+.main-heroCard-card,
 .main-card-cardContainer,
 .view-homeShortcutsGrid-shortcut {
-  background-color: rgba(var(--spice-rgb-card), 0.75);
+  background-color: rgba(
+    var(--spice-rgb-card),
+    var(--bg-color-opacity-cards)
+  ) !important;
+  border: 1px rgba(var(--spice-rgb-contour), 0.5) solid;
   border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+
+.view-homeShortcutsGrid-draggable {
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+
+.main-card-cardContainer,
+.view-homeShortcutsGrid-shortcut {
   &:hover {
     background-color: rgba(var(--spice-rgb-card), 0.5);
   }
@@ -233,6 +252,12 @@
   scale: 0.75 !important;
   background-color: var(--spice-text);
   color: var(--spice-subtext);
+  svg {
+    display: none;
+  }
+}
+
+.main-playPauseButton-button {
   svg {
     display: none;
   }
