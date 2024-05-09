@@ -2,9 +2,9 @@
 
 :root {
   /* Scrollbar */
-  --scrollbar-display: none;
+  --scrollbar-display: block;
   --scrollbar-width: 0.25rem;
-  --scrollbar-color: var(--spice-text) !important;
+  --scrollbar-color: rgba(var(--spice-rgb-text), 0.75) !important;
 
   /* Border */
   --default-border-thickness: 2px;
@@ -367,10 +367,6 @@
 .rX_OmqCngvY5ZCoYBZgb:after,
 .rX_OmqCngvY5ZCoYBZgb::before,
 .search-searchCategory-SearchCategory {
-  /* background-color: rgba(
-    var(--shadow-rgb),
-    var(--bg-color-opacity-homeHeader)
-  ) !important; */
   backdrop-filter: blur(var(--blur-radius)) saturate(1.5);
   top: 0;
 }
@@ -413,7 +409,7 @@
   height: 2rem;
   width: 100vw;
   left: 5rem;
-  margin-top: 0.25rem;
+  margin-top: 0.125rem;
   position: fixed;
   top: 0.05rem;
   padding: 0;
@@ -464,6 +460,7 @@
   margin-bottom: calc(
     var(--now-playing-bar-height) - (var(--padding-now-playing-bar) * 2)
   ) !important;
+  padding: 0;
 }
 
 .main-nowPlayingBar-container .GlueDropTarget,
@@ -480,6 +477,7 @@
   top: 0 !important;
   height: 100%;
   margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 .main-shelf-shelf,
@@ -514,6 +512,19 @@
   min-block-size: 2rem;
   inline-size: 2rem;
   block-size: 2rem;
+  span {
+    scale: 0.75;
+  }
+}
+
+.main-topBar-topbarContent .ButtonInner-medium-iconOnly {
+  min-inline-size: 1.75rem;
+  min-block-size: 1.75rem;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  span {
+    scale: 0.85;
+  }
 }
 
 .Wrapper-medium-medium-only {
@@ -569,18 +580,14 @@
 
 /* Animations */
 .main-view-container,
-.Root__right-sidebar {
+.Root__right-sidebar,
+.Root__now-playing-bar {
   transition: var(--ease-transition);
 }
 .Root__nav-bar,
 .Root__main-view {
   position: static;
   transition: var(--ease-transition);
-}
-
-.main-trackList-trackListRowGrid {
-  padding: 0 2rem;
-  padding-right: 1rem;
 }
 
 .progress-bar {
@@ -616,16 +623,19 @@
 .Root__right-sidebar,
 aside[aria-label="Now playing view"] {
   --background-base: var(--spice-sidebar) !important;
-  animation-delay: 10ms;
+  animation-delay: 100ms;
   animation-duration: 0.35s;
   animation-name: animate-fade-in-from-right;
   animation-fill-mode: forwards;
+  animation-timing-function: ease;
 }
+
 .Root__nav-bar {
-  animation-delay: 10ms;
+  animation-delay: 100ms;
   animation-duration: 0.35s;
   animation-name: animate-fade-in-from-left;
   animation-fill-mode: forwards;
+  animation-timing-function: ease;
 }
 
 @keyframes animate-fade-in-from-left {
@@ -642,6 +652,14 @@ aside[aria-label="Now playing view"] {
   }
   100% {
     transform: translateX(0%);
+  }
+}
+@keyframes animate-fade-in-from-bottom {
+  0% {
+    transform: translateY(calc(var(--now-playing-bar-height) * 2));
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
@@ -765,5 +783,24 @@ button.HD9s7U5E1RLSWKpXmrqx {
   height: 100%;
   border-radius: var(--border-radius-rounded);
   transition: --progress-bar-transform 0.5s linear !important;
+}
+
+.playlist-playlist-searchResultListContainer {
+  display: grid;
+  gap: var(--default-gap);
+}
+
+.BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover::after {
+  background-color: rgba(0, 0, 0, 0.125);
+}
+
+.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.main-shelf-shelfGrid,
+.main-gridContainer-gridContainer {
+  margin-inline: 0rem !important;
+  margin-inline-end: var(--content-spacing) !important;
 }
 
