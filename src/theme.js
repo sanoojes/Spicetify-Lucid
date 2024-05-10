@@ -1,3 +1,85 @@
+(function BetterBloom() {
+  if (!Spicetify.Player.data || !Spicetify.Platform) {
+    setTimeout(BetterBloom, 100);
+    return;
+  }
+
+  console.log("Better Bloom is running");
+
+  function applyStyles() {
+    // Apply predefined style properties directly
+    document.documentElement.style.setProperty("--blur", "2.5rem");
+    document.documentElement.style.setProperty("--cont", "80%");
+    document.documentElement.style.setProperty("--satu", "90%");
+    document.documentElement.style.setProperty("--bright", "25%");
+  }
+
+  applyStyles();
+
+  async function fetchFadeTime() {
+    const response = await Spicetify.Platform.PlayerAPI._prefs.get({
+      key: "audio.crossfade_v2",
+    });
+    let fadeTime = "0.4s";
+
+    if (response.entries["audio.crossfade_v2"].bool) {
+      const crossfadeTime = await Spicetify.Platform.PlayerAPI._prefs.get({
+        key: "audio.crossfade.time_v2",
+      });
+      fadeTime = `${
+        crossfadeTime.entries["audio.crossfade.time_v2"].number / 1000
+      }s`;
+    }
+
+    document.documentElement.style.setProperty("--fade-time", fadeTime);
+    console.log(`Fade Time: ${fadeTime}`);
+  }
+
+  function onSongChange() {
+    fetchFadeTime();
+
+    let bgImage = Spicetify.Player.data.item.metadata.image_url;
+    if (bgImage.includes("spotify:image:")) {
+      bgImage = bgImage.replace("spotify:image:", "https://i.scdn.co/image/");
+    }
+
+    // Updates the background based on current song
+    document.documentElement.style.setProperty(
+      "--image_url",
+      `url("${bgImage}")`
+    );
+  }
+
+  Spicetify.Player.addEventListener("songchange", onSongChange);
+  onSongChange(); // Initial call to setup song change handling
+
+  function enhanceInterface() {
+    // Adjust dimensions or OS-specific styles as needed
+    Spicetify.Platform.PlayerAPI._prefs
+      .get({ key: "app.browser.zoom-level" })
+      .then((value) => {
+        const zoom = Number(value.entries["app.browser.zoom-level"].number);
+        const scale = zoom !== 0 ? zoom / 50 : 0;
+        const scaleFactor = 0.912;
+        const width = 135 * scaleFactor ** scale;
+        const height = 40 * scaleFactor ** scale;
+
+        document.documentElement.style.setProperty(
+          "--control-width",
+          `${Math.abs(width)}px`
+        );
+        document.documentElement.style.setProperty(
+          "--control-height",
+          `${Math.abs(height)}px`
+        );
+        console.log("Zoom level adjusted.");
+      });
+  }
+
+  window.addEventListener("resize", enhanceInterface);
+  enhanceInterface();
+})();
+
 (function volumePercentage() {
   const volumeBar = document.querySelector(
     ".main-nowPlayingBar-volumeBar .progress-bar"
