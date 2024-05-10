@@ -318,12 +318,8 @@
   }
 }
 
-.Svg-img-icon-medium {
-  color: #fff;
-}
-
 .main-trackList-rowImagePlayPauseButton {
-  color: #fff;
+  color: var(--spice-text);
 }
 
 .main-trackList-trackListRow:focus-within,
@@ -843,6 +839,10 @@ button.HD9s7U5E1RLSWKpXmrqx {
 .playlist-playlist-searchResultListContainer {
   display: grid;
   gap: var(--default-gap);
+}
+
+.main-gridContainer-gridContainer > a {
+  padding: 0;
 }
 
 .BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover::after {
