@@ -396,7 +396,7 @@
 
 	.main-nowPlayingView-nowPlayingGrid .main-nowPlayingView-coverArtContainer:first-child ~ .main-nowPlayingView-coverArtContainer {
 		width: 100%;
-		filter: blur(40px) saturate(2);
+		filter: blur(3.5rem) saturate(2) brightness(50%) contrast(80%);
 		position: absolute;
 		left: 0;
 		top: 0;
