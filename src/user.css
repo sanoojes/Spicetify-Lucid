@@ -405,17 +405,21 @@
 }
 
 /* Top Bar Container */
+.spotify__os--is-windows .main-topBar-container {
+  padding-inline-end: 10.125rem !important;
+  padding-inline-start: 5rem !important;
+}
+
+.Root__main-view .main-topBar-container {
+  margin-top: calc(-24px + var(--panel-gap) * -2);
+  height: calc(24px + var(--panel-gap) * 2);
+}
+
 .main-topBar-container {
-  height: 2rem;
-  width: 100vw;
-  left: 5rem;
-  margin-top: 0.125rem;
-  position: fixed;
-  top: 0.05rem;
-  padding: 0;
-  padding-right: calc(15rem);
-  transition: var(--ease-transition);
-  pointer-events: none;
+  position: fixed !important;
+  left: 0;
+  width: 100%;
+  z-index: 5 !important;
 }
 
 .main-view-container__scroll-node-child-spacer {
