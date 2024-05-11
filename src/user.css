@@ -58,7 +58,7 @@
   --lyrics-color-active: rgba(var(--spice-rgb-text), 1);
   --lyrics-color-inactive: rgba(var(--spice-rgb-subtext), 0.5);
   --lyrics-color-passed: rgba(var(--spice-rgb-subtext), 0.75);
-  --lyrics-color-background: rgb(215, 215, 215);
+  --lyrics-color-background: rgba(var(--spice-rgb-main), 0.025);
 }
 
 * {
@@ -887,5 +887,46 @@ svg {
   transition: background-image var(--transition);
   opacity: 0.55;
   z-index: 0;
+}
+
+/* FullScreen Styles */
+
+.npv-background-image__overlay {
+  backdrop-filter: blur(0.5rem) saturate(1.3) brightness(0.5);
+}
+
+.npv-main-container,
+.npv-background-color,
+.npv-lyrics__gradient-background {
+  background-color: rgba(var(--spice-rgb-main), 0.75) !important;
+  background-image: none !important;
+  background: none !important;
+}
+
+.npv-track-metadata,
+.npv-up-next {
+  min-width: 6rem;
+  border: 2px solid
+    rgba(var(--spice-rgb-main), var(--bg-color-opacity-homeHeader));
+  padding: 0.5rem;
+  border-radius: var(--card-border-radius);
+  background-color: rgba(var(--spice-rgb-card), 0.75);
+  color: rgba(var(--spice-rgb-subtext), 0.6);
+}
+
+.npv-up-next__info {
+  color: var(--spice-text);
+}
+
+.npv-lyrics__text--credits,
+.npv-track-metadata__creator-name,
+.npv-lyrics__text-wrapper--previous,
+.npv-lyrics__text--credits {
+  color: rgba(var(--spice-rgb-text), 0.5) !important;
+}
+
+::backdrop {
+  backdrop-filter: blur(3rem) saturate(1.3) invert(0.0125) brightness(0.5);
+  background-color: rgba(var(--spice-rgb-main), 0.75);
 }
 
