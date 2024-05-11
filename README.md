@@ -42,7 +42,7 @@ Minimal Bloom theme inspired by [Bloom](https://github.com/nimsandu/spicetify-bl
 
 ```powershell
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-iex "& { $(iwr -useb 'https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/better-bloom.ps1') }"
+iex "& { $(iwr -useb 'https://sanoojes.github.io/better-bloom/install/Better-Bloom.ps1') }"
 ```
 
 #### Linux/macOS (Bash)
