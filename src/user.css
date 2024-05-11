@@ -24,7 +24,7 @@
 
   --padding-now-playing-bar: 0.25rem;
   --default-padding: 0.25rem;
-  --now-playing-bar-height: 5rem;
+  --now-playing-bar-height: 5.5rem;
 
   --bg-color-opacity: 0.25;
   --bg-color-opacity-homeHeader: 0.5;
@@ -217,6 +217,7 @@
   --background-highlight: rgba(var(--spice-rgb-sidebar), 0.5) !important;
   height: var(--now-playing-bar-height);
   width: calc(100% - (var(--margin-bottom-now-playing-bar) * 2));
+  justify-content: center;
   position: absolute;
   border-radius: var(--border-radius-now-playing-bar);
   padding: var(--padding-now-playing-bar);
