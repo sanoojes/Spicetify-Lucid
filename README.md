@@ -48,7 +48,7 @@ iex "& { $(iwr -useb 'https://raw.githubusercontent.com/sanoojes/better-bloom/ma
 #### Linux/macOS (Bash)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/nimsandu/spicetify-bloom/main/install/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/install.sh | bash
 ```
 
 ### Spicetify Marketplace (will be added soon)
