@@ -28,7 +28,7 @@
 
   --bg-color-opacity: 0.25;
   --bg-color-opacity-homeHeader: 0.5;
-  --bg-color-opacity-cards: 0.75;
+  --bg-color-opacity-cards: 0.5;
 
   --blur-radius: 1rem;
 
@@ -59,6 +59,8 @@
   --lyrics-color-inactive: rgba(var(--spice-rgb-subtext), 0.5);
   --lyrics-color-passed: rgba(var(--spice-rgb-subtext), 0.75);
   --lyrics-color-background: rgba(var(--spice-rgb-main), 0.025);
+  --spice-rgb-selected-row: 80, 80, 80;
+  --section-background-base: rgba(var(--spice-rgb-card), 0.5) !important;
 }
 
 * {
@@ -68,6 +70,10 @@
 
 *:focus {
   outline: none !important;
+}
+
+div {
+  background-color: transparent;
 }
 
 .vertical-metrics {
@@ -201,14 +207,6 @@
     var(--background-noise);
 }
 
-.main-actionBarBackground-background {
-  background-image: linear-gradient(
-      rgba(var(--spice-rgb-shadow), 0.54) 0,
-      var(--background-base) 100%
-    ),
-    var(--background-noise);
-}
-
 .main-gridContainer-gridContainer {
   gap: var(--default-gap);
 }
@@ -228,12 +226,12 @@
 }
 
 .main-contextMenu-menu {
-  background-color: var(--shadow-rgb);
+  background-color: rgba(var(--spice-rgb-card), var(--bg-color-opacity-cards));
 }
 
 .main-contextMenu-menu:before {
   content: "";
-  backdrop-filter: blur(var(--blur-radius)) saturate(0.5);
+  backdrop-filter: blur(var(--blur-radius)) saturate(0.5) brightness(0.5);
   position: absolute;
   top: 0;
   left: 0;
@@ -395,7 +393,7 @@
 .rX_OmqCngvY5ZCoYBZgb:after,
 .rX_OmqCngvY5ZCoYBZgb::before,
 .search-searchCategory-SearchCategory {
-  backdrop-filter: blur(var(--blur-radius)) saturate(1);
+  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.75);
   top: 0;
 }
 
@@ -609,6 +607,12 @@ div[data-testid="hpto-parent-container"] {
   border-radius: var(--card-border-radius);
 }
 
+.x-sortBox-sortDropdown,
+.x-filterBox-filterInput,
+.x-filterBox-expandButton {
+  color: rgba(var(--spice-rgb-subtext), 0.75) !important;
+}
+
 /* Animations */
 .main-view-container,
 .Root__right-sidebar,
@@ -618,6 +622,7 @@ div[data-testid="hpto-parent-container"] {
 .Root__nav-bar,
 .Root__main-view {
   position: static;
+  background: transparent !important;
   transition: var(--ease-transition);
 }
 
@@ -647,6 +652,7 @@ div[data-testid="hpto-parent-container"] {
 .marketplace-tabBar-nav {
   width: inherit;
 }
+
 /* Taken from Spicetify marketplace snippets */
 @property --progress-bar-transform {
   inherits: true;
@@ -928,4 +934,22 @@ svg {
 ::backdrop {
   backdrop-filter: blur(3rem) saturate(1.3) invert(0.0125) brightness(0.5);
   background-color: rgba(var(--spice-rgb-main), 0.75);
+}
+
+.main-tag-container {
+  background-color: var(--spice-accent);
+}
+
+.main-entityHeader-background {
+  transform: translateY(calc(var(--scroll) * -105vh)) !important;
+  transition: var(--ease-transition);
+}
+
+.main-entityHeader-overlay,
+.main-entityHeader-overlay::after,
+.EmeHQXR87mUskYK6xEde,
+.D6IunHuzuULf_Sr88GOA {
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
 }
