@@ -457,7 +457,6 @@
 
 .main-view-container__scroll-node-child-spacer {
   height: 0rem !important;
-  padding: 0;
 }
 
 .f59DF4qQ_FphIrVeRYkI {
@@ -500,7 +499,7 @@
 }
 
 .main-view-container__scroll-node-child {
-  padding: 0;
+  padding-bottom: var(--now-playing-bar-height);
 }
 
 .main-nowPlayingView-sectionHeaderSpacing.main-nowPlayingView-lyricsGradient {
@@ -930,4 +929,3 @@ svg {
   backdrop-filter: blur(3rem) saturate(1.3) invert(0.0125) brightness(0.5);
   background-color: rgba(var(--spice-rgb-main), 0.75);
 }
-
