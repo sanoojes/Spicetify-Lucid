@@ -53,6 +53,7 @@
 
 * {
   font-family: "Poppins", var(--fallback-fonts, sans-serif) !important;
+  box-shadow: none !important;
   --panel-gap: 0.5rem !important;
   --text-subdued: var(--spice-subtext);
   --lyrics-color-active: rgba(var(--spice-rgb-text), 1);
