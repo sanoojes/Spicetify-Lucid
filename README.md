@@ -51,7 +51,7 @@ iex "& { $(iwr -useb 'https://sanoojes.github.io/better-bloom/install/Better-Blo
 curl -fsSL https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/install.sh | bash
 ```
 
-### Spicetify Marketplace (will be added soon)
+### Spicetify Marketplace
 
 Simply install [spicetify-marketplace](https://github.com/spicetify/spicetify-marketplace) by following it's
 [installation instructions](https://github.com/spicetify/spicetify-marketplace/wiki/Installation). Then look for `better-bloom` theme and click the install button.
