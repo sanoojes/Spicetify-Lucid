@@ -38,7 +38,7 @@ This template will guide you through reporting any issues you encounter with you
 - **Spicetify Version:** (Find this in Settings > About Spicetify or by running `spicetify -v` in your terminal)
 - **Spotify Version:** (Find this in the Settings menu)
 - **Spicetify Theme Color scheme:** (If applicable)
-- **Additional Info:** Share any other relevant details about your setup (custom fonts, other themes).
+- **Additional Info:** Share any other relevant details about your setup (custom extenstions, other snippets).
 
 **Additional Context:**
 
