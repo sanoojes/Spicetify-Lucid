@@ -28,12 +28,11 @@
 
   --bg-color-opacity: 0.25;
   --bg-color-opacity-homeHeader: 0.5;
-  --bg-color-opacity-cards: 0.5;
+  --bg-color-opacity-cards: 0.75;
 
   --blur-radius: 1rem;
 
   --top-bar-opacity: 0 !important;
-  --spice-rgb-main: 0, 0, 0;
 
   /*Font styles*/
   --encore-title-font-stack: "Poppins", var(--fallback-fonts);
@@ -181,10 +180,11 @@ div {
 .main-heroCard-card,
 .main-card-cardContainer,
 .view-homeShortcutsGrid-shortcut {
-  background-color: rgba(var(--spice-rgb-selected-row), 0.0125);
+  background-color: rgba(var(--spice-rgb-card), 0.25) !important;
   border: 1px rgba(var(--spice-rgb-contour), 0.5) solid;
   border-radius: var(--card-border-radius);
   overflow: hidden;
+  transition: var(--ease-transition);
 }
 
 .view-homeShortcutsGrid-draggable {
@@ -198,7 +198,7 @@ div {
     background-color: rgba(var(--spice-rgb-card), 0.5) !important;
   }
   &:hover::after {
-    background-color: rgba(var(--spice-rgb-main), 0.9) !important;
+    background-color: rgba(var(--spice-rgb-main), 0.5) !important;
   }
 }
 
