@@ -246,7 +246,7 @@ function Get-WindowsAppsTheme {
     }
     process {
         switch (Get-ItemPropertyValue @Parameters) {
-            0 { 'darkmono' }
+            0 { 'dark' }
             1 { 'light' }
         }
     }
