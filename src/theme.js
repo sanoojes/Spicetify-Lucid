@@ -8,7 +8,7 @@
 
   function applyStyles() {
     // Apply predefined style properties directly
-    document.documentElement.style.setProperty("--blur", "1.5rem");
+    document.documentElement.style.setProperty("--blur", "2.5rem");
     document.documentElement.style.setProperty("--cont", "80%");
     document.documentElement.style.setProperty("--satu", "90%");
     document.documentElement.style.setProperty("--bright", "50%");

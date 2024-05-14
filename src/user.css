@@ -41,7 +41,7 @@
   --bold-font-weight: 700;
   --extra-bold-font-weight: 800;
 
-  --ease-transition: all 0.5s ease;
+  --ease-transition: all 0.35s cubic-bezier(0.76, 0.32, 0.5, 0.72);
 
   --spice-rgb-selected-row: 255, 255, 255;
 
@@ -65,7 +65,6 @@
 
 * {
   box-shadow: none;
-  /* transition: var(--ease-transition); */
 }
 
 *:focus {
@@ -195,10 +194,10 @@ div {
 .main-card-cardContainer,
 .view-homeShortcutsGrid-shortcut {
   &:hover {
-    background-color: rgba(var(--spice-rgb-card), 0.5) !important;
+    background-color: rgba(var(--spice-rgb-card), 0.125) !important;
   }
   &:hover::after {
-    background-color: rgba(var(--spice-rgb-main), 0.5) !important;
+    background-color: rgba(var(--spice-rgb-main), 0.125) !important;
   }
 }
 
@@ -249,11 +248,16 @@ div {
 }
 
 .main-contextMenu-menu {
+  border-radius: var(--border-radius);
   background-color: rgba(var(--spice-rgb-card), var(--bg-color-opacity-cards));
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
 .main-contextMenu-menu:before {
   content: "";
+  border: var(--default-border-thickness) solid rgba(var(--spice-rgb-card), 0.5);
+  border-radius: var(--border-radius);
   backdrop-filter: blur(var(--blur-radius)) saturate(0.5) brightness(0.5);
   position: absolute;
   top: 0;
@@ -523,7 +527,8 @@ div {
     var(--now-playing-bar-height) - (var(--padding-now-playing-bar) * 2)
   ) !important;
 }
-.Root__main-view-overlay {
+.Root__main-view-overlay,
+.gqaWFmQeKNYnYD5gRv3x {
   margin-bottom: calc(
     var(--now-playing-bar-height) - (var(--padding-now-playing-bar) * 2)
   ) !important;
@@ -641,11 +646,57 @@ div[data-testid="hpto-parent-container"] {
   color: rgba(var(--spice-rgb-subtext), 0.75) !important;
 }
 
+.main-nowPlayingView-queueItem,
+.main-nowPlayingView-queue,
+.main-nowPlayingView-credits,
+.main-nowPlayingView-aboutArtistV2 {
+  border: var(--default-border-thickness) solid
+    rgba(var(--spice-rgb-subtext), 0.025);
+  backdrop-filter: saturate(1.5) brightness(1.2) contrast(1);
+}
+
+.main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
+  .main-trackList-rowMoreButton,
+.main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
+  .main-trackList-rowSectionEnd,
+.main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
+  .UudGCx16EmBkuFPllvss
+  a,
+.main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
+  .W676nknusnBt8sz19YVV,
+.main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
+  .main-trackList-rowSectionVariable,
+.main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
+  .main-trackList-rowSectionVariable
+  a,
+.main-trackList-trackListRow:hover:not(.tH1iuxCV8NexP4pzEBa4)
+  .main-trackList-rowMoreButton,
+.main-trackList-trackListRow:hover:not(.tH1iuxCV8NexP4pzEBa4)
+  .main-trackList-rowSectionEnd,
+.main-trackList-trackListRow:hover:not(.tH1iuxCV8NexP4pzEBa4)
+  .UudGCx16EmBkuFPllvss
+  a,
+.main-trackList-trackListRow:hover:not(.tH1iuxCV8NexP4pzEBa4)
+  .W676nknusnBt8sz19YVV,
+.main-trackList-trackListRow:hover:not(.tH1iuxCV8NexP4pzEBa4)
+  .main-trackList-rowSectionVariable,
+.main-trackList-trackListRow:hover:not(.tH1iuxCV8NexP4pzEBa4)
+  .main-trackList-rowSectionVariable
+  a {
+  color: rgba(var(--spice-rgb-text), 0.75);
+}
+
 /* Animations */
+.main-trackList-trackListRow,
 .main-view-container,
 .Root__right-sidebar,
 .Root__now-playing-bar {
   transition: var(--ease-transition);
+}
+.view-homeShortcutsGrid-main *,
+.main-card-cardContainer,
+.view-homeShortcutsGrid-shortcut {
+  transition: all 250ms ease-in-out;
 }
 .Root__nav-bar,
 .Root__main-view {
@@ -925,7 +976,12 @@ svg {
 /* FullScreen Styles */
 
 .npv-background-image__overlay {
-  backdrop-filter: blur(0.5rem) saturate(1.3) brightness(0.5);
+  background: linear-gradient(
+      rgba(var(--spice-rgb-main), 0.75) 0,
+      rgba(var(--spice-rgb-main), 0.25) 100%
+    ),
+    url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter) brightness(0.1) contrast(1.025)' /%3E%3C/svg%3E");
+  backdrop-filter: saturate(0.9) brightness(0.9);
 }
 
 .npv-main-container,
@@ -959,7 +1015,7 @@ svg {
 }
 
 ::backdrop {
-  backdrop-filter: blur(3rem) saturate(1.3) invert(0.0125) brightness(0.5);
+  backdrop-filter: blur(2rem) saturate(2) invert(0.0125) brightness(0.5);
   background-color: rgba(var(--spice-rgb-main), 0.75);
 }
 
@@ -968,7 +1024,7 @@ svg {
 }
 
 .main-entityHeader-background {
-  transform: translateY(calc(var(--scroll) * -105vh)) !important;
+  transform: translateY(calc(var(--scroll) * -135vh)) !important;
   transition: var(--ease-transition);
 }
 
@@ -1010,7 +1066,7 @@ svg {
   --background-base: var(--spice-accent);
 }
 .GenericModal {
-  backdrop-filter: blur(3rem) saturate(1.3) brightness(2.5);
+  backdrop-filter: blur(2rem) saturate(1.5) brightness(2.5);
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
   --spice-sidebar: rgba(var(--spice-rgb-sidebar), 0.5);
 }
@@ -1021,7 +1077,7 @@ svg {
 
 .od_kF1rLZbir8kM_F607,
 .BPDHTIIFueJMvtDPZttw {
-  backdrop-filter: blur(3rem) saturate(1.3) brightness(0.5);
+  backdrop-filter: blur(2rem) saturate(1.5) brightness(0.5);
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
 }
 
@@ -1034,4 +1090,29 @@ svg {
 
 .jW4eWdr_LUeOXwPpKhWG .BPDHTIIFueJMvtDPZttw {
   max-width: 95vw;
+}
+
+.npv-background-image__overlay {
+  background-color: transparent !important;
+}
+
+.LegacyChip__LegacyChipComponent-sc-tzfq94-0:hover
+  > .ChipInnerComponent-sm-selected.ChipInnerComponent-sm-selected {
+  background-color: rgba(var(--spice-rgb-accent), 0.75) !important;
+}
+
+.LegacyChip__LegacyChipComponent-sc-tzfq94-0:active
+  > .ChipInnerComponent-sm-selected.ChipInnerComponent-sm-selected {
+  background-color: rgba(var(--spice-rgb-accent), 0.75) !important;
+}
+
+.spotifyinternal-artistnpv .npv-header__metadata {
+  color: rgba(var(--spice-rgb-subtext), 0.75);
+}
+
+[data-context-menu-open="true"] a:only-child,
+a:focus,
+a:hover,
+a[data-context-menu-open="true"] {
+  text-decoration: none;
 }
