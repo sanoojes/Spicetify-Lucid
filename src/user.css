@@ -540,8 +540,8 @@ div {
 
 .main-nowPlayingBar-container .GlueDropTarget,
 .main-coverSlotCollapsed-container {
-  max-height: 56px;
-  max-width: 56px;
+  height: 56px;
+  width: 56px;
 }
 
 .main-coverSlotCollapsed-navAltContainer {
