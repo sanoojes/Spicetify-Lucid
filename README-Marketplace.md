@@ -10,33 +10,41 @@
 
 ### Dark (default)
 
-![Dark Preview](./assets/images/base.png)
-![Dark 1 Preview](./assets/images/better-bloom-dark.png)
-![Dark 2 Preview](./assets/images/better-bloom-dark2.png)
+![Base Dark Preview](./assets/images/base.png)
+![Dark Preview 0](./assets/images/better-bloom-dark.png)
+![Dark Preview 1](./assets/images/better-bloom-dark0.png)
+![Dark 1 Preview 2](./assets/images/better-bloom-dark1.png)
+![Dark 2 Preview 3](./assets/images/better-bloom-dark2.png)
 
 ### Light
 
 ![Light Preview](./assets/images/better-bloom-light.png)
+![Light Preview 1](./assets/images/better-bloom-light1.png)
 
 ### Comfy
 
 ![Comfy Preview](./assets/images/better-bloom-comfy.png)
+![Comfy Preview 1](./assets/images/better-bloom-comfy1.png)
 
 ### Darkgreen
 
 ![DarkGreen Preview](./assets/images/better-bloom-darkgreen.png)
+![DarkGreen Preview 1](./assets/images/better-bloom-darkgreen1.png)
 
 ### Violet
 
 ![Violet Preview](./assets/images/better-bloom-violet.png)
+![Violet Preview 1](./assets/images/better-bloom-violet1.png)
 
 ### Dark-Fluent
 
 ![Dark-Fluent Preview](./assets/images/better-bloom-dark-fluent.png)
+![Dark-Fluent Preview 1](./assets/images/better-bloom-dark-fluent1.png)
 
 ### Dark-Bloom
 
 ![Dark-Bloom Preview](./assets/images/better-bloom-dark-bloom.png)
+![Dark-Bloom Preview 1](./assets/images/better-bloom-dark-bloom.png)
 
 ## Dependencies
 
