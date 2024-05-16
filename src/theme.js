@@ -8,10 +8,15 @@
 
   function applyStyles() {
     // Apply predefined style properties directly
-    document.documentElement.style.setProperty("--blur", "2.5rem");
-    document.documentElement.style.setProperty("--cont", "80%");
+    document.documentElement.style.setProperty("--blur", "1.5rem");
     document.documentElement.style.setProperty("--satu", "90%");
-    document.documentElement.style.setProperty("--bright", "50%");
+    if (Spicetify.Config.color_scheme === "light") {
+      document.documentElement.style.setProperty("--bright", "100%");
+      document.documentElement.style.setProperty("--cont", "100%");
+    } else {
+      document.documentElement.style.setProperty("--cont", "80%");
+      document.documentElement.style.setProperty("--bright", "50%");
+    }
   }
 
   applyStyles();
@@ -54,7 +59,6 @@
   onSongChange(); // Initial call to setup song change handling
 
   function enhanceInterface() {
-    // Adjust dimensions or OS-specific styles as needed
     Spicetify.Platform.PlayerAPI._prefs
       .get({ key: "app.browser.zoom-level" })
       .then((value) => {
