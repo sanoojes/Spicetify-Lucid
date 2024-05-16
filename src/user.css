@@ -650,7 +650,7 @@ div[data-testid="hpto-parent-container"] {
 #BeautifulLyrics-CardView {
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.025);
-  backdrop-filter: saturate(1) brightness(0.75) contrast(1) !important;
+  backdrop-filter: saturate(1) brightness(1.25) contrast(1) !important;
 }
 
 .main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
