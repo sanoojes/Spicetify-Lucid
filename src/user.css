@@ -603,7 +603,11 @@ div[data-testid="hpto-parent-container"] {
 
 .main-yourLibraryX-entryPoints,
 .main-nowPlayingView-content {
-  background: rgba(var(--spice-rgb-sidebar), 0.5) !important;
+  background: rgba(var(--spice-rgb-sidebar), 0.25) !important;
+}
+
+.main-shelf-shelf {
+  margin-top: 1rem;
 }
 
 .LegacyChipComponent-checkbox-chip-sm-useBrowserDefaultFocusStyle,
@@ -702,19 +706,11 @@ div[data-testid="hpto-parent-container"] {
 }
 
 .marketplace-header {
+  position: static;
   background-color: transparent;
-  top: 0;
-  padding-top: 1rem;
+  padding: 0.5rem 0;
 }
-.marketplace-header::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(18, 18, 18, 0.5);
-  backdrop-filter: blur(var(--blur)) saturate(1.2);
-  z-index: -1;
-}
+
 .marketplace-tabBar-nav {
   width: inherit;
 }
