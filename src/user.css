@@ -538,14 +538,10 @@ div {
   background-color: rgba(var(--spice-rgb-main), 0.5) !important;
 }
 
-.main-nowPlayingBar-container .GlueDropTarget,
 .main-coverSlotCollapsed-container {
-  height: 56px;
-  width: 56px;
-}
-
-.main-coverSlotCollapsed-navAltContainer {
   border-radius: 0.5rem;
+  max-width: 56px;
+  max-height: 56px;
 }
 
 .main-trackList-trackListHeader {
@@ -620,7 +616,8 @@ div[data-testid="hpto-parent-container"] {
   background: rgba(var(--spice-rgb-sidebar), 0.5) !important;
 }
 
-.LegacyChipComponent-checkbox-chip-sm-useBrowserDefaultFocusStyle {
+.LegacyChipComponent-checkbox-chip-sm-useBrowserDefaultFocusStyle,
+.LegacyChipComponent-checkbox-chip-sm-isUsingKeyboard-useBrowserDefaultFocusStyle {
   background-color: var(--shadow-rgb);
 }
 
@@ -646,13 +643,13 @@ div[data-testid="hpto-parent-container"] {
   color: rgba(var(--spice-rgb-subtext), 0.75) !important;
 }
 
-.main-nowPlayingView-queueItem,
-.main-nowPlayingView-queue,
-.main-nowPlayingView-credits,
-.main-nowPlayingView-aboutArtistV2 {
+.main-nowPlayingView-section,
+.main-nowPlayingView-artistOnTour,
+.main-nowPlayingView-merch,
+#BeautifulLyrics-CardView {
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.025);
-  backdrop-filter: saturate(1.5) brightness(1.2) contrast(1);
+  backdrop-filter: saturate(1) brightness(0.75) contrast(1) !important;
 }
 
 .main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
@@ -1097,10 +1094,14 @@ svg {
 }
 
 .LegacyChip__LegacyChipComponent-sc-tzfq94-0:hover
+  > .ChipInnerComponent-sm-isUsingKeyboard.ChipInnerComponent-sm-isUsingKeyboard,
+.LegacyChip__LegacyChipComponent-sc-tzfq94-0:hover
   > .ChipInnerComponent-sm-selected.ChipInnerComponent-sm-selected {
   background-color: rgba(var(--spice-rgb-accent), 0.75) !important;
 }
 
+.LegacyChip__LegacyChipComponent-sc-tzfq94-0:active
+  > .ChipInnerComponent-sm-isUsingKeyboard.ChipInnerComponent-sm-isUsingKeyboard,
 .LegacyChip__LegacyChipComponent-sc-tzfq94-0:active
   > .ChipInnerComponent-sm-selected.ChipInnerComponent-sm-selected {
   background-color: rgba(var(--spice-rgb-accent), 0.75) !important;
@@ -1115,4 +1116,25 @@ a:focus,
 a:hover,
 a[data-context-menu-open="true"] {
   text-decoration: none;
+}
+
+/* Beautiful Lyrics */
+
+.main-nowPlayingBar-container:has(.LyricsPageIcon)
+  .main-nowPlayingBar-lyricsButton {
+  display: none;
+}
+
+button:has(.LyricsPageIcon) {
+  margin-right: 0;
+}
+
+.lyrics-background-container::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-color: rgba(var(--spice-rgb-main), 0.25);
+  z-index: 10;
+  backdrop-filter: brightness(0.75);
 }
