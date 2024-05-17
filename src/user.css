@@ -14,6 +14,7 @@
   --border-radius-now-playing-bar: 0.5rem;
 
   --default-gap: 0.5rem;
+  --default-gap2: 0.25rem;
 
   /* Shadow Color */
   --shadow-rgb: rgba(var(--spice-rgb-subtext), 0.125);
@@ -241,7 +242,7 @@ div {
   bottom: var(--margin-bottom-now-playing-bar);
   border: var(--default-border-thickness) solid var(--shadow-rgb);
   background-color: rgba(var(--spice-rgb-main), 0.5);
-  backdrop-filter: blur(var(--blur-radius)) saturate(0.5) brightness(100%);
+  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(100%);
 }
 
 .main-contextMenu-menu {
@@ -259,13 +260,25 @@ div {
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.25);
   border-radius: var(--border-radius);
-  backdrop-filter: blur(var(--blur-radius)) saturate(0.5) brightness(0.75);
+  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(1);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: -1;
+}
+
+.x-settings-equalizerSection,
+.main-dropDown-dropDown {
+  background-color: rgba(var(--spice-rgb-main), 0.125);
+  border: var(--default-border-thickness) solid
+    rgba(var(--spice-rgb-subtext), 0.5);
+  border-radius: 8px;
+}
+
+.main-dropDown-dropDown {
+  color: rgba(var(--spice-rgb-subtext), 0.75);
 }
 
 .main-nowPlayingWidget-trackInfo {
@@ -1017,8 +1030,9 @@ svg {
   color: rgba(var(--spice-rgb-text), 0.5) !important;
 }
 
-::backdrop {
-  backdrop-filter: blur(2rem) saturate(2) invert(0.0125) brightness(0.5);
+::backdrop,
+.GenericModal__overlay {
+  backdrop-filter: blur(0.2rem) saturate(2) invert(0.0125) brightness(0.5);
   background-color: rgba(var(--spice-rgb-main), 0.75);
 }
 
@@ -1074,8 +1088,9 @@ body:has(.BeautifulLyricsPage) {
 .ButtonInner-small-iconOnly {
   --background-base: var(--spice-accent);
 }
+
 .GenericModal {
-  backdrop-filter: blur(2rem) saturate(1.5) brightness(2.5);
+  backdrop-filter: blur(2rem) saturate(1.5) brightness(1.5);
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
   --spice-sidebar: rgba(var(--spice-rgb-sidebar), 0.5);
 }
@@ -1130,6 +1145,49 @@ a[data-context-menu-open="true"] {
   text-decoration: none;
 }
 
+.main-embedWidgetGenerator-container,
+.main-trackCreditsModal-container {
+  height: 100%;
+  backdrop-filter: blur(1rem) saturate(1) brightness(1.5);
+  background-color: rgba(var(--spice-rgb-card), 0.25) !important;
+  border: var(--default-border-thickness) solid
+    rgba(var(--spice-rgb-subtext), 0.25);
+  border-radius: var(--card-border-radius);
+}
+
+.main-trackCreditsModal-mainSection {
+  scrollbar-width: thin;
+}
+
+.ijaSPbJ8wd3RNiyukjlh {
+  display: flex;
+  padding: 0;
+  gap: var(--default-gap2);
+  flex-direction: column;
+}
+
+.ig17e2GN63Tgv3JeRoJF {
+  color: rgba(var(--spice-rgb-subtext), 0.75);
+  gap: 8px;
+}
+
+button {
+  min-width: max-content !important;
+}
+
+.button-module__button___hf2qg_marketplace {
+  background-color: var(--spice-accent);
+}
+
+.toggle-module__toggle-input___ceLM4_marketplace:checked
+  ~ .toggle-module__toggle-indicator-wrapper___6Lcp0_marketplace {
+  background-color: var(--spice-accent);
+}
+
+.bOAvdKi0zqyA_S6ThcvF {
+  margin: 0 auto;
+}
+
 /* Beautiful Lyrics */
 
 .main-nowPlayingBar-container:has(.LyricsPageIcon)
@@ -1149,8 +1207,4 @@ button:has(.LyricsPageIcon) {
   background-color: rgba(var(--spice-rgb-main), 0.25);
   z-index: 10;
   backdrop-filter: brightness(0.75);
-}
-
-#BeautifulLyrics-CardView .LyricsContent .ContentContainer {
-  height: 35cqh;
 }
