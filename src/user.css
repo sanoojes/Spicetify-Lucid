@@ -725,6 +725,11 @@ div[data-testid="hpto-parent-container"] {
   --fg-color: var(--spice-accent);
 }
 
+.marketplace-grid {
+  --minimumColumnWidth: 14rem;
+  text-wrap: balance;
+}
+
 .marketplace-tabBar-headerItemLink {
   padding: 0.2rem 16px;
 }
