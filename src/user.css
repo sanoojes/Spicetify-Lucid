@@ -1093,6 +1093,9 @@ body:has(.BeautifulLyricsPage) {
   backdrop-filter: blur(2rem) saturate(1.5) brightness(1.5);
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
   --spice-sidebar: rgba(var(--spice-rgb-sidebar), 0.5);
+  button {
+    min-width: max-content !important;
+  }
 }
 
 .GenericModal--afterOpen {
@@ -1169,10 +1172,6 @@ a[data-context-menu-open="true"] {
 .ig17e2GN63Tgv3JeRoJF {
   color: rgba(var(--spice-rgb-subtext), 0.75);
   gap: 8px;
-}
-
-button {
-  min-width: max-content !important;
 }
 
 .button-module__button___hf2qg_marketplace {
