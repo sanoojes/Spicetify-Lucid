@@ -1150,3 +1150,7 @@ button:has(.LyricsPageIcon) {
   z-index: 10;
   backdrop-filter: brightness(0.75);
 }
+
+#BeautifulLyrics-CardView .LyricsContent .ContentContainer {
+  height: 35cqh;
+}
