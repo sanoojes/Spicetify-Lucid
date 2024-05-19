@@ -5,8 +5,7 @@
   }
 
   console.log(Spicetify.Platform.PlatformData);
-  var styleSheet = document.createElement("style");
-
+  let styleSheet = document.createElement("style");
   if (Spicetify.Platform.PlatformData.os_name === "windows") {
     styleSheet.innerText = `
     .main-topBar-container {
@@ -14,7 +13,7 @@
       padding-inline-start: 5rem !important;
     }`;
     document.head.appendChild(styleSheet);
-  } else if (Spicetify.Platform.PlatformData.os_name === "macos") {
+  } else {
     styleSheet.innerText = `
     .main-topBar-container {
       padding-inline-start: 5rem !important;
