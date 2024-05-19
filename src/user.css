@@ -580,7 +580,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 .main-topBar-topbarContentWrapper {
-  display: flex;
+  display: none;
   height: 2rem;
   justify-content: center;
   align-items: center;
@@ -591,6 +591,10 @@ div[data-testid="hpto-parent-container"] {
     height: 1rem;
     width: 1rem;
   }
+}
+
+.main-topBar-topbarContentWrapper:has(*) {
+  display: flex;
 }
 
 .ButtonInner-medium-iconOnly {
