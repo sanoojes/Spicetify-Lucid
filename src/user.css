@@ -601,6 +601,7 @@ div[data-testid="hpto-parent-container"] {
 .main-topBar-topbarContentWrapper {
   display: none;
   height: 2rem;
+  max-width: fit-content;
   justify-content: center;
   align-items: center;
   .main-topBar-topbarContent {
