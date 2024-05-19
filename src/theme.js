@@ -20,6 +20,65 @@
     }`;
   }
 
+  function cleanLabel(label) {
+    const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, "").trim();
+    return cleanedLabel;
+  }
+
+  const { Locale } = Spicetify;
+  if (!Locale) return;
+  let playlistPlayLabel = Locale.get("playlist.a11y.play");
+  playlistPlayLabel = cleanLabel(playlistPlayLabel);
+  let playlistPauseLabel = Locale.get("playlist.a11y.pause");
+  playlistPauseLabel = cleanLabel(playlistPauseLabel);
+
+  const playLabel = Locale.get("play");
+  const pauseLabel = Locale.get("pause");
+
+  const tracklistPlayLabel = Locale.get("tracklist.a11y.play");
+  let tracklistPlayLabelOne;
+  let tracklistPlayLabelTwo;
+  if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
+    [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
+      tracklistPlayLabel.split("{1}");
+  } else {
+    [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
+      tracklistPlayLabel.split("{0}");
+  }
+  tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
+  tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
+
+  const playButtonStyle = document.createElement("style");
+  playButtonStyle.innerHTML = `
+      .main-playButton-button[aria-label*="${playLabel}"],
+      .main-playButton-PlayButton>button[aria-label*="${playLabel}"],
+      .main-playPauseButton-button[aria-label="${playLabel}"],
+      .main-playPauseButton-button[aria-label="${Locale.get(
+        "playback-control.play"
+      )}"],
+      .main-trackList-rowPlayPauseButton[aria-label*="${playLabel}"],
+      .main-trackList-rowImagePlayButton[aria-label*="${tracklistPlayLabelOne}"][aria-label*="${tracklistPlayLabelTwo}"],
+      .main-playButton-PlayButton>button[aria-label*="${playlistPlayLabel}"] {
+        background-color: var(--spice-text) !important;
+        -webkit-mask-image: url('https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg') !important;
+        mask-image: url('https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg') !important;
+      }
+      .main-playButton-button[aria-label*="${pauseLabel}"],
+      .main-playButton-PlayButton>button[aria-label*="${pauseLabel}"],
+      .main-playPauseButton-button[aria-label*="${pauseLabel}"],
+      .main-playPauseButton-button[aria-label="${Locale.get(
+        "playback-control.pause"
+      )}"],
+      .main-trackList-rowPlayPauseButton[aria-label*="${pauseLabel}"],
+      .main-trackList-rowImagePlayButton[aria-label*="${pauseLabel}"],
+      .main-playButton-PlayButton>button[aria-label*="${playlistPauseLabel}"] {
+        background-color: var(--spice-text) !important;
+        -webkit-mask-image: url('https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg') !important;
+        mask-image: url('https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg') !important;
+      }
+`;
+  document.head.appendChild(playButtonStyle);
+
   console.log("Better Bloom is running");
 
   function applyStyles() {
