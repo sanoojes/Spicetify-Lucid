@@ -940,6 +940,10 @@ button.HD9s7U5E1RLSWKpXmrqx {
 .x-searchInput-searchInputSearchIcon {
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/search.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/search.svg");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   background-color: var(--spice-subtext) !important;
   flex: 0;
   transform: scaleX(-1);
