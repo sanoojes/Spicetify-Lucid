@@ -330,6 +330,37 @@ div {
   background-color: var(--spice-subtext);
 }
 
+.main-playPauseButton-button,
+button[aria-label="Add to Liked Songs"],
+button[aria-label="Add to playlist"] {
+  display: block;
+  background-color: var(--spice-subtext);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  min-height: 1rem;
+  min-width: 1rem;
+  aspect-ratio: 1/1;
+  border-radius: 0 !important;
+  border: none !important;
+  svg,
+  span {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+button[aria-label="Add to Liked Songs"] {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg") !important;
+}
+button[aria-label="Add to playlist"] {
+  background-color: var(--spice-accent);
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg") !important;
+}
+
 .main-playPauseButton-button[aria-label="Pause"] {
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
@@ -1285,6 +1316,14 @@ a[data-context-menu-open="true"] {
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/appstore.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/appstore.svg");
   background-color: var(--spice-accent) !important;
+}
+
+.main-contextMenu-menuItemButton .egE6UQjF_UUoCzvMxREj {
+  display: none; /* hides report button from contextMenu */
+}
+
+.main-nowPlayingView-contextItemInfo {
+  padding-right: 0.25rem;
 }
 
 /* Beautiful Lyrics */
