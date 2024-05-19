@@ -313,6 +313,10 @@ div {
   }
 }
 
+.main-repeatButton-button {
+  scale: 0.65 !important;
+}
+
 .main-playPauseButton-button {
   svg {
     display: none;
@@ -479,12 +483,6 @@ div {
 .main-actionBarBackground-background {
   background-color: transparent !important;
   background-image: none !important;
-}
-
-/* Top Bar Container */
-.spotify__os--is-windows .main-topBar-container {
-  padding-inline-end: 10.125rem !important;
-  padding-inline-start: 5rem !important;
 }
 
 .Root__main-view .main-topBar-container {
