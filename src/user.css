@@ -143,6 +143,10 @@ div {
   padding-inline-start: 5rem !important;
 }
 
+.main-topBar-container {
+  padding-inline-start: 5rem !important;
+}
+
 .os-scrollbar-handle {
   display: var(--scrollbar-display);
   width: var(--scrollbar-width) !important;
