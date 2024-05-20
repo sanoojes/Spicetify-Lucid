@@ -1,81 +1,90 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+/* ------------------------------
+   Base Styles and Variables
+------------------------------ */
+
 :root {
+  /* Commonly Used Values */
+  --default-gap: 0.5rem;
+  --default-gap2: 0.25rem;
+  --default-border-thickness: 2px;
+  --default-padding: 0.25rem;
+  --bg-color-opacity: 0.25;
+  --bg-color-opacity-cards: 0.75;
+  --bg-color-opacity-homeHeader: 0.5;
+  --blur-radius: 1rem;
+  --ease-transition: all 0.25s ease-in-out;
+
   /* Scrollbar */
   --scrollbar-display: block;
   --scrollbar-width: 0.25rem;
   --scrollbar-color: rgba(var(--spice-rgb-text), 0.75) !important;
 
   /* Border */
-  --default-border-thickness: 2px;
   --border-radius: 1rem;
   --card-border-radius: 0.5rem;
   --border-radius-rounded: 9999px;
   --border-radius-now-playing-bar: 0.5rem;
 
-  --default-gap: 0.5rem;
-  --default-gap2: 0.25rem;
-
   /* Shadow Color */
   --shadow-rgb: rgba(var(--spice-rgb-subtext), 0.125);
   --white-rgb: 255, 255, 255;
 
+  /* Spacing & Sizing */
   --margin-heading: 0.5rem;
   --margin-bottom-now-playing-bar: 0.5rem;
-
   --padding-now-playing-bar: 0.25rem;
-  --default-padding: 0.25rem;
   --now-playing-bar-height: 5.5rem;
 
-  --bg-color-opacity: 0.25;
-  --bg-color-opacity-homeHeader: 0.5;
-  --bg-color-opacity-cards: 0.75;
-
-  --blur-radius: 1rem;
-
-  /*Font styles*/
+  /* Fonts */
   --encore-title-font-stack: "Poppins", var(--fallback-fonts);
   --encore-body-font-stack: "Poppins", var(--fallback-fonts);
   --normal-font-weight: 500;
   --bold-font-weight: 700;
   --extra-bold-font-weight: 800;
 
-  --ease-transition: all 0.25s ease-in-out;
-
-  --spice-rgb-selected-row: 255, 255, 255;
-
+  /* Spicetify Overrides */
+  --spice-rgb-selected-row: 80, 80, 80;
   --panel-gap: 0.5rem !important;
-
   --background-base: rgba(var(--spice-rgb-main), 0.8);
-
   --encore-control-size-base: 32px;
+
+  /* Background Overlay */
+  --blur: 1.5rem;
+  --cont: 80%; /* Contrast for dark theme */
+  --bright: 50%; /* Brightness for dark theme */
+  --satu: 90%;
 }
+
+/* ------------------------------
+   General Styling 
+------------------------------ */
 
 * {
   font-family: "Poppins", var(--fallback-fonts, sans-serif) !important;
   box-shadow: none !important;
+  background-color: transparent; /* Default background to transparent */
+
+  /* Spicetify Overrides */
   --panel-gap: 0.5rem !important;
   --text-subdued: var(--spice-subtext);
   --lyrics-color-active: rgba(var(--spice-rgb-text), 1);
   --lyrics-color-inactive: rgba(var(--spice-rgb-subtext), 0.5);
   --lyrics-color-passed: rgba(var(--spice-rgb-subtext), 0.75);
   --lyrics-color-background: rgba(var(--spice-rgb-main), 0.025);
-  --spice-rgb-selected-row: 80, 80, 80;
   --section-background-base: rgba(var(--spice-rgb-card), 0.5) !important;
 }
 
-* {
-  box-shadow: none;
-}
-
 *:focus {
-  outline: none !important;
+  outline: none !important; /* Remove default focus outlines */
 }
 
-div {
-  background-color: transparent;
-}
+/* ------------------------------
+   Component-Specific Styling
+------------------------------ */
 
+/* Typography */
 .vertical-metrics {
   --encore-title-font-stack: "Poppins", var(--fallback-fonts);
   --encore-body-font-stack: "Poppins", var(--fallback-fonts);
@@ -89,19 +98,13 @@ div {
 .encore-text-title-medium,
 .encore-text-title-small,
 .main-trackInfo-name {
-  font-weight: 800;
+  font-weight: var(--extra-bold-font-weight); /* Use extra-bold font weight */
   letter-spacing: -0.025rem;
 }
 
-.Root__now-playing-bar {
-  .encore-text-body-small {
-    letter-spacing: 0.025rem;
-  }
+.Root__now-playing-bar .encore-text-body-small {
+  letter-spacing: 0.025rem;
 }
-
-/* .main-trackInfo-container {
-  gap: 0.125rem;
-} */
 
 .encore-text-marginal,
 .encore-text-body-small,
@@ -118,14 +121,14 @@ div {
 
 .encore-text-headline-large {
   margin: var(--margin-heading);
-  font-weight: 800;
 }
 
 .TypeElement-type-ballad,
 .encore-text-body-small-bold {
-  font-weight: 600;
+  font-weight: var(--bold-font-weight);
 }
 
+/* Scrollbars */
 .os-scrollbar-track {
   margin-bottom: calc(
     var(--now-playing-bar-height) - (var(--padding-now-playing-bar) * 2)
@@ -156,24 +159,34 @@ div {
   width: calc(var(--scrollbar-width) + 2px) !important;
 }
 
+/* Top Container */
 .Root__top-container {
   overflow: hidden;
-  background-color: rgba(var(--spice-rgb-main), 0.25) !important;
+  background-color: rgba(
+    var(--spice-rgb-main),
+    var(--bg-color-opacity)
+  ) !important;
   padding-top: calc(1.5rem + var(--panel-gap) * 2) !important;
 }
 
+/* Borders for Main View and Sidebar */
 .Root__main-view,
 .main-yourLibraryX-entryPoints,
 .Root__right-sidebar {
   border: var(--default-border-thickness) solid var(--shadow-rgb);
 }
+
+/* Card Styles */
 .x-searchResultsTracks-root > .main-gridContainer-gridContainer,
 .main-trackList-trackList,
 .main-card-card,
 .main-heroCard-card,
 .main-card-cardContainer,
 .view-homeShortcutsGrid-shortcut {
-  background-color: rgba(var(--spice-rgb-card), 0.25) !important;
+  background-color: rgba(
+    var(--spice-rgb-card),
+    var(--bg-color-opacity)
+  ) !important;
   border: 1px rgba(var(--spice-rgb-contour), 0.5) solid;
   border-radius: var(--card-border-radius);
   overflow: hidden;
@@ -195,14 +208,17 @@ div {
   }
 }
 
+/* Home Section */
 .main-home-home {
   margin-top: 1rem;
 }
+
 .main-home-homeHeader {
   background-image: none !important;
   background-color: transparent !important;
 }
 
+/* Entity Headers */
 .main-entityHeader-container.main-entityHeader-withBackgroundImage,
 .main-entityHeader-background.main-entityHeader-overlay,
 .main-entityHeader-container.main-entityHeader-nonWrapped {
@@ -214,6 +230,7 @@ div {
   height: 36.75vh;
 }
 
+/* Action Bar */
 .main-actionBar-ActionBar {
   display: flex;
   height: 6rem;
@@ -230,10 +247,12 @@ div {
   background: none;
 }
 
+/* Grid Container */
 .main-gridContainer-gridContainer {
   gap: var(--default-gap);
 }
 
+/* Now Playing Bar */
 .main-nowPlayingBar-container {
   --background-highlight: rgba(var(--spice-rgb-sidebar), 0.5) !important;
   height: var(--now-playing-bar-height);
@@ -248,6 +267,7 @@ div {
   backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(100%);
 }
 
+/* Context Menu */
 .main-contextMenu-menu {
   border-radius: var(--border-radius);
   background-color: rgba(
@@ -278,6 +298,7 @@ div {
   display: none;
 }
 
+/* Dropdowns and Equalizer */
 .x-settings-equalizerSection,
 .main-dropDown-dropDown {
   background-color: rgba(var(--spice-rgb-main), 0.125);
@@ -290,10 +311,12 @@ div {
   color: rgba(var(--spice-rgb-subtext), 0.75);
 }
 
+/* Now Playing Widget */
 .main-nowPlayingWidget-trackInfo {
   margin: 0 1rem 0 0.5rem;
 }
 
+/* Buttons */
 .main-genericButton-button {
   background-color: transparent;
   border: none;
@@ -454,10 +477,8 @@ button[aria-label="Add to playlist"] {
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
 }
 
-.Root__nav-bar {
-  .os-scrollbar-track {
-    height: 95%;
-  }
+.Root__nav-bar .os-scrollbar-track {
+  height: 95%;
 }
 
 .Root__main-view,
@@ -488,15 +509,24 @@ button[aria-label="Add to playlist"] {
 }
 
 .main-topBar-container {
+  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(100%);
   justify-content: center;
-  position: relative;
   opacity: var(--top-bar-opacity);
+}
+
+.main-topBar-container:has(.marketplace-tabBar) {
+  background-color: rgba(var(--spice-rgb-main), 0.5);
+  position: relative;
+  opacity: 1;
 }
 
 .marketplace-header {
   position: static;
   top: 0;
   backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95);
+}
+.marketplace-header:has(.Root__globalNav) {
+  margin-top: 64px;
 }
 
 .rX_OmqCngvY5ZCoYBZgb,
@@ -774,7 +804,8 @@ div[data-testid="hpto-parent-container"] {
 }
 .Root__nav-bar,
 .Root__main-view {
-  position: static;
+  overflow: hidden;
+  position: relative;
   background: transparent !important;
   transition: var(--ease-transition);
 }
