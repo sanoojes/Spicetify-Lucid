@@ -263,18 +263,24 @@ div {
   scroll-behavior: smooth;
 }
 
-.main-contextMenu-menu:before {
+.main-contextMenu-menu::before {
   content: "";
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.25);
   border-radius: var(--border-radius);
-  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(1);
+  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.75);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: -1;
+}
+
+.main-contextMenu-menuItemButton.egE6UQjF_UUoCzvMxREj,
+.main-contextMenu-menuItemButton.egE6UQjF_UUoCzvMxREj:focus,
+.main-contextMenu-menuItemButton.egE6UQjF_UUoCzvMxREj:hover {
+  display: none;
 }
 
 .x-settings-equalizerSection,

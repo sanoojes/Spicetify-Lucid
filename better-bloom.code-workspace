@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../../../AppData/Roaming/spicetify"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "better-bloom"
+  }
+}
