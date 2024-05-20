@@ -49,6 +49,8 @@
   --panel-gap: 0.5rem !important;
 
   --background-base: rgba(var(--spice-rgb-main), 0.8);
+
+  --encore-control-size-base: 32px;
 }
 
 * {
@@ -140,10 +142,6 @@ div {
 }
 
 .spotify__container--is-desktop.spotify__os--is-macos > .main-topBar-container {
-  padding-inline-start: 5rem !important;
-}
-
-.main-topBar-container {
   padding-inline-start: 5rem !important;
 }
 
@@ -401,19 +399,6 @@ button[aria-label="Add to playlist"] {
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/repeat-mixed.svg");
 }
 
-.main-topBar-button > button {
-  padding: 0.75rem;
-  height: 0 !important;
-  width: 0 !important;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  svg {
-    display: none;
-  }
-}
-
 .main-trackList-rowImagePlayPauseButton {
   color: var(--spice-text);
 }
@@ -434,37 +419,40 @@ button[aria-label="Add to playlist"] {
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
 }
 
-.main-actionButtons > div > button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  background-color: rgba(var(--spice-rgb-text), 0.75) !important;
-  justify-self: center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  padding: 0.75rem;
-  height: 0 !important;
-  width: 0 !important;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  svg {
-    display: none;
-  }
-}
-
 .main-topBar-buddyFeed {
   height: 1.5rem !important;
   width: 1.5rem !important;
 }
 
-.main-actionButtons > div:last-child button {
+.main-actionButtons * > svg {
+  display: none;
+}
+
+.main-actionButtons > div {
+  display: flex;
+  padding: 0.25px;
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-actionButtons > button[aria-label="Friend Activity"],
+.main-actionButtons > button[aria-label="What's New"] {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.main-actionButtons > div > button[aria-label="What's New"],
+.main-actionButtons > button[aria-label="What's New"] {
+  background-color: rgba(var(--spice-rgb-text), 0.75) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
 }
-.main-actionButtons > div:first-child button {
+.main-actionButtons > div > button[aria-label="Friend Activity"],
+.main-actionButtons > button[aria-label="Friend Activity"] {
+  background-color: rgba(var(--spice-rgb-text), 0.75) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
 }
@@ -501,6 +489,14 @@ button[aria-label="Add to playlist"] {
   top: 0;
 }
 
+.main-topBar-container {
+  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95) !important;
+}
+
+.marketplace-header {
+  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95);
+}
+
 .rX_OmqCngvY5ZCoYBZgb,
 .search-searchCategory-SearchCategory {
   border-bottom-right-radius: var(--card-border-radius) !important;
@@ -516,7 +512,18 @@ button[aria-label="Add to playlist"] {
 }
 
 .main-topBar-historyButtons .main-topBar-button {
-  background-color: rgba(var(--spice-rgb-card), 0.75);
+  background-color: rgba(var(--spice-rgb-card), var(--bg-color-opacity-cards));
+}
+
+.main-globalNav-searchInputContainer .SFAoASy0S_LZJmYZ3Fh9 {
+  border-radius: 0;
+}
+
+.main-globalNav-searchInputContainer {
+  border-radius: var(--border-radius);
+  border: var(--default-border-thickness) solid
+    rgba(var(--spice-rgb-subtext), 0.125);
+  overflow: hidden;
 }
 
 /* connectBar */
@@ -542,18 +549,6 @@ button[aria-label="Add to playlist"] {
 .main-actionBarBackground-background {
   background-color: transparent !important;
   background-image: none !important;
-}
-
-.Root__main-view .main-topBar-container {
-  margin-top: calc(-24px + var(--panel-gap) * -2);
-  height: calc(24px + var(--panel-gap) * 2);
-}
-
-.main-topBar-container {
-  position: fixed !important;
-  left: 0;
-  width: 100%;
-  z-index: 5 !important;
 }
 
 .main-view-container__scroll-node-child-spacer {
@@ -797,7 +792,6 @@ div[data-testid="hpto-parent-container"] {
 }
 
 .marketplace-header {
-  position: static;
   background-color: transparent;
   padding: 0.5rem 0;
 }
@@ -912,6 +906,59 @@ button.HD9s7U5E1RLSWKpXmrqx {
   left: 0 !important;
 }
 
+/* Topbar */
+.main-globalNav-historyButtons button {
+  aspect-ratio: 1/1;
+}
+
+.Root__globalNav button {
+  background-color: rgba(
+    var(--spice-rgb-card),
+    var(--bg-color-opacity-homeHeader)
+  ) !important;
+  border: var(--default-border-thickness) solid
+    rgba(var(--spice-rgb-subtext), 0.125);
+}
+
+.main-userWidget-box {
+  background-color: rgba(var(--spice-rgb-main), 0.8);
+}
+
+.Root__globalNav {
+  height: calc(24px + var(--panel-gap));
+  margin-top: calc(-24px + var(--panel-gap) * -1);
+}
+
+.Root__globalNav button {
+  scale: 0.9;
+}
+
+.Root__globalNav {
+  .main-actionButtons {
+    gap: 0;
+  }
+
+  .main-actionButtons,
+  .main-topBar-topbarContentRight {
+    gap: 0;
+  }
+}
+
+.main-topBar-topbarContentRight,
+.bYqd4_UZsNOsNvO_TW1W,
+.nmAHq8nfXRtoQmKU1gaF,
+.main-globalNav-historyButtonsContainer,
+.main-globalNav-searchContainer {
+  scale: 0.8;
+}
+
+.main-globalNav-searchInputContainer .SFAoASy0S_LZJmYZ3Fh9 {
+  background: rgba(
+    var(--spice-rgb-card),
+    var(--bg-color-opacity-homeHeader)
+  ) !important;
+}
+
 /* search */
 
 .x-searchInput-searchInputInput {
@@ -924,13 +971,15 @@ button.HD9s7U5E1RLSWKpXmrqx {
   transition: background-color ease-in 200ms;
 }
 
-.x-searchInput-searchInputInput:hover {
+.x-searchInput-searchInputInput:hover,
+input:hover {
   background-color: rgba(var(--spice-rgb-selected-row), 0.2) !important;
 }
 
-.x-searchInput-searchInputInput:focus {
+.x-searchInput-searchInputInput:focus,
+input:focus {
   background-color: rgba(var(--spice-rgb-main), 0.7) !important;
-  border-bottom: var(--spice-accent) solid 2px;
+  border-bottom: var(--spice-accent) solid var(--default-border-thickness);
   outline: none !important;
 }
 
@@ -1334,6 +1383,11 @@ a[data-context-menu-open="true"] {
 
 .main-nowPlayingView-contextItemInfo {
   padding-right: 0.25rem;
+}
+
+.main-topBar-searchBar {
+  position: relative;
+  min-width: 16rem;
 }
 
 /* Beautiful Lyrics */

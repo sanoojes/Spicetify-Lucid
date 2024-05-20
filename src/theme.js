@@ -1,23 +1,58 @@
-(function BetterBloom() {
+(async function BetterBloom() {
+  let styleSheet = document.createElement("style");
   if (!Spicetify.Player.data || !Spicetify.Platform) {
     setTimeout(BetterBloom, 100);
     return;
   }
 
-  console.log(Spicetify.Platform.PlatformData);
-  let styleSheet = document.createElement("style");
-  if (Spicetify.Platform.PlatformData.os_name === "windows") {
-    styleSheet.innerText = `
-    .main-topBar-container {
-      padding-inline-end: 10.125rem !important;
-      padding-inline-start: 5rem !important;
-    }`;
-    document.head.appendChild(styleSheet);
+  if (!Spicetify.CosmosAsync) {
+    setTimeout(noControls, 10);
+    return;
+  }
+
+  if (document.querySelector(".Root__globalNav")) {
+    // update title bar to 48px
+    await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
+      type: "update_titlebar",
+      height: "48px",
+    });
   } else {
     styleSheet.innerText = `
     .main-topBar-container {
+      backdrop-filter: none !important;
+  }
+  .Root__main-view .main-topBar-container {
+    margin-top: calc(-24px + var(--panel-gap) * -2);
+    height: calc(24px + var(--panel-gap) * 2);
+  }
+  .main-topBar-container {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 5 !important;
+  }
+  .main-topBar-container {
+    padding-inline-start: 5rem !important;
+  }
+  .marketplace-header {
+    position:static;
+    top:0;
+  }
+  `;
+    console.log(Spicetify.Platform.PlatformData);
+    if (Spicetify.Platform.PlatformData.os_name === "windows") {
+      styleSheet.innerText += `
+    .main-topBar-container {
+      padding-inline-end: 8rem !important;
       padding-inline-start: 5rem !important;
     }`;
+      document.head.appendChild(styleSheet);
+    } else {
+      styleSheet.innerText += `
+    .main-topBar-container {
+      padding-inline-start: 5rem !important;
+    }`;
+    }
   }
 
   function cleanLabel(label) {
