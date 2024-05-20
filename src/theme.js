@@ -38,7 +38,7 @@
     if (Spicetify.Platform.PlatformData.os_name === "windows") {
       styleSheet.innerText += `
     .main-topBar-container {
-      padding-inline-end: 8rem !important;
+      padding-inline-end: 8.5rem !important;
       padding-inline-start: 5rem !important;
     }`;
       document.head.appendChild(styleSheet);
