@@ -33,8 +33,6 @@
 
   --blur-radius: 1rem;
 
-  --top-bar-opacity: 0 !important;
-
   /*Font styles*/
   --encore-title-font-stack: "Poppins", var(--fallback-fonts);
   --encore-body-font-stack: "Poppins", var(--fallback-fonts);
@@ -159,7 +157,6 @@ div {
 }
 
 .Root__top-container {
-  --top-bar-opacity: 0 !important;
   overflow: hidden;
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
   padding-top: calc(1.5rem + var(--panel-gap) * 2) !important;
@@ -485,15 +482,20 @@ button[aria-label="Add to playlist"] {
 .rX_OmqCngvY5ZCoYBZgb:after,
 .rX_OmqCngvY5ZCoYBZgb::before,
 .search-searchCategory-SearchCategory {
+  --top-bar-opacity: 0 !important;
   backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95);
   top: 0;
 }
 
 .main-topBar-container {
-  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95) !important;
+  justify-content: center;
+  position: relative;
+  opacity: var(--top-bar-opacity);
 }
 
 .marketplace-header {
+  position: static;
+  top: 0;
   backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95);
 }
 

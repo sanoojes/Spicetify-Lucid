@@ -10,34 +10,29 @@
     return;
   }
 
+  // update title bar to 48px
   if (document.querySelector(".Root__globalNav")) {
-    // update title bar to 48px
     await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
       type: "update_titlebar",
       height: "48px",
     });
   } else {
-    styleSheet.innerText = `
-    .main-topBar-container {
-      backdrop-filter: none !important;
-  }
+    styleSheet.innerText = `  
   .Root__main-view .main-topBar-container {
-    margin-top: calc(-24px + var(--panel-gap) * -2);
-    height: calc(24px + var(--panel-gap) * 2);
-  }
+      margin-top: calc(-24px + var(--panel-gap) * -2);
+      height: calc(24px + var(--panel-gap) * 2);
+    }
   .main-topBar-container {
-    position: fixed;
+    position: fixed !important;
+    backdrop-filter: none !important;
     left: 0;
     width: 100%;
     z-index: 5 !important;
-  }
-  .main-topBar-container {
     padding-inline-start: 5rem !important;
+    opacity: 1 !important;
+    justify-content: space-between !important;
   }
-  .marketplace-header {
-    position:static;
-    top:0;
-  }
+  
   `;
     console.log(Spicetify.Platform.PlatformData);
     if (Spicetify.Platform.PlatformData.os_name === "windows") {
