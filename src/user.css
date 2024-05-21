@@ -817,6 +817,12 @@ div[data-testid="hpto-parent-container"] {
   text-wrap: balance;
 }
 
+#marketplace-markdown,
+.marketplace-readme__container {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
 .marketplace-tabBar-headerItemLink {
   padding: 0.2rem 16px;
 }
@@ -959,27 +965,12 @@ button.HD9s7U5E1RLSWKpXmrqx {
   margin-top: calc(-24px + var(--panel-gap) * -1);
 }
 
-.Root__globalNav button {
-  scale: 0.9;
-}
-
-.Root__globalNav {
-  .main-actionButtons {
-    gap: 0;
-  }
-
-  .main-actionButtons,
-  .main-topBar-topbarContentRight {
-    gap: 0;
-  }
-}
-
-.main-topBar-topbarContentRight,
+.Root__globalNav > .main-topBar-topbarContentRight,
 .bYqd4_UZsNOsNvO_TW1W,
 .nmAHq8nfXRtoQmKU1gaF,
 .main-globalNav-historyButtonsContainer,
 .main-globalNav-searchContainer {
-  scale: 0.8;
+  scale: 0.75;
 }
 
 .main-globalNav-searchInputContainer .SFAoASy0S_LZJmYZ3Fh9 {
@@ -1347,14 +1338,16 @@ a[data-context-menu-open="true"] {
 .main-yourLibraryX-navLink[href="/search"] path,
 .main-yourLibraryX-navLink[href="/search"] path,
 .main-yourLibraryX-navLink[href="/lyrics-plus"] path,
-.main-yourLibraryX-navLink[href="/marketplace"] path {
+.main-yourLibraryX-navLink[href="/marketplace"] path,
+.main-globalNav-link-icon[aria-label="Marketplace"] path {
   display: none !important;
 }
 
 .main-yourLibraryX-navLink[href="/"]:hover svg,
 .main-yourLibraryX-navLink[href="/search"]:hover .search-icon,
 .main-yourLibraryX-navLink[href="/lyrics-plus"]:hover svg,
-.main-yourLibraryX-navLink[href="/marketplace"]:hover svg {
+.main-yourLibraryX-navLink[href="/marketplace"]:hover svg,
+.main-globalNav-link-icon[aria-label="Marketplace"]:hover svg {
   background-color: var(--spice-text) !important;
 }
 
@@ -1392,15 +1385,21 @@ a[data-context-menu-open="true"] {
   background-color: var(--spice-accent) !important;
 }
 
-.main-yourLibraryX-navLink[href="/marketplace"] > svg {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/appstore-outline.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/appstore-outline.svg");
+.main-yourLibraryX-navLink[href="/marketplace"] > svg,
+.main-globalNav-link-icon[aria-label="Marketplace"] svg {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart-outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart-outline.svg");
   background-color: var(--spice-subtext) !important;
+  scale: 1.25;
 }
-.main-yourLibraryX-navLink[href="/marketplace"].active > svg {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/appstore.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/appstore.svg");
-  background-color: var(--spice-accent) !important;
+
+.main-yourLibraryX-navLink[href="/marketplace"].active > svg,
+.main-globalNav-link-icon.main-globalNav-navLinkActive[aria-label="Marketplace"]
+  svg {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart.svg");
+  background-color: var(--spice-text) !important;
+  scale: 1.25;
 }
 
 .main-contextMenu-menuItemButton .egE6UQjF_UUoCzvMxREj {
