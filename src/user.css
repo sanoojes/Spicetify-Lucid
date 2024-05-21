@@ -65,6 +65,10 @@
   font-family: "Poppins", var(--fallback-fonts, sans-serif) !important;
   box-shadow: none !important;
   background-color: transparent; /* Default background to transparent */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 
   /* Spicetify Overrides */
   --panel-gap: 0.5rem !important;
@@ -454,14 +458,6 @@ button[aria-label="Add to playlist"] {
   border-radius: 999px;
   justify-content: center;
   align-items: center;
-}
-
-.main-actionButtons > button[aria-label="Friend Activity"],
-.main-actionButtons > button[aria-label="What's New"] {
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
 }
 
 .main-actionButtons > div > button[aria-label="What's New"],
@@ -1028,10 +1024,6 @@ input:focus {
 .x-searchInput-searchInputSearchIcon {
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/search.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/search.svg");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
   background-color: var(--spice-subtext) !important;
   flex: 0;
   transform: scaleX(-1);
