@@ -500,7 +500,8 @@ button[aria-label="Add to playlist"] {
 .rX_OmqCngvY5ZCoYBZgb::before,
 .search-searchCategory-SearchCategory {
   --top-bar-opacity: 0 !important;
-  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95);
+  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(1);
+  background-color: rgba(var(--spice-rgb-card), 0.5) !important;
   top: 0;
 }
 
@@ -1413,6 +1414,38 @@ a[data-context-menu-open="true"] {
 .main-topBar-searchBar {
   position: relative;
   min-width: 16rem;
+}
+
+/* Right sidebar */
+
+.main-buddyFeed-header {
+  min-height: 42px !important;
+  height: 42px;
+}
+
+.main-buddyFeed-scrollBarContainer {
+  padding-top: 4rem !important;
+}
+
+.main-buddyFeed-actions > * {
+  color: var(--spice-text);
+}
+
+.main-buddyFeed-content > div:has(.main-buddyFeed-header) {
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  backdrop-filter: blur(1rem) saturate(1) brightness(1);
+  background-color: rgba(var(--spice-rgb-card), 0.5) !important;
+  z-index: 10;
+  top: -1px;
+  left: 0;
+}
+
+.main-trackInfo-contentWrapper > *,
+*:hover,
+*:focus {
+  text-decoration: none !important;
 }
 
 /* Beautiful Lyrics */
