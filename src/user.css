@@ -1402,6 +1402,10 @@ a[data-context-menu-open="true"] {
   scale: 1.25;
 }
 
+.main-yourLibraryX-navLink[href="/marketplace"].active > svg {
+  background-color: var(--spice-accent) !important;
+}
+
 .main-contextMenu-menuItemButton .egE6UQjF_UUoCzvMxREj {
   display: none; /* hides report button from contextMenu */
 }
