@@ -4,6 +4,9 @@
   Bloom theme inspired by [Bloom](https://github.com/nimsandu/spicetify-bloom)  
   
   **Consider starring us !**
+
+[Join](https://discord.gg/PJwgBG2z) new support discord server. [Better-Bloom](https://discord.gg/PJwgBG2z)
+
 </div>
 
 ## Screenshots

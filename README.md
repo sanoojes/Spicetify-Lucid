@@ -2,6 +2,8 @@
 
 Minimal and Dynamic Bloom theme inspired by [Bloom](https://github.com/nimsandu/spicetify-bloom)
 
+[Join](https://discord.gg/PJwgBG2z) new support discord server. [Better-Bloom](https://discord.gg/PJwgBG2z)
+
 ## Screenshots
 
 ### Dark (default)
