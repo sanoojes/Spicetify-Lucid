@@ -801,10 +801,30 @@ div[data-testid="hpto-parent-container"] {
 }
 .Root__nav-bar,
 .Root__main-view {
-  overflow: hidden;
   position: relative;
   background: transparent !important;
   transition: var(--ease-transition);
+}
+
+.Root__main-view {
+  overflow: hidden;
+}
+
+div[data-encore-id="popover"] {
+  backdrop-filter: blur(2rem) saturate(1.5) brightness(0.5);
+  background-color: rgba(var(--spice-rgb-main), 0.25) !important;
+}
+
+.encore-dark-theme .encore-announcement-set {
+  --background-base: rgba(var(--spice-rgb-card), 0.75);
+  --background-highlight: rgba(var(--spice-rgb-card), 0.5);
+  --background-press: rgba(var(--spice-rgb-card), 0.85);
+  --background-elevated-base: rgba(var(--spice-rgb-card), 0.5);
+  --background-elevated-highlight: rgba(var(--spice-rgb-card), 0.5);
+  --background-elevated-press: rgba(var(--spice-rgb-card), 0.85);
+  --background-tinted-base: rgba(var(--spice-rgb-card), 0.75);
+  --background-tinted-highlight: rgba(var(--spice-rgb-card), 0.75);
+  --background-tinted-press: rgba(var(--spice-rgb-card), 0.75);
 }
 
 .progress-bar {
