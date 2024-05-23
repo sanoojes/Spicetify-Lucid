@@ -1513,3 +1513,9 @@ button:has(.LyricsPageIcon) {
   z-index: 10;
   backdrop-filter: brightness(0.75);
 }
+
+.BeautifulLyricsPage.Fullscreen .Content .PlayPanel {
+  display: grid !important;
+  padding-top: 0 !important;
+  align-content: center;
+}
