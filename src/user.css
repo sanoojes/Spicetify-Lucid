@@ -528,7 +528,6 @@ button[aria-label="What's New"] > path {
 }
 
 .marketplace-header {
-  position: static;
   top: 0;
   backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95);
 }
