@@ -1518,3 +1518,14 @@ button:has(.LyricsPageIcon) {
   padding-top: 0 !important;
   align-content: center;
 }
+
+.main-yourLibraryX-navItem > a[href="/marketplace"] {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 20px;
+  height: 40px;
+}
