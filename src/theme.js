@@ -10,45 +10,103 @@
     return;
   }
 
-  // update title bar to 48px
-  if (document.querySelector(".Root__globalNav")) {
-    await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
-      type: "update_titlebar",
-      height: "48px",
-    });
-  } else {
-    styleSheet.innerText = `  
-  .Root__main-view .main-topBar-container {
-      margin-top: calc(-24px + var(--panel-gap) * -2);
-      height: calc(24px + var(--panel-gap) * 2);
-    }
-  .main-topBar-container {
-    position: fixed !important;
-    backdrop-filter: none !important;
-    left: 0;
-    width: 100%;
-    z-index: 5 !important;
-    padding-inline-start: 5rem !important;
-    opacity: 1 !important;
-    justify-content: space-between !important;
+  function setWindowHeight(increase) {
+    Spicetify.Platform.PlayerAPI._prefs
+      .get({ key: "app.browser.zoom-level" })
+      .then(async (value) => {
+        const zoom = Number(value.entries["app.browser.zoom-level"].number);
+        const scaleFactor = 0.912;
+        const paddingScaleFactor = 1.1;
+
+        // Adjust scale based on user input (increase or decrease)
+        let scale = zoom !== 0 ? zoom / 50 : 0;
+        if (increase) {
+          scale *= -0.9;
+        } else {
+          scale *= 1.1;
+        }
+
+        let scalepadding = zoom !== 0 ? zoom / 50 : 0;
+        if (increase) {
+          scalepadding *= -0.9;
+        } else {
+          scalepadding *= 1.1;
+        }
+
+        const height = 48 * scaleFactor ** scale;
+        const padding_end = 9 * paddingScaleFactor ** scalepadding;
+        const padding_start = 3 * paddingScaleFactor ** scalepadding;
+
+        await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
+          type: "update_titlebar",
+          height: height,
+        });
+
+        const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
+
+        if (isWindows) {
+          styleSheet.innerText = `
+          .main-topBar-container {
+            padding-inline-end: ${padding_end}rem !important;
+            padding-inline-start: ${padding_start}rem !important;
+          }
+          
+          .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
+            padding-inline: ${padding_start}rem ${padding_end}rem !important
+          }`;
+        } else {
+          styleSheet.innerText = `
+          .main-topBar-container {
+            padding-inline-start: 5rem !important;
+          }
+          .Root__globalNav {
+            padding-inline-start: 5rem !important;
+          }
+          `;
+        }
+
+        // update title bar to 48px
+        if (!document.querySelector(".Root__globalNav")) {
+          styleSheet.innerText += `  
+          .Root__main-view .main-topBar-container {
+            top: calc(var(--panel-gap) / 2);
+            height: calc(24px + var(--panel-gap) * 2);
+            ${
+              isWindows &&
+              `padding-inline: ${padding_start + 1}rem ${
+                padding_end + 1
+              }rem !important`
+            }
+
+          }
+          .main-topBar-container {
+            position: fixed !important;
+            backdrop-filter: none !important;
+            left: 0;
+            width: 100%;
+            z-index: 5 !important;
+            padding-inline-start: 5rem !important;
+            opacity: 1 !important;
+            justify-content: space-between !important;
+          }
+          
+          `;
+          await Spicetify.CosmosAsync.post(
+            "sp://messages/v1/container/control",
+            {
+              type: "update_titlebar",
+              height: height,
+            }
+          );
+        }
+        console.log("Zoom level adjusted.");
+
+        document.head.appendChild(styleSheet);
+      });
   }
-  
-  `;
-    console.log(Spicetify.Platform.PlatformData);
-    if (Spicetify.Platform.PlatformData.os_name === "windows") {
-      styleSheet.innerText += `
-    .main-topBar-container {
-      padding-inline-end: 9rem !important;
-      padding-inline-start: 5rem !important;
-    }`;
-      document.head.appendChild(styleSheet);
-    } else {
-      styleSheet.innerText += `
-    .main-topBar-container {
-      padding-inline-start: 5rem !important;
-    }`;
-    }
-  }
+
+  window.addEventListener("resize", setWindowHeight);
+  setWindowHeight(1);
 
   function cleanLabel(label) {
     const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, "").trim();
@@ -181,7 +239,6 @@
           "--control-height",
           `${Math.abs(height)}px`
         );
-        console.log("Zoom level adjusted.");
       });
   }
 

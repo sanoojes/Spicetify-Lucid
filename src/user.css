@@ -146,10 +146,6 @@
   top: var(--default-gap);
 }
 
-.spotify__container--is-desktop.spotify__os--is-macos > .main-topBar-container {
-  padding-inline-start: 5rem !important;
-}
-
 .os-scrollbar-handle {
   display: var(--scrollbar-display);
   width: var(--scrollbar-width) !important;
@@ -163,6 +159,10 @@
   width: calc(var(--scrollbar-width) + 2px) !important;
 }
 
+.os-content {
+  padding: 0px !important;
+}
+
 /* Top Container */
 .Root__top-container {
   overflow: hidden;
@@ -170,7 +170,7 @@
     var(--spice-rgb-main),
     var(--bg-color-opacity)
   ) !important;
-  padding-top: calc(1.5rem + var(--panel-gap) * 2) !important;
+  padding-top: calc(2rem + var(--panel-gap) * 2) !important;
 }
 
 /* Borders for Main View and Sidebar */
@@ -232,9 +232,6 @@
     ),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 700 700' width='700' height='700' opacity='1'%3E%3Cdefs%3E%3Cfilter id='nnnoise-filter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.184' numOctaves='4' seed='15' stitchTiles='stitch' x='0%25' y='0%25' width='100%25' height='100%25' result='turbulence'%3E%3C/feTurbulence%3E%3CfeSpecularLighting surfaceScale='13' specularConstant='0.3' specularExponent='20' lighting-color='%23ffffff' x='0%25' y='0%25' width='100%25' height='100%25' in='turbulence' result='specularLighting'%3E%3CfeDistantLight azimuth='3' elevation='133'%3E%3C/feDistantLight%3E%3C/feSpecularLighting%3E%3CfeColorMatrix type='saturate' values='0' x='0%25' y='0%25' width='100%25' height='100%25' in='specularLighting' result='colormatrix'%3E%3C/feColorMatrix%3E%3C/filter%3E%3C/defs%3E%3Crect width='700' height='700' fill='%2300000000'%3E%3C/rect%3E%3Crect width='700' height='700' fill='%23ffffff' filter='url(%23nnnoise-filter)'%3E%3C/rect%3E%3C/svg%3E");
   height: 36.75vh;
-}
-.spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
-  padding-inline: 2rem 7rem;
 }
 
 /* Action Bar */
@@ -558,9 +555,15 @@ button[aria-label="What's New"] > path {
 }
 
 .main-globalNav-searchInputContainer {
-  border-radius: var(--border-radius);
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.125);
+}
+
+.main-globalNav-searchInputContainer,
+.main-globalNav-searchInputContainer .Y8Mmhwfig0n1DHqUTar5,
+.main-globalNav-searchInputContainer .SFAoASy0S_LZJmYZ3Fh9 {
+  background: transparent !important;
+  border-radius: var(--border-radius);
   overflow: hidden;
 }
 
@@ -976,7 +979,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
   aspect-ratio: 1/1;
 }
 
-.Root__globalNav button {
+.Root__globalNav button:not(button[aria-label="Search"]) {
   background-color: rgba(
     var(--spice-rgb-card),
     var(--bg-color-opacity-homeHeader)
@@ -991,7 +994,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
 
 .Root__globalNav {
   height: calc(24px + var(--panel-gap));
-  margin-top: calc(-24px + var(--panel-gap) * -1);
+  margin-top: calc(var(--panel-gap) * -4.5);
 }
 
 .Root__globalNav > .main-topBar-topbarContentRight,
@@ -999,7 +1002,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
 .nmAHq8nfXRtoQmKU1gaF,
 .main-globalNav-historyButtonsContainer,
 .main-globalNav-searchContainer {
-  scale: 0.75;
+  scale: 0.95;
 }
 
 .main-globalNav-searchInputContainer .SFAoASy0S_LZJmYZ3Fh9 {
