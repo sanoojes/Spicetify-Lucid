@@ -43,9 +43,9 @@
         });
 
         const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
-
-        if (isWindows) {
-          styleSheet.innerText = `
+        if (!document.querySelector(".Root__globalNav")) {
+          if (isWindows) {
+            styleSheet.innerText = `
           .main-topBar-container {
             padding-inline-end: ${padding_end}rem !important;
             padding-inline-start: ${padding_start}rem !important;
@@ -54,8 +54,8 @@
           .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
             padding-inline: ${padding_start}rem ${padding_end}rem !important
           }`;
-        } else {
-          styleSheet.innerText = `
+          } else {
+            styleSheet.innerText = `
           .main-topBar-container {
             padding-inline-start: 5rem !important;
           }
@@ -63,6 +63,7 @@
             padding-inline-start: 5rem !important;
           }
           `;
+          }
         }
 
         // update title bar to 48px
