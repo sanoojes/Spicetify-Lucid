@@ -1497,11 +1497,6 @@ button[aria-label="Browse"] svg {
 
 /* Beautiful Lyrics */
 
-.main-nowPlayingBar-container:has(.LyricsPageIcon)
-  .main-nowPlayingBar-lyricsButton {
-  display: none;
-}
-
 button:has(.LyricsPageIcon) {
   margin-right: 0;
 }
