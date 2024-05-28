@@ -245,6 +245,24 @@
 
   window.addEventListener("resize", enhanceInterface);
   enhanceInterface();
+
+  // Set Window Control Zoom Variable
+  function handleTransparentWindows() {
+    Spicetify.Platform.PlayerAPI._prefs
+      .get({ key: "app.browser.zoom-level" })
+      .then((value) => {
+        const zoom = Number(value.entries["app.browser.zoom-level"].number);
+        console.log(zoom);
+      });
+
+    document.documentElement.style.setProperty(
+      "--windows-control-zoom",
+      window.outerWidth / window.innerWidth || 1
+    );
+  }
+
+  window.addEventListener("resize", handleTransparentWindows);
+  handleTransparentWindows();
 })();
 
 (function volumePercentage() {
@@ -649,4 +667,3 @@
     }
   });
 })();
-
