@@ -268,7 +268,7 @@
   bottom: var(--margin-bottom-now-playing-bar);
   border: var(--default-border-thickness) solid var(--shadow-rgb);
   background-color: rgba(var(--spice-rgb-main), 0.5);
-  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(100%);
+  backdrop-filter: blur(var(--blur-radius));
 }
 
 /* Context Menu */
@@ -287,7 +287,7 @@
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.25);
   border-radius: var(--border-radius);
-  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.75);
+  backdrop-filter: blur(var(--blur-radius)) brightness(0.75);
   position: absolute;
   top: 0;
   left: 0;
@@ -507,13 +507,13 @@ button[aria-label="What's New"] > path {
 .rX_OmqCngvY5ZCoYBZgb::before,
 .search-searchCategory-SearchCategory {
   --top-bar-opacity: 0 !important;
-  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(1);
+  backdrop-filter: blur(var(--blur-radius));
   background-color: rgba(var(--spice-rgb-card), 0.5) !important;
   top: 0;
 }
 
 .main-topBar-container {
-  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(100%);
+  backdrop-filter: blur(var(--blur-radius));
   justify-content: center;
   opacity: var(--top-bar-opacity);
 }
@@ -526,7 +526,7 @@ button[aria-label="What's New"] > path {
 
 .marketplace-header {
   top: 0;
-  backdrop-filter: blur(var(--blur-radius)) saturate(1) brightness(0.95);
+  backdrop-filter: blur(var(--blur-radius));
 }
 .marketplace-header:has(.Root__globalNav) {
   margin-top: 64px;
@@ -765,7 +765,7 @@ div[data-testid="hpto-parent-container"] {
 #BeautifulLyrics-CardView {
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.025);
-  backdrop-filter: saturate(1) brightness(1.25) contrast(1) !important;
+  backdrop-filter: brightness(1.25) !important;
 }
 
 .main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
@@ -823,7 +823,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 div[data-encore-id="popover"] {
-  backdrop-filter: blur(2rem) saturate(1.5) brightness(0.5);
+  backdrop-filter: blur(1rem) saturate(1.5) brightness(0.5);
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
 }
 
@@ -1151,14 +1151,6 @@ svg {
   z-index: 0;
 }
 
-.Root__top-container::after {
-  content: "";
-  position: fixed;
-  background-image: url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter) brightness(0) contrast(1.025) saturate(2)' /%3E%3C/svg%3E");
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-}
 /* FullScreen Styles */
 
 .npv-background-image__overlay {
@@ -1325,7 +1317,7 @@ a[data-context-menu-open="true"] {
 .main-embedWidgetGenerator-container,
 .main-trackCreditsModal-container {
   height: 100%;
-  backdrop-filter: blur(1rem) saturate(1) brightness(1.5);
+  backdrop-filter: blur(1rem) brightness(1.5);
   background-color: rgba(var(--spice-rgb-card), 0.25) !important;
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.25);
@@ -1482,7 +1474,7 @@ button[aria-label="Browse"] svg {
   position: fixed;
   width: 100%;
   height: fit-content;
-  backdrop-filter: blur(1rem) saturate(1) brightness(1);
+  backdrop-filter: blur(1rem);
   background-color: rgba(var(--spice-rgb-card), 0.5) !important;
   z-index: 10;
   top: -1px;

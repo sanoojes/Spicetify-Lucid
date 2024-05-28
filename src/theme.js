@@ -17,6 +17,7 @@
         const zoom = Number(value.entries["app.browser.zoom-level"].number);
         const scaleFactor = 0.912;
         const paddingScaleFactor = 1.1;
+        const isGlobalNav = document.querySelector(".Root__globalNav");
 
         // Adjust scale based on user input (increase or decrease)
         let scale = zoom !== 0 ? zoom / 50 : 0;
@@ -43,9 +44,8 @@
         });
 
         const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
-        if (!document.querySelector(".Root__globalNav")) {
-          if (isWindows) {
-            styleSheet.innerText = `
+        if (!isGlobalNav && isWindows) {
+          styleSheet.innerText += `
           .main-topBar-container {
             padding-inline-end: ${padding_end}rem !important;
             padding-inline-start: ${padding_start}rem !important;
@@ -54,8 +54,8 @@
           .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
             padding-inline: ${padding_start}rem ${padding_end}rem !important
           }`;
-          } else {
-            styleSheet.innerText = `
+        } else {
+          styleSheet.innerText = `
           .main-topBar-container {
             padding-inline-start: 5rem !important;
           }
@@ -63,11 +63,10 @@
             padding-inline-start: 5rem !important;
           }
           `;
-          }
         }
 
         // update title bar to 48px
-        if (!document.querySelector(".Root__globalNav")) {
+        if (!isGlobalNav) {
           styleSheet.innerText += `  
           .Root__main-view .main-topBar-container {
             top: calc(var(--panel-gap) / 2);
@@ -102,7 +101,8 @@
         }
         console.log("Zoom level adjusted.");
 
-        styleSheet.innerText += `
+        if (isWindows && Spicetify.Config.color_scheme !== "light") {
+          styleSheet.innerText += `
         /* Transparent Windows Controls */
         body::after {
           content: "";
@@ -114,6 +114,7 @@
           height: calc(48px / var(--windows-control-zoom, 1));
         }
         `;
+        }
 
         document.head.appendChild(styleSheet);
       });
