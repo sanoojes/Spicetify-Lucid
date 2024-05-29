@@ -312,7 +312,8 @@
 }
 
 .main-dropDown-dropDown {
-  color: rgba(var(--spice-rgb-subtext), 0.75);
+  background-color: rgba(var(--spice-rgb-main), 0.9);
+  color: rgba(var(--spice-rgb-text), 0.75);
 }
 
 /* Now Playing Widget */
