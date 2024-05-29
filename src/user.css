@@ -979,7 +979,8 @@ button.HD9s7U5E1RLSWKpXmrqx {
   aspect-ratio: 1/1;
 }
 
-.Root__globalNav button:not(button[aria-label="Search"]) {
+.Root__globalNav
+  button:not(:is([aria-label="Search"], [aria-label="Clear search field"])) {
   background-color: rgba(
     var(--spice-rgb-card),
     var(--bg-color-opacity-homeHeader)
