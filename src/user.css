@@ -106,6 +106,11 @@
   letter-spacing: -0.025rem;
 }
 
+.TypeElement-type-ballad-textBase,
+.LineClamp {
+  font-weight: 500;
+}
+
 .Root__now-playing-bar .encore-text-body-small {
   letter-spacing: 0.025rem;
 }
