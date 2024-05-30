@@ -98,11 +98,6 @@
   --background-tinted-base: rgba(var(--spice-rgb-selected-row), 0.025);
 }
 
-.encore-light-theme,
-.encore-light-theme .encore-base-set {
-  --text-base: var(--spice-text);
-}
-
 .encore-text-headline-large,
 .encore-text-title-medium,
 .encore-text-title-small,
