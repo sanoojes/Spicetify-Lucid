@@ -262,7 +262,7 @@
   height: var(--now-playing-bar-height);
   width: calc(100% - (var(--margin-bottom-now-playing-bar) * 2));
   justify-content: center;
-  position: fixed;
+  position: fixed !important;
   border-radius: var(--border-radius-now-playing-bar);
   padding: var(--padding-now-playing-bar);
   bottom: var(--margin-bottom-now-playing-bar);
