@@ -1531,3 +1531,7 @@ button:has(.LyricsPageIcon) {
 .main-confirmDialog-container {
   background-color: transparent !important;
 }
+
+.marketplace-add-snippet-btn {
+  bottom: 3rem;
+}
