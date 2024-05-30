@@ -98,6 +98,11 @@
   --background-tinted-base: rgba(var(--spice-rgb-selected-row), 0.025);
 }
 
+.encore-light-theme,
+.encore-light-theme .encore-base-set {
+  --text-base: var(--spice-text);
+}
+
 .encore-text-headline-large,
 .encore-text-title-medium,
 .encore-text-title-small,
@@ -1260,6 +1265,7 @@ body:has(.BeautifulLyricsPage) {
 .GenericModal {
   backdrop-filter: blur(2rem) saturate(1.5) brightness(1.5);
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
+  border-radius: var(--card-border-radius);
   --spice-sidebar: rgba(var(--spice-rgb-sidebar), 0.5);
   button {
     min-width: max-content !important;
@@ -1520,4 +1526,8 @@ button:has(.LyricsPageIcon) {
   align-items: center;
   gap: 20px;
   height: 40px;
+}
+
+.main-confirmDialog-container {
+  background-color: transparent !important;
 }
