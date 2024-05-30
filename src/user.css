@@ -55,6 +55,8 @@
   --cont: 80%; /* Contrast for dark theme */
   --bright: 50%; /* Brightness for dark theme */
   --satu: 90%;
+
+  --text-base: var(--spice-sidebar)
 }
 
 /* ------------------------------
