@@ -49,6 +49,11 @@
 ![Dark-Bloom Preview](./assets/images/better-bloom-dark-bloom.png)
 ![Dark-Bloom Preview 1](./assets/images/better-bloom-dark-bloom.png)
 
+### Midnight-Catppuccin
+
+![midnight-catppuccin Preview](./assets/images/better-bloom-midnight-catppuccin.png)
+![midnight-catppuccin  Preview 1](./assets/images/better-bloom-midnight-catppuccin1.png)
+
 ## Dependencies
 
 - Latest version of [Spicetify](https://github.com/spicetify/spicetify-cli).

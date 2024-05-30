@@ -61,7 +61,7 @@ curl -fsSL https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/
   spicetify apply
   ```
 
-Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`.
+Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`.
 
 - If you installed via Marketplace, the color scheme can be changed directly in the theme options.
 
@@ -117,7 +117,12 @@ Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `d
 ### **Dark-Bloom**
 
 ![Dark-Bloom Preview](./assets/images/better-bloom-dark-bloom.png)
-![Dark-Bloom Preview 1](./assets/images/better-bloom-dark-bloom.png)
+![Dark-Bloom Preview 1](./assets/images/better-bloom-dark-bloom1.png)
+
+### **Midnight-Catppuccin**
+
+![midnight-catppuccin Preview](./assets/images/better-bloom-midnight-catppuccin.png)
+![midnight-catppuccin  Preview 1](./assets/images/better-bloom-midnight-catppuccin1.png)
 
 ## Credits
 
