@@ -45,7 +45,7 @@
 
         const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
         if (!isGlobalNav && isWindows) {
-          styleSheet.innerText += `
+          styleSheet.innerText = `
           .main-topBar-container {
             padding-inline-end: ${padding_end}rem !important;
             padding-inline-start: ${padding_start}rem !important;
