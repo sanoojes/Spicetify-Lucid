@@ -1518,7 +1518,7 @@ button:has(.LyricsPageIcon) {
   align-content: center;
 }
 
-.main-yourLibraryX-navItem > a[href="/marketplace"] {
+.main-yourLibraryX-navItem > a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
