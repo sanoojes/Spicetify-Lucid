@@ -101,7 +101,7 @@
         }
         console.log("Zoom level adjusted.");
 
-        if (isWindows && Spicetify.Config.color_scheme !== "light") {
+        if (isWindows && Spicetify.Config.color_scheme !== "light" && !document.querySelector(".Fullscreen")) {
           styleSheet.innerText += `
         /* Transparent Windows Controls */
         body::after {
