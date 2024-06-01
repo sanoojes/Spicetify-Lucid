@@ -648,10 +648,6 @@ button[aria-label="What's New"] > path {
   ) !important;
 }
 
-.main-nowPlayingView-sectionHeaderSpacing.main-nowPlayingView-lyricsGradient {
-  background-color: rgba(var(--spice-rgb-main), 0.5) !important;
-}
-
 .main-coverSlotCollapsed-container {
   border-radius: 0.5rem;
   max-width: 56px;
@@ -773,6 +769,12 @@ div[data-testid="hpto-parent-container"] {
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.025);
   backdrop-filter: brightness(1.25) !important;
+}
+
+.main-nowPlayingView-section,
+.main-nowPlayingView-aboutArtistV2Button,
+.main-nowPlayingView-sectionHeaderSpacing.main-nowPlayingView-lyricsGradient {
+  background-color: transparent !important;
 }
 
 .main-trackList-trackListRow:focus-within:not(.tH1iuxCV8NexP4pzEBa4)
