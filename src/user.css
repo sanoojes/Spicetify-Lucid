@@ -56,7 +56,7 @@
   --bright: 50%; /* Brightness for dark theme */
   --satu: 90%;
 
-  --text-base: var(--spice-sidebar)
+  --text-base: var(--spice-sidebar);
 }
 
 /* ------------------------------
@@ -229,6 +229,10 @@
   background-color: transparent !important;
 }
 
+.mXNT9H2GU7lDW4cGx0q1 {
+  background-color: rgba(var(--spice-rgb-main), 0.125) !important;
+}
+
 /* Entity Headers */
 .main-entityHeader-container.main-entityHeader-withBackgroundImage,
 .main-entityHeader-background.main-entityHeader-overlay,
@@ -397,10 +401,12 @@ button[aria-label="Add to playlist"] {
 }
 
 .main-playPauseButton-button[aria-label="Pause"] {
+  background-color: var(--spice-main);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
 }
 .main-playPauseButton-button[aria-label="Play"] {
+  background-color: var(--spice-main);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
 }
@@ -731,7 +737,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 .main-shelf-shelf {
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .LegacyChipComponent-checkbox-chip-sm-useBrowserDefaultFocusStyle,
