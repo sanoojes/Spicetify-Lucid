@@ -244,6 +244,7 @@
 /* Action Bar */
 .main-actionBar-ActionBar {
   display: flex;
+  height: 6rem;
   justify-content: center;
   border-top: var(--default-border-thickness) solid var(--shadow-rgb);
   background: linear-gradient(
@@ -345,7 +346,7 @@
 
 .main-skipBackButton-button,
 .main-skipForwardButton-button,
-.main-repeatButton-button {
+.main-repeatButton-button[aria-label="Enable repeat"] {
   border: none;
   color: var(--spice-text);
   -webkit-mask-size: cover;
@@ -360,7 +361,7 @@
   }
 }
 
-.main-repeatButton-button {
+.main-repeatButton-button[aria-label="Enable repeat"] {
   scale: 0.6 !important;
   background-color: var(--spice-subtext);
 }
@@ -725,7 +726,7 @@ div[data-testid="hpto-parent-container"] {
   left: 0;
 }
 
-.main-repeatButton-button {
+.main-repeatButton-button[aria-label="Enable repeat"] {
   color: var(--spice-subtext);
 }
 
