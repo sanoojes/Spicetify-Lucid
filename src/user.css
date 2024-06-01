@@ -244,7 +244,6 @@
 /* Action Bar */
 .main-actionBar-ActionBar {
   display: flex;
-  height: 6rem;
   justify-content: center;
   border-top: var(--default-border-thickness) solid var(--shadow-rgb);
   background: linear-gradient(
