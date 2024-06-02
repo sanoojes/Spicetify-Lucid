@@ -1,4 +1,4 @@
-(async function BetterBloom() {
+(function BetterBloom() {
   let styleSheet = document.createElement("style");
   if (!Spicetify.Player.data || !Spicetify.Platform) {
     setTimeout(BetterBloom, 100);
@@ -123,7 +123,25 @@
   const playLabel = Locale.get("play");
   const pauseLabel = Locale.get("pause");
 
+  const browseLabel = Locale.get("browse");
+
+  const addToLikedLabel = Locale.get(
+    "web-player.aligned-curation.tooltips.add-to-liked-songs"
+  );
+  const addToPlaylistLabel = Locale.get(
+    "web-player.aligned-curation.tooltips.add-to-playlist"
+  );
+
+  const skipForwardLabel = Locale.get("playback-control.skip-forward");
+  const skipBackLabel = Locale.get("playback-control.skip-back");
+
+  const whatsNewLabel = Locale.get("web-player.whats-new-feed.button-label");
+
+  const friendsActivityLabel = Locale.get("buddy-feed.friend-activity");
   const tracklistPlayLabel = Locale.get("tracklist.a11y.play");
+
+  const homeBtnLabelOne = Locale.get("view.web-player-home");
+
   let tracklistPlayLabelOne;
   let tracklistPlayLabelTwo;
   if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
@@ -136,36 +154,166 @@
   tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
   tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
 
-  const playButtonStyle = document.createElement("style");
-  playButtonStyle.innerHTML = `
-      .main-playButton-button[aria-label*="${playLabel}"],
-      .main-playButton-PlayButton>button[aria-label*="${playLabel}"],
-      .main-playPauseButton-button[aria-label="${playLabel}"],
-      .main-playPauseButton-button[aria-label="${Locale.get(
-        "playback-control.play"
-      )}"],
-      .main-trackList-rowPlayPauseButton[aria-label*="${playLabel}"],
-      .main-trackList-rowImagePlayButton[aria-label*="${tracklistPlayLabelOne}"][aria-label*="${tracklistPlayLabelTwo}"],
-      .main-playButton-PlayButton>button[aria-label*="${playlistPlayLabel}"] {
-        background-color: var(--spice-text) !important;
-        -webkit-mask-image: url('https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg') !important;
-        mask-image: url('https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg') !important;
-      }
-      .main-playButton-button[aria-label*="${pauseLabel}"],
-      .main-playButton-PlayButton>button[aria-label*="${pauseLabel}"],
-      .main-playPauseButton-button[aria-label*="${pauseLabel}"],
-      .main-playPauseButton-button[aria-label="${Locale.get(
-        "playback-control.pause"
-      )}"],
-      .main-trackList-rowPlayPauseButton[aria-label*="${pauseLabel}"],
-      .main-trackList-rowImagePlayButton[aria-label*="${pauseLabel}"],
-      .main-playButton-PlayButton>button[aria-label*="${playlistPauseLabel}"] {
-        background-color: var(--spice-text) !important;
-        -webkit-mask-image: url('https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg') !important;
-        mask-image: url('https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg') !important;
-      }
-`;
-  document.head.appendChild(playButtonStyle);
+  const ButtonStyles = document.createElement("style");
+  ButtonStyles.innerHTML = `
+  .main-playButton-button[aria-label*="${playLabel}"],
+.main-playButton-PlayButton > button[aria-label*="${playLabel}"],
+.main-playPauseButton-button[aria-label="${playLabel}"],
+.main-playPauseButton-button[aria-label="${Locale.get(
+    "playback-control.play"
+  )}"],
+.main-trackList-rowPlayPauseButton[aria-label*="${playLabel}"],
+.main-trackList-rowImagePlayButton[aria-label*="${tracklistPlayLabelOne}"][aria-label*="${tracklistPlayLabelTwo}"],
+.main-playButton-PlayButton > button[aria-label*="${playlistPlayLabel}"] {
+  background-color: var(--spice-text) !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
+}
+.main-playButton-button[aria-label*="${pauseLabel}"],
+.main-playButton-PlayButton > button[aria-label*="${pauseLabel}"],
+.main-playPauseButton-button[aria-label*="${pauseLabel}"],
+.main-playPauseButton-button[aria-label="${Locale.get(
+    "playback-control.pause"
+  )}"],
+.main-trackList-rowPlayPauseButton[aria-label*="${pauseLabel}"],
+.main-trackList-rowImagePlayButton[aria-label*="${pauseLabel}"],
+.main-playButton-PlayButton > button[aria-label*="${playlistPauseLabel}"] {
+  background-color: var(--spice-text) !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
+}
+
+.Root__globalNav
+  button:is([aria-label="${Locale.get("search.a11y.clear-input")}"]) {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+button[aria-label="${browseLabel}"] path {
+  display: none !important;
+}
+
+button[aria-label="${browseLabel}"] svg {
+  display: none;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/compass_outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/compass_outline.svg");
+  background-color: var(--spice-subtext) !important;
+  scale: 1.25;
+}
+.main-repeatButton-button[aria-label="${Locale.get(
+    "playback-control.enable-repeat"
+  )}"] ,
+  .main-repeatButton-button[aria-label="${Locale.get(
+    "playback-control.disable-repeat"
+  )}"],
+  .main-repeatButton-button[aria-label="${Locale.get(
+    "playback-control.enable-repeat-one"
+  )}"], {
+  border: none;
+  color: var(--spice-text);
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  scale: 0.75 !important;
+  background-color: var(--spice-text);
+  color: var(--spice-subtext);
+  svg {
+    display: none;
+  }
+}
+
+.main-playPauseButton-button,
+button[aria-label="${addToLikedLabel}"],
+button[aria-label="${addToPlaylistLabel}"],
+.player-controls button[aria-label="${skipBackLabel}"],
+.player-controls button[aria-label="${skipForwardLabel}"], {
+  display: block;
+  background-color: var(--spice-subtext);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  min-height: 1rem;
+  min-width: 1rem;
+  aspect-ratio: 1/1;
+  border-radius: 0 !important;
+  border: none !important;
+  svg,
+  span {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+button[aria-label="${addToLikedLabel}"] {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg") !important;
+}
+button[aria-label="${addToPlaylistLabel}"] {
+  background-color: var(--spice-accent);
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg") !important;
+}
+
+.player-controls button[aria-label="${skipBackLabel}"] {
+  background-color: rgba(var(--spice-rgb-text), 0.75);
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
+}
+.player-controls button[aria-label="${skipForwardLabel}"] {
+  background-color: rgba(var(--spice-rgb-text), 0.75);
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
+}
+
+button[aria-label="${friendsActivityLabel}"] > path,
+button[aria-label="${whatsNewLabel}"] > path {
+  display: none;
+}
+
+.main-actionButtons > div > button[aria-label="${whatsNewLabel}"] svg,
+.main-actionButtons > button[aria-label="${whatsNewLabel}"] svg {
+  background-color: rgba(var(--spice-rgb-text), 0.75) !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
+}
+.main-actionButtons > div > button[aria-label="${friendsActivityLabel}"] svg,
+.main-actionButtons > button[aria-label="${friendsActivityLabel}"] svg {
+  background-color: rgba(var(--spice-rgb-text), 0.75) !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
+}
+
+.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"] svg,
+button[aria-label="${homeBtnLabelOne}"] svg {
+  path {
+    display: none !important;
+  }
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-outline.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-outline.svg");
+  background-color: var(--spice-subtext) !important;
+}
+
+
+.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg,
+.main-globalNav-navLinkActive[aria-label="${homeBtnLabelOne}"] svg {
+  path {
+    display: none !important;
+  }
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-filled.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-filled.svg");
+  background-color: var(--spice-text) !important;
+}
+
+.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg{
+  path {
+    display: none !important;
+  }
+  background-color: var(--spice-accent) !important;
+}
+    `;
+  document.head.appendChild(ButtonStyles);
 
   console.log("Better Bloom is running");
 

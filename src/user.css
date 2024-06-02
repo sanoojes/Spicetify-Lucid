@@ -349,14 +349,16 @@
 
 .main-skipBackButton-button,
 .main-skipForwardButton-button,
-.main-repeatButton-button[aria-label="Enable repeat"] {
+.main-repeatButton-button[aria-label="Enable repeat"],
+.main-repeatButton-button[aria-label="Disable repeat"],
+.main-repeatButton-button[aria-label="Enable repeat one"] {
   border: none;
   color: var(--spice-text);
   -webkit-mask-size: cover;
   mask-size: cover;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  scale: 0.75 !important;
+  scale: 0.65 !important;
   background-color: var(--spice-text);
   color: var(--spice-subtext);
   svg {
@@ -364,12 +366,14 @@
   }
 }
 
-.main-repeatButton-button[aria-label="Enable repeat"] {
-  scale: 0.6 !important;
+.main-repeatButton-button {
+  scale: 0.65 !important;
   background-color: var(--spice-subtext);
 }
 
 .main-playPauseButton-button,
+.player-controls button[aria-label="Next"],
+.player-controls button[aria-label="Previous"],
 button[aria-label="Add to Liked Songs"],
 button[aria-label="Add to playlist"] {
   display: block;
@@ -401,12 +405,12 @@ button[aria-label="Add to playlist"] {
 }
 
 .main-playPauseButton-button[aria-label="Pause"] {
-  background-color: var(--spice-main);
+  background-color: var(--spice-text);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
 }
 .main-playPauseButton-button[aria-label="Play"] {
-  background-color: var(--spice-main);
+  background-color: var(--spice-text);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
 }
@@ -445,12 +449,12 @@ button[aria-label="Add to playlist"] {
   background-color: rgba(var(--spice-rgb-selected-row), 0.125);
 }
 
-.main-topBar-button > button[aria-label="Go back"] {
+.player-controls button[aria-label="Next"] {
   background-color: rgba(var(--spice-rgb-text), 0.75);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
 }
-.main-topBar-button > button[aria-label="Go forward"] {
+.player-controls button[aria-label="Previous"] {
   background-color: rgba(var(--spice-rgb-text), 0.75);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
@@ -469,15 +473,15 @@ button[aria-label="Add to playlist"] {
   align-items: center;
 }
 
-button[aria-label="Friend Activity"] > path,
-button[aria-label="What's New"] > path {
-  display: none;
-}
-
 .Root__globalNav .main-actionButtons {
   scale: 1.25;
   gap: 4px;
   padding-inline: 8px 8px;
+}
+
+button[aria-label="Friend Activity"] > path,
+button[aria-label="What's New"] > path {
+  display: none;
 }
 
 .main-actionButtons > div > button[aria-label="What's New"] svg,
@@ -729,10 +733,6 @@ div[data-testid="hpto-parent-container"] {
   left: 0;
 }
 
-.main-repeatButton-button[aria-label="Enable repeat"] {
-  color: var(--spice-subtext);
-}
-
 .main-yourLibraryX-entryPoints,
 .main-nowPlayingView-content {
   background: rgba(var(--spice-rgb-sidebar), 0.25) !important;
@@ -898,8 +898,7 @@ div[data-encore-id="popover"] {
 }
 
 .main-buddyFeed-container,
-.Root__right-sidebar,
-aside[aria-label="Now playing view"] {
+.Root__right-sidebar aside {
   --background-base: rgba(var(--spice-rgb-sidebar), 0.5) !important;
   animation-delay: 100ms;
   animation-duration: 0.35s;
@@ -995,14 +994,19 @@ button.HD9s7U5E1RLSWKpXmrqx {
   aspect-ratio: 1/1;
 }
 
-.Root__globalNav
-  button:not(:is([aria-label="Search"], [aria-label="Clear search field"])) {
+.Root__globalNav button {
   background-color: rgba(
     var(--spice-rgb-card),
     var(--bg-color-opacity-homeHeader)
   ) !important;
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.125);
+}
+
+.Root__globalNav
+  button:is([aria-label="Search"], [aria-label="Clear search field"]) {
+  background-color: transparent !important;
+  border: none !important;
 }
 
 .main-userWidget-box {
@@ -1376,16 +1380,19 @@ a[data-context-menu-open="true"] {
   color: var(--spice-accent);
 }
 
+.main-yourLibraryX-navLink[aria-label="Home"] path,
 .main-yourLibraryX-navLink[href="/"] path,
 .main-yourLibraryX-navLink[href="/search"] path,
 .main-yourLibraryX-navLink[href="/search"] path,
 .main-yourLibraryX-navLink[href="/lyrics-plus"] path,
 .main-yourLibraryX-navLink[href="/marketplace"] path,
 .main-globalNav-link-icon[aria-label="Marketplace"] path,
-button[aria-label="Browse"] path {
+button[aria-label="Browse"] path,
+button[aria-label="Home"] path {
   display: none !important;
 }
 
+.main-yourLibraryX-navLink[aria-label="Home"]:hover svg,
 .main-yourLibraryX-navLink[href="/"]:hover svg,
 .main-yourLibraryX-navLink[href="/search"]:hover .search-icon,
 .main-yourLibraryX-navLink[href="/lyrics-plus"]:hover svg,
@@ -1394,13 +1401,16 @@ button[aria-label="Browse"] path {
   background-color: var(--spice-text) !important;
 }
 
-.main-yourLibraryX-navLink[href="/"] svg {
+.main-yourLibraryX-navLink[href="/"] svg,
+.main-yourLibraryX-navLink[aria-label="Home"] svg,
+button[aria-label="Home"] svg {
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-outline.svg");
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-outline.svg");
-
   background-color: var(--spice-subtext) !important;
 }
-.main-yourLibraryX-navLink[href="/"].active svg {
+.main-yourLibraryX-navLink[aria-label="Home"].active svg,
+.main-yourLibraryX-navLink[href="/"].active svg,
+.main-globalNav-navLinkActive[aria-label="Home"] svg {
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-filled.svg");
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-filled.svg");
   background-color: var(--spice-accent) !important;
@@ -1446,6 +1456,7 @@ button[aria-label="Browse"] path {
 }
 
 button[aria-label="Browse"] svg {
+  display: none;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/compass_outline.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/compass_outline.svg");
   background-color: var(--spice-subtext) !important;
