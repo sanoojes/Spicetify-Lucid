@@ -257,12 +257,12 @@ button[aria-label="${addToPlaylistLabel}"] {
 }
 
 .player-controls button[aria-label="${skipBackLabel}"] {
-  background-color: rgba(var(--spice-rgb-text), 0.75);
+  background-color: var(--spice-text);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
 }
 .player-controls button[aria-label="${skipForwardLabel}"] {
-  background-color: rgba(var(--spice-rgb-text), 0.75);
+  background-color: var(--spice-text);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
 }
@@ -274,13 +274,13 @@ button[aria-label="${whatsNewLabel}"] > path {
 
 .main-actionButtons > div > button[aria-label="${whatsNewLabel}"] svg,
 .main-actionButtons > button[aria-label="${whatsNewLabel}"] svg {
-  background-color: rgba(var(--spice-rgb-text), 0.75) !important;
+  background-color: var(--spice-subtext) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
 }
 .main-actionButtons > div > button[aria-label="${friendsActivityLabel}"] svg,
 .main-actionButtons > button[aria-label="${friendsActivityLabel}"] svg {
-  background-color: rgba(var(--spice-rgb-text), 0.75) !important;
+  background-color: var(--spice-subtext) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
 }

@@ -1413,7 +1413,6 @@ button[aria-label="Home"] svg {
 .main-globalNav-navLinkActive[aria-label="Home"] svg {
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-filled.svg");
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/home-filled.svg");
-  background-color: var(--spice-accent) !important;
 }
 
 .main-yourLibraryX-navLink[href="/search"] svg {
