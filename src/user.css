@@ -1545,3 +1545,18 @@ button:has(.LyricsPageIcon) {
 .marketplace-add-snippet-btn {
   bottom: 3rem;
 }
+
+.main-topBar-container {
+  padding-inline-start: 5rem !important;
+}
+
+/* Transparent Windows Controls */
+body::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  z-index: 999;
+  backdrop-filter: brightness(2.12);
+  width: var(--control-width, 0);
+  height: var(--control-height, 0);
+}

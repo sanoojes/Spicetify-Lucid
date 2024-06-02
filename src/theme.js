@@ -10,40 +10,34 @@
     return;
   }
 
-  function setWindowHeight(increase) {
+  function setWindowHeight() {
     Spicetify.Platform.PlayerAPI._prefs
       .get({ key: "app.browser.zoom-level" })
       .then(async (value) => {
-        const zoom = Number(value.entries["app.browser.zoom-level"].number);
-        const scaleFactor = 0.912;
-        const paddingScaleFactor = 1.1;
+        const zoomLevel = value.entries["app.browser.zoom-level"].number;
+        const zoomNum = Number(zoomLevel);
+
+        const multiplier = zoomNum !== 0 ? zoomNum / 50 : 0;
+
         const isGlobalNav = document.querySelector(".Root__globalNav");
+        const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
 
-        // Adjust scale based on user input (increase or decrease)
-        let scale = zoom !== 0 ? zoom / 50 : 0;
-        if (increase) {
-          scale *= -0.9;
-        } else {
-          scale *= 1.1;
-        }
+        const constant = 0.912872807;
 
-        let scalepadding = zoom !== 0 ? zoom / 50 : 0;
-        if (increase) {
-          scalepadding *= -0.9;
-        } else {
-          scalepadding *= 1.1;
-        }
+        const base_width = 135;
+        const final_width = base_width * constant ** multiplier;
 
-        const height = 48 * scaleFactor ** scale;
-        const padding_end = 9 * paddingScaleFactor ** scalepadding;
-        const padding_start = 3 * paddingScaleFactor ** scalepadding;
+        const base_height = 48;
+        const final_height = base_height * Math.pow(1.1, multiplier);
+
+        const padding_start = 4 * constant ** multiplier;
+        const padding_end = 9 * constant ** multiplier;
 
         await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
           type: "update_titlebar",
-          height: height,
+          height: final_height,
         });
 
-        const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
         if (!isGlobalNav && isWindows) {
           styleSheet.innerText = `
           .main-topBar-container {
@@ -54,15 +48,6 @@
           .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
             padding-inline: ${padding_start}rem ${padding_end}rem !important
           }`;
-        } else {
-          styleSheet.innerText = `
-          .main-topBar-container {
-            padding-inline-start: 5rem !important;
-          }
-          .Root__globalNav {
-            padding-inline-start: 5rem !important;
-          }
-          `;
         }
 
         // update title bar to 48px
@@ -73,9 +58,7 @@
             height: calc(24px + var(--panel-gap) * 2);
             ${
               isWindows &&
-              `padding-inline: ${padding_start + 1}rem ${
-                padding_end + 1
-              }rem !important`
+              `padding-inline: ${padding_start}rem ${padding_end}rem !important`
             }
 
           }
@@ -91,29 +74,31 @@
           }
           
           `;
-          await Spicetify.CosmosAsync.post(
-            "sp://messages/v1/container/control",
-            {
-              type: "update_titlebar",
-              height: height,
-            }
-          );
-        }
-        console.log("Zoom level adjusted.");
-
-        if (isWindows && Spicetify.Config.color_scheme !== "light" && !document.querySelector(".Fullscreen")) {
+        } else {
           styleSheet.innerText += `
-        /* Transparent Windows Controls */
-        body::after {
-          content: "";
-          position: absolute;
-          right: 0;
-          z-index: 999;
-          backdrop-filter: brightness(2.12);
-          width: calc(135px / var(--windows-control-zoom, 1));
-          height: calc(48px / var(--windows-control-zoom, 1));
-        }
+          .Root__globalNav {
+            ${
+              isWindows
+                ? `padding-inline: ${padding_start}rem ${padding_end}rem !important`
+                : `padding-inline-start: 5rem !important;`
+            }
+          }
         `;
+        }
+
+        if (
+          isWindows &&
+          Spicetify.Config.color_scheme !== "light" &&
+          !document.querySelector(".Fullscreen")
+        ) {
+          document.documentElement.style.setProperty(
+            "--control-width",
+            `${final_width}px`
+          );
+          document.documentElement.style.setProperty(
+            "--control-height",
+            `${base_height}px`
+          );
         }
 
         document.head.appendChild(styleSheet);
@@ -235,48 +220,6 @@
 
   Spicetify.Player.addEventListener("songchange", onSongChange);
   onSongChange(); // Initial call to setup song change handling
-
-  function enhanceInterface() {
-    Spicetify.Platform.PlayerAPI._prefs
-      .get({ key: "app.browser.zoom-level" })
-      .then((value) => {
-        const zoom = Number(value.entries["app.browser.zoom-level"].number);
-        const scale = zoom !== 0 ? zoom / 50 : 0;
-        const scaleFactor = 0.912;
-        const width = 135 * scaleFactor ** scale;
-        const height = 40 * scaleFactor ** scale;
-
-        document.documentElement.style.setProperty(
-          "--control-width",
-          `${Math.abs(width)}px`
-        );
-        document.documentElement.style.setProperty(
-          "--control-height",
-          `${Math.abs(height)}px`
-        );
-      });
-  }
-
-  window.addEventListener("resize", enhanceInterface);
-  enhanceInterface();
-
-  // Set Window Control Zoom Variable
-  function handleTransparentWindows() {
-    Spicetify.Platform.PlayerAPI._prefs
-      .get({ key: "app.browser.zoom-level" })
-      .then((value) => {
-        const zoom = Number(value.entries["app.browser.zoom-level"].number);
-        console.log(zoom);
-      });
-
-    document.documentElement.style.setProperty(
-      "--windows-control-zoom",
-      window.outerWidth / window.innerWidth || 1
-    );
-  }
-
-  window.addEventListener("resize", handleTransparentWindows);
-  handleTransparentWindows();
 })();
 
 (function volumePercentage() {
