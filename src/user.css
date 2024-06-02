@@ -1037,7 +1037,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
 
 .x-searchInput-searchInputInput {
   color: var(--spice-text) !important;
-  border: 1px solid var(--spice-light-border);
+  border: var(--default-border-thickness) solid var(--spice-light-border);
   border-radius: var(--card-border-radius) !important;
   padding-right: 72px;
   padding-left: 12px;
@@ -1555,10 +1555,6 @@ button:has(.LyricsPageIcon) {
 
 .marketplace-add-snippet-btn {
   bottom: 3rem;
-}
-
-.main-topBar-container {
-  padding-inline-start: 5rem !important;
 }
 
 /* Transparent Windows Controls */

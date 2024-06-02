@@ -72,7 +72,6 @@
             opacity: 1 !important;
             justify-content: space-between !important;
           }
-          
           `;
         } else {
           styleSheet.innerText += `
@@ -82,6 +81,9 @@
                 ? `padding-inline: ${padding_start}rem ${padding_end}rem !important`
                 : `padding-inline-start: 5rem !important;`
             }
+          }
+          .main-topBar-container {
+            padding-inline-start: 5rem !important;
           }
         `;
         }
