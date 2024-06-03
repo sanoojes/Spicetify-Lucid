@@ -48,7 +48,7 @@
   --extra-bold-font-weight: 800;
 
   /* Spicetify Overrides */
-  --spice-rgb-selected-row: 80, 80, 80;
+  --spice-rgb-selected-row: rgba(var(--spice-subtext));
   --panel-gap: 0.5rem !important;
   --background-base: rgba(var(--spice-rgb-main), 0.8);
   --encore-control-size-base: 32px;
@@ -346,7 +346,9 @@
 button,
 .main-avatar-image,
 .ChipInnerComponent-sm-selected,
-.ButtonInner-medium {
+.ButtonInner-medium,
+.MxmW8QkHqHWtuhO589PV,
+.main-card-imageContainer {
   border-radius: var(--button-border-radius) !important;
 }
 
@@ -669,7 +671,8 @@ button[aria-label="What's New"] > path {
 .main-yourLibraryX-libraryContainer,
 .lyrics-lyrics-contentWrapper,
 .album-albumPage-sectionWrapper,
-.main-buddyFeed-container {
+.main-buddyFeed-container,
+.nw2W4ZMdICuBo08Tzxg9 {
   padding: 0;
   padding-bottom: calc(
     var(--now-playing-bar-height) - (var(--padding-now-playing-bar) * 2)
@@ -1324,10 +1327,6 @@ body:has(.BeautifulLyricsPage) {
 }
 
 .GenericModal {
-  backdrop-filter: blur(2rem) saturate(1.5) brightness(1.5);
-  background-color: rgba(var(--spice-rgb-main), 0.25) !important;
-  border-radius: var(--card-border-radius);
-  --spice-sidebar: rgba(var(--spice-rgb-sidebar), 0.5);
   button {
     min-width: max-content !important;
   }
@@ -1339,7 +1338,6 @@ body:has(.BeautifulLyricsPage) {
 
 .od_kF1rLZbir8kM_F607,
 .BPDHTIIFueJMvtDPZttw {
-  backdrop-filter: blur(2rem) saturate(1.5) brightness(0.5);
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
 }
 
@@ -1385,8 +1383,9 @@ a[data-context-menu-open="true"] {
 
 .main-embedWidgetGenerator-container,
 .main-trackCreditsModal-container {
-  height: 100%;
-  backdrop-filter: blur(1rem) brightness(1.5);
+  max-height: 90vh;
+  min-width: 40vw;
+  backdrop-filter: blur(1rem) brightness(0.75);
   background-color: rgba(var(--spice-rgb-card), 0.25) !important;
   border: var(--default-border-thickness) solid
     rgba(var(--spice-rgb-subtext), 0.25);
