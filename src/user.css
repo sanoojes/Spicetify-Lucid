@@ -818,6 +818,54 @@ div[data-testid="hpto-parent-container"] {
   color: rgba(var(--spice-rgb-text), 0.75);
 }
 
+/* Progress Bar */
+
+.x-progressBar-progressBarBg {
+  background-color: rgba(var(--spice-rgb-text), 0.2);
+  background-blend-mode: luminosity;
+}
+
+.playback-bar,
+.progress-bar,
+.progress-bar__fg_wrapper {
+  --fg-color: var(--spice-accent) !important;
+  --is-active-fg-color: var(--spice-accent) !important;
+  --bg-color: rgba(var(--spice-rgb-text), 0.2);
+}
+
+.progress-bar__slider {
+  background-color: rgba(var(--spice-rgb-card), 0.75) !important;
+  border: 6px solid rgba(var(--spice-rgb-card), 0.75);
+  box-shadow: 0 0 3px 0 rgba(var(--spice-rgb-card), 0.75) !important;
+  box-sizing: content-box !important;
+  width: 8px;
+  height: 8px;
+  opacity: 1 !important;
+  display: block;
+  margin-left: -10px;
+}
+
+.progress-bar__slider::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--spice-accent);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  transition: transform 300ms cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.progress-bar__slider:hover::after {
+  transform: scale(1.25);
+}
+
+.progress-bar__slider:active::after {
+  transform: scale(0.8);
+}
+
 /* Animations */
 .main-trackList-trackListRow,
 .main-view-container,
@@ -858,11 +906,6 @@ div[data-encore-id="popover"] {
   --background-tinted-press: rgba(var(--spice-rgb-card), 0.75);
 }
 
-.progress-bar {
-  --bg-color: rgba(var(--white-rgb), 0.3);
-  --fg-color: var(--spice-accent);
-}
-
 .marketplace-grid {
   --minimumColumnWidth: 14rem;
   text-wrap: balance;
@@ -885,19 +928,6 @@ div[data-encore-id="popover"] {
 
 .marketplace-tabBar-nav {
   width: inherit;
-}
-
-/* Taken from Spicetify marketplace snippets */
-@property --progress-bar-transform {
-  inherits: true;
-  initial-value: 0%;
-  syntax: "<percentage>";
-}
-.progress-bar {
-  transition: --progress-bar-transform 0.5s linear !important;
-}
-.progress-bar--isDragging {
-  transition-duration: 150ms !important;
 }
 
 .main-buddyFeed-container,
@@ -1113,13 +1143,6 @@ input:focus {
 .x-searchResultsTracks-root .main-gridContainer-gridContainer {
   background-color: rgba(var(--spice-rgb-card), 0.55);
   border-radius: var(--card-border-radius);
-}
-
-.ProgressBarIndicator-sc-1b6tcn5-0 {
-  background-color: var(--spice-accent);
-  height: 100%;
-  border-radius: var(--border-radius-rounded);
-  transition: --progress-bar-transform 0.5s linear !important;
 }
 
 .playlist-playlist-searchResultListContainer {
