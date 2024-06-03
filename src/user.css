@@ -17,6 +17,7 @@
   --ease-transition: all 0.25s ease-in-out;
 
   --button-border-radius: 0.5rem; /* Border Radius of all buttons*/
+  --encore-button-corner-radius: var(--button-border-radius);
 
   /* Scrollbar */
   --scrollbar-display: block;
@@ -336,11 +337,22 @@
   margin: 0 1rem 0 0.5rem;
 }
 
+.encore-internal-color-text-base {
+  color: var(--spice-text) !important;
+}
+
 /* Buttons */
 .Button-medium-medium-buttonTertiary-iconOnly-condensed-useBrowserDefaultFocusStyle,
 button,
-.main-avatar-image {
+.main-avatar-image,
+.ChipInnerComponent-sm-selected,
+.ButtonInner-medium {
   border-radius: var(--button-border-radius) !important;
+}
+
+.Button-medium-buttonPrimary-useBrowserDefaultFocusStyle:hover
+  .ButtonInner-sc-14ud5tc-0 {
+  background-color: rgba(var(--spice-rgb-accent), 0.85);
 }
 
 .main-genericButton-button {
