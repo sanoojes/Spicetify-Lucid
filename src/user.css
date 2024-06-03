@@ -1521,6 +1521,10 @@ button[aria-label="Browse"] svg {
 
 /* Beautiful Lyrics */
 
+#BeautifulLyricsFullscreenButton {
+  color: var(--spice-subtext) !important;
+}
+
 button:has(.LyricsPageIcon) {
   margin-right: 0;
 }
