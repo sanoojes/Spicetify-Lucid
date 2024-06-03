@@ -16,6 +16,8 @@
   --blur-radius: 1rem;
   --ease-transition: all 0.25s ease-in-out;
 
+  --button-border-radius: 0.5rem /* Border Radius of all buttons*/
+
   /* Scrollbar */
   --scrollbar-display: block;
   --scrollbar-width: 0.25rem;
@@ -335,6 +337,12 @@
 }
 
 /* Buttons */
+.Button-medium-medium-buttonTertiary-iconOnly-condensed-useBrowserDefaultFocusStyle,
+button,
+.main-avatar-image {
+  border-radius: var(--button-border-radius) !important;
+}
+
 .main-genericButton-button {
   background-color: transparent;
   border: none;
@@ -471,7 +479,7 @@ button[aria-label="Add to playlist"] {
 .main-actionButtons > div {
   display: flex;
   padding: 0.25px;
-  border-radius: 999px;
+  border-radius: var(--border-radius);
   justify-content: center;
   align-items: center;
 }
