@@ -83,7 +83,7 @@
             }
           }
           .main-topBar-container {
-            padding-inline-start: 5rem !important;
+            ${!isWindows && `padding-inline-start: 5rem !important;`}
           }
         `;
         }
