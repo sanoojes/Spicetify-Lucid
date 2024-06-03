@@ -126,7 +126,7 @@ Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `d
 
 ## Credits
 
-volumePercentage, quickQueue ,npvAmbience taken from [ohitstom/spicetify-extensions](https://github.com/ohitstom/spicetify-extensions)
+quickQueue ,npvAmbience taken from [ohitstom/spicetify-extensions](https://github.com/ohitstom/spicetify-extensions)
 
 ## License
 
