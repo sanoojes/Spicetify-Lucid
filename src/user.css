@@ -16,7 +16,7 @@
   --blur-radius: 1rem;
   --ease-transition: all 0.25s ease-in-out;
 
-  --button-border-radius: 0.5rem /* Border Radius of all buttons*/
+  --button-border-radius: 0.5rem; /* Border Radius of all buttons*/
 
   /* Scrollbar */
   --scrollbar-display: block;
