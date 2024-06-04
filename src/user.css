@@ -216,7 +216,7 @@
 }
 
 .view-homeShortcutsGrid-draggable {
-  border-radius: var(--card-border-radius);
+  border-radius: var(--button-border-radius);
   overflow: hidden;
 }
 
