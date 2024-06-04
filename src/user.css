@@ -53,7 +53,7 @@
   --extra-bold-font-weight: 800;
 
   /* Spicetify Overrides */
-  --spice-rgb-selected-row: rgba(var(--spice-subtext));
+  --spice-rgb-selected-row: var(--spice-rgb-subtext);
   --panel-gap: 0.5rem !important;
   --background-base: rgba(var(--spice-rgb-main), 0.8);
   --encore-control-size-base: 32px;
