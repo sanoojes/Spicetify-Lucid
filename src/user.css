@@ -8,12 +8,13 @@
   /* Commonly Used Values */
   --default-gap: 0.5rem;
   --default-gap2: 0.25rem;
-  --default-border-thickness: 1px;
+  --border-thickness: 1px;
   --default-padding: 0.25rem;
   --bg-color-opacity: 0.25;
   --bg-color-opacity-cards: 0.75;
   --bg-color-opacity-homeHeader: 0.5;
   --blur-radius: 1rem;
+  --blur-radius-now-playing-bar: 1rem;
   --ease-transition: all 0.25s ease-in-out;
 
   --button-border-radius: 0.5rem; /* Border Radius of all buttons*/
@@ -25,7 +26,6 @@
   --scrollbar-color: rgba(var(--spice-rgb-text), 0.75) !important;
 
   /* Border */
-  --border-radius: 1rem;
   --card-border-radius: 0.5rem;
   --border-radius-rounded: 9999px;
   --border-radius-now-playing-bar: 0.5rem;
@@ -36,6 +36,11 @@
 
   /* Spacing & Sizing */
   --margin-heading: 0.5rem;
+
+  /* Now playing bar */
+  --now-playing-brightness: 100%;
+  --now-playing-contrast: 100%;
+  --now-playing-saturation: 100%;
   --margin-bottom-now-playing-bar: 0.5rem;
   --padding-now-playing-bar: 0.25rem;
   --now-playing-bar-height: 5.5rem;
@@ -54,10 +59,10 @@
   --encore-control-size-base: 32px;
 
   /* Background Overlay */
-  --blur: 1.5rem;
-  --cont: 80%; /* Contrast for dark theme */
-  --bright: 50%; /* Brightness for dark theme */
-  --satu: 90%;
+  --bg-blur: 1.5rem;
+  --bg-contrast: 80%; /* Contrast for dark theme */
+  --bg-brightness: 50%; /* Brightness for dark theme */
+  --bg-saturation: 90%;
 
   --text-base: var(--spice-sidebar);
 }
@@ -190,7 +195,7 @@
 .Root__main-view,
 .main-yourLibraryX-entryPoints,
 .Root__right-sidebar {
-  border: var(--default-border-thickness) solid var(--shadow-rgb);
+  border: var(--border-thickness) solid var(--shadow-rgb);
 }
 
 /* Card Styles */
@@ -255,7 +260,7 @@
 .main-actionBar-ActionBar {
   display: flex;
   justify-content: center;
-  border-top: var(--default-border-thickness) solid var(--shadow-rgb);
+  border-top: var(--border-thickness) solid var(--shadow-rgb);
   background: linear-gradient(
       rgba(var(--spice-rgb-main), 0.75) 0,
       rgba(var(--spice-rgb-main), 0.45) 100%
@@ -282,14 +287,17 @@
   border-radius: var(--border-radius-now-playing-bar);
   padding: var(--padding-now-playing-bar);
   bottom: var(--margin-bottom-now-playing-bar);
-  border: var(--default-border-thickness) solid var(--shadow-rgb);
+  border: var(--border-thickness) solid var(--shadow-rgb);
   background-color: rgba(var(--spice-rgb-main), 0.5);
-  backdrop-filter: blur(var(--blur-radius));
+  backdrop-filter: blur(var(--blur-radius-now-playing-bar))
+    saturate(var(--now-playing-saturation))
+    brightness(var(--now-playing-brightness))
+    contrast(var(--now-playing-contrast));
 }
 
 /* Context Menu */
 .main-contextMenu-menu {
-  border-radius: var(--border-radius);
+  border-radius: var(--card-border-radius);
   background-color: rgba(
     var(--spice-rgb-card),
     var(--bg-color-opacity-homeHeader)
@@ -300,9 +308,8 @@
 
 .main-contextMenu-menu::before {
   content: "";
-  border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-subtext), 0.25);
-  border-radius: var(--border-radius);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.25);
+  border-radius: var(--card-border-radius);
   backdrop-filter: blur(var(--blur-radius)) brightness(0.75);
   position: absolute;
   top: 0;
@@ -322,8 +329,7 @@
 .x-settings-equalizerSection,
 .main-dropDown-dropDown {
   background-color: rgba(var(--spice-rgb-main), 0.125);
-  border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-subtext), 0.5);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.5);
   border-radius: 8px;
 }
 
@@ -377,14 +383,8 @@ button,
 .main-repeatButton-button[aria-label="Enable repeat"],
 .main-repeatButton-button[aria-label="Disable repeat"],
 .main-repeatButton-button[aria-label="Enable repeat one"] {
-  border: none;
-  color: var(--spice-text);
-  -webkit-mask-size: cover;
-  mask-size: cover;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
   scale: 0.65 !important;
-  background-color: var(--spice-text);
+  background-color: var(--spice-subtext);
   color: var(--spice-subtext);
   svg {
     display: none;
@@ -493,7 +493,7 @@ button[aria-label="Add to playlist"] {
 .main-actionButtons > div {
   display: flex;
   padding: 0.25px;
-  border-radius: var(--border-radius);
+  border-radius: var(--card-border-radius);
   justify-content: center;
   align-items: center;
 }
@@ -599,15 +599,14 @@ button[aria-label="What's New"] > path {
 }
 
 .main-globalNav-searchInputContainer {
-  border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-subtext), 0.125);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
 }
 
 .main-globalNav-searchInputContainer,
 .main-globalNav-searchInputContainer .Y8Mmhwfig0n1DHqUTar5,
 .main-globalNav-searchInputContainer .SFAoASy0S_LZJmYZ3Fh9 {
   background: transparent !important;
-  border-radius: var(--border-radius);
+  border-radius: var(--card-border-radius);
   overflow: hidden;
 }
 
@@ -799,8 +798,7 @@ div[data-testid="hpto-parent-container"] {
 .main-nowPlayingView-artistOnTour,
 .main-nowPlayingView-merch,
 #BeautifulLyrics-CardView {
-  border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-subtext), 0.025);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.025);
   backdrop-filter: brightness(1.25) !important;
 }
 
@@ -877,7 +875,7 @@ div[data-testid="hpto-parent-container"] {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  border-radius: 50%;
+  border-radius: var(--border-radius-rounded);
   transition: transform 300ms cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
@@ -913,7 +911,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 div[data-encore-id="popover"] {
-  backdrop-filter: blur(1rem) saturate(1.5) brightness(0.5);
+  backdrop-filter: blur(var(--blur-radius)) saturate(1.5) brightness(0.5);
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
 }
 
@@ -951,6 +949,12 @@ div[data-encore-id="popover"] {
 
 .marketplace-tabBar-nav {
   width: inherit;
+}
+
+.main-buddyFeed-container,
+.Root__right-sidebar aside,
+.Root__nav-bar {
+  border-radius: var(--card-border-radius);
 }
 
 .main-buddyFeed-container,
@@ -1055,8 +1059,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
     var(--spice-rgb-card),
     var(--bg-color-opacity-homeHeader)
   ) !important;
-  border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-subtext), 0.125);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
 }
 
 .Root__globalNav
@@ -1093,7 +1096,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
 
 .x-searchInput-searchInputInput {
   color: var(--spice-text) !important;
-  border: var(--default-border-thickness) solid var(--spice-light-border);
+  border: var(--border-thickness) solid var(--spice-light-border);
   border-radius: var(--card-border-radius) !important;
   padding-right: 72px;
   padding-left: 12px;
@@ -1109,7 +1112,7 @@ input:hover {
 .x-searchInput-searchInputInput:focus,
 input:focus {
   background-color: rgba(var(--spice-rgb-main), 0.7) !important;
-  border-bottom: var(--spice-accent) solid var(--default-border-thickness);
+  border-bottom: var(--spice-accent) solid var(--border-thickness);
   outline: none !important;
 }
 
@@ -1211,8 +1214,8 @@ svg {
   left: 0;
   right: 0;
   bottom: 0;
-  filter: blur(var(--blur)) contrast(var(--cont)) saturate(var(--satu))
-    brightness(var(--bright));
+  filter: blur(var(--bg-blur)) contrast(var(--bg-contrast))
+    saturate(var(--bg-saturation)) brightness(var(--bg-brightness));
   pointer-events: none;
   backface-visibility: hidden;
   will-change: transform;
@@ -1262,14 +1265,10 @@ svg {
   color: rgba(var(--spice-rgb-text), 0.5) !important;
 }
 
-::backdrop,
-.GenericModal__overlay:not(.mXdNvIO9PYnBFoyoMyUO.Xf30G8NSPQ3pex0iD4zB) {
-  backdrop-filter: blur(0.2rem) saturate(2) invert(0.0125) brightness(0.5);
-  background-color: rgba(var(--spice-rgb-main), 0.75);
-}
-
 ::backdrop {
-  backdrop-filter: blur(2rem) saturate(2) invert(0.0125) brightness(0.5);
+  background-color: rgba(var(--spice-rgb-main), 0.75);
+  backdrop-filter: blur(var(--blur-radius)) saturate(2) invert(0.0125)
+    brightness(0.5);
 }
 
 body:has(.BeautifulLyricsPage) {
@@ -1333,12 +1332,28 @@ body:has(.BeautifulLyricsPage) {
 }
 
 .GenericModal--afterOpen {
-  border: var(--default-border-thickness) solid var(--shadow-rgb);
+  border: var(--border-thickness) solid var(--shadow-rgb);
 }
 
 .od_kF1rLZbir8kM_F607,
-.BPDHTIIFueJMvtDPZttw {
+.BPDHTIIFueJMvtDPZttw,
+.F1K3uW1jqwG0wxFHO5gl,
+.uJjmxe0T11dUVeW6Biz8 {
+  background-color: transparent !important;
+}
+
+.od_kF1rLZbir8kM_F607,
+.main-trackCreditsModal-header {
+  border-bottom: var(--border-thickness) solid
+    rgba(var(--spice-rgb-subtext), 0.5);
+}
+
+.JnpOnFaQfrRIA2fYe88A {
   background-color: rgba(var(--spice-rgb-main), 0.25) !important;
+  backdrop-filter: saturate(1) blur(var(--blur-radius)) brightness(1.25);
+  border-radius: var(--card-border-radius);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
+  overflow: hidden;
 }
 
 .tLjX9htIKD_OCmEX01UN {
@@ -1385,10 +1400,9 @@ a[data-context-menu-open="true"] {
 .main-trackCreditsModal-container {
   max-height: 90vh;
   min-width: 40vw;
-  backdrop-filter: blur(1rem) brightness(0.75);
+  backdrop-filter: blur(var(--blur-radius)) brightness(1) saturate(1.5);
   background-color: rgba(var(--spice-rgb-card), 0.25) !important;
-  border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-subtext), 0.25);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.25);
   border-radius: var(--card-border-radius);
 }
 
@@ -1548,7 +1562,7 @@ button[aria-label="Browse"] svg {
   position: fixed;
   width: 100%;
   height: fit-content;
-  backdrop-filter: blur(1rem);
+  backdrop-filter: blur(var(--blur-radius));
   background-color: rgba(var(--spice-rgb-card), 0.5) !important;
   z-index: 10;
   top: -1px;
@@ -1633,14 +1647,13 @@ body::after {
   background-color: rgba(var(--spice-rgb-card), 0.75) !important;
   color: var(--spice-text) !important;
   width: 100%;
-  border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-subtext), 0.125);
-  border-radius: var(--border-radius);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
+  border-radius: var(--card-border-radius);
 }
 
 .TQb3mB9R6qGsxvPnCurA {
   padding: 0;
-  border-radius: var(--border-radius);
+  border-radius: var(--card-border-radius);
   background-color: transparent !important;
   color: var(--spice-subtext) !important;
   svg {
@@ -1660,15 +1673,134 @@ body::after {
 
 .GenericModal[aria-label="Search"] {
   backdrop-filter: saturate(1) blur(var(--blur-radius)) brightness(0.85);
-  border-radius: var(--border-radius);
-  border: var(--default-border-thickness) solid
-    rgba(var(--spice-rgb-subtext), 0.125);
+  border-radius: var(--card-border-radius);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
 }
 
 .N9tnwm0XDrt_eGJd2D2A {
   max-height: 70vh;
   min-width: 60rem;
   width: 60vw;
+}
+
+.BoxComponent-box-elevated {
+  color: var(--spice-text);
+  background-color: rgba(var(--spice-rgb-card), 0.5);
+  border: var(--border-thickness) solid var(--spice-light-border);
+  border-radius: var(--button-border-radius);
+}
+
+.lyrics-config-button-container {
+  bottom: var(--now-playing-bar-height);
+}
+
+.GenericModal[aria-label="Better Bloom Settings"] {
+  .main-trackCreditsModal-mainSection {
+    scrollbar-width: none !important;
+  }
+}
+
+.bloom-popup-main-container {
+  width: 100%;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bloom-settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--default-gap);
+}
+
+.bloom-input-slider-container {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--default-gap) * 2);
+}
+
+.bloom-settings-subtitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.bloom-input-slider-value {
+  display: flex;
+  gap: 0.125rem;
+}
+
+.bloom-input-slider {
+  font-size: 1.5rem;
+  width: 12.5em;
+}
+
+.bloom-slider {
+  width: 100%;
+  height: 4px;
+  border-radius: 5px;
+  accent-color: var(--spice-accent);
+  outline: none;
+  opacity: 0.85;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.bloom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: var(--border-radius-rounded);
+  background-color: var(--spice-accent);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.bloom-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 8px rgba(var(--spice-rgb-accent), 0.16);
+  transition: 0.3s ease-in-out;
+}
+
+.bloom-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: var(--border-radius-rounded);
+  background-color: var(--spice-accent);
+  cursor: pointer;
+}
+
+.bloom-slider-div {
+  padding: 1rem;
+  border-radius: var(--button-border-radius);
+  background-color: rgba(var(--spice-rgb-card), 0.25);
+}
+
+.bloom-slidervalue {
+  font-weight: 600;
+}
+
+.bloom-reset-btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--button-border-radius);
+  background: rgba(var(--spice-rgb-accent), 0.75);
+  color: var(--spice-text);
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.bloom-reset-btn:hover {
+  box-shadow: 7px 5px 56px -14px rgba(var(--spice-rgb-accent), 0.5) !important;
+}
+
+.bloom-reset-btn:active {
+  transform: scale(0.97);
+  box-shadow: 7px 5px 56px -10px rgba(var(--spice-rgb-accent), 0.55) !important;
 }
 
 .lyrics-config-button-container {
