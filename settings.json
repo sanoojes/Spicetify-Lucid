@@ -1,0 +1,127 @@
+[
+  // General Appearance Settings
+  {
+    "label": "Blur",
+    "key": "general-blur-radius",
+    "min": 0,
+    "max": 64,
+    "unit": "px",
+    "default": 16
+  },
+  {
+    "label": "Border Thickness",
+    "key": "general-border-thickness",
+    "min": 0,
+    "max": 8,
+    "unit": "px",
+    "default": 1
+  },
+  {
+    "label": "Border Radius",
+    "key": "general-card-border-radius",
+    "min": 0,
+    "max": 128,
+    "unit": "px",
+    "default": 16
+  },
+  {
+    "label": "Button Border Radius",
+    "key": "general-button-border-radius",
+    "min": 0,
+    "max": 128,
+    "unit": "px",
+    "default": 8
+  },
+
+  // Background Image Settings
+  {
+    "label": "Blur",
+    "key": "background-blur-radius",
+    "min": 0,
+    "max": 128,
+    "unit": "px",
+    "default": 16
+  },
+  {
+    "label": "Brightness",
+    "key": "background-brightness",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 70
+  },
+  {
+    "label": "Contrast",
+    "key": "background-contrast",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 80
+  },
+  {
+    "label": "Saturation",
+    "key": "background-saturation",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 125
+  },
+
+  // Now Playing Bar Settings
+  {
+    "label": "Height",
+    "key": "now-playing-bar-height",
+    "min": 0,
+    "max": 512,
+    "unit": "px",
+    "default": 88
+  },
+  {
+    "label": "Padding",
+    "key": "now-playing-bar-padding",
+    "min": 0,
+    "max": 64,
+    "unit": "px",
+    "default": 4
+  },
+  {
+    "label": "Border Radius",
+    "key": "now-playing-bar-border-radius",
+    "min": 0,
+    "max": 256,
+    "unit": "px",
+    "default": 16
+  },
+  {
+    "label": "Blur",
+    "key": "now-playing-bar-blur-radius",
+    "min": 0,
+    "max": 128,
+    "unit": "px",
+    "default": 16
+  },
+  {
+    "label": "Saturation",
+    "key": "now-playing-bar-saturation",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 100
+  },
+  {
+    "label": "Contrast",
+    "key": "now-playing-bar-contrast",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 115
+  },
+  {
+    "label": "Brightness",
+    "key": "now-playing-bar-brightness",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 100
+  }
+]
