@@ -220,6 +220,9 @@
   overflow: hidden;
 }
 
+.view-homeShortcutsGrid-shortcut {
+  border-radius: var(--button-border-radius);
+}
 .main-card-cardContainer,
 .view-homeShortcutsGrid-shortcut {
   &:hover {
