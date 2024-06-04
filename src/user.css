@@ -1694,12 +1694,6 @@ body::after {
   bottom: var(--now-playing-bar-height);
 }
 
-.GenericModal[aria-label="Better Bloom Settings"] {
-  .main-trackCreditsModal-mainSection {
-    scrollbar-width: none !important;
-  }
-}
-
 .bloom-popup-main-container {
   width: 100%;
   font-weight: 600;
