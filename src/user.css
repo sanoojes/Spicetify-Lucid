@@ -1802,3 +1802,7 @@ body::after {
   transform: scale(0.97);
   box-shadow: 7px 5px 56px -10px rgba(var(--spice-rgb-accent), 0.55) !important;
 }
+
+.lyrics-config-button-container {
+  bottom: var(--now-playing-bar-height);
+}
