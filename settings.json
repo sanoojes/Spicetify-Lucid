@@ -1,122 +1,137 @@
 [
   {
     "label": "Blur",
-    "key": "general-blur-radius",
+    "key": "blur-radius",
     "min": 0,
-    "max": 64,
+    "max": 100,
     "unit": "px",
-    "default": 16
+    "default": 16,
+    "section": "General"
   },
   {
     "label": "Border Thickness",
-    "key": "general-border-thickness",
+    "key": "border-thickness",
     "min": 0,
-    "max": 8,
+    "max": 10,
     "unit": "px",
-    "default": 1
+    "default": 1,
+    "section": "General"
   },
   {
     "label": "Border Radius",
-    "key": "general-card-border-radius",
+    "key": "card-border-radius",
     "min": 0,
-    "max": 128,
+    "max": 100,
     "unit": "px",
-    "default": 16
+    "default": 16,
+    "section": "General"
   },
   {
     "label": "Button Border Radius",
-    "key": "general-button-border-radius",
+    "key": "button-border-radius",
     "min": 0,
-    "max": 128,
+    "max": 100,
     "unit": "px",
-    "default": 8
+    "default": 8,
+    "section": "General"
   },
   {
     "label": "Blur",
-    "key": "background-blur-radius",
+    "key": "bg-blur",
     "min": 0,
-    "max": 128,
+    "max": 100,
     "unit": "px",
-    "default": 16
+    "default": 16,
+    "section": "Background Image"
   },
   {
     "label": "Brightness",
-    "key": "background-brightness",
+    "key": "bg-brightness",
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 70
+    "default": 70,
+    "section": "Background Image"
   },
   {
     "label": "Contrast",
-    "key": "background-contrast",
+    "key": "bg-contrast",
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 80
+    "default": 80,
+    "section": "Background Image"
   },
   {
     "label": "Saturation",
-    "key": "background-saturation",
+    "key": "bg-saturation",
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 125
+    "default": 125,
+    "section": "Background Image"
   },
   {
     "label": "Height",
     "key": "now-playing-bar-height",
     "min": 0,
-    "max": 512,
+    "max": 500,
     "unit": "px",
-    "default": 88
+    "default": 88,
+    "section": "Now Playing Bar"
   },
   {
     "label": "Padding",
-    "key": "now-playing-bar-padding",
+    "key": "padding-now-playing-bar",
     "min": 0,
-    "max": 64,
+    "max": 50,
     "unit": "px",
-    "default": 4
+    "default": 4,
+    "section": "Now Playing Bar"
   },
   {
     "label": "Border Radius",
-    "key": "now-playing-bar-border-radius",
+    "key": "border-radius-now-playing-bar",
     "min": 0,
-    "max": 256,
+    "max": 100,
     "unit": "px",
-    "default": 16
+    "default": 16,
+    "section": "Now Playing Bar"
   },
   {
     "label": "Blur",
-    "key": "now-playing-bar-blur-radius",
+    "key": "blur-radius-now-playing-bar",
     "min": 0,
-    "max": 128,
+    "max": 100,
     "unit": "px",
-    "default": 16
+    "default": 16,
+    "section": "Now Playing Bar"
   },
   {
     "label": "Saturation",
-    "key": "now-playing-bar-saturation",
+    "key": "now-playing-saturation",
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 100
+    "default": 100,
+    "section": "Now Playing Bar"
   },
   {
     "label": "Contrast",
-    "key": "now-playing-bar-contrast",
+    "key": "now-playing-contrast",
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 115
+    "default": 100,
+    "section": "Now Playing Bar"
   },
   {
     "label": "Brightness",
-    "key": "now-playing-bar-brightness",
+    "key": "now-playing-brightness",
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 100
+    "default": 100,
+    "section": "Now Playing Bar"
   }
 ]
