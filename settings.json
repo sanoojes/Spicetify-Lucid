@@ -1,5 +1,4 @@
 [
-  // General Appearance Settings
   {
     "label": "Blur",
     "key": "general-blur-radius",
@@ -32,8 +31,6 @@
     "unit": "px",
     "default": 8
   },
-
-  // Background Image Settings
   {
     "label": "Blur",
     "key": "background-blur-radius",
@@ -66,8 +63,6 @@
     "unit": "%",
     "default": 125
   },
-
-  // Now Playing Bar Settings
   {
     "label": "Height",
     "key": "now-playing-bar-height",
