@@ -1670,3 +1670,7 @@ body::after {
   min-width: 60rem;
   width: 60vw;
 }
+
+.lyrics-config-button-container {
+  bottom: var(--now-playing-bar-height);
+}
