@@ -80,8 +80,9 @@
   -webkit-mask-size: contain;
   mask-size: contain;
 
-  /* Make Scrollbar thin */
+  /* Scrollbar */
   scrollbar-width: thin;
+  scroll-behavior: smooth !important;
 
   /* Spicetify Overrides */
   --panel-gap: 0.5rem !important;
@@ -559,6 +560,10 @@ button[aria-label="What's New"] > path {
   top: 0;
 }
 
+.hV9v6y_uYwdAsoiOHpzk {
+  justify-content: center;
+}
+
 .main-topBar-container {
   backdrop-filter: blur(var(--blur-radius));
   justify-content: center;
@@ -891,7 +896,6 @@ div[data-testid="hpto-parent-container"] {
 }
 
 /* Animations */
-.main-trackList-trackListRow,
 .main-view-container,
 .Root__right-sidebar,
 .Root__now-playing-bar {
@@ -1313,7 +1317,7 @@ body:has(.BeautifulLyricsPage) {
 }
 
 .playlist-playlist-playlist
-  > .main-entityHeader-container.main-entityHeader-withBackgroundImage {
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage {
   height: 40vh;
 }
 
