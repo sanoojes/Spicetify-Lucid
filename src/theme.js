@@ -254,13 +254,13 @@ button[aria-label="${addToPlaylistLabel}"] {
 
 .player-controls button[aria-label="${skipBackLabel}"] {
   background-color: var(--spice-text);
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
 }
 .player-controls button[aria-label="${skipForwardLabel}"] {
   background-color: var(--spice-text);
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
 }
 
 button[aria-label="${friendsActivityLabel}"] > path,
