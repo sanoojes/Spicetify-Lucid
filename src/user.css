@@ -72,9 +72,9 @@
 
   /* Animated Background */
   --bloom-animatedBg-blur: 64px;
-  --bloom-animatedBg-saturation: 250%;
-  --bloom-animatedBg-brightness: 65%;
-  --bloom-animatedBg-contrast: 100%;
+  --bloom-animatedBg-saturation: 150%;
+  --bloom-animatedBg-brightness: 55%;
+  --bloom-animatedBg-contrast: 115%;
 
   /* Beautiful Lyrics */
   --bg-opacity: 50%;

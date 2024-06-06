@@ -95,7 +95,7 @@
     "min": 0,
     "max": 500,
     "unit": "%",
-    "default": 250,
+    "default": 150,
     "section": "Animated Background"
   },
   {
@@ -104,7 +104,7 @@
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 100,
+    "default": 115,
     "section": "Animated Background"
   },
   {
@@ -113,7 +113,7 @@
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 65,
+    "default": 55,
     "section": "Animated Background"
   },
   {
