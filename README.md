@@ -9,9 +9,10 @@
 - **Multiple color schemes:** Choose from a variety of color schemes to match your style (dark, light, dark-green, coffee, comfy, dark-fluent).
 - **Easy installation via scripts or Spicetify Marketplace:** Choose the installation method that best suits you.
 
-## **Join the community!**
+## Join the Community!
 
-- Discord server: [https://discord.gg/dqrhtJRDjR](https://discord.gg/dqrhtJRDjR)
+- **Discord:** [https://discord.gg/knXP88Zbph](https://discord.gg/knXP88Zbph)
+- **GitHub Issues:** [https://github.com/sanoojes/better-bloom/issues](https://github.com/sanoojes/better-bloom/issues)
 
 ## **Installation**
 
