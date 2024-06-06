@@ -65,6 +65,12 @@
   --bg-saturation: 90%;
 
   --text-base: var(--spice-sidebar);
+
+  /* Beautiful Lyrics */
+  --beautiful-lyrics-bg-opacity: 50%;
+  --beautiful-lyrics-bg-saturation: 250%;
+  --beautiful-lyrics-bg-brightness: 65%;
+  --beautiful-lyrics-bg-contrast: 100%;
 }
 
 /* ------------------------------
@@ -1585,6 +1591,17 @@ button[aria-label="Browse"] svg {
 
 /* Beautiful Lyrics */
 
+.BeautifulLyricsBackground-Container {
+  opacity: var(--beautiful-lyrics-bg-opacity);
+  filter: saturate(var(--beautiful-lyrics-bg-saturation))
+    brightness(var(--beautiful-lyrics-bg-brightness))
+    contrast(var(--beautiful-lyrics-bg-contrast)) !important;
+}
+
+.Fullscreen .BeautifulLyricsBackground-Container {
+  opacity: 1;
+}
+
 #BeautifulLyricsFullscreenButton {
   color: var(--spice-subtext) !important;
 }
@@ -1629,7 +1646,7 @@ button:has(.LyricsPageIcon) {
 }
 
 /* Transparent Windows Controls */
-body::after {
+body:not(.Fullscreen)::after {
   content: "";
   position: absolute;
   right: 0;

@@ -133,5 +133,41 @@
     "unit": "%",
     "default": 100,
     "section": "Now Playing Bar"
+  },
+  {
+    "label": "Opacity",
+    "key": "beautiful-lyrics-bg-opacity",
+    "min": 0,
+    "max": 100,
+    "unit": "%",
+    "default": 50,
+    "section": "Beautiful Lyrics"
+  },
+  {
+    "label": "Saturation",
+    "key": "beautiful-lyrics-bg-saturation",
+    "min": 0,
+    "max": 500,
+    "unit": "%",
+    "default": 250,
+    "section": "Beautiful Lyrics"
+  },
+  {
+    "label": "Contrast",
+    "key": "beautiful-lyrics-bg-contrast",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 100,
+    "section": "Beautiful Lyrics"
+  },
+  {
+    "label": "Brightness",
+    "key": "beautiful-lyrics-bg-brightness",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 65,
+    "section": "Beautiful Lyrics"
   }
 ]
