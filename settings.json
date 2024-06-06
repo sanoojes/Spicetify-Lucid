@@ -9,6 +9,15 @@
     "section": "General"
   },
   {
+    "label": "Background Blur",
+    "key": "normal-bg-blur",
+    "min": 0,
+    "max": 256,
+    "unit": "px",
+    "default": 16,
+    "section": "General"
+  },
+  {
     "label": "Border Thickness",
     "key": "border-thickness",
     "min": 0,
@@ -70,6 +79,42 @@
     "unit": "%",
     "default": 125,
     "section": "Background Image"
+  },
+  {
+    "label": "Blur",
+    "key": "bloom-animatedBg-saturation",
+    "min": 0,
+    "max": 256,
+    "unit": "px",
+    "default": 64,
+    "section": "Animated Background"
+  },
+  {
+    "label": "Saturation",
+    "key": "bloom-animatedBg-saturation",
+    "min": 0,
+    "max": 500,
+    "unit": "%",
+    "default": 250,
+    "section": "Animated Background"
+  },
+  {
+    "label": "Contrast",
+    "key": "bloom-animatedBg-contrast",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 100,
+    "section": "Animated Background"
+  },
+  {
+    "label": "Brightness",
+    "key": "bloom-animatedBg-brightness",
+    "min": 0,
+    "max": 200,
+    "unit": "%",
+    "default": 65,
+    "section": "Animated Background"
   },
   {
     "label": "Height",

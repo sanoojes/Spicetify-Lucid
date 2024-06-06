@@ -5,6 +5,8 @@
 ------------------------------ */
 
 :root {
+  --random-degree: 258deg; /* picked totaly random lol */
+
   /* Commonly Used Values */
   --default-gap: 0.5rem;
   --default-gap2: 0.25rem;
@@ -58,6 +60,8 @@
   --background-base: rgba(var(--spice-rgb-main), 0.8);
   --encore-control-size-base: 32px;
 
+  --normal-bg-blur: 16px;
+
   /* Background Overlay */
   --bg-blur: 1.5rem;
   --bg-contrast: 80%; /* Contrast for dark theme */
@@ -66,11 +70,17 @@
 
   --text-base: var(--spice-sidebar);
 
+  /* Animated Background */
+  --bloom-animatedBg-blur: 64px;
+  --bloom-animatedBg-saturation: 250%;
+  --bloom-animatedBg-brightness: 65%;
+  --bloom-animatedBg-contrast: 100%;
+
   /* Beautiful Lyrics */
-  --beautiful-lyrics-bg-opacity: 50%;
-  --beautiful-lyrics-bg-saturation: 250%;
-  --beautiful-lyrics-bg-brightness: 65%;
-  --beautiful-lyrics-bg-contrast: 100%;
+  --bg-opacity: 50%;
+  --bg-saturation: 250%;
+  --bg-brightness: 65%;
+  --bg-contrast: 100%;
 }
 
 /* ------------------------------
@@ -1227,7 +1237,7 @@ svg {
   left: 0;
   right: 0;
   bottom: 0;
-  filter: blur(var(--bg-blur)) contrast(var(--bg-contrast))
+  filter: blur(var(--normal-bg-blur)) contrast(var(--bg-contrast))
     saturate(var(--bg-saturation)) brightness(var(--bg-brightness));
   pointer-events: none;
   backface-visibility: hidden;
@@ -1592,10 +1602,9 @@ button[aria-label="Browse"] svg {
 /* Beautiful Lyrics */
 
 .BeautifulLyricsBackground-Container {
-  opacity: var(--beautiful-lyrics-bg-opacity);
-  filter: saturate(var(--beautiful-lyrics-bg-saturation))
-    brightness(var(--beautiful-lyrics-bg-brightness))
-    contrast(var(--beautiful-lyrics-bg-contrast)) !important;
+  opacity: var(--bg-opacity);
+  filter: saturate(var(--bg-saturation)) brightness(var(--bg-brightness))
+    contrast(var(--bg-contrast)) !important;
 }
 
 .Fullscreen .BeautifulLyricsBackground-Container {
@@ -1799,6 +1808,7 @@ body:not(.Fullscreen)::after {
   font-weight: 600;
 }
 
+.bloom-toggle-btn,
 .bloom-reset-btn {
   padding: 0.5rem 1rem;
   border-radius: var(--button-border-radius);
@@ -1824,4 +1834,63 @@ body:not(.Fullscreen)::after {
 
 .lyrics-config-button-container {
   bottom: var(--now-playing-bar-height);
+}
+
+/* Animated Background */
+.Bloom-Bg-Container {
+  filter: saturate(var(--bloom-animatedBg-saturation))
+    brightness(var(--bloom-animatedBg-brightness));
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.Bloom-Bg-Container .Back,
+.Bloom-Bg-Container .BackCenter,
+.Bloom-Bg-Container .Front {
+  background-image: var(--image_url);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  transition: all var(--fade-time) ease !important;
+  animation: rotateBg 35s linear infinite;
+  border-radius: var(--border-radius-rounded);
+  filter: blur(var(--bloom-animatedBg-blur))
+    saturate(var(--bloom-animatedBg-saturation))
+    brightness(var(--bloom-animatedBg-brightness))
+    contrast(var(--bloom-animatedBg-contrast));
+  position: absolute;
+  aspect-ratio: 1/1;
+  width: 100%;
+}
+
+.Bloom-Bg-Container .Front {
+  right: 5%;
+  top: 0;
+}
+
+.Bloom-Bg-Container .Back {
+  animation-direction: reverse;
+  bottom: 0;
+  left: 5%;
+}
+
+.Bloom-Bg-Container .BackCenter {
+  animation-direction: reverse;
+  right: -50%;
+  top: -20%;
+  width: 125%;
+}
+
+@keyframes rotateBg {
+  0% {
+    transform: rotate(var(--random-degree));
+  }
+  to {
+    transform: rotate(calc(var(--random-degree) + 1turn));
+  }
 }

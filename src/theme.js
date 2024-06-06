@@ -10,6 +10,60 @@
     return;
   }
 
+  function getRandomDegree() {
+    // Generate a random number between 0 and 360
+    const randomDegree = Math.floor(Math.random() * 360);
+    document.documentElement.style.setProperty(
+      "--random-degree",
+      `${randomDegree}deg`
+    );
+  }
+  getRandomDegree();
+
+  let currentSongArtImage = Spicetify.Player.data.item.metadata.image_url;
+
+  let isAnimatedBg = getFromLocalStorage("Bloom-isAnimatedBg");
+
+  function getFromLocalStorage(key) {
+    const value = localStorage.getItem(`${key}`);
+    return value !== null ? JSON.parse(value) : false;
+  }
+
+  function setToLocalStorage(key, value) {
+    localStorage.setItem(`${key}`, value);
+  }
+
+  function setAnimatedBg() {
+    const rootBg = document.querySelector(".Root__top-container");
+    if (isAnimatedBg) {
+      const newElement = document.createElement("div");
+      newElement.classList.add("Bloom-Bg-Container");
+
+      const divClasses = ["Front", "Back", "BackCenter"];
+
+      for (const className of divClasses) {
+        const div = document.createElement("div");
+        div.classList.add(className);
+
+        newElement.appendChild(div);
+      }
+      rootBg.prepend(newElement);
+    } else {
+      const existingAnimatedBg = rootBg.querySelector(".Bloom-Bg-Container");
+      if (existingAnimatedBg) {
+        existingAnimatedBg.remove();
+      }
+    }
+  }
+  setAnimatedBg();
+
+  function toggleAnimatedBg() {
+    setToLocalStorage("Bloom-isAnimatedBg", !isAnimatedBg);
+    console.log(getFromLocalStorage("Bloom-isAnimatedBg"));
+    isAnimatedBg = !isAnimatedBg;
+    setAnimatedBg();
+  }
+
   function setWindowHeight() {
     Spicetify.Platform.PlayerAPI._prefs
       .get({ key: "app.browser.zoom-level" })
@@ -335,15 +389,18 @@ button[aria-label="${homeBtnLabelOne}"] svg {
   function onSongChange() {
     fetchFadeTime();
 
-    let bgImage = Spicetify.Player.data.item.metadata.image_url;
-    if (bgImage.includes("spotify:image:")) {
-      bgImage = bgImage.replace("spotify:image:", "https://i.scdn.co/image/");
+    currentSongArtImage = Spicetify.Player.data.item.metadata.image_url;
+    if (currentSongArtImage.includes("spotify:image:")) {
+      currentSongArtImage = currentSongArtImage.replace(
+        "spotify:image:",
+        "https://i.scdn.co/image/"
+      );
     }
 
     // Updates the background based on current song
     document.documentElement.style.setProperty(
       "--image_url",
-      `url("${bgImage}")`
+      `url("${currentSongArtImage}")`
     );
   }
 
@@ -356,9 +413,6 @@ button[aria-label="${homeBtnLabelOne}"] svg {
     mainContainer.classList.add("bloom-popup-main-container");
 
     let slidersCreated = false;
-    let retryCount = 0;
-    const maxRetries = 3;
-
     let settings = [];
 
     function getSliderValue(key) {
@@ -370,36 +424,42 @@ button[aria-label="${homeBtnLabelOne}"] svg {
       localStorage.setItem(`bloom-${key}`, value);
     }
 
-    function createSlider(
-      container,
-      label,
-      key,
-      min = 0,
-      max = 100,
-      unit = "",
-      defaultValue = 0
-    ) {
+    function updateSliderValueDisplay(sliderContainer, newValue, setting) {
+      const valueDisplay = sliderContainer.querySelector(".bloom-slidervalue");
+      valueDisplay.textContent = `${newValue}${setting.unit}`;
+      document.documentElement.style.setProperty(
+        `--${setting.key.toLowerCase()}`,
+        `${newValue}${setting.unit}`
+      );
+    }
+
+    function createSlider(container, setting) {
       const sliderContainer = document.createElement("div");
       sliderContainer.classList.add("bloom-slider-container");
 
-      let value = getSliderValue(key);
+      let value = getSliderValue(setting.key);
       if (value === null || isNaN(value)) {
-        value = defaultValue;
-        setSliderValue(key, defaultValue);
+        value = setting.default;
+        setSliderValue(setting.key, value);
       }
 
       const sliderHTML = `
       <div class="bloom-slider-div">
-        <p class="bloom-slider-label">${label}</p>
+        <label for="bloom-${setting.key}" class="bloom-slider-label">
+          ${setting.label}
+          <span class="bloom-tooltip">${setting.tooltip || ""}</span> 
+        </label>
         <div class="bloom-input-slider-container">
-          <input
-            type="range"
-            min="${min}"
-            max="${max}"
-            value="${value}"
-            class="bloom-slider"
+          <input 
+            type="range" 
+            id="bloom-${setting.key}"
+            min="${setting.min}" 
+            max="${setting.max}" 
+            step="${setting.step || 1}" 
+            value="${value}" 
+            class="bloom-slider" 
           />
-          <p class="bloom-slidervalue">${value}${unit}</p>
+          <span class="bloom-slidervalue">${value}${setting.unit}</span>
         </div>
       </div>
     `;
@@ -408,54 +468,32 @@ button[aria-label="${homeBtnLabelOne}"] svg {
       container.append(sliderContainer);
 
       const slider = sliderContainer.querySelector(".bloom-slider");
-      slider.addEventListener("change", (e) => {
+      slider.addEventListener("input", (e) => {
         const newValue = parseFloat(e.target.value);
-        setSliderValue(key, newValue);
-        updateSliderValueDisplay(sliderContainer, newValue, key);
+        updateSliderValueDisplay(sliderContainer, newValue, setting);
       });
-      updateSliderValueDisplay(sliderContainer, value, key);
-    }
 
-    function updateSliderValueDisplay(sliderContainer, newValue, key) {
-      const valueDisplay = sliderContainer.querySelector(".bloom-slidervalue");
-      key = key.toLowerCase();
-      const currentUnit = valueDisplay.textContent.trim().replace(/[0-9]/g, "");
-
-      valueDisplay.textContent = `${newValue}${currentUnit}`;
-      document.documentElement.style.setProperty(
-        `--${key}`,
-        `${newValue}${currentUnit}`
-      );
+      updateSliderValueDisplay(sliderContainer, value, setting);
     }
 
     function resetSettings() {
       settings.forEach((setting) => {
         setSliderValue(setting.key, setting.default);
-        const sliderContainer = mainContainer.querySelector(
-          `.bloom-slider-container .bloom-slider-div:nth-child(${
-            settings.indexOf(setting) + 1
-          })`
-        );
-        if (sliderContainer) {
-          const slider = sliderContainer.querySelector(".bloom-slider");
-          const valueDisplay =
-            sliderContainer.querySelector(".bloom-slidervalue");
+
+        const slider = mainContainer.querySelector(`#bloom-${setting.key}`);
+        if (slider) {
           slider.value = setting.default;
-          valueDisplay.textContent = `${setting.default}${setting.unit}`;
-          updateSliderValueDisplay(
-            sliderContainer,
-            setting.default,
-            setting.key
-          );
+          const sliderContainer = slider.closest(".bloom-slider-container");
+          updateSliderValueDisplay(sliderContainer, setting.default, setting);
         }
       });
-      console.log("Setting reseted.");
-      location.reload();
+      console.log("Settings reset.");
     }
 
     async function loadSlidersFromJSON(container) {
-      const loadingMessage = document.createElement("p");
+      const loadingMessage = document.createElement("div");
       loadingMessage.textContent = "Loading settings...";
+      loadingMessage.classList.add("loading-message");
       container.appendChild(loadingMessage);
 
       try {
@@ -479,46 +517,35 @@ button[aria-label="${homeBtnLabelOne}"] svg {
           const sectionContainer = document.createElement("div");
           sectionContainer.classList.add("bloom-settings-section");
 
-          const sectionTitle = document.createElement("p");
+          const sectionTitle = document.createElement("h2");
           sectionTitle.classList.add("bloom-settings-subtitle");
           sectionTitle.textContent = sectionName;
           sectionContainer.appendChild(sectionTitle);
 
           section.forEach((setting) => {
-            createSlider(
-              sectionContainer,
-              setting.label,
-              setting.key,
-              setting.min,
-              setting.max,
-              setting.unit,
-              setting.default
-            );
+            createSlider(sectionContainer, setting);
           });
 
           container.appendChild(sectionContainer);
         }
 
+        const animatedBgToggleBtn = document.createElement("button");
+        animatedBgToggleBtn.textContent = "Toggle Animated Background";
+        animatedBgToggleBtn.classList.add("bloom-toggle-btn");
+
+        animatedBgToggleBtn.addEventListener("click", toggleAnimatedBg);
+
+        container.appendChild(animatedBgToggleBtn);
+
         const resetButton = document.createElement("button");
-        resetButton.classList.add("bloom-reset-btn");
         resetButton.textContent = "Reset to Defaults";
+        resetButton.classList.add("bloom-reset-btn");
         resetButton.addEventListener("click", resetSettings);
         container.appendChild(resetButton);
+
         container.removeChild(loadingMessage);
       } catch (err) {
         console.error("Error fetching JSON data:", err);
-        retryCount++;
-        if (retryCount <= maxRetries) {
-          const delay = 2 ** retryCount * 1000;
-          console.log(`Retrying in ${delay}ms`);
-          setTimeout(() => loadSlidersFromJSON(container), delay);
-        } else {
-          container.removeChild(loadingMessage);
-          const errorMessage = document.createElement("p");
-          errorMessage.textContent =
-            "Failed to load settings. Please try again later.";
-          container.append(errorMessage);
-        }
       }
     }
 
@@ -538,8 +565,6 @@ button[aria-label="${homeBtnLabelOne}"] svg {
       },
       `<svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252Zm0 1.5a9.135 9.135 0 0 0-1.354.117l-.109.977A2.886 2.886 0 0 1 6.525 7.17l-.898-.394a8.293 8.293 0 0 0-1.348 2.317l.798.587a2.881 2.881 0 0 1 0 4.643l-.799.588c.32.842.776 1.626 1.348 2.322l.905-.397a2.882 2.882 0 0 1 4.017 2.318l.11.984c.889.15 1.798.15 2.687 0l.11-.984a2.881 2.881 0 0 1 4.018-2.322l.905.396a8.296 8.296 0 0 0 1.347-2.318l-.798-.588a2.881 2.881 0 0 1 0-4.643l.796-.587a8.293 8.293 0 0 0-1.348-2.317l-.896.393a2.884 2.884 0 0 1-4.023-2.324l-.11-.976a8.988 8.988 0 0 0-1.333-.117ZM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" fill="#fff"/></svg>`
     );
-
-    // Register the menu item
     settingsMenuItem.register();
   })();
 
