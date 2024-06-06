@@ -5,7 +5,10 @@
   
   **Consider starring us !**
 
-[Join](https://discord.gg/PJwgBG2z) new support discord server. [Better-Bloom](https://discord.gg/PJwgBG2z)
+## Join the Community!
+
+- **Discord:** [https://discord.gg/knXP88Zbph](https://discord.gg/knXP88Zbph)
+- **GitHub Issues:** [https://github.com/sanoojes/better-bloom/issues](https://github.com/sanoojes/better-bloom/issues)
 
 </div>
 
