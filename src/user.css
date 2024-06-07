@@ -118,14 +118,6 @@
    Component-Specific Styling
 ------------------------------ */
 
-.main-topBar-container
-  > *:not(button):not(.main-topBar-historyButtons):not(
-    .main-topBar-topbarContentRight
-  ),
-.main-topBar-topbarContent {
-  -webkit-app-region: drag !important;
-}
-
 /* Typography */
 .vertical-metrics {
   --encore-title-font-stack: "Poppins", var(--fallback-fonts);
@@ -1091,6 +1083,17 @@ button.HD9s7U5E1RLSWKpXmrqx {
 }
 
 /* Topbar */
+.main-topBar-container > *,
+.main-topBar-topbarContent {
+  -webkit-app-region: drag !important;
+}
+
+.main-topBar-topbarContentRight button,
+.main-topBar-topbarContentRight *,
+.main-topBar-historyButtons * {
+  -webkit-app-region: no-drag;
+}
+
 .main-globalNav-historyButtons button {
   aspect-ratio: 1/1;
 }
