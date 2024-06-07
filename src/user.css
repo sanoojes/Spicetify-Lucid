@@ -633,10 +633,16 @@ button[aria-label="What's New"] > path {
 /* connectBar */
 .main-connectBar-connectBar {
   position: absolute;
-  right: 0;
-  top: calc((var(--now-playing-bar-height) / 2) * -1);
+  right: 0.5rem;
+  top: calc((var(--now-playing-bar-height) / 2 - var(--default-gap)) * -1);
+  min-height: 2rem;
   padding-left: 1.5rem;
   padding-inline-end: 1.5rem;
+  background-color: rgba(var(--spice-rgb-main), 0.75) !important;
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
+  svg {
+    fill: var(--spice-accent);
+  }
 }
 
 .Root__main-view {
@@ -721,10 +727,18 @@ div[data-testid="hpto-parent-container"] {
   margin-bottom: 0;
 }
 
+/* search shelf */
 .main-shelf-shelf,
 .search-searchResult-tracklistContainer {
   gap: var(--default-gap);
 }
+
+.Vn9yz8P5MjIvDT8c0U6w {
+  position: relative;
+  background: rgba(var(--spice-rgb-card), var(--bg-color-opacity)) !important;
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
+}
+
 .main-shelf-topRow {
   margin: 0;
 }
@@ -1040,7 +1054,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
   display: inline-flex !important;
 }
 
-/* Dark Gradient lyrics */
+/* lyrics */
 .lyrics-lyrics-background {
   background-image: linear-gradient(
     315deg,
@@ -1052,7 +1066,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
 .lyrics-lyricsContent-lyric.lyrics-lyricsContent-highlight {
   color: white;
 }
-/* Center Lyrics */
+
 .lyrics-lyrics-contentWrapper {
   text-align: center;
 }
