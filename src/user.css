@@ -1082,6 +1082,10 @@ button.HD9s7U5E1RLSWKpXmrqx {
   left: 0 !important;
 }
 
+.contentSpacing {
+  min-width: 100%;
+}
+
 /* Topbar */
 .main-topBar-container > *,
 .main-topBar-topbarContent {
