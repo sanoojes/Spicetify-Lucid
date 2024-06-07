@@ -9,15 +9,6 @@
     "section": "General"
   },
   {
-    "label": "Background Blur",
-    "key": "normal-bg-blur",
-    "min": 0,
-    "max": 256,
-    "unit": "px",
-    "default": 16,
-    "section": "General"
-  },
-  {
     "label": "Border Thickness",
     "key": "border-thickness",
     "min": 0,
@@ -46,7 +37,7 @@
   },
   {
     "label": "Blur",
-    "key": "bg-blur",
+    "key": "normal-bg-blur",
     "min": 0,
     "max": 100,
     "unit": "px",
