@@ -71,10 +71,10 @@
   --text-base: var(--spice-sidebar);
 
   /* Animated Background */
-  --bloom-animatedbg-blur: 64px;
-  --bloom-animatedbg-saturation: 150%;
-  --bloom-animatedbg-brightness: 55%;
-  --bloom-animatedbg-contrast: 115%;
+  --animatedbg-blur: 64px;
+  --animatedbg-saturation: 150%;
+  --animatedbg-brightness: 55%;
+  --animatedbg-contrast: 115%;
 
   /* Beautiful Lyrics */
   --bg-opacity: 50%;
@@ -1863,8 +1863,8 @@ body:not(.Fullscreen)::after {
 
 /* Animated Background */
 .Bloom-Bg-Container {
-  filter: saturate(var(--bloom-animatedbg-saturation))
-    brightness(var(--bloom-animatedbg-brightness));
+  filter: saturate(var(--animatedbg-saturation))
+    brightness(var(--animatedbg-brightness));
   height: 100%;
   left: 0;
   overflow: hidden;
@@ -1885,10 +1885,9 @@ body:not(.Fullscreen)::after {
   transition: all var(--fade-time) ease !important;
   animation: rotateBg 35s linear infinite;
   border-radius: var(--border-radius-rounded);
-  filter: blur(var(--bloom-animatedbg-blur))
-    saturate(var(--bloom-animatedbg-saturation))
-    brightness(var(--bloom-animatedbg-brightness))
-    contrast(var(--bloom-animatedbg-contrast));
+  filter: blur(var(--animatedbg-blur)) saturate(var(--animatedbg-saturation))
+    brightness(var(--animatedbg-brightness))
+    contrast(var(--animatedbg-contrast));
   position: absolute;
   aspect-ratio: 1/1;
   width: 100%;
