@@ -1890,12 +1890,12 @@ body:not(.Fullscreen)::after {
     contrast(var(--animatedbg-contrast));
   position: absolute;
   aspect-ratio: 1/1;
-  width: 100%;
+  width: 90%;
 }
 
 .Bloom-Bg-Container .Front {
-  right: 5%;
-  top: 0;
+  right: 25%;
+  top: 25%;
 }
 
 .Bloom-Bg-Container .Back {
@@ -1905,7 +1905,6 @@ body:not(.Fullscreen)::after {
 }
 
 .Bloom-Bg-Container .BackRight {
-  animation-direction: reverse;
   right: -50%;
   top: -20%;
   width: 75%;
