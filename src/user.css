@@ -31,6 +31,7 @@
   --card-border-radius: 0.5rem;
   --border-radius-rounded: 9999px;
   --border-radius-now-playing-bar: 0.5rem;
+  --spice-light-border: rgba(var(--spice-rgb-text), 0.125);
 
   /* Shadow Color */
   --shadow-rgb: rgba(var(--spice-rgb-subtext), 0.125);
@@ -71,6 +72,7 @@
   --text-base: var(--spice-sidebar);
 
   /* Animated Background */
+  --animatedbg-time: 45s;
   --animatedbg-blur: 64px;
   --animatedbg-saturation: 150%;
   --animatedbg-brightness: 55%;
@@ -988,11 +990,10 @@ div[data-encore-id="popover"] {
 .Root__right-sidebar aside,
 .Root__nav-bar {
   border-radius: var(--card-border-radius);
+  --background-base: rgba(var(--spice-rgb-sidebar), 0.25) !important;
 }
 
-.main-buddyFeed-container,
 .Root__right-sidebar aside {
-  --background-base: rgba(var(--spice-rgb-sidebar), 0.5) !important;
   animation-delay: 100ms;
   animation-duration: 0.35s;
   animation-name: animate-fade-in-from-right;
@@ -1761,20 +1762,25 @@ body:not(.Fullscreen)::after {
   gap: 0.5rem;
 }
 
+/* Bloom settings */
 .bloom-settings-section {
   display: flex;
   flex-direction: column;
   gap: var(--default-gap);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--spice-light-border);
 }
 
 .bloom-input-slider-container {
   display: flex;
   align-items: center;
   gap: calc(var(--default-gap) * 2);
+  margin-top: 0.5rem;
 }
 
 .bloom-settings-subtitle {
-  font-size: 1.25rem;
+  padding-inline-start: 1rem;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 
@@ -1784,7 +1790,7 @@ body:not(.Fullscreen)::after {
 }
 
 .bloom-input-slider {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   width: 12.5em;
 }
 
@@ -1826,7 +1832,7 @@ body:not(.Fullscreen)::after {
 .bloom-slider-div {
   padding: 1rem;
   border-radius: var(--button-border-radius);
-  background-color: rgba(var(--spice-rgb-card), 0.25);
+  background-color: rgba(var(--spice-rgb-card), 0.5);
 }
 
 .bloom-slidervalue {
@@ -1848,13 +1854,30 @@ body:not(.Fullscreen)::after {
   transition: 0.4s;
 }
 
+.bloom-toggle-btn:hover,
 .bloom-reset-btn:hover {
   box-shadow: 7px 5px 56px -14px rgba(var(--spice-rgb-accent), 0.5) !important;
 }
 
+.bloom-toggle-btn:active,
 .bloom-reset-btn:active {
   transform: scale(0.97);
   box-shadow: 7px 5px 56px -10px rgba(var(--spice-rgb-accent), 0.55) !important;
+}
+
+.bloom-slider-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--default-gap2);
+  text-wrap: balance;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.bloom-tooltip {
+  color: var(--spice-subtext);
+  font-weight: 500;
+  font-size: 0.75rem;
 }
 
 .lyrics-config-button-container {
@@ -1883,7 +1906,7 @@ body:not(.Fullscreen)::after {
   background-size: cover;
   background-position: center center;
   transition: all var(--fade-time) ease !important;
-  animation: rotateBg 35s linear infinite;
+  animation: rotateBg var(--animatedbg-time) linear infinite;
   border-radius: var(--border-radius-rounded);
   filter: blur(var(--animatedbg-blur)) saturate(var(--animatedbg-saturation))
     brightness(var(--animatedbg-brightness))

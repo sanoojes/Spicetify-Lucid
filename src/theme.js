@@ -1,3 +1,5 @@
+const SETTING_URL = "https://sanooj.is-a.dev/better-bloom/settings.json";
+
 (function BetterBloom() {
   let styleSheet = document.createElement("style");
   if (!Spicetify.Player.data || !Spicetify.Platform) {
@@ -497,9 +499,7 @@ button[aria-label="${homeBtnLabelOne}"] svg {
       container.appendChild(loadingMessage);
 
       try {
-        const response = await fetch(
-          "https://sanooj.is-a.dev/better-bloom/settings.json"
-        );
+        const response = await fetch(SETTING_URL);
         const data = await response.json();
         settings = data;
 
@@ -532,7 +532,6 @@ button[aria-label="${homeBtnLabelOne}"] svg {
         const animatedBgToggleBtn = document.createElement("button");
         animatedBgToggleBtn.textContent = "Toggle Animated Background";
         animatedBgToggleBtn.classList.add("bloom-toggle-btn");
-
         animatedBgToggleBtn.addEventListener("click", toggleAnimatedBg);
 
         container.appendChild(animatedBgToggleBtn);

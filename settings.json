@@ -6,7 +6,8 @@
     "max": 100,
     "unit": "px",
     "default": 16,
-    "section": "General"
+    "section": "General",
+    "tooltip": "Amount of blur to apply to elements."
   },
   {
     "label": "Border Thickness",
@@ -15,7 +16,8 @@
     "max": 10,
     "unit": "px",
     "default": 1,
-    "section": "General"
+    "section": "General",
+    "tooltip": "Thickness of borders for elements."
   },
   {
     "label": "Border Radius",
@@ -24,7 +26,8 @@
     "max": 100,
     "unit": "px",
     "default": 16,
-    "section": "General"
+    "section": "General",
+    "tooltip": "Rounded corners for card elements."
   },
   {
     "label": "Button Border Radius",
@@ -33,7 +36,8 @@
     "max": 100,
     "unit": "px",
     "default": 8,
-    "section": "General"
+    "section": "General",
+    "tooltip": "Rounded corners for buttons."
   },
   {
     "label": "Blur",
@@ -42,7 +46,8 @@
     "max": 100,
     "unit": "px",
     "default": 16,
-    "section": "Background Image"
+    "section": "Background Image",
+    "tooltip": "Amount of blur to apply to the background image."
   },
   {
     "label": "Brightness",
@@ -51,7 +56,8 @@
     "max": 200,
     "unit": "%",
     "default": 70,
-    "section": "Background Image"
+    "section": "Background Image",
+    "tooltip": "Brightness level of the background image."
   },
   {
     "label": "Contrast",
@@ -60,7 +66,8 @@
     "max": 200,
     "unit": "%",
     "default": 80,
-    "section": "Background Image"
+    "section": "Background Image",
+    "tooltip": "Contrast level of the background image."
   },
   {
     "label": "Saturation",
@@ -69,7 +76,8 @@
     "max": 200,
     "unit": "%",
     "default": 125,
-    "section": "Background Image"
+    "section": "Background Image",
+    "tooltip": "Saturation level of the background image."
   },
   {
     "label": "Blur",
@@ -78,7 +86,8 @@
     "max": 256,
     "unit": "px",
     "default": 64,
-    "section": "Animated Background"
+    "section": "Animated Background",
+    "tooltip": "Amount of blur to apply to the animated background."
   },
   {
     "label": "Saturation",
@@ -87,7 +96,8 @@
     "max": 500,
     "unit": "%",
     "default": 150,
-    "section": "Animated Background"
+    "section": "Animated Background",
+    "tooltip": "Saturation level of the animated background."
   },
   {
     "label": "Contrast",
@@ -96,7 +106,8 @@
     "max": 200,
     "unit": "%",
     "default": 115,
-    "section": "Animated Background"
+    "section": "Animated Background",
+    "tooltip": "Contrast level of the animated background."
   },
   {
     "label": "Brightness",
@@ -105,6 +116,17 @@
     "max": 200,
     "unit": "%",
     "default": 75,
+    "section": "Animated Background",
+    "tooltip": "Brightness level of the animated background."
+  },
+  {
+    "label": "Animation Time",
+    "key": "animatedbg-time",
+    "tooltip": "Time it takes for the animated background to complete one cycle. (30s-60s prefered, 0 = no animation)",
+    "min": 0,
+    "max": 120,
+    "unit": "s",
+    "default": 45,
     "section": "Animated Background"
   },
   {
@@ -114,7 +136,8 @@
     "max": 500,
     "unit": "px",
     "default": 88,
-    "section": "Now Playing Bar"
+    "section": "Now Playing Bar",
+    "tooltip": "Height of the now playing bar."
   },
   {
     "label": "Padding",
@@ -123,7 +146,8 @@
     "max": 50,
     "unit": "px",
     "default": 4,
-    "section": "Now Playing Bar"
+    "section": "Now Playing Bar",
+    "tooltip": "Space between the content and the edges of the now playing bar."
   },
   {
     "label": "Border Radius",
@@ -132,7 +156,8 @@
     "max": 100,
     "unit": "px",
     "default": 16,
-    "section": "Now Playing Bar"
+    "section": "Now Playing Bar",
+    "tooltip": "Rounded corners for the now playing bar."
   },
   {
     "label": "Blur",
@@ -141,7 +166,8 @@
     "max": 100,
     "unit": "px",
     "default": 16,
-    "section": "Now Playing Bar"
+    "section": "Now Playing Bar",
+    "tooltip": "Amount of blur to apply to the now playing bar."
   },
   {
     "label": "Saturation",
@@ -150,7 +176,8 @@
     "max": 200,
     "unit": "%",
     "default": 100,
-    "section": "Now Playing Bar"
+    "section": "Now Playing Bar",
+    "tooltip": "Saturation level of the now playing bar."
   },
   {
     "label": "Contrast",
@@ -159,7 +186,8 @@
     "max": 200,
     "unit": "%",
     "default": 100,
-    "section": "Now Playing Bar"
+    "section": "Now Playing Bar",
+    "tooltip": "Contrast level of the now playing bar."
   },
   {
     "label": "Brightness",
@@ -168,7 +196,8 @@
     "max": 200,
     "unit": "%",
     "default": 100,
-    "section": "Now Playing Bar"
+    "section": "Now Playing Bar",
+    "tooltip": "Brightness level of the now playing bar."
   },
   {
     "label": "Opacity",
@@ -177,7 +206,8 @@
     "max": 100,
     "unit": "%",
     "default": 50,
-    "section": "Beautiful Lyrics"
+    "section": "Beautiful Lyrics",
+    "tooltip": "Opacity of the background for beautiful lyrics."
   },
   {
     "label": "Saturation",
@@ -186,7 +216,8 @@
     "max": 500,
     "unit": "%",
     "default": 250,
-    "section": "Beautiful Lyrics"
+    "section": "Beautiful Lyrics",
+    "tooltip": "Saturation level of the background for beautiful lyrics."
   },
   {
     "label": "Contrast",
@@ -195,7 +226,8 @@
     "max": 200,
     "unit": "%",
     "default": 100,
-    "section": "Beautiful Lyrics"
+    "section": "Beautiful Lyrics",
+    "tooltip": "Contrast level of the background for beautiful lyrics."
   },
   {
     "label": "Brightness",
@@ -204,6 +236,7 @@
     "max": 200,
     "unit": "%",
     "default": 65,
-    "section": "Beautiful Lyrics"
+    "section": "Beautiful Lyrics",
+    "tooltip": "Brightness level of the background for beautiful lyrics."
   }
 ]
