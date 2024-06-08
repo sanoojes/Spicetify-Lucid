@@ -294,6 +294,10 @@
   background: none;
 }
 
+.O5NOY8Xw4NH0IhBZu8tm {
+  width: max-content;
+}
+
 /* Grid Container */
 .main-gridContainer-gridContainer {
   gap: var(--default-gap);
@@ -695,7 +699,7 @@ button[aria-label="What's New"] > path {
 
 .main-view-container__scroll-node-child,
 .main-nowPlayingView-panelOpenDiv,
-.main-yourLibraryX-libraryContainer,
+.main-yourLibraryX-libraryItemContainer,
 .lyrics-lyrics-contentWrapper,
 .album-albumPage-sectionWrapper,
 .main-buddyFeed-container,
