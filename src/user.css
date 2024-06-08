@@ -1875,7 +1875,8 @@ body:not(.Fullscreen)::after {
 }
 
 .Bloom-Bg-Container .Back,
-.Bloom-Bg-Container .BackCenter,
+.Bloom-Bg-Container .BackLeft,
+.Bloom-Bg-Container .BackRight,
 .Bloom-Bg-Container .Front {
   background-image: var(--image_url);
   background-repeat: no-repeat;
@@ -1900,15 +1901,21 @@ body:not(.Fullscreen)::after {
 
 .Bloom-Bg-Container .Back {
   animation-direction: reverse;
-  bottom: 0;
+  bottom: 25%;
   left: 5%;
 }
 
-.Bloom-Bg-Container .BackCenter {
+.Bloom-Bg-Container .BackRight {
   animation-direction: reverse;
   right: -50%;
   top: -20%;
-  width: 125%;
+  width: 75%;
+}
+
+.Bloom-Bg-Container .BackLeft {
+  left: -35%;
+  top: -20%;
+  width: 75%;
 }
 
 @keyframes rotateBg {

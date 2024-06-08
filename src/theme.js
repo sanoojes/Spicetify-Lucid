@@ -39,7 +39,7 @@
       const newElement = document.createElement("div");
       newElement.classList.add("Bloom-Bg-Container");
 
-      const divClasses = ["Front", "Back", "BackCenter"];
+      const divClasses = ["Front", "Back", "BackLeft", "BackRight"];
 
       for (const className of divClasses) {
         const div = document.createElement("div");

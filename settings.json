@@ -73,8 +73,8 @@
   },
   {
     "label": "Blur",
-    "key": "bloom-animatedbg-blur",
-    "min": 0,
+    "key": "animatedbg-blur",
+    "min": 32,
     "max": 256,
     "unit": "px",
     "default": 64,
@@ -82,7 +82,7 @@
   },
   {
     "label": "Saturation",
-    "key": "bloom-animatedbg-saturation",
+    "key": "animatedbg-saturation",
     "min": 0,
     "max": 500,
     "unit": "%",
@@ -91,7 +91,7 @@
   },
   {
     "label": "Contrast",
-    "key": "bloom-animatedbg-contrast",
+    "key": "animatedbg-contrast",
     "min": 0,
     "max": 200,
     "unit": "%",
@@ -100,11 +100,11 @@
   },
   {
     "label": "Brightness",
-    "key": "bloom-animatedbg-brightness",
+    "key": "animatedbg-brightness",
     "min": 0,
     "max": 200,
     "unit": "%",
-    "default": 55,
+    "default": 75,
     "section": "Animated Background"
   },
   {
