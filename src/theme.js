@@ -61,7 +61,6 @@ const SETTING_URL = "https://sanooj.is-a.dev/better-bloom/settings.json";
 
   function toggleAnimatedBg() {
     setToLocalStorage("Bloom-isAnimatedBg", !isAnimatedBg);
-    console.log(getFromLocalStorage("Bloom-isAnimatedBg"));
     isAnimatedBg = !isAnimatedBg;
     setAnimatedBg();
   }
@@ -532,6 +531,7 @@ button[aria-label="${homeBtnLabelOne}"] svg {
         const animatedBgToggleBtn = document.createElement("button");
         animatedBgToggleBtn.textContent = "Toggle Animated Background";
         animatedBgToggleBtn.classList.add("bloom-toggle-btn");
+
         animatedBgToggleBtn.addEventListener("click", toggleAnimatedBg);
 
         container.appendChild(animatedBgToggleBtn);
@@ -806,7 +806,6 @@ button[aria-label="${homeBtnLabelOne}"] svg {
       waitForWidgetMounted();
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-          console.log(mutation);
           if (mutation.addedNodes.length > 0) {
             const addedNodes = Array.from(mutation.addedNodes);
             const isNPV = addedNodes.some(
