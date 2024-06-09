@@ -25,7 +25,7 @@
     "min": 0,
     "max": 100,
     "unit": "px",
-    "default": 16,
+    "default": 8,
     "section": "General",
     "tooltip": "Rounded corners for card elements."
   },
