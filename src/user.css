@@ -706,7 +706,7 @@ button[aria-label="What's New"] > path {
 .nw2W4ZMdICuBo08Tzxg9 {
   padding: 0;
   padding-bottom: calc(
-    var(--now-playing-bar-height) - (var(--padding-now-playing-bar) * 2)
+    var(--now-playing-bar-height) + (var(--padding-now-playing-bar) * 2)
   ) !important;
 }
 .Root__main-view-overlay,
