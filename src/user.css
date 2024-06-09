@@ -1684,6 +1684,10 @@ button:has(.LyricsPageIcon) {
   bottom: 3rem;
 }
 
+div[data-testid="hpto-parent-container"] {
+  padding-top: 0 !important;
+}
+
 /* Transparent Windows Controls */
 body:not(.Fullscreen)::after {
   content: "";
