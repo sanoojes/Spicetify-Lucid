@@ -41,6 +41,8 @@
   --margin-heading: 0.5rem;
 
   /* Now playing bar */
+  --now-playing-bar-opacity: 1;
+  --now-playing-bar-bg-opacity: 0.5;
   --now-playing-brightness: 100%;
   --now-playing-contrast: 100%;
   --now-playing-saturation: 100%;
@@ -79,10 +81,10 @@
   --animatedbg-contrast: 115%;
 
   /* Beautiful Lyrics */
-  --bg-opacity: 50%;
-  --bg-saturation: 250%;
-  --bg-brightness: 65%;
-  --bg-contrast: 100%;
+  --beautiful-lyrics-bg-opacity: 50%;
+  --beautiful-lyrics-bg-saturation: 250%;
+  --beautiful-lyrics-bg-brightness: 65%;
+  --beautiful-lyrics-bg-contrast: 100%;
 }
 
 /* ------------------------------
@@ -314,8 +316,12 @@
   padding: var(--padding-now-playing-bar);
   bottom: var(--margin-bottom-now-playing-bar);
   border: var(--border-thickness) solid var(--shadow-rgb);
-  background-color: rgba(var(--spice-rgb-main), 0.5);
-  backdrop-filter: blur(var(--blur-radius-now-playing-bar))
+  background-color: rgba(
+    var(--spice-rgb-main),
+    var(--now-playing-bar-bg-opacity)
+  );
+  backdrop-filter: opacity(var(--now-playing-bar-opacity))
+    blur(var(--blur-radius-now-playing-bar))
     saturate(var(--now-playing-saturation))
     brightness(var(--now-playing-brightness))
     contrast(var(--now-playing-contrast));
@@ -1632,9 +1638,10 @@ button[aria-label="Browse"] svg {
 /* Beautiful Lyrics */
 
 .BeautifulLyricsBackground-Container {
-  opacity: var(--bg-opacity);
-  filter: saturate(var(--bg-saturation)) brightness(var(--bg-brightness))
-    contrast(var(--bg-contrast)) !important;
+  opacity: var(--beautiful-lyrics-bg-opacity);
+  filter: saturate(var(--beautiful-lyrics-bg-saturation))
+    brightness(var(--beautiful-lyrics-bg-brightness))
+    contrast(var(--beautiful-lyrics-bg-contrast)) !important;
 }
 
 .Fullscreen .BeautifulLyricsBackground-Container {
