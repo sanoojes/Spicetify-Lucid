@@ -62,6 +62,7 @@
   --panel-gap: 0.5rem !important;
   --background-base: rgba(var(--spice-rgb-main), 0.8);
   --encore-control-size-base: 32px;
+  --tracklist-index-column-width: 24px;
 
   --normal-bg-blur: 16px;
 
