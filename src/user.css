@@ -1688,7 +1688,7 @@ button:has(.LyricsPageIcon) {
 }
 
 .marketplace-add-snippet-btn {
-  bottom: 3rem;
+  bottom: calc(var(--now-playing-bar-height) + var(--default-gap));
 }
 
 div[data-testid="hpto-parent-container"] {
