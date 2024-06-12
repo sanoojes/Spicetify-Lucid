@@ -5,6 +5,8 @@
 ------------------------------ */
 
 :root {
+  --font-to-use: "Poppins", var(--fallback-fonts);
+
   --random-degree: 258deg; /* picked totaly random lol */
 
   /* Commonly Used Values */
@@ -51,8 +53,6 @@
   --now-playing-bar-height: 5.5rem;
 
   /* Fonts */
-  --encore-title-font-stack: "Poppins", var(--fallback-fonts);
-  --encore-body-font-stack: "Poppins", var(--fallback-fonts);
   --normal-font-weight: 500;
   --bold-font-weight: 700;
   --extra-bold-font-weight: 800;
@@ -63,6 +63,8 @@
   --background-base: rgba(var(--spice-rgb-main), 0.8);
   --encore-control-size-base: 32px;
   --tracklist-index-column-width: 24px;
+  --encore-title-font-stack: var(--font-to-use);
+  --encore-body-font-stack: var(--font-to-use);
 
   --normal-bg-blur: 16px;
 
@@ -93,7 +95,7 @@
 ------------------------------ */
 
 * {
-  font-family: "Poppins", var(--fallback-fonts, sans-serif) !important;
+  font-family: var(--font-to-use) !important;
   box-shadow: none !important;
   background-color: transparent; /* Default background to transparent */
   -webkit-mask-repeat: no-repeat;
@@ -124,10 +126,6 @@
 ------------------------------ */
 
 /* Typography */
-.vertical-metrics {
-  --encore-title-font-stack: "Poppins", var(--fallback-fonts);
-  --encore-body-font-stack: "Poppins", var(--fallback-fonts);
-}
 
 .encore-dark-theme {
   --background-tinted-base: rgba(var(--spice-rgb-selected-row), 0.025);
@@ -137,7 +135,7 @@
 .encore-text-title-medium,
 .encore-text-title-small,
 .main-trackInfo-name {
-  font-weight: var(--extra-bold-font-weight); /* Use extra-bold font weight */
+  font-weight: var(--extra-bold-font-weight);
   letter-spacing: -0.025rem;
 }
 
