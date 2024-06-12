@@ -1688,7 +1688,9 @@ button:has(.LyricsPageIcon) {
   background-color: transparent !important;
 }
 
-.marketplace-add-snippet-btn {
+.marketplace-add-snippet-btn,
+.lyrics-lyricsContainer-Provider {
+  position: absolute;
   bottom: calc(var(--now-playing-bar-height) + var(--default-gap));
 }
 
