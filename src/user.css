@@ -667,7 +667,8 @@ button[aria-label="What's New"] > path {
   border-radius: var(--card-border-radius);
 }
 
-.main-actionBarBackground-background {
+.main-actionBarBackground-background,
+.KROerAKSuwZBbse9iJT_ {
   background-color: transparent !important;
   background-image: none !important;
 }
@@ -1961,4 +1962,18 @@ body:not(.Fullscreen)::after {
   to {
     transform: rotate(calc(var(--random-degree) + 1turn));
   }
+}
+
+/* Cover ambience */
+
+.Root__now-playing-bar.LibraryX {
+  --cover-ambience-background: transparent;
+}
+.main-nowPlayingBar-container {
+  --bg-img-before: linear-gradient(
+    to right,
+    var(--cover-ambience-color-before) 0,
+    var(--cover-ambience-background) 600px,
+    var(--cover-ambience-background) 100%
+  ) !important;
 }
