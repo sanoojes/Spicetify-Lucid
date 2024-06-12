@@ -5,7 +5,11 @@
 ------------------------------ */
 
 :root {
-  --font-to-use: "Poppins", var(--fallback-fonts);
+  --original-fonts: CircularSp, CircularSp-Arab, CircularSp-Hebr,
+    CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva,
+    var(--fallback-fonts, sans-serif);
+
+  --font-to-use: "Poppins", var(--original-fonts);
 
   --random-degree: 258deg; /* picked totaly random lol */
 
