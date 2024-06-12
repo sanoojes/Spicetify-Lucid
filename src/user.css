@@ -1327,6 +1327,7 @@ svg {
   color: rgba(var(--spice-rgb-text), 0.5) !important;
 }
 
+.tippy-box[data-theme~="activation"],
 ::backdrop {
   background-color: rgba(var(--spice-rgb-main), 0.75);
   backdrop-filter: blur(var(--blur-radius)) saturate(2) invert(0.0125)
