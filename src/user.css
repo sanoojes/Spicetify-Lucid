@@ -1689,9 +1689,7 @@ button:has(.LyricsPageIcon) {
   background-color: transparent !important;
 }
 
-.marketplace-add-snippet-btn,
-.lyrics-lyricsContainer-Provider {
-  position: absolute;
+.marketplace-add-snippet-btn {
   bottom: calc(var(--now-playing-bar-height) + var(--default-gap));
 }
 
@@ -1979,4 +1977,12 @@ body:not(.Fullscreen)::after {
     var(--cover-ambience-background) 600px,
     var(--cover-ambience-background) 100%
   ) !important;
+}
+
+.lyrics-lyricsContainer-LyricsContainer {
+  top: -64px;
+}
+
+.lyrics-lyricsContainer-Provider {
+  height: fit-content;
 }
