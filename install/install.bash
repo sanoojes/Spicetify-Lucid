@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Enabling strict error handling
 set -e
 
 # ANSI Color Codes
@@ -12,47 +11,47 @@ NC='\033[0m' # No Color
 
 # Helper function to display error messages
 print_error() {
-    echo -e "${RED}$1${NC}"
+  echo -e "${RED}$1${NC}"
 }
 
 # Helper function to display success messages
 print_success() {
-    echo -e "${GREEN}$1${NC}"
+  echo -e "${GREEN}$1${NC}"
 }
 
 # Helper function to display info messages
 print_info() {
-    echo -e "${BLUE}$1${NC}"
+  echo -e "${BLUE}$1${NC}"
 }
 
 # Check if Spotify is installed
 if ! command -v spotify &> /dev/null; then
-    print_error "Spotify isn't installed or doesn't exist in your PATH."
-    print_error "Better-Bloom is a Spotify theme, and so it's essential."
-    print_error "Please install Spotify (https://spotify.com/download) and run this script again to continue."
-    print_error "If Spotify is already installed, add it to your PATH variable and rerun this script."
-    print_error "Example command for adding to PATH: export PATH=~/spotify:\$PATH"
-    print_error "Abort!"
-    exit 3
+  print_error "Spotify isn't installed or doesn't exist in your PATH."
+  print_error "Better-Bloom is a Spotify theme, and so it's essential."
+  print_error "Please install Spotify (https://spotify.com/download) and run this script again to continue."
+  print_error "If Spotify is already installed, add it to your PATH variable and rerun this script."
+  print_error "Example command for adding to PATH: export PATH=~/spotify:\$PATH"
+  print_error "Abort!"
+  exit 3
 fi
 
 # Check if Spicetify is installed
 if ! command -v spicetify &> /dev/null; then
-    print_error "Spicetify isn't installed or doesn't exist in your PATH."
-    print_error "Better-Bloom relies on it to work properly."
-    print_error "Please install Spicetify (https://spicetify.app) and run this script again to continue."
-    print_error "If Spicetify is already installed, add it to your PATH variable and rerun this script."
-    print_error "Example command for adding to PATH: export PATH=/opt/spicetify:\$PATH"
-    print_error "Abort!"
-    exit 1
+  print_error "Spicetify isn't installed or doesn't exist in your PATH."
+  print_error "Better-Bloom relies on it to work properly."
+  print_error "Please install Spicetify (https://spicetify.app) and run this script again to continue."
+  print_error "If Spicetify is already installed, add it to your PATH variable and rerun this script."
+  print_error "Example command for adding to PATH: export PATH=/opt/spicetify:\$PATH"
+  print_error "Abort!"
+  exit 1
 fi
 
 # Check if mktemp is installed
 if ! command -v mktemp &> /dev/null; then
-    print_error "mktemp isn't installed or doesn't exist in your PATH."
-    print_error "Mktemp is used to generate temporal paths to place the files, and so it's essential."
-    print_error "Abort!"
-    exit 5
+  print_error "mktemp isn't installed or doesn't exist in your PATH."
+  print_error "Mktemp is used to generate temporal paths to place the files, and so it's essential."
+  print_error "Abort!"
+  exit 5
 fi
 
 print_success "Beginning installation of better-bloom"
@@ -66,12 +65,12 @@ echo -e "\n"
 spicePath="$(dirname "$(spicetify -c)")"
 themePath="$spicePath/Themes/better-bloom"
 if [ -d "$themePath" ]; then
-    rm -rf "$themePath"
+  rm -rf "$themePath"
 fi
 
 # Additional Fedora-specific configuration
 if command -v dnf &> /dev/null && dnf list installed spotify-client &> /dev/null && ! grep -q 'spotify_path' ~/.config/spicetify/config-xpui.ini; then
-    sed -i '/spotify_path/ s/$/\/usr\/share\/spotify-client/' ~/.config/spicetify/config-xpui.ini
+  sed -i '/spotify_path/ s/$/\/usr\/share\/spotify-client/' ~/.config/spicetify/config-xpui.ini
 fi
 
 # Remove old extension if exists
