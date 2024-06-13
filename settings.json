@@ -46,8 +46,8 @@
     "max": 100,
     "unit": "px",
     "default": 16,
-    "section": "Background Image",
-    "tooltip": "Amount of blur to apply to the background image."
+    "section": "Default Background",
+    "tooltip": "Amount of blur to apply to the Default Background."
   },
   {
     "label": "Brightness",
@@ -56,8 +56,8 @@
     "max": 200,
     "unit": "%",
     "default": 70,
-    "section": "Background Image",
-    "tooltip": "Brightness level of the background image."
+    "section": "Default Background",
+    "tooltip": "Brightness level of the Default Background."
   },
   {
     "label": "Contrast",
@@ -66,8 +66,8 @@
     "max": 200,
     "unit": "%",
     "default": 80,
-    "section": "Background Image",
-    "tooltip": "Contrast level of the background image."
+    "section": "Default Background",
+    "tooltip": "Contrast level of the Default Background."
   },
   {
     "label": "Saturation",
@@ -76,8 +76,8 @@
     "max": 200,
     "unit": "%",
     "default": 125,
-    "section": "Background Image",
-    "tooltip": "Saturation level of the background image."
+    "section": "Default Background",
+    "tooltip": "Saturation level of the Default Background."
   },
   {
     "label": "Blur",
