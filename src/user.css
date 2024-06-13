@@ -1921,8 +1921,7 @@ body:not(.Fullscreen)::after {
 .bloom-dropdown {
   padding: 8px;
   font-size: 16px;
-  border: none;
-  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.025);
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.5);
   color: var(--spice-text);
   font-weight: 700;
 }
@@ -1930,15 +1929,6 @@ body:not(.Fullscreen)::after {
 .bloom-dropdown:hover,
 .bloom-dropdown:focus {
   outline: none;
-}
-
-.bloom-dropdown::after {
-  content: "\25BC";
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
-  pointer-events: none;
 }
 
 /* Animated Background */
