@@ -1771,8 +1771,9 @@ body:not(.Fullscreen)::after {
   border-radius: var(--button-border-radius);
 }
 
-.lyrics-config-button-container {
-  bottom: var(--now-playing-bar-height);
+.lyrics-config-button-container,
+#catjam-webm {
+  bottom: var(--now-playing-bar-height) !important;
 }
 
 .bloom-popup-main-container {
@@ -1899,10 +1900,6 @@ body:not(.Fullscreen)::after {
   color: var(--spice-subtext);
   font-weight: 500;
   font-size: 0.75rem;
-}
-
-.lyrics-config-button-container {
-  bottom: var(--now-playing-bar-height);
 }
 
 /* Animated Background */
