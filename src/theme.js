@@ -14,7 +14,6 @@ let settings = [];
   }
 
   function getRandomDegree() {
-    // Generate a random number between 0 and 360
     const randomDegree = Math.floor(Math.random() * 360);
     document.documentElement.style.setProperty(
       "--random-degree",
@@ -25,22 +24,40 @@ let settings = [];
 
   let currentSongArtImage = Spicetify.Player.data.item.metadata.image_url;
 
-  let isAnimatedBg = getFromLocalStorage("Bloom-isAnimatedBg");
-
   function getFromLocalStorage(key) {
     const value = localStorage.getItem(`${key}`);
-    return value !== null ? JSON.parse(value) : false;
+    return value !== null ? value : "default";
   }
 
   function setToLocalStorage(key, value) {
     localStorage.setItem(`${key}`, value);
   }
 
-  function setAnimatedBg() {
+  let currentBgOption = getFromLocalStorage("Bloom-Background-Option");
+
+  function setBackground() {
     const rootBg = document.querySelector(".Root__top-container");
-    if (isAnimatedBg) {
+
+    function removeAllBgContainers() {
+      // Funtion to Remove all background containers
+      const existingAnimatedBg = rootBg.querySelector(
+        ".Bloom-Animated-Bg-Container"
+      );
+      const existingBaseBg = rootBg.querySelector(
+        ".Bloom-NonAnimated-Bg-Container"
+      );
+      if (existingAnimatedBg) {
+        existingAnimatedBg.remove();
+      }
+      if (existingBaseBg) {
+        existingBaseBg.remove();
+      }
+    }
+    removeAllBgContainers();
+
+    if (currentBgOption === "animated") {
       const newElement = document.createElement("div");
-      newElement.classList.add("Bloom-Bg-Container");
+      newElement.classList.add("Bloom-Animated-Bg-Container");
 
       const divClasses = ["Front", "Back", "BackLeft", "BackRight"];
 
@@ -51,19 +68,23 @@ let settings = [];
         newElement.appendChild(div);
       }
       rootBg.prepend(newElement);
-    } else {
-      const existingAnimatedBg = rootBg.querySelector(".Bloom-Bg-Container");
-      if (existingAnimatedBg) {
-        existingAnimatedBg.remove();
-      }
+    }
+
+    if (currentBgOption === "default") {
+      const newElement = document.createElement("div");
+      newElement.classList.add("Bloom-NonAnimated-Bg-Container");
+      rootBg.prepend(newElement);
+    }
+
+    if (currentBgOption === "solid") {
+      removeAllBgContainers();
     }
   }
-  setAnimatedBg();
 
-  function toggleAnimatedBg() {
-    setToLocalStorage("Bloom-isAnimatedBg", !isAnimatedBg);
-    isAnimatedBg = !isAnimatedBg;
-    setAnimatedBg();
+  function changeCurrentBgTo(option) {
+    currentBgOption = option;
+    setToLocalStorage("Bloom-Background-Option", currentBgOption);
+    setBackground();
   }
 
   function setWindowHeight() {
@@ -106,7 +127,6 @@ let settings = [];
           }`;
         }
 
-        // update title bar to 48px
         if (!isGlobalNav) {
           styleSheet.innerText += `  
           .Root__main-view .main-topBar-container {
@@ -399,7 +419,6 @@ button[aria-label="${homeBtnLabelOne}"] svg {
       );
     }
 
-    // Updates the background based on current song
     document.documentElement.style.setProperty(
       "--image_url",
       `url("${currentSongArtImage}")`
@@ -407,7 +426,7 @@ button[aria-label="${homeBtnLabelOne}"] svg {
   }
 
   Spicetify.Player.addEventListener("songchange", onSongChange);
-  onSongChange(); // Initial call to setup song change handling
+  onSongChange();
 
   function addSettings() {
     const mainContainer = document.createElement("div");
@@ -541,15 +560,47 @@ button[aria-label="${homeBtnLabelOne}"] svg {
           container.appendChild(sectionContainer);
         }
 
-        const animatedBgToggleBtn = document.createElement("button");
-        animatedBgToggleBtn.textContent = "Toggle Animated Background";
-        animatedBgToggleBtn.classList.add("bloom-toggle-btn");
+        const bloomSettingsSection = document.createElement("div");
+        bloomSettingsSection.classList.add("bloom-settings-section");
 
-        animatedBgToggleBtn.addEventListener("click", () => {
-          toggleAnimatedBg();
+        const bloomSettingsSubtitle = document.createElement("h2");
+        bloomSettingsSubtitle.classList.add("bloom-settings-subtitle");
+        bloomSettingsSubtitle.textContent = "Background Options";
+
+        const bloomDropDownContainer = document.createElement("div");
+        bloomDropDownContainer.classList.add("bloom-dropdown-container");
+
+        const bloomDropdownTitle = document.createElement("h2");
+        bloomDropdownTitle.classList.add("bloom-slider-label");
+        bloomDropdownTitle.textContent = "Background";
+        bloomDropDownContainer.appendChild(bloomDropdownTitle);
+        const BgDropdown = document.createElement("select");
+        BgDropdown.classList.add("bloom-dropdown");
+
+        const options = [
+          { text: "Default Background", dataBg: "default" },
+          { text: "Animated Background", dataBg: "animated" },
+          { text: "Solid Background", dataBg: "solid" },
+        ];
+
+        options.forEach((option) => {
+          const optionElement = document.createElement("option");
+          optionElement.textContent = option.text;
+          optionElement.setAttribute("value", option.dataBg);
+          BgDropdown.appendChild(optionElement);
         });
 
-        container.appendChild(animatedBgToggleBtn);
+        BgDropdown.addEventListener("change", function () {
+          const selectedOption = this.options[this.selectedIndex];
+          const selectedValue = selectedOption.value;
+          changeCurrentBgTo(selectedValue);
+        });
+
+        bloomSettingsSection.appendChild(bloomSettingsSubtitle);
+        bloomSettingsSection.appendChild(bloomDropDownContainer);
+        bloomDropDownContainer.appendChild(BgDropdown);
+
+        container.appendChild(bloomSettingsSection);
 
         const resetButton = document.createElement("button");
         resetButton.textContent = "Reset to Defaults";
@@ -584,4 +635,6 @@ button[aria-label="${homeBtnLabelOne}"] svg {
     settingsMenuItem.register();
   }
   addSettings();
+
+  setBackground();
 })();

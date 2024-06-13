@@ -363,12 +363,14 @@ section[data-testid="album-page"] .main-actionBar-ActionBar {
 
 /* Dropdowns and Equalizer */
 .x-settings-equalizerSection,
-.main-dropDown-dropDown {
+.main-dropDown-dropDown,
+.bloom-dropdown {
   background-color: rgba(var(--spice-rgb-main), 0.125);
   border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.5);
   border-radius: 8px;
 }
 
+.bloom-dropdown,
 .main-dropDown-dropDown {
   background-color: rgba(var(--spice-rgb-main), 0.9);
   color: rgba(var(--spice-rgb-text), 0.75);
@@ -1262,8 +1264,9 @@ svg {
   filter: drop-shadow(-2px 2px 2px rgb(0 0 0 / 15%));
 }
 
-.Root__top-container::before {
-  content: "";
+.Bloom-NonAnimated-Bg-Container {
+  height: 100vh;
+  width: 100vw;
   background-image: var(--image_url);
   background-repeat: no-repeat;
   background-size: cover;
@@ -1800,7 +1803,15 @@ body:not(.Fullscreen)::after {
   display: flex;
   align-items: center;
   gap: calc(var(--default-gap) * 2);
-  margin-top: 0.5rem;
+  padding: 1rem 0 0;
+}
+
+.bloom-dropdown-container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--default-gap);
+  align-items: center;
+  justify-content: space-between;
 }
 
 .bloom-settings-subtitle {
@@ -1854,6 +1865,7 @@ body:not(.Fullscreen)::after {
   cursor: pointer;
 }
 
+.bloom-dropdown-container,
 .bloom-slider-div {
   padding: 1rem;
   border-radius: var(--button-border-radius);
@@ -1905,8 +1917,32 @@ body:not(.Fullscreen)::after {
   font-size: 0.75rem;
 }
 
+/* Dropdown */
+.bloom-dropdown {
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.025);
+  color: var(--spice-text);
+  font-weight: 700;
+}
+
+.bloom-dropdown:hover,
+.bloom-dropdown:focus {
+  outline: none;
+}
+
+.bloom-dropdown::after {
+  content: "\25BC";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 /* Animated Background */
-.Bloom-Bg-Container {
+.Bloom-Animated-Bg-Container {
   filter: saturate(var(--animatedbg-saturation))
     brightness(var(--animatedbg-brightness));
   height: 100%;
@@ -1918,10 +1954,10 @@ body:not(.Fullscreen)::after {
   width: 100%;
 }
 
-.Bloom-Bg-Container .Back,
-.Bloom-Bg-Container .BackLeft,
-.Bloom-Bg-Container .BackRight,
-.Bloom-Bg-Container .Front {
+.Bloom-Animated-Bg-Container .Back,
+.Bloom-Animated-Bg-Container .BackLeft,
+.Bloom-Animated-Bg-Container .BackRight,
+.Bloom-Animated-Bg-Container .Front {
   background-image: var(--image_url);
   background-repeat: no-repeat;
   background-size: cover;
@@ -1937,24 +1973,24 @@ body:not(.Fullscreen)::after {
   width: 90%;
 }
 
-.Bloom-Bg-Container .Front {
+.Bloom-Animated-Bg-Container .Front {
   right: 25%;
   top: 25%;
 }
 
-.Bloom-Bg-Container .Back {
+.Bloom-Animated-Bg-Container .Back {
   animation-direction: reverse;
   bottom: 25%;
   left: 5%;
 }
 
-.Bloom-Bg-Container .BackRight {
+.Bloom-Animated-Bg-Container .BackRight {
   right: -50%;
   top: -20%;
   width: 75%;
 }
 
-.Bloom-Bg-Container .BackLeft {
+.Bloom-Animated-Bg-Container .BackLeft {
   left: -35%;
   top: -20%;
   width: 75%;
