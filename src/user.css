@@ -665,14 +665,15 @@ button[aria-label="What's New"] > path {
   overflow: visible;
   position: initial;
 }
-.main-view-container {
+
+.main-view-container,
+.KROerAKSuwZBbse9iJT_ {
   overflow: hidden;
   background-color: rgba(var(--spice-rgb-main), 0.25);
   border-radius: var(--card-border-radius);
 }
 
-.main-actionBarBackground-background,
-.KROerAKSuwZBbse9iJT_ {
+.main-actionBarBackground-background {
   background-color: transparent !important;
   background-image: none !important;
 }
@@ -738,10 +739,6 @@ button[aria-label="What's New"] > path {
   height: 100%;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.1) !important;
-}
-
-div[data-testid="hpto-parent-container"] {
-  margin-bottom: 0;
 }
 
 /* search shelf */
@@ -1697,8 +1694,14 @@ button:has(.LyricsPageIcon) {
   bottom: calc(var(--now-playing-bar-height) + var(--default-gap));
 }
 
+div[data-testid="hpto-native"] {
+  background-image: none !important;
+}
+
 div[data-testid="hpto-parent-container"] {
   padding-top: 0 !important;
+  margin-bottom: 0;
+  min-height: 25vh;
 }
 
 /* Transparent Windows Controls */

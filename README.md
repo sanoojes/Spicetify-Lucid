@@ -125,10 +125,6 @@ Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `d
 ![midnight-catppuccin Preview](./assets/images/better-bloom-midnight-catppuccin.png)
 ![midnight-catppuccin  Preview 1](./assets/images/better-bloom-midnight-catppuccin1.png)
 
-## Credits
-
-quickQueue ,npvAmbience taken from [ohitstom/spicetify-extensions](https://github.com/ohitstom/spicetify-extensions)
-
 ## License
 
 [MIT License](LICENSE)
