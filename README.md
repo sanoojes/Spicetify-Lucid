@@ -125,6 +125,10 @@ Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `d
 ![midnight-catppuccin Preview](./assets/images/better-bloom-midnight-catppuccin.png)
 ![midnight-catppuccin  Preview 1](./assets/images/better-bloom-midnight-catppuccin1.png)
 
+### Better Bloom Settings
+
+![Settings Preview](./assets/images/settings.png)
+
 ## License
 
 [MIT License](LICENSE)
