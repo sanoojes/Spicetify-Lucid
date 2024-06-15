@@ -129,6 +129,13 @@
    Component-Specific Styling
 ------------------------------ */
 
+.encore-light-theme,
+.encore-light-theme .encore-base-set {
+  --background-base: var(--spice-main);
+  --text-base: var(--spice-text);
+  --text-subdued: var(--spice-subtext);
+}
+
 /* Typography */
 
 .encore-dark-theme {
@@ -2015,4 +2022,9 @@ body:not(.Fullscreen)::after {
 
 .lyrics-lyricsContainer-Provider {
   height: fit-content;
+}
+
+/* Art Canvas */
+video {
+  opacity: 0.75;
 }
