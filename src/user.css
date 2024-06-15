@@ -1727,6 +1727,7 @@ body:not(.Fullscreen)::after {
 
 /* Popup searchbar */
 
+.search-modal-input,
 .QWeCmvys_7VINTbfUmGB {
   border-radius: 500px;
   display: -webkit-box;
@@ -1745,6 +1746,7 @@ body:not(.Fullscreen)::after {
   border-radius: var(--card-border-radius);
 }
 
+.search-modal-searchBar,
 .TQb3mB9R6qGsxvPnCurA {
   padding: 0;
   border-radius: var(--card-border-radius);
@@ -1758,6 +1760,8 @@ body:not(.Fullscreen)::after {
   }
 }
 
+.search-modal-listbox,
+.search-modal-keyboard-accessibility-bar,
 .NU8xwWC0RWBRh_PBJdJe,
 .Bn7PjpLWU6TcPCoeP98S,
 .SUOB9gChfkiToLTPl9Bc,
@@ -1765,7 +1769,8 @@ body:not(.Fullscreen)::after {
   background-color: transparent !important;
 }
 
-.GenericModal[aria-label="Search"] {
+.GenericModal[aria-label="Search"],
+.profile-userEditDetails-container {
   backdrop-filter: saturate(1) blur(var(--blur-radius)) brightness(0.85);
   border-radius: var(--card-border-radius);
   border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
@@ -1777,6 +1782,7 @@ body:not(.Fullscreen)::after {
   width: 60vw;
 }
 
+.profile-userEditDetails-container,
 .BoxComponent-box-elevated {
   color: var(--spice-text);
   background-color: rgba(var(--spice-rgb-card), 0.5);
