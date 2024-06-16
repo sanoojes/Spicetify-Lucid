@@ -281,6 +281,10 @@
 }
 
 /* Entity Headers */
+.main-entityHeader-circle {
+  border-radius: var(--card-border-radius);
+}
+
 .main-entityHeader-container.main-entityHeader-withBackgroundImage,
 .main-entityHeader-background.main-entityHeader-overlay,
 .main-entityHeader-container.main-entityHeader-nonWrapped {
