@@ -2022,3 +2022,9 @@ body:not(.Fullscreen)::after {
 video {
   opacity: 0.75;
 }
+
+/* Stats */
+
+.page-header {
+  margin-top: 5rem;
+}
