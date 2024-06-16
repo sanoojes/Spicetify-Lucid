@@ -1760,7 +1760,8 @@ body:not(.Fullscreen)::after {
 }
 
 .GenericModal[aria-label="Search"],
-.profile-userEditDetails-container {
+.profile-userEditDetails-container,
+.main-playlistEditDetailsModal-container {
   backdrop-filter: saturate(1) blur(var(--blur-radius)) brightness(0.85);
   border-radius: var(--card-border-radius);
   border: var(--border-thickness) solid rgba(var(--spice-rgb-subtext), 0.125);
@@ -1772,6 +1773,7 @@ body:not(.Fullscreen)::after {
   width: 60vw;
 }
 
+.main-playlistEditDetailsModal-container,
 .profile-userEditDetails-container,
 .BoxComponent-box-elevated {
   color: var(--spice-text);
