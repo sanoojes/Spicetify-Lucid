@@ -387,6 +387,30 @@ button[aria-label="${homeBtnLabelOne}"] svg {
     `;
   document.head.appendChild(ButtonStyles);
 
+  const container = document.querySelector(
+    ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
+  );
+
+  if (container) {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          document.documentElement.style.setProperty(
+            "--container-scroll",
+            `${container.scrollTop}px`
+          );
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+  }
+
   console.log("Better Bloom is running");
 
   async function fetchFadeTime() {
@@ -531,6 +555,7 @@ button[aria-label="${homeBtnLabelOne}"] svg {
 
       try {
         const response = await fetch(SETTING_URL);
+
         const data = await response.json();
         settings = data;
 
@@ -634,6 +659,7 @@ button[aria-label="${homeBtnLabelOne}"] svg {
     );
     settingsMenuItem.register();
   }
+
   addSettings();
 
   setBackground();

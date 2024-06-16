@@ -1354,7 +1354,7 @@ body:has(.BeautifulLyricsPage) {
 }
 
 .main-entityHeader-background {
-  transform: translateY(calc(var(--scroll) * -135vh)) !important;
+  transform: translateY(calc(var(--container-scroll, 0) * -1)) !important;
   transition: var(--ease-transition);
 }
 
