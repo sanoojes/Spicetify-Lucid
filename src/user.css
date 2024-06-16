@@ -69,6 +69,8 @@
   --tracklist-index-column-width: 24px;
   --encore-title-font-stack: var(--font-to-use);
   --encore-body-font-stack: var(--font-to-use);
+  --spice-tab-active: rgba(var(--spice-rgb-accent), 0.1);
+  --card-color: rgba(var(--spice-rgb-main), 0.25);
 
   --normal-bg-blur: 16px;
 
