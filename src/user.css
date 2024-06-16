@@ -584,7 +584,8 @@ button[aria-label="What's New"] > path {
 .main-yourLibraryX-libraryContainer,
 .x-searchInput-searchInputInputs,
 .main-trackList-trackList,
-.main-heroCard-card {
+.main-heroCard-card,
+.x-entityImage-circle {
   border-radius: var(--card-border-radius);
 }
 
