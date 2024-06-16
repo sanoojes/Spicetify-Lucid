@@ -603,23 +603,29 @@ button[aria-label="What's New"] > path {
 .rX_OmqCngvY5ZCoYBZgb::before,
 .search-searchCategory-SearchCategory {
   backdrop-filter: blur(var(--blur-radius));
-  background-color: rgba(var(--spice-rgb-card), 0.5) !important;
+  background-color: rgba(var(--spice-rgb-card), 0.125) !important;
   top: 0;
 }
 
+.main-home-filterChipsSection:after {
+  background-color: transparent !important;
+}
+
 .main-topBar-container {
-  backdrop-filter: blur(var(--blur-radius));
   justify-content: center;
 }
 
-.global-nav .main-topBar-container {
-  backdrop-filter: none;
-  position: relative;
+.marketplace-tabBar-active {
+  background-color: rgba(var(--spice-rgb-accent), 0.25);
 }
 
 .marketplace-header {
-  top: var(--panel-gap);
-  position: relative;
+  margin-top: var(--default-gap);
+  top: 0;
+}
+
+.global-nav .marketplace-header {
+  margin-top: 64px;
 }
 
 .rX_OmqCngvY5ZCoYBZgb,
@@ -629,7 +635,17 @@ button[aria-label="What's New"] > path {
 }
 
 .main-topBar-background {
-  display: none;
+  background: none !important;
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.global-nav .main-topBar-background {
+  backdrop-filter: blur(var(--blur-radius));
+}
+
+.main-topBar-overlay {
+  background-color: transparent;
 }
 
 .x-searchInput-searchInputInput {
@@ -1106,7 +1122,8 @@ button.HD9s7U5E1RLSWKpXmrqx {
 
 /* Topbar */
 .main-topBar-container > *,
-.main-topBar-topbarContent {
+.main-topBar-topbarContent,
+.main-topBar-topbarContentWrapper {
   -webkit-app-region: drag !important;
 }
 
@@ -1291,8 +1308,31 @@ svg {
   z-index: 0;
 }
 
-/* FullScreen Styles */
+/* Artist Discography */
+.artist-artistDiscography-tracklist {
+  margin-top: var(--default-gap2);
+}
 
+.artist-artistDiscography-topBar {
+  background-image: none !important;
+  background-color: transparent !important;
+  top: 0 !important;
+  height: 64px;
+  backdrop-filter: blur(var(--blur-radius));
+}
+
+.artist-artistDiscography-headerContainer {
+  border-radius: var(--card-border-radius);
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter) brightness(0.05) contrast(1.025)' /%3E%3C/svg%3E");
+}
+
+.global-nav
+  .artist-artistDiscography-headerContainer.artist-artistDiscography-firstAlbum {
+  padding-top: 8rem;
+}
+
+/* FullScreen Styles */
 .npv-background-image__overlay {
   background: linear-gradient(
       rgba(var(--spice-rgb-main), 0.75) 0,
@@ -2032,4 +2072,24 @@ body:not(.Fullscreen)::after {
 /* Art Canvas */
 video {
   opacity: 0.75;
+}
+
+/* Custom Apps fixes */
+
+.global-nav .page-header {
+  margin-top: 64px;
+}
+
+.lyrics-lyricsContainer-UnsyncedLyricsPage:has(
+    .lyrics-versionSelector,
+    .lyrics-lyricsContainer-LyricsLine:nth-child(4)
+  )
+  .lyrics-lyricsContainer-LyricsUnsyncedPadding {
+  height: 15vh;
+}
+
+/* Hot Fixes */
+
+.pVVteJIfAdehWU3vX7JR {
+  margin: 0 !important;
 }
