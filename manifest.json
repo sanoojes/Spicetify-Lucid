@@ -1,7 +1,7 @@
 {
   "name": "Better-Bloom",
   "description": "Spicetify theme inspired by Bloom and Microsoft Fluent Design",
-  "preview": "assets/images/base.png",
+  "preview": "assets/images/base.webp",
   "readme": "README-Marketplace.md",
   "usercss": "https://sanooj.is-a.dev/better-bloom/src/user.css",
   "schemes": "https://sanooj.is-a.dev/better-bloom/src/color.ini",

@@ -80,54 +80,54 @@ Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `d
 
 ### **Dark (default) with Global nav**
 
-![Base Dark with Global Nav](./assets/images/better-bloom-global-nav.png)
+![Base Dark with Global Nav](./assets/images/better-bloom-global-nav.webp)
 
 ### **Dark (default)**
 
-![Base Dark Preview](./assets/images/base.png)
-![Dark Preview 1](./assets/images/better-bloom-dark0.png)
-![Dark Preview 0](./assets/images/better-bloom-dark.png)
-![Dark 1 Preview 2](./assets/images/better-bloom-dark1.png)
-![Dark 2 Preview 3](./assets/images/better-bloom-dark2.png)
+![Base Dark Preview](./assets/images/base.webp)
+![Dark Preview 1](./assets/images/better-bloom-dark0.webp)
+![Dark Preview 0](./assets/images/better-bloom-dark.webp)
+![Dark 1 Preview 2](./assets/images/better-bloom-dark1.webp)
+![Dark 2 Preview 3](./assets/images/better-bloom-dark2.webp)
 
 ### **Light**
 
-![Light Preview](./assets/images/better-bloom-light.png)
-![Light Preview 1](./assets/images/better-bloom-light1.png)
+![Light Preview](./assets/images/better-bloom-light.webp)
+![Light Preview 1](./assets/images/better-bloom-light1.webp)
 
 ### **Comfy**
 
-![Comfy Preview](./assets/images/better-bloom-comfy.png)
-![Comfy Preview 1](./assets/images/better-bloom-comfy1.png)
+![Comfy Preview](./assets/images/better-bloom-comfy.webp)
+![Comfy Preview 1](./assets/images/better-bloom-comfy1.webp)
 
 ### **Darkgreen**
 
-![DarkGreen Preview](./assets/images/better-bloom-darkgreen.png)
-![DarkGreen Preview 1](./assets/images/better-bloom-darkgreen1.png)
+![DarkGreen Preview](./assets/images/better-bloom-darkgreen.webp)
+![DarkGreen Preview 1](./assets/images/better-bloom-darkgreen1.webp)
 
 ### **Violet**
 
-![Violet Preview](./assets/images/better-bloom-violet.png)
-![Violet Preview 1](./assets/images/better-bloom-violet1.png)
+![Violet Preview](./assets/images/better-bloom-violet.webp)
+![Violet Preview 1](./assets/images/better-bloom-violet1.webp)
 
 ### **Dark-Fluent**
 
-![Dark-Fluent Preview](./assets/images/better-bloom-dark-fluent.png)
-![Dark-Fluent Preview 1](./assets/images/better-bloom-dark-fluent1.png)
+![Dark-Fluent Preview](./assets/images/better-bloom-dark-fluent.webp)
+![Dark-Fluent Preview 1](./assets/images/better-bloom-dark-fluent1.webp)
 
 ### **Dark-Bloom**
 
-![Dark-Bloom Preview](./assets/images/better-bloom-dark-bloom.png)
-![Dark-Bloom Preview 1](./assets/images/better-bloom-dark-bloom1.png)
+![Dark-Bloom Preview](./assets/images/better-bloom-dark-bloom.webp)
+![Dark-Bloom Preview 1](./assets/images/better-bloom-dark-bloom1.webp)
 
 ### **Midnight-Catppuccin**
 
-![midnight-catppuccin Preview](./assets/images/better-bloom-midnight-catppuccin.png)
-![midnight-catppuccin  Preview 1](./assets/images/better-bloom-midnight-catppuccin1.png)
+![midnight-catppuccin Preview](./assets/images/better-bloom-midnight-catppuccin.webp)
+![midnight-catppuccin  Preview 1](./assets/images/better-bloom-midnight-catppuccin1.webp)
 
 ### Better Bloom Settings
 
-![Settings Preview](./assets/images/settings.png)
+![Settings Preview](./assets/images/settings.webp)
 
 ## License
 
