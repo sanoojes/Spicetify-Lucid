@@ -1792,6 +1792,7 @@ body:not(.Fullscreen)::after {
 
 .lyrics-config-button-container,
 #catjam-webm {
+  opacity: 1;
   bottom: var(--now-playing-bar-height) !important;
 }
 
