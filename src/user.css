@@ -605,12 +605,13 @@ button[aria-label="What's New"] > path {
   justify-content: center;
 }
 
-.marketplace-header {
+.global-nav .main-topBar-container {
+  backdrop-filter: none;
   position: relative;
 }
 
-.marketplace-card-type-heading {
-  margin-top: 5rem;
+.marketplace-header {
+  position: relative;
 }
 
 .rX_OmqCngvY5ZCoYBZgb,
@@ -2021,10 +2022,4 @@ body:not(.Fullscreen)::after {
 /* Art Canvas */
 video {
   opacity: 0.75;
-}
-
-/* Stats */
-
-.page-header {
-  margin-top: 5rem;
 }
