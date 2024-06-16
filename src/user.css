@@ -595,7 +595,6 @@ button[aria-label="What's New"] > path {
 .rX_OmqCngvY5ZCoYBZgb:after,
 .rX_OmqCngvY5ZCoYBZgb::before,
 .search-searchCategory-SearchCategory {
-  --top-bar-opacity: 0 !important;
   backdrop-filter: blur(var(--blur-radius));
   background-color: rgba(var(--spice-rgb-card), 0.5) !important;
   top: 0;
@@ -604,21 +603,14 @@ button[aria-label="What's New"] > path {
 .main-topBar-container {
   backdrop-filter: blur(var(--blur-radius));
   justify-content: center;
-  opacity: var(--top-bar-opacity);
-}
-
-.main-topBar-container:has(.marketplace-tabBar) {
-  background-color: rgba(var(--spice-rgb-main), 0.5);
-  position: relative;
-  opacity: 1;
 }
 
 .marketplace-header {
-  top: 0;
-  backdrop-filter: blur(var(--blur-radius));
+  position: relative;
 }
-.marketplace-header:has(.Root__globalNav) {
-  margin-top: 64px;
+
+.marketplace-card-type-heading {
+  margin-top: 5rem;
 }
 
 .rX_OmqCngvY5ZCoYBZgb,
@@ -773,7 +765,6 @@ button[aria-label="What's New"] > path {
 .main-topBar-topbarContentWrapper {
   display: none;
   height: 2rem;
-  max-width: fit-content;
   justify-content: center;
   align-items: center;
   .main-topBar-topbarContent {
@@ -1001,10 +992,6 @@ div[data-encore-id="popover"] {
 .marketplace-header {
   background-color: transparent;
   padding: 0.5rem 0;
-}
-
-.marketplace-tabBar-nav {
-  width: inherit;
 }
 
 .main-buddyFeed-container,
