@@ -1137,6 +1137,9 @@ button.HD9s7U5E1RLSWKpXmrqx {
   -webkit-app-region: drag !important;
 }
 
+.global-nav .main-topBar-container > *,
+.global-nav .main-topBar-topbarContent,
+.global-nav .main-topBar-topbarContentWrapper,
 .main-topBar-topbarContentRight button,
 .main-topBar-topbarContentRight *,
 .main-topBar-historyButtons * {
