@@ -164,11 +164,7 @@ let settings = [];
         `;
         }
 
-        if (
-          isWindows &&
-          Spicetify.Config.color_scheme !== "light" &&
-          !document.querySelector(".Fullscreen")
-        ) {
+        if (isWindows && Spicetify.Config.color_scheme !== "light") {
           document.documentElement.style.setProperty(
             "--control-width",
             `${final_width}px`
