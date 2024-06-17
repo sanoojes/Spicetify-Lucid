@@ -1507,13 +1507,6 @@ body:has(.BeautifulLyricsPage) {
   color: rgba(var(--spice-rgb-subtext), 0.75);
 }
 
-[data-context-menu-open="true"] a:only-child,
-a:focus,
-a:hover,
-a[data-context-menu-open="true"] {
-  text-decoration: none;
-}
-
 .main-embedWidgetGenerator-container,
 .main-trackCreditsModal-container {
   max-height: 90vh;
@@ -1685,12 +1678,6 @@ button[aria-label="Browse"] svg {
   z-index: 10;
   top: -1px;
   left: 0;
-}
-
-.main-trackInfo-contentWrapper > *,
-*:hover,
-*:focus {
-  text-decoration: none !important;
 }
 
 /* Beautiful Lyrics */
