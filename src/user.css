@@ -621,6 +621,7 @@ button[aria-label="What's New"] > path {
 }
 
 .main-topBar-container {
+  pointer-events: none !important;
   justify-content: center;
 }
 
@@ -1139,7 +1140,7 @@ button.HD9s7U5E1RLSWKpXmrqx {
 .main-topBar-topbarContentRight button,
 .main-topBar-topbarContentRight *,
 .main-topBar-historyButtons * {
-  -webkit-app-region: no-drag;
+  -webkit-app-region: no-drag !important;
 }
 
 .main-globalNav-historyButtons button {
