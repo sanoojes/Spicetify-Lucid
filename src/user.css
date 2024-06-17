@@ -383,6 +383,14 @@ section[data-testid="album-page"] .main-actionBar-ActionBar {
   border-radius: 8px;
 }
 
+.Dropdown-menu {
+  min-width: max-content;
+}
+
+.Dropdown-option {
+  text-wrap: nowrap;
+}
+
 .bloom-dropdown,
 .main-dropDown-dropDown {
   background-color: rgba(var(--spice-rgb-main), 0.9);
