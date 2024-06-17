@@ -1752,7 +1752,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 /* Transparent Windows Controls */
-body:not(.Fullscreen)::after {
+body::after {
   content: "";
   position: absolute;
   right: 0;
@@ -1760,6 +1760,10 @@ body:not(.Fullscreen)::after {
   backdrop-filter: brightness(2.12);
   width: var(--control-width, 0);
   height: var(--control-height, 0);
+}
+
+body:has(.Fullscreen)::after {
+  width: 0 !important;
 }
 
 /* Popup searchbar */
