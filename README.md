@@ -27,8 +27,8 @@ iex "& { $(iwr -useb 'https://sanoojes.github.io/better-bloom/install/Better-Blo
 
 #### **Linux/macOS (Bash)**
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/install.bash | bash
+```sh
+curl -fsSL https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/install.sh | sh
 ```
 
 ### **Using Spicetify Marketplace (simpler installation):**
