@@ -11,6 +11,8 @@
   --gap-lg: 0.75rem;
   --gap-xl: 1rem;
 
+  --grid-gap: var(--gap-md);
+
   /* Margin */
   --margin-sm: 0.25rem;
   --margin-md: 0.5rem;
@@ -41,11 +43,22 @@
   /* Background Color */
   --main-color: rgba(var(--spice-rgb-main), 0.5);
   --card-color: rgba(var(--spice-rgb-card), 0.5);
+  --card-hover-color: rgba(var(--spice-rgb-card), 0.5);
   --sidebar-color: rgba(var(--spice-rgb-sidebar), 0.5);
   --button-color: rgba(var(--spice-rgb-button), 0.5);
   --button-active-color: rgba(var(--spice-rgb-button-active), 0.5);
   --accent-color: var(--spice-rgb-accent);
-  --normal-button-color: rgba(var(--spice-rgb-card), 0.25);
+  --normal-button-color: rgba(var(--spice-rgb-card), 0.5);
+
+  /* Top Bar */
+  --top-bar-bg-color: rgba(var(--spice-rgb-card), 0.25);
+  --top-bar-bg-blur: var(--blur-xl);
+  --top-bar-saturation: 150%;
+
+  /* Filter Chips */
+  --filter-chips-bg-color: rgba(var(--spice-rgb-card), 0.25);
+  --filter-chips-bg-blur: var(--blur-xl);
+  --filter-chips-bg-saturation: var(--top-bar-saturation);
 
   /* Background Blur */
   --animatedbg-blur: 2rem;
@@ -73,7 +86,7 @@
   --now-playing-bar-height: 5.5rem;
   --now-playing-bar-opacity: 1;
   --now-playing-bar-bg-opacity: 0.5;
-  --padding-now-playing-bar: 0.25rem;
+  --now-playing-bar-padding: 0.25rem;
   --border-radius-now-playing-bar: 0.5rem;
   --margin-bottom-now-playing-bar: 0.5rem;
   --now-playing-bar-color: rgba(
@@ -189,6 +202,15 @@ textarea .encore-text,
   font-weight: var(--bold-font-weight);
 }
 
+.Type__TypeElement-sc-goli-97j-0,
+.TypeElement-type-mesto {
+  color: var(--spice-subtext);
+}
+
+.main-entityHeader-topbarTitle {
+  margin-left: var(--margin-md);
+}
+
 /* Scrollbar */
 .os-theme-spotify.os-scrollbar {
   --os-size: 4px;
@@ -200,6 +222,7 @@ textarea .encore-text,
 
 /* Button styles */
 button,
+.ap8U6ZVS8BqMxUdinBis /* ADD: card close button */,
 .main-avatar-avatar,
 .main-playPauseButton-button,
 .main-skipForwardButton-button,
@@ -222,11 +245,26 @@ button,
 .ChipInnerComponent-lg-selected,
 .Button-small-buttonPrimary-useBrowserDefaultFocusStyle,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle:hover {
-  border-radius: var(--button-border-radius);
+  border-radius: var(--button-border-radius) !important;
 }
 
-.main-actionButtons button,
-.main-globalNav-icon {
+.main-userWidget-box,
+.main-avatar-avatar,
+.main-globalNav-icon,
+.main-globalNav-link-icon,
+.Root__globalNav .main-globalNav-link-icon {
+  background-color: var(--normal-button-color) !important;
+  aspect-ratio: 1/1;
+}
+
+.main-userWidget-box:focus,
+.main-userWidget-box:hover,
+.main-userWidget-box[data-context-menu-open="true"] {
+  background-color: var(--card-hover-color);
+}
+
+.global_nav .main-actionButtons button,
+.global_nav .main-globalNav-icon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -238,10 +276,9 @@ button,
   border-radius: var(--button-border-radius);
   justify-content: center;
   -ms-flex-negative: 0;
-  background-color: var(--background-elevated-base);
+  background-color: var(--normal-button-color);
   color: var(--text-subdued);
   flex-shrink: 0;
-  aspect-ratio: 1/1;
   min-width: var(--encore-control-size-base, 48px);
   min-block-size: var(--encore-control-size-base, 48px);
   padding-block-start: var(--encore-spacing-tighter, 12px);
@@ -258,10 +295,21 @@ button,
   }
 }
 
-/* Input */
+/* Input & Search Bar */
 input,
 .main-globalNav-searchInputContainer {
   border-radius: var(--card-border-radius) !important;
+  background-color: rgba(var(--spice-rgb-card), 0.25) !important;
+  box-shadow: none !important;
+}
+
+.main-globalNav-searchInputContainer input:hover {
+  background-color: rgba(var(--spice-rgb-card), 0.5) !important;
+}
+
+.main-globalNav-searchInputContainer input:focus {
+  background-color: rgba(var(--spice-rgb-card), 0.75) !important;
+  border-bottom: 2px solid rgb(var(--accent-color));
 }
 
 /* Border */
@@ -307,10 +355,27 @@ input,
   background-color: var(--main-color);
 }
 
-/* Transperent Background */
+/* Top Bar Styles */
+.main-home-filterChipsContainer,
+.main-topBar-background {
+  border-bottom: var(--default-border);
+}
 
+.main-trackList-trackListHeader,
+.artist-artistDiscography-topBar,
+.main-topBar-background,
 .main-home-homeHeader {
   background-color: transparent !important;
+  -webkit-backdrop-filter: blur(var(--top-bar-bg-blur))
+    saturate(var(--top-bar-saturation));
+  backdrop-filter: blur(var(--top-bar-bg-blur))
+    saturate(var(--top-bar-saturation));
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.main-topBar-overlay {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 /* Home Header */
@@ -320,6 +385,36 @@ input,
   mask-image: linear-gradient(var(--main-color) 0, transparent 100%);
 }
 
+/* Filter chips */
+.main-home-filterChipsSection {
+  background-color: var(--filter-chips-bg-color) !important;
+  -webkit-backdrop-filter: blur(var(--filter-chips-bg-blur))
+    saturate(var(--filter-chips-bg-saturation));
+  backdrop-filter: blur(var(--filter-chips-bg-blur))
+    saturate(var(--filter-chips-bg-saturation));
+}
+
+/* Image section (Playlist and Artist) */
+.main-actionBarBackground-background,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor {
+  background-color: rgba(var(--spice-rgb-card), 0.25) !important;
+  background-image: var(--background-noise);
+  border-bottom: var(--default-border);
+}
+
+.main-actionBarBackground-background {
+  background-image: var(--background-noise);
+  -webkit-mask-image: linear-gradient(var(--main-color) 0, transparent 100%);
+  mask-image: linear-gradient(var(--main-color) 0, transparent 100%);
+}
+
+.main-entityHeader-container.main-entityHeader-nonWrapped {
+  height: min(40vh, var(--fluid-height));
+  max-height: 400px;
+  min-height: 40vh;
+}
+
 /* Now playing bar */
 .Root__now-playing-bar {
   --gap-x2: calc((var(--panel-gap) * 2));
@@ -327,10 +422,12 @@ input,
   height: fit-content;
   width: calc(100% - var(--gap-x2));
   bottom: var(--gap-x2);
-  left: var(--gap-lg);
-  right: var(--gap-lg);
+  left: var(--gap-md);
+  right: var(--gap-md);
 }
+
 .main-nowPlayingBar-container {
+  padding: var(--now-playing-bar-padding);
   background-color: var(--now-playing-bar-color);
   border-top: var(--default-border);
   border-bottom: var(--default-border);
@@ -339,7 +436,6 @@ input,
     blur(var(--now-playing-bar-blur)) saturate(var(--now-playing-saturation))
     brightness(var(--now-playing-brightness))
     contrast(var(--now-playing-contrast));
-  border-radius: var(--border-radius-now-playing-bar);
   backdrop-filter: opacity(var(--now-playing-bar-opacity))
     blur(var(--now-playing-bar-blur)) saturate(var(--now-playing-saturation))
     brightness(var(--now-playing-brightness))
@@ -354,8 +450,8 @@ input,
 .main-connectBar-connectBar {
   padding: var(--padding-md);
   position: absolute;
-  bottom: calc(var(--now-playing-bar-height) + var(--gap-md));
-  right: var(--now-playing-bar-height);
+  bottom: calc(var(--now-playing-bar-height) + var(--gap-xl));
+  right: var(--gap-sm);
 }
 .main-connectBar-connectBar.main-connectBar-connected {
   background-color: rgba(var(--accent-color), 1);
@@ -363,6 +459,8 @@ input,
 }
 
 /* Scroll Node */
+.main-yourLibraryX-libraryRootlist,
+.nw2W4ZMdICuBo08Tzxg9 /* ADD: Right sidebar scroll node */,
 .main-view-container__scroll-node-child {
   padding-bottom: calc(var(--now-playing-bar-height) + var(--gap-lg));
 }
@@ -387,4 +485,108 @@ input,
   background-color: var(--card-color);
   border: var(--default-border);
   border-radius: var(--card-border-radius);
+}
+
+/* Main view cards */
+.N_8iI7NKHP0iG2jp3g0R /* ADD: Browse bg color */,
+.playlist-playlist-playlistContent {
+  background-color: transparent;
+}
+
+.artist-artistDiscography-headerContainer {
+  border: var(--default-border);
+  border-radius: var(--card-border-radius);
+}
+
+.global-nav
+  .artist-artistDiscography-headerContainer.artist-artistDiscography-firstAlbum {
+  margin-top: 64px;
+  padding: 64px;
+}
+
+.artist-artistDiscography-tracklist {
+  border: var(--default-border);
+}
+
+/* Cards */
+.main-view-container,
+.EmeHQXR87mUskYK6xEde /* ADD: Artist main card Selector */,
+.Vn9yz8P5MjIvDT8c0U6w /* ADD: Search card selector */,
+.CfruGiDGW_FH4l65GMpb /* ADD: Card elements selector */,
+.cover-art,
+.main-card-card,
+.BoxComponent-group-card-naked-isInteractive-draggable,
+.main-nowPlayingView-aboutArtistV2Button,
+.artist-artistDiscography-headerContainer,
+.main-nowPlayingView-section {
+  background-color: var(--card-color);
+}
+
+.BoxComponent-group-card-naked-isInteractive-draggable:hover,
+.BoxComponent-group-card-naked-isInteractive-draggable:hover::after,
+.BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover,
+.BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover::after {
+  background-color: var(--card-hover-color);
+}
+
+/* Search Section */
+.CqCtb3wr4SK8AiZwxeH0 /* ADD: Search card <a> selector */ {
+  padding: 0 !important;
+}
+.Vn9yz8P5MjIvDT8c0U6w /* ADD: Search card selector */ {
+  background-color: rgba(var(--spice-rgb-card), 0.25) !important;
+}
+.Vn9yz8P5MjIvDT8c0U6w:hover /* ADD: Search card selector */ {
+  background-color: rgba(var(--spice-rgb-card), 0.5) !important;
+}
+
+/* Progress Bar */
+@property --progress-bar-transform {
+  inherits: true;
+  initial-value: 0%;
+  syntax: "<percentage>";
+}
+
+.progress-bar {
+  transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    --progress-bar-transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  --bg-color: rgba(var(--spice-rgb-text), 0.25);
+  --fg-color: rgba(var(--spice-rgb-accent), 0.75);
+  --is-active-fg-color: rgba(var(--spice-rgb-accent), 1);
+}
+
+.progress-bar--isDragging {
+  transition-duration: 150ms;
+}
+
+.progress-bar__slider {
+  background-color: rgba(var(--spice-rgb-accent), 1);
+  transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.progress-bar__slider:hover {
+  box-shadow: 0 0 0 0.25rem rgba(var(--spice-rgb-card), 0.5);
+}
+
+.progress-bar__slider:active {
+  box-shadow: 0 0 0 0.5rem rgba(var(--spice-rgb-card), 0.5);
+}
+
+.progress-bar__slider:hover,
+.progress-bar__slider:active {
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Icons */
+.main-playPauseButton-button {
+  svg {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+/* Tag container */
+.main-tag-container {
+  background-color: rgba(var(--accent-color), 1);
 }
