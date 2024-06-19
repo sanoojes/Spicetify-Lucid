@@ -132,3 +132,10 @@ Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `d
 ## License
 
 [MIT License](LICENSE)
+
+## TODO
+
+[] add extentions doc
+[] add new screenshots
+[] implement the whole css and js
+TODO: add icons, js, dynamic bg , settings , multilingual support etc..

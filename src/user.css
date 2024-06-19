@@ -1,1 +1,390 @@
-/* Rewriting code from scratch */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  /* Commonly Used Values */
+  --border-thickness: 1px;
+  /* Spacing & Sizing */
+
+  /* Gap */
+  --gap-sm: 0.25rem;
+  --gap-md: 0.5rem;
+  --gap-lg: 0.75rem;
+  --gap-xl: 1rem;
+
+  /* Margin */
+  --margin-sm: 0.25rem;
+  --margin-md: 0.5rem;
+  --margin-lg: 0.75rem;
+  --margin-xl: 1rem;
+
+  /* Padding */
+  --padding-sm: 0.25rem;
+  --padding-md: 0.5rem;
+  --padding-lg: 0.75rem;
+  --padding-xl: 1rem;
+
+  /* Blur */
+  --blur-sm: 0.25rem;
+  --blur-md: 0.5rem;
+  --blur-lg: 0.75rem;
+  --blur-xl: 1rem;
+  --blur-2xl: 1.5rem;
+  --blur-3xl: 2rem;
+
+  /* Scale / Zoom */
+  --scale-up: 1.04;
+  --scale-down: 0.96;
+
+  /* Opacity */
+  --generic-modal-bg-opacity: 0.5;
+
+  /* Background Color */
+  --main-color: rgba(var(--spice-rgb-main), 0.5);
+  --card-color: rgba(var(--spice-rgb-card), 0.5);
+  --sidebar-color: rgba(var(--spice-rgb-sidebar), 0.5);
+  --button-color: rgba(var(--spice-rgb-button), 0.5);
+  --button-active-color: rgba(var(--spice-rgb-button-active), 0.5);
+  --accent-color: var(--spice-rgb-accent);
+  --normal-button-color: rgba(var(--spice-rgb-card), 0.25);
+
+  /* Background Blur */
+  --animatedbg-blur: 2rem;
+  --non-animatedbg-blur: 2rem;
+
+  /* Scrollbar */
+  --scrollbar-display: block;
+  --scrollbar-width: 0.25rem;
+  --scrollbar-color: rgba(var(--spice-rgb-text), 0.75) !important;
+
+  /* Border */
+  --button-border-radius: 0.5rem;
+  --icon-border-radius: 0.5rem;
+  --card-border-radius: 0.5rem;
+  --border-radius-rounded: 9999px;
+  --spice-light-border: rgba(var(--spice-rgb-text), 0.125);
+  --default-border: var(--border-thickness) solid
+    rgba(var(--spice-rgb-text), 0.125);
+
+  /* Now playing bar */
+  --now-playing-bar-blur: var(--blur-xl);
+  --now-playing-contrast: 100%;
+  --now-playing-saturation: 100%;
+  --now-playing-brightness: 100%;
+  --now-playing-bar-height: 5.5rem;
+  --now-playing-bar-opacity: 1;
+  --now-playing-bar-bg-opacity: 0.5;
+  --padding-now-playing-bar: 0.25rem;
+  --border-radius-now-playing-bar: 0.5rem;
+  --margin-bottom-now-playing-bar: 0.5rem;
+  --now-playing-bar-color: rgba(
+    var(--spice-rgb-card),
+    var(--now-playing-bar-bg-opacity)
+  );
+
+  /* Fonts */
+  --original-fonts: CircularSp, CircularSp-Arab, CircularSp-Hebr,
+    CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva,
+    var(--fallback-fonts, sans-serif);
+
+  --font-to-use: "Poppins", var(--original-fonts);
+
+  --normal-font-weight: 500;
+  --bold-font-weight: 700;
+  --extra-bold-font-weight: 800;
+
+  /* Background Overlay */
+  --bg-blur: 1.5rem;
+  --bg-contrast: 80%;
+  --bg-brightness: 50%;
+  --bg-saturation: 90%;
+
+  --text-base: var(--spice-sidebar);
+
+  /* Animated Background */
+  --animatedbg-time: 45s;
+  --animatedbg-blur: 64px;
+  --animatedbg-saturation: 150%;
+  --animatedbg-brightness: 55%;
+  --animatedbg-contrast: 115%;
+
+  /* Beautiful Lyrics */
+  --beautiful-lyrics-bg-opacity: 50%;
+  --beautiful-lyrics-bg-saturation: 250%;
+  --beautiful-lyrics-bg-brightness: 65%;
+  --beautiful-lyrics-bg-contrast: 100%;
+
+  /* Spotify Overrides */
+  --background-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 700 700' width='700' height='700' opacity='1'%3E%3Cdefs%3E%3Cfilter id='nnnoise-filter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.184' numOctaves='4' seed='15' stitchTiles='stitch' x='0%25' y='0%25' width='100%25' height='100%25' result='turbulence'%3E%3C/feTurbulence%3E%3CfeSpecularLighting surfaceScale='13' specularConstant='0.3' specularExponent='20' lighting-color='%23ffffff' x='0%25' y='0%25' width='100%25' height='100%25' in='turbulence' result='specularLighting'%3E%3CfeDistantLight azimuth='3' elevation='133'%3E%3C/feDistantLight%3E%3C/feSpecularLighting%3E%3CfeColorMatrix type='saturate' values='0' x='0%25' y='0%25' width='100%25' height='100%25' in='specularLighting' result='colormatrix'%3E%3C/feColorMatrix%3E%3C/filter%3E%3C/defs%3E%3Crect width='700' height='700' fill='%2300000000'%3E%3C/rect%3E%3Crect width='700' height='700' fill='%23ffffff' filter='url(%23nnnoise-filter)'%3E%3C/rect%3E%3C/svg%3E");
+
+  --panel-gap: var(--gap-lg);
+
+  --background-elevated-base: var(--normal-button-color);
+}
+
+/* Font */
+body,
+button,
+input,
+select,
+textarea .encore-text,
+.main-dropDown-dropDown,
+.TypeElement-type-ballad-textBase,
+.TypeElement-type-mesto-textSubdued,
+.TypeElement-type-ballad-textBrightAccent,
+.encore-text-body-small,
+.encore-text-body-medium,
+.encore-text-body-large,
+.encore-text-title-medium,
+.encore-text-title-small,
+.circular-sp-vietnamese,
+.circular-sp-vietnamese button,
+.circular-sp-vietnamese input,
+.circular-sp-vietnamese select,
+.circular-sp-vietnamese textarea,
+.main-nowPlayingView-sectionHeaderSpacing .main-nowPlayingView-lyricsContent {
+  font-family: var(--font-to-use) !important;
+  font-weight: var(--normal-font-weight);
+  letter-spacing: 0.015rem;
+}
+
+.encore-text-body-large-bold,
+.encore-text-body-medium-bold,
+.encore-text-body-small-bold {
+  font-family: var(--font-to-use) !important;
+  font-family: var(--bold-font-weight);
+}
+
+.encore-text-headline-large,
+.encore-text-title-medium,
+.encore-text-title-small,
+.main-trackInfo-name {
+  font-weight: var(--extra-bold-font-weight);
+  letter-spacing: -0.025rem;
+}
+
+.TypeElement-type-ballad-textBase,
+.LineClamp {
+  font-weight: 500;
+}
+
+.Root__now-playing-bar .encore-text-body-small {
+  letter-spacing: 0.025rem;
+}
+
+.encore-text-marginal,
+.encore-text-body-small,
+.encore-text-body-medium,
+.encore-text-body-large {
+  font-weight: var(--normal-font-weight);
+  letter-spacing: 0.015rem;
+}
+
+.TypeElement-type-ballad-textBase-useBrowserDefaultFocusStyle {
+  font-weight: var(--normal-font-weight);
+  font-family: var(--encore-title-font-stack), var(--fallback-fonts, sans-serif);
+}
+
+.TypeElement-type-ballad,
+.encore-text-body-small-bold {
+  font-weight: var(--bold-font-weight);
+}
+
+/* Scrollbar */
+.os-theme-spotify.os-scrollbar {
+  --os-size: 4px;
+  --os-handle-bg: rgba(var(--spice-rgb-subtext), 0.3);
+  --os-handle-bg-active: rgba(var(--spice-rgb-subtext), 0.3);
+  --os-handle-bg-hover: rgba(var(--spice-rgb-subtext), 0.7);
+  --os-handle-border-radius: 1rem;
+}
+
+/* Button styles */
+button,
+.main-avatar-avatar,
+.main-playPauseButton-button,
+.main-skipForwardButton-button,
+.main-skipBackButton-button,
+.ButtonInner-small-iconOnly,
+.ButtonInner-medium-iconOnly,
+.ButtonInner-large-iconOnly,
+.Button-textBrightAccent-large-large-buttonTertiary-iconOnly-condensed-useBrowserDefaultFocusStyle,
+.Button-small-buttonPrimary-useBrowserDefaultFocusStyle-data-is-icon-only,
+.Button-small-small-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle,
+.Button-small-small-buttonTertiary-condensedAll-useBrowserDefaultFocusStyle,
+.Root__globalNav .main-globalNav-link-icon,
+.Button-small-buttonSecondary-useBrowserDefaultFocusStyle,
+.LegacyChipComponent-checkbox-chip-sm-useBrowserDefaultFocusStyle,
+.ChipInnerComponent-sm,
+.ChipInnerComponent-sm-selected,
+.ChipInnerComponent-md,
+.ChipInnerComponent-md-selected,
+.ChipInnerComponent-lg,
+.ChipInnerComponent-lg-selected,
+.Button-small-buttonPrimary-useBrowserDefaultFocusStyle,
+.Button-small-buttonSecondary-useBrowserDefaultFocusStyle:hover {
+  border-radius: var(--button-border-radius);
+}
+
+.main-actionButtons button,
+.main-globalNav-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  border-radius: var(--button-border-radius);
+  justify-content: center;
+  -ms-flex-negative: 0;
+  background-color: var(--background-elevated-base);
+  color: var(--text-subdued);
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  min-width: var(--encore-control-size-base, 48px);
+  min-block-size: var(--encore-control-size-base, 48px);
+  padding-block-start: var(--encore-spacing-tighter, 12px);
+  padding-block-end: var(--encore-spacing-tighter, 12px);
+  padding-inline-start: var(--encore-spacing-tighter, 12px);
+  padding-inline-end: var(--encore-spacing-tighter, 12px);
+}
+
+.Button-medium-medium-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle:hover,
+.Button-medium-medium-buttonTertiary-iconOnly-condensedAll-useBrowserDefaultFocusStyle:hover {
+  transform: scale(var(--scale-down)) !important;
+  span {
+    scale: var(--scale-up) !important;
+  }
+}
+
+/* Input */
+input,
+.main-globalNav-searchInputContainer {
+  border-radius: var(--card-border-radius) !important;
+}
+
+/* Border */
+.Vn9yz8P5MjIvDT8c0U6w /* ADD: Search card selector */,
+.CfruGiDGW_FH4l65GMpb /* ADD: Card elements selector */,
+.Button-small-buttonSecondary-useBrowserDefaultFocusStyle:hover,.Button-small-buttonSecondary-useBrowserDefaultFocusStyle,
+.main-globalNav-searchInputContainer,
+.Root__right-sidebar,
+.Root__main-view,
+.Root__nav-bar,
+.main-card-cardContainer,
+.main-nowPlayingView-section ,
+.main-globalNav-icon,
+.Root__globalNav .main-globalNav-link-icon {
+  border: var(--default-border);
+}
+
+/* Border Radius */
+.Root__right-sidebar,
+.Root__main-view,
+.Root__now-playing-bar,
+.Root__nav-bar,
+.main-userWidget-box,
+.main-avatar-image {
+  border-radius: var(--card-border-radius);
+}
+
+/* Background Color */
+.Root__right-sidebar,
+.Root__main-view,
+.Root__nav-bar {
+  background-color: var(--main-color);
+}
+
+#Desktop_PanelContainer_Id,
+.NowPlayingView,
+.main-yourLibraryX-entryPoints {
+  background-color: var(--color);
+}
+
+/* Main Bg */
+.Root__top-container {
+  background-color: var(--main-color);
+}
+
+/* Transperent Background */
+
+.main-home-homeHeader {
+  background-color: transparent !important;
+}
+
+/* Home Header */
+.main-home-homeHeader {
+  background-image: var(--background-noise);
+  -webkit-mask-image: linear-gradient(var(--main-color) 0, transparent 100%);
+  mask-image: linear-gradient(var(--main-color) 0, transparent 100%);
+}
+
+/* Now playing bar */
+.Root__now-playing-bar {
+  --gap-x2: calc((var(--panel-gap) * 2));
+  position: fixed;
+  height: fit-content;
+  width: calc(100% - var(--gap-x2));
+  bottom: var(--gap-x2);
+  left: var(--gap-lg);
+  right: var(--gap-lg);
+}
+.main-nowPlayingBar-container {
+  background-color: var(--now-playing-bar-color);
+  border-top: var(--default-border);
+  border-bottom: var(--default-border);
+  border-radius: var(--border-radius-now-playing-bar);
+  -webkit-backdrop-filter: opacity(var(--now-playing-bar-opacity))
+    blur(var(--now-playing-bar-blur)) saturate(var(--now-playing-saturation))
+    brightness(var(--now-playing-brightness))
+    contrast(var(--now-playing-contrast));
+  border-radius: var(--border-radius-now-playing-bar);
+  backdrop-filter: opacity(var(--now-playing-bar-opacity))
+    blur(var(--now-playing-bar-blur)) saturate(var(--now-playing-saturation))
+    brightness(var(--now-playing-brightness))
+    contrast(var(--now-playing-contrast));
+}
+
+.main-nowPlayingBar-nowPlayingBar {
+  height: var(--now-playing-bar-height);
+}
+
+/* Connect Bar */
+.main-connectBar-connectBar {
+  padding: var(--padding-md);
+  position: absolute;
+  bottom: calc(var(--now-playing-bar-height) + var(--gap-md));
+  right: var(--now-playing-bar-height);
+}
+.main-connectBar-connectBar.main-connectBar-connected {
+  background-color: rgba(var(--accent-color), 1);
+  color: var(--spice-text);
+}
+
+/* Scroll Node */
+.main-view-container__scroll-node-child {
+  padding-bottom: calc(var(--now-playing-bar-height) + var(--gap-lg));
+}
+
+/* Notification */
+.notistack-SnackbarContainer {
+  padding-bottom: var(--panel-gap);
+}
+
+/* Generic Modal */
+.GenericModal__overlay {
+  background-color: rgba(
+    var(--spice-rgb-card),
+    var(--generic-modal-bg-opacity)
+  );
+  -webkit-backdrop-filter: blur(var(--blur-sm));
+  backdrop-filter: blur(var(--blur-sm));
+}
+
+.uJjmxe0T11dUVeW6Biz8 /* ADD: generic modal slider bg */,
+.GenericModal {
+  background-color: var(--card-color);
+  border: var(--default-border);
+  border-radius: var(--card-border-radius);
+}

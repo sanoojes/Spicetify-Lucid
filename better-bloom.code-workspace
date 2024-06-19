@@ -8,6 +8,7 @@
     }
   ],
   "settings": {
-    "liveServer.settings.multiRootWorkspaceName": "better-bloom"
+    "liveServer.settings.multiRootWorkspaceName": "better-bloom",
+    "powershell.cwd": "better-bloom"
   }
 }

@@ -1,1 +1,1 @@
-/* Rewriting code from scratch */
+!async function(){for(;!Spicetify.React||!Spicetify.ReactDOM;)await new Promise(i=>setTimeout(i,10));var i;i=async function(){for(;null==Spicetify||!Spicetify.showNotification;)await new Promise(i=>setTimeout(i,100));Spicetify.showNotification("Hello!")},(async()=>{await i()})()}();
