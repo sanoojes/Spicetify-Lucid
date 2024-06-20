@@ -299,7 +299,6 @@ function Get-BetterBloom {
         Write-Verbose -Message 'Unpacking the better-bloom repository archive...' -Verbose
         $Parameters = @{
             Path            = $archivePath
-            $Temp = [System.IO.Path]::GetTempPath()
             DestinationPath = $Temp
             Force           = $true
         }
