@@ -1,274 +1,56 @@
-const SETTING_URL = "https://sanooj.is-a.dev/better-bloom/settings.json";
-let settings = [];
-
-(function BetterBloom() {
-  let styleSheet = document.createElement("style");
-  if (!Spicetify.Player.data || !Spicetify.Platform) {
-    setTimeout(BetterBloom, 100);
-    return;
-  }
-
-  if (!Spicetify.CosmosAsync) {
-    setTimeout(noControls, 10);
-    return;
-  }
-
-  function getRandomDegree() {
-    const randomDegree = Math.floor(Math.random() * 360);
-    document.documentElement.style.setProperty(
-      "--random-degree",
-      `${randomDegree}deg`
-    );
-  }
-  getRandomDegree();
-
-  let currentSongArtImage = Spicetify.Player.data.item.metadata.image_url;
-
-  function getFromLocalStorage(key) {
-    const value = localStorage.getItem(`${key}`);
-    return value !== null ? value : "default";
-  }
-
-  function setToLocalStorage(key, value) {
-    localStorage.setItem(`${key}`, value);
-  }
-
-  let currentBgOption = getFromLocalStorage("Bloom-Background-Option");
-
-  function setBackground() {
-    const rootBg = document.querySelector(".Root__top-container");
-
-    function removeAllBgContainers() {
-      // Funtion to Remove all background containers
-      const existingAnimatedBg = rootBg.querySelector(
-        ".Bloom-Animated-Bg-Container"
-      );
-      const existingBaseBg = rootBg.querySelector(
-        ".Bloom-NonAnimated-Bg-Container"
-      );
-      if (existingAnimatedBg) {
-        existingAnimatedBg.remove();
-      }
-      if (existingBaseBg) {
-        existingBaseBg.remove();
-      }
-    }
-    removeAllBgContainers();
-
-    if (currentBgOption === "animated") {
-      const newElement = document.createElement("div");
-      newElement.classList.add("Bloom-Animated-Bg-Container");
-
-      const divClasses = ["Front", "Back", "BackLeft", "BackRight"];
-
-      for (const className of divClasses) {
-        const div = document.createElement("div");
-        div.classList.add(className);
-
-        newElement.appendChild(div);
-      }
-      rootBg.prepend(newElement);
-    }
-
-    if (currentBgOption === "default") {
-      const newElement = document.createElement("div");
-      newElement.classList.add("Bloom-NonAnimated-Bg-Container");
-      rootBg.prepend(newElement);
-    }
-
-    if (currentBgOption === "solid") {
-      removeAllBgContainers();
-    }
-  }
-
-  function changeCurrentBgTo(option) {
-    currentBgOption = option;
-    setToLocalStorage("Bloom-Background-Option", currentBgOption);
-    setBackground();
-  }
-
-  function setWindowHeight() {
-    const isGlobalNav = document.querySelector(".Root__globalNav");
-    const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
-
-    const base_width = 135;
-    const final_width = 135;
-
-    const base_height = 48;
-    const final_height = 48;
-
-    Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
-      type: "update_titlebar",
-      height: final_height,
-    });
-
-    if (!isGlobalNav && isWindows) {
-      styleSheet.innerText = `
-          .main-topBar-container {
-            padding-inline-end: ${padding_end}rem !important;
-            padding-inline-start: ${padding_start}rem !important;
-          }
-          
-          .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
-            padding-inline: ${padding_start}rem ${padding_end}rem !important
-          }`;
-    }
-
-    if (!isGlobalNav) {
-      styleSheet.innerText += `  
-          .Root__main-view .main-topBar-container {
-            top: calc(var(--panel-gap) / 2);
-            height: calc(24px + var(--panel-gap) * 2);
-            ${
-              isWindows &&
-              `padding-inline: ${padding_start}rem ${padding_end}rem !important`
+!async function(){for(;!Spicetify.React||!Spicetify.ReactDOM;)await new Promise(t=>setTimeout(t,10));(()=>{var o=Object.defineProperty,a=Object.defineProperties,n=Object.getOwnPropertyDescriptors,i=Object.getOwnPropertySymbols,l=Object.prototype.hasOwnProperty,r=Object.prototype.propertyIsEnumerable,s=(t,e,a)=>e in t?o(t,e,{enumerable:!0,configurable:!0,writable:!0,value:a}):t[e]=a,c=(t,e)=>{for(var a in e=e||{})l.call(e,a)&&s(t,a,e[a]);if(i)for(var a of i(e))r.call(e,a)&&s(t,a,e[a]);return t},d=(t,e)=>a(t,n(e)),m=[{section:"Default Background",items:[{label:"Blur",key:"static-bg-blur",min:0,max:100,unit:"px",default:24,tooltip:"Amount of blur to apply to the Default Background."},{label:"Brightness",key:"static-bg-brightness",min:0,max:200,unit:"%",default:65,tooltip:"Brightness level of the Default Background."},{label:"Contrast",key:"static-bg-contrast",min:0,max:200,unit:"%",default:80,tooltip:"Contrast level of the Default Background."},{label:"Saturation",key:"static-bg-saturation",min:0,max:200,unit:"%",default:90,tooltip:"Saturation level of the Default Background."}]},{section:"Animated Background",items:[{label:"Blur",key:"animated-background-blur",min:32,max:256,unit:"px",default:64,tooltip:"Amount of blur to apply to the animated background."},{label:"Saturation",key:"animated-background-saturation",min:0,max:500,unit:"%",default:150,tooltip:"Saturation level of the animated background."},{label:"Contrast",key:"animated-background-contrast",min:0,max:200,unit:"%",default:115,tooltip:"Contrast level of the animated background."},{label:"Brightness",key:"animated-background-brightness",min:0,max:200,unit:"%",default:65,tooltip:"Brightness level of the animated background."},{label:"Animation Time",key:"animated-background-time",tooltip:"Time it takes for the animated background to complete one cycle. (30s-60s prefered, 0 = no animation)",min:0,max:120,unit:"s",default:45}]},{section:"Now Playing Bar",items:[{label:"Opacity",key:"now-playing-bar-opacity",min:0,max:100,unit:"%",default:100,tooltip:"Opacity of the whole backdrop."},{label:"Background Color Opacity",key:"now-playing-bar-bg-opacity",min:0,max:100,unit:"%",default:50,tooltip:"Background Color Opacity of the now playing bar."},{label:"Height",key:"now-playing-bar-height",min:0,max:500,unit:"px",default:80,tooltip:"Height of the now playing bar."},{label:"Padding in X axis",key:"now-playing-bar-padding-x",min:0,max:50,unit:"px",default:4,tooltip:"Space between the content and the edges of the now playing bar."},{label:"Padding in Y axis",key:"now-playing-bar-padding-y",min:0,max:50,unit:"px",default:4,tooltip:"Space between the content and the edges of the now playing bar."},{label:"Border Radius",key:"border-radius-now-playing-bar",min:0,max:100,unit:"px",default:8,tooltip:"Rounded corners for the now playing bar."},{label:"Blur",key:"now-playing-bar-blur",min:0,max:100,unit:"px",default:16,tooltip:"Amount of blur to apply to the now playing bar."},{label:"Saturation",key:"now-playing-saturation",min:0,max:200,unit:"%",default:100,tooltip:"Saturation level of the now playing bar."},{label:"Contrast",key:"now-playing-contrast",min:0,max:200,unit:"%",default:100,tooltip:"Contrast level of the now playing bar."},{label:"Brightness",key:"now-playing-brightness",min:0,max:200,unit:"%",default:100,tooltip:"Brightness level of the now playing bar."}]}],t=document.createElement("style");async function h(t,e=50,a=100){let o=0;for(;o<e;){var n=document.querySelector(t);if(n)return n;await new Promise(t=>setTimeout(t,a)),o++}throw new Error(`Element ${t} not found after ${e} attempts.`)}var e="",u=document.createElement("style");function f(){e=(e=Spicetify.Player.data.item.metadata.image_xlarge_url||Spicetify.Player.data.item.metadata.image_large_url||Spicetify.Player.data.item.metadata.image_url).replace("spotify:image:","https://i.scdn.co/image/");try{u.innerText="",u.innerText=`:root { --image-url: url(${e}); }`}catch(t){console.error("Error updating album art:",t)}}document.head.appendChild(u);var k=document.createElement("style");document.head.appendChild(k);async function p(t){let a=await h(".Root__top-container").catch(t=>console.error(t));function e(){var t=null==a?void 0:a.querySelector(".bloom-animated-background-container"),e=null==a?void 0:a.querySelector(".bloom-static-background-container");t&&t.remove(),e&&e.remove()}e();try{if("animated"===t){var o,n=function(){var t=Math.floor(360*Math.random());document.documentElement.style.setProperty("--random-degree",t+"deg")},i=(n(),document.createElement("div")),l=(i.classList.add("bloom-animated-background-container"),["front","back","backleft","backright"]);for(o of l){var r=document.createElement("div");r.classList.add(o),i.appendChild(r)}null!=a&&a.prepend(i)}var s;"static"===t&&((s=document.createElement("div")).classList.add("bloom-static-background-container"),null!=a)&&a.prepend(s),"solid"===t&&e()}catch(t){console.error(t)}}var w=document.createElement("div");var b=document.createElement("style");async function x(){var t,e,a,o;document.querySelector(".global-nav")||document.querySelector(".Root__globalNav")||(e=function(){var t=window.innerWidth;return window.outerWidth/t*100}(),o=.912872807,console.log(`Current zoom level: ${e}%`),t=Math.round(e**o*100)/100-2,a=4*o**(e=0<e?e/50:0),o=9*o**e,await Spicetify.CosmosAsync.post("sp://messages/v1/container/control",{type:"update_titlebar",height:t}),b.innerText=`
+            .main-topBar-container {
+                padding-inline-end: ${o}rem !important;
+                padding-inline-start: ${a}rem !important;
             }
 
-          }
-          .main-topBar-container {
-            position: fixed !important;
-            backdrop-filter: none !important;
-            left: 0;
-            width: 100%;
-            z-index: 5 !important;
-            padding-inline-start: 5rem !important;
-            opacity: 1 !important;
-            justify-content: space-between !important;
-          }
-          `;
-    } else {
-      styleSheet.innerText += `
-          .Root__globalNav {
-            ${
-              isWindows
-                ? `padding-inline: ${padding_start}rem ${padding_end}rem !important`
-                : `padding-inline-start: 5rem !important;`
+            .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
+                padding-inline: ${a}rem ${o}rem !important;
             }
-          }
-          .main-topBar-container {
-            ${!isWindows && `padding-inline-start: 5rem !important;`}
-          }
-        `;
-    }
-
-    if (isWindows && Spicetify.Config.color_scheme !== "light") {
-      document.documentElement.style.setProperty(
-        "--control-width",
-        `${final_width}px`
-      );
-      document.documentElement.style.setProperty(
-        "--control-height",
-        `${base_height}px`
-      );
-    }
-
-    document.head.appendChild(styleSheet);
-  }
-
-  window.addEventListener("resize", setWindowHeight);
-  setWindowHeight(1);
-
-  function cleanLabel(label) {
-    const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, "").trim();
-    return cleanedLabel;
-  }
-
-  const { Locale } = Spicetify;
-  if (!Locale) return;
-  let playlistPlayLabel = Locale.get("playlist.a11y.play");
-  playlistPlayLabel = cleanLabel(playlistPlayLabel);
-  let playlistPauseLabel = Locale.get("playlist.a11y.pause");
-  playlistPauseLabel = cleanLabel(playlistPauseLabel);
-
-  const playLabel = Locale.get("play");
-  const pauseLabel = Locale.get("pause");
-
-  const browseLabel = Locale.get("browse");
-
-  const addToLikedLabel = Locale.get(
-    "web-player.aligned-curation.tooltips.add-to-liked-songs"
-  );
-  const addToPlaylistLabel = Locale.get(
-    "web-player.aligned-curation.tooltips.add-to-playlist"
-  );
-
-  const skipForwardLabel = Locale.get("playback-control.skip-forward");
-  const skipBackLabel = Locale.get("playback-control.skip-back");
-
-  const whatsNewLabel = Locale.get("web-player.whats-new-feed.button-label");
-
-  const friendsActivityLabel = Locale.get("buddy-feed.friend-activity");
-  const tracklistPlayLabel = Locale.get("tracklist.a11y.play");
-
-  const homeBtnLabelOne = Locale.get("view.web-player-home");
-
-  let tracklistPlayLabelOne;
-  let tracklistPlayLabelTwo;
-  if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
-    [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-      tracklistPlayLabel.split("{1}");
-  } else {
-    [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-      tracklistPlayLabel.split("{0}");
-  }
-  tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
-  tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
-
-  const ButtonStyles = document.createElement("style");
-  ButtonStyles.innerHTML = `
-  .main-playButton-button[aria-label*="${playLabel}"],
-.main-playButton-PlayButton > button[aria-label*="${playLabel}"],
-.main-playPauseButton-button[aria-label="${playLabel}"],
-.main-playPauseButton-button[aria-label="${Locale.get(
-    "playback-control.play"
-  )}"],
-.main-trackList-rowPlayPauseButton[aria-label*="${playLabel}"],
-.main-trackList-rowImagePlayButton[aria-label*="${tracklistPlayLabelOne}"][aria-label*="${tracklistPlayLabelTwo}"],
-.main-playButton-PlayButton > button[aria-label*="${playlistPlayLabel}"] {
+        `),"windows"===Spicetify.Platform.PlatformData.os_name&&"light"!==Spicetify.Config.color_scheme&&(w.classList.add("bloom-transperent-window-controls"),w.style.setProperty("--control-height","64px"),w.style.setProperty("--control-width","135px"))}document.head.appendChild(b);var g,y=document.createElement("div");function v(t,e){document.body.style.setProperty("--"+t,e)}function B(){var e=localStorage.getItem("settings");if(e)try{let t=JSON.parse(e);return m.map(e=>{let a=t.find(t=>t.section===e.section);return d(c({},e),{items:e.items.map(e=>{var t=a?a.items.find(t=>t.key===e.key):void 0;return d(c({},e),{value:t?t.value:e.default})})})})}catch(t){console.error("Error loading settings:",t)}return JSON.parse(JSON.stringify(m))}y.className="bloom-settings-container";{B().forEach(t=>{let o=document.createElement("div");o.className="bloom-settings-card";var e=document.createElement("h2");e.classList.add("settings-section-heading","encore-text-title-small","encore-internal-color-text-base"),e.textContent=t.section,o.appendChild(e),t.items.forEach(i=>{var t=document.createElement("div"),e=(t.className="bloom-settings-input-card",document.createElement("label")),a=(e.classList.add("settings-section-label","encore-text-title-small","encore-internal-color-text-subdued"),e.innerText=i.label,e.htmlFor=i.key+"-input",document.createElement("p"));a.classList.add("encore-text-body-small","encore-internal-color-text-subdued"),a.innerText=i.tooltip||"";let l=document.createElement("input"),r=(l.className="better-bloom-slider",l.type="range",l.id=i.key+"-input",l.min=String(i.min),l.max=String(i.max),l.value=String(void 0!==i.value?i.value:i.default),document.createElement("span"));r.id=i.key+"-value",r.textContent=""+l.value+i.unit,r.className="better-bloom-slider-value",v(i.key,""+l.value+i.unit),l.addEventListener("input",()=>{var t,e=parseInt(l.value,10),a=(r.textContent=""+e+i.unit,v(i.key,""+e+i.unit),i.key),o=B(),n=o.findIndex(t=>t.items.some(t=>t.key===a));-1!==n&&-1!==(t=o[n].items.findIndex(t=>t.key===a))&&(o[n].items[t].value=e,localStorage.setItem("settings",JSON.stringify(o)))}),t.appendChild(e),t.appendChild(a);e=document.createElement("div");e.className="better-bloom-slider-container",e.appendChild(l),e.appendChild(r),t.appendChild(e),o.appendChild(t)}),y.appendChild(o)});var S=document.createElement("div"),$=(S.classList.add("bloom-settings-section"),document.createElement("h2")),E=($.classList.add("bloom-settings-subtitle"),$.textContent="Background Options",document.createElement("div")),C=(E.classList.add("bloom-dropdown-container"),document.createElement("h2"));C.classList.add("bloom-slider-label"),C.textContent="Background",E.appendChild(C);let a=document.createElement("select");a.classList.add("bloom-dropdown","main-dropDown-dropDown"),[{text:"Default Background",value:"static"},{text:"Animated Background",value:"animated"},{text:"Solid Background",value:"solid"}].forEach(t=>{var e=document.createElement("option");e.textContent=t.text,e.value=t.value,a.appendChild(e)}),C=localStorage.getItem("selectedBackground")||"static",p(a.value=C),a.addEventListener("change",function(){try{var t=this.value;console.log("[Better-Bloom] Selected Background:",t),localStorage.setItem("selectedBackground",t),p(t)}catch(t){console.log("[Better-Bloom] Error setting Stored Background: ",t)}}),S.appendChild($),S.appendChild(E),E.appendChild(a),y.appendChild(S),(C=document.createElement("button")).className="bloom-reset-btn",C.textContent="Reset to Defaults",C.addEventListener("click",()=>{confirm("Are you sure you want to reset all settings to their default values?")&&(localStorage.removeItem("settings"),document.querySelectorAll(".better-bloom-slider").forEach(t=>{var e=t.id.replace("-input",""),a=function(e){for(var t of m){t=t.items.find(t=>t.key===e);if(t)return t}}(e);a&&(t.value=String(a.default),t=document.getElementById(e+"-value"))&&(e=""+a.default+a.unit,t.textContent=e,v(a.key,e))}))}),y.appendChild(C)}g=y,new Spicetify.Menu.Item("Better Bloom Settings",!1,()=>{Spicetify.PopupModal.display({title:"Better Bloom Settings",content:g})},'<svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252Zm0 1.5a9.135 9.135 0 0 0-1.354.117l-.109.977A2.886 2.886 0 0 1 6.525 7.17l-.898-.394a8.293 8.293 0 0 0-1.348 2.317l.798.587a2.881 2.881 0 0 1 0 4.643l-.799.588c.32.842.776 1.626 1.348 2.322l.905-.397a2.882 2.882 0 0 1 4.017 2.318l.11.984c.889.15 1.798.15 2.687 0l.11-.984a2.881 2.881 0 0 1 4.018-2.322l.905.396a8.296 8.296 0 0 0 1.347-2.318l-.798-.588a2.881 2.881 0 0 1 0-4.643l.796-.587a8.293 8.293 0 0 0-1.348-2.317l-.896.393a2.884 2.884 0 0 1-4.023-2.324l-.11-.976a8.988 8.988 0 0 0-1.333-.117ZM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" fill="#fff"/></svg>').register();var P=async function(){for(;!(null!=Spicetify&&Spicetify.CosmosAsync&&null!=Spicetify&&Spicetify.React&&null!=Spicetify&&Spicetify.Platform&&null!=Spicetify&&Spicetify.Locale&&null!=Spicetify&&Spicetify.Player.data);)await new Promise(t=>setTimeout(t,100));"windows"===(null==Spicetify?void 0:Spicetify.Platform.PlatformData.os_name)&&"light"!==Spicetify.Config.color_scheme&&null!=(a=document.querySelector(".Root__main-view"))&&a.prepend(w);var a=Spicetify["Locale"];function o(t){return t.replace(/[{0}{1}«»”“]/g,"").trim()}if(a){var n=o(a.get("playlist.a11y.play")),i=o(a.get("playlist.a11y.pause")),l=a.get("${playLabel}"),r=a.get("${pauseLabel}"),s=a.get("browse"),c=a.get("web-player.aligned-curation.tooltips.add-to-liked-songs"),d=a.get("web-player.aligned-curation.tooltips.add-to-playlist"),m=a.get("playback-control.skip-forward"),u=a.get("playback-control.skip-back"),p=a.get("web-player.whats-new-feed.button-label"),b=a.get("buddy-feed.friend-activity"),g=a.get("tracklist.a11y.play"),y=a.get("view.web-player-home");let t,e;["zh-CN","zh-TW","am","fi"].includes(a.getLocale())?[t,e]=g.split("{1}"):[t,e]=g.split("{0}"),t=o(t),e=o(e);g=document.createElement("style");g.innerText=`
+.main-playButton-button[aria-label*="${l}"],
+.main-playButton-PlayButton > button[aria-label*="${l}"],
+.main-playPauseButton-button[aria-label="${l}"],
+.main-playPauseButton-button[aria-label="${a.get("playback-control.play")}"],
+.main-trackList-rowPlayPauseButton[aria-label*="${l}"],
+.main-trackList-rowImagePlayButton[aria-label*="${t}"][aria-label*="${e}"],
+.main-playButton-PlayButton > button[aria-label*="${n}"] {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
 }
-.main-playButton-button[aria-label*="${pauseLabel}"],
-.main-playButton-PlayButton > button[aria-label*="${pauseLabel}"],
-.main-playPauseButton-button[aria-label*="${pauseLabel}"],
-.main-playPauseButton-button[aria-label="${Locale.get(
-    "playback-control.pause"
-  )}"],
-.main-trackList-rowPlayPauseButton[aria-label*="${pauseLabel}"],
-.main-trackList-rowImagePlayButton[aria-label*="${pauseLabel}"],
-.main-playButton-PlayButton > button[aria-label*="${playlistPauseLabel}"] {
+.main-playButton-button[aria-label*="${r}"],
+.main-playButton-PlayButton > button[aria-label*="${r}"],
+.main-playPauseButton-button[aria-label*="${r}"],
+.main-playPauseButton-button[aria-label="${a.get("playback-control.pause")}"],
+.main-trackList-rowPlayPauseButton[aria-label*="${r}"],
+.main-trackList-rowImagePlayButton[aria-label*="${r}"],
+.main-playButton-PlayButton > button[aria-label*="${i}"] {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
 }
 
 .Root__globalNav
-  button:is([aria-label="${Locale.get("search.a11y.clear-input")}"]) {
+  button:is([aria-label="${a.get("search.a11y.clear-input")}"]) {
   background-color: transparent !important;
   border: none !important;
 }
 
-button[aria-label="${browseLabel}"] path {
+button[aria-label="${s}"] path {
   display: none !important;
 }
 
-button[aria-label="${browseLabel}"] svg {
+button[aria-label="${s}"] svg {
   display: none;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/compass_outline.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/compass_outline.svg");
   background-color: var(--spice-subtext) !important;
   scale: 1.25;
 }
-.main-repeatButton-button[aria-label="${Locale.get(
-    "playback-control.enable-repeat"
-  )}"] ,
-  .main-repeatButton-button[aria-label="${Locale.get(
-    "playback-control.disable-repeat"
-  )}"],
-  .main-repeatButton-button[aria-label="${Locale.get(
-    "playback-control.enable-repeat-one"
-  )}"], {
+.main-repeatButton-button[aria-label="${a.get("playback-control.enable-repeat")}"] ,
+  .main-repeatButton-button[aria-label="${a.get("playback-control.disable-repeat")}"],
+  .main-repeatButton-button[aria-label="${a.get("playback-control.enable-repeat-one")}"], {
   scale: 0.75 !important;
   background-color: var(--spice-subtext) !important;
   color: var(--spice-subtext);
@@ -278,10 +60,10 @@ button[aria-label="${browseLabel}"] svg {
 }
 
 .main-playPauseButton-button,
-button[aria-label="${addToLikedLabel}"],
-button[aria-label="${addToPlaylistLabel}"],
-.player-controls button[aria-label="${skipBackLabel}"],
-.player-controls button[aria-label="${skipForwardLabel}"], {
+button[aria-label="${c}"],
+button[aria-label="${d}"],
+.player-controls button[aria-label="${u}"],
+.player-controls button[aria-label="${m}"], {
   display: block;
   background-color: var(--spice-subtext);
   -webkit-mask-repeat: no-repeat;
@@ -300,47 +82,47 @@ button[aria-label="${addToPlaylistLabel}"],
   }
 }
 
-button[aria-label="${addToLikedLabel}"] {
+button[aria-label="${c}"] {
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg") !important;
 }
-button[aria-label="${addToPlaylistLabel}"] {
+button[aria-label="${d}"] {
   background-color: var(--spice-accent);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg") !important;
 }
 
-.player-controls button[aria-label="${skipBackLabel}"] {
+.player-controls button[aria-label="${u}"] {
   background-color: var(--spice-text);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
 }
-.player-controls button[aria-label="${skipForwardLabel}"] {
+.player-controls button[aria-label="${m}"] {
   background-color: var(--spice-text);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
 }
 
-button[aria-label="${friendsActivityLabel}"] > path,
-button[aria-label="${whatsNewLabel}"] > path {
+button[aria-label="${b}"] > path,
+button[aria-label="${p}"] > path {
   display: none;
 }
 
-.main-actionButtons > div > button[aria-label="${whatsNewLabel}"] svg,
-.main-actionButtons > button[aria-label="${whatsNewLabel}"] svg {
+.main-actionButtons > div > button[aria-label="${p}"] svg,
+.main-actionButtons > button[aria-label="${p}"] svg {
   background-color: var(--spice-subtext) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
 }
-.main-actionButtons > div > button[aria-label="${friendsActivityLabel}"] svg,
-.main-actionButtons > button[aria-label="${friendsActivityLabel}"] svg {
+.main-actionButtons > div > button[aria-label="${b}"] svg,
+.main-actionButtons > button[aria-label="${b}"] svg {
   background-color: var(--spice-subtext) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
 }
 
-.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"] svg,
-button[aria-label="${homeBtnLabelOne}"] svg {
+.main-yourLibraryX-navLink[aria-label="${y}"] svg,
+button[aria-label="${y}"] svg {
   path {
     display: none !important;
   }
@@ -350,8 +132,8 @@ button[aria-label="${homeBtnLabelOne}"] svg {
 }
 
 
-.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg,
-.main-globalNav-navLinkActive[aria-label="${homeBtnLabelOne}"] svg {
+.main-yourLibraryX-navLink[aria-label="${y}"].active svg,
+.main-globalNav-navLinkActive[aria-label="${y}"] svg {
   path {
     display: none !important;
   }
@@ -360,275 +142,10 @@ button[aria-label="${homeBtnLabelOne}"] svg {
   background-color: var(--spice-text) !important;
 }
 
-.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg{
+.main-yourLibraryX-navLink[aria-label="${y}"].active svg{
   path {
     display: none !important;
   }
   background-color: var(--spice-accent) !important;
 }
-    `;
-  document.head.appendChild(ButtonStyles);
-
-  const container = document.querySelector(
-    ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
-  );
-
-  if (container) {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          document.documentElement.style.setProperty(
-            "--container-scroll",
-            `${container.scrollTop}px`
-          );
-          ticking = false;
-        });
-
-        ticking = true;
-      }
-    };
-
-    container.addEventListener("scroll", handleScroll, { passive: true });
-  }
-
-  console.log("Better Bloom is running");
-
-  async function fetchFadeTime() {
-    document.documentElement.style.setProperty("--fade-time", "0.4s");
-    console.log(`Fade Time: ${fadeTime}`);
-  }
-
-  function onSongChange() {
-    fetchFadeTime();
-
-    currentSongArtImage = Spicetify.Player.data.item.metadata.image_url;
-    if (currentSongArtImage.includes("spotify:image:")) {
-      currentSongArtImage = currentSongArtImage.replace(
-        "spotify:image:",
-        "https://i.scdn.co/image/"
-      );
-    }
-
-    document.documentElement.style.setProperty(
-      "--image_url",
-      `url("${currentSongArtImage}")`
-    );
-  }
-
-  Spicetify.Player.addEventListener("songchange", onSongChange);
-  onSongChange();
-
-  function addSettings() {
-    const mainContainer = document.createElement("div");
-    mainContainer.style.width = "100%";
-    mainContainer.classList.add("bloom-popup-main-container");
-
-    let slidersCreated = false;
-    let settings = [];
-
-    function getSliderValue(key) {
-      const value = localStorage.getItem(`bloom-${key}`);
-      return value !== null ? parseFloat(value) : null;
-    }
-
-    function setSliderValue(key, value) {
-      localStorage.setItem(`bloom-${key}`, value);
-    }
-
-    function updateSliderValueDisplay(sliderContainer, newValue, setting) {
-      const valueDisplay = sliderContainer.querySelector(".bloom-slidervalue");
-      valueDisplay.textContent = `${newValue}${setting.unit}`;
-      document.documentElement.style.setProperty(
-        `--${setting.key.toLowerCase()}`,
-        `${newValue}${setting.unit}`
-      );
-      setSliderValue(setting.key, newValue);
-    }
-
-    function createSlider(container, setting) {
-      const sliderContainer = document.createElement("div");
-      sliderContainer.classList.add("bloom-slider-container");
-
-      let value = getSliderValue(setting.key);
-      if (value === null || isNaN(value)) {
-        value = setting.default;
-        setSliderValue(setting.key, value);
-      }
-
-      const sliderHTML = `
-      <div class="bloom-slider-div">
-        <label for="bloom-${setting.key}" class="bloom-slider-label">
-          ${setting.label}
-          <span class="bloom-tooltip">${setting.tooltip || ""}</span> 
-        </label>
-        <div class="bloom-input-slider-container">
-          <input 
-            type="range" 
-            id="bloom-${setting.key}"
-            min="${setting.min}" 
-            max="${setting.max}" 
-            step="${setting.step || 1}" 
-            value="${value}" 
-            class="bloom-slider" 
-          />
-          <span class="bloom-slidervalue">${value}${setting.unit}</span>
-        </div>
-      </div>
-    `;
-
-      sliderContainer.innerHTML = sliderHTML;
-      container.append(sliderContainer);
-
-      const slider = sliderContainer.querySelector(".bloom-slider");
-      slider.addEventListener("input", (e) => {
-        const newValue = parseFloat(e.target.value);
-        updateSliderValueDisplay(sliderContainer, newValue, setting);
-      });
-
-      updateSliderValueDisplay(sliderContainer, value, setting);
-    }
-
-    function applySettings() {
-      settings.forEach((setting) => {
-        const storedValue = getSliderValue(setting.key);
-        if (storedValue !== null) {
-          document.documentElement.style.setProperty(
-            `--${setting.key.toLowerCase()}`,
-            `${storedValue}${setting.unit}`
-          );
-        }
-      });
-    }
-
-    function resetSettings() {
-      settings.forEach((setting) => {
-        setSliderValue(setting.key, setting.default);
-        const slider = mainContainer.querySelector(`#bloom-${setting.key}`);
-        if (slider) {
-          slider.value = setting.default;
-          const sliderContainer = slider.closest(".bloom-slider-container");
-          updateSliderValueDisplay(sliderContainer, setting.default, setting);
-        }
-      });
-      console.log("Settings reset.");
-    }
-
-    async function loadSlidersFromJSON(container) {
-      const loadingMessage = document.createElement("div");
-      loadingMessage.textContent = "Loading settings...";
-      loadingMessage.classList.add("loading-message");
-      container.appendChild(loadingMessage);
-
-      try {
-        const response = await fetch(SETTING_URL);
-
-        const data = await response.json();
-        settings = data;
-
-        const sections = {};
-        data.forEach((setting) => {
-          const section = setting.section || "General";
-          if (!sections[section]) {
-            sections[section] = [];
-          }
-          sections[section].push(setting);
-        });
-
-        for (const sectionName in sections) {
-          const section = sections[sectionName];
-          const sectionContainer = document.createElement("div");
-          sectionContainer.classList.add("bloom-settings-section");
-
-          const sectionTitle = document.createElement("h2");
-          sectionTitle.classList.add("bloom-settings-subtitle");
-          sectionTitle.textContent = sectionName;
-          sectionContainer.appendChild(sectionTitle);
-
-          section.forEach((setting) => {
-            createSlider(sectionContainer, setting);
-          });
-
-          container.appendChild(sectionContainer);
-        }
-
-        const bloomSettingsSection = document.createElement("div");
-        bloomSettingsSection.classList.add("bloom-settings-section");
-
-        const bloomSettingsSubtitle = document.createElement("h2");
-        bloomSettingsSubtitle.classList.add("bloom-settings-subtitle");
-        bloomSettingsSubtitle.textContent = "Background Options";
-
-        const bloomDropDownContainer = document.createElement("div");
-        bloomDropDownContainer.classList.add("bloom-dropdown-container");
-
-        const bloomDropdownTitle = document.createElement("h2");
-        bloomDropdownTitle.classList.add("bloom-slider-label");
-        bloomDropdownTitle.textContent = "Background";
-        bloomDropDownContainer.appendChild(bloomDropdownTitle);
-        const BgDropdown = document.createElement("select");
-        BgDropdown.classList.add("bloom-dropdown");
-
-        const options = [
-          { text: "Default Background", dataBg: "default" },
-          { text: "Animated Background", dataBg: "animated" },
-          { text: "Solid Background", dataBg: "solid" },
-        ];
-
-        options.forEach((option) => {
-          const optionElement = document.createElement("option");
-          optionElement.textContent = option.text;
-          optionElement.setAttribute("value", option.dataBg);
-          BgDropdown.appendChild(optionElement);
-        });
-
-        BgDropdown.addEventListener("change", function () {
-          const selectedOption = this.options[this.selectedIndex];
-          const selectedValue = selectedOption.value;
-          changeCurrentBgTo(selectedValue);
-        });
-
-        bloomSettingsSection.appendChild(bloomSettingsSubtitle);
-        bloomSettingsSection.appendChild(bloomDropDownContainer);
-        bloomDropDownContainer.appendChild(BgDropdown);
-
-        container.appendChild(bloomSettingsSection);
-
-        const resetButton = document.createElement("button");
-        resetButton.textContent = "Reset to Defaults";
-        resetButton.classList.add("bloom-reset-btn");
-        resetButton.addEventListener("click", resetSettings);
-        container.appendChild(resetButton);
-
-        container.removeChild(loadingMessage);
-      } catch (err) {
-        console.error("Error fetching JSON data:", err);
-      }
-    }
-
-    applySettings();
-
-    if (!slidersCreated) {
-      loadSlidersFromJSON(mainContainer);
-      slidersCreated = true;
-    }
-
-    const settingsMenuItem = new Spicetify.Menu.Item(
-      "Better Bloom Settings",
-      false,
-      () => {
-        Spicetify.PopupModal.display({
-          title: "Better Bloom Settings",
-          content: mainContainer,
-        });
-      },
-      `<svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252Zm0 1.5a9.135 9.135 0 0 0-1.354.117l-.109.977A2.886 2.886 0 0 1 6.525 7.17l-.898-.394a8.293 8.293 0 0 0-1.348 2.317l.798.587a2.881 2.881 0 0 1 0 4.643l-.799.588c.32.842.776 1.626 1.348 2.322l.905-.397a2.882 2.882 0 0 1 4.017 2.318l.11.984c.889.15 1.798.15 2.687 0l.11-.984a2.881 2.881 0 0 1 4.018-2.322l.905.396a8.296 8.296 0 0 0 1.347-2.318l-.798-.588a2.881 2.881 0 0 1 0-4.643l.796-.587a8.293 8.293 0 0 0-1.348-2.317l-.896.393a2.884 2.884 0 0 1-4.023-2.324l-.11-.976a8.988 8.988 0 0 0-1.333-.117ZM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" fill="#fff"/></svg>`
-    );
-    settingsMenuItem.register();
-  }
-
-  addSettings();
-
-  setBackground();
-})();
+`,document.head.appendChild(g)}document.head.appendChild(t),f(),x(),Spicetify.Player.addEventListener("songchange",()=>{!async function(){document.documentElement.style.setProperty("--fade-time","0.4s")}(),f()}),window.addEventListener("resize",x);let v=await h(".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]");null!=v&&v.addEventListener("scroll",()=>{var t,e;document.querySelector(".under-main-view div")&&v.scrollTop!==window.innerHeight&&(t=(t=v).scrollTop,e=window.innerHeight,e=Math.min(t,e),k.innerText=`:root {--scroll-top: ${e}px;}`,0)}),console.log("Better Bloom theme loaded.")};(async()=>{await P()})()})()}();
