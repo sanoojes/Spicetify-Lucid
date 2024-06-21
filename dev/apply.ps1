@@ -1,4 +1,4 @@
-$srcFolder = "./src" # it assumes that terminal is opened at better-bloom workspace
+$srcFolder = "C:\Users\Sachu\Desktop\Github\better-bloom\src"
 $destinationFolder = "$(spicetify path userdata)\Themes\better-bloom"
 
 # Create the destination folder if it doesn't exist
@@ -17,7 +17,7 @@ Write-Host "Applying Spicetify theme..."
 Invoke-Expression "spicetify apply" 
 
 while ((Get-Item $destinationFolder).LastWriteTime -eq $lastWriteTime) {
-    Start-Sleep -Milliseconds 500 
+    Start-Sleep -Milliseconds 500 # Check every 500ms
 }
 
 Write-Host "Theme applied successfully!"
