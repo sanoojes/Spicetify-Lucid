@@ -88,35 +88,22 @@ let settings = [];
   }
 
   function setWindowHeight() {
-    Spicetify.Platform.PlayerAPI._prefs
-      .get({ key: "app.browser.zoom-level" })
-      .then(async (value) => {
-        const zoomLevel = value.entries["app.browser.zoom-level"].number;
-        const zoomNum = Number(zoomLevel);
+    const isGlobalNav = document.querySelector(".Root__globalNav");
+    const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
 
-        const multiplier = zoomNum !== 0 ? zoomNum / 50 : 0;
+    const base_width = 135;
+    const final_width = 135;
 
-        const isGlobalNav = document.querySelector(".Root__globalNav");
-        const isWindows = Spicetify.Platform.PlatformData.os_name === "windows";
+    const base_height = 48;
+    const final_height = 48;
 
-        const constant = 0.912872807;
+    Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
+      type: "update_titlebar",
+      height: final_height,
+    });
 
-        const base_width = 135;
-        const final_width = base_width * constant ** multiplier;
-
-        const base_height = 48;
-        const final_height = base_height * Math.pow(1.1, multiplier);
-
-        const padding_start = 4 * constant ** multiplier;
-        const padding_end = 9 * constant ** multiplier;
-
-        await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
-          type: "update_titlebar",
-          height: final_height,
-        });
-
-        if (!isGlobalNav && isWindows) {
-          styleSheet.innerText = `
+    if (!isGlobalNav && isWindows) {
+      styleSheet.innerText = `
           .main-topBar-container {
             padding-inline-end: ${padding_end}rem !important;
             padding-inline-start: ${padding_start}rem !important;
@@ -125,10 +112,10 @@ let settings = [];
           .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
             padding-inline: ${padding_start}rem ${padding_end}rem !important
           }`;
-        }
+    }
 
-        if (!isGlobalNav) {
-          styleSheet.innerText += `  
+    if (!isGlobalNav) {
+      styleSheet.innerText += `  
           .Root__main-view .main-topBar-container {
             top: calc(var(--panel-gap) / 2);
             height: calc(24px + var(--panel-gap) * 2);
@@ -149,8 +136,8 @@ let settings = [];
             justify-content: space-between !important;
           }
           `;
-        } else {
-          styleSheet.innerText += `
+    } else {
+      styleSheet.innerText += `
           .Root__globalNav {
             ${
               isWindows
@@ -162,21 +149,20 @@ let settings = [];
             ${!isWindows && `padding-inline-start: 5rem !important;`}
           }
         `;
-        }
+    }
 
-        if (isWindows && Spicetify.Config.color_scheme !== "light") {
-          document.documentElement.style.setProperty(
-            "--control-width",
-            `${final_width}px`
-          );
-          document.documentElement.style.setProperty(
-            "--control-height",
-            `${base_height}px`
-          );
-        }
+    if (isWindows && Spicetify.Config.color_scheme !== "light") {
+      document.documentElement.style.setProperty(
+        "--control-width",
+        `${final_width}px`
+      );
+      document.documentElement.style.setProperty(
+        "--control-height",
+        `${base_height}px`
+      );
+    }
 
-        document.head.appendChild(styleSheet);
-      });
+    document.head.appendChild(styleSheet);
   }
 
   window.addEventListener("resize", setWindowHeight);
@@ -410,21 +396,7 @@ button[aria-label="${homeBtnLabelOne}"] svg {
   console.log("Better Bloom is running");
 
   async function fetchFadeTime() {
-    const response = await Spicetify.Platform.PlayerAPI._prefs.get({
-      key: "audio.crossfade_v2",
-    });
-    let fadeTime = "0.4s";
-
-    if (response.entries["audio.crossfade_v2"].bool) {
-      const crossfadeTime = await Spicetify.Platform.PlayerAPI._prefs.get({
-        key: "audio.crossfade.time_v2",
-      });
-      fadeTime = `${
-        crossfadeTime.entries["audio.crossfade.time_v2"].number / 1000
-      }s`;
-    }
-
-    document.documentElement.style.setProperty("--fade-time", fadeTime);
+    document.documentElement.style.setProperty("--fade-time", "0.4s");
     console.log(`Fade Time: ${fadeTime}`);
   }
 
