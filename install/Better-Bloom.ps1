@@ -15,7 +15,8 @@ process {
   
   Write-Verbose -Message 'Downloading Functions module...' -Verbose
   $moduleName = 'Functions'
-  $modulePath = "$env:TEMP\$moduleName.psm1"
+  $Temp = [System.IO.Path]::GetTempPath()
+  $modulePath = "$Temp\$moduleName.psm1"
   $Parameters = @{
     Uri             = (
       'https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/Functions.psm1'

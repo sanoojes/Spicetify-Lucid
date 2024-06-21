@@ -124,7 +124,8 @@ function Install-Spotify {
     [CmdletBinding()]
     param ()
     begin {
-        $installerPath = "$env:TEMP\SpotifySetup.exe"
+        $Temp = [System.IO.Path]::GetTempPath()
+        $installerPath = "$Temp\SpotifySetup.exe"
     }
     process {
         Write-Verbose -Message 'Downloading the Spotify installer...' -Verbose
@@ -283,7 +284,8 @@ function Get-BetterBloom {
     param ()
     begin {
         $archiveName = 'better-bloom-main'
-        $archivePath = "$env:TEMP\$archiveName.zip"
+        $Temp = [System.IO.Path]::GetTempPath()
+        $archivePath = "$Temp\$archiveName.zip"
     }
     process {
         Write-Verbose -Message 'Downloading the better-bloom repository archive...' -Verbose
@@ -297,13 +299,13 @@ function Get-BetterBloom {
         Write-Verbose -Message 'Unpacking the better-bloom repository archive...' -Verbose
         $Parameters = @{
             Path            = $archivePath
-            DestinationPath = $env:TEMP
+            DestinationPath = $Temp
             Force           = $true
         }
         Expand-Archive @Parameters 
     }
     end {
-        "$env:TEMP\$archiveName"
+        "$Temp\$archiveName"
         Remove-Item -Path $archivePath -Force
     }
 }
