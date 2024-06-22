@@ -513,6 +513,7 @@ input,
   padding: var(--padding-md) var(--content-spacing);
 }
 
+.page-header,
 .marketplace-card-type-heading {
   margin-top: 2rem;
 }
