@@ -730,6 +730,10 @@ div[data-testid="hpto-parent-container"] {
   background: none !important;
 }
 
+.contentSpacing {
+  min-width: calc(100% - (var(--content-spacing) * 2));
+}
+
 .main-rootlist-wrapper {
   margin-top: var(--padding-md);
 }
@@ -773,6 +777,8 @@ div[data-testid="hpto-parent-container"] {
 .main-nowPlayingView-aboutArtistV2Button,
 .artist-artistDiscography-headerContainer,
 .x-settings-equalizerSection,
+.BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px,
+.Box-group-naked-listRow-isInteractive-hasLeadingOrMedia-minBlockSize_56px .main-nowPlayingView-section,
 .main-nowPlayingView-section {
   background-color: var(--card-color) !important;
 }
@@ -781,6 +787,7 @@ div[data-testid="hpto-parent-container"] {
   background-color: var(--spice-main);
 }
 
+.Box-group-naked-listRow-isInteractive-hasLeadingOrMedia-minBlockSize_56px:hover,
 .BoxComponent-group-card-naked-isInteractive-draggable:hover,
 .BoxComponent-group-card-naked-isInteractive-draggable:hover::after,
 .BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover,
@@ -790,6 +797,12 @@ div[data-testid="hpto-parent-container"] {
 
 .main-gridContainer-gridContainer {
   max-width: 100%;
+}
+
+.profile-userEditDetails-container,
+.main-playlistEditDetailsModal-container {
+  background-color: transparent !important;
+  min-width: 100%;
 }
 
 /* Search Section */
@@ -1116,15 +1129,24 @@ button[aria-label="Browse"] svg {
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/repeat-mixed.svg");
 }
 
+button[aria-label="Add to playlist"],
 button[aria-label="Add to Liked Songs"] {
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg") !important;
+  mask-size: 100%;
+  mask-position: 50% 50%;
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+
+  svg,
+  span {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 button[aria-label="Add to playlist"] {
   background-color: var(--spice-accent) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg") !important;
 }
 
 .main-skipBackButton-button {

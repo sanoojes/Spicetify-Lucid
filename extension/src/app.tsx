@@ -276,6 +276,8 @@ button[aria-label="${addToPlaylistLabel}"],
 .player-controls button[aria-label="${skipBackLabel}"],
 .player-controls button[aria-label="${skipForwardLabel}"], {
   display: block;
+  mask-size: 100%;
+  mask-position: 50% 50%;
   background-color: var(--spice-subtext);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -293,14 +295,23 @@ button[aria-label="${addToPlaylistLabel}"],
   }
 }
 
+button[aria-label="${addToPlaylistLabel}"],
 button[aria-label="${addToLikedLabel}"] {
+  background-color: var(--spice-subtext);
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg");
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg") !important;
+  mask-size: 100%;
+  mask-position: 50% 50%;
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+  svg,
+  span {
+    display: none;
+    visibility: hidden;
+  }
 }
 button[aria-label="${addToPlaylistLabel}"] {
   background-color: var(--spice-accent);
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg") !important;
 }
 
 .player-controls button[aria-label="${skipBackLabel}"] {
