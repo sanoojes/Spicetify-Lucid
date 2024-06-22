@@ -512,9 +512,8 @@ input,
   padding: var(--padding-md) var(--content-spacing);
 }
 
-.page-header,
-.marketplace-card-type-heading {
-  margin-top: 2rem;
+.marketplace-footer {
+  margin-top: 5rem;
 }
 
 .ButtonInner-small-iconOnly,
