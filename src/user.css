@@ -414,6 +414,7 @@ input,
 .main-topBar-buddyFeed,
 .main-topBar-historyButtons button,
 .main-topBar-button,
+.main-userWidget-box,
 .main-globalNav-link-icon {
   border: var(--default-border) !important;
 }
