@@ -139,7 +139,7 @@
 
   --spice-tab-active: rgba(var(--accent-color), 0.5);
 
-  --fade-time: 0.4s;
+  --fade-time: 1s;
 
   --panel-gap: var(--gap-lg);
 

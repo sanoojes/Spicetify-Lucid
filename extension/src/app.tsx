@@ -364,7 +364,7 @@ button[aria-label="${homeBtnLabelOne}"] svg {
 
 async function fetchFadeTime() {
   // needs to implement logic
-  let fadeTime = "0.4s";
+  let fadeTime = "1s";
   document.documentElement.style.setProperty("--fade-time", fadeTime);
 }
 
