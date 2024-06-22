@@ -347,6 +347,14 @@ async function setMainWindowControlHeight(height: number) {
     height: height,
   });
 }
+
+function calculateBrowserZoom(): number {
+  const viewportWidth: number = window.innerWidth;
+  const windowWidth: number = window.outerWidth;
+  const zoomLevel: number = (windowWidth / viewportWidth) * 100;
+  return zoomLevel;
+}
+
 /* Topbar styles */
 const topBarStyleSheet = document.createElement("style");
 document.head.appendChild(topBarStyleSheet);
@@ -358,25 +366,16 @@ async function setTopBarStyles() {
   const baseHeight = 64;
   const baseWidth = 135;
 
+  const zoomNum = calculateBrowserZoom();
+  const multiplier = zoomNum > 0 ? zoomNum / 50 : 0;
   if (!isGlobalNav) {
-    function calculateBrowserZoom(): number {
-      const viewportWidth: number = window.innerWidth;
-      const windowWidth: number = window.outerWidth;
-      const zoomLevel: number = (windowWidth / viewportWidth) * 100;
-      return zoomLevel;
-    }
-
-    const zoomNum = calculateBrowserZoom();
-
     const constant = 0.912872807;
     console.log(`Current zoom level: ${zoomNum}%`);
 
     const finalControlHeight = Math.round(zoomNum ** constant * 100) / 100 - 2;
 
-    const multiplier = zoomNum > 0 ? zoomNum / 50 : 0;
-
-    const paddingStart = 4 * constant ** multiplier;
-    const paddingEnd = 9 * constant ** multiplier;
+    const paddingStart = 4 * 1 ** multiplier;
+    const paddingEnd = 9 + 1 ** multiplier;
 
     await setMainWindowControlHeight(finalControlHeight);
 
