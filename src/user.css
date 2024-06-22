@@ -822,6 +822,10 @@ div[data-testid="hpto-parent-container"] {
   min-width: 100%;
 }
 
+#Desktop_PanelContainer_Id {
+  --section-background-base: background: rgba(var(--spice-rgb-card), .25) !important;
+}
+
 /* Search Section */
 .IGCDq9qa08JVVY3mcy7Y,
 .CqCtb3wr4SK8AiZwxeH0
