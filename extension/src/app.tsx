@@ -2,6 +2,8 @@ import { SETTINGS_URL, DEFAULT_SETTINGS } from "./constants";
 import { SettingItem, SettingSection } from "./types/settings";
 const mainStyleSheet = document.createElement("style");
 
+let isCustomControls = false;
+
 // Wait for dom elements fn
 async function waitForElement(
   selector: string,
@@ -359,27 +361,29 @@ function calculateBrowserZoom(): number {
 const topBarStyleSheet = document.createElement("style");
 document.head.appendChild(topBarStyleSheet);
 async function setTopBarStyles() {
-  const isGlobalNav =
-    document.querySelector(".global-nav") ||
-    document.querySelector(".Root__globalNav");
+  if (!isCustomControls) {
+    const isGlobalNav =
+      document.querySelector(".global-nav") ||
+      document.querySelector(".Root__globalNav");
 
-  const baseHeight = 64;
-  const baseWidth = 135;
+    const baseHeight = 64;
+    const baseWidth = 135;
 
-  const zoomNum = calculateBrowserZoom();
-  const multiplier = zoomNum > 0 ? zoomNum / 50 : 0;
-  if (!isGlobalNav) {
-    const constant = 0.912872807;
-    console.log(`Current zoom level: ${zoomNum}%`);
+    const zoomNum = calculateBrowserZoom();
+    const multiplier = zoomNum > 0 ? zoomNum / 50 : 0;
+    if (!isGlobalNav) {
+      const constant = 0.912872807;
+      console.log(`Current zoom level: ${zoomNum}%`);
 
-    const finalControlHeight = Math.round(zoomNum ** constant * 100) / 100 - 2;
+      const finalControlHeight =
+        Math.round(zoomNum ** constant * 100) / 100 - 2;
 
-    const paddingStart = 4 * 1 ** multiplier;
-    const paddingEnd = 9 + 1 ** multiplier;
+      const paddingStart = 4 * 1 ** multiplier;
+      const paddingEnd = 9 + 1 ** multiplier;
 
-    await setMainWindowControlHeight(finalControlHeight);
+      await setMainWindowControlHeight(finalControlHeight);
 
-    topBarStyleSheet.innerText = `
+      topBarStyleSheet.innerText = `
             .main-topBar-container {
                 padding-inline-end: ${paddingEnd}rem !important;
                 padding-inline-start: ${paddingStart}rem !important;
@@ -389,15 +393,16 @@ async function setTopBarStyles() {
                 padding-inline: ${paddingStart}rem ${paddingEnd}rem !important;
             }
         `;
-  }
-  if (
-    Spicetify.Platform.PlatformData.os_name === "windows" &&
-    Spicetify.Config.color_scheme !== "light"
-  ) {
-    const transparentControlHeight = baseHeight;
-    const transparentControlWidth = baseWidth; // need to implement scaling
+    }
+    if (
+      Spicetify.Platform.PlatformData.os_name === "windows" &&
+      Spicetify.Config.color_scheme !== "light"
+    ) {
+      const transparentControlHeight = baseHeight;
+      const transparentControlWidth = baseWidth; // need to implement scaling
 
-    addTransparentControls(transparentControlHeight, transparentControlWidth);
+      addTransparentControls(transparentControlHeight, transparentControlWidth);
+    }
   }
 }
 
@@ -693,8 +698,10 @@ async function main() {
   console.log("Better Bloom theme loaded.");
 
   const checkForCustomControls = async () => {
-    if (await waitForElement("#customControls"))
+    if (await waitForElement("#customControls")) {
+      isCustomControls = true;
       document.querySelector(".bloom-transperent-window-controls")?.remove();
+    }
   };
 
   setTimeout(() => {
