@@ -421,6 +421,8 @@ input,
 }
 
 /* Card Border Radius */
+.x-entityImage-imageContainer,
+.x-entityImage-circle,
 .Root__right-sidebar,
 .Root__main-view,
 .Root__now-playing-bar,
