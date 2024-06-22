@@ -407,6 +407,7 @@ input,
 .main-nowPlayingView-section,
 .main-globalNav-icon,
 .main-contextMenu-menu,
+#context-menu,
 .x-settings-equalizerSection,
 .main-actionButtons button,
 .main-topBar-button,
@@ -426,6 +427,7 @@ input,
 .Root__nav-bar,
 .main-userWidget-box,
 .x-settings-equalizerSection,
+#context-menu,
 .main-contextMenu-menu,
 .main-avatar-image {
   border-radius: var(--card-border-radius);
@@ -765,7 +767,6 @@ div[data-testid="hpto-parent-container"] {
 .tippy-arrow,
 .tippy-box,
 .tippy-box[data-theme~=activation],
-.tippy-box[data-theme~=device-picker],
 .BoxComponent-group-card-naked-isInteractive-draggable,
 .main-nowPlayingView-aboutArtistV2Button,
 .artist-artistDiscography-headerContainer,
@@ -774,10 +775,8 @@ div[data-testid="hpto-parent-container"] {
   background-color: var(--card-color) !important;
 }
 
-.main-devicePicker-tooltip {
-  --generic-tooltip-background-color: var(--card-color) !important;
-  -webkit-backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
-  backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
+.tippy-box[data-theme~=device-picker] {
+  background-color: var(--spice-main);
 }
 
 .BoxComponent-group-card-naked-isInteractive-draggable:hover,
@@ -870,6 +869,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 /* Context Menu */
+#context-menu::before,
 .main-contextMenu-menu::before {
   content: "";
   z-index: -1;
@@ -881,8 +881,10 @@ div[data-testid="hpto-parent-container"] {
   height: 100%;
   width: 100%;
   backdrop-filter: blur(var(--blur-xl));
+  border-radius: var(--card-border-radius);
 }
 
+#context-menu,
 .main-contextMenu-menu {
   background-color: var(--popup-color);
 }
@@ -890,6 +892,11 @@ div[data-testid="hpto-parent-container"] {
 .main-contextMenu-menuItemButton:hover,
 .main-contextMenu-menuItemButton:not([aria-checked="true"]):focus {
   background-color: var(--card-hover-color);
+}
+
+#context-menu form,
+#context-menu div {
+  background-color: transparent !important;
 }
 
 /* Bloom Animated Bg */
