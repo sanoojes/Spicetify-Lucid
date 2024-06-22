@@ -809,6 +809,9 @@ div[data-testid="hpto-parent-container"] {
   max-width: 100%;
 }
 
+.artist-artistOnTour-date.artist-artistOnTour-elevated {
+  background: rgba(var(--spice-rgb-selected-row), .1) !important;
+}
 
 .main-confirmDialog-container,
 .profile-userEditDetails-container,
