@@ -69,11 +69,15 @@ async function setIsArtistOrPlaylist() {
   try {
     const section = (await waitForElement("section")) as HTMLElement;
     let display = "relative";
+
+    if (section.dataset.testid === "album-page") {
+      display = "absolute";
+    }
+
     if (section && section.dataset?.testUri) {
       const dataTestUri = section.dataset.testUri.toLowerCase();
-      const dataTestId = section.dataset.testUri.toLowerCase();
       const isArtist = dataTestUri.includes("artist");
-      const isAlbum = dataTestId.includes("album-page");
+      const isAlbum = dataTestUri.includes("album-page");
       display =
         isArtist ||
         document.querySelectorAll(
@@ -82,14 +86,11 @@ async function setIsArtistOrPlaylist() {
         isAlbum
           ? "absolute"
           : "relative";
-
-      styleSheet.innerText = `:root { --header-position: ${display}; }`;
-      console.log(`Setting header position to ${display} for section`);
-    } else {
-      display = "relative";
-
-      styleSheet.innerText = `:root { --header-position: ${display}; }`;
     }
+    styleSheet.innerText = `:root { --header-position: ${display}; }`;
+    console.log(
+      `[Better-Bloom] Setting header position to ${display} for section`
+    );
   } catch (error) {
     console.error("[Better-Bloom] Error waiting for section element:", error);
   }
