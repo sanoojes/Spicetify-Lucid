@@ -1319,3 +1319,15 @@ button[aria-label="Browse"] path {
 ::backdrop {
   backdrop-filter: blur(var(--blur-2xl));
 }
+
+/* canvas */
+.canvasVideoContainerNPV {
+  height: 80vh;
+  border-radius: var(--card-border-radius) !important;
+}
+
+.canvasVideoContainerNPV::before,
+.canvasVideoContainerNPV::after {
+  border-radius: var(--card-border-radius);
+  background: linear-gradient(180deg, transparent, var(--main-color));
+}
