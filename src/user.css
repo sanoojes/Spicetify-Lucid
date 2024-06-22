@@ -634,8 +634,7 @@ input,
 .main-nowPlayingBar-container {
   padding: var(--now-playing-bar-padding-y) var(--now-playing-bar-padding-x);
   background-color: var(--now-playing-bar-color);
-  border-top: var(--default-border);
-  border-bottom: var(--default-border);
+  border: var(--default-border);
   border-radius: var(--border-radius-now-playing-bar);
   -webkit-backdrop-filter: opacity(var(--now-playing-bar-opacity)) blur(var(--now-playing-bar-blur)) saturate(var(--now-playing-saturation)) brightness(var(--now-playing-brightness)) contrast(var(--now-playing-contrast));
   backdrop-filter: opacity(var(--now-playing-bar-opacity)) blur(var(--now-playing-bar-blur)) saturate(var(--now-playing-saturation)) brightness(var(--now-playing-brightness)) contrast(var(--now-playing-contrast));
