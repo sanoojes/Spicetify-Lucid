@@ -1331,3 +1331,8 @@ button[aria-label="Browse"] path {
   border-radius: var(--card-border-radius);
   background: linear-gradient(180deg, transparent, var(--main-color));
 }
+
+/* Catjam extention */
+#catjam-webm {
+  bottom: var(--now-playing-bar-height) !important;
+}
