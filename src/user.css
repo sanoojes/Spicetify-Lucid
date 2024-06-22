@@ -568,8 +568,13 @@ input,
   mask-image: linear-gradient(var(--main-color) 0, transparent 100%);
 }
 
+.main-entityHeader-background {
+  height: 90% !important;
+}
+
 .main-entityHeader-container {
   height: 47.125vh !important;
+  height: 89vh !important;
 }
 
 .main-entityHeader-container.main-entityHeader-nonWrapped {
