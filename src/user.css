@@ -477,6 +477,10 @@ input,
   top: 0 !important;
 }
 
+.global-nav .main-trackList-trackListHeader {
+  top: 64px !important;
+}
+
 .global-nav .main-topBar-container {
   position: var(--header-position, relative);
   -webkit-backdrop-filter: none !important;
