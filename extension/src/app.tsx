@@ -312,6 +312,8 @@ button[aria-label="${addToLikedLabel}"] {
 }
 button[aria-label="${addToPlaylistLabel}"] {
   background-color: var(--spice-accent);
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg") !important;
 }
 
 .player-controls button[aria-label="${skipBackLabel}"] {
@@ -370,6 +372,14 @@ button[aria-label="${homeBtnLabelOne}"] svg {
   }
   background-color: var(--spice-accent) !important;
 }
+#context-menu ul[aria-label*="${Locale.get(
+    "web-player.aligned-curation.add-to-playlist-menu"
+  )}"] {
+  p {
+    max-width: 10rem;
+  }
+}
+
 `;
   document.head.appendChild(ButtonStyles);
 }

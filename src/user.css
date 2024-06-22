@@ -465,7 +465,6 @@ input,
 
 /* Main Bg */
 .Root__top-container {
-  overflow: hidden;
   background-color: var(--main-color);
 }
 
@@ -810,8 +809,12 @@ div[data-testid="hpto-parent-container"] {
   max-width: 100%;
 }
 
+
+.main-confirmDialog-container,
 .profile-userEditDetails-container,
 .main-playlistEditDetailsModal-container {
+  --background-base: var(--main-color) !important;
+  --text-base: var(--spice-text) !important;
   background-color: transparent !important;
   min-width: 100%;
 }
@@ -913,6 +916,12 @@ div[data-testid="hpto-parent-container"] {
 #context-menu,
 .main-contextMenu-menu {
   background-color: var(--popup-color);
+}
+
+#context-menu ul[aria-label*="Add to playlist menu"] {
+  p {
+    max-width: 10rem;
+  }
 }
 
 .main-contextMenu-menuItemButton:hover,
@@ -1158,6 +1167,8 @@ button[aria-label="Add to Liked Songs"] {
 
 button[aria-label="Add to playlist"] {
   background-color: var(--spice-accent) !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg") !important;
 }
 
 .main-skipBackButton-button {
