@@ -949,6 +949,7 @@ div[data-testid="hpto-parent-container"] {
   height: 100%;
   position: absolute;
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   pointer-events: none;
   transition: all var(--fade-time) ease;
