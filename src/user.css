@@ -465,10 +465,11 @@ input,
 }
 
 .global-nav .main-topBar-container {
-  position: relative;
+  position: var(--header-position, relative);
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
 }
+
 
 .global-nav .main-home-filterChipsContainer,
 .global-nav .main-topBar-background {

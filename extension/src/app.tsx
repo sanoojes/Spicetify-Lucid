@@ -14,7 +14,7 @@ async function waitForElement(
   while (attempts < maxAttempts) {
     const element = document.querySelector(selector);
     if (element) {
-      return element;
+      return element as HTMLElement;
     }
     await new Promise((resolve) => setTimeout(resolve, interval));
     attempts++;
@@ -61,6 +61,35 @@ function updateScrollElement(scroll_container: Element) {
   scrollStyleElement.innerText = `:root {--scroll-top: ${clampedScrollTop}px;}`;
   lastScrollTop = scrollTop;
 }
+
+const styleSheet = document.createElement("style");
+document.head.appendChild(styleSheet);
+
+async function setIsArtistOrPlaylist() {
+  try {
+    const section = (await waitForElement("section")) as HTMLElement;
+    let display = "relative";
+    if (section && section.dataset?.testUri) {
+      const dataTestUri = section.dataset.testUri.toLowerCase();
+      const isArtist = dataTestUri.includes("artist");
+      display =
+        isArtist || document.querySelector(".playlist-playlist-playlist")
+          ? "absolute"
+          : "relative";
+
+      styleSheet.innerText = `:root { --header-position: ${display}; }`;
+      console.log(`Setting header position to ${display} for section`);
+    } else {
+      display = "relative";
+
+      styleSheet.innerText = `:root { --header-position: ${display}; }`;
+    }
+  } catch (error) {
+    console.error("[Better-Bloom] Error waiting for section element:", error);
+  }
+}
+
+document.head.appendChild(styleSheet);
 
 type BackgroundOption = "animated" | "static" | "solid";
 
@@ -675,6 +704,7 @@ async function main() {
   document.head.appendChild(mainStyleSheet);
   setArtImage();
   setTopBarStyles();
+  setIsArtistOrPlaylist();
 
   // Event Listeners
   Spicetify.Player.addEventListener("songchange", () => {
@@ -684,12 +714,13 @@ async function main() {
   window.addEventListener("resize", setTopBarStyles);
 
   // Scroll
-
   const scroll_container = await waitForElement(
     ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
   );
 
   scroll_container?.addEventListener("scroll", () => {
+    if (scroll_container.scrollTop === 0) setIsArtistOrPlaylist();
+
     const hasUnderViewImage = document.querySelector(".under-main-view div");
     if (hasUnderViewImage && scroll_container.scrollTop !== window.innerHeight)
       updateScrollElement(scroll_container);
