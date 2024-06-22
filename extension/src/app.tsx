@@ -691,6 +691,15 @@ async function main() {
   });
 
   console.log("Better Bloom theme loaded.");
+
+  const checkForCustomControls = async () => {
+    if (await waitForElement("#customControls"))
+      document.querySelector(".bloom-transperent-window-controls")?.remove();
+  };
+
+  setTimeout(() => {
+    checkForCustomControls(); // check for the extensiton after it loads
+  }, 300);
 }
 
 export default main;
