@@ -470,6 +470,17 @@ input,
 }
 
 /* Top Bar Styles */
+.main-topBar-container>*,
+.main-topBar-topbarContent {
+  -webkit-app-region: drag !important;
+}
+
+.main-topBar-topbarContentRight button,
+.main-topBar-topbarContentRight *,
+.main-topBar-historyButtons * {
+  -webkit-app-region: no-drag;
+}
+
 .main-topBar-container {
   top: 0;
   left: 0;
