@@ -304,6 +304,10 @@ button,
   padding-inline: var(--gap-md) 0px !important;
 }
 
+.main-actionButtons button svg {
+  scale: 1.25;
+}
+
 .main-actionButtons button,
 .main-userWidget-boxCondensed,
 .main-topBar-historyButtons .main-topBar-button {
