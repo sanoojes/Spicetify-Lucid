@@ -971,7 +971,6 @@ div[data-testid="hpto-parent-container"] {
   background-position: center;
   background-repeat: no-repeat;
   pointer-events: none;
-  scale: 1.05;
   transition: all var(--fade-time) ease;
   background-image: var(--image-url);
   filter: blur(var(--static-bg-blur)) contrast(var(--static-bg-contrast)) saturate(var(--static-bg-saturation)) brightness(var(--static-bg-brightness));
