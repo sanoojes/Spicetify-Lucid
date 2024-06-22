@@ -263,6 +263,7 @@ button,
 .ButtonInner-medium-iconOnly,
 .ButtonInner-large-iconOnly,
 
+.main-globalNav-historyButtons button,
 .Button-textBase-medium-medium-buttonTertiary-condensedAll-useBrowserDefaultFocusStyle,
 .Button-textBrightAccent-large-large-buttonTertiary-iconOnly-condensed-useBrowserDefaultFocusStyle,
 .Button-small-buttonPrimary-useBrowserDefaultFocusStyle-data-is-icon-only,
@@ -315,8 +316,15 @@ button,
 .main-userWidget-hasAvatar,
 .main-avatar-avatar div,
 .main-avatar-avatar img {
-  height: 2.25rem !important;
-  width: 2.25rem !important;
+  min-height: 2rem !important;
+  min-width: 2rem !important;
+}
+
+.main-nowPlayingView-aboutArtistV2Avatar,
+.main-nowPlayingView-aboutArtistV2Avatar img,
+.main-nowPlayingView-aboutArtistV2Avatar div {
+  min-height: 8rem !important;
+  min-width: 8rem !important;
 }
 
 .global-nav .main-actionButtons button,
@@ -343,6 +351,7 @@ button,
   padding-inline-end: var(--encore-spacing-tighter, 12px);
 }
 
+.main-globalNav-historyButtons button:hover,
 .main-topBar-historyButtons button,
 .main-topBar-buddyFeed:hover,
 .Button-textBase-medium-medium-buttonTertiary-condensedAll-useBrowserDefaultFocusStyle:hover,
@@ -518,7 +527,8 @@ input,
 
 .ButtonInner-small-iconOnly,
 .button-module__button___hf2qg_marketplace {
-  --background-base: rgb(var(--accent-color)) background-color: rgb(var(--accent-color));
+  --background-base: rgb(var(--accent-color));
+  background-color: rgb(var(--accent-color));
 }
 
 .main-trackList-trackListHeader {
@@ -547,7 +557,6 @@ input,
 }
 
 /* Image section (Playlist and Artist) */
-
 .main-entityHeader-container {
   background: linear-gradient(rgba(var(--spice-rgb-main), 0) 0,
       rgba(var(--spice-rgb-main), 0.75) 100%),
@@ -559,6 +568,10 @@ input,
 .main-entityHeader-background {
   background-color: transparent;
   transform: translateY(calc(var(--scroll-top) * -1)) !important;
+}
+
+.main-entityHeader-overlay {
+  border: none !important;
 }
 
 .main-entityHeader-overlay:after {
@@ -996,6 +1009,8 @@ button[aria-label="Add to playlist"],
 .main-actionButtons>button[aria-label="What's New"] svg,
 .main-actionButtons>div>button[aria-label="Friend Activity"] svg,
 .main-actionButtons>button[aria-label="Friend Activity"] svg,
+.main-yourLibraryX-navLink[href="/lyrics-plus"]>svg,
+.main-yourLibraryX-navLink[href="/lyrics-plus"].active>svg,
 button[aria-label="Browse"] svg {
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -1003,8 +1018,8 @@ button[aria-label="Browse"] svg {
   mask-size: contain;
   display: block;
   background-color: var(--spice-subtext) !important;
-  min-height: 1.25rem;
-  min-width: 1.25rem;
+  min-height: 1rem;
+  min-width: 1rem;
   aspect-ratio: 1/1;
   border-radius: 0 !important;
   border: none !important;
@@ -1026,6 +1041,19 @@ button[aria-label="Browse"] svg {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
+}
+
+
+.main-yourLibraryX-navLink[href="/lyrics-plus"]>svg {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/slide-text-outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/slide-text-outline.svg");
+  background-color: var(--spice-subtext) !important;
+}
+
+.main-yourLibraryX-navLink[href="/lyrics-plus"].active>svg {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/slide-text.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/slide-text.svg");
+  background-color: var(--spice-accent) !important;
 }
 
 .main-playButton-button[aria-label*="Pause"],
