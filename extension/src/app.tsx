@@ -71,9 +71,15 @@ async function setIsArtistOrPlaylist() {
     let display = "relative";
     if (section && section.dataset?.testUri) {
       const dataTestUri = section.dataset.testUri.toLowerCase();
+      const dataTestId = section.dataset.testUri.toLowerCase();
       const isArtist = dataTestUri.includes("artist");
+      const isAlbum = dataTestId.includes("album-page");
       display =
-        isArtist || document.querySelector(".playlist-playlist-playlist")
+        isArtist ||
+        document.querySelectorAll(
+          ".playlist-playlist-playlist, .main-entityHeader-container, .main-entityHeader-nonWrapped"
+        ).length !== 0 ||
+        isAlbum
           ? "absolute"
           : "relative";
 
