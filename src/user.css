@@ -839,22 +839,22 @@ div[data-testid="hpto-parent-container"] {
 }
 
 .progress-bar__slider {
+  width: 0.75rem;
+  height: 0.75rem;
   background-color: rgba(var(--spice-rgb-accent), 1);
-  transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: 0.3s box-shadow cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .progress-bar__slider:hover {
-  box-shadow: 0 0 0 0.25rem rgba(var(--spice-rgb-card), 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(var(--spice-rgb-card), 0.5) !important;
 }
 
 .progress-bar__slider:active {
-  box-shadow: 0 0 0 0.5rem rgba(var(--spice-rgb-card), 0.5);
+  box-shadow: 0 0 0 0.5rem rgba(var(--spice-rgb-card), 0.5) !important;
+  width: 0.5rem;
+  height: 0.5rem;
 }
 
-.progress-bar__slider:hover,
-.progress-bar__slider:active {
-  transition: box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
 
 /* Icons */
 .main-playPauseButton-button {
@@ -1220,7 +1220,7 @@ button[aria-label="Browse"] path {
 }
 
 .better-bloom-slider::-webkit-slider-thumb:hover {
-  box-shadow: 0px 0px 0px 8px rgba(var(--spice-rgb-accent), 0.16);
+  box-shadow: 0px 0px 0px 8px rgba(var(--spice-rgb-accent), 0.16) !important;
   transition: 0.3s ease-in-out;
 }
 
