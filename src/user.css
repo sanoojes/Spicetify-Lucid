@@ -553,6 +553,10 @@ input,
   margin-top: 5rem;
 }
 
+#marketplace-readme {
+  background-color: transparent !important;
+}
+
 .ButtonInner-small-iconOnly,
 .button-module__button___hf2qg_marketplace {
   --background-base: rgb(var(--accent-color));
