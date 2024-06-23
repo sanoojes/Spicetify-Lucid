@@ -92,9 +92,6 @@ async function setIsArtistOrPlaylist() {
           : "relative";
     }
     styleSheet.innerText = `:root { --header-position: ${display}; }`;
-    console.log(
-      `[Better-Bloom] Setting header position to ${display} for section`
-    );
   } catch (error) {
     console.error("[Better-Bloom] Error waiting for section element:", error);
   }
