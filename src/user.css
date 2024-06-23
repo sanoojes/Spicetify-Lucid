@@ -514,6 +514,9 @@ input,
   backdrop-filter: none !important;
 }
 
+.Root__main-view:has(.BeautifulLyricsPage) .main-topBar-container {
+  position: absolute !important;
+}
 
 .global-nav .main-home-filterChipsContainer,
 .global-nav .main-topBar-background {
@@ -1433,4 +1436,10 @@ button[aria-label="Browse"] path {
 /* Catjam extention */
 #catjam-webm {
   bottom: var(--now-playing-bar-height) !important;
+}
+
+/* Beautiful Lyrics */
+
+.BeautifulLyricsPage:not(.Fullscreen) {
+  height: calc(100% - var(--now-playing-bar-height)) !important;
 }
