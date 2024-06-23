@@ -70,7 +70,11 @@ async function setIsArtistOrPlaylist() {
     const section = (await waitForElement("section")) as HTMLElement;
     let display = "relative";
 
-    if (section.dataset.testid === "album-page") {
+    if (
+      section.dataset.testid?.includes("album") ||
+      section.dataset.testid?.includes("playlist") ||
+      section.dataset.testid?.includes("artist")
+    ) {
       display = "absolute";
     }
 
