@@ -716,6 +716,14 @@ div[data-testid="hpto-parent-container"] {
 }
 
 /* Generic Modal */
+
+.JnpOnFaQfrRIA2fYe88A
+
+/* ADD: classes for artist popup */
+  {
+  max-height: 70vh !important;
+}
+
 .GenericModal__overlay {
   background-color: rgba(var(--spice-rgb-shadow),
       var(--generic-modal-bg-opacity));
