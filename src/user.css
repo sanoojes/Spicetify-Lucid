@@ -94,7 +94,7 @@
   --now-playing-bar-padding-x: 0.25rem;
   --now-playing-bar-padding-y: 0.25rem;
   --border-radius-now-playing-bar: 0.5rem;
-  --margin-bottom-now-playing-bar: 0.5rem;
+  --margin-bottom-now-playing-bar: var(--panel-gap);
   --now-playing-bar-color: rgba(var(--spice-rgb-card),
       var(--now-playing-bar-bg-opacity));
 
@@ -652,7 +652,7 @@ input,
   position: fixed;
   height: fit-content;
   width: calc(100% - (var(--panel-gap) * 2));
-  bottom: var(--panel-gap);
+  bottom: var(--margin-bottom-now-playing-bar);
   left: var(--gap-md);
   right: var(--gap-md);
 }

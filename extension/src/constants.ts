@@ -137,14 +137,14 @@ export const DEFAULT_SETTINGS: SettingSection[] = [
           "Space between the content and the edges of the now playing bar.",
       },
       {
-        label: "Padding in Y axis",
-        key: "now-playing-bar-padding-y",
+        label: "Margin Bottom",
+        key: "margin-bottom-now-playing-bar",
         min: 0,
         max: 50,
         unit: "px",
-        default: 4,
+        default: 8,
         tooltip:
-          "Space between the content and the edges of the now playing bar.",
+          "Adjusts the spacing between the bottom of the now playing bar and the content below it.",
       },
       {
         label: "Border Radius",
