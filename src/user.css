@@ -156,7 +156,10 @@
 .encore-dark-theme,
 .encore-dark-theme .encore-base-set {
   --background-press: var(--card-hover-color) !important;
+}
 
+.spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
+  padding-inline: calc(64px* var(--zoom-adjust-coefficient, 1)) calc(135px* var(--zoom-adjust-coefficient, 1));
 }
 
 /* Font */
