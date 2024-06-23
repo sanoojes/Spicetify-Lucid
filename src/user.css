@@ -1365,6 +1365,7 @@ button[aria-label="Browse"] path {
 .Root__lyrics-cinema div,
 .FUYNhisXTCmbzt9IDxnT,
 .lyrics-lyricsContainer-LyricsContainer {
+  background-color: var(--card-color);
   --lyrics-color-active: var(--spice-text) !important;
   --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.2) !important;
   --lyrics-color-passed: rgba(var(--spice-rgb-text), .7) !important;
