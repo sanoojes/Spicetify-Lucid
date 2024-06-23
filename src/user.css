@@ -1228,6 +1228,35 @@ button[aria-label="Add to playlist"] {
   mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
 }
 
+.main-yourLibraryX-navLink[aria-label="Marketplace"] svg,
+button[href="/marketplace"] svg {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+
+  path {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.main-yourLibraryX-navLink[href="/marketplace"]>svg,
+.main-globalNav-link-icon[aria-label="Marketplace"] svg {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart-outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart-outline.svg");
+  background-color: var(--spice-subtext) !important;
+  scale: 1.25;
+}
+
+.main-yourLibraryX-navLink[href="/marketplace"].active>svg,
+.main-globalNav-link-icon.main-globalNav-navLinkActive[aria-label="Marketplace"] svg {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart.svg");
+  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart.svg");
+  background-color: var(--spice-text) !important;
+  scale: 1.25;
+}
+
 .main-skipForwardButton-button {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
