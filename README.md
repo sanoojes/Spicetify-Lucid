@@ -6,7 +6,7 @@
 
 - **Auto updates (planned):** Bug fixes are addressed promptly to keep your theme experience smooth.
 - **Dynamic background that adapts to album art:** Enjoy a visually engaging experience with a background that changes based on your current song album art.
-- **Multiple color schemes:** Choose from a variety of color schemes to match your style (dark, light, dark-green, coffee, comfy, dark-fluent).
+- **Multiple color schemes:** Choose from a variety of color schemes to match your style (dark, light, dark-green, coffee, comfy, dark-fluent, greenland, biscuit).
 - **Easy installation via scripts or Spicetify Marketplace:** Choose the installation method that best suits you.
 
 ## Join the Community!
@@ -62,7 +62,7 @@ curl -fsSL https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/
   spicetify apply
   ```
 
-Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`.
+Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`,`greenland`,`biscuit`.
 
 - If you installed via Marketplace, the color scheme can be changed directly in the theme options.
 
