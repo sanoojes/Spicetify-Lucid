@@ -152,6 +152,13 @@
   --lyrics-color-messaging: rgb(0, 0, 0) !important;
 }
 
+/* Spicetify Overrides */
+.encore-dark-theme,
+.encore-dark-theme .encore-base-set {
+  --background-press: var(--card-hover-color) !important;
+
+}
+
 /* Font */
 body,
 button,
@@ -408,7 +415,7 @@ input,
 .main-nowPlayingView-section,
 .main-globalNav-icon,
 .main-contextMenu-menu,
-#context-menu,
+[data-tippy-root],
 .x-settings-equalizerSection,
 .main-actionButtons button,
 .main-topBar-button,
@@ -430,7 +437,7 @@ input,
 .Root__nav-bar,
 .main-userWidget-box,
 .x-settings-equalizerSection,
-#context-menu,
+[data-tippy-root],
 .main-contextMenu-menu,
 .main-avatar-image {
   border-radius: var(--card-border-radius);
@@ -716,10 +723,7 @@ div[data-testid="hpto-parent-container"] {
   backdrop-filter: blur(var(--blur-sm));
 }
 
-.uJjmxe0T11dUVeW6Biz8
-
-/* ADD: generic modal slider bg */
-,
+.uJjmxe0T11dUVeW6Biz8,
 .main-embedWidgetGenerator-container,
 .GenericModal {
   max-height: 90vh;
@@ -729,6 +733,24 @@ div[data-testid="hpto-parent-container"] {
   border-radius: var(--card-border-radius);
   -webkit-backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
   backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
+}
+
+.main-embedWidgetGenerator-contentCode {
+  display: none;
+  visibility: hidden;
+  background-color: transparent;
+}
+
+.main-embedWidgetGenerator-visible,
+.main-embedWidgetGenerator-contentCode.main-embedWidgetGenerator-visible {
+  display: block;
+  visibility: visible;
+}
+
+.main-embedWidgetGenerator-code {
+  background-color: var(--card-color);
+  border: var(--default-border);
+  border-radius: var(--card-border-radius);
 }
 
 /* Main view cards */
@@ -910,7 +932,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 /* Context Menu */
-#context-menu::before,
+[data-tippy-root]::before,
 .main-contextMenu-menu::before {
   content: "";
   z-index: -1;
@@ -922,12 +944,14 @@ div[data-testid="hpto-parent-container"] {
   height: 100%;
   width: 100%;
   backdrop-filter: blur(var(--blur-xl));
+  background-color: var(--card-color);
   border-radius: var(--card-border-radius);
 }
 
-#context-menu,
+[data-tippy-root],
+[data-tippy-root] [data-tippy-root] ul,
 .main-contextMenu-menu {
-  background-color: var(--popup-color);
+  background-color: var(--popup-color) !important;
 }
 
 #context-menu ul[aria-label*="Add to playlist menu"] {
@@ -942,7 +966,8 @@ div[data-testid="hpto-parent-container"] {
 }
 
 #context-menu form,
-#context-menu div {
+#context-menu div,
+#context-menu ul {
   background-color: transparent !important;
 }
 
