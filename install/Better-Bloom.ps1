@@ -8,7 +8,7 @@ begin {
   Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
   $previousConsoleTitle = $Host.UI.RawUI.WindowTitle
-  $Host.UI.RawUI.WindowTitle = 'Better Bloom Installer'
+  $Host.UI.RawUI.WindowTitle = 'Lucid Installer'
 }
 process {
   Clear-Host
@@ -19,7 +19,7 @@ process {
   $modulePath = "$Temp\$moduleName.psm1"
   $Parameters = @{
     Uri             = (
-      'https://raw.githubusercontent.com/sanoojes/better-bloom/main/install/Functions.psm1'
+      'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main/install/Functions.psm1'
     )
     UseBasicParsing = $true
     OutFile         = $modulePath

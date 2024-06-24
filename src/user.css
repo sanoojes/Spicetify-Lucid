@@ -1145,20 +1145,21 @@ button[aria-label="Browse"] svg {
 .main-trackList-rowImagePlayButton[aria-label*="Play"],
 .main-playButton-PlayButton>button[aria-label*="Play"] {
   background-color: var(--spice-text) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/play.svg") !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg") !important;
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg") !important;
 }
 
-
+.main-globalNav-link-icon[href="/lyrics-plus"] svg,
 .main-yourLibraryX-navLink[href="/lyrics-plus"]>svg {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/slide-text-outline.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/slide-text-outline.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/slide-text-outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/slide-text-outline.svg");
   background-color: var(--spice-subtext) !important;
 }
 
+.main-globalNav-link-icon.main-globalNav-navLinkActive[href="/lyrics-plus"] svg,
 .main-yourLibraryX-navLink[href="/lyrics-plus"].active>svg {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/slide-text.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/slide-text.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/slide-text.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/slide-text.svg");
   background-color: var(--spice-accent) !important;
 }
 
@@ -1170,8 +1171,8 @@ button[aria-label="Browse"] svg {
 .main-trackList-rowImagePlayButton[aria-label*="Pause"],
 .main-playButton-PlayButton>button[aria-label*="Pause"] {
   background-color: var(--spice-text) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/pause.svg") !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg") !important;
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg") !important;
 }
 
 .main-skipBackButton-button,
@@ -1185,8 +1186,8 @@ button[aria-label="Browse"] svg {
 
 .main-repeatButton-button[aria-checked="false"],
 .main-repeatButton-button[aria-checked="true"] {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/repeat.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/repeat.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg");
   background-color: var(--spice-subtext);
 }
 
@@ -1196,14 +1197,14 @@ button[aria-label="Browse"] svg {
 }
 
 .main-repeatButton-button[aria-checked="mixed"] {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/repeat-mixed.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/repeat-mixed.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg");
 }
 
 button[aria-label="Add to playlist"],
 button[aria-label="Add to Liked Songs"] {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart-outline.svg") !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg") !important;
   mask-size: 100%;
   mask-position: 50% 50%;
   min-width: 1.2rem;
@@ -1218,14 +1219,14 @@ button[aria-label="Add to Liked Songs"] {
 
 button[aria-label="Add to playlist"] {
   background-color: var(--spice-accent) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/heart.svg") !important;
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg") !important;
 }
 
 .main-skipBackButton-button {
   background-color: var(--spice-text) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/prev.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg");
 }
 
 .main-yourLibraryX-navLink[aria-label="Marketplace"] svg,
@@ -1243,36 +1244,36 @@ button[href="/marketplace"] svg {
 
 .main-yourLibraryX-navLink[href="/marketplace"]>svg,
 .main-globalNav-link-icon[aria-label="Marketplace"] svg {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart-outline.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart-outline.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/cart-outline.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/cart-outline.svg");
   background-color: var(--spice-subtext) !important;
   scale: 1.25;
 }
 
 .main-yourLibraryX-navLink[href="/marketplace"].active>svg,
 .main-globalNav-link-icon.main-globalNav-navLinkActive[aria-label="Marketplace"] svg {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/cart.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/cart.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/cart.svg");
   background-color: var(--spice-text) !important;
   scale: 1.25;
 }
 
 .main-skipForwardButton-button {
   background-color: var(--spice-text) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/next.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg");
 }
 
 .main-actionButtons>div>button[aria-label="What's New"] svg,
 .main-actionButtons>button[aria-label="What's New"] svg {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/alert.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/alert.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/alert.svg");
 }
 
 .main-actionButtons>div>button[aria-label="Friend Activity"] svg,
 .main-actionButtons>button[aria-label="Friend Activity"] svg {
-  -webkit-mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
-  mask-image: url("https://sanooj.is-a.dev/better-bloom/assets/icons/people-team.svg");
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg");
 }
 
 .Root__globalNav button:is([aria-label="Clear search field"]) {
@@ -1317,7 +1318,7 @@ button[aria-label="Browse"] path {
   align-items: center;
 }
 
-.better-bloom-slider-container {
+.Lucid-slider-container {
   display: flex;
   flex-direction: row;
   gap: var(--gap-md);
@@ -1329,7 +1330,7 @@ button[aria-label="Browse"] path {
   color: var(--spice-text);
 }
 
-.better-bloom-slider {
+.Lucid-slider {
   width: 100%;
   height: 4px;
   border-radius: 5px;
@@ -1340,7 +1341,7 @@ button[aria-label="Browse"] path {
   transition: opacity 0.2s;
 }
 
-.better-bloom-slider::-webkit-slider-thumb {
+.Lucid-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
@@ -1351,12 +1352,12 @@ button[aria-label="Browse"] path {
   transition: 0.3s ease-in-out;
 }
 
-.better-bloom-slider::-webkit-slider-thumb:hover {
+.Lucid-slider::-webkit-slider-thumb:hover {
   box-shadow: 0px 0px 0px 8px rgba(var(--spice-rgb-accent), 0.16) !important;
   transition: 0.3s ease-in-out;
 }
 
-.better-bloom-slider::-moz-range-thumb {
+.Lucid-slider::-moz-range-thumb {
   width: 15px;
   height: 15px;
   border-radius: var(--border-radius-rounded);

@@ -8,7 +8,7 @@
     }
   ],
   "settings": {
-    "liveServer.settings.multiRootWorkspaceName": "better-bloom",
-    "powershell.cwd": "better-bloom"
+    "liveServer.settings.multiRootWorkspaceName": "spicetify-lucid",
+    "powershell.cwd": "spicetify-lucid"
   }
 }

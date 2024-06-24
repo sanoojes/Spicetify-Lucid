@@ -1,14 +1,15 @@
 <div align="center">
-  <h1>Bloom</h1>
-  
-  Bloom theme inspired by [Bloom](https://github.com/nimsandu/spicetify-bloom)  
-  
-  **Consider starring us !**
+  <h1>Spiceity Lucid</h1>
+  Spicetify theme inspired by Bloom and Microsoft Fluent Design
+
+  <hr>
+
+**Consider starring us !**
 
 ## Join the Community!
 
 - **Discord:** [https://discord.gg/knXP88Zbph](https://discord.gg/knXP88Zbph)
-- **GitHub Issues:** [https://github.com/sanoojes/better-bloom/issues](https://github.com/sanoojes/better-bloom/issues)
+- **GitHub Issues:** [https://github.com/sanoojes/Spicetify-Lucid/issues](https://github.com/sanoojes/Spicetify-Lucid/issues)
 
 </div>
 
@@ -17,45 +18,45 @@
 ### Dark (default)
 
 ![Base Dark Preview](./assets/images/base.webp)
-![Dark Preview 0](./assets/images/better-bloom-dark.webp)
-![Dark Preview 1](./assets/images/better-bloom-dark0.webp)
-![Dark 1 Preview 2](./assets/images/better-bloom-dark1.webp)
-![Dark 2 Preview 3](./assets/images/better-bloom-dark2.webp)
+![Dark Preview 0](./assets/images/Lucid-dark.webp)
+![Dark Preview 1](./assets/images/Lucid-dark0.webp)
+![Dark 1 Preview 2](./assets/images/Lucid-dark1.webp)
+![Dark 2 Preview 3](./assets/images/Lucid-dark2.webp)
 
 ### Light
 
-![Light Preview](./assets/images/better-bloom-light.webp)
-![Light Preview 1](./assets/images/better-bloom-light1.webp)
+![Light Preview](./assets/images/Lucid-light.webp)
+![Light Preview 1](./assets/images/Lucid-light1.webp)
 
 ### Comfy
 
-![Comfy Preview](./assets/images/better-bloom-comfy.webp)
-![Comfy Preview 1](./assets/images/better-bloom-comfy1.webp)
+![Comfy Preview](./assets/images/Lucid-comfy.webp)
+![Comfy Preview 1](./assets/images/Lucid-comfy1.webp)
 
 ### Darkgreen
 
-![DarkGreen Preview](./assets/images/better-bloom-darkgreen.webp)
-![DarkGreen Preview 1](./assets/images/better-bloom-darkgreen1.webp)
+![DarkGreen Preview](./assets/images/Lucid-darkgreen.webp)
+![DarkGreen Preview 1](./assets/images/Lucid-darkgreen1.webp)
 
 ### Violet
 
-![Violet Preview](./assets/images/better-bloom-violet.webp)
-![Violet Preview 1](./assets/images/better-bloom-violet1.webp)
+![Violet Preview](./assets/images/Lucid-violet.webp)
+![Violet Preview 1](./assets/images/Lucid-violet1.webp)
 
 ### Dark-Fluent
 
-![Dark-Fluent Preview](./assets/images/better-bloom-dark-fluent.webp)
-![Dark-Fluent Preview 1](./assets/images/better-bloom-dark-fluent1.webp)
+![Dark-Fluent Preview](./assets/images/Lucid-dark-fluent.webp)
+![Dark-Fluent Preview 1](./assets/images/Lucid-dark-fluent1.webp)
 
 ### Dark-Bloom
 
-![Dark-Bloom Preview](./assets/images/better-bloom-dark-bloom.webp)
-![Dark-Bloom Preview 1](./assets/images/better-bloom-dark-bloom.webp)
+![Dark-Bloom Preview](./assets/images/Lucid-dark-bloom.webp)
+![Dark-Bloom Preview 1](./assets/images/Lucid-dark-bloom.webp)
 
 ### Midnight-Catppuccin
 
-![midnight-catppuccin Preview](./assets/images/better-bloom-midnight-catppuccin.webp)
-![midnight-catppuccin  Preview 1](./assets/images/better-bloom-midnight-catppuccin1.webp)
+![midnight-catppuccin Preview](./assets/images/Lucid-midnight-catppuccin.webp)
+![midnight-catppuccin  Preview 1](./assets/images/Lucid-midnight-catppuccin1.webp)
 
 ## Dependencies
 
@@ -80,10 +81,6 @@ Open Spotify settings and turn on `Enable hardware acceleration`.
 ### Some custom app on the left navbar has a wrong icon
 
 Please report about that via the repository's issues page.
-
-## Credits
-
-- Based on [Bloom](https://github.com/nimsandu/spicetify-bloom) by [nimsandu](https://github.com/nimsandu)
 
 ## License
 

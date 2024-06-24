@@ -22,9 +22,9 @@ function Write-HelloMessage {
     process {
         Write-Host
         Write-Center -Message '----------------------------------------' -ForegroundColor Blue
-        Write-Center -Message 'Starting the Spicetify better-bloom script...' -ForegroundColor Blue
+        Write-Center -Message 'Starting the Spicetify Lucid script...' -ForegroundColor Blue
         Write-Host
-        Write-Center -Message 'github.com/sanoojes/better-bloom' -ForegroundColor Blue
+        Write-Center -Message 'github.com/sanoojes/Spicetify-Lucid' -ForegroundColor Blue
         Write-Center -Message '----------------------------------------' -ForegroundColor Blue
         Write-Host
     }
@@ -53,7 +53,7 @@ function Write-ByeMessage {
         Write-Center -Message '----------------------------------------' -ForegroundColor Green
         Write-Center -Message 'No errors!' -ForegroundColor Green
         Write-Host
-        Write-Center -Message 'Thanks for using better-bloom!' -ForegroundColor Green
+        Write-Center -Message 'Thanks for using Lucid!' -ForegroundColor Green
         Write-Center -Message '----------------------------------------' -ForegroundColor Green
         Write-Host
     }
@@ -209,7 +209,7 @@ function Get-SpicetifyFoldersPaths {
     process {
         @{
             configPath = (spicetify path -c)
-            bloomPath  = "$(spicetify path userdata)\Themes\better-bloom"
+            bloomPath  = "$(spicetify path userdata)\Themes\Lucid"
         }
     }
 }
@@ -277,26 +277,26 @@ function Get-ThemeType {
 }
 #endregion Misc
 
-#region better-bloom
+#region Lucid
 function Get-BetterBloom {
     [CmdletBinding()]
     [OutputType([string])]
     param ()
     begin {
-        $archiveName = 'better-bloom-main'
+        $archiveName = 'Lucid-main'
         $Temp = [System.IO.Path]::GetTempPath()
         $archivePath = "$Temp\$archiveName.zip"
     }
     process {
-        Write-Verbose -Message 'Downloading the better-bloom repository archive...' -Verbose
+        Write-Verbose -Message 'Downloading the Lucid repository archive...' -Verbose
         $Parameters = @{
             UseBasicParsing = $true
-            Uri             = 'https://codeload.github.com/sanoojes/better-bloom/zip/refs/heads/main'
+            Uri             = 'https://codeload.github.com/sanoojes/Spicetify-Lucid/zip/refs/heads/main'
             OutFile         = $archivePath
         }
         Invoke-WebRequest @Parameters
         
-        Write-Verbose -Message 'Unpacking the better-bloom repository archive...' -Verbose
+        Write-Verbose -Message 'Unpacking the Lucid repository archive...' -Verbose
         $Parameters = @{
             Path            = $archivePath
             DestinationPath = $Temp
@@ -328,7 +328,7 @@ function Install-BetterBloom {
         [string]$ColorScheme
     )
     begin {
-        Write-Verbose -Message 'Installing better-bloom theme...' -Verbose
+        Write-Verbose -Message 'Installing Lucid theme...' -Verbose
         $bloomSrcPath = "$Path\src"
         $bloomRemotePath = "$Path\remote"
     }
@@ -360,7 +360,7 @@ function Install-BetterBloom {
         }
         
         spicetify config inject_css 1 replace_colors 1 overwrite_assets 1 inject_theme_js 1
-        spicetify config current_theme 'better-bloom'
+        spicetify config current_theme 'Lucid'
         
         if ($ColorScheme) {
             spicetify config color_scheme $ColorScheme
@@ -385,7 +385,7 @@ function Uninstall-BetterBloom {
         [string]$Value = ' '
     )
     begin {
-        Write-Verbose -Message 'Uninstalling better-bloom theme...' -Verbose
+        Write-Verbose -Message 'Uninstalling Lucid theme...' -Verbose
     }
     process {
         spicetify config current_theme $Value color_scheme $Value
@@ -395,4 +395,4 @@ function Uninstall-BetterBloom {
         Remove-Item -Path $Path -Recurse -Force
     }
 }
-#endregion better-bloom
+#endregion Lucid

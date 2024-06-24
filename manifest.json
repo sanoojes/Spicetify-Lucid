@@ -1,16 +1,16 @@
 {
-  "name": "Better-Bloom",
+  "name": "Lucid",
   "description": "Spicetify theme inspired by Bloom and Microsoft Fluent Design",
   "preview": "assets/images/base.webp",
   "readme": "README-Marketplace.md",
-  "usercss": "https://sanooj.is-a.dev/better-bloom/src/user.css",
-  "schemes": "https://sanooj.is-a.dev/better-bloom/src/color.ini",
-  "include": ["https://sanooj.is-a.dev/better-bloom/src/theme.js"],
+  "usercss": "https://sanooj.is-a.dev/Spicetify-Lucid/src/user.css",
+  "schemes": "https://sanooj.is-a.dev/Spicetify-Lucid/src/color.ini",
+  "include": ["https://sanooj.is-a.dev/Spicetify-Lucid/src/theme.js"],
   "authors": [
     {
       "name": "Sanoojes",
       "url": "https://github.com/sanoojes"
     }
   ],
-  "tags": ["fluent", "transparent", "blur", "bloom", "dynamic"]
+  "tags": ["dynamic", "fluent", "transparent", "blur", "bloom"]
 }

@@ -1,5 +1,5 @@
-$srcFolder = "C:\Users\Sachu\Desktop\Github\better-bloom\src"
-$destinationFolder = "$(spicetify path userdata)\Themes\better-bloom"
+$srcFolder = "C:\Users\Sachu\Desktop\Github\Lucid\src"
+$destinationFolder = "$(spicetify path userdata)\Themes\Lucid"
 
 # Create the destination folder if it doesn't exist
 if (!(Test-Path $destinationFolder)) {

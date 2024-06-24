@@ -4,15 +4,15 @@ labels: [bug]
 body:
   - type: checkboxes
     attributes:
-      label: Do you have the latest versions of Spicetify, Spotify and Better Bloom?
+      label: Do you have the latest versions of Spicetify, Spotify and Lucid?
       description: It is difficult to support all versions of Spicetify/Spotify, so we only provide support for the latest versions. And don't forget to update the theme itself if you've installed it locally, your issue may already have been fixed.
       options:
-        - label: I'm using the latest versions of Spicetify, Spotify and Better Bloom
+        - label: I'm using the latest versions of Spicetify, Spotify and Lucid
           required: true
   - type: checkboxes
     attributes:
       label: Is there already an issue for your problem?
-      description: Please make sure you are not creating an already submitted <a href="https://github.com/sanoojes/better-bloom/issues">issue</a>. Check closed issues as well.
+      description: Please make sure you are not creating an already submitted <a href="https://github.com/sanoojes/Spicetify-Lucid/issues">issue</a>. Check closed issues as well.
       options:
         - label: I have checked older issues, open and closed
           required: true
@@ -27,7 +27,7 @@ body:
     attributes:
       label: Environment & Computer Info
       description: |
-        Please provide the details of the system Better Bloom is running on:
+        Please provide the details of the system Lucid is running on:
           - Copy the information from the "About" window (`⋯` button -> Help -> About -> expand -> click the Copy to Clipboard button)
           - Write where you got the Spotify app
 
@@ -39,7 +39,7 @@ body:
         - Color scheme:
         - Extensions:
         - Custom apps:
-        - Better Bloom installation method: (Spicetify Marketplace/PowerShell script/Bash script/Manual)
+        - Lucid installation method: (Spicetify Marketplace/PowerShell script/Bash script/Manual)
       placeholder: |
         - Spotify version: for Windows 1.2.11.916.geb595a67
         - Installed from: Spotify site
@@ -47,7 +47,7 @@ body:
         - Color scheme: darkmono
         - Extensions: fullAlbumDate.js, adblock.js
         - Custom apps: marketplace, lyrics-plus
-        - Better Bloom installation method: Spicetify Marketplace
+        - Lucid installation method: Spicetify Marketplace
       render: Markdown
     validations:
       required: true
