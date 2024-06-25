@@ -1,4 +1,4 @@
-$srcFolder = "C:\Users\Sachu\Desktop\Github\Lucid\src"
+$srcFolder = "C:\Users\Sachu\Desktop\Github\Spiceitfy-Lucid\src"
 $destinationFolder = "$(spicetify path userdata)\Themes\Lucid"
 
 # Create the destination folder if it doesn't exist
