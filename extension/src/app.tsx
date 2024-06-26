@@ -686,7 +686,7 @@ function addSettings() {
 }
 
 function resetSettings() {
-  localStorage.removeItem("lucid-settings");
+  localStorage.removeItem("settings");
   localStorage.removeItem("selectedBackground");
   changeBackgroundTo();
   localStorage.removeItem("lucid-selectedGrains");
@@ -720,7 +720,9 @@ function findSettingItemByKey(key: string): SettingItem | undefined {
 }
 
 function loadSettings(): SettingSection[] {
-  const storedSettings = localStorage.getItem("lucid-settings");
+  const storedSettings = localStorage.getItem("settings");
+  console.log(storedSettings);
+
   if (storedSettings) {
     try {
       const parsedSettings: SettingSection[] = JSON.parse(storedSettings);
