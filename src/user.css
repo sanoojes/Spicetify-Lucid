@@ -390,19 +390,22 @@ button,
 
 /* Input & Search Bar */
 input,
+.x-searchInput-searchInputInput,
 .main-globalNav-searchInputContainer {
   border-radius: var(--card-border-radius) !important;
   background-color: rgba(var(--spice-rgb-card), 0.25) !important;
   box-shadow: none !important;
 }
 
+.x-searchInput-searchInputInput:hover,
 .main-globalNav-searchInputContainer input:hover {
   background-color: rgba(var(--spice-rgb-card), 0.5) !important;
 }
 
+.x-searchInput-searchInputInput:focus,
 .main-globalNav-searchInputContainer input:focus {
   background-color: rgba(var(--spice-rgb-card), 0.75) !important;
-  border-bottom: 2px solid rgb(var(--accent-color));
+  border-bottom: 2px solid rgb(var(--accent-color)) !important;
 }
 
 /* Border */
@@ -415,6 +418,7 @@ input,
 ,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle:hover,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle,
+.x-searchInput-searchInputInput,
 .main-globalNav-searchInputContainer,
 .Root__right-sidebar,
 .Root__main-view,
