@@ -369,6 +369,7 @@ button,
   padding-inline-end: var(--encore-spacing-tighter, 12px);
 }
 
+.Button-small-small-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle:hover,
 .main-globalNav-historyButtons button:hover,
 .main-topBar-historyButtons button,
 .main-topBar-buddyFeed:hover,
@@ -381,6 +382,10 @@ button,
   span {
     scale: var(--scale-up) !important;
   }
+}
+
+.main-genericButton-button {
+  color: var(--spice-subtext);
 }
 
 /* Input & Search Bar */
