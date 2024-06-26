@@ -15,6 +15,11 @@
 
 ## Screenshots
 
+### **Dark (default) with Control Nav**
+
+![Base Dark with Control Nav](./assets/images/lucid-control-nav.png)
+![Base Dark with Control Nav 1](./assets/images/lucid-control-nav-1.png)
+
 ### **Dark (default)**
 
 ![Base Dark Preview](./assets/images/base.png)
