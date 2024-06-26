@@ -15,48 +15,19 @@
 
 ## Screenshots
 
-### Dark (default)
+### **Dark (default)**
 
-![Base Dark Preview](./assets/images/base.webp)
-![Dark Preview 0](./assets/images/Lucid-dark.webp)
-![Dark Preview 1](./assets/images/Lucid-dark0.webp)
-![Dark 1 Preview 2](./assets/images/Lucid-dark1.webp)
-![Dark 2 Preview 3](./assets/images/Lucid-dark2.webp)
+![Base Dark Preview](./assets/images/base.png)
+![Dark Preview 0](./assets/images/lucid-dark.png)
+![Dark Preview 1](./assets/images/lucid-dark-1.png)
+![Dark 1 Preview 2](./assets/images/lucid-dark-1.png)
+![Dark 2 Preview 3](./assets/images/lucid-dark-artist.png)
+![Dark 2 Preview 3](./assets/images/lucid-dark-playlist.png)
+![Dark 2 Preview 3](./assets/images/lucid-dark-playlist-1.png)
 
-### Light
+### Lucid Settings
 
-![Light Preview](./assets/images/Lucid-light.webp)
-![Light Preview 1](./assets/images/Lucid-light1.webp)
-
-### Comfy
-
-![Comfy Preview](./assets/images/Lucid-comfy.webp)
-![Comfy Preview 1](./assets/images/Lucid-comfy1.webp)
-
-### Darkgreen
-
-![DarkGreen Preview](./assets/images/Lucid-darkgreen.webp)
-![DarkGreen Preview 1](./assets/images/Lucid-darkgreen1.webp)
-
-### Violet
-
-![Violet Preview](./assets/images/Lucid-violet.webp)
-![Violet Preview 1](./assets/images/Lucid-violet1.webp)
-
-### Dark-Fluent
-
-![Dark-Fluent Preview](./assets/images/Lucid-dark-fluent.webp)
-![Dark-Fluent Preview 1](./assets/images/Lucid-dark-fluent1.webp)
-
-### Dark-Bloom
-
-![Dark-Bloom Preview](./assets/images/Lucid-dark-bloom.webp)
-![Dark-Bloom Preview 1](./assets/images/Lucid-dark-bloom.webp)
-
-### Midnight-Catppuccin
-
-![midnight-catppuccin Preview](./assets/images/Lucid-midnight-catppuccin.webp)
-![midnight-catppuccin  Preview 1](./assets/images/Lucid-midnight-catppuccin1.webp)
+![Settings Preview](./assets/images/settings.webp)
 
 ## Dependencies
 

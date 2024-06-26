@@ -6,7 +6,7 @@
 
 - **Auto updates (planned):** Bug fixes are addressed promptly to keep your theme experience smooth.
 - **Dynamic background that adapts to album art:** Enjoy a visually engaging experience with a background that changes based on your current song album art.
-- **Multiple color schemes:** Choose from a variety of color schemes to match your style (dark, light, dark-green, coffee, comfy, dark-fluent, greenland, biscuit).
+- **Multiple color schemes:** Choose from a variety of color schemes to match your style (dark, light, dark-green, coffee, comfy, dark-fluent, greenland, biscuit, macos).
 - **Easy installation via scripts or Spicetify Marketplace:** Choose the installation method that best suits you.
 
 ## Join the Community!
@@ -62,7 +62,7 @@ curl -fsSL https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main/insta
   spicetify apply
   ```
 
-Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`,`greenland`,`biscuit`.
+Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`,`greenland`,`biscuit`,`macos`.
 
 - If you installed via Marketplace, the color scheme can be changed directly in the theme options.
 
@@ -94,7 +94,7 @@ Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `d
 
 ### Lucid Settings
 
-![Settings Preview](./assets/images/settings.png)
+![Settings Preview](./assets/images/settings.webp)
 
 ## License
 
