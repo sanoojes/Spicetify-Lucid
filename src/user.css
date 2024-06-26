@@ -555,6 +555,7 @@ input,
 .artist-artistDiscography-topBar,
 .search-searchCategory-SearchCategory,
 .main-topBar-background {
+  background: none !important;
   background-color: transparent !important;
   -webkit-backdrop-filter: blur(var(--top-bar-bg-blur)) saturate(var(--top-bar-saturation)) !important;
   backdrop-filter: blur(var(--top-bar-bg-blur)) saturate(var(--top-bar-saturation)) !important;
