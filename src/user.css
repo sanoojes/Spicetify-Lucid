@@ -39,7 +39,7 @@
   --scale-down: 0.96;
 
   /* Opacity */
-  --generic-modal-bg-opacity: 0.75;
+  --generic-modal-bg-opacity: 0.5;
 
   /* Background Color */
   --main-color: rgba(var(--spice-rgb-main), 0.5);
@@ -740,6 +740,15 @@ div[data-testid="hpto-parent-container"] {
 .GenericModal__overlay {
   background-color: rgba(var(--spice-rgb-shadow),
       var(--generic-modal-bg-opacity));
+  -webkit-backdrop-filter: blur(var(--blur-sm));
+  backdrop-filter: blur(var(--blur-sm));
+}
+
+.BoxComponent-box-elevated {
+  --text-base: var(--spice-text) !important;
+  background-color: rgba(var(--spice-rgb-shadow),
+      0.2) !important;
+  color: var(--spice-text) !important;
   -webkit-backdrop-filter: blur(var(--blur-sm));
   backdrop-filter: blur(var(--blur-sm));
 }
