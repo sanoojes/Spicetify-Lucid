@@ -209,7 +209,7 @@ function Get-SpicetifyFoldersPaths {
     process {
         @{
             configPath = (spicetify path -c)
-            bloomPath  = "$(spicetify path userdata)\Themes\Lucid"
+            lucidPath  = "$(spicetify path userdata)\Themes\Lucid"
         }
     }
 }
@@ -278,7 +278,7 @@ function Get-ThemeType {
 #endregion Misc
 
 #region Lucid
-function Get-BetterBloom {
+function Get-Lucid {
     [CmdletBinding()]
     [OutputType([string])]
     param ()
@@ -310,7 +310,7 @@ function Get-BetterBloom {
     }
 }
 
-function Install-BetterBloom {
+function Install-Lucid {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -329,22 +329,22 @@ function Install-BetterBloom {
     )
     begin {
         Write-Verbose -Message 'Installing Lucid theme...' -Verbose
-        $bloomSrcPath = "$Path\src"
-        $bloomRemotePath = "$Path\remote"
+        $lucidSrcPath = "$Path\src"
+        $lucidRemotePath = "$Path\remote"
     }
     process {
         New-Item -Path $Destination -ItemType Directory -Force | Out-Null
         
         if ($Type -eq 'Remote') {
             $Parameters = @{
-                Path        = "$bloomSrcPath\color.ini"
+                Path        = "$lucidSrcPath\color.ini"
                 Destination = $Destination
                 Force       = $true
             }
             Move-Item @Parameters
             
             $Parameters = @{
-                Path        = "$bloomRemotePath\*"
+                Path        = "$lucidRemotePath\*"
                 Destination = $Destination
                 Force       = $true
             }
@@ -352,7 +352,7 @@ function Install-BetterBloom {
         }
         else {
             $Parameters = @{
-                Path        = $bloomSrcPath
+                Path        = $lucidSrcPath
                 Destination = $Destination
                 Force       = $true
             }
@@ -373,7 +373,7 @@ function Install-BetterBloom {
     }
 }
 
-function Uninstall-BetterBloom {
+function Uninstall-Lucid {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]

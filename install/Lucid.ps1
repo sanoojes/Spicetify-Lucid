@@ -50,7 +50,7 @@ process {
       
       $spicetifyFolders = Get-SpicetifyFoldersPaths
       $Parameters = @{
-        Path   = $spicetifyFolders.bloomPath
+        Path   = $spicetifyFolders.lucidPath
         Config = $spicetifyFolders.configPath
       }
       
@@ -65,7 +65,7 @@ process {
         $Parameters.Value = 'marketplace'
       }
       
-      Uninstall-BetterBloom @Parameters
+      Uninstall-Lucid @Parameters
     }
     'Update' {
       if (-not $isSpicetifyInstalled) {
@@ -74,12 +74,12 @@ process {
       
       $spicetifyFolders = Get-SpicetifyFoldersPaths
       $Parameters = @{
-        Path        = (Get-BetterBloom)
-        Destination = $spicetifyFolders.bloomPath
+        Path        = (Get-Lucid)
+        Destination = $spicetifyFolders.lucidPath
         Config      = $spicetifyFolders.configPath
-        Type        = (Get-ThemeType -Path $spicetifyFolders.bloomPath)
+        Type        = (Get-ThemeType -Path $spicetifyFolders.lucidPath)
       }
-      Install-BetterBloom @Parameters
+      Install-Lucid @Parameters
     }
     'Install' {
       if (-not (Test-Spotify)) {
@@ -109,8 +109,8 @@ process {
     
       $spicetifyFolders = Get-SpicetifyFoldersPaths
       $Parameters = @{
-        Path        = (Get-BetterBloom)
-        Destination = $spicetifyFolders.bloomPath
+        Path        = (Get-Lucid)
+        Destination = $spicetifyFolders.lucidPath
         Config      = $spicetifyFolders.configPath
         ColorScheme = (Get-WindowsAppsTheme)
       }
@@ -127,7 +127,7 @@ process {
         $Parameters.Type = 'Local'
       }
       
-      Install-BetterBloom @Parameters
+      Install-Lucid @Parameters
     }
   }
 }

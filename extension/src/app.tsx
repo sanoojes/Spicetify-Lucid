@@ -1,6 +1,17 @@
-import { SETTINGS_URL, DEFAULT_SETTINGS } from "./constants";
+import { DEFAULT_SETTINGS } from "./constants";
 import { SettingItem, SettingSection } from "./types/settings";
-const mainStyleSheet = document.createElement("style");
+
+enum BackgroundOption {
+  ANIMATED = "animated",
+  STATIC = "static",
+  SOLID = "solid",
+}
+
+enum grainsOption {
+  STARY = "stary",
+  NORMAL = "normal",
+  NONE = "none",
+}
 
 let isCustomControls = false;
 
@@ -98,69 +109,6 @@ async function setIsArtistOrPlaylist() {
 }
 
 document.head.appendChild(styleSheet);
-
-type BackgroundOption = "animated" | "static" | "solid";
-
-async function changeBackgroundTo(backgroundOption: BackgroundOption) {
-  const rootContainer = await waitForElement(".Root__top-container").catch(
-    (e) => console.error(e)
-  );
-
-  function removeAllExistingBgContainers() {
-    // Funtion to Remove all existing background containers
-    const existingAnimatedBg = rootContainer?.querySelector(
-      ".bloom-animated-background-container"
-    );
-    const existingStaticBg = rootContainer?.querySelector(
-      ".bloom-static-background-container"
-    );
-    if (existingAnimatedBg) {
-      existingAnimatedBg.remove();
-    }
-    if (existingStaticBg) {
-      existingStaticBg.remove();
-    }
-  }
-  removeAllExistingBgContainers();
-
-  try {
-    if (backgroundOption === "animated") {
-      function getRandomDegree() {
-        const randomDegree = Math.floor(Math.random() * 360);
-        document.documentElement.style.setProperty(
-          "--random-degree",
-          `${randomDegree}deg`
-        );
-      }
-      getRandomDegree();
-
-      const newElement = document.createElement("div");
-      newElement.classList.add("bloom-animated-background-container");
-
-      const divClasses = ["front", "back", "backleft", "backright"];
-
-      for (const className of divClasses) {
-        const div = document.createElement("div");
-        div.classList.add(className);
-
-        newElement.appendChild(div);
-      }
-      rootContainer?.prepend(newElement);
-    }
-    if (backgroundOption === "static") {
-      const newElement = document.createElement("div");
-      newElement.classList.add("bloom-static-background-container");
-
-      rootContainer?.prepend(newElement);
-    }
-
-    if (backgroundOption === "solid") {
-      removeAllExistingBgContainers();
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 function addButtonStyles() {
   const { Locale } = Spicetify;
@@ -394,7 +342,7 @@ async function fetchFadeTime() {
 /* Transparent Controls */
 const transparentControlElement = document.createElement("div");
 function addTransparentControls(height: number, width: number) {
-  transparentControlElement.classList.add("bloom-transperent-window-controls");
+  transparentControlElement.classList.add("lucid-transperent-window-controls");
   transparentControlElement.style.setProperty(
     "--control-height",
     `${height}px`
@@ -464,10 +412,107 @@ async function setTopBarStyles() {
   }
 }
 
-// Settings Section
+// Background
+async function changeBackgroundTo(backgroundOption?: BackgroundOption) {
+  const rootContainer = await waitForElement(".Root__top-container").catch(
+    (e) => console.error(e)
+  );
 
+  function removeAllExistingBgContainers() {
+    // Funtion to Remove all existing background containers
+    const existingAnimatedBg = rootContainer?.querySelector(
+      ".lucid-animated-background-container"
+    );
+    const existingStaticBg = rootContainer?.querySelector(
+      ".lucid-static-background-container"
+    );
+    if (existingAnimatedBg) {
+      existingAnimatedBg.remove();
+    }
+    if (existingStaticBg) {
+      existingStaticBg.remove();
+    }
+  }
+  removeAllExistingBgContainers();
+
+  try {
+    if (!backgroundOption) backgroundOption = BackgroundOption.STATIC;
+
+    if (backgroundOption === BackgroundOption.ANIMATED) {
+      function getRandomDegree() {
+        const randomDegree = Math.floor(Math.random() * 360);
+        document.documentElement.style.setProperty(
+          "--random-degree",
+          `${randomDegree}deg`
+        );
+      }
+      getRandomDegree();
+
+      const newElement = document.createElement("div");
+      newElement.classList.add("lucid-animated-background-container");
+
+      const divClasses = ["front", "back", "backleft", "backright"];
+
+      for (const className of divClasses) {
+        const div = document.createElement("div");
+        div.classList.add(className);
+
+        newElement.appendChild(div);
+      }
+      rootContainer?.prepend(newElement);
+    }
+    if (backgroundOption === BackgroundOption.STATIC) {
+      const newElement = document.createElement("div");
+      newElement.classList.add("lucid-static-background-container");
+
+      rootContainer?.prepend(newElement);
+    }
+
+    if (backgroundOption === BackgroundOption.SOLID) {
+      removeAllExistingBgContainers();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Grains
+const styleSheetforGrain = document.createElement("style");
+function changeGrainsTo(option?: grainsOption) {
+  try {
+    if (!option) option = grainsOption.STARY;
+
+    if (option === grainsOption.STARY) {
+      styleSheetforGrain.innerText = `
+      :root {
+        --background-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 700 700' width='700' height='700' opacity='1'%3E%3Cdefs%3E%3Cfilter id='nnnoise-filter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.184' numOctaves='4' seed='15' stitchTiles='stitch' x='0%25' y='0%25' width='100%25' height='100%25' result='turbulence'%3E%3C/feTurbulence%3E%3CfeSpecularLighting surfaceScale='13' specularConstant='0.3' specularExponent='20' lighting-color='%23ffffff' x='0%25' y='0%25' width='100%25' height='100%25' in='turbulence' result='specularLighting'%3E%3CfeDistantLight azimuth='3' elevation='133'%3E%3C/feDistantLight%3E%3C/feSpecularLighting%3E%3CfeColorMatrix type='saturate' values='0' x='0%25' y='0%25' width='100%25' height='100%25' in='specularLighting' result='colormatrix'%3E%3C/feColorMatrix%3E%3C/filter%3E%3C/defs%3E%3Crect width='700' height='700' fill='%2300000000'%3E%3C/rect%3E%3Crect width='700' height='700' fill='%23ffffff' filter='url(%23nnnoise-filter)'%3E%3C/rect%3E%3C/svg%3E") !important;
+        }
+        `;
+    }
+    if (option === grainsOption.NORMAL) {
+      styleSheetforGrain.innerText = `
+        :root {
+          --background-noise: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=) !important;
+}
+`;
+    }
+
+    if (option === grainsOption.NONE) {
+      styleSheetforGrain.innerText = `
+  :root {
+    --background-noise: none !important;
+    }
+    `;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+document.head.appendChild(styleSheetforGrain);
+
+// Settings Section
 const settingsContainer = document.createElement("div");
-settingsContainer.className = "bloom-settings-container";
+settingsContainer.className = "lucid-settings-container";
 
 function setPropertyToBody(key: string, value: string) {
   document.body.style.setProperty(`--${key}`, value);
@@ -478,7 +523,7 @@ function addSettings() {
 
   settings.forEach((section) => {
     const settingsSection = document.createElement("div");
-    settingsSection.className = "bloom-settings-card";
+    settingsSection.className = "lucid-settings-card";
 
     const sectionHeading = document.createElement("h2");
     sectionHeading.classList.add(
@@ -491,7 +536,7 @@ function addSettings() {
 
     section.items.forEach((item) => {
       const div = document.createElement("div");
-      div.className = "bloom-settings-input-card";
+      div.className = "lucid-settings-input-card";
 
       const label = document.createElement("label");
       label.classList.add(
@@ -545,62 +590,88 @@ function addSettings() {
     settingsContainer.appendChild(settingsSection);
   });
 
-  const bloomSettingsSection = document.createElement("div");
-  bloomSettingsSection.classList.add("bloom-settings-section");
+  // Function to create a reusable dropdown
+  const createDropdown = async (
+    options: { text: string; value: string }[],
+    localStorageKey: string,
+    label: string,
+    onChange: (newValue: string) => void
+  ): Promise<HTMLDivElement> => {
+    const dropdownContainer = document.createElement("div");
+    dropdownContainer.classList.add("lucid-dropdown-container");
 
-  const bloomSettingsSubtitle = document.createElement("h2");
-  bloomSettingsSubtitle.classList.add("bloom-settings-subtitle");
-  bloomSettingsSubtitle.textContent = "Background Options";
+    const dropdownLabel = document.createElement("h2");
+    dropdownLabel.classList.add("lucid-slider-label");
+    dropdownLabel.textContent = label;
+    dropdownContainer.appendChild(dropdownLabel);
 
-  const bloomDropDownContainer = document.createElement("div");
-  bloomDropDownContainer.classList.add("bloom-dropdown-container");
+    const selectElement = document.createElement("select");
+    selectElement.classList.add("lucid-dropdown", "main-dropDown-dropDown");
 
-  const bloomDropdownTitle = document.createElement("h2");
-  bloomDropdownTitle.classList.add("bloom-slider-label");
-  bloomDropdownTitle.textContent = "Background";
-  bloomDropDownContainer.appendChild(bloomDropdownTitle);
+    options.forEach((option) => {
+      const optionElement = document.createElement("option");
+      optionElement.textContent = option.text;
+      optionElement.value = option.value;
+      selectElement.appendChild(optionElement);
+    });
 
-  const BgDropdown = document.createElement("select");
-  BgDropdown.classList.add("bloom-dropdown", "main-dropDown-dropDown");
+    const storedValue =
+      localStorage.getItem(localStorageKey) || options[0].value;
+    selectElement.value = storedValue;
+    onChange(storedValue); // Apply initial value
 
-  const options: { text: string; value: BackgroundOption }[] = [
-    { text: "Default Background", value: "static" },
-    { text: "Animated Background", value: "animated" },
-    { text: "Solid Background", value: "solid" },
+    selectElement.addEventListener("change", () => {
+      const selectedValue = selectElement.value;
+      localStorage.setItem(localStorageKey, selectedValue);
+      onChange(selectedValue);
+    });
+
+    dropdownContainer.appendChild(selectElement);
+    return dropdownContainer;
+  };
+
+  // Background Settings Section
+  const backgroundSettingsSection = document.createElement("div");
+  backgroundSettingsSection.classList.add("lucid-settings-section");
+
+  const backgroundOptions = [
+    { text: "Default Background", value: BackgroundOption.STATIC },
+    { text: "Animated Background", value: BackgroundOption.ANIMATED },
+    { text: "Solid Background", value: BackgroundOption.SOLID },
   ];
 
-  options.forEach((option) => {
-    const optionElement = document.createElement("option");
-    optionElement.textContent = option.text;
-    optionElement.value = option.value;
-    BgDropdown.appendChild(optionElement);
-  });
+  const grainsOptions = [
+    { text: "Stary Grains (default)", value: grainsOption.STARY },
+    { text: "Normal Grains", value: grainsOption.NORMAL },
+    { text: "No Grains", value: grainsOption.NONE },
+  ];
 
-  const storedBackground =
-    (localStorage.getItem("selectedBackground") as BackgroundOption) ||
-    "static";
-  BgDropdown.value = storedBackground;
-  changeBackgroundTo(storedBackground);
+  (async () => {
+    const backgroundDropdown = await createDropdown(
+      backgroundOptions,
+      "selectedBackground",
+      "Background",
+      (newValue: string) => {
+        changeBackgroundTo(newValue as BackgroundOption);
+      }
+    );
+    backgroundSettingsSection.appendChild(backgroundDropdown);
 
-  BgDropdown.addEventListener("change", function () {
-    try {
-      const selectedValue = this.value as BackgroundOption;
-      console.log("[Lucid] Selected Background:", selectedValue);
-      localStorage.setItem("selectedBackground", selectedValue);
-      changeBackgroundTo(selectedValue);
-    } catch (error) {
-      console.log("[Lucid] Error setting Stored Background: ", error);
-    }
-  });
+    const grainsDropdown = await createDropdown(
+      grainsOptions,
+      "lucid-selectedGrains",
+      "Background Grains",
+      (newValue: string) => {
+        changeGrainsTo(newValue as grainsOption);
+      }
+    );
+    backgroundSettingsSection.appendChild(grainsDropdown);
+  })();
 
-  bloomSettingsSection.appendChild(bloomSettingsSubtitle);
-  bloomSettingsSection.appendChild(bloomDropDownContainer);
-  bloomDropDownContainer.appendChild(BgDropdown);
-
-  settingsContainer.appendChild(bloomSettingsSection);
+  settingsContainer.appendChild(backgroundSettingsSection);
 
   const resetButton = document.createElement("button");
-  resetButton.className = "bloom-reset-btn";
+  resetButton.className = "lucid-reset-btn";
   resetButton.textContent = "Reset to Defaults";
   resetButton.addEventListener("click", () => {
     if (
@@ -615,7 +686,11 @@ function addSettings() {
 }
 
 function resetSettings() {
-  localStorage.removeItem("settings");
+  localStorage.removeItem("lucid-settings");
+  localStorage.removeItem("selectedBackground");
+  changeBackgroundTo();
+  localStorage.removeItem("lucid-selectedGrains");
+  changeGrainsTo();
 
   const sliders = document.querySelectorAll<HTMLInputElement>(".Lucid-slider");
 
@@ -645,7 +720,7 @@ function findSettingItemByKey(key: string): SettingItem | undefined {
 }
 
 function loadSettings(): SettingSection[] {
-  const storedSettings = localStorage.getItem("settings");
+  const storedSettings = localStorage.getItem("lucid-settings");
   if (storedSettings) {
     try {
       const parsedSettings: SettingSection[] = JSON.parse(storedSettings);
@@ -728,7 +803,6 @@ async function main() {
   addButtonStyles();
 
   // Initial setup
-  document.head.appendChild(mainStyleSheet);
   setArtImage();
   setTopBarStyles();
   setIsArtistOrPlaylist();
@@ -758,13 +832,13 @@ async function main() {
   const checkForCustomControls = async () => {
     if (await waitForElement("#customControls")) {
       isCustomControls = true;
-      document.querySelector(".bloom-transperent-window-controls")?.remove();
+      document.querySelector(".lucid-transperent-window-controls")?.remove();
     }
   };
 
   setTimeout(() => {
     checkForCustomControls(); // check for the extensiton after it loads
-  }, 300);
+  }, 100);
 }
 
 export default main;
