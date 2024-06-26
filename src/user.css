@@ -756,6 +756,7 @@ div[data-testid="hpto-parent-container"] {
   color: var(--spice-text) !important;
   -webkit-backdrop-filter: blur(var(--blur-sm));
   backdrop-filter: blur(var(--blur-sm));
+  border: var(--default-border);
 }
 
 .uJjmxe0T11dUVeW6Biz8,
