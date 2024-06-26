@@ -363,6 +363,24 @@ function calculateBrowserZoom(): number {
   return zoomLevel;
 }
 
+function calculateInverseBrowserZoom(): number {
+  const viewportWidth: number = window.innerWidth;
+  const windowWidth: number = window.outerWidth;
+  const inverseZoomLevel: number = viewportWidth / windowWidth;
+  return inverseZoomLevel;
+}
+
+function calculateScaledPx(
+  baseWidth: number,
+  inverseZoom: number,
+  scalingFactorOut: number = 1,
+  minWidth: number = 0,
+  maxWidth: number = Infinity
+): number {
+  const scaledWidth = baseWidth * (inverseZoom + scalingFactorOut - 1);
+  return Math.max(minWidth, Math.min(scaledWidth, maxWidth));
+}
+
 /* Topbar styles */
 const topBarStyleSheet = document.createElement("style");
 document.head.appendChild(topBarStyleSheet);
@@ -374,38 +392,50 @@ async function setTopBarStyles() {
 
     const baseHeight = 64;
     const baseWidth = 135;
+    const constant = 0.912872807;
 
-    const zoomNum = calculateBrowserZoom();
-    const multiplier = zoomNum > 0 ? zoomNum / 50 : 0;
+    const normalZoom = calculateBrowserZoom();
+    const inverseZoom = calculateInverseBrowserZoom();
+
+    const finalControlHeight = Math.round(
+      (normalZoom ** constant * 100) / 100 - 3
+    );
+
+    await setMainWindowControlHeight(finalControlHeight);
+
+    const paddingStart = calculateScaledPx(64, inverseZoom, 1);
+    const paddingEnd = calculateScaledPx(baseWidth, inverseZoom, 1);
+
     if (!isGlobalNav) {
-      const constant = 0.912872807;
-      console.log(`Current zoom level: ${zoomNum}%`);
-
-      const finalControlHeight =
-        Math.round(zoomNum ** constant * 100) / 100 - 2;
-
-      const paddingStart = 4 * 1 ** multiplier;
-      const paddingEnd = 9 + 1 ** multiplier;
-
-      await setMainWindowControlHeight(finalControlHeight);
-
       topBarStyleSheet.innerText = `
-            .main-topBar-container {
-                padding-inline-end: ${paddingEnd}rem !important;
-                padding-inline-start: ${paddingStart}rem !important;
-            }
+.main-topBar-container {
+  padding-inline-end: ${paddingEnd}px !important;
+  padding-inline-start: ${paddingStart}px !important;
+}
 
-            .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
-                padding-inline: ${paddingStart}rem ${paddingEnd}rem !important;
-            }
+.spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
+  padding-inline: ${paddingStart}px ${paddingEnd}px !important;
+}
         `;
+    } else {
+      topBarStyleSheet.innerText = `
+.spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
+  padding-inline-end: ${paddingEnd}px !important;
+  padding-inline-start: ${paddingStart}px !important;
+}
+      `;
     }
     if (
       Spicetify.Platform.PlatformData.os_name === "windows" &&
       Spicetify.Config.color_scheme !== "light"
     ) {
       const transparentControlHeight = baseHeight;
-      const transparentControlWidth = baseWidth; // need to implement scaling
+
+      const transparentControlWidth = calculateScaledPx(
+        baseWidth,
+        inverseZoom,
+        1
+      );
 
       addTransparentControls(transparentControlHeight, transparentControlWidth);
     }
@@ -798,8 +828,8 @@ async function main() {
   const isWindows = Spicetify?.Platform.PlatformData.os_name === "windows";
   if (isWindows && Spicetify.Config.color_scheme !== "light") {
     document
-      .querySelector(".Root__main-view")
-      ?.prepend(transparentControlElement);
+      .querySelector(".Root__top-container")
+      ?.appendChild(transparentControlElement);
   }
 
   addButtonStyles();
