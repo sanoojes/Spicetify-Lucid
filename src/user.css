@@ -369,6 +369,8 @@ button,
   padding-inline-end: var(--encore-spacing-tighter, 12px);
 }
 
+.Button-buttonPrimary-useBrowserDefaultFocusStyle-data-is-icon-only:hover .ButtonInner-sc-14ud5tc-0,
+.Button-buttonPrimary-useBrowserDefaultFocusStyle-data-is-icon-only:hover .ButtonFocus-sc-2hq6ey-0,
 .Button-small-small-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle:hover,
 .main-globalNav-historyButtons button:hover,
 .main-topBar-historyButtons button,
@@ -378,10 +380,6 @@ button,
 .Button-medium-medium-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle:hover,
 .Button-medium-medium-buttonTertiary-iconOnly-condensedAll-useBrowserDefaultFocusStyle:hover {
   transform: scale(var(--scale-down)) !important;
-
-  span {
-    scale: var(--scale-up) !important;
-  }
 }
 
 .main-genericButton-button {
