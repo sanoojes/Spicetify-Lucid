@@ -794,6 +794,9 @@ div[data-testid="hpto-parent-container"] {
 
 .main-rootlist-wrapper {
   margin-top: var(--padding-md);
+}
+
+.main-yourLibraryX-libraryRootlist {
   margin-bottom: calc(var(--now-playing-bar-height) + var(--gap-lg)) !important;
 }
 
