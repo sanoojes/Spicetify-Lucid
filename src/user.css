@@ -547,6 +547,7 @@ input,
 
 /* ADD: Track list header active i.e, scrolled */
 ,
+.main-trackList-trackListHeaderStuck.main-trackList-trackListHeader,
 .marketplace-header,
 .artist-artistDiscography-topBar,
 .search-searchCategory-SearchCategory,
