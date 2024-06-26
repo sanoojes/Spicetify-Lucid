@@ -1,8 +1,5 @@
 import { SettingSection } from "./types/settings";
 
-export const SETTINGS_URL =
-  "https://gist.githubusercontent.com/sanoojes/4ba9a235eeae4add4f92eca3a1731725/raw/e1c4832d0a8171c41e3d28e973ee8d76940f47ce/bloom.json";
-
 export const DEFAULT_SETTINGS: SettingSection[] = [
   {
     section: "Default Background",
@@ -161,7 +158,7 @@ export const DEFAULT_SETTINGS: SettingSection[] = [
         min: 0,
         max: 100,
         unit: "px",
-        default: 16,
+        default: 32,
         tooltip: "Amount of blur to apply to the now playing bar.",
       },
       {
