@@ -751,7 +751,6 @@ function findSettingItemByKey(key: string): SettingItem | undefined {
 
 function loadSettings(): SettingSection[] {
   const storedSettings = localStorage.getItem("settings");
-  console.log(storedSettings);
 
   if (storedSettings) {
     try {
