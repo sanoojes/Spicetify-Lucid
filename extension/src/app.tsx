@@ -456,11 +456,17 @@ async function changeBackgroundTo(backgroundOption?: BackgroundOption) {
     const existingStaticBg = rootContainer?.querySelector(
       ".lucid-static-background-container"
     );
+    const existingSolidBg = rootContainer?.querySelector(
+      ".lucid-solid-background-container"
+    );
     if (existingAnimatedBg) {
       existingAnimatedBg.remove();
     }
     if (existingStaticBg) {
       existingStaticBg.remove();
+    }
+    if (existingSolidBg) {
+      existingSolidBg.remove();
     }
   }
   removeAllExistingBgContainers();
@@ -499,7 +505,10 @@ async function changeBackgroundTo(backgroundOption?: BackgroundOption) {
     }
 
     if (backgroundOption === BackgroundOption.SOLID) {
-      removeAllExistingBgContainers();
+      const newElement = document.createElement("div");
+      newElement.classList.add("lucid-solid-background-container");
+
+      rootContainer?.prepend(newElement);
     }
   } catch (error) {
     console.error(error);
