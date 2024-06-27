@@ -1075,9 +1075,11 @@ div[data-testid="hpto-parent-container"] {
 
 /* lucid Static Bg */
 .lucid-static-background-container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  width: 110%;
+  height: 110%;
+  top: -64px;
+  left: -64px;
+  position: fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
