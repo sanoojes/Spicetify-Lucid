@@ -46,11 +46,6 @@ function setArtImage() {
     Spicetify.Player.data.item.metadata.image_large_url ||
     Spicetify.Player.data.item.metadata.image_url;
 
-  currentArtImage = currentArtImage.replace(
-    "spotify:image:",
-    "https://i.scdn.co/image/"
-  );
-
   try {
     artStyleElement.innerText = "";
     artStyleElement.innerText = `:root { --image-url: url(${currentArtImage}); }`;
