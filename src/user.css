@@ -140,7 +140,7 @@
 
   --text-subdued: rgb(var(--spice-rgb-subtext)) !important;
 
-  --spice-tab-active: rgba(var(--spice-rgb-main), 0.5);
+  --spice-tab-active: rgba(var(--spice-rgb-card), 0.5);
 
   --fade-time: 1s;
 
