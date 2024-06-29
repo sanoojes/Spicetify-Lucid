@@ -545,7 +545,6 @@ input,
 
 .main-trackCreditsModal-container {
   max-height: 90vh;
-  min-width: 40vw;
 }
 
 .main-home-homeHeader {
@@ -771,7 +770,6 @@ div[data-testid="hpto-parent-container"] {
 .main-embedWidgetGenerator-container,
 .GenericModal {
   max-height: 90vh;
-  min-width: 40vw;
   background-color: var(--card-color);
   border: var(--default-border);
   border-radius: var(--card-border-radius);
