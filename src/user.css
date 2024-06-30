@@ -548,6 +548,8 @@ input,
 
 .main-trackCreditsModal-container {
   max-height: 90vh;
+  width: max-content;
+  max-width: 75vw;
 }
 
 .main-home-homeHeader {
@@ -565,13 +567,18 @@ input,
 .marketplace-header,
 .artist-artistDiscography-topBar,
 .search-searchCategory-SearchCategory,
-.main-topBar-background {
+.global-nav .main-topBar-background {
   background: none !important;
   background-color: transparent !important;
   -webkit-backdrop-filter: blur(var(--top-bar-bg-blur)) saturate(var(--top-bar-saturation)) !important;
   backdrop-filter: blur(var(--top-bar-bg-blur)) saturate(var(--top-bar-saturation)) !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
+}
+
+.main-topBar-background {
+  background: none !important;
+  background-color: transparent !important;
 }
 
 .main-topBar-overlay {
