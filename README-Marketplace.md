@@ -30,6 +30,12 @@
 ![Dark 2 Preview 3](./assets/images/lucid-dark-playlist.png)
 ![Dark 2 Preview 3](./assets/images/lucid-dark-playlist-1.png)
 
+## **Customization**
+
+### **Color scheme:**
+
+Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`,`greenland`,`biscuit`,`macos`, `rosepine`.
+
 ## Lucid Settings
 
 This section contains available settings for customizing the Lucid theme. Settings are grouped into sections for easier navigation.
