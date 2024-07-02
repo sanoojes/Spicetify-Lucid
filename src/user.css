@@ -536,6 +536,7 @@ input,
   top: 96px !important;
 }
 
+.global-nav .main-trackList-trackListHeader,
 .global-nav .artist-artistDiscography-topBar {
   top: 64px !important;
 }
