@@ -518,6 +518,7 @@ input,
   height: 64px;
 }
 
+.artist-artistDiscography-topBar,
 .search-searchCategory-SearchCategory,
 .global-nav .main-home-filterChipsContainer,
 .main-trackList-trackListHeader,
@@ -527,7 +528,15 @@ input,
   top: 0 !important;
 }
 
+.artist-artistDiscography-tracklist .main-trackList-trackListHeader {
+  top: 40px !important;
+}
+
 .global-nav .main-trackList-trackListHeader {
+  top: 96px !important;
+}
+
+.global-nav .artist-artistDiscography-topBar {
   top: 64px !important;
 }
 
@@ -843,9 +852,10 @@ div[data-testid="hpto-parent-container"] {
   padding: 64px;
 }
 
-.artist-artistDiscography-tracklist {
-  border: var(--default-border);
+.artist-artistDiscography-headerContainer {
+  margin-bottom: var(--margin-xl);
 }
+
 
 /* Cards */
 .EmeHQXR87mUskYK6xEde
