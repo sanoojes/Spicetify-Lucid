@@ -935,7 +935,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 #Desktop_PanelContainer_Id {
-  --section-background-base: background: rgba(var(--spice-rgb-card), .25) !important;
+  --section-background-base: rgba(var(--spice-rgb-card), .25) !important;
 }
 
 /* Search Section */
@@ -1563,7 +1563,6 @@ button[aria-label="Browse"] path {
 .lyrics-lyricsContent-lyric {
   transform-origin: center;
   transition: all 100ms ease-in-out, scale 0.3s ease-in-out;
-  ;
   color: rgba(var(--lyrics-active-color), 0.25) !important;
   filter: blur(calc(var(--lyrics-blur-coefficent) * 4)) !important;
   font-weight: var(--bold-font-weight);
