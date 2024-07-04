@@ -762,6 +762,24 @@ div[data-testid="hpto-parent-container"] {
 
 /* Generic Modal */
 
+.GenericModal__overlay {
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .JnpOnFaQfrRIA2fYe88A
 
 /* ADD: classes for artist popup */
@@ -1173,6 +1191,8 @@ svg {
   mask-size: contain;
 }
 
+.NKUrT1GciYXAEEUtagN1,
+.Qt226Z4rBQs53aedRQBQ,
 .player-controls__left,
 .player-controls__right {
   align-items: center;
