@@ -295,6 +295,7 @@ button,
 .Root__globalNav .main-globalNav-link-icon,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle,
 .LegacyChipComponent-checkbox-chip-sm-useBrowserDefaultFocusStyle,
+.main-entityHeader-imageContainerClickable,
 .ChipInnerComponent-sm,
 .ChipInnerComponent-sm-selected,
 .ChipInnerComponent-md,
@@ -319,7 +320,8 @@ button,
 
 .main-userWidget-box:focus,
 .main-userWidget-box:hover,
-.main-userWidget-box[data-context-menu-open="true"] {
+.main-userWidget-box[data-context-menu-open="true"],
+.BoxComponent-group-card-naked-isInteractive-padding_12px:hover::after {
   background-color: var(--card-hover-color);
 }
 
@@ -378,6 +380,7 @@ button,
   padding-inline-end: var(--encore-spacing-tighter, 12px);
 }
 
+.main-entityHeader-imageContainerClickable:hover,
 .Button-buttonPrimary-useBrowserDefaultFocusStyle-data-is-icon-only:hover .ButtonInner-sc-14ud5tc-0,
 .Button-buttonPrimary-useBrowserDefaultFocusStyle-data-is-icon-only:hover .ButtonFocus-sc-2hq6ey-0,
 .Button-small-small-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle:hover,
@@ -746,7 +749,7 @@ div[data-testid="hpto-parent-container"] {
   padding: 0 !important;
 }
 
-
+.lyrics-lyrics-contentWrapper,
 .main-view-container__scroll-node,
 .nw2W4ZMdICuBo08Tzxg9
 
@@ -804,6 +807,7 @@ div[data-testid="hpto-parent-container"] {
   border: var(--default-border);
 }
 
+.JnpOnFaQfrRIA2fYe88A,
 .uJjmxe0T11dUVeW6Biz8,
 .main-embedWidgetGenerator-container,
 .GenericModal {
@@ -1050,10 +1054,9 @@ div[data-testid="hpto-parent-container"] {
   background-color: var(--card-hover-color);
 }
 
-#context-menu form,
-#context-menu div,
-#context-menu ul {
-  background-color: transparent !important;
+.X5mwWAw7ijxPvQOoabzQ,
+.DquSH3YjnaIIXMZiOvwA {
+  background-color: transparent;
 }
 
 /* lucid Animated Bg */
@@ -1519,11 +1522,20 @@ button[aria-label="Browse"] path {
   --lyrics-color-passed: rgba(var(--lyrics-active-color), .5) !important;
   --lyrics-color-background: transparent !important;
   --lyrics-color-messaging: rgb(0, 0, 0) !important;
+  --lyrics-color-inactive: rgba(var(--spice-rgb-subtext), .25);
 
   --lyrics-blur-coefficent: 0.05rem;
   --lyrics-shadow-coefficent: 0.5rem;
   --lyrics-scale-coefficent: 0.01;
   --scale-constant: 1;
+}
+
+.lyrics-lyrics-container {
+  height: fit-content;
+}
+
+.lyrics-lyrics-background {
+  background-color: transparent !important;
 }
 
 .Root__lyrics-cinema div {
@@ -1566,14 +1578,6 @@ button[aria-label="Browse"] path {
   color: rgba(var(--lyrics-active-color), 0.25) !important;
   filter: blur(calc(var(--lyrics-blur-coefficent) * 4)) !important;
   font-weight: var(--bold-font-weight);
-}
-
-.lyrics-lyricsContent-active {
-  font-weight: var(--extra-bold-font-weight);
-  color: rgba(var(--lyrics-active-color), 1) !important;
-  filter: blur(calc(var(--lyrics-blur-coefficent) * 0)) !important;
-  transform: scale(calc(var(--scale-constant) + var(--lyrics-scale-coefficent)*5)) !important;
-  text-shadow: 0 0 calc(1rem + var(--lyrics-shadow-coefficent)*5) var(--lyrics-color-shadow) !important;
 }
 
 .lyrics-lyricsContent-lyric:has(+.lyrics-lyricsContent-active),
@@ -1624,12 +1628,13 @@ button[aria-label="Browse"] path {
   transform: scale(calc(var(--scale-constant) + var(--lyrics-scale-coefficent)*1)) !important;
 }
 
-.lyrics-lyricsContent-lyric:has(+*+*+*+*+*+*+.lyrics-lyricsContent-active),
-.lyrics-lyricsContent-active+*+*+*+*+.lyrics-lyricsContent-lyric {
-  /* Sibling 7 after active */
-  color: rgba(var(--lyrics-active-color), 0.25) !important;
-  filter: blur(calc(var(--lyrics-blur-coefficent) * 4.5)) !important;
-  transform: scale(calc(var(--scale-constant) + var(--lyrics-scale-coefficent)*0.5)) !important;
+.lyrics-lyricsContent-lyric:hover,
+.lyrics-lyricsContent-active {
+  font-weight: var(--extra-bold-font-weight);
+  color: rgba(var(--lyrics-active-color), 1) !important;
+  filter: blur(calc(var(--lyrics-blur-coefficent) * 0)) !important;
+  transform: scale(calc(var(--scale-constant) + var(--lyrics-scale-coefficent)*5)) !important;
+  text-shadow: 0 0 calc(1rem + var(--lyrics-shadow-coefficent)*5) var(--lyrics-color-shadow) !important;
 }
 
 /* FullScreen Styles */
