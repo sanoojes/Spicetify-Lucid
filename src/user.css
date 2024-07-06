@@ -51,7 +51,7 @@
   --card-hover-color: rgba(var(--spice-rgb-card), 0.25);
   --sidebar-color: rgba(var(--spice-rgb-sidebar), 0.5);
   --button-color: rgba(var(--spice-rgb-button), 0.5);
-  --button-active-color: rgba(var(--spice-rgb-button-active), 0.5);
+  --button-active-color: rgba(var(--spice-rgb-button-active), 0.125);
   --accent-color: var(--spice-rgb-accent);
   --normal-button-color: rgba(var(--spice-rgb-card), 0.5);
 
