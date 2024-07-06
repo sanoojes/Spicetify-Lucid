@@ -473,6 +473,11 @@ input,
   padding-top: calc(48px + var(--panel-gap) * 2);
 }
 
+/* Left sidebar */
+#Desktop_LeftSidebar_Id {
+  transition: width 0.5s cubic-bezier(1, 0.25, 0, 1);
+}
+
 /* Background Color */
 .Root__main-view {
   background-color: var(--main-color);
