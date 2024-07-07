@@ -446,7 +446,8 @@ input,
 .main-topBar-historyButtons button,
 .main-topBar-button,
 .main-userWidget-box,
-.main-globalNav-link-icon {
+.main-globalNav-link-icon,
+.main-dropDown-dropDown {
   border: var(--default-border) !important;
 }
 
@@ -498,6 +499,7 @@ input,
 #Desktop_PanelContainer_Id,
 .NowPlayingView,
 .main-yourLibraryX-entryPoints,
+.yHlSWaHkqZHm5mcY8ZFh,
 .pT8jWX5PbLB2Z91Ngl7n {
   background-color: var(--card-color);
 }
@@ -1510,7 +1512,17 @@ button[aria-label="Browse"] path {
 
 /* Dropdown */
 .main-dropDown-dropDown {
+  background-color: var(--card-color);
+  scrollbar-width: thin !important;
+}
+
+.main-dropDown-dropDown option {
   background-color: var(--spice-card);
+  color: var(--spice-text);
+}
+
+.main-dropDown-dropDown option:hover {
+  background-color: var(--spice-accent);
 }
 
 .lucid-dropdown {
