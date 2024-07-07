@@ -1047,7 +1047,7 @@ div[data-testid="hpto-parent-container"] {
 [data-tippy-root],
 [data-tippy-root] [data-tippy-root] ul,
 .main-contextMenu-menu {
-  background-color: var(--popup-color) !important;
+  background-color: transparent !important;
 }
 
 #context-menu ul[aria-label*="Add to playlist menu"] {
