@@ -497,7 +497,8 @@ input,
 .Root__right-sidebar,
 #Desktop_PanelContainer_Id,
 .NowPlayingView,
-.main-yourLibraryX-entryPoints {
+.main-yourLibraryX-entryPoints,
+.pT8jWX5PbLB2Z91Ngl7n {
   background-color: var(--card-color);
 }
 
@@ -627,6 +628,7 @@ input,
   padding: 0 calc(var(--content-spacing) * 2);
 }
 
+.azrW1gfJbgz897iDaITJ,
 .main-trackList-trackList {
   border: var(--default-border);
   padding: var(--padding-md);
