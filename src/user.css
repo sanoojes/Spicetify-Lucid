@@ -54,6 +54,7 @@
   --button-active-color: rgba(var(--spice-rgb-button-active), 0.125);
   --accent-color: var(--spice-rgb-accent);
   --normal-button-color: rgba(var(--spice-rgb-card), 0.5);
+  --spice-button-disabled: rgba(var(--spice-rgb-subtext), 0.5);
 
   /* Transparent controls */
   --control-width: 0px;
