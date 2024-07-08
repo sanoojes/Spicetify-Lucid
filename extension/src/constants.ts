@@ -1,4 +1,4 @@
-import { SettingSection } from "./types/settings";
+import type { SettingSection } from "./types/settings";
 
 export const DEFAULT_SETTINGS: SettingSection[] = [
   {

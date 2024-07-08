@@ -1,5 +1,5 @@
 import { DEFAULT_SETTINGS } from "./constants";
-import { SettingItem, SettingSection } from "./types/settings";
+import type { SettingItem, SettingSection } from "./types/settings";
 
 enum BackgroundOption {
   ANIMATED = "animated",
@@ -84,7 +84,7 @@ async function setIsArtistOrPlaylist() {
       display = "absolute";
     }
 
-    if (section && section.dataset?.testUri) {
+    if (section?.dataset?.testUri) {
       const dataTestUri = section.dataset.testUri.toLowerCase();
       const isArtist = dataTestUri.includes("artist");
       const isAlbum = dataTestUri.includes("album-page");
@@ -139,8 +139,8 @@ function addButtonStyles() {
 
   const homeBtnLabelOne = Locale.get("view.web-player-home");
 
-  let tracklistPlayLabelOne;
-  let tracklistPlayLabelTwo;
+  let tracklistPlayLabelOne: string;
+  let tracklistPlayLabelTwo: string;
   if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
     [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
       tracklistPlayLabel.split("{1}");
@@ -330,7 +330,7 @@ button[aria-label="${homeBtnLabelOne}"] svg {
 
 async function fetchFadeTime() {
   // needs to implement logic
-  let fadeTime = "1s";
+  const fadeTime = "1s";
   document.documentElement.style.setProperty("--fade-time", fadeTime);
 }
 
@@ -368,9 +368,9 @@ function calculateInverseBrowserZoom(): number {
 function calculateScaledPx(
   baseWidth: number,
   inverseZoom: number,
-  scalingFactorOut: number = 1,
-  minWidth: number = 0,
-  maxWidth: number = Infinity
+  scalingFactorOut = 1,
+  minWidth = 0,
+  maxWidth: number = Number.POSITIVE_INFINITY
 ): number {
   const scaledWidth = baseWidth * (inverseZoom + scalingFactorOut - 1);
   return Math.max(minWidth, Math.min(scaledWidth, maxWidth));
@@ -467,8 +467,6 @@ async function changeBackgroundTo(backgroundOption?: BackgroundOption) {
   removeAllExistingBgContainers();
 
   try {
-    if (!backgroundOption) backgroundOption = BackgroundOption.STATIC;
-
     if (backgroundOption === BackgroundOption.ANIMATED) {
       function getRandomDegree() {
         const randomDegree = Math.floor(Math.random() * 360);
@@ -492,7 +490,7 @@ async function changeBackgroundTo(backgroundOption?: BackgroundOption) {
       }
       rootContainer?.prepend(newElement);
     }
-    if (backgroundOption === BackgroundOption.STATIC) {
+    if (!backgroundOption || backgroundOption === BackgroundOption.STATIC) {
       const newElement = document.createElement("div");
       newElement.classList.add("lucid-static-background-container");
 
@@ -514,9 +512,7 @@ async function changeBackgroundTo(backgroundOption?: BackgroundOption) {
 const styleSheetforGrain = document.createElement("style");
 function changeGrainsTo(option?: grainsOption) {
   try {
-    if (!option) option = grainsOption.STARY;
-
-    if (option === grainsOption.STARY) {
+    if (!option || option === grainsOption.STARY) {
       styleSheetforGrain.innerText = `
       :root {
         --background-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 700 700' width='700' height='700' opacity='1'%3E%3Cdefs%3E%3Cfilter id='nnnoise-filter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.184' numOctaves='4' seed='15' stitchTiles='stitch' x='0%25' y='0%25' width='100%25' height='100%25' result='turbulence'%3E%3C/feTurbulence%3E%3CfeSpecularLighting surfaceScale='13' specularConstant='0.3' specularExponent='20' lighting-color='%23ffffff' x='0%25' y='0%25' width='100%25' height='100%25' in='turbulence' result='specularLighting'%3E%3CfeDistantLight azimuth='3' elevation='133'%3E%3C/feDistantLight%3E%3C/feSpecularLighting%3E%3CfeColorMatrix type='saturate' values='0' x='0%25' y='0%25' width='100%25' height='100%25' in='specularLighting' result='colormatrix'%3E%3C/feColorMatrix%3E%3C/filter%3E%3C/defs%3E%3Crect width='700' height='700' fill='%2300000000'%3E%3C/rect%3E%3Crect width='700' height='700' fill='%23ffffff' filter='url(%23nnnoise-filter)'%3E%3C/rect%3E%3C/svg%3E") !important;
@@ -555,7 +551,7 @@ function setPropertyToBody(key: string, value: string) {
 function addSettings() {
   const settings = loadSettings();
 
-  settings.forEach((section) => {
+  for (const section of settings) {
     const settingsSection = document.createElement("div");
     settingsSection.className = "lucid-settings-card";
 
@@ -568,7 +564,7 @@ function addSettings() {
     sectionHeading.textContent = section.section;
     settingsSection.appendChild(sectionHeading);
 
-    section.items.forEach((item) => {
+    for (const item of section.items) {
       const div = document.createElement("div");
       div.className = "lucid-settings-input-card";
 
@@ -605,7 +601,7 @@ function addSettings() {
       setPropertyToBody(item.key, `${slider.value}${item.unit}`);
 
       slider.addEventListener("input", () => {
-        const newValue = parseInt(slider.value, 10);
+        const newValue = Number.parseInt(slider.value, 10);
         sliderValue.textContent = `${newValue}${item.unit}`;
         setPropertyToBody(item.key, `${newValue}${item.unit}`);
         saveSetting(item.key, newValue);
@@ -620,9 +616,9 @@ function addSettings() {
 
       div.appendChild(slider_div);
       settingsSection.appendChild(div);
-    });
+    }
     settingsContainer.appendChild(settingsSection);
-  });
+  }
 
   // Function to create a reusable dropdown
   const createDropdown = async (
@@ -642,12 +638,12 @@ function addSettings() {
     const selectElement = document.createElement("select");
     selectElement.classList.add("lucid-dropdown", "main-dropDown-dropDown");
 
-    options.forEach((option) => {
+    for (const option of options) {
       const optionElement = document.createElement("option");
       optionElement.textContent = option.text;
       optionElement.value = option.value;
       selectElement.appendChild(optionElement);
-    });
+    }
 
     const storedValue =
       localStorage.getItem(localStorageKey) || options[0].value;
@@ -726,21 +722,23 @@ function resetSettings() {
   localStorage.removeItem("lucid-selectedGrains");
   changeGrainsTo();
 
-  const sliders = document.querySelectorAll<HTMLInputElement>(".Lucid-slider");
+  const sliders = Array.from(
+    document.querySelectorAll<HTMLInputElement>(".Lucid-slider")
+  );
 
-  sliders.forEach((slider) => {
+  for (const slider of sliders) {
     const key = slider.id.replace("-input", "");
     const item = findSettingItemByKey(key);
     if (item) {
       slider.value = String(item.default);
       const sliderValueSpan = document.getElementById(`${key}-value`);
       if (sliderValueSpan) {
-        let value = `${item.default}${item.unit}`;
+        const value = `${item.default}${item.unit}`;
         sliderValueSpan.textContent = value;
         setPropertyToBody(item.key, value);
       }
     }
-  });
+  }
 }
 
 function findSettingItemByKey(key: string): SettingItem | undefined {
