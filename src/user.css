@@ -869,6 +869,11 @@ div[data-testid="hpto-parent-container"] {
   margin-bottom: calc(var(--now-playing-bar-height) + var(--gap-lg)) !important;
 }
 
+.main-yourLibraryX-navItem:has(.active) {
+  background-color: rgba(var(--spice-rgb-selected-row), 0.075);
+  border-radius: var(--card-border-radius);
+}
+
 .main-embedWidgetGenerator-container,
 .main-trackCreditsModal-container,
 .artist-artistDiscography-headerContainer {
