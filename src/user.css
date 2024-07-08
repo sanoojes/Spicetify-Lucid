@@ -559,10 +559,6 @@ input,
   backdrop-filter: none !important;
 }
 
-.Root__main-view:has(.BeautifulLyricsPage) .main-topBar-container {
-  position: absolute !important;
-}
-
 .global-nav .main-home-filterChipsContainer,
 .global-nav .main-topBar-background {
   border-bottom: var(--default-border);
