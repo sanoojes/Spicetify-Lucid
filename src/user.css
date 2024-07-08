@@ -923,6 +923,7 @@ div[data-testid="hpto-parent-container"] {
   background-color: var(--spice-main);
 }
 
+.BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px:hover::after,
 .Box-group-naked-listRow-isInteractive-hasLeadingOrMedia-minBlockSize_56px:hover,
 .BoxComponent-group-card-naked-isInteractive-draggable:hover,
 .BoxComponent-group-card-naked-isInteractive-draggable:hover::after,
@@ -1723,4 +1724,36 @@ button[aria-label="Browse"] path {
 
 .BeautifulLyricsPage:not(.Fullscreen) {
   height: calc(100% - var(--now-playing-bar-height)) !important;
+}
+
+/* Whats new */
+.Box-group-naked-listRow-isInteractive-hasLeadingOrMedia-minBlockSize_56px,
+.SjhDNg4bQRQmIJAba47Z {
+  grid-auto-rows: auto;
+}
+
+.Box-group-naked-listRow-isInteractive-hasLeadingOrMedia-minBlockSize_56px .BottomArea-hasLeadingOrMedia:last-of-type,
+.SjhDNg4bQRQmIJAba47Z .BottomArea-hasLeadingOrMedia:last-of-type {
+  position: absolute;
+  right: var(--gap-lg);
+  top: 50%;
+  transform: translate(0, -50%);
+
+  div {
+    -webkit-margin-before: 0;
+    margin-block-start: 0;
+  }
+
+  button,
+  .SjhDNg4bQRQmIJAba47Z .eYvk_xcxVNMwCBkfY3O0>* {
+    opacity: 1;
+  }
+}
+
+.Box-group-naked-listRow-hasLeadingOrMedia-minBlockSize_56px .BottomArea-hasLeadingOrMedia:last-of-type {
+  grid-column: 3 / 1;
+}
+
+.T9iBYqbERZHdwDl0U2tC .hGbRiYkIjjy4sJvor0A2>:not(.OgaF7O4ER8AvZfFd6JdJ) {
+  opacity: 1;
 }
