@@ -1329,9 +1329,17 @@ button[aria-label="Browse"] svg {
 
 .main-repeatButton-button[aria-checked="false"],
 .main-repeatButton-button[aria-checked="true"] {
+  background-color: var(--spice-subtext);
+}
+
+.main-repeatButton-button[aria-checked="false"] {
+  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg");
+  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg");
+}
+
+.main-repeatButton-button[aria-checked="true"] {
   -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg");
   mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg");
-  background-color: var(--spice-subtext);
 }
 
 .main-repeatButton-button[aria-checked="true"],
@@ -1776,4 +1784,33 @@ button[aria-label="Browse"] path {
 
 .T9iBYqbERZHdwDl0U2tC .hGbRiYkIjjy4sJvor0A2>:not(.OgaF7O4ER8AvZfFd6JdJ) {
   opacity: 1;
+}
+
+.Box-group-naked-listRow-isInteractive-hasLeadingOrMedia-minBlockSize_56px,
+.T9iBYqbERZHdwDl0U2tC,
+.SjhDNg4bQRQmIJAba47Z {
+  .ix_8kg3iUb9VS5SmTnBY {
+    .Button-buttonPrimary-useBrowserDefaultFocusStyle-data-is-icon-only:hover .ButtonInner-sc-14ud5tc-0 {
+      background-color: rgba(var(--spice-rgb-button-active), 0.75);
+    }
+
+    .ButtonInner-sc-14ud5tc-0.ButtonInner-small-iconOnly {
+      block-size: 100%;
+      inline-size: auto;
+      align-items: center;
+      padding: var(--padding-md);
+      gap: var(--padding-sm);
+    }
+
+    .Wrapper-small-only-small {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+
+    .ButtonInner-sc-14ud5tc-0.ButtonInner-small-iconOnly::after {
+      content: "Play";
+      font-weight: 700;
+    }
+  }
 }
