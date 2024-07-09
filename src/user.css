@@ -1862,3 +1862,8 @@ button[aria-label="Browse"] path {
 .search-modal-input {
   background-color: transparent !important;
 }
+
+.c4hmXDjs2Dv8n3VCLz1g {
+  background: rgba(var(--spice-rgb-selected-row), 0.05);
+  border-radius: var(--card-border-radius);
+}
