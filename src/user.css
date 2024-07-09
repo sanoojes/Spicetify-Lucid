@@ -799,8 +799,6 @@ div[data-testid="hpto-parent-container"] {
 .GenericModal__overlay {
   background-color: rgba(var(--spice-rgb-shadow),
       var(--generic-modal-bg-opacity));
-  -webkit-backdrop-filter: blur(var(--blur-sm));
-  backdrop-filter: blur(var(--blur-sm));
 }
 
 .BoxComponent-box-elevated {
@@ -822,8 +820,8 @@ div[data-testid="hpto-parent-container"] {
   background-color: var(--card-color);
   border: var(--default-border);
   border-radius: var(--card-border-radius);
-  -webkit-backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
-  backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
+  -webkit-backdrop-filter: blur(var(--blur-xl));
+  backdrop-filter: blur(var(--blur-xl));
 }
 
 .main-embedWidgetGenerator-contentCode {
