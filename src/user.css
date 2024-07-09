@@ -813,6 +813,7 @@ div[data-testid="hpto-parent-container"] {
   border: var(--default-border);
 }
 
+.N9tnwm0XDrt_eGJd2D2A,
 .JnpOnFaQfrRIA2fYe88A,
 .uJjmxe0T11dUVeW6Biz8,
 .main-embedWidgetGenerator-container,
@@ -1813,4 +1814,53 @@ button[aria-label="Browse"] path {
       font-weight: 700;
     }
   }
+}
+
+/* Search modal */
+
+.zZMsUUWG29PYcwWPXhOV,
+.search-modal-keyboard-accessibility-bar,
+.search-modal-listbox {
+  background-color: var(--card-color);
+  -webkit-backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
+  backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
+}
+
+.search-modal-searchBar {
+  border-radius: var(--card-border-radius);
+  background-color: rgba(var(--spice-rgb-selected-row), 0.125) !important;
+  color: var(--spice-text) !important;
+}
+
+.search-modal-searchIcon,
+.search-modal-input {
+  color: var(--spice-subtext) !important;
+}
+
+.search-modal-searchIcon,
+.search-modal-input {
+  color: var(--spice-subtext) !important;
+}
+
+.search-modal-searchBar:has(.search-modal-input:hover) {
+  background-color: rgba(var(--spice-rgb-selected-row), 0.25) !important;
+
+  .search-modal-searchIcon,
+  .search-modal-input {
+    color: var(--spice-text) !important;
+  }
+}
+
+.search-modal-searchBar:has(.search-modal-input:focus) {
+  background-color: rgba(var(--spice-rgb-card), 0.75) !important;
+  border-bottom: 2px solid rgb(var(--accent-color)) !important;
+
+  .search-modal-searchIcon,
+  .search-modal-input {
+    color: var(--spice-text) !important;
+  }
+}
+
+.search-modal-input {
+  background-color: transparent !important;
 }
