@@ -38,6 +38,7 @@ function Write-Error {
     )
     process {
         Write-Host -Object $Message -ForegroundColor Red
+        Write-Verbose -Message $Message
     }
     end {
         Wait-Input
@@ -76,10 +77,10 @@ function Test-Spotify {
     [OutputType([bool])]
     param ()
     begin {
-        Write-Verbose -Message 'Checking if Spotify is installed...' -Verbose
+        Write-Verbose -Message 'Checking if Spotify is installed...'
     }
     process {
-        $desktopApp = Test-Path -Path "$env:APPDATA/Spotify" -PathType Container
+        $desktopApp = Test-Path -Path "$env:APPDATA\Spotify" -PathType Container
         $storeApp = Get-AppxPackage -Name '*SpotifyAB*'
     }
     end {
@@ -95,7 +96,7 @@ function Test-SpotifyBackup {
         [string]$Path
     )
     begin {
-        Write-Verbose -Message 'Checking if there is up-to-date Spotify backup...' -Verbose
+        Write-Verbose -Message 'Checking if there is up-to-date Spotify backup...'
     }
     process {
         $configFile = Get-Content -Path $Path
@@ -128,13 +129,17 @@ function Install-Spotify {
         $installerPath = "$Temp\SpotifySetup.exe"
     }
     process {
-        Write-Verbose -Message 'Downloading the Spotify installer...' -Verbose
+        Write-Verbose -Message 'Downloading the Spotify installer...'
         $Parameters = @{
             UseBasicParsing = $true
             Uri             = 'https://download.scdn.co/SpotifySetup.exe'
             OutFile         = $installerPath
         }
-        Invoke-WebRequest @Parameters
+        try {
+            Invoke-WebRequest @Parameters -ErrorAction Stop
+        } catch {
+            Write-Error -Message "Failed to download: $($_.Exception.Message). Please check your internet connection and try again."
+        } 
         
         Write-Host
         Write-Host -Object 'ATTENTION!' -ForegroundColor Yellow
@@ -143,7 +148,7 @@ function Install-Spotify {
         Wait-Input
         
         Write-Host
-        Write-Verbose -Message 'Starting the Spotify installer...' -Verbose
+        Write-Verbose -Message 'Starting the Spotify installer...'
         Start-Process -FilePath $installerPath
         
         while (-not (Get-Process -Name Spotify -ErrorAction SilentlyContinue)) {
@@ -160,7 +165,7 @@ function Test-Spicetify {
     [OutputType([bool])]
     Param ()
     Begin {
-        Write-Verbose -Message 'Checking if Spicetify is installed...' -Verbose
+        Write-Verbose -Message 'Checking if Spicetify is installed...'
     }
     Process {
         [bool](Get-Command -Name spicetify -ErrorAction SilentlyContinue) 
@@ -171,14 +176,18 @@ function Install-Spicetify {
     [CmdletBinding()]
     param ()
     begin {
-        Write-Verbose -Message 'Starting the Spicetify installation script...' -Verbose
+        Write-Verbose -Message 'Starting the Spicetify installation script...'
     }
     process {
         $Parameters = @{
             UseBasicParsing = $true
             Uri             = 'https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1'
         }
-        Invoke-WebRequest @Parameters | Invoke-Expression
+        try {
+            Invoke-WebRequest @Parameters -ErrorAction Stop | Invoke-Expression
+        } catch {
+            Write-Error -Message "Failed to download: $($_.Exception.Message). Please check your internet connection and try again."
+        } 
     }
 }
 
@@ -186,7 +195,7 @@ function Install-Marketplace {
     [CmdletBinding()]
     param ()
     begin {
-        Write-Verbose -Message 'Starting the Spicetify Marketplace installation script...' -Verbose
+        Write-Verbose -Message 'Starting the Spicetify Marketplace installation script...'
     }
     process {
         $Parameters = @{
@@ -195,7 +204,11 @@ function Install-Marketplace {
                 'https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.ps1'
             )
         }
-        Invoke-WebRequest @Parameters | Invoke-Expression
+        try {
+            Invoke-WebRequest @Parameters -ErrorAction Stop | Invoke-Expression
+        } catch {
+            Write-Error -Message "Failed to download: $($_.Exception.Message). Please check your internet connection and try again."
+        } 
     }
 }
 
@@ -204,7 +217,7 @@ function Get-SpicetifyFoldersPaths {
     [OutputType([hashtable])]
     param ()
     begin {
-        Write-Verbose -Message 'Getting the Spicetify folders paths...' -Verbose
+        Write-Verbose -Message 'Getting the Spicetify folders paths...'
     }
     process {
         @{
@@ -221,7 +234,7 @@ function Submit-SpicetifyConfig {
         [string]$Path
     )
     begin {
-        Write-Verbose -Message 'Applying changes...' -Verbose
+        Write-Verbose -Message 'Applying changes...'
     }
     process {
         if (Test-SpotifyBackup -Path $Path) {
@@ -239,7 +252,7 @@ function Get-WindowsAppsTheme {
     [CmdletBinding()]
     param ()
     begin {
-        Write-Verbose -Message 'Getting current Windows apps theme...' -Verbose
+        Write-Verbose -Message 'Getting current Windows apps theme...'
         $Parameters = @{
             Path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize'
             Name = 'AppsUseLightTheme'
@@ -261,7 +274,7 @@ function Get-ThemeType {
         [string]$Path
     )
     begin {
-        Write-Verbose -Message 'Detecting current installation type...' -Verbose
+        Write-Verbose -Message 'Detecting current installation type...'
     }
     process {
         $userCssData = Get-Content -Path "$Path\user.css"
@@ -301,16 +314,19 @@ function Get-Lucid {
             )
         }
         $downloadedFiles = @{}
+        $fileCount = $filesToDownload.Count
+        $fileIndex = 0
     }
     process {
         foreach ($fileUrl in $filesToDownload) {
-            Write-Verbose -Message "Downloading '$fileUrl'..."
+            $fileIndex++
+            Write-Verbose -Message "Downloading '$fileUrl' ($fileIndex/$fileCount)..."
             try {
-                $fileContent = (Invoke-WebRequest -Uri $fileUrl -UseBasicParsing).Content
+                $fileContent = (Invoke-WebRequest -Uri $fileUrl -UseBasicParsing -ErrorAction Stop).Content
                 $fileName = Split-Path -Path $fileUrl -Leaf
                 $downloadedFiles.Add($fileName, $fileContent)
             } catch {
-                Write-Warning "Failed to download '$fileUrl': $_"
+                Write-Error -Message "Failed to download '$fileUrl': $($_.Exception.Message)"
             }
         }
     }
@@ -334,8 +350,13 @@ function Install-Lucid {
         [string]$ColorScheme
     )
     begin {
-        Write-Verbose -Message 'Installing Lucid theme...' -Verbose
-        $downloadedFiles = Get-SpecificLucidFiles -Type $Type
+        Write-Verbose -Message "Installing Lucid theme (Type: $Type)..."
+        $downloadedFiles = Get-Lucid -Type $Type
+
+        # Check if downloads were successful
+        if ($downloadedFiles.Count -ne 3) {
+            Write-Error -Message 'Failed to download all Lucid theme files. Installation aborted.' 
+        }
     }
     process {
         New-Item -Path $Destination -ItemType Directory -Force | Out-Null
@@ -346,6 +367,7 @@ function Install-Lucid {
             Set-Content -Path $filePath -Value $downloadedFiles[$fileName] -Encoding UTF8
         }
         
+        Write-Verbose -Message 'Configuring Spicetify...'
         spicetify config inject_css 1 replace_colors 1 overwrite_assets 1 inject_theme_js 1
         spicetify config current_theme 'Lucid'
         
@@ -356,7 +378,25 @@ function Install-Lucid {
         Submit-SpicetifyConfig -Path $Config
     }
 }
+
 function Uninstall-Lucid {
+    <#
+    .SYNOPSIS
+        Uninstalls the Lucid theme.
+
+    .DESCRIPTION
+        This function uninstalls the Lucid theme by resetting the relevant Spicetify configurations 
+        and removing the theme directory.
+
+    .PARAMETER Path
+        Specifies the path to the Lucid theme directory.
+
+    .PARAMETER Config
+        Specifies the path to your Spicetify configuration file.
+
+    .PARAMETER Value 
+        Sets current theme and color_scheme to this value, default is empty string
+    #>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -368,13 +408,15 @@ function Uninstall-Lucid {
         [string]$Value = ' '
     )
     begin {
-        Write-Verbose -Message 'Uninstalling Lucid theme...' -Verbose
+        Write-Verbose -Message 'Uninstalling Lucid theme...'
     }
     process {
+        Write-Verbose -Message 'Resetting Spicetify configurations...'
         spicetify config current_theme $Value color_scheme $Value
         Submit-SpicetifyConfig -Path $Config
     }
     end {
+        Write-Verbose -Message "Removing theme directory '$Path'..."
         Remove-Item -Path $Path -Recurse -Force
     }
 }
