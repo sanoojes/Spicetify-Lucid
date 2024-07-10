@@ -1824,6 +1824,14 @@ button[aria-label="Browse"] path {
   padding: 24px;
 }
 
+.eYvk_xcxVNMwCBkfY3O0 button:nth-child(2) {
+  order: 2;
+}
+
+.eYvk_xcxVNMwCBkfY3O0 button:first-child {
+  order: 3;
+}
+
 /* Search modal */
 
 .zZMsUUWG29PYcwWPXhOV,
