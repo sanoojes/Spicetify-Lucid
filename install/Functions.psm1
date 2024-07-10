@@ -283,7 +283,7 @@ function Get-Lucid {
     [OutputType([string])]
     param ()
     begin {
-        $archiveName = 'Lucid-main'
+        $archiveName = 'Spicetify-Lucid-main'
         $Temp = [System.IO.Path]::GetTempPath()
         $archivePath = "$Temp\$archiveName.zip"
     }
