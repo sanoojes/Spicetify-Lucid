@@ -1,6 +1,62 @@
 # **Spicetify Lucid Theme**
 
 **A minimal and dynamic Bloom-inspired theme for Spicetify.**
+Go to [Screenshots](#screenshots)
+
+<details>
+  <summary style="font-size: 1.1em; font-weight: bold;">Table of Contents</summary>
+  <ul>
+    <li><a href="#features"><strong>Features</strong></a></li>
+    <li>
+      <a href="#installation"><strong>Installation</strong></a>
+      <ul>
+        <li><a href="#manual-installation-using-scripts-recomended"><strong>Manual Installation using Scripts (Recommended)</strong></a>
+        <ul>
+            <li><a href="#windows-powershell">Windows (Powershell)</a></li>
+            <li><a href="#linuxmacos-bash">Linux/macOS (Bash)</a></li>
+        </ul>
+        </li>
+        <li><a href="#updating"><strong>Updating</strong></a>
+        <ul>
+            <li><a href="#windows-powershell-1">Windows (Powershell)</a></li>
+            <li><a href="#other-os">Other OS</a></li>
+        </ul>
+        </li>
+        <li><a href="#uninstallation"><strong>Uninstallation</strong></a>
+        <ul>
+            <li><a href="#automated-windows-powershell">Automated (Windows PowerShell)</a></li>
+            <li><a href="#manual-uninstallation">Manual Uninstallation</a></li>
+        </ul>
+        </li>
+        <li><a href="#using-spicetify-marketplace-simpler-installation"><strong>Using Spicetify Marketplace (Simpler Installation)</strong></a></li>
+        <li><a href="#advanced-manual-installation"><strong>Advanced Manual Installation</strong></a></li>
+      </ul>
+    </li>
+    <li>
+        <a href="#customization"><strong>Customization</strong></a>
+        <ul>
+            <li><a href="#color-scheme">Color Scheme</a></li>
+            <li><a href="#accent-color">Accent Color</a></li>
+        </ul>
+    </li>
+    <li><a href="#screenshots"><strong>Screenshots</strong></a>
+        <ul>
+            <li><a href="#dark-default-with-control-nav">Dark (default) with Control Nav</a></li>
+            <li><a href="#dark-default">Dark (default)</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#lucid-settings"><strong>Lucid Settings</strong></a>
+        <ul>
+            <li><a href="#background-settings">Background Settings</a></li>
+            <li><a href="#default-background-settings">Default Background Settings</a></li>
+            <li><a href="#animated-background-settings">Animated Background Settings</a></li>
+            <li><a href="#now-playing-bar-settings">Now Playing Bar Settings</a></li>
+        </ul>
+    </li>
+    <li><a href="#license"><strong>License</strong></a></li>
+  </ul>
+</details>
 
 ## **Features:**
 
