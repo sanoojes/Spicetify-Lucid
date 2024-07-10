@@ -950,7 +950,11 @@ div[data-testid="hpto-parent-container"] {
 .main-playlistEditDetailsModal-container {
   --background-base: var(--main-color) !important;
   --text-base: var(--spice-text) !important;
-  background-color: transparent !important;
+  background-color: var(--card-color);
+  border: var(--default-border);
+  border-radius: var(--card-border-radius);
+  -webkit-backdrop-filter: blur(var(--blur-xl));
+  backdrop-filter: blur(var(--blur-xl));
   min-width: 100%;
 }
 
