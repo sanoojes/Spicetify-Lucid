@@ -101,10 +101,10 @@ This section contains available settings for customizing the Lucid theme. Settin
 
 These settings control the overall appearance of the visualizer's background.
 
-| Setting           | Options                                                             | Default            | Description                                                                                                                                                                                                                                                              |
-| ----------------- | ------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Background        | - Default Background<br>- Animated Background<br>- Solid Background | Default Background | Selects the type of background to display: <br> - **Default Background:** Displays the default background image. <br> - **Animated Background:** Displays an animated background that responds to audio. <br> - **Solid Background:** Displays a solid color background. |
-| Background Grains | - Stary Grains (default)<br>- Normal Grains<br>- No Grains          | Stary Grains       | Chooses the type of grain effect applied to the background: <br> - **Stary Grains:** Displays a subtle, sparkling grain effect. <br> - **Normal Grains:** Displays a standard film grain effect. <br> - **No Grains:** Disables the grain effect.                        |
+| Setting           | Options                                                     | Default            | Description                                                                                                                                                                                                                                               |
+| ----------------- | ----------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Background        | - Default Background- Animated Background- Solid Background | Default Background | Selects the type of background to display: - **Default Background:** Displays the default background image. - **Animated Background:** Displays an animated background that responds to audio. - **Solid Background:** Displays a solid color background. |
+| Background Grains | - Stary Grains (default)- Normal Grains- No Grains          | Stary Grains       | Chooses the type of grain effect applied to the background: - **Stary Grains:** Displays a subtle, sparkling grain effect. - **Normal Grains:** Displays a standard film grain effect. - **No Grains:** Disables the grain effect.                        |
 
 ### Default Background Settings
 
@@ -145,7 +145,6 @@ These settings control the appearance of the "Now Playing" bar.
 | Saturation               | 0   | 200 | 100     | Saturation level of the bar. 100 is the default saturation, values below make it less saturated (more greyscale) and above make it more saturated (more vibrant). |
 | Contrast                 | 0   | 200 | 100     | Contrast level of the bar. 100 is the default contrast, values below make it less contrasted and above make it more contrasted.                                   |
 | Brightness               | 0   | 200 | 100     | Brightness level of the bar. 100 is the default brightness, values below make it darker and above make it brighter.                                               |
-|                          |
 
 ## License
 
