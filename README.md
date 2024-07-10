@@ -68,7 +68,7 @@ spicetify apply
 
 ### **Using Spicetify Marketplace (simpler installation):**
 
-1. Install the `spicetify-marketplace` extension following its instructions: [https://github.com/spicetify/spicetify-themes](https://github.com/spicetify/spicetify-themes).
+1. Install the `spicetify-marketplace` extension following its instructions: [https://github.com/spicetify/marketplace/wiki/Installation](https://github.com/spicetify/marketplace/wiki/Installation).
 2. Search for "Lucid" in the Spicetify Marketplace and click "Install."
 
 ### **Advanced Manual Installation:**
