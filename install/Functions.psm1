@@ -280,42 +280,48 @@ function Get-ThemeType {
 #region Lucid
 function Get-Lucid {
     [CmdletBinding()]
-    [OutputType([string])]
-    param ()
+    [OutputType([System.Collections.Hashtable])]
+    param (
+        [ValidateSet('Remote', 'Local')]
+        [string]$Type = 'Remote'
+    )
     begin {
-        $archiveName = 'Spicetify-Lucid-main'
-        $Temp = [System.IO.Path]::GetTempPath()
-        $archivePath = "$Temp\$archiveName.zip"
+        $baseUrl = 'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main'
+        $filesToDownload = if ($Type -eq 'Remote') {
+            @(
+                "$baseUrl/src/color.ini", 
+                "$baseUrl/remote/user.css",
+                "$baseUrl/remote/theme.js"
+            )
+        } else {
+            @(
+                "$baseUrl/src/color.ini",
+                "$baseUrl/src/user.css",
+                "$baseUrl/src/theme.js"
+            )
+        }
+        $downloadedFiles = @{}
     }
     process {
-        Write-Verbose -Message 'Downloading the Lucid repository archive...' -Verbose
-        $Parameters = @{
-            UseBasicParsing = $true
-            Uri             = 'https://codeload.github.com/sanoojes/Spicetify-Lucid/zip/refs/heads/main'
-            OutFile         = $archivePath
+        foreach ($fileUrl in $filesToDownload) {
+            Write-Verbose -Message "Downloading '$fileUrl'..."
+            try {
+                $fileContent = (Invoke-WebRequest -Uri $fileUrl -UseBasicParsing).Content
+                $fileName = Split-Path -Path $fileUrl -Leaf
+                $downloadedFiles.Add($fileName, $fileContent)
+            } catch {
+                Write-Warning "Failed to download '$fileUrl': $_"
+            }
         }
-        Invoke-WebRequest @Parameters
-        
-        Write-Verbose -Message 'Unpacking the Lucid repository archive...' -Verbose
-        $Parameters = @{
-            Path            = $archivePath
-            DestinationPath = $Temp
-            Force           = $true
-        }
-        Expand-Archive @Parameters 
     }
     end {
-        "$Temp\$archiveName"
-        Remove-Item -Path $archivePath -Force
+        return $downloadedFiles
     }
 }
 
 function Install-Lucid {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory)]
-        [string]$Path,
-        
         [Parameter(Mandatory)]
         [string]$Destination,
         
@@ -329,34 +335,15 @@ function Install-Lucid {
     )
     begin {
         Write-Verbose -Message 'Installing Lucid theme...' -Verbose
-        $lucidSrcPath = "$Path\src"
-        $lucidRemotePath = "$Path\remote"
+        $downloadedFiles = Get-SpecificLucidFiles -Type $Type
     }
     process {
         New-Item -Path $Destination -ItemType Directory -Force | Out-Null
-        
-        if ($Type -eq 'Remote') {
-            $Parameters = @{
-                Path        = "$lucidSrcPath\color.ini"
-                Destination = $Destination
-                Force       = $true
-            }
-            Move-Item @Parameters
-            
-            $Parameters = @{
-                Path        = "$lucidRemotePath\*"
-                Destination = $Destination
-                Force       = $true
-            }
-            Move-Item @Parameters
-        }
-        else {
-            $Parameters = @{
-                Path        = $lucidSrcPath
-                Destination = $Destination
-                Force       = $true
-            }
-            Move-Item @Parameters
+
+        foreach ($fileName in $downloadedFiles.Keys) {
+            $filePath = Join-Path -Path $Destination -ChildPath $fileName
+            Write-Verbose -Message "Creating '$filePath'"
+            Set-Content -Path $filePath -Value $downloadedFiles[$fileName] -Encoding UTF8
         }
         
         spicetify config inject_css 1 replace_colors 1 overwrite_assets 1 inject_theme_js 1
@@ -368,11 +355,7 @@ function Install-Lucid {
         
         Submit-SpicetifyConfig -Path $Config
     }
-    end {
-        Remove-Item -Path $Path -Recurse -Force
-    }
 }
-
 function Uninstall-Lucid {
     [CmdletBinding()]
     param (
