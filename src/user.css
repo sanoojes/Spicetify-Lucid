@@ -811,6 +811,7 @@ div[data-testid="hpto-parent-container"] {
   border: var(--default-border);
 }
 
+.hmgHdasWrZaA9tiXVw_u,
 .N9tnwm0XDrt_eGJd2D2A,
 .JnpOnFaQfrRIA2fYe88A,
 .uJjmxe0T11dUVeW6Biz8,
@@ -1102,13 +1103,13 @@ div[data-testid="hpto-parent-container"] {
 }
 
 .lucid-animated-background-container .front {
-  right: 25%;
+  animation-direction: reverse;
+  right: 0%;
   top: 25%;
 }
 
 .lucid-animated-background-container .back {
-  animation-direction: reverse;
-  bottom: 25%;
+  bottom: 35%;
   left: 5%;
 }
 
