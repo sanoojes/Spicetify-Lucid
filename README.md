@@ -31,6 +31,41 @@ iex "& { $(iwr -useb 'https://sanooj.is-a.dev/Spicetify-Lucid/install/Lucid.ps1'
 curl -fsSL https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main/install/install.sh | sh
 ```
 
+## Updating
+
+For those who used scripts and not Marketplace.
+
+### Windows (PowerShell)
+
+```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+iex "& { $(iwr -useb 'https://raw.githubusercontent.com/sanoojes/spicetify-lucid/main/install/Lucid.ps1') } -Action Update"
+```
+
+### Other OS
+
+Use the [Bash installation script](#linuxmacos-bash) or [manually](#advanced-manual-installation) update the files.
+
+## Uninstallation
+
+For those who used scripts and not Marketplace.
+
+### Automated (Windows PowerShell)
+
+```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+iex "& { $(iwr -useb 'https://raw.githubusercontent.com/sanoojes/spicetify-lucid/main/install/Lucid.ps1') } -Action Uninstall"
+```
+
+### Manual Uninstallation
+
+```shell
+spicetify config color_scheme ' ' current_theme ' '
+spicetify apply
+```
+
+**If you uninstall Lucid let us know how to shape our future!**
+
 ### **Using Spicetify Marketplace (simpler installation):**
 
 1. Install the `spicetify-marketplace` extension following its instructions: [https://github.com/spicetify/spicetify-themes](https://github.com/spicetify/spicetify-themes).
