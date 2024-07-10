@@ -1872,3 +1872,8 @@ button[aria-label="Browse"] path {
   background: rgba(var(--spice-rgb-selected-row), 0.05);
   border-radius: var(--card-border-radius);
 }
+
+/* Playlist */
+.playlist-playlist-seeMore {
+  cursor: pointer;
+}
