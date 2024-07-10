@@ -477,7 +477,7 @@ input,
 
 /* Left sidebar */
 #Desktop_LeftSidebar_Id {
-  transition: width 0.5s cubic-bezier(1, 0.25, 0, 1);
+  transition: width 0.3s ease;
 }
 
 /* Background Color */
