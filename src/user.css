@@ -958,6 +958,14 @@ div[data-testid="hpto-parent-container"] {
   min-width: 100%;
 }
 
+.main-playlistEditDetailsModal-titleInput {
+  background-color: rgba(var(--spice-rgb-selected-row), .1) !important;
+}
+
+.main-playlistEditDetailsModal-titleInput:focus {
+  background-color: var(--spice-tab-active) !important;
+}
+
 #Desktop_PanelContainer_Id {
   --section-background-base: rgba(var(--spice-rgb-card), .25) !important;
 }
