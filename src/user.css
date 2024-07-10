@@ -648,6 +648,10 @@ input,
   backdrop-filter: blur(var(--filter-chips-bg-blur)) saturate(var(--filter-chips-bg-saturation));
 }
 
+.main-home-filterChipsSection:after {
+  background-color: rgba(var(--spice-rgb-shadow), .25) !important;
+}
+
 /* Image section (Playlist and Artist) */
 .main-entityHeader-container {
   background: linear-gradient(rgba(var(--spice-rgb-main), 0) 0,
