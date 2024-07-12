@@ -1,10 +1,10 @@
-## Contributing to Lucid
+# Contributing to Lucid
 
 First off, thanks for taking the time to contribute to Lucid! 🎉
 
 This file contains a set of guidelines for contributing to Lucid, a Spicetify theme. Following these guidelines helps to communicate that you respect the time of the project maintainers reviewing your code.
 
-### Table of Contents
+## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [How Can I Contribute?](#how-can-i-contribute)
