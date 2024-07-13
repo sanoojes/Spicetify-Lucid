@@ -1940,3 +1940,12 @@ button[aria-label="Browse"] path {
 .playlist-playlist-seeMore {
   cursor: pointer;
 }
+
+.encore-dark-theme .encore-announcement-set {
+  --background-elevated-base: rgba(var(--spice-rgb-card), 0.5) !important;
+}
+
+.Popover__StyledPopover-sc-1iog353-0,
+.StyledPopover-dialog-popover {
+  backdrop-filter: blur(var(--blur-xl));
+}
