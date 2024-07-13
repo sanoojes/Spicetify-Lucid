@@ -428,7 +428,7 @@ async function setTopBarStyles() {
 }
 
 // Background
-async function changeBackgroundTo(backgroundOption?: BackgroundOption) {
+async function changeBackground(backgroundOption?: BackgroundOption) {
   const rootContainer = await waitForElement(".Root__top-container").catch(
     (e) => console.error(e)
   );
@@ -500,7 +500,7 @@ async function changeBackgroundTo(backgroundOption?: BackgroundOption) {
 
 // Grains
 const styleSheetforGrain = document.createElement("style");
-function changeGrainsTo(option?: grainsOption) {
+function changeGrains(option?: grainsOption) {
   try {
     if (!option || option === grainsOption.STARY) {
       styleSheetforGrain.innerText = `
@@ -672,7 +672,7 @@ function addSettings() {
       "selectedBackground",
       "Background",
       (newValue: string) => {
-        changeBackgroundTo(newValue as BackgroundOption);
+        changeBackground(newValue as BackgroundOption);
       }
     );
     backgroundSettingsSection.appendChild(backgroundDropdown);
@@ -682,7 +682,7 @@ function addSettings() {
       "lucid-selectedGrains",
       "Background Grains",
       (newValue: string) => {
-        changeGrainsTo(newValue as grainsOption);
+        changeGrains(newValue as grainsOption);
       }
     );
     backgroundSettingsSection.appendChild(grainsDropdown);
@@ -708,9 +708,9 @@ function addSettings() {
 function resetSettings() {
   localStorage.removeItem("settings");
   localStorage.removeItem("selectedBackground");
-  changeBackgroundTo();
+  changeBackground();
   localStorage.removeItem("lucid-selectedGrains");
-  changeGrainsTo();
+  changeGrains();
 
   const sliders = Array.from(
     document.querySelectorAll<HTMLInputElement>(".Lucid-slider")
@@ -842,12 +842,27 @@ async function main() {
     ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
   );
 
-  scroll_container?.addEventListener("scroll", () => {
-    if (scroll_container.scrollTop === 0) setIsArtistOrPlaylist();
+  let scrolling = false;
 
-    const hasUnderViewImage = document.querySelector(".under-main-view div");
-    if (hasUnderViewImage && scroll_container.scrollTop !== window.innerHeight)
-      updateScrollElement(scroll_container);
+  scroll_container?.addEventListener("scroll", () => {
+    if (!scrolling) {
+      scrolling = true;
+      requestAnimationFrame(() => {
+        if (scroll_container.scrollTop === 0) setIsArtistOrPlaylist();
+
+        const hasUnderViewImage = document.querySelector(
+          ".under-main-view div"
+        );
+        if (
+          hasUnderViewImage &&
+          scroll_container.scrollTop !== window.innerHeight
+        ) {
+          updateScrollElement(scroll_container);
+        }
+
+        scrolling = false;
+      });
+    }
   });
 
   console.log("Lucid theme loaded.");
