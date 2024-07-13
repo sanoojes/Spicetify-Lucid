@@ -1,19 +1,13 @@
-import { DEFAULT_SETTINGS } from "./constants";
+import {
+  BackgroundOption,
+  grainsOption,
+  ScrollEffectOption,
+  DEFAULT_SETTINGS,
+} from "./constants";
 import type { SettingItem, SettingSection } from "./types/settings";
 
-enum BackgroundOption {
-  ANIMATED = "animated",
-  STATIC = "static",
-  SOLID = "solid",
-}
-
-enum grainsOption {
-  STARY = "stary",
-  NORMAL = "normal",
-  NONE = "none",
-}
-
 let isCustomControls = false;
+let isNewScroll = false;
 
 // Wait for dom elements fn
 async function waitForElement(
@@ -57,15 +51,21 @@ function setArtImage() {
 const scrollStyleElement = document.createElement("style");
 document.head.appendChild(scrollStyleElement);
 
-let lastScrollTop = 0;
+let scrollAnimationFrame: number | null = null;
 
-function updateScrollElement(scroll_container: Element) {
-  const scrollTop = scroll_container.scrollTop;
-  const screenHeight = window.innerHeight;
+function updateScrollElement(scrollContainer: Element) {
+  if (scrollAnimationFrame) {
+    cancelAnimationFrame(scrollAnimationFrame);
+  }
 
-  const clampedScrollTop = Math.min(scrollTop, screenHeight);
-  scrollStyleElement.innerText = `:root {--scroll-top: ${clampedScrollTop}px;}`;
-  lastScrollTop = scrollTop;
+  scrollAnimationFrame = requestAnimationFrame(() => {
+    const scrollTop = scrollContainer.scrollTop;
+    const screenHeight = window.innerHeight;
+
+    const clampedScrollTop = Math.min(scrollTop, screenHeight);
+    scrollStyleElement.innerText = `:root {--scroll-top: ${clampedScrollTop}px;}`;
+    scrollAnimationFrame = null;
+  });
 }
 
 const styleSheet = document.createElement("style");
@@ -92,8 +92,6 @@ async function setIsArtistOrPlaylist() {
     console.error("[Lucid] Error waiting for section element:", error);
   }
 }
-
-document.head.appendChild(styleSheet);
 
 function addButtonStyles() {
   const { Locale } = Spicetify;
@@ -627,6 +625,7 @@ function addSettings() {
 
     const selectElement = document.createElement("select");
     selectElement.classList.add("lucid-dropdown", "main-dropDown-dropDown");
+    selectElement.id = `${localStorageKey}-dropdown`;
 
     for (const option of options) {
       const optionElement = document.createElement("option");
@@ -635,10 +634,11 @@ function addSettings() {
       selectElement.appendChild(optionElement);
     }
 
+    // Get the initial value from localStorage or use the first option's value
     const storedValue =
       localStorage.getItem(localStorageKey) || options[0].value;
     selectElement.value = storedValue;
-    onChange(storedValue); // Apply initial value
+    onChange(storedValue); // Apply the initial value
 
     selectElement.addEventListener("change", () => {
       const selectedValue = selectElement.value;
@@ -650,9 +650,8 @@ function addSettings() {
     return dropdownContainer;
   };
 
-  // Background Settings Section
-  const backgroundSettingsSection = document.createElement("div");
-  backgroundSettingsSection.classList.add("lucid-settings-section");
+  const dropDownSettingsSection = document.createElement("div");
+  dropDownSettingsSection.classList.add("lucid-settings-section");
 
   const backgroundOptions = [
     { text: "Default Background", value: BackgroundOption.STATIC },
@@ -666,6 +665,11 @@ function addSettings() {
     { text: "No Grains", value: grainsOption.NONE },
   ];
 
+  const scrollEffectOptions = [
+    { text: "New Scroll", value: ScrollEffectOption.NEW },
+    { text: "Default Scroll", value: ScrollEffectOption.DEFAULT },
+  ];
+
   (async () => {
     const backgroundDropdown = await createDropdown(
       backgroundOptions,
@@ -675,7 +679,7 @@ function addSettings() {
         changeBackground(newValue as BackgroundOption);
       }
     );
-    backgroundSettingsSection.appendChild(backgroundDropdown);
+    dropDownSettingsSection.appendChild(backgroundDropdown);
 
     const grainsDropdown = await createDropdown(
       grainsOptions,
@@ -685,10 +689,21 @@ function addSettings() {
         changeGrains(newValue as grainsOption);
       }
     );
-    backgroundSettingsSection.appendChild(grainsDropdown);
+    dropDownSettingsSection.appendChild(grainsDropdown);
+
+    const scrollEffectDropdown = await createDropdown(
+      scrollEffectOptions,
+      "lucid-scrollEffect",
+      "Artist Page Scroll Effect",
+      (newValue: string) => {
+        isNewScroll = newValue === ScrollEffectOption.NEW;
+        toggleNewScrollEffect();
+      }
+    );
+    dropDownSettingsSection.appendChild(scrollEffectDropdown);
   })();
 
-  settingsContainer.appendChild(backgroundSettingsSection);
+  settingsContainer.appendChild(dropDownSettingsSection);
 
   const resetButton = document.createElement("button");
   resetButton.className = "lucid-reset-btn";
@@ -707,10 +722,11 @@ function addSettings() {
 
 function resetSettings() {
   localStorage.removeItem("settings");
-  localStorage.removeItem("selectedBackground");
-  changeBackground();
-  localStorage.removeItem("lucid-selectedGrains");
-  changeGrains();
+  changeBackground(BackgroundOption.STATIC);
+  localStorage.setItem("selectedBackground", BackgroundOption.STATIC);
+
+  changeGrains(grainsOption.STARY);
+  localStorage.setItem("lucid-selectedGrains", grainsOption.STARY);
 
   const sliders = Array.from(
     document.querySelectorAll<HTMLInputElement>(".Lucid-slider")
@@ -729,6 +745,10 @@ function resetSettings() {
       }
     }
   }
+
+  isNewScroll = true;
+  localStorage.setItem("lucid-scrollEffect", ScrollEffectOption.NEW);
+  toggleNewScrollEffect();
 }
 
 function findSettingItemByKey(key: string): SettingItem | undefined {
@@ -805,6 +825,48 @@ function setSettingsToMenu(container: Element) {
   settingsMenuItem.register();
 }
 
+function toggleNewScrollEffect() {
+  const scrollContainer = document.querySelector(
+    ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
+  ) as HTMLElement;
+
+  if (isNewScroll) {
+    console.log("[Lucid] Applying new scroll effect.");
+    scrollContainer?.removeEventListener("scroll", handleDefaultScroll);
+
+    handleNewScroll();
+  } else {
+    console.log("[Lucid] Applying default scroll effect");
+    scrollContainer?.removeEventListener("scroll", handleNewScroll);
+
+    handleDefaultScroll.call(scrollContainer, new Event("scroll"));
+    scrollContainer?.addEventListener("scroll", handleDefaultScroll);
+  }
+}
+
+function handleNewScroll() {
+  scrollStyleElement.innerText = ":root {--scroll-top: 0;}";
+}
+
+function handleDefaultScroll(this: HTMLElement, event: Event) {
+  if (scrollAnimationFrame) {
+    cancelAnimationFrame(scrollAnimationFrame);
+  }
+
+  scrollAnimationFrame = requestAnimationFrame(() => {
+    if (this.scrollTop === 0) {
+      setIsArtistOrPlaylist();
+    }
+
+    const hasUnderViewImage = document.querySelector(".under-main-view div");
+    if (hasUnderViewImage && this.scrollTop !== window.innerHeight) {
+      updateScrollElement(this);
+    }
+
+    scrollAnimationFrame = null;
+  });
+}
+
 /* Main Fn */
 async function main() {
   while (
@@ -838,32 +900,7 @@ async function main() {
   window.addEventListener("resize", setTopBarStyles);
 
   // Scroll
-  const scroll_container = await waitForElement(
-    ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
-  );
-
-  let scrolling = false;
-
-  scroll_container?.addEventListener("scroll", () => {
-    if (!scrolling) {
-      scrolling = true;
-      requestAnimationFrame(() => {
-        if (scroll_container.scrollTop === 0) setIsArtistOrPlaylist();
-
-        const hasUnderViewImage = document.querySelector(
-          ".under-main-view div"
-        );
-        if (
-          hasUnderViewImage &&
-          scroll_container.scrollTop !== window.innerHeight
-        ) {
-          updateScrollElement(scroll_container);
-        }
-
-        scrolling = false;
-      });
-    }
-  });
+  toggleNewScrollEffect();
 
   console.log("Lucid theme loaded.");
 

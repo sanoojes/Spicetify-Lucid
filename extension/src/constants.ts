@@ -191,3 +191,20 @@ export const DEFAULT_SETTINGS: SettingSection[] = [
     ],
   },
 ];
+
+export enum BackgroundOption {
+  ANIMATED = "animated",
+  STATIC = "static",
+  SOLID = "solid",
+}
+
+export enum grainsOption {
+  STARY = "stary",
+  NORMAL = "normal",
+  NONE = "none",
+}
+
+export enum ScrollEffectOption {
+  NEW = "new",
+  DEFAULT = "default",
+}
