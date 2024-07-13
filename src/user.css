@@ -1605,6 +1605,10 @@ button[aria-label="Browse"] path {
   --scale-constant: 1;
 }
 
+.lyrics-lyrics-contentWrapper {
+  text-align: center;
+}
+
 .lyrics-lyrics-container {
   height: fit-content;
 }
