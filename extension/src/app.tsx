@@ -828,23 +828,33 @@ function setSettingsToMenu(container: Element) {
 function toggleNewScrollEffect() {
   const scrollContainer = document.querySelector(
     ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
-  ) as HTMLElement;
+  ) as HTMLElement | null;
+
+  if (!scrollContainer) {
+    console.error("Scroll container not found.");
+    return;
+  }
 
   if (isNewScroll) {
     console.log("[Lucid] Applying new scroll effect.");
-    scrollContainer?.removeEventListener("scroll", handleDefaultScroll);
+    scrollContainer.removeEventListener("scroll", handleDefaultScroll);
 
-    handleNewScroll();
+    handleNewScroll.call(scrollContainer);
+    scrollContainer.addEventListener("scroll", handleNewScroll);
   } else {
     console.log("[Lucid] Applying default scroll effect");
-    scrollContainer?.removeEventListener("scroll", handleNewScroll);
+    scrollContainer.removeEventListener("scroll", handleNewScroll);
 
     handleDefaultScroll.call(scrollContainer, new Event("scroll"));
-    scrollContainer?.addEventListener("scroll", handleDefaultScroll);
+    scrollContainer.addEventListener("scroll", handleDefaultScroll);
   }
 }
 
-function handleNewScroll() {
+function handleNewScroll(this: HTMLElement) {
+  if (this.scrollTop === 0) {
+    setIsArtistOrPlaylist();
+  }
+
   scrollStyleElement.innerText = ":root {--scroll-top: 0;}";
 }
 
