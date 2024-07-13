@@ -1855,13 +1855,28 @@ button[aria-label="Browse"] path {
 }
 
 /* Search modal */
-
 .zZMsUUWG29PYcwWPXhOV,
+.search-modal-emptySearchTermContainer,
+.search-modal-emptySearchTermContainer,
 .search-modal-keyboard-accessibility-bar,
 .search-modal-listbox {
   background-color: var(--card-color);
-  -webkit-backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
-  backdrop-filter: blur(var(--blur-sm)) brightness(0.5);
+  -webkit-backdrop-filter: blur(var(--blur-lg));
+  backdrop-filter: blur(var(--blur-lg));
+  border: var(--default-border);
+}
+
+.search-modal-listbox {
+  border-top: none;
+}
+
+.search-modal-keyboard-accessibility-bar {
+  border-top: none;
+  border-bottom: none;
+}
+
+.zZMsUUWG29PYcwWPXhOV._kfmGT75UTPoF_D2afwa {
+  border-bottom: none;
 }
 
 .search-modal-searchBar {
