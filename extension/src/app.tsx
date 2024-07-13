@@ -77,26 +77,16 @@ async function setIsArtistOrPlaylist() {
     let display = "relative";
 
     if (
-      section.dataset.testid?.includes("album") ||
-      section.dataset.testid?.includes("playlist") ||
-      section.dataset.testid?.includes("artist")
+      section.dataset.testid?.match(/(album|playlist|artist)/) ||
+      section.dataset.testUri?.toLowerCase().includes("artist") ||
+      section.dataset.testUri?.toLowerCase().includes("album-page") ||
+      document.querySelectorAll(
+        ".playlist-playlist-playlist, .main-entityHeader-container, .main-entityHeader-nonWrapped"
+      ).length > 0
     ) {
       display = "absolute";
     }
 
-    if (section?.dataset?.testUri) {
-      const dataTestUri = section.dataset.testUri.toLowerCase();
-      const isArtist = dataTestUri.includes("artist");
-      const isAlbum = dataTestUri.includes("album-page");
-      display =
-        isArtist ||
-        document.querySelectorAll(
-          ".playlist-playlist-playlist, .main-entityHeader-container, .main-entityHeader-nonWrapped"
-        ).length !== 0 ||
-        isAlbum
-          ? "absolute"
-          : "relative";
-    }
     styleSheet.innerText = `:root { --header-position: ${display}; }`;
   } catch (error) {
     console.error("[Lucid] Error waiting for section element:", error);
