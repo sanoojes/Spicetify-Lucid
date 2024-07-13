@@ -1775,7 +1775,6 @@ button[aria-label="Browse"] path {
 }
 
 /* Beautiful Lyrics */
-
 .BeautifulLyricsPage:not(.Fullscreen) {
   height: calc(100% - var(--now-playing-bar-height)) !important;
 }
@@ -1855,14 +1854,24 @@ button[aria-label="Browse"] path {
 }
 
 /* Search modal */
+.N9tnwm0XDrt_eGJd2D2A:has(._kfmGT75UTPoF_D2afwa) {
+  -webkit-backdrop-filter: blur(var(--blur-lg));
+  backdrop-filter: blur(var(--blur-lg));
+  transition: backdrop-filter 0.5s ease-in-out;
+}
+
+.zZMsUUWG29PYcwWPXhOV:not(._kfmGT75UTPoF_D2afwa) {
+  -webkit-backdrop-filter: blur(var(--blur-lg));
+  backdrop-filter: blur(var(--blur-lg));
+  transition: backdrop-filter 0.3s ease;
+}
+
 .zZMsUUWG29PYcwWPXhOV,
 .search-modal-emptySearchTermContainer,
 .search-modal-emptySearchTermContainer,
 .search-modal-keyboard-accessibility-bar,
 .search-modal-listbox {
   background-color: var(--card-color);
-  -webkit-backdrop-filter: blur(var(--blur-lg));
-  backdrop-filter: blur(var(--blur-lg));
   border: var(--default-border);
 }
 
