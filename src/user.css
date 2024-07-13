@@ -470,6 +470,10 @@ input,
   border-radius: var(--card-border-radius);
 }
 
+.view-homeShortcutsGrid-shortcut .view-homeShortcutsGrid-image {
+  border-radius: 0 !important;
+}
+
 /* Main container */
 .spotify__container--is-desktop .Root__top-container {
   padding-top: calc(48px + var(--panel-gap) * 2);
