@@ -609,7 +609,7 @@ input,
 
 .marketplace-header {
   margin: 0 calc((var(--content-spacing) * -1) - 8px) 0 calc((var(--content-spacing) * -1) - 8px);
-  padding: var(--padding-md) var(--content-spacing);
+  padding: var(--padding-md) calc(var(--content-spacing)*2);
 }
 
 .marketplace-footer {
