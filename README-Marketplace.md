@@ -34,7 +34,7 @@
 
 ### **Color scheme:**
 
-Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`,`greenland`,`biscuit`,`macos`, `rosepine`,`dracula`,`dracula-pro`.
+Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`,`greenland`,`biscuit`,`macos`, `rosepine`,`dracula`,`dracula-pro`,`cozytile`.
 
 ## Lucid Settings
 
