@@ -661,11 +661,12 @@ input,
   background: var(--background-noise);
 }
 
-.main-entityHeader-overlay,
+.under-main-view .main-entityHeader-overlay,
 .main-entityHeader-background.main-entityHeader-gradient,
 .main-entityHeader-background {
   background-color: transparent;
-  transform: translateY(calc(var(--scroll-top) * -1)) !important;
+  transform: scale(1.1) translateY(calc(var(--scroll-top)* -1)) !important;
+  transition: backdrop-filter .3s ease-in-out;
 }
 
 .main-entityHeader-overlay {
@@ -678,7 +679,7 @@ input,
   background: none !important;
 }
 
-.main-entityHeader-overlay {
+.under-main-view .main-entityHeader-overlay {
   backdrop-filter: blur(calc(var(--scroll) * 3rem)) brightness(calc((1 - var(--scroll)) * 100%));
   background: none;
   background-image: none !important;
