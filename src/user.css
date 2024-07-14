@@ -669,7 +669,7 @@ input,
 .main-entityHeader-background.main-entityHeader-gradient,
 .main-entityHeader-background {
   background-color: transparent;
-  transform: scale(1.1) translateY(calc(var(--scroll-top)* -1)) !important;
+  transform: translateY(calc(var(--scroll-top)* -1)) !important;
   transition: backdrop-filter .3s ease-in-out;
 }
 
