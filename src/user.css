@@ -267,6 +267,10 @@ textarea,
   --os-handle-border-radius: 1rem;
 }
 
+.os-scrollbar {
+  z-index: 2;
+}
+
 * {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
@@ -1972,4 +1976,27 @@ button[aria-label="Browse"] path {
   left: 0;
   top: 0;
   border-radius: 99px;
+}
+
+
+/* Aside Now Playing Bar */
+aside[aria-label="Now playing view"] .ZbDMGdU4aBOnrNLowNRq,
+aside[aria-label="Now playing view"] .W3E0IT3_STcazjTeyOJa {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  transition: backdrop-filter 0.5s ease;
+  top: 0;
+}
+
+aside[aria-label="Now playing view"] .fAte2d0xETy7pnDUAgHY,
+aside[aria-label="Now playing view"] .mdMUqcSHFw1lZIcYEblu {
+  backdrop-filter: blur(24px) saturate(140%);
+  background: rgba(var(--spice-rgb-main), 0.2);
+  border-bottom: var(--default-border);
+}
+
+aside[aria-label="Now playing view"]:has(.ZbDMGdU4aBOnrNLowNRq) .main-buddyFeed-scrollBarContainer:not(:has(.main-buddyFeed-content > .main-buddyFeed-header)),
+aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXja_Sua:not(:has(.AAdBM1nhG73supMfnYX7 > .fNXmHtlrj4UVWmhQrJ_5)) {
+  padding-top: 4rem;
 }
