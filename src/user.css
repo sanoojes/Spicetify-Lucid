@@ -715,6 +715,10 @@ input,
   min-height: 35vh;
 }
 
+.main-nowPlayingView-aboutArtistV2Bio {
+  text-wrap: balance;
+}
+
 /* Now playing bar */
 .Root__now-playing-bar {
   position: fixed;
