@@ -850,12 +850,26 @@ function toggleNewScrollEffect() {
   }
 }
 
+function addScrollCoefficent(scrollTop: number) {
+  scrollAnimationFrame = requestAnimationFrame(() => {
+    const screenHeight = window.innerHeight;
+
+    let scrollCoefficient = scrollTop / screenHeight;
+    scrollCoefficient = Math.min(scrollCoefficient, 0.5);
+
+    scrollStyleElement.innerText = `:root {
+      --scroll-coefficient: ${scrollCoefficient} ;
+    }`;
+
+    scrollAnimationFrame = null;
+  });
+}
+
 function handleNewScroll(this: HTMLElement) {
   if (this.scrollTop === 0) {
     setIsArtistOrPlaylist();
   }
-
-  scrollStyleElement.innerText = ":root {--scroll-top: 0;}";
+  addScrollCoefficent(this.scrollTop);
 }
 
 function handleDefaultScroll(this: HTMLElement, event: Event) {
@@ -867,6 +881,7 @@ function handleDefaultScroll(this: HTMLElement, event: Event) {
     if (this.scrollTop === 0) {
       setIsArtistOrPlaylist();
     }
+    addScrollCoefficent(this.scrollTop);
 
     const hasUnderViewImage = document.querySelector(".under-main-view div");
     if (hasUnderViewImage && this.scrollTop !== window.innerHeight) {

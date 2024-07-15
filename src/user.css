@@ -684,9 +684,30 @@ input,
 }
 
 .under-main-view .main-entityHeader-overlay {
-  backdrop-filter: blur(calc(var(--scroll) * 3rem)) brightness(calc((1 - var(--scroll)) * 100%));
+  -webkit-animation: background-blur-anim 1s linear;
+  -webkit-animation-delay: calc(var(--scroll-coefficient, var(--scroll))* -1s);
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-play-state: paused;
+  -webkit-transition: -webkit-backdrop-filter 0.3s ease;
+  animation: background-blur-anim 1s linear;
+  animation-delay: calc(var(--scroll-coefficient, var(--scroll)) * -1s);
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-play-state: paused;
+  opacity: 1;
+  transition: backdrop-filter 0.3s ease;
   background: none;
   background-image: none !important;
+}
+
+@keyframes background-blur-anim {
+
+  80%,
+  100% {
+    -webkit-backdrop-filter: blur(var(--blur-2xl, 2rem)) brightness(75%);
+    backdrop-filter: blur(var(--blur-2xl, 2rem)) brightness(75%);
+  }
 }
 
 .main-actionBarBackground-background,
