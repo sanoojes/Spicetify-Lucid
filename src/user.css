@@ -1294,7 +1294,8 @@ div[data-testid="hpto-parent-container"] {
   width: var(--control-width);
   -webkit-backdrop-filter: brightness(2.12);
   backdrop-filter: brightness(2.12);
-  z-index: 999;
+  z-index: var(--above-main-and-now-playing-view-grid-area, 6);
+
 }
 
 /* Icon Styles for Buttons */
