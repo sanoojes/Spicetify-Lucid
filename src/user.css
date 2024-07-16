@@ -1132,6 +1132,15 @@ div[data-testid="hpto-parent-container"] {
   background-color: transparent;
 }
 
+.main-contextMenu-menuItem button[role="menuitem"]:has(svg):before {
+  content: "";
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 1px solid rgba(var(--spice-rgb-selected-row), .1);
+}
+
 /* lucid Animated Bg */
 
 .lucid-animated-background-container {
