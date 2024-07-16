@@ -1132,7 +1132,7 @@ div[data-testid="hpto-parent-container"] {
   background-color: transparent;
 }
 
-.main-contextMenu-menuItem button[role="menuitem"]:has(svg):before {
+.main-userWidget-dropDownMenu .main-contextMenu-menuItem button[role="menuitem"]:has(svg):before {
   content: "";
   width: 100%;
   position: absolute;
