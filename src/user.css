@@ -509,7 +509,9 @@ input,
 .NowPlayingView,
 .main-yourLibraryX-entryPoints,
 .yHlSWaHkqZHm5mcY8ZFh,
-.pT8jWX5PbLB2Z91Ngl7n {
+.pT8jWX5PbLB2Z91Ngl7n,
+.gKtc3TdowDTXBaVESi1D {
+  background: var(--card-color);
   background-color: var(--card-color);
 }
 
@@ -845,6 +847,7 @@ div[data-testid="hpto-parent-container"] {
       var(--generic-modal-bg-opacity));
 }
 
+.aJduGcVsoCwJvV1jVqjl,
 .BoxComponent-box-elevated {
   --text-base: var(--spice-text) !important;
   background-color: rgba(var(--spice-rgb-shadow),
@@ -855,6 +858,8 @@ div[data-testid="hpto-parent-container"] {
   border: var(--default-border);
 }
 
+.pdkMNbSQl8Yi5tl0iOF9,
+.C1USyigFSYyc22_BmsgB,
 .hmgHdasWrZaA9tiXVw_u,
 .JnpOnFaQfrRIA2fYe88A,
 .uJjmxe0T11dUVeW6Biz8,
