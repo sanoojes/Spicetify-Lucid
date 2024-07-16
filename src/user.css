@@ -777,6 +777,16 @@ input,
   gap: var(--gap-sm);
 }
 
+.HD9s7U5E1RLSWKpXmrqx {
+  background: var(--card-color);
+  border: var(--default-border);
+  border-radius: calc(var(--card-border-radius)/2);
+}
+
+.cover-art-icon {
+  color: rgba(var(--spice-text), 0.5);
+}
+
 /* Connect Bar */
 .main-connectBar-connectBar {
   min-height: 2rem;
