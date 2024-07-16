@@ -198,7 +198,6 @@ textarea,
 .main-nowPlayingView-sectionHeaderSpacing .main-nowPlayingView-lyricsContent {
   --text-subdued: var(--spice-subtext) !important;
   font-family: var(--font-to-use) !important;
-  font-weight: var(--normal-font-weight);
   letter-spacing: 0.015rem;
 }
 
