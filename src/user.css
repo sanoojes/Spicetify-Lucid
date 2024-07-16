@@ -947,6 +947,19 @@ div[data-testid="hpto-parent-container"] {
   margin-bottom: var(--margin-xl);
 }
 
+.kwzBRpFigKr1EP2d5qle {
+  background: var(--card-color);
+  border-radius: var(--card-border-radius);
+  color: var(--spice-text);
+  -webkit-backdrop-filter: blur(var(--blur-md)) saturate(1.25);
+  backdrop-filter: blur(var(--blur-md)) saturate(1.25);
+  border: var(--default-border);
+  left: var(--gap-lg);
+  padding: var(--padding-sm);
+  position: absolute;
+  top: var(--gap-xl);
+}
+
 
 /* Cards */
 .EmeHQXR87mUskYK6xEde
