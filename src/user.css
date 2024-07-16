@@ -335,7 +335,7 @@ button,
 }
 
 .main-actionButtons button svg {
-  scale: 1.25;
+  transform: scale(1.25);
 }
 
 .main-actionButtons button,
@@ -1098,6 +1098,7 @@ div[data-testid="hpto-parent-container"] {
   position: absolute;
   height: 100%;
   width: 100%;
+  -webkit-backdrop-filter: blur(var(--blur-xl));
   backdrop-filter: blur(var(--blur-xl));
   background-color: var(--card-color);
   border-radius: var(--card-border-radius);
@@ -1247,6 +1248,7 @@ div[data-testid="hpto-parent-container"] {
   pointer-events: none;
   height: var(--control-height);
   width: var(--control-width);
+  -webkit-backdrop-filter: brightness(2.12);
   backdrop-filter: brightness(2.12);
   z-index: 999;
 }
@@ -1384,7 +1386,7 @@ button[aria-label="Browse"] svg {
 }
 
 .main-repeatButton-button {
-  scale: 0.65 !important;
+  transform: scale(0.65) !important;
 }
 
 .main-repeatButton-button[aria-checked="false"],
@@ -1416,6 +1418,8 @@ button[aria-label="Add to playlist"],
 button[aria-label="Add to Liked Songs"] {
   -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg");
   mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg") !important;
+  -webkit-mask-size: 100%;
+  -webkit-mask-position: 50% 50%;
   mask-size: 100%;
   mask-position: 50% 50%;
   min-width: 1.2rem;
@@ -1458,7 +1462,7 @@ button[href="/marketplace"] svg {
   -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/cart-outline.svg");
   mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/cart-outline.svg");
   background-color: var(--spice-subtext) !important;
-  scale: 1.25;
+  transform: scale(1.25);
 }
 
 .main-yourLibraryX-navLink[href="/marketplace"].active>svg,
@@ -1466,7 +1470,7 @@ button[href="/marketplace"] svg {
   -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/cart.svg");
   mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/cart.svg");
   background-color: var(--spice-text) !important;
-  scale: 1.25;
+  transform: scale(1.25);
 }
 
 .main-skipForwardButton-button {
@@ -1682,7 +1686,7 @@ button[aria-label="Browse"] path {
 }
 
 .main-nowPlayingView-lyricsContent .lyrics-lyricsContent-lyric {
-  scale: calc(1 - var(--lyrics-scale-coefficent)*4);
+  transform: scale(calc(1 - var(--lyrics-scale-coefficent)*4));
 }
 
 .lyrics-lyricsContent-lyric {
@@ -1755,6 +1759,7 @@ button[aria-label="Browse"] path {
   background-color: transparent !important;
   background:
     url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='0' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter) brightness(0.05) contrast(1)' /%3E%3C/svg%3E");
+  -webkit-backdrop-filter: brightness(0.9);
   backdrop-filter: brightness(0.9);
 }
 
@@ -1792,6 +1797,7 @@ button[aria-label="Browse"] path {
 }
 
 ::backdrop {
+  -webkit-backdrop-filter: blur(var(--blur-xl));
   backdrop-filter: blur(var(--blur-xl));
 }
 
@@ -1981,6 +1987,7 @@ button[aria-label="Browse"] path {
 
 .Popover__StyledPopover-sc-1iog353-0,
 .StyledPopover-dialog-popover {
+  -webkit-backdrop-filter: blur(var(--blur-xl));
   backdrop-filter: blur(var(--blur-xl));
 }
 
@@ -2012,6 +2019,7 @@ aside[aria-label="Now playing view"] .W3E0IT3_STcazjTeyOJa {
 
 aside[aria-label="Now playing view"] .fAte2d0xETy7pnDUAgHY,
 aside[aria-label="Now playing view"] .mdMUqcSHFw1lZIcYEblu {
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
   backdrop-filter: blur(24px) saturate(140%);
   background: rgba(var(--spice-rgb-main), 0.2);
   border-bottom: var(--default-border);
