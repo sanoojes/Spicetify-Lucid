@@ -6,27 +6,47 @@ import {
 } from "./constants";
 import type { SettingItem, SettingSection } from "./types/settings";
 
-let isCustomControls = false;
 let isNewScroll = false;
 
 // Wait for dom elements fn
 async function waitForElement(
   selector: string,
-  maxAttempts = 50,
-  interval = 100
-) {
-  let attempts = 0;
-  while (attempts < maxAttempts) {
+  timeout?: number
+): Promise<Element | null> {
+  return new Promise((resolve) => {
     const element = document.querySelector(selector);
     if (element) {
-      return element as HTMLElement;
+      resolve(element);
+      return;
     }
-    await new Promise((resolve) => setTimeout(resolve, interval));
-    attempts++;
-  }
-  throw new Error(
-    `Element ${selector} not found after ${maxAttempts} attempts.`
-  );
+
+    let observer: MutationObserver | null = null;
+    const startTime = Date.now();
+
+    const checkAndResolve = () => {
+      const targetElement = document.querySelector(selector);
+      if (targetElement) {
+        if (observer) {
+          observer.disconnect();
+        }
+        resolve(targetElement);
+      } else if (timeout && Date.now() - startTime >= timeout) {
+        console.log(`[Lucid] ${selector} not found within ${timeout}ms`);
+        if (observer) {
+          observer.disconnect();
+        }
+        resolve(null);
+      }
+    };
+
+    observer = new MutationObserver(checkAndResolve);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    checkAndResolve();
+  });
 }
 
 // Artist art image
@@ -71,7 +91,7 @@ function updateScrollElement(scrollContainer: Element) {
 const styleSheet = document.createElement("style");
 document.head.appendChild(styleSheet);
 
-async function setIsArtistOrPlaylist() {
+async function setHeaderPosition() {
   try {
     const section = (await waitForElement("section")) as HTMLElement;
     let display = "relative";
@@ -368,11 +388,7 @@ function calculateScaledPx(
 const topBarStyleSheet = document.createElement("style");
 document.head.appendChild(topBarStyleSheet);
 async function setTopBarStyles() {
-  if (!isCustomControls) {
-    const isGlobalNav =
-      document.querySelector(".global-nav") ||
-      document.querySelector(".Root__globalNav");
-
+  if (!window.window.isCustomControls) {
     const baseHeight = 64;
     const baseWidth = 135;
     const constant = 0.912872807;
@@ -389,7 +405,7 @@ async function setTopBarStyles() {
     const paddingStart = calculateScaledPx(64, inverseZoom, 1);
     const paddingEnd = calculateScaledPx(baseWidth, inverseZoom, 1);
 
-    if (!isGlobalNav) {
+    if (!window.isGlobalNav) {
       topBarStyleSheet.innerText = `
 .main-topBar-container {
   padding-inline-end: ${paddingEnd}px !important;
@@ -867,7 +883,7 @@ function addScrollCoefficent(scrollTop: number) {
 
 function handleNewScroll(this: HTMLElement) {
   if (this.scrollTop === 0) {
-    setIsArtistOrPlaylist();
+    setHeaderPosition();
   }
   addScrollCoefficent(this.scrollTop);
 }
@@ -879,7 +895,7 @@ function handleDefaultScroll(this: HTMLElement, event: Event) {
 
   scrollAnimationFrame = requestAnimationFrame(() => {
     if (this.scrollTop === 0) {
-      setIsArtistOrPlaylist();
+      setHeaderPosition();
     }
     addScrollCoefficent(this.scrollTop);
 
@@ -903,8 +919,20 @@ async function main() {
   ) {
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
-  const isWindows = Spicetify?.Platform.PlatformData.os_name === "windows";
-  if (isWindows && Spicetify.Config.color_scheme !== "light") {
+
+  window.isGlobalNav = !!(
+    document.querySelector(".globalNav") ||
+    document.querySelector(".Root__globalNav")
+  );
+
+  window.isWindows =
+    (Spicetify?.Platform?.operatingSystem as string).toLowerCase() ===
+      "windows" ||
+    (Spicetify?.Platform.PlatformData.os_name as string)
+      .toLowerCase()
+      .includes("win");
+
+  if (window.isWindows && Spicetify.Config.color_scheme !== "light") {
     document
       .querySelector(".Root__top-container")
       ?.appendChild(transparentControlElement);
@@ -915,7 +943,7 @@ async function main() {
   // Initial setup
   setArtImage();
   setTopBarStyles();
-  setIsArtistOrPlaylist();
+  setHeaderPosition();
 
   // Event Listeners
   Spicetify.Player.addEventListener("songchange", () => {
@@ -930,15 +958,13 @@ async function main() {
   console.log("Lucid theme loaded.");
 
   const checkForCustomControls = async () => {
-    if (await waitForElement("#customControls")) {
-      isCustomControls = true;
+    if (await waitForElement("#customControls", 5000)) {
+      window.isCustomControls = true;
       document.querySelector(".lucid-transperent-window-controls")?.remove();
     }
   };
 
-  setTimeout(() => {
-    checkForCustomControls(); // check for the extensiton after it loads
-  }, 100);
+  checkForCustomControls();
 }
 
 export default main;
