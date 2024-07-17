@@ -221,11 +221,6 @@ textarea,
   padding-left: var(--padding-sm);
 }
 
-.TypeElement-type-ballad-textBase,
-.LineClamp {
-  font-weight: 500;
-}
-
 .Root__now-playing-bar .encore-text-body-small {
   letter-spacing: 0.025rem;
 }
@@ -860,6 +855,7 @@ div[data-testid="hpto-parent-container"] {
       var(--generic-modal-bg-opacity));
 }
 
+.KIbfbFDao0SHpZsKoKZD,
 .aJduGcVsoCwJvV1jVqjl,
 .BoxComponent-box-elevated {
   --text-base: var(--spice-text) !important;
