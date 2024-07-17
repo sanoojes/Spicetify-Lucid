@@ -1166,6 +1166,10 @@ div[data-testid="hpto-parent-container"] {
   border-top: 1px solid rgba(var(--spice-rgb-selected-row), .1);
 }
 
+.main-contextMenu-tippy {
+  --generic-tooltip-background-color: transparent !important;
+}
+
 /* lucid Animated Bg */
 
 .lucid-animated-background-container {
