@@ -204,7 +204,12 @@ export enum grainsOption {
   NONE = "none",
 }
 
-export enum ScrollEffectOption {
+export enum scrollEffectOption {
   NEW = "new",
   DEFAULT = "default",
+}
+
+export enum dynamicColorOption {
+  NORMAL = "normal",
+  DYNAMIC = "dynamic",
 }

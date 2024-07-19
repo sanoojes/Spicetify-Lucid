@@ -1,53 +1,20 @@
 import {
   BackgroundOption,
   grainsOption,
-  ScrollEffectOption,
+  scrollEffectOption,
   DEFAULT_SETTINGS,
+  dynamicColorOption,
 } from "./constants";
+import { waitForElement } from "./helpers/helpers";
+import { saveColorsToStyle } from "./lib/color";
 import type { SettingItem, SettingSection } from "./types/settings";
 
 let isNewScroll = false;
 
-// Wait for dom elements fn
-async function waitForElement(
-  selector: string,
-  timeout?: number
-): Promise<Element | null> {
-  return new Promise((resolve) => {
-    const element = document.querySelector(selector);
-    if (element) {
-      resolve(element);
-      return;
-    }
-
-    let observer: MutationObserver | null = null;
-    const startTime = Date.now();
-
-    const checkAndResolve = () => {
-      const targetElement = document.querySelector(selector);
-      if (targetElement) {
-        if (observer) {
-          observer.disconnect();
-        }
-        resolve(targetElement);
-      } else if (timeout && Date.now() - startTime >= timeout) {
-        console.log(`[Lucid] ${selector} not found within ${timeout}ms`);
-        if (observer) {
-          observer.disconnect();
-        }
-        resolve(null);
-      }
-    };
-
-    observer = new MutationObserver(checkAndResolve);
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-
-    checkAndResolve();
-  });
-}
+// Dynamic Colors
+let isDynamicColors = false;
+const dynamicColorsStyleSheet = document.createElement("style");
+document.head.appendChild(dynamicColorsStyleSheet);
 
 // Artist art image
 let currentArtImage = "";
@@ -682,8 +649,13 @@ function addSettings() {
   ];
 
   const scrollEffectOptions = [
-    { text: "New Scroll", value: ScrollEffectOption.NEW },
-    { text: "Default Scroll", value: ScrollEffectOption.DEFAULT },
+    { text: "New Scroll", value: scrollEffectOption.NEW },
+    { text: "Default Scroll", value: scrollEffectOption.DEFAULT },
+  ];
+
+  const dynamicColorOptions = [
+    { text: "Normal", value: dynamicColorOption.NORMAL },
+    { text: "Dynamic", value: dynamicColorOption.DYNAMIC },
   ];
 
   (async () => {
@@ -712,11 +684,26 @@ function addSettings() {
       "lucid-scrollEffect",
       "Artist Page Scroll Effect",
       (newValue: string) => {
-        isNewScroll = newValue === ScrollEffectOption.NEW;
-        toggleNewScrollEffect();
+        isNewScroll = newValue === scrollEffectOption.NEW;
+        applyNewScrollEffect();
       }
     );
     dropDownSettingsSection.appendChild(scrollEffectDropdown);
+
+    const dynamicColorDropdown = await createDropdown(
+      dynamicColorOptions,
+      "lucid-isDynamicColor",
+      "Dynamic Color Selection (Experimental)",
+      (newValue: string) => {
+        isDynamicColors = newValue === dynamicColorOption.DYNAMIC;
+        if (isDynamicColors) {
+          saveColorsToStyle(dynamicColorsStyleSheet, currentArtImage);
+        } else {
+          dynamicColorsStyleSheet.innerText = "";
+        }
+      }
+    );
+    dropDownSettingsSection.appendChild(dynamicColorDropdown);
   })();
 
   settingsContainer.appendChild(dropDownSettingsSection);
@@ -763,8 +750,11 @@ function resetSettings() {
   }
 
   isNewScroll = true;
-  localStorage.setItem("lucid-scrollEffect", ScrollEffectOption.NEW);
-  toggleNewScrollEffect();
+  localStorage.setItem("lucid-scrollEffect", scrollEffectOption.NEW);
+  applyNewScrollEffect();
+
+  isDynamicColors = false;
+  localStorage.setItem("lucid-isDynamicColor", dynamicColorOption.NORMAL);
 }
 
 function findSettingItemByKey(key: string): SettingItem | undefined {
@@ -841,7 +831,7 @@ function setSettingsToMenu(container: Element) {
   settingsMenuItem.register();
 }
 
-function toggleNewScrollEffect() {
+function applyNewScrollEffect() {
   const scrollContainer = document.querySelector(
     ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
   ) as HTMLElement | null;
@@ -932,7 +922,11 @@ async function main() {
       .toLowerCase()
       .includes("win");
 
-  if (window.isWindows && Spicetify.Config.color_scheme !== "light") {
+  if (
+    window.isWindows &&
+    Spicetify.Config.color_scheme !== "light" &&
+    !document.querySelector("lucid-transperent-window-controls")
+  ) {
     document
       .querySelector(".Root__top-container")
       ?.appendChild(transparentControlElement);
@@ -944,16 +938,21 @@ async function main() {
   setArtImage();
   setTopBarStyles();
   setHeaderPosition();
+  isDynamicColors &&
+    saveColorsToStyle(dynamicColorsStyleSheet, currentArtImage);
 
   // Event Listeners
   Spicetify.Player.addEventListener("songchange", () => {
     fetchFadeTime();
     setArtImage();
+
+    isDynamicColors &&
+      saveColorsToStyle(dynamicColorsStyleSheet, currentArtImage);
   });
   window.addEventListener("resize", setTopBarStyles);
 
   // Scroll
-  toggleNewScrollEffect();
+  applyNewScrollEffect();
 
   console.log("Lucid theme loaded.");
 

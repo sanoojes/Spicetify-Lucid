@@ -14,6 +14,7 @@
     "spicetify-creator": "^1.0.17"
   },
   "dependencies": {
+    "canvas": "^2.11.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }

@@ -162,6 +162,10 @@
   --lyrics-scale-coefficent: 0.01;
 }
 
+* {
+  transition: background-color 0.3s ease-in-out, color .3s ease-in-out !important;
+}
+
 /* Spicetify Overrides */
 .encore-dark-theme,
 .encore-dark-theme .encore-base-set {
@@ -390,6 +394,7 @@ button,
 .Button-small-small-buttonTertiary-condensedAll-useBrowserDefaultFocusStyle:hover,
 .Button-medium-medium-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle:hover,
 .Button-medium-medium-buttonTertiary-iconOnly-condensedAll-useBrowserDefaultFocusStyle:hover {
+  transition: scale 0.3s ease;
   transform: scale(var(--scale-down)) !important;
 }
 
@@ -1006,6 +1011,11 @@ div[data-testid="hpto-parent-container"] {
 .BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover,
 .BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover::after {
   background-color: var(--card-hover-color);
+}
+
+.main-trackList-trackListRow.main-trackList-selected,
+.main-trackList-trackListRow.main-trackList-selected:hover {
+  background-color: rgba(var(--spice-rgb-selected-row), .125);
 }
 
 .main-gridContainer-gridContainer {
@@ -2075,4 +2085,9 @@ aside[aria-label="Now playing view"] .mdMUqcSHFw1lZIcYEblu {
 aside[aria-label="Now playing view"]:has(.ZbDMGdU4aBOnrNLowNRq) .main-buddyFeed-scrollBarContainer:not(:has(.main-buddyFeed-content > .main-buddyFeed-header)),
 aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXja_Sua:not(:has(.AAdBM1nhG73supMfnYX7 > .fNXmHtlrj4UVWmhQrJ_5)) {
   padding-top: 4rem;
+}
+
+/* Promotion Container */
+.BoxComponent-box-naked-isInteractive-padding_var___encore_spacing_tighter_:hover::after {
+  background-color: rgba(var(--spice-rgb-card), 0.5);
 }
