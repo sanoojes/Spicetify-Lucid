@@ -881,7 +881,8 @@ div[data-testid="hpto-parent-container"] {
 .uJjmxe0T11dUVeW6Biz8,
 .main-embedWidgetGenerator-container,
 .main-trackCreditsModal-container,
-.GenericModal {
+.GenericModal,
+.desktopmodals-aboutSpotifyModal-container {
   max-height: 90vh;
   background-color: var(--card-color);
   border: var(--default-border);
