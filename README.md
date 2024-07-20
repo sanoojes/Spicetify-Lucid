@@ -153,7 +153,7 @@ spicetify apply
   spicetify apply
   ```
 
-Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`,`greenland`,`biscuit`,`macos`, `rosepine`,`dracula`,`dracula-pro`,`cozytile`.
+Available schemes: `dark`, `light`, `darkgreen`, `coffee`, `comfy`, `violet`, `dark-fluent`, `dark-bloom`,`midnight-catppuccin`,`greenland`,`biscuit`,`macos`, `rosepine`,`dracula`,`dracula-pro`,`cozytile`, `catppuccin-mocha`,`midnight-slate`.
 
 - If you installed via Marketplace, the color scheme can be changed directly in the theme options.
 
