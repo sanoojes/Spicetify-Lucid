@@ -1,25 +1,7 @@
 import { createCanvas, loadImage } from "canvas";
+import type { Color, ColorPalette } from "../types/colors";
 
-interface Color {
-  r: number;
-  g: number;
-  b: number;
-  hex: string;
-}
-
-interface ColorPalette {
-  main: Color;
-  sidebar: Color;
-  card: Color;
-  accent: Color;
-  highlight: Color;
-  button: Color;
-  "button-active": Color;
-  text: Color;
-  subtext: Color;
-  playbar: Color;
-}
-
+// Helper functions
 function rgbToHex(r: number, g: number, b: number): string {
   return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
 }
@@ -88,6 +70,7 @@ function adjustColor(
   };
 }
 
+// Function to extract dominant colors from an image
 async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
   try {
     const image = await loadImage(imageUrl);
@@ -126,7 +109,10 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
     const baseColor = sortedColors[0];
     let secondaryColor = sortedColors[1];
+    let tertiaryColor = sortedColors[2]; // Add tertiary color
     let colorIndex = 2;
+
+    // Ensure sufficient contrast between base color and secondary color
     while (!secondaryColor || contrastRatio(baseColor, secondaryColor) < 2.5) {
       if (colorIndex >= sortedColors.length) {
         secondaryColor = lightenColor(baseColor, 0.2);
@@ -136,25 +122,41 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
       colorIndex++;
     }
 
+    // Ensure sufficient contrast between base color, secondary color, and tertiary color
+    while (
+      !tertiaryColor ||
+      contrastRatio(baseColor, tertiaryColor) < 2.5 ||
+      contrastRatio(secondaryColor, tertiaryColor) < 2.5
+    ) {
+      if (colorIndex >= sortedColors.length) {
+        tertiaryColor = lightenColor(secondaryColor, 0.2);
+        break;
+      }
+      tertiaryColor = sortedColors[colorIndex];
+      colorIndex++;
+    }
+
+    // Create the color palette with adjustments
     const colorPalette: ColorPalette = {
       main: darkenColor(baseColor, 0.8),
-      sidebar: darkenColor(baseColor, 0.9),
-      card: darkenColor(baseColor, 0.9),
-      accent: lightenColor(baseColor, 0.4),
-      highlight: lightenColor(baseColor, 0.2),
-      button: lightenColor(baseColor, 0.4),
-      "button-active": lightenColor(baseColor, 0.3),
-      text: { r: 220, g: 220, b: 220, hex: rgbToHex(220, 220, 220) },
-      subtext: { r: 200, g: 200, b: 200, hex: rgbToHex(200, 200, 200) },
-      playbar: lightenColor(secondaryColor, 0.2),
+      sidebar: darkenColor(secondaryColor, 0.9),
+      card: darkenColor(tertiaryColor, 0.9),
+      accent: lightenColor(tertiaryColor, 0.4),
+      highlight: lightenColor(secondaryColor, 0.2),
+      button: lightenColor(tertiaryColor, 0.4),
+      "button-active": lightenColor(tertiaryColor, 0.4),
+      text: lightenColor(baseColor, 0.8),
+      subtext: lightenColor(baseColor, 0.9),
+      primary: baseColor,
+      secondary: secondaryColor,
+      tertiary: tertiaryColor,
     };
 
-    // Ensure that main color, sidebar, card, and playbar are dark enough
+    // Adjust darkness of main, sidebar, card, and player colors
     const colorsToAdjust = [
       colorPalette.main,
       colorPalette.sidebar,
       colorPalette.card,
-      colorPalette.playbar,
     ];
     for (let color of colorsToAdjust) {
       if (luminance(color.r, color.g, color.b) > 0.3) {
@@ -164,11 +166,10 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
         color.hex = rgbToHex(color.r, color.g, color.b);
       }
 
-      // You can adjust the saturation factor as needed
-      color = adjustColor(color, 1, 0.8);
+      color = adjustColor(color, 0.5, 2);
     }
 
-    // Make accent color brighter
+    // Adjust accent and tertiary colors for better contrast
     if (colorPalette.accent && colorPalette.main) {
       const contrast = contrastRatio(colorPalette.accent, colorPalette.main);
       if (contrast < 4.5) {
@@ -182,11 +183,13 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
   }
 }
 
+// Function to generate CSS rules for the color palette
 function createStyleRule(name: string, color: Color): string {
   return `--spice-${name}: ${color.hex} !important;
           --spice-rgb-${name}: ${color.r},${color.g},${color.b} !important;`;
 }
 
+// Function to save the extracted colors to a CSS style element
 export async function saveColorsToStyle(
   styleElement: HTMLStyleElement,
   imageUrl: string
