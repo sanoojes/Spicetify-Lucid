@@ -325,7 +325,7 @@ button,
 .main-userWidget-box:hover,
 .main-userWidget-box[data-context-menu-open="true"],
 .BoxComponent-group-card-naked-isInteractive-padding_12px:hover::after {
-  background-color: var(--card-hover-color);
+  background-color: var(--card-hover-color) !important;
 }
 
 .main-actionButtons {
@@ -1011,7 +1011,7 @@ div[data-testid="hpto-parent-container"] {
 .BoxComponent-group-card-naked-isInteractive-draggable:hover::after,
 .BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover,
 .BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px:hover::after {
-  background-color: var(--card-hover-color);
+  background-color: var(--card-hover-color) !important;
 }
 
 .main-trackList-trackListRow.main-trackList-selected,
