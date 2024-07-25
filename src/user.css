@@ -710,8 +710,8 @@ input,
 
   80%,
   100% {
-    -webkit-backdrop-filter: blur(var(--blur-2xl, 2rem)) brightness(75%);
-    backdrop-filter: blur(var(--blur-2xl, 2rem)) brightness(75%);
+    -webkit-backdrop-filter: blur(var(--blur-2xl, 2rem)) brightness(25%);
+    backdrop-filter: blur(var(--blur-2xl, 2rem)) brightness(25%);
   }
 }
 
