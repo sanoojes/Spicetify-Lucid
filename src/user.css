@@ -269,6 +269,10 @@ textarea,
   z-index: 2;
 }
 
+.os-scrollbar-track {
+  padding-bottom: calc(var(--now-playing-bar-height) + var(--gap-md)) !important;
+}
+
 * {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
