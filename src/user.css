@@ -269,8 +269,12 @@ textarea,
   z-index: 2;
 }
 
-.os-scrollbar-track {
-  padding-bottom: calc(var(--now-playing-bar-height) + var(--gap-md)) !important;
+.Root__right-sidebar,
+.Root__main-view,
+.Root__nav-bar {
+  .os-scrollbar-track {
+    padding-bottom: calc(var(--now-playing-bar-height) + var(--gap-md)) !important;
+  }
 }
 
 * {
