@@ -113,8 +113,8 @@ function addButtonStyles() {
 .main-trackList-rowImagePlayButton[aria-label*="${tracklistPlayLabelOne}"][aria-label*="${tracklistPlayLabelTwo}"],
 .main-playButton-PlayButton > button[aria-label*="${playlistPlayLabel}"] {
   background-color: var(--spice-text) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg") !important;
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg") !important;
+  -webkit-mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
+  mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
 }
 .main-playButton-button[aria-label*="${pauseLabel}"],
 .main-playButton-PlayButton > button[aria-label*="${pauseLabel}"],
@@ -126,8 +126,8 @@ function addButtonStyles() {
 .main-trackList-rowImagePlayButton[aria-label*="${pauseLabel}"],
 .main-playButton-PlayButton > button[aria-label*="${playlistPauseLabel}"] {
   background-color: var(--spice-text) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg") !important;
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg") !important;
+  -webkit-mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
+  mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
 }
 
 .Root__globalNav
@@ -142,8 +142,8 @@ button[aria-label="${browseLabel}"] path {
 
 button[aria-label="${browseLabel}"] svg {
   display: none;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass_outline.svg");
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass_outline.svg");
+  -webkit-mask-image: var(--compass-outline-icon,url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass-outline.svg"));
+  mask-image: var(--compass-outline-icon,url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass-outline.svg"));
   background-color: var(--spice-subtext) !important;
   scale: 1.25;
 }
@@ -192,8 +192,8 @@ button[aria-label="${addToPlaylistLabel}"],
 button[aria-label="${addToPlaylistLabel}"],
 button[aria-label="${addToLikedLabel}"] {
   background-color: var(--spice-subtext);
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg");
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg") !important;
+  -webkit-mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg"));
+  mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg")) !important;
   mask-size: 100%;
   mask-position: 50% 50%;
   min-width: 1.2rem;
@@ -206,19 +206,19 @@ button[aria-label="${addToLikedLabel}"] {
 }
 button[aria-label="${addToPlaylistLabel}"] {
   background-color: var(--spice-accent);
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg");
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg") !important;
+  -webkit-mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg"));
+  mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg")) !important;
 }
 
 .player-controls button[aria-label="${skipBackLabel}"] {
   background-color: var(--spice-text);
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg");
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg");
+  -webkit-mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
+  mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
 }
 .player-controls button[aria-label="${skipForwardLabel}"] {
   background-color: var(--spice-text);
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg");
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg");
+  -webkit-mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
+  mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
 }
 
 button[aria-label="${friendsActivityLabel}"] > path,
@@ -229,14 +229,14 @@ button[aria-label="${whatsNewLabel}"] > path {
 .main-actionButtons > div > button[aria-label="${whatsNewLabel}"] svg,
 .main-actionButtons > button[aria-label="${whatsNewLabel}"] svg {
   background-color: var(--spice-subtext) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/alert.svg");
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/alert.svg");
+  -webkit-mask-image: var(--alert-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/alert.svg"));
+  mask-image: var(--alert-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/alert.svg"));
 }
 .main-actionButtons > div > button[aria-label="${friendsActivityLabel}"] svg,
 .main-actionButtons > button[aria-label="${friendsActivityLabel}"] svg {
   background-color: var(--spice-subtext) !important;
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg");
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg");
+  -webkit-mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
+  mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
 }
 
 .main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"] svg,
@@ -244,8 +244,8 @@ button[aria-label="${homeBtnLabelOne}"] svg {
   path {
     display: none !important;
   }
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-outline.svg");
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-outline.svg");
+  mask-image: var(--home-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-outline.svg"));
+  -webkit-mask-image: var(--home-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-outline.svg"));
   background-color: var(--spice-subtext) !important;
 }
 
@@ -255,8 +255,8 @@ button[aria-label="${homeBtnLabelOne}"] svg {
   path {
     display: none !important;
   }
-  mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-filled.svg");
-  -webkit-mask-image: url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-filled.svg");
+  mask-image: var(--home-filled-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-filled.svg"));
+  -webkit-mask-image: var(--home-filled-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-filled.svg"));
   background-color: var(--spice-text) !important;
 }
 
