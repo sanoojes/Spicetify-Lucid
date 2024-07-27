@@ -256,6 +256,13 @@ textarea,
   margin-left: var(--margin-md);
 }
 
+.main-nowPlayingView-section {
+  .encore-text {
+    text-wrap: pretty;
+  }
+
+}
+
 /* Scrollbar */
 .os-theme-spotify.os-scrollbar {
   --os-size: 4px;
@@ -674,10 +681,6 @@ input,
 }
 
 /* Image section (Playlist and Artist) */
-.main-entityHeader-container {
-  background: var(--background-noise);
-}
-
 .under-main-view .main-entityHeader-overlay,
 .main-entityHeader-background.main-entityHeader-gradient,
 .main-entityHeader-background {
