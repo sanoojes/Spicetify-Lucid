@@ -13,13 +13,12 @@ let isNewScroll = false;
 
 // Dynamic Colors
 let isDynamicColors = false;
-const dynamicColorsStyleSheet = document.createElement("style");
-document.head.appendChild(dynamicColorsStyleSheet);
+const rootStyle = document.documentElement.style;
+const colorStyleSheet = document.createElement("style");
+document.head.appendChild(colorStyleSheet);
 
 // Artist art image
 let currentArtImage = "";
-const artStyleElement = document.createElement("style");
-document.head.appendChild(artStyleElement);
 
 function setArtImage() {
   currentArtImage =
@@ -28,35 +27,11 @@ function setArtImage() {
     Spicetify.Player.data.item.metadata.image_url;
 
   try {
-    artStyleElement.innerText = "";
-    artStyleElement.innerText = `:root { --image-url: url(${currentArtImage}); }`;
+    rootStyle.setProperty("--image-url", `url(${currentArtImage})`);
   } catch (error) {
     console.error("Error updating album art:", error);
   }
 }
-
-const scrollStyleElement = document.createElement("style");
-document.head.appendChild(scrollStyleElement);
-
-let scrollAnimationFrame: number | null = null;
-
-function updateScrollElement(scrollContainer: Element) {
-  if (scrollAnimationFrame) {
-    cancelAnimationFrame(scrollAnimationFrame);
-  }
-
-  scrollAnimationFrame = requestAnimationFrame(() => {
-    const scrollTop = scrollContainer.scrollTop;
-    const screenHeight = window.innerHeight;
-
-    const clampedScrollTop = Math.min(scrollTop, screenHeight);
-    scrollStyleElement.innerText = `:root {--scroll-top: ${clampedScrollTop}px;}`;
-    scrollAnimationFrame = null;
-  });
-}
-
-const styleSheet = document.createElement("style");
-document.head.appendChild(styleSheet);
 
 async function setHeaderPosition() {
   try {
@@ -74,7 +49,7 @@ async function setHeaderPosition() {
       display = "absolute";
     }
 
-    styleSheet.innerText = `:root { --header-position: ${display}; }`;
+    rootStyle.setProperty("--header-position", display);
   } catch (error) {
     console.error("[Lucid] Error waiting for section element:", error);
   }
@@ -127,7 +102,7 @@ function addButtonStyles() {
   tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
 
   const ButtonStyles = document.createElement("style");
-  ButtonStyles.innerText = `
+  ButtonStyles.innerHTML = `
 .main-playButton-button[aria-label*="${playLabel}"],
 .main-playButton-PlayButton > button[aria-label*="${playLabel}"],
 .main-playPauseButton-button[aria-label="${playLabel}"],
@@ -373,7 +348,7 @@ async function setTopBarStyles() {
     const paddingEnd = calculateScaledPx(baseWidth, inverseZoom, 1);
 
     if (!window.isGlobalNav) {
-      topBarStyleSheet.innerText = `
+      topBarStyleSheet.innerHTML = `
 .main-topBar-container {
   padding-inline-end: ${paddingEnd}px !important;
   padding-inline-start: ${paddingStart}px !important;
@@ -384,7 +359,7 @@ async function setTopBarStyles() {
 }
         `;
     } else {
-      topBarStyleSheet.innerText = `
+      topBarStyleSheet.innerHTML = `
 .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
   padding-inline-end: ${paddingEnd}px !important;
   padding-inline-start: ${paddingStart}px !important;
@@ -484,14 +459,14 @@ const styleSheetforGrain = document.createElement("style");
 function changeGrains(option?: grainsOption) {
   try {
     if (!option || option === grainsOption.STARY) {
-      styleSheetforGrain.innerText = `
+      styleSheetforGrain.innerHTML = `
       :root {
         --background-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 700 700' width='700' height='700' opacity='1'%3E%3Cdefs%3E%3Cfilter id='nnnoise-filter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='linearRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.184' numOctaves='4' seed='15' stitchTiles='stitch' x='0%25' y='0%25' width='100%25' height='100%25' result='turbulence'%3E%3C/feTurbulence%3E%3CfeSpecularLighting surfaceScale='13' specularConstant='0.3' specularExponent='20' lighting-color='%23ffffff' x='0%25' y='0%25' width='100%25' height='100%25' in='turbulence' result='specularLighting'%3E%3CfeDistantLight azimuth='3' elevation='133'%3E%3C/feDistantLight%3E%3C/feSpecularLighting%3E%3CfeColorMatrix type='saturate' values='0' x='0%25' y='0%25' width='100%25' height='100%25' in='specularLighting' result='colormatrix'%3E%3C/feColorMatrix%3E%3C/filter%3E%3C/defs%3E%3Crect width='700' height='700' fill='%2300000000'%3E%3C/rect%3E%3Crect width='700' height='700' fill='%23ffffff' filter='url(%23nnnoise-filter)'%3E%3C/rect%3E%3C/svg%3E") !important;
         }
         `;
     }
     if (option === grainsOption.NORMAL) {
-      styleSheetforGrain.innerText = `
+      styleSheetforGrain.innerHTML = `
         :root {
           --background-noise: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=) !important;
 }
@@ -499,7 +474,7 @@ function changeGrains(option?: grainsOption) {
     }
 
     if (option === grainsOption.NONE) {
-      styleSheetforGrain.innerText = `
+      styleSheetforGrain.innerHTML = `
   :root {
     --background-noise: none !important;
     }
@@ -545,7 +520,7 @@ function addSettings() {
         "encore-text-title-small",
         "encore-internal-color-text-subdued"
       );
-      label.innerText = item.label;
+      label.innerHTML = item.label;
       label.htmlFor = `${item.key}-input`;
 
       const tooltip = document.createElement("p");
@@ -553,7 +528,7 @@ function addSettings() {
         "encore-text-body-small",
         "encore-internal-color-text-subdued"
       );
-      tooltip.innerText = item.tooltip || "";
+      tooltip.innerHTML = item.tooltip || "";
 
       const slider = document.createElement("input");
       slider.className = "Lucid-slider";
@@ -697,9 +672,9 @@ function addSettings() {
       (newValue: string) => {
         isDynamicColors = newValue === dynamicColorOption.DYNAMIC;
         if (isDynamicColors) {
-          saveColorsToStyle(dynamicColorsStyleSheet, currentArtImage);
+          saveColorsToStyle(colorStyleSheet, currentArtImage);
         } else {
-          dynamicColorsStyleSheet.innerText = "";
+          colorStyleSheet.innerHTML = "";
         }
       }
     );
@@ -857,18 +832,8 @@ function applyNewScrollEffect() {
 }
 
 function addScrollCoefficent(scrollTop: number) {
-  scrollAnimationFrame = requestAnimationFrame(() => {
-    const screenHeight = window.innerHeight;
-
-    let scrollCoefficient = scrollTop / screenHeight;
-    scrollCoefficient = Math.min(scrollCoefficient, 0.5);
-
-    scrollStyleElement.innerText = `:root {
-      --scroll-coefficient: ${scrollCoefficient} ;
-    }`;
-
-    scrollAnimationFrame = null;
-  });
+  const scrollCoefficient = Math.min(0.5, scrollTop / window.innerHeight);
+  rootStyle.setProperty("--scroll-coefficient", scrollCoefficient.toString());
 }
 
 function handleNewScroll(this: HTMLElement) {
@@ -879,23 +844,18 @@ function handleNewScroll(this: HTMLElement) {
 }
 
 function handleDefaultScroll(this: HTMLElement, event: Event) {
-  if (scrollAnimationFrame) {
-    cancelAnimationFrame(scrollAnimationFrame);
+  if (this.scrollTop === 0) {
+    setHeaderPosition();
   }
 
-  scrollAnimationFrame = requestAnimationFrame(() => {
-    if (this.scrollTop === 0) {
-      setHeaderPosition();
-    }
-    addScrollCoefficent(this.scrollTop);
+  const hasUnderViewImage: HTMLDivElement | null = document.querySelector(
+    ".under-main-view div"
+  );
 
-    const hasUnderViewImage = document.querySelector(".under-main-view div");
-    if (hasUnderViewImage && this.scrollTop !== window.innerHeight) {
-      updateScrollElement(this);
-    }
-
-    scrollAnimationFrame = null;
-  });
+  if (hasUnderViewImage) {
+    const scrollTop = Math.min(this.scrollTop, window.innerHeight) * -1;
+    rootStyle.setProperty("--scroll-top", `${scrollTop}px`);
+  }
 }
 
 /* Main Fn */
@@ -938,16 +898,14 @@ async function main() {
   setArtImage();
   setTopBarStyles();
   setHeaderPosition();
-  isDynamicColors &&
-    saveColorsToStyle(dynamicColorsStyleSheet, currentArtImage);
+  isDynamicColors && saveColorsToStyle(colorStyleSheet, currentArtImage);
 
   // Event Listeners
   Spicetify.Player.addEventListener("songchange", () => {
     fetchFadeTime();
     setArtImage();
 
-    isDynamicColors &&
-      saveColorsToStyle(dynamicColorsStyleSheet, currentArtImage);
+    isDynamicColors && saveColorsToStyle(colorStyleSheet, currentArtImage);
   });
   window.addEventListener("resize", setTopBarStyles);
 
