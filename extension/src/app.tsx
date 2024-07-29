@@ -33,28 +33,6 @@ function setArtImage() {
   }
 }
 
-async function setHeaderPosition() {
-  try {
-    const section = (await waitForElement("section")) as HTMLElement;
-    let display = "relative";
-
-    if (
-      section.dataset.testid?.match(/(album|playlist|artist)/) ||
-      section.dataset.testUri?.toLowerCase().includes("artist") ||
-      section.dataset.testUri?.toLowerCase().includes("album-page") ||
-      document.querySelectorAll(
-        ".playlist-playlist-playlist, .main-entityHeader-container, .main-entityHeader-nonWrapped"
-      ).length > 0
-    ) {
-      display = "absolute";
-    }
-
-    rootStyle.setProperty("--header-position", display);
-  } catch (error) {
-    console.error("[Lucid] Error waiting for section element:", error);
-  }
-}
-
 function addButtonStyles() {
   const { Locale } = Spicetify;
   function cleanLabel(label: string): string {
@@ -81,8 +59,6 @@ function addButtonStyles() {
 
   const skipForwardLabel = Locale.get("playback-control.skip-forward");
   const skipBackLabel = Locale.get("playback-control.skip-back");
-
-  const whatsNewLabel = Locale.get("web-player.whats-new-feed.button-label");
 
   const friendsActivityLabel = Locale.get("buddy-feed.friend-activity");
   const tracklistPlayLabel = Locale.get("tracklist.a11y.play") as string;
@@ -221,17 +197,10 @@ button[aria-label="${addToPlaylistLabel}"] {
   mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
 }
 
-button[aria-label="${friendsActivityLabel}"] > path,
-button[aria-label="${whatsNewLabel}"] > path {
+button[aria-label="${friendsActivityLabel}"] > path {
   display: none;
 }
 
-.main-actionButtons > div > button[aria-label="${whatsNewLabel}"] svg,
-.main-actionButtons > button[aria-label="${whatsNewLabel}"] svg {
-  background-color: var(--spice-subtext) !important;
-  -webkit-mask-image: var(--alert-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/alert.svg"));
-  mask-image: var(--alert-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/alert.svg"));
-}
 .main-actionButtons > div > button[aria-label="${friendsActivityLabel}"] svg,
 .main-actionButtons > button[aria-label="${friendsActivityLabel}"] svg {
   background-color: var(--spice-subtext) !important;
@@ -837,17 +806,10 @@ function addScrollCoefficent(scrollTop: number) {
 }
 
 function handleNewScroll(this: HTMLElement) {
-  if (this.scrollTop === 0) {
-    setHeaderPosition();
-  }
   addScrollCoefficent(this.scrollTop);
 }
 
 function handleDefaultScroll(this: HTMLElement, event: Event) {
-  if (this.scrollTop === 0) {
-    setHeaderPosition();
-  }
-
   const hasUnderViewImage: HTMLDivElement | null = document.querySelector(
     ".under-main-view div"
   );
@@ -897,7 +859,6 @@ async function main() {
   // Initial setup
   setArtImage();
   setTopBarStyles();
-  setHeaderPosition();
   isDynamicColors && saveColorsToStyle(colorStyleSheet, currentArtImage);
 
   // Event Listeners
