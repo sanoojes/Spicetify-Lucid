@@ -716,6 +716,7 @@ input,
 .under-main-view .main-entityHeader-overlay,
 .main-entityHeader-background.main-entityHeader-gradient,
 .main-entityHeader-background {
+  will-change: transform;
   background-color: transparent;
   transform: translateY(var(--scroll-top)) !important;
   transition: backdrop-filter .3s ease-in-out;

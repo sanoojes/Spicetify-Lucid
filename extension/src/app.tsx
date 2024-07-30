@@ -776,7 +776,10 @@ function setSettingsToMenu(container: Element) {
   settingsMenuItem.register();
 }
 
-function applyNewScrollEffect() {
+let hasUnderViewImage: Element | null = null;
+let previousScrollTop = 0;
+
+async function applyNewScrollEffect() {
   const scrollContainer = document.querySelector(
     ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
   ) as HTMLElement | null;
@@ -796,6 +799,10 @@ function applyNewScrollEffect() {
     console.log("[Lucid] Applying default scroll effect");
     scrollContainer.removeEventListener("scroll", handleNewScroll);
 
+    if (!hasUnderViewImage) {
+      hasUnderViewImage = await waitForElement(".under-main-view div");
+    }
+
     handleDefaultScroll.call(scrollContainer, new Event("scroll"));
     scrollContainer.addEventListener("scroll", handleDefaultScroll);
   }
@@ -806,18 +813,19 @@ function addScrollCoefficent(scrollTop: number) {
   rootStyle.setProperty("--scroll-coefficient", scrollCoefficient.toString());
 }
 
-function handleNewScroll(this: HTMLElement) {
+async function handleNewScroll(this: HTMLElement) {
   addScrollCoefficent(this.scrollTop);
 }
 
-function handleDefaultScroll(this: HTMLElement, event: Event) {
-  const hasUnderViewImage: HTMLDivElement | null = document.querySelector(
-    ".under-main-view div"
-  );
+async function handleDefaultScroll(this: HTMLElement, event: Event) {
+  const currentScrollTop = this.scrollTop;
 
-  if (hasUnderViewImage) {
-    const scrollTop = Math.min(this.scrollTop, window.innerHeight) * -1;
-    rootStyle.setProperty("--scroll-top", `${scrollTop}px`);
+  if (previousScrollTop !== currentScrollTop) {
+    if (hasUnderViewImage) {
+      const scrollTop = Math.min(currentScrollTop, window.innerHeight) * -1;
+      rootStyle.setProperty("--scroll-top", `${scrollTop}px`);
+    }
+    previousScrollTop = currentScrollTop;
   }
 }
 
