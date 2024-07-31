@@ -445,6 +445,7 @@ input,
 
 /* ADD: Card elements selector */
 ,
+.jW4eWdr_LUeOXwPpKhWG,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle:hover,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle,
 .x-searchInput-searchInputInput,
@@ -621,6 +622,19 @@ input,
   box-shadow: none !important;
 }
 
+.tLjX9htIKD_OCmEX01UN {
+  background: rgba(var(--spice-rgb-main), 0.5);
+  border-radius: var(--card-border-radius);
+  color: var(--spice-text);
+  height: 5rem;
+  position: absolute;
+  top: var(--gap-lg);
+  width: 6rem;
+  backdrop-filter: blur(4px);
+  border: var(--default-border);
+  right: var(--gap-xl) !important;
+}
+
 .marketplace-header {
   background: none !important;
   background-color: transparent !important;
@@ -718,7 +732,6 @@ input,
 .main-entityHeader-background {
   will-change: transform;
   background-color: transparent;
-  transform: translateY(var(--scroll-top)) !important;
   transition: backdrop-filter .3s ease-in-out;
 }
 
@@ -1017,6 +1030,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 /* Cards */
+.jW4eWdr_LUeOXwPpKhWG,
 .EmeHQXR87mUskYK6xEde
 /* ADD: Artist main card Selector */
 ,

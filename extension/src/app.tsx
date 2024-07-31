@@ -1,15 +1,12 @@
 import {
   BackgroundOption,
   grainsOption,
-  scrollEffectOption,
   DEFAULT_SETTINGS,
   dynamicColorOption,
 } from "./constants";
 import { waitForElement } from "./helpers/helpers";
 import { saveColorsToStyle } from "./lib/color";
 import type { SettingItem, SettingSection } from "./types/settings";
-
-let isNewScroll = false;
 
 // Dynamic Colors
 let isDynamicColors = false;
@@ -592,11 +589,6 @@ function addSettings() {
     { text: "No Grains", value: grainsOption.NONE },
   ];
 
-  const scrollEffectOptions = [
-    { text: "New Scroll", value: scrollEffectOption.NEW },
-    { text: "Default Scroll", value: scrollEffectOption.DEFAULT },
-  ];
-
   const dynamicColorOptions = [
     { text: "Normal", value: dynamicColorOption.NORMAL },
     { text: "Dynamic", value: dynamicColorOption.DYNAMIC },
@@ -622,17 +614,6 @@ function addSettings() {
       }
     );
     dropDownSettingsSection.appendChild(grainsDropdown);
-
-    const scrollEffectDropdown = await createDropdown(
-      scrollEffectOptions,
-      "lucid-scrollEffect",
-      "Artist Page Scroll Effect",
-      (newValue: string) => {
-        isNewScroll = newValue === scrollEffectOption.NEW;
-        applyNewScrollEffect();
-      }
-    );
-    dropDownSettingsSection.appendChild(scrollEffectDropdown);
 
     const dynamicColorDropdown = await createDropdown(
       dynamicColorOptions,
@@ -692,10 +673,6 @@ function resetSettings() {
       }
     }
   }
-
-  isNewScroll = true;
-  localStorage.setItem("lucid-scrollEffect", scrollEffectOption.NEW);
-  applyNewScrollEffect();
 
   isDynamicColors = false;
   localStorage.setItem("lucid-isDynamicColor", dynamicColorOption.NORMAL);
@@ -776,59 +753,6 @@ function setSettingsToMenu(container: Element) {
   settingsMenuItem.register();
 }
 
-let hasUnderViewImage: Element | null = null;
-let previousScrollTop = 0;
-
-async function applyNewScrollEffect() {
-  const scrollContainer = document.querySelector(
-    ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]"
-  ) as HTMLElement | null;
-
-  if (!scrollContainer) {
-    console.error("Scroll container not found.");
-    return;
-  }
-
-  if (isNewScroll) {
-    console.log("[Lucid] Applying new scroll effect.");
-    scrollContainer.removeEventListener("scroll", handleDefaultScroll);
-
-    handleNewScroll.call(scrollContainer);
-    scrollContainer.addEventListener("scroll", handleNewScroll);
-  } else {
-    console.log("[Lucid] Applying default scroll effect");
-    scrollContainer.removeEventListener("scroll", handleNewScroll);
-
-    if (!hasUnderViewImage) {
-      hasUnderViewImage = await waitForElement(".under-main-view div");
-    }
-
-    handleDefaultScroll.call(scrollContainer, new Event("scroll"));
-    scrollContainer.addEventListener("scroll", handleDefaultScroll);
-  }
-}
-
-function addScrollCoefficent(scrollTop: number) {
-  const scrollCoefficient = Math.min(0.5, scrollTop / window.innerHeight);
-  rootStyle.setProperty("--scroll-coefficient", scrollCoefficient.toString());
-}
-
-async function handleNewScroll(this: HTMLElement) {
-  addScrollCoefficent(this.scrollTop);
-}
-
-async function handleDefaultScroll(this: HTMLElement, event: Event) {
-  const currentScrollTop = this.scrollTop;
-
-  if (previousScrollTop !== currentScrollTop) {
-    if (hasUnderViewImage) {
-      const scrollTop = Math.min(currentScrollTop, window.innerHeight) * -1;
-      rootStyle.setProperty("--scroll-top", `${scrollTop}px`);
-    }
-    previousScrollTop = currentScrollTop;
-  }
-}
-
 /* Main Fn */
 async function main() {
   while (
@@ -878,9 +802,6 @@ async function main() {
     isDynamicColors && saveColorsToStyle(colorStyleSheet, currentArtImage);
   });
   window.addEventListener("resize", setTopBarStyles);
-
-  // Scroll
-  applyNewScrollEffect();
 
   console.log("Lucid theme loaded.");
 
