@@ -1697,27 +1697,59 @@ button[aria-label="Browse"] path {
   cursor: pointer;
 }
 
-.lucid-reset-btn {
-  padding: 0.5rem 1rem;
-  border-radius: var(--button-border-radius);
-  background: rgba(var(--spice-rgb-accent), 0.75);
-  color: var(--spice-text);
+.lucid-button-container {
+  display: flex;
+  gap: var(--gap-md);
+  margin-top: var(--margin-md);
+}
+
+.lucid-reset-btn,
+.lucid-discord-btn,
+.lucid-github-btn {
+  background-color: #333;
+  color: #fff;
   border: none;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: inherit;
-  text-align: center;
+  padding: var(--padding-md) var(--padding-lg);
+  border-radius: 5px;
   cursor: pointer;
-  transition: 0.4s;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  width: 100%;
+  box-shadow: none;
 }
 
-.lucid-reset-btn:hover {
-  box-shadow: 7px 5px 56px -14px rgba(var(--spice-rgb-accent), 0.5) !important;
+.lucid-reset-btn:hover,
+.lucid-discord-btn:hover,
+.lucid-github-btn:hover {
+  background-color: #444;
+  transform: scale(1.02);
 }
 
+.lucid-reset-btn:active,
+.lucid-discord-btn:active,
+.lucid-github-btn:active {
+  background-color: #555;
+  transform: scale(0.98);
+}
+
+.lucid-reset-btn:hover,
 .lucid-reset-btn:active {
-  transform: scale(0.97);
-  box-shadow: 7px 5px 56px -10px rgba(var(--spice-rgb-accent), 0.55) !important;
+  background-color: rgba(189, 45, 45, 0.5);
+}
+
+.lucid-discord-btn {
+  background-color: #7289DA;
+}
+
+.lucid-discord-btn:hover {
+  background-color: #677BC4;
+}
+
+.lucid-github-btn {
+  background-color: #24292e;
+}
+
+.lucid-github-btn:hover {
+  background-color: #1f272d;
 }
 
 /* Dropdown */

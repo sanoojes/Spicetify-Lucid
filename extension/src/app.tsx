@@ -633,6 +633,10 @@ function addSettings() {
 
   settingsContainer.appendChild(dropDownSettingsSection);
 
+  const buttonContainer = document.createElement("div");
+  buttonContainer.className = "lucid-button-container";
+
+  // Reset Button
   const resetButton = document.createElement("button");
   resetButton.className = "lucid-reset-btn";
   resetButton.textContent = "Reset to Defaults";
@@ -646,6 +650,26 @@ function addSettings() {
     }
   });
   settingsContainer.appendChild(resetButton);
+
+  // Discord Button
+  const discordButton = document.createElement("button");
+  discordButton.className = "lucid-discord-btn";
+  discordButton.textContent = "Discord";
+  discordButton.addEventListener("click", () => {
+    window.open("https://discord.gg/buCmFcEJEr", "_blank");
+  });
+  buttonContainer.appendChild(discordButton);
+
+  // GitHub Issues Button
+  const githubButton = document.createElement("button");
+  githubButton.className = "lucid-github-btn";
+  githubButton.textContent = "Report Issues";
+  githubButton.addEventListener("click", () => {
+    window.open("https://github.com/sanoojes/Spicetify-Lucid/issues", "_blank");
+  });
+  buttonContainer.appendChild(githubButton);
+
+  settingsContainer.appendChild(buttonContainer);
 }
 
 function resetSettings() {
