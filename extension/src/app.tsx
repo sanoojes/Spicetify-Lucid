@@ -673,6 +673,21 @@ function addSettings() {
 }
 
 function resetSettings() {
+  // --- Reset Dropdowns in UI ---
+  (
+    document.getElementById("selectedBackground-dropdown") as HTMLSelectElement
+  ).value = BackgroundOption.STATIC;
+  (
+    document.getElementById(
+      "lucid-selectedGrains-dropdown"
+    ) as HTMLSelectElement
+  ).value = grainsOption.STARY;
+  (
+    document.getElementById(
+      "lucid-isDynamicColor-dropdown"
+    ) as HTMLSelectElement
+  ).value = dynamicColorOption.NORMAL;
+
   localStorage.removeItem("settings");
   changeBackground(BackgroundOption.STATIC);
   localStorage.setItem("selectedBackground", BackgroundOption.STATIC);
