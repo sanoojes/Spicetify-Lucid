@@ -47,8 +47,8 @@
   /* Background Color */
   --main-color: rgba(var(--spice-rgb-main), 0.5);
   --popup-color: rgba(var(--spice-rgb-card), 0.5);
-  --card-color: rgba(var(--spice-rgb-card), 0.25);
-  --card-hover-color: rgba(var(--spice-rgb-card), 0.25);
+  --card-color: rgba(var(--spice-rgb-card), 0.35);
+  --card-hover-color: rgba(var(--spice-rgb-selected-row), 0.075);
   --sidebar-color: rgba(var(--spice-rgb-sidebar), 0.5);
   --button-color: rgba(var(--spice-rgb-button), 0.5);
   --button-active-color: rgba(var(--spice-rgb-button-active), 0.125);
