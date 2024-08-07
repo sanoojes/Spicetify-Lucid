@@ -451,6 +451,14 @@ input,
   border-bottom: 2px solid rgb(var(--accent-color)) !important;
 }
 
+.search:focus,
+.search-bar:focus,
+.searchbar-bar:focus,
+.search-container .search:focus {
+  background-color: rgba(var(--spice-rgb-card), 0.5) !important;
+  outline: 2px solid var(--spice-subtext) !important;
+}
+
 /* Border */
 .Vn9yz8P5MjIvDT8c0U6w
 /* ADD: Search card selector */
