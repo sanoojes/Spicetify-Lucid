@@ -745,6 +745,10 @@ input,
   border: none !important;
 }
 
+.main-entityHeader-container.main-entityHeader-nonWrapped .main-entityHeader-overlay {
+  background-image: var(--background-noise) !important;
+}
+
 .main-entityHeader-overlay:after {
   display: none;
   background-color: transparent !important;
