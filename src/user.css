@@ -374,6 +374,11 @@ button,
   min-width: 8rem !important;
 }
 
+.MGZ4oJmGVPrWsx5cT5hN {
+  background-color: var(--card-color);
+  border: var(--default-border);
+}
+
 .global-nav .main-actionButtons button,
 .global-nav .main-globalNav-icon {
   display: -webkit-box;
@@ -727,7 +732,6 @@ input,
 }
 
 /* Image section (Playlist and Artist) */
-.under-main-view .main-entityHeader-overlay,
 .main-entityHeader-background.main-entityHeader-gradient,
 .main-entityHeader-background {
   will-change: transform;
@@ -736,6 +740,8 @@ input,
 }
 
 .main-entityHeader-overlay {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(var(--spice-rgb-shadow), .5))) !important;
+  background: linear-gradient(transparent 0, rgba(var(--spice-rgb-shadow), .5) 100%) !important;
   border: none !important;
 }
 
@@ -759,8 +765,6 @@ input,
   animation-play-state: paused;
   opacity: 1;
   transition: backdrop-filter 0.3s ease;
-  background: none;
-  background-image: none !important;
 }
 
 @keyframes background-blur-anim {
@@ -781,8 +785,9 @@ input,
 
 .main-actionBarBackground-background {
   background-image: var(--background-noise);
-  -webkit-mask-image: linear-gradient(var(--main-color) 0, transparent 100%);
-  mask-image: linear-gradient(var(--main-color) 0, transparent 100%);
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(var(--spice-rgb-shadow), .5)),
+      to(transparent)), var(--background-noise);
+  mask-image: linear-gradient(rgba(var(--spice-rgb-shadow), .5) 0%, transparent 100%), var(--background-noise);
 }
 
 
@@ -1992,6 +1997,10 @@ button[aria-label="Browse"] path {
   position: absolute;
   right: var(--gap-lg);
   top: var(--gap-sm);
+}
+
+.pVVteJIfAdehWU3vX7JR {
+  margin: 0 !important;
 }
 
 .VOGWdrCvz59_A_wAZv58 {
