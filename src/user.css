@@ -172,6 +172,15 @@
   --background-press: var(--card-hover-color) !important;
 }
 
+.encore-dark-theme .encore-bright-accent-set {
+  --background-base: var(--spice-button-active);
+  --background-highlight: var(--spice-button);
+  --background-press: var(--spice-button);
+  --background-elevated-base: var(--spice-button-active);
+  --background-elevated-highlight: var(--spice-button-active);
+  --background-elevated-press: var(--spice-button);
+}
+
 .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
   padding-inline: calc(64px* var(--zoom-adjust-coefficient, 1)) calc(135px* var(--zoom-adjust-coefficient, 1));
 }
