@@ -265,13 +265,6 @@ textarea,
   margin-left: var(--margin-md);
 }
 
-.main-nowPlayingView-section {
-  .encore-text {
-    text-wrap: pretty;
-  }
-
-}
-
 /* Scrollbar */
 .os-theme-spotify.os-scrollbar {
   --os-size: 4px;
