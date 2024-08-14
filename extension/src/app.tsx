@@ -3,19 +3,19 @@ import {
   grainsOption,
   DEFAULT_SETTINGS,
   dynamicColorOption,
-} from "./constants";
-import { waitForElement } from "./helpers/helpers";
-import { saveColorsToStyle } from "./lib/color";
-import type { SettingItem, SettingSection } from "./types/settings";
+} from './constants';
+import { waitForElement } from './helpers/helpers';
+import { saveColorsToStyle } from './lib/color';
+import type { SettingItem, SettingSection } from './types/settings';
 
 // Dynamic Colors
 let isDynamicColors = false;
 const rootStyle = document.documentElement.style;
-const colorStyleSheet = document.createElement("style");
+const colorStyleSheet = document.createElement('style');
 document.head.appendChild(colorStyleSheet);
 
 // Artist art image
-let currentArtImage = "";
+let currentArtImage = '';
 
 function setArtImage() {
   currentArtImage =
@@ -24,245 +24,277 @@ function setArtImage() {
     Spicetify.Player.data.item.metadata.image_url;
 
   try {
-    rootStyle.setProperty("--image-url", `url(${currentArtImage})`);
+    rootStyle.setProperty('--image-url', `url(${currentArtImage})`);
   } catch (error) {
-    console.error("Error updating album art:", error);
+    console.error('Error updating album art:', error);
   }
 }
 
 function addButtonStyles() {
   const { Locale } = Spicetify;
   function cleanLabel(label: string): string {
-    const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, "").trim();
+    const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, '').trim();
     return cleanedLabel;
   }
   if (!Locale) return;
-  let playlistPlayLabel = Locale.get("playlist.a11y.play") as string;
+  let playlistPlayLabel = Locale.get('playlist.a11y.play') as string;
   playlistPlayLabel = cleanLabel(playlistPlayLabel);
-  let playlistPauseLabel = Locale.get("playlist.a11y.pause") as string;
+  let playlistPauseLabel = Locale.get('playlist.a11y.pause') as string;
   playlistPauseLabel = cleanLabel(playlistPauseLabel);
 
-  const playLabel = Locale.get("${playLabel}");
-  const pauseLabel = Locale.get("${pauseLabel}");
+  const playLabel = Locale.get('play');
+  const pauseLabel = Locale.get('pause');
 
-  const browseLabel = Locale.get("browse");
+  const browseLabel = Locale.get('browse');
 
   const addToLikedLabel = Locale.get(
-    "web-player.aligned-curation.tooltips.add-to-liked-songs"
+    'web-player.aligned-curation.tooltips.add-to-liked-songs'
   );
   const addToPlaylistLabel = Locale.get(
-    "web-player.aligned-curation.tooltips.add-to-playlist"
+    'web-player.aligned-curation.tooltips.add-to-playlist'
   );
 
-  const skipForwardLabel = Locale.get("playback-control.skip-forward");
-  const skipBackLabel = Locale.get("playback-control.skip-back");
+  const skipForwardLabel = Locale.get('playback-control.skip-forward');
+  const skipBackLabel = Locale.get('playback-control.skip-back');
 
-  const friendsActivityLabel = Locale.get("buddy-feed.friend-activity");
-  const tracklistPlayLabel = Locale.get("tracklist.a11y.play") as string;
+  const friendsActivityLabel = Locale.get('buddy-feed.friend-activity');
+  const tracklistPlayLabel = Locale.get('tracklist.a11y.play') as string;
 
-  const homeBtnLabelOne = Locale.get("view.web-player-home");
+  const homeBtnLabelOne = Locale.get('view.web-player-home');
 
   let tracklistPlayLabelOne: string;
   let tracklistPlayLabelTwo: string;
-  if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
+  if (['zh-CN', 'zh-TW', 'am', 'fi'].includes(Locale.getLocale())) {
     [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-      tracklistPlayLabel.split("{1}");
+      tracklistPlayLabel.split('{1}');
   } else {
     [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-      tracklistPlayLabel.split("{0}");
+      tracklistPlayLabel.split('{0}');
   }
   tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
   tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
 
-  const ButtonStyles = document.createElement("style");
+  const enableRepeatLabel = Locale.get('playback-control.enable-repeat');
+  const enableOneRepeatLabel = Locale.get('playback-control.enable-repeat-one');
+  const disableRepeatLabel = Locale.get('playback-control.disable-repeat');
+
+  const ButtonStyles = document.createElement('style');
   ButtonStyles.innerHTML = `
-.main-playButton-button[aria-label*="${playLabel}"],
-.main-playButton-PlayButton > button[aria-label*="${playLabel}"],
-.main-playPauseButton-button[aria-label="${playLabel}"],
-.main-playPauseButton-button[aria-label="${Locale.get(
-    "playback-control.play"
-  )}"],
-.main-trackList-rowPlayPauseButton[aria-label*="${playLabel}"],
-.main-trackList-rowImagePlayButton[aria-label*="${tracklistPlayLabelOne}"][aria-label*="${tracklistPlayLabelTwo}"],
-.main-playButton-PlayButton > button[aria-label*="${playlistPlayLabel}"] {
-  background-color: var(--spice-text) !important;
-  -webkit-mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
-  mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
-}
-.main-playButton-button[aria-label*="${pauseLabel}"],
-.main-playButton-PlayButton > button[aria-label*="${pauseLabel}"],
-.main-playPauseButton-button[aria-label*="${pauseLabel}"],
-.main-playPauseButton-button[aria-label="${Locale.get(
-    "playback-control.pause"
-  )}"],
-.main-trackList-rowPlayPauseButton[aria-label*="${pauseLabel}"],
-.main-trackList-rowImagePlayButton[aria-label*="${pauseLabel}"],
-.main-playButton-PlayButton > button[aria-label*="${playlistPauseLabel}"] {
-  background-color: var(--spice-text) !important;
-  -webkit-mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
-  mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
-}
+    .main-repeatButton-button[aria-checked="false"],
+    .player-controls__right button[aria-label*="${enableRepeatLabel}"] {
+      -webkit-mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
+      mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
+      background-color: var(--spice-subtext);
+      mask-size: contain;
+    }
 
-.Root__globalNav
-  button:is([aria-label="${Locale.get("search.a11y.clear-input")}"]) {
-  background-color: transparent !important;
-  border: none !important;
-}
+    .main-repeatButton-button[aria-checked="mixed"],
+    .player-controls__right button[aria-label*="${disableRepeatLabel}"] {
+      -webkit-mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
+      mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
+      background-color: var(--spice-accent);
+      mask-size: contain;
+    }
 
-button[aria-label="${browseLabel}"] path {
-  display: none !important;
-}
+    .main-repeatButton-button[aria-checked="true"],
+    .player-controls__right button[aria-label*="${enableOneRepeatLabel}"] {
+      -webkit-mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
+      mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
+      background-color: var(--spice-accent);
+      mask-size: contain;
+    }
 
-button[aria-label="${browseLabel}"] svg {
-  display: none;
-  -webkit-mask-image: var(--compass-outline-icon,url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass-outline.svg"));
-  mask-image: var(--compass-outline-icon,url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass-outline.svg"));
-  background-color: var(--spice-subtext) !important;
-  scale: 1.25;
-}
-.main-repeatButton-button[aria-label="${Locale.get(
-    "playback-control.enable-repeat"
-  )}"] ,
-  .main-repeatButton-button[aria-label="${Locale.get(
-    "playback-control.disable-repeat"
-  )}"],
-  .main-repeatButton-button[aria-label="${Locale.get(
-    "playback-control.enable-repeat-one"
-  )}"], {
-  scale: 0.75 !important;
-  background-color: var(--spice-subtext) !important;
-  color: var(--spice-subtext);
-  svg {
-    display: none;
-  }
-}
+    .player-controls__right button[aria-label*="${disableRepeatLabel}"] svg,
+    .player-controls__right button[aria-label*="${enableRepeatLabel}"] svg {
+      visibility: hidden;
+      opacity: 0;
+    }
 
-.main-playPauseButton-button,
-button[aria-label="${addToLikedLabel}"],
-button[aria-label="${addToPlaylistLabel}"],
-.player-controls button[aria-label="${skipBackLabel}"],
-.player-controls button[aria-label="${skipForwardLabel}"], {
-  display: block;
-  mask-size: 100%;
-  mask-position: 50% 50%;
-  background-color: var(--spice-subtext);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: cover;
-  mask-size: cover;
-  min-height: 1rem;
-  min-width: 1rem;
-  aspect-ratio: 1/1;
-  border-radius: 0 !important;
-  border: none !important;
-  svg,
-  span {
-    display: none;
-    visibility: hidden;
-  }
-}
+    .player-controls__right button[aria-label*="${disableRepeatLabel}"],
+    .player-controls__right button[aria-label*="${enableRepeatLabel}"],
+    .main-repeatButton-button {
+      transform: scale(0.65) !important;
+    }
 
-button[aria-label="${addToPlaylistLabel}"],
-button[aria-label="${addToLikedLabel}"] {
-  background-color: var(--spice-subtext);
-  -webkit-mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg"));
-  mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg")) !important;
-  mask-size: 100%;
-  mask-position: 50% 50%;
-  min-width: 1.2rem;
-  min-height: 1.2rem;
-  svg,
-  span {
-    display: none;
-    visibility: hidden;
-  }
-}
-button[aria-label="${addToPlaylistLabel}"] {
-  background-color: var(--spice-accent);
-  -webkit-mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg"));
-  mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg")) !important;
-}
+    .player-controls__buttons button[aria-label*="${playLabel}"] span,
+    .main-playButton-button[aria-label*="${playLabel}"],
+    .main-playButton-PlayButton > button[aria-label*="${playLabel}"],
+    .main-playPauseButton-button[aria-label="${playLabel}"],
+    .main-trackList-rowPlayPauseButton[aria-label*="${playLabel}"],
+    .main-trackList-rowImagePlayButton[aria-label*="${tracklistPlayLabelOne}"][aria-label*="${tracklistPlayLabelTwo}"], 
+    .main-playButton-PlayButton > button[aria-label*="${playlistPlayLabel}"] {
+      background-color: var(--spice-text) !important;
+      -webkit-mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
+      mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
+    }
+    .main-playButton-button[aria-label*="${pauseLabel}"],
+    .main-playButton-PlayButton > button[aria-label*="${pauseLabel}"],
+    .main-playPauseButton-button[aria-label*="${pauseLabel}"],
+    .player-controls__buttons button[aria-label*="${pauseLabel}"] span,
+    .main-trackList-rowPlayPauseButton[aria-label*="${pauseLabel}"],
+    .main-trackList-rowImagePlayButton[aria-label*="${pauseLabel}"],
+    .main-playButton-PlayButton > button[aria-label*="${playlistPauseLabel}"] {
+      background-color: var(--spice-text) !important;
+      -webkit-mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
+      mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
+      }
+      
+    .Root__globalNav
+      button:is([aria-label="Clear search field"]) {
+        background-color: transparent !important;
+        border: none !important;
+        }
+        
+        button[aria-label="${browseLabel}"] path {
+          display: none !important;
+          }
+          
+          button[aria-label="${browseLabel}"] svg {
+            display: none;
+            -webkit-mask-image: var(--compass-outline-icon,url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass-outline.svg"));
+            mask-image: var(--compass-outline-icon,url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass-outline.svg"));
+            background-color: var(--spice-subtext) !important;
+            scale: 1.25;
+            }
+            .main-repeatButton-button[aria-label="${enableRepeatLabel}"] ,
+            .main-repeatButton-button[aria-label="${disableRepeatLabel}"],
+            .main-repeatButton-button[aria-label="${enableOneRepeatLabel}"], {
+              scale: 0.75 !important;
+              background-color: var(--spice-subtext) !important;
+              color: var(--spice-subtext);
+              svg {
+                display: none;
+                }
+                }
+                
+                .main-playPauseButton-button,
+                button[aria-label="${addToLikedLabel}"],
+                button[aria-label="${addToPlaylistLabel}"],
+                .player-controls button[aria-label="${skipBackLabel}"],
+                .player-controls button[aria-label="${skipForwardLabel}"], {
+                  display: block;
+                  mask-size: 100%;
+                  mask-position: 50% 50%;
+                  background-color: var(--spice-subtext);
+                  -webkit-mask-repeat: no-repeat;
+                  mask-repeat: no-repeat;
+                  -webkit-mask-size: cover;
+                  mask-size: cover;
+                  min-height: 1rem;
+                  min-width: 1rem;
+                  aspect-ratio: 1/1;
+                  border-radius: 0 !important;
+                  border: none !important;
+                  svg,
+                  span {
+                    display: none;
+                    visibility: hidden;
+                    }
+                    }
+                    
+                    button[aria-label="${addToPlaylistLabel}"],
+                    button[aria-label="${addToLikedLabel}"] {
+                      background-color: var(--spice-subtext);
+                      -webkit-mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg"));
+                      mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg")) !important;
+                      mask-size: 100%;
+                      mask-position: 50% 50%;
+                      min-width: 1.2rem;
+                      min-height: 1.2rem;
+                      svg,
+                      span {
+                        display: none;
+                        visibility: hidden;
+                        }
+                        }
+                        button[aria-label="${addToPlaylistLabel}"] {
+                          background-color: var(--spice-accent);
+                          -webkit-mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg"));
+                          mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg")) !important;
+                          }
+                          .player-controls button[aria-label="${skipBackLabel}"] span,
+                          .player-controls button[aria-label="${skipForwardLabel}"] span{
+                            opacity: 0;
+                          }
 
-.player-controls button[aria-label="${skipBackLabel}"] {
-  background-color: var(--spice-text);
-  -webkit-mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
-  mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
-}
-.player-controls button[aria-label="${skipForwardLabel}"] {
-  background-color: var(--spice-text);
-  -webkit-mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
-  mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
-}
-
-button[aria-label="${friendsActivityLabel}"] > path {
-  display: none;
-}
-
-.main-actionButtons > div > button[aria-label="${friendsActivityLabel}"] svg,
-.main-actionButtons > button[aria-label="${friendsActivityLabel}"] svg {
-  background-color: var(--spice-subtext) !important;
-  -webkit-mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
-  mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
-}
-
-.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"] svg,
-button[aria-label="${homeBtnLabelOne}"] svg {
-  path {
-    display: none !important;
-  }
-  mask-image: var(--home-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-outline.svg"));
-  -webkit-mask-image: var(--home-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-outline.svg"));
-  background-color: var(--spice-subtext) !important;
-}
-
-
-.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg,
-.main-globalNav-navLinkActive[aria-label="${homeBtnLabelOne}"] svg {
-  path {
-    display: none !important;
-  }
-  mask-image: var(--home-filled-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-filled.svg"));
-  -webkit-mask-image: var(--home-filled-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-filled.svg"));
-  background-color: var(--spice-text) !important;
-}
-
-.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg{
-  path {
-    display: none !important;
-  }
-  background-color: var(--spice-accent) !important;
-}
-#context-menu ul[aria-label*="${Locale.get(
-    "web-player.aligned-curation.add-to-playlist-menu"
-  )}"] {
-  p {
-    max-width: 10rem;
-  }
-}
-
-`;
+                          .player-controls button[aria-label="${skipBackLabel}"] {
+                            background-color: var(--spice-text);
+                            -webkit-mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
+                            mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
+                            }
+                            .player-controls button[aria-label="${skipForwardLabel}"] {
+                              background-color: var(--spice-text);
+                              -webkit-mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
+                              mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
+                              }
+                              
+                              button[aria-label="${friendsActivityLabel}"] > path {
+                                display: none;
+                                }
+                                
+                                .main-actionButtons > div > button[aria-label="${friendsActivityLabel}"] svg,
+                                .main-actionButtons > button[aria-label="${friendsActivityLabel}"] svg {
+                                  background-color: var(--spice-subtext) !important;
+                                  -webkit-mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
+                                  mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
+                                  }
+                                  
+                                  .main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"] svg,
+                                  button[aria-label="${homeBtnLabelOne}"] svg {
+                                    path {
+                                      display: none !important;
+                                      }
+                                      mask-image: var(--home-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-outline.svg"));
+                                      -webkit-mask-image: var(--home-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-outline.svg"));
+                                      background-color: var(--spice-subtext) !important;
+                                      }
+                                      
+                                      
+                                      .main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg,
+                                      .main-globalNav-navLinkActive[aria-label="${homeBtnLabelOne}"] svg {
+                                        path {
+                                          display: none !important;
+                                          }
+                                          mask-image: var(--home-filled-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-filled.svg"));
+                                          -webkit-mask-image: var(--home-filled-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/home-filled.svg"));
+                                          background-color: var(--spice-text) !important;
+                                          }
+                                          
+                                          .main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg{
+                                            path {
+                                              display: none !important;
+                                              }
+                                              background-color: var(--spice-accent) !important;
+                                              }
+                                              #context-menu ul[aria-label*="Add to playlist menu"] {
+                                                p {
+                                                  max-width: 10rem;
+                                                  }
+                                                  }
+                                                  
+                                                  `;
   document.head.appendChild(ButtonStyles);
 }
 
 async function fetchFadeTime() {
   // needs to implement logic
-  const fadeTime = "1s";
-  document.documentElement.style.setProperty("--fade-time", fadeTime);
+  const fadeTime = '1s';
+  document.documentElement.style.setProperty('--fade-time', fadeTime);
 }
 
 /* Transparent Controls */
-const transparentControlElement = document.createElement("div");
+const transparentControlElement = document.createElement('div');
 function addTransparentControls(height: number, width: number) {
-  transparentControlElement.classList.add("lucid-transperent-window-controls");
+  transparentControlElement.classList.add('lucid-transperent-window-controls');
   transparentControlElement.style.setProperty(
-    "--control-height",
+    '--control-height',
     `${height}px`
   );
-  transparentControlElement.style.setProperty("--control-width", `${width}px`);
+  transparentControlElement.style.setProperty('--control-width', `${width}px`);
 }
 async function setMainWindowControlHeight(height: number) {
-  await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
-    type: "update_titlebar",
+  await Spicetify.CosmosAsync.post('sp://messages/v1/container/control', {
+    type: 'update_titlebar',
     height: height,
   });
 }
@@ -293,7 +325,7 @@ function calculateScaledPx(
 }
 
 /* Topbar styles */
-const topBarStyleSheet = document.createElement("style");
+const topBarStyleSheet = document.createElement('style');
 document.head.appendChild(topBarStyleSheet);
 async function setTopBarStyles() {
   if (!window.window.isCustomControls) {
@@ -333,8 +365,8 @@ async function setTopBarStyles() {
       `;
     }
     if (
-      Spicetify.Platform.PlatformData.os_name === "windows" &&
-      Spicetify.Config.color_scheme !== "light"
+      Spicetify.Platform.PlatformData.os_name === 'windows' &&
+      Spicetify.Config.color_scheme !== 'light'
     ) {
       const transparentControlHeight = baseHeight;
 
@@ -351,20 +383,20 @@ async function setTopBarStyles() {
 
 // Background
 async function changeBackground(backgroundOption?: BackgroundOption) {
-  const rootContainer = await waitForElement(".Root__top-container").catch(
+  const rootContainer = await waitForElement('.Root__top-container').catch(
     (e) => console.error(e)
   );
 
   function removeAllExistingBgContainers() {
     // Funtion to Remove all existing background containers
     const existingAnimatedBg = rootContainer?.querySelector(
-      ".lucid-animated-background-container"
+      '.lucid-animated-background-container'
     );
     const existingStaticBg = rootContainer?.querySelector(
-      ".lucid-static-background-container"
+      '.lucid-static-background-container'
     );
     const existingSolidBg = rootContainer?.querySelector(
-      ".lucid-solid-background-container"
+      '.lucid-solid-background-container'
     );
     if (existingAnimatedBg) {
       existingAnimatedBg.remove();
@@ -383,19 +415,19 @@ async function changeBackground(backgroundOption?: BackgroundOption) {
       function getRandomDegree() {
         const randomDegree = Math.floor(Math.random() * 360);
         document.documentElement.style.setProperty(
-          "--random-degree",
+          '--random-degree',
           `${randomDegree}deg`
         );
       }
       getRandomDegree();
 
-      const newElement = document.createElement("div");
-      newElement.classList.add("lucid-animated-background-container");
+      const newElement = document.createElement('div');
+      newElement.classList.add('lucid-animated-background-container');
 
-      const divClasses = ["front", "back", "backleft", "backright"];
+      const divClasses = ['front', 'back', 'backleft', 'backright'];
 
       for (const className of divClasses) {
-        const div = document.createElement("div");
+        const div = document.createElement('div');
         div.classList.add(className);
 
         newElement.appendChild(div);
@@ -403,15 +435,15 @@ async function changeBackground(backgroundOption?: BackgroundOption) {
       rootContainer?.prepend(newElement);
     }
     if (!backgroundOption || backgroundOption === BackgroundOption.STATIC) {
-      const newElement = document.createElement("div");
-      newElement.classList.add("lucid-static-background-container");
+      const newElement = document.createElement('div');
+      newElement.classList.add('lucid-static-background-container');
 
       rootContainer?.prepend(newElement);
     }
 
     if (backgroundOption === BackgroundOption.SOLID) {
-      const newElement = document.createElement("div");
-      newElement.classList.add("lucid-solid-background-container");
+      const newElement = document.createElement('div');
+      newElement.classList.add('lucid-solid-background-container');
 
       rootContainer?.prepend(newElement);
     }
@@ -421,7 +453,7 @@ async function changeBackground(backgroundOption?: BackgroundOption) {
 }
 
 // Grains
-const styleSheetforGrain = document.createElement("style");
+const styleSheetforGrain = document.createElement('style');
 function changeGrains(option?: grainsOption) {
   try {
     if (!option || option === grainsOption.STARY) {
@@ -453,8 +485,8 @@ function changeGrains(option?: grainsOption) {
 document.head.appendChild(styleSheetforGrain);
 
 // Settings Section
-const settingsContainer = document.createElement("div");
-settingsContainer.className = "lucid-settings-container";
+const settingsContainer = document.createElement('div');
+settingsContainer.className = 'lucid-settings-container';
 
 function setPropertyToBody(key: string, value: string) {
   document.body.style.setProperty(`--${key}`, value);
@@ -464,41 +496,41 @@ function addSettings() {
   const settings = loadSettings();
 
   for (const section of settings) {
-    const settingsSection = document.createElement("div");
-    settingsSection.className = "lucid-settings-card";
+    const settingsSection = document.createElement('div');
+    settingsSection.className = 'lucid-settings-card';
 
-    const sectionHeading = document.createElement("h2");
+    const sectionHeading = document.createElement('h2');
     sectionHeading.classList.add(
-      "settings-section-heading",
-      "encore-text-title-small",
-      "encore-internal-color-text-base"
+      'settings-section-heading',
+      'encore-text-title-small',
+      'encore-internal-color-text-base'
     );
     sectionHeading.textContent = section.section;
     settingsSection.appendChild(sectionHeading);
 
     for (const item of section.items) {
-      const div = document.createElement("div");
-      div.className = "lucid-settings-input-card";
+      const div = document.createElement('div');
+      div.className = 'lucid-settings-input-card';
 
-      const label = document.createElement("label");
+      const label = document.createElement('label');
       label.classList.add(
-        "settings-section-label",
-        "encore-text-title-small",
-        "encore-internal-color-text-subdued"
+        'settings-section-label',
+        'encore-text-title-small',
+        'encore-internal-color-text-subdued'
       );
       label.innerHTML = item.label;
       label.htmlFor = `${item.key}-input`;
 
-      const tooltip = document.createElement("p");
+      const tooltip = document.createElement('p');
       tooltip.classList.add(
-        "encore-text-body-small",
-        "encore-internal-color-text-subdued"
+        'encore-text-body-small',
+        'encore-internal-color-text-subdued'
       );
-      tooltip.innerHTML = item.tooltip || "";
+      tooltip.innerHTML = item.tooltip || '';
 
-      const slider = document.createElement("input");
-      slider.className = "Lucid-slider";
-      slider.type = "range";
+      const slider = document.createElement('input');
+      slider.className = 'Lucid-slider';
+      slider.type = 'range';
       slider.id = `${item.key}-input`;
       slider.min = String(item.min);
       slider.max = String(item.max);
@@ -506,13 +538,13 @@ function addSettings() {
         item.value !== undefined ? item.value : item.default
       ); // Use saved or default
 
-      const sliderValue = document.createElement("span");
+      const sliderValue = document.createElement('span');
       sliderValue.id = `${item.key}-value`;
       sliderValue.textContent = `${slider.value}${item.unit}`;
-      sliderValue.className = "Lucid-slider-value";
+      sliderValue.className = 'Lucid-slider-value';
       setPropertyToBody(item.key, `${slider.value}${item.unit}`);
 
-      slider.addEventListener("input", () => {
+      slider.addEventListener('input', () => {
         const newValue = Number.parseInt(slider.value, 10);
         sliderValue.textContent = `${newValue}${item.unit}`;
         setPropertyToBody(item.key, `${newValue}${item.unit}`);
@@ -521,8 +553,8 @@ function addSettings() {
 
       div.appendChild(label);
       div.appendChild(tooltip);
-      const slider_div = document.createElement("div");
-      slider_div.className = "Lucid-slider-container";
+      const slider_div = document.createElement('div');
+      slider_div.className = 'Lucid-slider-container';
       slider_div.appendChild(slider);
       slider_div.appendChild(sliderValue);
 
@@ -539,20 +571,20 @@ function addSettings() {
     label: string,
     onChange: (newValue: string) => void
   ): Promise<HTMLDivElement> => {
-    const dropdownContainer = document.createElement("div");
-    dropdownContainer.classList.add("lucid-dropdown-container");
+    const dropdownContainer = document.createElement('div');
+    dropdownContainer.classList.add('lucid-dropdown-container');
 
-    const dropdownLabel = document.createElement("h2");
-    dropdownLabel.classList.add("lucid-slider-label");
+    const dropdownLabel = document.createElement('h2');
+    dropdownLabel.classList.add('lucid-slider-label');
     dropdownLabel.textContent = label;
     dropdownContainer.appendChild(dropdownLabel);
 
-    const selectElement = document.createElement("select");
-    selectElement.classList.add("lucid-dropdown", "main-dropDown-dropDown");
+    const selectElement = document.createElement('select');
+    selectElement.classList.add('lucid-dropdown', 'main-dropDown-dropDown');
     selectElement.id = `${localStorageKey}-dropdown`;
 
     for (const option of options) {
-      const optionElement = document.createElement("option");
+      const optionElement = document.createElement('option');
       optionElement.textContent = option.text;
       optionElement.value = option.value;
       selectElement.appendChild(optionElement);
@@ -564,7 +596,7 @@ function addSettings() {
     selectElement.value = storedValue;
     onChange(storedValue); // Apply the initial value
 
-    selectElement.addEventListener("change", () => {
+    selectElement.addEventListener('change', () => {
       const selectedValue = selectElement.value;
       localStorage.setItem(localStorageKey, selectedValue);
       onChange(selectedValue);
@@ -574,31 +606,31 @@ function addSettings() {
     return dropdownContainer;
   };
 
-  const dropDownSettingsSection = document.createElement("div");
-  dropDownSettingsSection.classList.add("lucid-settings-section");
+  const dropDownSettingsSection = document.createElement('div');
+  dropDownSettingsSection.classList.add('lucid-settings-section');
 
   const backgroundOptions = [
-    { text: "Default Background", value: BackgroundOption.STATIC },
-    { text: "Animated Background", value: BackgroundOption.ANIMATED },
-    { text: "Solid Background", value: BackgroundOption.SOLID },
+    { text: 'Default Background', value: BackgroundOption.STATIC },
+    { text: 'Animated Background', value: BackgroundOption.ANIMATED },
+    { text: 'Solid Background', value: BackgroundOption.SOLID },
   ];
 
   const grainsOptions = [
-    { text: "Stary Grains (default)", value: grainsOption.STARY },
-    { text: "Normal Grains", value: grainsOption.NORMAL },
-    { text: "No Grains", value: grainsOption.NONE },
+    { text: 'Stary Grains (default)', value: grainsOption.STARY },
+    { text: 'Normal Grains', value: grainsOption.NORMAL },
+    { text: 'No Grains', value: grainsOption.NONE },
   ];
 
   const dynamicColorOptions = [
-    { text: "Normal", value: dynamicColorOption.NORMAL },
-    { text: "Dynamic", value: dynamicColorOption.DYNAMIC },
+    { text: 'Normal', value: dynamicColorOption.NORMAL },
+    { text: 'Dynamic', value: dynamicColorOption.DYNAMIC },
   ];
 
   (async () => {
     const backgroundDropdown = await createDropdown(
       backgroundOptions,
-      "selectedBackground",
-      "Background",
+      'selectedBackground',
+      'Background',
       (newValue: string) => {
         changeBackground(newValue as BackgroundOption);
       }
@@ -607,8 +639,8 @@ function addSettings() {
 
     const grainsDropdown = await createDropdown(
       grainsOptions,
-      "lucid-selectedGrains",
-      "Background Grains",
+      'lucid-selectedGrains',
+      'Background Grains',
       (newValue: string) => {
         changeGrains(newValue as grainsOption);
       }
@@ -617,14 +649,14 @@ function addSettings() {
 
     const dynamicColorDropdown = await createDropdown(
       dynamicColorOptions,
-      "lucid-isDynamicColor",
-      "Dynamic Color Selection (Experimental)",
+      'lucid-isDynamicColor',
+      'Dynamic Color Selection (Experimental)',
       (newValue: string) => {
         isDynamicColors = newValue === dynamicColorOption.DYNAMIC;
         if (isDynamicColors) {
           saveColorsToStyle(colorStyleSheet, currentArtImage);
         } else {
-          colorStyleSheet.innerHTML = "";
+          colorStyleSheet.innerHTML = '';
         }
       }
     );
@@ -633,17 +665,17 @@ function addSettings() {
 
   settingsContainer.appendChild(dropDownSettingsSection);
 
-  const buttonContainer = document.createElement("div");
-  buttonContainer.className = "lucid-button-container";
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'lucid-button-container';
 
   // Reset Button
-  const resetButton = document.createElement("button");
-  resetButton.className = "lucid-reset-btn";
-  resetButton.textContent = "Reset to Defaults";
-  resetButton.addEventListener("click", () => {
+  const resetButton = document.createElement('button');
+  resetButton.className = 'lucid-reset-btn';
+  resetButton.textContent = 'Reset to Defaults';
+  resetButton.addEventListener('click', () => {
     if (
       confirm(
-        "Are you sure you want to reset all settings to their default values?"
+        'Are you sure you want to reset all settings to their default values?'
       )
     ) {
       resetSettings();
@@ -652,20 +684,20 @@ function addSettings() {
   settingsContainer.appendChild(resetButton);
 
   // Discord Button
-  const discordButton = document.createElement("button");
-  discordButton.className = "lucid-discord-btn";
-  discordButton.textContent = "Discord";
-  discordButton.addEventListener("click", () => {
-    window.open("https://discord.gg/buCmFcEJEr", "_blank");
+  const discordButton = document.createElement('button');
+  discordButton.className = 'lucid-discord-btn';
+  discordButton.textContent = 'Discord';
+  discordButton.addEventListener('click', () => {
+    window.open('https://discord.gg/buCmFcEJEr', '_blank');
   });
   buttonContainer.appendChild(discordButton);
 
   // GitHub Issues Button
-  const githubButton = document.createElement("button");
-  githubButton.className = "lucid-github-btn";
-  githubButton.textContent = "Report Issues";
-  githubButton.addEventListener("click", () => {
-    window.open("https://github.com/sanoojes/Spicetify-Lucid/issues", "_blank");
+  const githubButton = document.createElement('button');
+  githubButton.className = 'lucid-github-btn';
+  githubButton.textContent = 'Report Issues';
+  githubButton.addEventListener('click', () => {
+    window.open('https://github.com/sanoojes/Spicetify-Lucid/issues', '_blank');
   });
   buttonContainer.appendChild(githubButton);
 
@@ -675,32 +707,32 @@ function addSettings() {
 function resetSettings() {
   // --- Reset Dropdowns in UI ---
   (
-    document.getElementById("selectedBackground-dropdown") as HTMLSelectElement
+    document.getElementById('selectedBackground-dropdown') as HTMLSelectElement
   ).value = BackgroundOption.STATIC;
   (
     document.getElementById(
-      "lucid-selectedGrains-dropdown"
+      'lucid-selectedGrains-dropdown'
     ) as HTMLSelectElement
   ).value = grainsOption.STARY;
   (
     document.getElementById(
-      "lucid-isDynamicColor-dropdown"
+      'lucid-isDynamicColor-dropdown'
     ) as HTMLSelectElement
   ).value = dynamicColorOption.NORMAL;
 
-  localStorage.removeItem("settings");
+  localStorage.removeItem('settings');
   changeBackground(BackgroundOption.STATIC);
-  localStorage.setItem("selectedBackground", BackgroundOption.STATIC);
+  localStorage.setItem('selectedBackground', BackgroundOption.STATIC);
 
   changeGrains(grainsOption.STARY);
-  localStorage.setItem("lucid-selectedGrains", grainsOption.STARY);
+  localStorage.setItem('lucid-selectedGrains', grainsOption.STARY);
 
   const sliders = Array.from(
-    document.querySelectorAll<HTMLInputElement>(".Lucid-slider")
+    document.querySelectorAll<HTMLInputElement>('.Lucid-slider')
   );
 
   for (const slider of sliders) {
-    const key = slider.id.replace("-input", "");
+    const key = slider.id.replace('-input', '');
     const item = findSettingItemByKey(key);
     if (item) {
       slider.value = String(item.default);
@@ -714,7 +746,7 @@ function resetSettings() {
   }
 
   isDynamicColors = false;
-  localStorage.setItem("lucid-isDynamicColor", dynamicColorOption.NORMAL);
+  localStorage.setItem('lucid-isDynamicColor', dynamicColorOption.NORMAL);
 }
 
 function findSettingItemByKey(key: string): SettingItem | undefined {
@@ -728,7 +760,7 @@ function findSettingItemByKey(key: string): SettingItem | undefined {
 }
 
 function loadSettings(): SettingSection[] {
-  const storedSettings = localStorage.getItem("settings");
+  const storedSettings = localStorage.getItem('settings');
 
   if (storedSettings) {
     try {
@@ -751,7 +783,7 @@ function loadSettings(): SettingSection[] {
         };
       });
     } catch (error) {
-      console.error("Error loading settings:", error);
+      console.error('Error loading settings:', error);
     }
   }
   return JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
@@ -768,7 +800,7 @@ function saveSetting(key: string, value: number) {
     );
     if (itemIndex !== -1) {
       settings[sectionIndex].items[itemIndex].value = value;
-      localStorage.setItem("settings", JSON.stringify(settings));
+      localStorage.setItem('settings', JSON.stringify(settings));
     }
   }
 }
@@ -778,11 +810,11 @@ setSettingsToMenu(settingsContainer);
 
 function setSettingsToMenu(container: Element) {
   const settingsMenuItem = new Spicetify.Menu.Item(
-    "Lucid Settings",
+    'Lucid Settings',
     false,
     () => {
       Spicetify.PopupModal.display({
-        title: "Lucid Settings",
+        title: 'Lucid Settings',
         content: container,
         isLarge: true,
       });
@@ -805,24 +837,24 @@ async function main() {
   }
 
   window.isGlobalNav = !!(
-    document.querySelector(".globalNav") ||
-    document.querySelector(".Root__globalNav")
+    document.querySelector('.globalNav') ||
+    document.querySelector('.Root__globalNav')
   );
 
   window.isWindows =
     (Spicetify?.Platform?.operatingSystem as string).toLowerCase() ===
-      "windows" ||
+      'windows' ||
     (Spicetify?.Platform.PlatformData.os_name as string)
       .toLowerCase()
-      .includes("win");
+      .includes('win');
 
   if (
     window.isWindows &&
-    Spicetify.Config.color_scheme !== "light" &&
-    !document.querySelector("lucid-transperent-window-controls")
+    Spicetify.Config.color_scheme !== 'light' &&
+    !document.querySelector('lucid-transperent-window-controls')
   ) {
     document
-      .querySelector(".Root__top-container")
+      .querySelector('.Root__top-container')
       ?.appendChild(transparentControlElement);
   }
 
@@ -834,20 +866,20 @@ async function main() {
   isDynamicColors && saveColorsToStyle(colorStyleSheet, currentArtImage);
 
   // Event Listeners
-  Spicetify.Player.addEventListener("songchange", () => {
+  Spicetify.Player.addEventListener('songchange', () => {
     fetchFadeTime();
     setArtImage();
 
     isDynamicColors && saveColorsToStyle(colorStyleSheet, currentArtImage);
   });
-  window.addEventListener("resize", setTopBarStyles);
+  window.addEventListener('resize', setTopBarStyles);
 
-  console.log("Lucid theme loaded.");
+  console.log('Lucid theme loaded.');
 
   const checkForCustomControls = async () => {
-    if (await waitForElement("#customControls", 5000)) {
+    if (await waitForElement('#customControls', 5000)) {
       window.isCustomControls = true;
-      document.querySelector(".lucid-transperent-window-controls")?.remove();
+      document.querySelector('.lucid-transperent-window-controls')?.remove();
     }
   };
 

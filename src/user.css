@@ -1432,6 +1432,7 @@ svg:has(path[d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM1 12C1 5.925 5.925 1 12 1s1
   }
 }
 
+.player-controls__buttons button[aria-label*="Play"] span,
 .main-playButton-button[aria-label*="Play"],
 .main-playButton-PlayButton>button[aria-label*="Play"],
 .main-playPauseButton-button[aria-label="Play"],
@@ -1439,6 +1440,7 @@ svg:has(path[d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM1 12C1 5.925 5.925 1 12 1s1
 .main-trackList-rowPlayPauseButton[aria-label*="Play"],
 .main-trackList-rowImagePlayButton[aria-label*="Play"][aria-label*="by"],
 .main-playButton-PlayButton>button[aria-label*="Play"],
+.player-controls__buttons button[aria-label*="Pause"] span,
 .main-playButton-button[aria-label*="Pause"],
 .main-playButton-PlayButton>button[aria-label*="Pause"],
 .main-playPauseButton-button[aria-label*="Pause"],
@@ -1478,6 +1480,7 @@ button[aria-label="Browse"] svg {
   }
 }
 
+.player-controls__buttons button[aria-label*="Play"] span,
 .main-playButton-button[aria-label*="Play"],
 .main-playButton-PlayButton>button[aria-label*="Play"],
 .main-playPauseButton-button[aria-label="Play"],
@@ -1504,6 +1507,7 @@ button[aria-label="Browse"] svg {
   background-color: var(--spice-accent) !important;
 }
 
+.player-controls__buttons button[aria-label*="Pause"] span,
 .main-playButton-button[aria-label*="Pause"],
 .main-playButton-PlayButton>button[aria-label*="Pause"],
 .main-playPauseButton-button[aria-label*="Pause"],
@@ -1521,6 +1525,38 @@ button[aria-label="Browse"] svg {
   --button-size: 24px !important;
 }
 
+.main-repeatButton-button[aria-checked="false"],
+.player-controls__right button[aria-label*="Enable repeat"] {
+  -webkit-mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
+  mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
+  background-color: var(--spice-subtext);
+  mask-size: contain;
+}
+
+.main-repeatButton-button[aria-checked="mixed"],
+.player-controls__right button[aria-label*="Disable repeat"] {
+  -webkit-mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
+  mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
+  background-color: var(--spice-accent);
+  mask-size: contain;
+}
+
+.main-repeatButton-button[aria-checked="true"],
+.player-controls__right button[aria-label*="Enable repeat one"] {
+  -webkit-mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
+  mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
+  background-color: var(--spice-accent);
+  mask-size: contain;
+}
+
+.player-controls__right button[aria-label*="Disable repeat"] svg,
+.player-controls__right button[aria-label*="Enable repeat"] svg {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.player-controls__right button[aria-label*="Disable repeat"],
+.player-controls__right button[aria-label*="Enable repeat"],
 .main-repeatButton-button {
   transform: scale(0.65) !important;
 }
@@ -1530,25 +1566,13 @@ button[aria-label="Browse"] svg {
   background-color: var(--spice-subtext);
 }
 
-.main-repeatButton-button[aria-checked="false"] {
-  -webkit-mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
-  mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
-}
 
-.main-repeatButton-button[aria-checked="true"] {
-  -webkit-mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
-  mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
-}
 
 .main-repeatButton-button[aria-checked="true"],
 .main-repeatButton-button[aria-checked="mixed"] {
   background-color: var(--spice-accent) !important;
 }
 
-.main-repeatButton-button[aria-checked="mixed"] {
-  -webkit-mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
-  mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
-}
 
 button[aria-label="Add to playlist"],
 button[aria-label="Add to Liked Songs"] {
