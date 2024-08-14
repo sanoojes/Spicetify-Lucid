@@ -81,7 +81,7 @@ function addButtonStyles() {
   const ButtonStyles = document.createElement('style');
   ButtonStyles.innerHTML = `
 .main-repeatButton-button[aria-checked="false"],
-.player-controls__right button[aria-label*="${enableRepeatLabel}"] {
+.player-controls__right button[aria-label*="${enableRepeatLabel}"]  span{
   -webkit-mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
   mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
   background-color: var(--spice-subtext);
@@ -89,7 +89,7 @@ function addButtonStyles() {
 }
 
 .main-repeatButton-button[aria-checked="mixed"],
-.player-controls__right button[aria-label*="${disableRepeatLabel}"] {
+.player-controls__right button[aria-label*="${disableRepeatLabel}"] span {
   -webkit-mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
   mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
   background-color: var(--spice-accent);
@@ -97,7 +97,7 @@ function addButtonStyles() {
 }
 
 .main-repeatButton-button[aria-checked="true"],
-.player-controls__right button[aria-label*="${enableOneRepeatLabel}"] {
+.player-controls__right button[aria-label*="${enableOneRepeatLabel}"] span {
   -webkit-mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
   mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
   background-color: var(--spice-accent);
@@ -106,12 +106,15 @@ function addButtonStyles() {
 
 .player-controls__right button[aria-label*="${disableRepeatLabel}"] svg,
 .player-controls__right button[aria-label*="${enableRepeatLabel}"] svg {
+  transform: scale(1.15);
+}
+
+.player-controls__right button[aria-label*="${disableRepeatLabel}"] svg,
+.player-controls__right button[aria-label*="${enableRepeatLabel}"] svg {
   visibility: hidden;
   opacity: 0;
 }
 
-.player-controls__right button[aria-label*="${disableRepeatLabel}"],
-.player-controls__right button[aria-label*="${enableRepeatLabel}"],
 .main-repeatButton-button {
   transform: scale(0.65) !important;
 }

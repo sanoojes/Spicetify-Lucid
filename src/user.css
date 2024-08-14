@@ -900,6 +900,10 @@ div[data-testid="hpto-parent-container"] {
   padding-bottom: calc(var(--now-playing-bar-height) + var(--gap-lg));
 }
 
+#Desktop_LeftSidebar_Id .main-rootlist-wrapper .LineClamp {
+  -webkit-line-clamp: 1;
+}
+
 /* Notification */
 .notistack-SnackbarContainer {
   padding-bottom: calc(var(--now-playing-bar-height));
@@ -1520,13 +1524,20 @@ button[aria-label="Browse"] svg {
   mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
 }
 
+.player-controls__right button:first-child,
+.player-controls__left button:last-child {
+  --encore-control-size-smaller: 24px !important;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+}
+
 .main-skipBackButton-button,
 .main-skipForwardButton-button {
   --button-size: 24px !important;
 }
 
 .main-repeatButton-button[aria-checked="false"],
-.player-controls__right button[aria-label*="Enable repeat"] {
+.player-controls__right button[aria-label*="Enable repeat"] span {
   -webkit-mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
   mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
   background-color: var(--spice-subtext);
@@ -1534,7 +1545,7 @@ button[aria-label="Browse"] svg {
 }
 
 .main-repeatButton-button[aria-checked="mixed"],
-.player-controls__right button[aria-label*="Disable repeat"] {
+.player-controls__right button[aria-label*="Disable repeat"] span {
   -webkit-mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
   mask-image: var(--repeat-mixed-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-mixed.svg"));
   background-color: var(--spice-accent);
@@ -1542,11 +1553,16 @@ button[aria-label="Browse"] svg {
 }
 
 .main-repeatButton-button[aria-checked="true"],
-.player-controls__right button[aria-label*="Enable repeat one"] {
+.player-controls__right button[aria-label*="Enable repeat one"] span {
   -webkit-mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
   mask-image: var(--repeat-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat.svg"));
   background-color: var(--spice-accent);
   mask-size: contain;
+}
+
+.player-controls__right button[aria-label*="Disable repeat"] span,
+.player-controls__right button[aria-label*="Enable repeat"] span {
+  transform: scale(1.15);
 }
 
 .player-controls__right button[aria-label*="Disable repeat"] svg,
@@ -1555,8 +1571,6 @@ button[aria-label="Browse"] svg {
   opacity: 0;
 }
 
-.player-controls__right button[aria-label*="Disable repeat"],
-.player-controls__right button[aria-label*="Enable repeat"],
 .main-repeatButton-button {
   transform: scale(0.65) !important;
 }
