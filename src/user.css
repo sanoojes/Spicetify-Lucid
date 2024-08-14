@@ -759,6 +759,7 @@ input,
   background-image: var(--background-noise) !important;
 }
 
+.main-nowPlayingView-contextItemInfo:before,
 .main-entityHeader-overlay:after {
   display: none;
   background-color: transparent !important;
