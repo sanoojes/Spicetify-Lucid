@@ -173,31 +173,54 @@ svg {
 }
 }
 
+.player-controls__buttons button[aria-label*="${playLabel}"] span,
+.player-controls__buttons button[aria-label*="${pauseLabel}"] span{
+  display: block;
+  mask-size: 100%;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  background-color: var(--spice-subtext);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  aspect-ratio: 1/1;
+}
+
 .main-playPauseButton-button,
 button[aria-label="${addToLikedLabel}"],
 button[aria-label="${addToPlaylistLabel}"],
 .player-controls button[aria-label="${skipBackLabel}"],
-.player-controls button[aria-label="${skipForwardLabel}"],
+.player-controls button[aria-label="${skipForwardLabel}"]
 {
-display: block;
-mask-size: 100%;
-mask-position: 50% 50%;
-background-color: var(--spice-subtext);
--webkit-mask-repeat: no-repeat;
-mask-repeat: no-repeat;
--webkit-mask-size: cover;
-mask-size: cover;
-min-height: 1rem;
-min-width: 1rem;
-aspect-ratio: 1/1;
-border-radius: 0 !important;
-border: none !important;
+  display: block;
+  mask-size: 100%;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  background-color: var(--spice-subtext);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  min-height: 1rem;
+  min-width: 1rem;
+  aspect-ratio: 1/1;
+  border-radius: 0 !important;
+  border: none !important;
+  height: var(--button-size, 24px);
+  width: var(--button-size, 24px);
+  
+  svg,
+  span {
+    display: none;
+    visibility: hidden;
+  }
+}
 
-svg,
-span {
+.player-controls__buttons button[aria-label*="${playLabel}"] span svg,
+.player-controls__buttons button[aria-label*="${pauseLabel}"] span svg {
   display: none;
   visibility: hidden;
-}
 }
 
 button[aria-label="${addToPlaylistLabel}"],

@@ -1527,6 +1527,7 @@ button[aria-label="Browse"] svg {
 .player-controls__right button:first-child,
 .player-controls__left button:last-child {
   --encore-control-size-smaller: 24px !important;
+  --button-size: 24px;
   aspect-ratio: 1 / 1;
   padding: 0;
 }
