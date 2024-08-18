@@ -20,10 +20,10 @@
     "description": "Not recommended, only for development purposes.",
     "preview": "assets/images/base.png",
     "readme": "README-Marketplace.md",
-    "usercss": "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/user.css",
-    "schemes": "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/color.ini",
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/colors.ini",
     "include": [
-      "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/theme.js"
+      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/theme.js"
     ],
     "authors": [
       {
