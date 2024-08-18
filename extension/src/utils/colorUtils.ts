@@ -1,9 +1,9 @@
-import { createCanvas, loadImage } from "canvas";
-import type { Color, ColorPalette } from "../types/colors";
+import { createCanvas, loadImage } from 'canvas';
+import type { Color, ColorPalette } from '@/types/colors';
 
 // Helper functions
 function rgbToHex(r: number, g: number, b: number): string {
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
 }
 
 function luminance(r: number, g: number, b: number): number {
@@ -81,7 +81,7 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
     const reducedHeight = Math.max(image.height / reductionFactor, 10);
 
     const canvas = createCanvas(reducedWidth, reducedHeight);
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     ctx.drawImage(image, 0, 0, reducedWidth, reducedHeight);
 
     const imageData = ctx.getImageData(0, 0, reducedWidth, reducedHeight);
@@ -109,10 +109,9 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
     const baseColor = sortedColors[0];
     let secondaryColor = sortedColors[1];
-    let tertiaryColor = sortedColors[2]; // Add tertiary color
+    let tertiaryColor = sortedColors[2];
     let colorIndex = 2;
 
-    // Ensure sufficient contrast between base color and secondary color
     while (!secondaryColor || contrastRatio(baseColor, secondaryColor) < 2.5) {
       if (colorIndex >= sortedColors.length) {
         secondaryColor = lightenColor(baseColor, 0.2);
@@ -122,7 +121,6 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
       colorIndex++;
     }
 
-    // Ensure sufficient contrast between base color, secondary color, and tertiary color
     while (
       !tertiaryColor ||
       contrastRatio(baseColor, tertiaryColor) < 2.5 ||
@@ -136,7 +134,6 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
       colorIndex++;
     }
 
-    // Create the color palette with adjustments
     const colorPalette: ColorPalette = {
       main: darkenColor(baseColor, 0.8),
       sidebar: darkenColor(secondaryColor, 0.9),
@@ -144,7 +141,7 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
       accent: lightenColor(tertiaryColor, 0.4),
       highlight: lightenColor(secondaryColor, 0.2),
       button: lightenColor(tertiaryColor, 0.4),
-      "button-active": lightenColor(tertiaryColor, 0.4),
+      'button-active': lightenColor(tertiaryColor, 0.4),
       text: lightenColor(baseColor, 0.8),
       subtext: lightenColor(baseColor, 0.9),
       primary: baseColor,
@@ -152,7 +149,6 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
       tertiary: tertiaryColor,
     };
 
-    // Adjust darkness of main, sidebar, card, and player colors
     const colorsToAdjust = [
       colorPalette.main,
       colorPalette.sidebar,
@@ -169,7 +165,6 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
       color = adjustColor(color, 0.5, 2);
     }
 
-    // Adjust accent and tertiary colors for better contrast
     if (colorPalette.accent && colorPalette.main) {
       const contrast = contrastRatio(colorPalette.accent, colorPalette.main);
       if (contrast < 4.5) {
@@ -179,35 +174,43 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
     return colorPalette;
   } catch (error) {
+    console.error('Error extracting colors:', error);
     return error as Error;
   }
 }
 
-// Function to generate CSS rules for the color palette
-function createStyleRule(name: string, color: Color): string {
-  return `--spice-${name}: ${color.hex} !important;
-          --spice-rgb-${name}: ${color.r},${color.g},${color.b} !important;`;
+export async function saveColors(
+  styleElement: HTMLElement,
+  isDynamicColor: boolean
+): Promise<ColorPalette | null> {
+  try {
+    if (isDynamicColor) {
+      if (!window.currentArtUrl) return null;
+
+      const colorPalette = await getColors(window.currentArtUrl);
+
+      if (colorPalette instanceof Error) {
+        console.error('[Lucid] Error extracting colors:', colorPalette.message);
+        return null;
+      }
+
+      let styleContent = ':root{';
+      for (const [name, color] of Object.entries(colorPalette)) {
+        styleContent += ` --spice-${name}: ${color.hex} !important;\n --spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;\n`;
+      }
+      styleContent += '}';
+      styleElement.innerHTML = styleContent;
+
+      return colorPalette;
+    }
+    styleElement.innerHTML = '';
+    return null;
+  } catch (error) {
+    console.error('Error saving colors to style:', error);
+    return null;
+  }
 }
 
-// Function to save the extracted colors to a CSS style element
-export async function saveColorsToStyle(
-  styleElement: HTMLStyleElement,
-  imageUrl: string
-): Promise<void> {
-  try {
-    const colorPalette = await getColors(imageUrl);
-    if (colorPalette instanceof Error) {
-      console.error("Error extracting colors:", colorPalette.message);
-      return;
-    }
-
-    let styleContent = ":root {";
-    for (const [name, color] of Object.entries(colorPalette)) {
-      styleContent += `\n${createStyleRule(name, color)}`;
-    }
-    styleContent += "\n}";
-    styleElement.innerHTML = styleContent;
-  } catch (error) {
-    console.error("Error saving colors to style:", error);
-  }
+export async function removeColors(styleElement: HTMLElement) {
+  if (styleElement) styleElement.remove();
 }

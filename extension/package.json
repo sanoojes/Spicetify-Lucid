@@ -1,6 +1,6 @@
 {
-  "name": "Lucid-extension",
-  "version": "0.1.0",
+  "name": "Lucid_extension",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "build": "spicetify-creator && spicetify apply",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "canvas": "^2.11.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^18.3.1"
   }
 }

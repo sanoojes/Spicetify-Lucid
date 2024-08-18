@@ -1,15 +1,21 @@
-export interface SettingItem {
-  label: string;
-  key: string;
-  min: number;
-  max: number;
-  unit: string;
-  default: number;
-  tooltip?: string;
-  value?: number;
-}
+import type { ReactNode } from 'react';
 
-export interface SettingSection {
-  section: string;
-  items: SettingItem[];
-}
+type SettingSectionProps = {
+  title: string;
+  description?: string;
+  children: ReactNode;
+};
+
+type SettingCardProps = {
+  title?: string | null;
+  tooltip?: string;
+  selectedValue?: string;
+  children: ReactNode;
+};
+
+type SettingSections = {
+  key: string;
+  title: string;
+  description?: string;
+  content?: ReactNode;
+}[];

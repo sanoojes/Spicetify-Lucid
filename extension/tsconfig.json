@@ -9,8 +9,11 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-
-    "lib": ["es2019", "dom"]
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["./src/**/*.*"]
+  "include": ["./src/**/*.*", "postcss.config.js"]
 }
+
