@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { useBackgroundContext } from '@/context/BackgroundContext';
+import React from 'react';
 import { saveColors, removeColors } from '@/utils/colorUtils';
+import { useSettingsStore } from '@/store/settingsStore';
 
 const DynamicBackground = () => {
-  const { isDynamicColor } = useBackgroundContext();
+  const { isDynamicColor } = useSettingsStore();
 
   let styleElement = document.getElementById(
     'lucid_dynamic_colors'
@@ -14,15 +14,16 @@ const DynamicBackground = () => {
     document.head.appendChild(styleElement);
   }
 
+  const songChangeHandler = () => {
+    saveColors(styleElement, isDynamicColor)
+      .then(() => console.log('[Lucid] Dynamic colors updated!'))
+      .catch((error) =>
+        console.error('[Lucid] Error updating dynamic colors:', error)
+      );
+  };
+
   React.useEffect(() => {
     if (isDynamicColor) {
-      const songChangeHandler = () => {
-        saveColors(styleElement, isDynamicColor)
-          .then(() => console.log('[Lucid] Dynamic colors updated!'))
-          .catch((error) =>
-            console.error('[Lucid] Error updating dynamic colors:', error)
-          );
-      };
       Spicetify.Player.addEventListener('songchange', songChangeHandler);
       saveColors(styleElement, isDynamicColor)
         .then(() => console.log('[Lucid] Dynamic colors applied initially!'))

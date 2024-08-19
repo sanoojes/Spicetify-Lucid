@@ -1,13 +1,14 @@
 import React from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import { FontInput } from '@/components/settings/ui/FontInput';
-import { useFontContext } from '@/context/FontContext';
+import { useSettingsStore } from '@/store/settingsStore';
 
 const FontSection = () => {
-  const { fontValue } = useFontContext();
+  const { fontFamily } = useSettingsStore();
+
   return (
     <div>
-      <SettingsCard title='Font Family' selectedValue={fontValue}>
+      <SettingsCard title='Font Family' selectedValue={fontFamily}>
         <FontInput />
       </SettingsCard>
     </div>

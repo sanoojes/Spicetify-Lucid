@@ -13,7 +13,7 @@ const SettingsCard = ({
         {title && <h5 className='title'>{title}</h5>}
         {tooltip && <p className='tooltip'>{tooltip}</p>}
         {selectedValue && (
-          <p className='selected-value'>{`Selected: ${selectedValue}`}</p>
+          <p className='selected-value'>Selected: {selectedValue}</p>
         )}
       </div>
       <div className='children-wrapper'>{children}</div>

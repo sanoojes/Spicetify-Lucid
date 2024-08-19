@@ -3,18 +3,18 @@ import React, { type ChangeEvent, type FC } from 'react';
 interface CustomInputProps {
   name: string;
   type: string;
-  placeholder: string;
-  step?: number | undefined;
-  value: string | number | undefined;
+  step?: number;
+  placeholder?: string;
+  value: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CustomInput: FC<CustomInputProps> = ({
   name,
-  type,
-  placeholder,
-  value,
   step,
+  type,
+  value,
+  placeholder,
   onChange,
 }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

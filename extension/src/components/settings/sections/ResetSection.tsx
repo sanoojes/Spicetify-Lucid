@@ -1,15 +1,9 @@
 import React from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
-import { useBackgroundContext } from '@/context/BackgroundContext';
-import { useFontContext } from '@/context/FontContext';
-import { useGrainContext } from '@/context/GrainContext';
-import { usePlaylistViewContext } from '@/context/PlaylistViewContext';
+import { useSettingsStore } from '@/store/settingsStore';
 
 const ResetSection = () => {
-  const { resetBackgroundSettings } = useBackgroundContext();
-  const { resetFontSettings } = useFontContext();
-  const { resetGrainSettings } = useGrainContext();
-  const { resetPlaylistViewSettings } = usePlaylistViewContext();
+  const { resetSettings } = useSettingsStore();
 
   const handleSettingsReset = () => {
     if (
@@ -17,10 +11,7 @@ const ResetSection = () => {
         'Are you sure you want to reset all background settings to their default values? This action cannot be undone.'
       )
     ) {
-      resetBackgroundSettings();
-      resetFontSettings();
-      resetGrainSettings();
-      resetPlaylistViewSettings();
+      resetSettings();
     }
   };
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
   /* Commonly Used Values */
@@ -10,7 +10,6 @@
   --gap-md: 0.5rem;
   --gap-lg: 0.75rem;
   --gap-xl: 1rem;
-
   --grid-gap: var(--gap-md);
 
   /* Margin */
@@ -94,35 +93,25 @@
   --now-playing-bar-padding-x: 0.25rem;
   --now-playing-bar-padding-y: 0.25rem;
   --border-radius-now-playing-bar: 0.5rem;
-  --margin-bottom-now-playing-bar: var(--panel-gap);
+  --margin-bottom-now-playing-bar: calc(var(--panel-gap, 0.2rem) / 2);
   --now-playing-bar-color: rgba(var(--spice-rgb-sidebar),
       var(--now-playing-bar-bg-opacity));
 
   /* Fonts */
   --original-fonts: CircularSpVietnameseTitle, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, CircularSpVietnamese,
     var(--fallback-fonts, sans-serif);
-
-
   --font-to-use: "Poppins", var(--original-fonts);
   --encore-title-font-stack: var(--font-to-use) !important;
   --encore-body-font-stack: var(--font-to-use) !important;
-
   --normal-font-weight: 500;
   --bold-font-weight: 700;
   --extra-bold-font-weight: 800;
-
   --text-base: var(--spice-sidebar);
-
   --text-subdued: rgb(var(--spice-rgb-subtext)) !important;
-
   --spice-tab-active: rgba(var(--spice-rgb-card), 0.5);
-
   --fade-time: 1s;
-
   --panel-gap: var(--gap-lg);
-
   --background-elevated-base: var(--normal-button-color);
-
   --lyrics-active-color: var(--spice-rgb-text);
   --lyrics-color-active: var(--spice-rgb-text);
   --lyrics-color-inactive: rgba(var(--lyrics-active-color), 0.2) !important;
@@ -130,7 +119,6 @@
   --lyrics-color-passed: rgba(var(--lyrics-active-color), .5) !important;
   --lyrics-color-background: transparent !important;
   --lyrics-color-messaging: rgb(0, 0, 0) !important;
-
   --lyrics-blur-coefficent: 0.05rem;
   --lyrics-shadow-coefficent: 0.5rem;
   --lyrics-scale-coefficent: 0.01;
@@ -538,6 +526,7 @@ input,
 
 /* Main Bg */
 .Root__top-container {
+  gap: 0 var(--panel-gap);
   background-color: transparent;
 }
 
@@ -1986,7 +1975,6 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 /* Lucid Background Wrapper*/
 #lucid-main .background-container .background-wrapper {
   z-index: -1;
-  opacity: var(--opacity, 1)
 }
 
 /* lucid Animated Bg */
@@ -2000,6 +1988,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   top: 0;
   width: 100%;
   z-index: -1;
+  opacity: var(--opacity, 1);
 }
 
 #lucid-main .background-container .background-wrapper .animated-background-container .back,
@@ -2018,6 +2007,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   position: absolute;
   aspect-ratio: 1/1;
   width: 90%;
+  opacity: var(--opacity, 1);
 }
 
 #lucid-main .background-container .background-wrapper .animated-background-container .front {
@@ -2068,6 +2058,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   background-image: var(--image-url);
   filter: blur(var(--blur)) contrast(var(--contrast)) saturate(var(--saturation)) brightness(var(--brightness));
   z-index: -1;
+  opacity: var(--opacity, 1);
 }
 
 /* Lucid Solid bg */
@@ -2085,6 +2076,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   -webkit-backdrop-filter: blur(--backdrop-blur);
   backdrop-filter: blur(--backdrop-blur);
   z-index: -1;
+  opacity: var(--opacity, 1);
 }
 
 /* Lucid Modal */
@@ -2189,6 +2181,24 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   color: var(--spice-subtext);
 }
 
+#lucid-main .modal-container .setting-section .cards-wrapper .card .selected-value {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#lucid-main #font .cards-wrapper .children-wrapper .input {
+  width: 100%;
+}
+
+#lucid-main .card .title-wrapper {
+  max-width: 75%;
+}
+
+
+
 /* Buttons */
 #lucid-main .card .button {
   border: var(--default-border);
@@ -2274,7 +2284,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 /* Custom Dropdown */
 #lucid-main .dropdown-container {
-  min-width: 8rem;
+  min-width: max-content;
   position: relative;
   display: inline-block;
   z-index: 99;
@@ -2295,6 +2305,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  min-width: 7rem;
 }
 
 #lucid-main .dropdown-button.open {
@@ -2500,8 +2511,21 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   width: 10rem !important;
 }
 
+.playlist-view-compact .main-entityHeader-headerText .main-entityHeader-title *,
 .playlist-view-compact .main-entityHeader-title .main-entityHeader-titleButton .main-entityHeader-titleInner h1 {
-  font-size: 3rem !important;
+  white-space: pretty !important;
+  font-size: 2rem !important;
+}
+
+.playlist-view-card section[data-testid*="album"],
+.playlist-view-card section[data-testid*="playlist"],
+.playlist-view-card .bOAvdKi0zqyA_S6ThcvF,
+.playlist-view-card .m2grVeuHNwfGLVpaSBle,
+.playlist-view-compact .bOAvdKi0zqyA_S6ThcvF,
+.playlist-view-compact .m2grVeuHNwfGLVpaSBle,
+.playlist-view-compact section[data-testid*="album"],
+.playlist-view-compact section[data-testid*="playlist"] {
+  margin-top: 0;
 }
 
 .playlist-view-compact .main-entityHeader-metaData {
@@ -2516,10 +2540,6 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 .playlist-view-compact .main-entityHeader-metaDataText.main-entityHeader-creatorWrapper .encore-text-body-small-bold {
   font-weight: 600;
-}
-
-.playlist-view-compact .bOAvdKi0zqyA_S6ThcvF {
-  margin-top: 0 !important;
 }
 
 .playlist-view-default {}

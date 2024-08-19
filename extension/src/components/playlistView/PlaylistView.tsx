@@ -1,8 +1,8 @@
-import { usePlaylistViewContext } from '@/context/PlaylistViewContext';
+import { useSettingsStore } from '@/store/settingsStore';
 import React, { useEffect } from 'react';
 
 const PlaylistView = () => {
-  const { selectedPlaylistView } = usePlaylistViewContext();
+  const { playlistViewMode } = useSettingsStore();
 
   useEffect(() => {
     document.body.classList.remove(
@@ -11,19 +11,14 @@ const PlaylistView = () => {
       'playlist-view-card'
     );
 
-    document.body.classList.add(`playlist-view-${selectedPlaylistView}`);
+    document.body.classList.add(`playlist-view-${playlistViewMode}`);
 
     return () => {
-      document.body.classList.remove(`playlist-view-${selectedPlaylistView}`);
+      document.body.classList.remove(`playlist-view-${playlistViewMode}`);
     };
-  }, [selectedPlaylistView]);
+  }, [playlistViewMode]);
 
-  return (
-    <div
-      id='selectedPlaylistView'
-      data-selectedPlaylistView={selectedPlaylistView}
-    />
-  );
+  return <div id='playlistViewMode' data-playlistViewMode={playlistViewMode} />;
 };
 
 export default PlaylistView;

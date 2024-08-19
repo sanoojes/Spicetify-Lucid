@@ -1,4 +1,4 @@
-import React, { type FC, type ReactNode } from 'react';
+import React, { type FC } from 'react';
 
 interface SettingsMenuItemProps {
   cb: () => void;

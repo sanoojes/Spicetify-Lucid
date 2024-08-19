@@ -1,19 +1,6 @@
-import React, { type CSSProperties } from 'react';
-import { useBackgroundContext } from '@/context/BackgroundContext';
-import type { CustomBackgroundStyle } from '@/types/background';
-
+import React from 'react';
 const SolidBackground = () => {
-  const { backgroundOptions, selectedBackground } = useBackgroundContext();
-  return (
-    <div
-      className='solid-background'
-      style={
-        {
-          '--background-color': backgroundOptions[selectedBackground].bgColor,
-        } as CustomBackgroundStyle
-      }
-    />
-  );
+  return <div className='solid-background' />;
 };
 
 export default SolidBackground;

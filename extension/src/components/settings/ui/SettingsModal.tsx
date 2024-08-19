@@ -2,47 +2,45 @@ import React from 'react';
 import Modal from '@/components/modal/Modal';
 import SettingSection from '@/components/settings/ui/SettingSection';
 import BackgroundSection from '@/components/settings/sections/BackgroundSection';
+import type { SettingSectionData } from '@/types/settings';
 import ResetSection from '@/components/settings/sections/ResetSection';
-import type { SettingSections } from '@/types/settings';
 import FontSection from '@/components/settings/sections/FontSection';
-import GrainSection from '../sections/GrainSection';
-import PlaylistViewSection from '../sections/PlaylistViewSection';
+import PlaylistViewSection from '@/components/settings/sections/PlaylistViewSection';
+import GrainSection from '@/components/settings/sections/GrainSection';
 
-const SettingsModal = () => {
-  const SETTING_SECTIONS: SettingSections = [
+const SettingsModal = React.memo(() => {
+  const SETTING_SECTIONS: SettingSectionData = [
     {
       key: 'background',
       title: 'Background',
-      description:
-        'Customize the look and feel of your theme with a variety of backgrounds.',
+      description: "Customize your theme's background.",
       content: <BackgroundSection />,
-    },
-    {
-      key: 'font',
-      title: 'Font',
-      description: 'Set your desired font.',
-      content: <FontSection />,
     },
     {
       key: 'grains',
       title: 'Grains',
-      description: 'Set your desired grain texture.',
+      description: 'Set your grain texture.',
       content: <GrainSection />,
     },
     {
       key: 'playlistView',
       title: 'Playlist View',
-      description: 'Set your desired Playlist View.',
+      description: 'Configure your playlist view.',
       content: <PlaylistViewSection />,
+    },
+    {
+      key: 'font',
+      title: 'Font',
+      description: 'Select your desired font.',
+      content: <FontSection />,
     },
     {
       key: 'reset',
       title: 'Reset Settings',
-      description: 'Reset all settings to factory value.',
+      description: 'Reset to default settings.',
       content: <ResetSection />,
     },
   ];
-
   return (
     <Modal title='Lucid Settings'>
       <div className='sections-container'>
@@ -59,6 +57,6 @@ const SettingsModal = () => {
       </div>
     </Modal>
   );
-};
+});
 
 export default SettingsModal;
