@@ -19,11 +19,8 @@ const BackgroundSettingsSection = React.memo(() => {
     updateBackgroundStyles,
   } = useSettingsStore();
 
-  const [selectedValue, setSelectedValue] =
-    React.useState<BackgroundMode>(backgroundMode);
-
   const handleSelect = (value: BackgroundMode) => {
-    setSelectedValue(value);
+    setBackgroundMode(value);
   };
 
   const backgroundOption: { label: string; value: BackgroundMode }[] = [
@@ -32,9 +29,6 @@ const BackgroundSettingsSection = React.memo(() => {
     { label: 'Solid', value: 'solid' },
   ];
 
-  React.useEffect(() => setBackgroundMode(selectedValue), [selectedValue]);
-
-  // Handle general input changes (for non-color properties)
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     key: keyof BackgroundStyleSettings
@@ -61,14 +55,25 @@ const BackgroundSettingsSection = React.memo(() => {
         <div>
           <Dropdown
             options={backgroundOption}
-            selectedValue={selectedValue}
+            selectedValue={backgroundMode}
             onSelect={handleSelect}
             label='Select an option'
           />
         </div>
       </SettingsCard>
       {Object.entries(backgroundStyles[backgroundMode]).map(([key, value]) => (
-        <SettingsCard key={key} title={`Set ${key}`}>
+        <SettingsCard
+          key={key}
+          title={`Set ${
+            key === 'backgroundColor'
+              ? 'background color'
+              : key === 'backdropBlur'
+              ? 'backdrop blur'
+              : key === 'borderRadius'
+              ? 'border radius'
+              : key
+          }`}
+        >
           <CustomInput
             type={key === 'backgroundColor' ? 'text' : 'number'}
             name={key}

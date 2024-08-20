@@ -16,7 +16,7 @@ async function main() {
     const rootElement = document.createElement('div');
     rootElement.id = 'lucid-main';
     const mainElement = document.getElementById('main');
-    mainElement?.append(rootElement);
+    mainElement?.prepend(rootElement);
 
     if (rootElement)
       Spicetify.ReactDOM.createRoot(rootElement).render(<Main />);

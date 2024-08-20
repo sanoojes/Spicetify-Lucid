@@ -10,6 +10,7 @@ import PlaylistViewManager from '@/components/playlistViews/PlaylistViewManager'
 import FontManager from '@/components/font/FontManager';
 import GrainManeger from '@/components/grain/GrainManeger';
 import { showError } from './error/ErrorBoundary';
+import PlaybarManager from './playbar/PlaybarManager';
 
 const Main = () => {
   const [isArtistOrPlaylist, setIsArtistOrPlaylist] = useState<
@@ -96,6 +97,7 @@ const Main = () => {
       <div id='state'>
         <GrainManeger />
         <FontManager />
+        <PlaybarManager />
       </div>
       <div
         id='background-container'

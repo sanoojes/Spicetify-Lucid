@@ -4,6 +4,8 @@ import { persist } from 'zustand/middleware';
 import type {
   BackgroundMode,
   BackgroundStyleSettings,
+  PlaybarMode,
+  PlaybarStyleSettings,
   SettingsStore,
 } from '@/types/settingTypes';
 import { defaultSettings } from '@/constants/constants';
@@ -20,10 +22,9 @@ export const useSettingsStore = create(
       setPlaylistImageMode: (playlistImageMode) =>
         set(() => ({ playlistImageMode })),
       setPlaybarMode: (playbarMode) => set(() => ({ playbarMode })),
-      setPlaybarStyles: (playbarStyles) => set(() => ({ playbarStyles })),
       setPlaylistViewMode: (playlistViewMode) =>
         set(() => ({ playlistViewMode })),
-      setDynamicColor: (isDynamicColor) => set((state) => ({ isDynamicColor })),
+      setDynamicColor: (isDynamicColor) => set(() => ({ isDynamicColor })),
       updateBackgroundStyles: (
         mode: BackgroundMode,
         key: keyof BackgroundStyleSettings,
@@ -35,6 +36,22 @@ export const useSettingsStore = create(
             ...state.backgroundStyles,
             [mode]: {
               ...state.backgroundStyles[mode],
+              [key]: value,
+            },
+          },
+        }));
+      },
+      updatePlaybarStyles: (
+        mode: PlaybarMode,
+        key: keyof PlaybarStyleSettings,
+        value: string
+      ) => {
+        set((state) => ({
+          ...state,
+          playbarStyles: {
+            ...state.playbarStyles,
+            [mode]: {
+              ...state.playbarStyles[mode],
               [key]: value,
             },
           },

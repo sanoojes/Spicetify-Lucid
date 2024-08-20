@@ -83,19 +83,7 @@
   --default-border: var(--border-thickness) solid rgba(var(--spice-rgb-text), 0.125);
 
   /* Now playing bar */
-  --now-playing-bar-blur: var(--blur-xl);
-  --now-playing-contrast: 100%;
-  --now-playing-saturation: 100%;
-  --now-playing-brightness: 100%;
-  --now-playing-bar-height: 5.5rem;
-  --now-playing-bar-opacity: 1;
-  --now-playing-bar-bg-opacity: 0.5;
-  --now-playing-bar-padding-x: 0.25rem;
-  --now-playing-bar-padding-y: 0.25rem;
-  --border-radius-now-playing-bar: 0.5rem;
   --margin-bottom-now-playing-bar: calc(var(--panel-gap, 0.2rem) / 2);
-  --now-playing-bar-color: rgba(var(--spice-rgb-sidebar),
-      var(--now-playing-bar-bg-opacity));
 
   /* Fonts */
   --original-fonts: CircularSpVietnameseTitle, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, CircularSpVietnamese,
@@ -137,6 +125,14 @@
 /* No Grain */
 .grain-none {
   --background-noise: none !important;
+}
+
+:root {
+  --now-playing-bar-height: 5.5rem;
+}
+
+.playbar-compact {
+  --now-playing-bar-height: 3.75rem;
 }
 
 * {
@@ -738,19 +734,60 @@ input,
   bottom: var(--margin-bottom-now-playing-bar);
   left: var(--gap-md);
   right: var(--gap-md);
-}
-
-.main-nowPlayingBar-container {
-  padding: var(--now-playing-bar-padding-y) var(--now-playing-bar-padding-x);
-  background-color: var(--now-playing-bar-color);
-  border: var(--default-border);
-  border-radius: var(--border-radius-now-playing-bar);
-  -webkit-backdrop-filter: opacity(var(--now-playing-bar-opacity)) blur(var(--now-playing-bar-blur)) saturate(var(--now-playing-saturation)) brightness(var(--now-playing-brightness)) contrast(var(--now-playing-contrast));
-  backdrop-filter: opacity(var(--now-playing-bar-opacity)) blur(var(--now-playing-bar-blur)) saturate(var(--now-playing-saturation)) brightness(var(--now-playing-brightness)) contrast(var(--now-playing-contrast));
+  opacity: var(--opacity);
 }
 
 .main-nowPlayingBar-nowPlayingBar {
   height: var(--now-playing-bar-height);
+}
+
+.main-nowPlayingBar-container {
+  padding: var(--padding-y) var(--padding-x);
+  background-color: var(--background-color, rgba(var(--spice-rgb-playbar), 0.5));
+  border: var(--default-border);
+  border-radius: var(--border-radius);
+  backdrop-filter: opacity(var(--backdrop-opacity, 1)) blur(var(--backdrop-blur)) saturate(var(--saturation)) brightness(var(--brightness)) contrast(var(--contrast));
+}
+
+.playbar-compact .main-nowPlayingBar-center {
+  width: 100%;
+  max-width: none;
+}
+
+.playbar-compact .main-nowPlayingBar-center .player-controls {
+  flex-direction: row;
+}
+
+.playbar-compact .player-controls__buttons {
+  width: fit-content;
+  margin-bottom: 0;
+}
+
+/* Make play and pause button of same size */
+.playbar-compact .player-controls__buttons button[aria-label*="Pause"],
+.playbar-compact .player-controls__buttons button[aria-label*="Play"] {
+  --encore-control-size-smaller: 24px !important;
+}
+
+.playbar-compact .main-nowPlayingBar-left {
+  -webkit-padding-start: 4px;
+  padding-inline-start: 4px;
+  padding-right: 8px;
+  width: 25%;
+  min-width: 20%;
+}
+
+.playbar-compact .main-nowPlayingWidget-nowPlaying button {
+  margin-left: auto;
+}
+
+.playbar-compact .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
+  margin-inline-end: 0;
+}
+
+.playbar-compact .main-nowPlayingWidget-coverArt .cover-art {
+  height: 48px !important;
+  width: 48px !important;
 }
 
 .main-coverSlotCollapsed-container,

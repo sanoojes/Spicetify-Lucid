@@ -7,6 +7,7 @@ import ResetSettingsSection from '@/components/settings/sections/ResetSettingsSe
 import FontSection from '@/components/settings/sections/FontSettingsSection';
 import PlaylistViewSettingsSection from '@/components/settings/sections/PlaylistViewSettingsSection';
 import GrainSection from '@/components/settings/sections/GrainSettingsSection';
+import PlaybarSettingsSection from '../sections/PlaybarSettingsSection';
 
 const SettingsModal = React.memo(() => {
   const SETTING_SECTIONS: SettingSectionData = [
@@ -27,6 +28,12 @@ const SettingsModal = React.memo(() => {
       title: 'Playlist View',
       description: 'Configure your playlist view.',
       content: <PlaylistViewSettingsSection />,
+    },
+    {
+      key: 'playbar',
+      title: 'Playbar',
+      description: 'Configure your playbar.',
+      content: <PlaybarSettingsSection />,
     },
     {
       key: 'font',

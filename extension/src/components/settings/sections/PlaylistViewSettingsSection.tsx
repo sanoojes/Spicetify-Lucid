@@ -34,7 +34,7 @@ const PlaylistViewSettingsSection = () => {
 
   return (
     <>
-      <SettingsCard title='Set Playlist View' selectedValue={playlistViewMode}>
+      <SettingsCard title='Set View Mode' selectedValue={playlistViewMode}>
         <Dropdown
           options={playlistViewOptions}
           onSelect={handlePlaylistViewSelect}
@@ -42,7 +42,7 @@ const PlaylistViewSettingsSection = () => {
         />
       </SettingsCard>
       <SettingsCard
-        title='Set Playlist Background Image'
+        title='Set Background Image'
         selectedValue={playlistImageMode}
       >
         <Dropdown

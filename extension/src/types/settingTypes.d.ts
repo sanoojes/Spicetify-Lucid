@@ -41,22 +41,24 @@ type StyleOptions = {
   brightness?: number;
   saturation?: number;
   backdropBlur?: number;
+  borderRadius?: number;
   backgroundColor?: string; // Hex color code
 };
 
 type CustomCSSProperties =
   | React.CSSProperties & {
-      '--blur'?: string | null;
-      '--backdrop-blur'?: string | null;
-      '--time'?: string | null; // Time in seconds
-      '--height'?: number | null;
       '--width'?: number | null;
-      '--padding-x'?: number | null;
-      '--padding-x'?: number | null;
+      '--height'?: number | null;
       '--opacity'?: number | null;
+      '--contrast'?: number | null;
       '--brightness'?: number | null;
       '--saturation'?: number | null;
-      '--contrast'?: number | null;
+      '--blur'?: string | null;
+      '--time'?: string | null; // Time in seconds
+      '--padding-x'?: string | null;
+      '--padding-x'?: string | null;
+      '--backdrop-blur'?: string | null;
+      '--border-radius'?: string | null;
       '--background-color'?: string | null; // Hex color code
     };
 
@@ -92,11 +94,15 @@ type SettingsActions = {
     key: keyof BackgroundStyleSettings,
     value: string
   ) => void;
+  updatePlaybarStyles: (
+    mode: PlaybarMode,
+    key: keyof PlaybarStyleSettings,
+    value: string
+  ) => void;
   setDynamicColor: (isDynamicColor: boolean) => void;
   setGrainEffect: (grainEffect: GrainEffect) => void;
   setPlaylistImageMode: (playlistImageMode: PlaylistImageMode) => void;
   setPlaybarMode: (playbarMode: PlaybarMode) => void;
-  setPlaybarStyles: (playbarStyles: PlaybarStyleSettings) => void;
   setPlaylistViewMode: (playlistViewMode: PlaylistViewMode) => void;
   resetSettings: () => void;
 };
