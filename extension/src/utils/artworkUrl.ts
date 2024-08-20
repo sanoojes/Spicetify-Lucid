@@ -64,6 +64,8 @@ export const updatePlaylistArtworkUrl = async () => {
           );
           imageUrl =
             artistMetadata.data.artistUnion.visuals.headerImage?.sources?.[0]
+              ?.url ||
+            artistMetadata.data.artistUnion.visuals.avatarImage?.sources?.[0]
               ?.url;
         }
 
