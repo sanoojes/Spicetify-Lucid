@@ -84,12 +84,22 @@ const Main = () => {
     };
   }, [isArtistOrPlaylist]);
 
+  const [previousPath, setPreviousPath] = useState<string | null>(null);
+
   // Song Event Listener
-  Spicetify.Platform.History.listen(async () => {
+  Spicetify.Platform.History.listen(() => {
+    const currentPath = Spicetify.Platform.History.location.pathname;
+    if (currentPath !== previousPath) {
+      setPreviousPath(currentPath);
+    }
+  });
+
+  React.useEffect(() => {
     setPath();
     setUnderMainView();
-    await updatePlaylistArtworkUrl();
-  });
+    updatePlaylistArtworkUrl();
+  }, [previousPath]);
+
   Spicetify.Player.addEventListener('songchange', handleSongChange);
 
   return (
