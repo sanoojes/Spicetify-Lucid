@@ -2480,11 +2480,11 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   background: none !important;
 }
 
-.playlist .main-view-container:has(.main-entityHeader-withBackgroundImage)#lucid-under-main-view {
+.main-view-container:has(.main-entityHeader-withBackgroundImage)#lucid-under-main-view {
   display: none;
 }
 
-.playlist .main-view-container:has(.main-entityHeader-withBackgroundImage) .under-main-view {
+.main-view-container:has(.main-entityHeader-withBackgroundImage) .under-main-view {
   display: block
 }
 
@@ -2512,6 +2512,10 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 .playlist-art-container.now-playing .background {
   background-image: var(--now-playing-art-image);
+}
+
+.artist .playlist-art-container .background {
+  background-image: var(--playlist-art-image);
 }
 
 .playlist-view-card .main-entityHeader-container.main-entityHeader-nonWrapped {
