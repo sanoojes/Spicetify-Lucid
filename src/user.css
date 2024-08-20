@@ -2320,8 +2320,34 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   background-color: rgba(var(--spice-rgb-selected-row), 0.1) !important;
 }
 
-/* Custom Toggle  */
+#lucid-main .settings-navigation {
+  display: flex;
+  margin-bottom: 1rem;
+}
 
+#lucid-main .navigation button {
+  background-color: rgba(var(--spice-rgb-main), 0.5);
+  border: var(--default-border);
+  border-radius: var(--button-border-radius);
+  padding: var(--padding-sm) var(--padding-md);
+}
+
+#lucid-main .navigation button:hover {
+  cursor: pointer;
+  background-color: var(--spice-card);
+}
+
+#lucid-main .navigation {
+  display: flex;
+  gap: var(--gap-sm);
+  flex-direction: row;
+}
+
+#lucid-main .sections-container {
+  margin-top: 1rem;
+}
+
+/* Custom Toggle  */
 #lucid-main .slider-wrapper {
   --width: 3rem;
   --height: 1.5rem;

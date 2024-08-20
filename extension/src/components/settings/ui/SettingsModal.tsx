@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '@/components/modal/Modal';
 import SettingSection from '@/components/settings/ui/SettingSection';
 import BackgroundSection from '@/components/settings/sections/BackgroundSettingsSection';
@@ -48,20 +48,62 @@ const SettingsModal = React.memo(() => {
       content: <ResetSettingsSection />,
     },
   ];
+
+  const [activeSection, setActiveSection] = useState('all');
+
+  const handleSectionClick = (sectionKey: string) => {
+    setActiveSection(sectionKey);
+  };
+
+  const renderSections = () => {
+    if (activeSection === 'all') {
+      return SETTING_SECTIONS.map((section) => (
+        <div className='section-wrapper' key={section.key} id={section.key}>
+          <SettingSection
+            title={section.title}
+            description={section.description}
+          >
+            {section.content}
+          </SettingSection>
+        </div>
+      ));
+    }
+
+    const section = SETTING_SECTIONS.find((s) => s.key === activeSection);
+    if (section) {
+      return (
+        <div className='section-wrapper' key={section.key} id={section.key}>
+          <SettingSection
+            title={section.title}
+            description={section.description}
+          >
+            {section.content}
+          </SettingSection>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <Modal title='Lucid Settings'>
-      <div className='sections-container'>
-        {SETTING_SECTIONS.map((section) => (
-          <div className='section-wrapper' key={section.key} id={section.key}>
-            <SettingSection
-              title={section.title}
-              description={section.description}
+      <div className='settings-navigation-container'>
+        <div className='navigation'>
+          <button type='button' onClick={() => handleSectionClick('all')}>
+            All
+          </button>
+          {SETTING_SECTIONS.map((section) => (
+            <button
+              type='button'
+              key={section.key}
+              onClick={() => handleSectionClick(section.key)}
             >
-              {section.content}
-            </SettingSection>
-          </div>
-        ))}
+              {section.title}
+            </button>
+          ))}
+        </div>
       </div>
+      <div className='sections-container'>{renderSections()}</div>
     </Modal>
   );
 });
