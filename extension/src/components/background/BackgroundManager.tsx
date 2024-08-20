@@ -4,7 +4,7 @@ import AnimatedBackground from '@/components/background/AnimatedBackground';
 import SolidBackground from '@/components/background/SolidBackground';
 import DynamicBackground from '@/components/background/DynamicBackground';
 import { useSettingsStore } from '@/store/settingsStore';
-import type { CustomCSSProperties } from '@/types/settings';
+import type { CustomCSSProperties } from '@/types/settingTypes';
 
 const BackgroundManager = () => {
   const { backgroundMode, backgroundStyles } = useSettingsStore();

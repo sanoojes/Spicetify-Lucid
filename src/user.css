@@ -730,91 +730,6 @@ input,
   background-color: rgba(var(--spice-rgb-shadow), .25) !important;
 }
 
-/* Image section (Playlist and Artist) */
-.main-entityHeader-background.main-entityHeader-gradient,
-.main-entityHeader-background {
-  will-change: transform;
-  background-color: transparent;
-  transition: backdrop-filter .3s ease-in-out;
-}
-
-.main-entityHeader-overlay {
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(var(--spice-rgb-shadow), .5))) !important;
-  background: linear-gradient(transparent 0, rgba(var(--spice-rgb-shadow), .5) 100%) !important;
-  border: none !important;
-}
-
-.main-entityHeader-container.main-entityHeader-nonWrapped .main-entityHeader-overlay {
-  background-image: var(--background-noise) !important;
-}
-
-.main-nowPlayingView-contextItemInfo:before,
-.main-entityHeader-overlay:after {
-  display: none;
-  background-color: transparent !important;
-  background: none !important;
-}
-
-.under-main-view .main-entityHeader-overlay {
-  -webkit-animation: background-blur-anim 1s linear;
-  -webkit-animation-delay: calc(var(--scroll-coefficient, var(--scroll))* -1s);
-  -webkit-animation-fill-mode: both;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-play-state: paused;
-  -webkit-transition: -webkit-backdrop-filter 0.3s ease;
-  animation: background-blur-anim 1s linear;
-  animation-delay: calc(var(--scroll-coefficient, var(--scroll)) * -1s);
-  animation-fill-mode: both;
-  animation-iteration-count: 1;
-  animation-play-state: paused;
-  opacity: 1;
-  transition: backdrop-filter 0.3s ease;
-}
-
-@keyframes background-blur-anim {
-
-  80%,
-  100% {
-    -webkit-backdrop-filter: blur(var(--blur-2xl, 2rem)) brightness(25%);
-    backdrop-filter: blur(var(--blur-2xl, 2rem)) brightness(25%);
-  }
-}
-
-.main-actionBarBackground-background,
-.main-entityHeader-background,
-.main-entityHeader-backgroundColor {
-  background-color: rgba(var(--spice-rgb-card), 0.25) !important;
-  border-bottom: var(--default-border);
-}
-
-.main-actionBarBackground-background {
-  background-image: var(--background-noise);
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(var(--spice-rgb-shadow), .5)),
-      to(transparent)), var(--background-noise);
-  mask-image: linear-gradient(rgba(var(--spice-rgb-shadow), .5) 0%, transparent 100%), var(--background-noise);
-}
-
-
-.main-entityHeader-background,
-.main-entityHeader-container {
-  height: calc(100vh - var(--now-playing-bar-height) - (1rem * 5)) !important;
-}
-
-.D6IunHuzuULf_Sr88GOA,
-.playlist-playlist-playlist {
-  margin-top: 0 !important;
-}
-
-.main-entityHeader-container.main-entityHeader-nonWrapped {
-  height: min(40vh, var(--fluid-height)) !important;
-  max-height: 400px;
-  min-height: 35vh;
-}
-
-.main-nowPlayingView-aboutArtistV2Bio {
-  text-wrap: balance;
-}
-
 /* Now playing bar */
 .Root__now-playing-bar {
   position: fixed;
@@ -1996,7 +1911,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 #lucid-main .background-container .background-wrapper .animated-background-container .backleft,
 #lucid-main .background-container .background-wrapper .animated-background-container .front {
   pointer-events: none;
-  background-image: var(--image-url);
+  background-image: var(--now-playing-art-image);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -2055,7 +1970,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   background-repeat: no-repeat;
   pointer-events: none;
   transition: all var(--fade-time) ease;
-  background-image: var(--image-url);
+  background-image: var(--now-playing-art-image);
   filter: blur(var(--blur)) contrast(var(--contrast)) saturate(var(--saturation)) brightness(var(--brightness));
   z-index: -1;
   opacity: var(--opacity, 1);
@@ -2287,7 +2202,6 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   min-width: max-content;
   position: relative;
   display: inline-block;
-  z-index: 99;
 }
 
 #lucid-main .dropdown-button {
@@ -2447,6 +2361,15 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 }
 
 /* Playlist */
+
+.under-main-view {
+  display: none;
+}
+
+.other #lucid-under-main-view {
+  display: none;
+}
+
 .playlist-view-card .main-entityHeader-container.main-entityHeader-nonWrapped {
   height: min(40vh, var(--fluid-height)) !important;
   max-height: 400px;
@@ -2460,13 +2383,135 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   background: linear-gradient(transparent 0, rgba(var(--spice-rgb-shadow), .25) 100%), var(--background-noise);
 }
 
-.playlist-view-card .main-entityHeader-container.main-entityHeader-nonWrapped .main-entityHeader-backgroundColor {
-  transition: background var(--fade-time) ease-in-out;
-  background-image: var(--image-url);
-  background-repeat: no-repeat;
+.main-nowPlayingView-contextItemInfo:before {
+  display: none;
+  background: none !important;
+}
+
+.main-entityHeader-backgroundColor.main-entityHeader-overlay::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(0deg, rgba(var(--spice-rgb-main), 0.5), transparent);
+}
+
+.main-entityHeader-container.main-entityHeader-nonWrapped .main-entityHeader-backgroundColor {
+  background-color: transparent !important;
+}
+
+.main-actionBarBackground-background {
+  background-color: transparent !important;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(var(--spice-rgb-card), .5)), to(transparent)), var(--background-noise);
+  background-image: linear-gradient(rgba(var(--spice-rgb-card), .5) 0, transparent 100%);
+}
+
+/* Image section (Playlist and Artist) */
+.main-entityHeader-container.main-entityHeader-nonWrapped {
+  height: min(40vh, var(--fluid-height)) !important;
+  max-height: 400px;
+  min-height: 35vh;
+}
+
+.main-nowPlayingView-aboutArtistV2Bio {
+  text-wrap: balance;
+}
+
+#lucid-under-main-view {
+  pointer-events: none;
+}
+
+.main-entityHeader-container.main-entityHeader-withBackgroundImage {
+  height: calc(100vh - (var(--now-playing-bar-height) * 1.74));
+  filter: none;
+  mask: none;
+}
+
+.playlist-art-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 55vh;
+  width: 100%;
+  pointer-events: none;
+}
+
+.playlist-art-container .background {
+  height: 100%;
+  width: 100%;
+  filter: blur(4px);
+  transition: background .3s ease-in-out;
   background-size: cover;
-  background-position: center;
-  filter: blur(var(--blur-xl));
+  background-repeat: no-repeat;
+  background-position: center center;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.main-view-container:has(.main-entityHeader-withBackgroundImage) #lucid-under-main-view .overlay {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(var(--spice-rgb-shadow), .25)));
+  background: linear-gradient(transparent 0, rgba(var(--spice-rgb-shadow), .25) 100%);
+}
+
+
+.main-view-container:has(.main-entityHeader-withBackgroundImage) #lucid-under-main-view .playlist-art-container {
+  height: calc(100vh - (var(--now-playing-bar-height) * 1.74));
+}
+
+.main-view-container:has(.main-entityHeader-withBackgroundImage) #lucid-under-main-view .playlist-art-container .background {
+  filter: none;
+}
+
+.main-entityHeader-container.main-entityHeader-withBackgroundImage {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(var(--spice-rgb-shadow), .5)));
+  background: linear-gradient(transparent 0, rgba(var(--spice-rgb-shadow), .5) 100%);
+}
+
+.main-view-container:has(.main-entityHeader-withBackgroundImage) .under-main-view .main-entityHeader-background,
+.main-entityHeader-background.main-entityHeader-overlay:after {
+  height: calc(100vh - (var(--now-playing-bar-height)* 1.74));
+  filter: none;
+  mask: none;
+}
+
+.main-view-container:has(.main-entityHeader-withBackgroundImage) .under-main-view .main-entityHeader-background::after {
+  background: none !important;
+}
+
+.playlist .main-view-container:has(.main-entityHeader-withBackgroundImage)#lucid-under-main-view {
+  display: none;
+}
+
+.playlist .main-view-container:has(.main-entityHeader-withBackgroundImage) .under-main-view {
+  display: block
+}
+
+@keyframes background-animation {
+  80% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    filter: blur(var(--blur-xl)) brightness(0.25);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    filter: blur(var(--blur-xl)) brightness(0.25);
+  }
+}
+
+.playlist-art-container.none .background {
+  background-image: none;
+}
+
+.playlist-art-container.inherit .background {
+  background-image: var(--playlist-art-image);
+}
+
+.playlist-art-container.now-playing .background {
+  background-image: var(--now-playing-art-image);
 }
 
 .playlist-view-card .main-entityHeader-container.main-entityHeader-nonWrapped {
@@ -2517,6 +2562,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   font-size: 2rem !important;
 }
 
+.D6IunHuzuULf_Sr88GOA,
 .playlist-view-card section[data-testid*="album"],
 .playlist-view-card section[data-testid*="playlist"],
 .playlist-view-card .bOAvdKi0zqyA_S6ThcvF,

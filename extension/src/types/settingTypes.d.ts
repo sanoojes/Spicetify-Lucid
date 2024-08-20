@@ -25,6 +25,7 @@ type SettingSectionData = {
 type BackgroundMode = 'animated' | 'static' | 'solid';
 type GrainEffect = 'default' | 'stary' | 'none';
 type PlaylistViewMode = 'default' | 'compact' | 'card';
+type PlaylistImageMode = 'now-playing' | 'inherit' | 'none';
 type PlaybarMode = 'compact' | 'default';
 
 // Style Settings
@@ -75,6 +76,7 @@ type AppSettings = {
   backgroundStyles: BackgroundStyleSettings;
   isDynamicColor: boolean;
   grainEffect: GrainEffect;
+  playlistImageMode: PlaylistImageMode;
   playlistViewMode: PlaylistViewMode;
   playbarMode: PlaybarMode;
   playbarStyles: PlaybarStyleSettings;
@@ -92,6 +94,7 @@ type SettingsActions = {
   ) => void;
   setDynamicColor: (isDynamicColor: boolean) => void;
   setGrainEffect: (grainEffect: GrainEffect) => void;
+  setPlaylistImageMode: (playlistImageMode: PlaylistImageMode) => void;
   setPlaybarMode: (playbarMode: PlaybarMode) => void;
   setPlaybarStyles: (playbarStyles: PlaybarStyleSettings) => void;
   setPlaylistViewMode: (playlistViewMode: PlaylistViewMode) => void;
@@ -106,6 +109,7 @@ export type {
   GrainEffect,
   PlaybarMode,
   PlaylistViewMode,
+  PlaylistImageMode,
   StyleOptions,
   SettingCardProps,
   SettingSectionProps,

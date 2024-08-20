@@ -5,12 +5,6 @@ const Grains = () => {
   const { grainEffect } = useSettingsStore();
 
   useEffect(() => {
-    document.body.classList.remove(
-      'grain-stary',
-      'grain-default',
-      'grain-none'
-    );
-
     document.body.classList.add(`grain-${grainEffect}`);
 
     return () => {

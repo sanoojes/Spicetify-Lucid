@@ -2,7 +2,7 @@ import type {
   AppSettings,
   BackgroundStyleSettings,
   PlaybarStyleSettings,
-} from '@/types/settings';
+} from '@/types/settingTypes';
 
 //  Settings Local Key
 export const SETTINGS_LOCAL_KEY: string = 'lucid:settings';
@@ -57,6 +57,7 @@ export const defaultSettings: AppSettings = {
   backgroundStyles: defaultBackgroundStyles,
   grainEffect: 'stary',
   isDynamicColor: false,
+  playlistImageMode: 'inherit',
   playbarMode: 'default',
   playbarStyles: defaultPlaybarStyles,
   fontFamily: 'Poppins',

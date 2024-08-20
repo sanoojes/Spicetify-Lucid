@@ -3,10 +3,13 @@ import Dropdown from '@/components/settings/ui/Dropdown';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import SliderSwitch from '@/components/ui/SliderSwitch';
 import { useSettingsStore } from '@/store/settingsStore';
-import type { BackgroundMode, BackgroundStyleSettings } from '@/types/settings';
+import type {
+  BackgroundMode,
+  BackgroundStyleSettings,
+} from '@/types/settingTypes';
 import CustomInput from '@/components/ui/CustomInput';
 
-const BackgroundSection = React.memo(() => {
+const BackgroundSettingsSection = React.memo(() => {
   const {
     backgroundMode,
     backgroundStyles,
@@ -87,4 +90,4 @@ const BackgroundSection = React.memo(() => {
   );
 });
 
-export default BackgroundSection;
+export default BackgroundSettingsSection;

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SettingCardProps } from '@/types/settings';
+import type { SettingCardProps } from '@/types/settingTypes';
 
 const SettingsCard = ({
   title,

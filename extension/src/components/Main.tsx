@@ -1,37 +1,101 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { replaceIcons } from '@/utils/replaceIcons';
-import { updateArtworkUrl } from '@/utils/updateArtworkUrl';
+import { updateArtworkUrl, updatePlaylistArtworkUrl } from '@/utils/artworkUrl';
 import { setTopBarStyles } from '@/utils/windowControls';
-import TransparentControl from '@/components/windowControls/TransparentControl';
-import BackgroundManager from '@/components/background/BackgroundManager';
-import MainSettings from '@/components/settings/MainSettings';
-import PlaylistView from '@/components/playlistView/PlaylistView';
 import { ModalContextProvider } from '@/context/ModalContext';
-import FontManager from './font/FontManager';
-import Grains from './grain/Grains';
+import TransparentWindowControl from '@/components/windowControls/TransparentWindowControl';
+import BackgroundManager from '@/components/background/BackgroundManager';
+import SettingsManager from '@/components/settings/SettingsManager';
+import PlaylistViewManager from '@/components/playlistViews/PlaylistViewManager';
+import FontManager from '@/components/font/FontManager';
+import GrainManeger from '@/components/grain/GrainManeger';
+import { showError } from './error/ErrorBoundary';
 
 const Main = () => {
+  const [isArtistOrPlaylist, setIsArtistOrPlaylist] = useState<
+    'artist' | 'playlist' | 'other'
+  >('other');
+  const underMainViewRef = useRef<HTMLElement | null>(null);
+
   Spicetify.React.useEffect(() => {
-    replaceIcons();
-    setTopBarStyles();
-    handleSongChange();
+    try {
+      setPath();
+      replaceIcons();
+      setTopBarStyles();
+      handleSongChange();
+      setUnderMainView();
+      updatePlaylistArtworkUrl();
+    } catch (error) {
+      showError(error);
+    }
   }, []);
 
   const handleSongChange = () => {
-    updateArtworkUrl();
+    try {
+      updateArtworkUrl();
+    } catch (error) {
+      showError(error);
+    }
   };
 
   // Resize Event
   window.addEventListener('resize', setTopBarStyles);
 
+  const setUnderMainView = () => {
+    if (document.getElementById('lucid-under-main-view')) {
+      return;
+    }
+
+    const newUnderMainView = document.createElement('div');
+    newUnderMainView.id = 'lucid-under-main-view';
+    newUnderMainView.className = 'lucid-under-main-view';
+
+    const mainViewContainer = document.querySelector('.main-view-container');
+    if (mainViewContainer) {
+      mainViewContainer.prepend(newUnderMainView);
+    }
+
+    underMainViewRef.current = newUnderMainView;
+
+    if (underMainViewRef.current) {
+      Spicetify.ReactDOM.createRoot(underMainViewRef.current).render(
+        <PlaylistViewManager />
+      );
+    }
+  };
+
+  const setPath = () => {
+    const pathname = Spicetify.Platform.History.location.pathname;
+
+    if (Spicetify.URI.isPlaylistV1OrV2(pathname)) {
+      setIsArtistOrPlaylist('playlist');
+    } else if (Spicetify.URI.isArtist(pathname)) {
+      setIsArtistOrPlaylist('artist');
+    } else {
+      setIsArtistOrPlaylist('other');
+    }
+  };
+
+  useEffect(() => {
+    document.body.classList.add(isArtistOrPlaylist);
+    return () => {
+      document.body.classList.remove(isArtistOrPlaylist);
+    };
+  }, [isArtistOrPlaylist]);
+
   // Song Event Listener
+  Spicetify.Platform.History.listen(async () => {
+    setPath();
+    setUnderMainView();
+    await updatePlaylistArtworkUrl();
+  });
   Spicetify.Player.addEventListener('songchange', handleSongChange);
 
   return (
     <>
       <div id='state'>
-        <PlaylistView />
-        <Grains />
+        <GrainManeger />
+        <FontManager />
       </div>
       <div
         id='background-container'
@@ -46,7 +110,7 @@ const Main = () => {
         style={{ containerType: 'normal' }}
       >
         <ModalContextProvider>
-          <MainSettings />
+          <SettingsManager />
         </ModalContextProvider>
       </div>
       {window.isWindows && !window.isLightMode ? (
@@ -55,10 +119,9 @@ const Main = () => {
           className='transperent-controls-container'
           style={{ containerType: 'normal' }}
         >
-          <TransparentControl />
+          <TransparentWindowControl />
         </div>
       ) : null}
-      <FontManager />
     </>
   );
 };

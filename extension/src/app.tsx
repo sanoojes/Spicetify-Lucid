@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from '@/components/Main';
-import { showError } from '@/components/error/showError';
+import { showError } from '@/components/error/ErrorBoundary';
 import { checkForCustomControls } from '@/utils/windowControls';
 
 async function main() {

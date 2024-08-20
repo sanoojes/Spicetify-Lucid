@@ -1,5 +1,5 @@
 import React from 'react';
-import type { BackgroundOptions } from '@/types/background';
+import type { BackgroundMode } from '@/types/settingTypes';
 
 type DropdownProps<T> = {
   options: { label: string; value: T }[];
@@ -8,7 +8,7 @@ type DropdownProps<T> = {
   label?: string;
 };
 
-const Dropdown = <T extends string | BackgroundOptions>({
+const Dropdown = <T extends string | BackgroundMode>({
   options,
   selectedValue,
   onSelect,

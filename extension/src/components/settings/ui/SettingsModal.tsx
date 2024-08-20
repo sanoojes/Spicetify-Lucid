@@ -1,12 +1,12 @@
 import React from 'react';
 import Modal from '@/components/modal/Modal';
 import SettingSection from '@/components/settings/ui/SettingSection';
-import BackgroundSection from '@/components/settings/sections/BackgroundSection';
-import type { SettingSectionData } from '@/types/settings';
-import ResetSection from '@/components/settings/sections/ResetSection';
-import FontSection from '@/components/settings/sections/FontSection';
-import PlaylistViewSection from '@/components/settings/sections/PlaylistViewSection';
-import GrainSection from '@/components/settings/sections/GrainSection';
+import BackgroundSection from '@/components/settings/sections/BackgroundSettingsSection';
+import type { SettingSectionData } from '@/types/settingTypes';
+import ResetSettingsSection from '@/components/settings/sections/ResetSettingsSection';
+import FontSection from '@/components/settings/sections/FontSettingsSection';
+import PlaylistViewSettingsSection from '@/components/settings/sections/PlaylistViewSettingsSection';
+import GrainSection from '@/components/settings/sections/GrainSettingsSection';
 
 const SettingsModal = React.memo(() => {
   const SETTING_SECTIONS: SettingSectionData = [
@@ -26,7 +26,7 @@ const SettingsModal = React.memo(() => {
       key: 'playlistView',
       title: 'Playlist View',
       description: 'Configure your playlist view.',
-      content: <PlaylistViewSection />,
+      content: <PlaylistViewSettingsSection />,
     },
     {
       key: 'font',
@@ -38,7 +38,7 @@ const SettingsModal = React.memo(() => {
       key: 'reset',
       title: 'Reset Settings',
       description: 'Reset to default settings.',
-      content: <ResetSection />,
+      content: <ResetSettingsSection />,
     },
   ];
   return (

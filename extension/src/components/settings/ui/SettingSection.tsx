@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SettingSectionProps } from '@/types/settings';
+import type { SettingSectionProps } from '@/types/settingTypes';
 
 const SettingSection = ({
   title,

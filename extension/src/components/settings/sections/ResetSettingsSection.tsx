@@ -2,7 +2,7 @@ import React from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import { useSettingsStore } from '@/store/settingsStore';
 
-const ResetSection = () => {
+const ResetSettingsSection = () => {
   const { resetSettings } = useSettingsStore();
 
   const handleSettingsReset = () => {
@@ -30,4 +30,4 @@ const ResetSection = () => {
   );
 };
 
-export default ResetSection;
+export default ResetSettingsSection;

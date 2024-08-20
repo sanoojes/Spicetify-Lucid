@@ -3,7 +3,7 @@ import SettingsCard from '@/components/settings/ui/SettingsCard';
 import { FontInput } from '@/components/settings/ui/FontInput';
 import { useSettingsStore } from '@/store/settingsStore';
 
-const FontSection = () => {
+const FontSettingsSection = () => {
   const { fontFamily } = useSettingsStore();
 
   return (
@@ -15,4 +15,4 @@ const FontSection = () => {
   );
 };
 
-export default FontSection;
+export default FontSettingsSection;

@@ -2,9 +2,9 @@ import React from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import Dropdown from '@/components/settings/ui/Dropdown';
 import { useSettingsStore } from '@/store/settingsStore';
-import type { GrainEffect } from '@/types/settings';
+import type { GrainEffect } from '@/types/settingTypes';
 
-const GrainSection = () => {
+const GrainSettingsSection = () => {
   const grainsOptions: { label: string; value: GrainEffect }[] = [
     { label: 'Stary', value: 'stary' },
     { label: 'Default', value: 'default' },
@@ -30,4 +30,4 @@ const GrainSection = () => {
   );
 };
 
-export default GrainSection;
+export default GrainSettingsSection;

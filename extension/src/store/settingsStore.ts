@@ -5,7 +5,7 @@ import type {
   BackgroundMode,
   BackgroundStyleSettings,
   SettingsStore,
-} from '@/types/settings';
+} from '@/types/settingTypes';
 import { defaultSettings } from '@/constants/constants';
 
 export const useSettingsStore = create(
@@ -17,6 +17,8 @@ export const useSettingsStore = create(
       setFontFamily: (fontFamily) => set(() => ({ fontFamily })),
       setFontImportUrl: (fontImportUrl) => set(() => ({ fontImportUrl })),
       setGrainEffect: (grainEffect) => set(() => ({ grainEffect })),
+      setPlaylistImageMode: (playlistImageMode) =>
+        set(() => ({ playlistImageMode })),
       setPlaybarMode: (playbarMode) => set(() => ({ playbarMode })),
       setPlaybarStyles: (playbarStyles) => set(() => ({ playbarStyles })),
       setPlaylistViewMode: (playlistViewMode) =>
