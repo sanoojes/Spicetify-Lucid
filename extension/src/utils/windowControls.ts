@@ -26,6 +26,15 @@ export async function setTopBarStyles() {
 
     await setWindowControlsHeight(finalControlHeight);
 
+    const paddingStart = calculateScaledPx(64, inverseZoom, 1);
+    const paddingEnd = calculateScaledPx(baseWidth, inverseZoom, 1);
+
+    window.rootStyle.setProperty(
+      '--top-bar-padding-start',
+      `${paddingStart}px`
+    );
+    window.rootStyle.setProperty('--top-bar-padding-end', `${paddingEnd}px`);
+
     if (window.isWindows && !window.isCustomControls && !window.isLightMode) {
       const controlHeight = baseHeight;
 
