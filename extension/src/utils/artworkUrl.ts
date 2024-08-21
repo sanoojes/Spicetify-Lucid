@@ -23,14 +23,21 @@ export const updateArtworkUrl = async () => {
 export const updatePlaylistArtworkUrl = async () => {
   try {
     const pathname = Spicetify.Platform.History.location.pathname;
+    const isPlaylist = Spicetify.URI.isPlaylistV1OrV2(pathname);
+    const isArtist = Spicetify.URI.isArtist(pathname);
+    const isAlbum = Spicetify.URI.isAlbum(pathname);
+    const isProfile = Spicetify.URI.isProfile(pathname);
 
-    if (
-      Spicetify.URI.isPlaylistV1OrV2(pathname) ||
-      Spicetify.URI.isArtist(pathname)
-    ) {
-      const id = pathname.match(/\/(?:playlist|artist)\/([^/]+)/)[1];
+    if (isPlaylist || isArtist || isAlbum || isProfile) {
+      const id = pathname.match(/\/(?:playlist|artist|album|user)\/([^/]+)/)[1];
       const uri = `spotify:${
-        Spicetify.URI.isPlaylistV1OrV2(pathname) ? 'playlist' : 'artist'
+        isPlaylist
+          ? 'playlist'
+          : isAlbum
+          ? 'album'
+          : isProfile
+          ? 'user'
+          : 'artist'
       }:${id}`;
 
       if (
@@ -38,16 +45,16 @@ export const updatePlaylistArtworkUrl = async () => {
         window.playlistArtUrl.uri !== uri ||
         !window.playlistArtUrl.url
       ) {
-        let imageUrl: string;
+        let imageUrl = '';
 
-        if (Spicetify.URI.isPlaylistV1OrV2(pathname)) {
+        if (isPlaylist) {
           const playlistMetadata =
             await Spicetify.Platform.PlaylistAPI.getMetadata(uri);
 
           imageUrl = playlistMetadata.images.find(
             (image: { url: string }) => image.url
           )?.url;
-        } else {
+        } else if (isArtist) {
           const artistMetadata = await Spicetify.GraphQL.Request(
             {
               name: 'queryArtistOverview',
@@ -62,11 +69,45 @@ export const updatePlaylistArtworkUrl = async () => {
               locale: null,
             }
           );
+
+          if (!artistMetadata.data) return;
+
           imageUrl =
             artistMetadata.data.artistUnion.visuals.headerImage?.sources?.[0]
               ?.url ||
             artistMetadata.data.artistUnion.visuals.avatarImage?.sources?.[0]
               ?.url;
+        } else if (isAlbum) {
+          const albumMetadata = await Spicetify.GraphQL.Request(
+            {
+              name: 'getAlbum',
+              operation: 'query',
+              sha256Hash:
+                '469874edcad37b7a379d4f22f0083a49ea3d6ae097916120d9bbe3e36ca79e9d',
+              value: null,
+            },
+            {
+              uri: uri,
+              locale: null,
+              offset: 0,
+              limit: 50,
+            }
+          );
+
+          if (!albumMetadata.data) return;
+
+          imageUrl =
+            albumMetadata.data.albumUnion.coverArt.sources?.[2]?.url ||
+            albumMetadata.data.albumUnion.coverArt.sources?.[0]?.url;
+        } else if (isProfile) {
+          const req = await Spicetify.Platform.RequestBuilder.build()
+            .withHost('https://spclient.wg.spotify.com/user-profile-view/v3')
+            .withPath(`/profile/${id}`)
+            .send();
+
+          if (req?.body) imageUrl = req.body.image_url;
+        } else {
+          imageUrl = '';
         }
 
         window.playlistArtUrl = { url: imageUrl, uri: uri };

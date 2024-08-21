@@ -13,8 +13,8 @@ import { showError } from './error/ErrorBoundary';
 import PlaybarManager from './playbar/PlaybarManager';
 
 const Main = () => {
-  const [isArtistOrPlaylist, setIsArtistOrPlaylist] = useState<
-    'artist' | 'playlist' | 'other'
+  const [pageCategory, setPageCategory] = useState<
+    'artist' | 'playlist' | 'album' | 'profile' | 'other'
   >('other');
   const underMainViewRef = useRef<HTMLElement | null>(null);
 
@@ -69,20 +69,24 @@ const Main = () => {
     const pathname = Spicetify.Platform.History.location.pathname;
 
     if (Spicetify.URI.isPlaylistV1OrV2(pathname)) {
-      setIsArtistOrPlaylist('playlist');
+      setPageCategory('playlist');
     } else if (Spicetify.URI.isArtist(pathname)) {
-      setIsArtistOrPlaylist('artist');
+      setPageCategory('artist');
+    } else if (Spicetify.URI.isAlbum(pathname)) {
+      setPageCategory('album');
+    } else if (Spicetify.URI.isProfile(pathname)) {
+      setPageCategory('profile');
     } else {
-      setIsArtistOrPlaylist('other');
+      setPageCategory('other');
     }
   };
 
   useEffect(() => {
-    document.body.classList.add(isArtistOrPlaylist);
+    document.body.classList.add(pageCategory);
     return () => {
-      document.body.classList.remove(isArtistOrPlaylist);
+      document.body.classList.remove(pageCategory);
     };
-  }, [isArtistOrPlaylist]);
+  }, [pageCategory]);
 
   const [previousPath, setPreviousPath] = useState<string | null>(null);
 

@@ -475,6 +475,7 @@ input,
 .x-settings-equalizerSection,
 [data-tippy-root],
 .main-contextMenu-menu,
+.main-editImageButton-rounded,
 .main-avatar-image {
   border-radius: var(--card-border-radius);
 }
