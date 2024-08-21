@@ -26,18 +26,23 @@ export const updatePlaylistArtworkUrl = async () => {
     const isPlaylist = Spicetify.URI.isPlaylistV1OrV2(pathname);
     const isArtist = Spicetify.URI.isArtist(pathname);
     const isAlbum = Spicetify.URI.isAlbum(pathname);
+    const isShow = Spicetify.URI.isShow(pathname);
     const isProfile = Spicetify.URI.isProfile(pathname);
 
-    if (isPlaylist || isArtist || isAlbum || isProfile) {
-      const id = pathname.match(/\/(?:playlist|artist|album|user)\/([^/]+)/)[1];
+    if (isPlaylist || isArtist || isAlbum || isProfile || isShow) {
+      const id = pathname.match(
+        /\/(?:playlist|artist|album|user|show)\/([^/]+)/
+      )[1];
       const uri = `spotify:${
         isPlaylist
           ? 'playlist'
+          : isArtist
+          ? 'artist'
           : isAlbum
           ? 'album'
-          : isProfile
-          ? 'user'
-          : 'artist'
+          : isShow
+          ? 'show'
+          : 'user'
       }:${id}`;
 
       if (
@@ -47,7 +52,7 @@ export const updatePlaylistArtworkUrl = async () => {
       ) {
         let imageUrl = '';
 
-        if (isPlaylist) {
+        if (isPlaylist || isShow) {
           const playlistMetadata =
             await Spicetify.Platform.PlaylistAPI.getMetadata(uri);
 

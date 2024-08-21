@@ -13,9 +13,7 @@ import { showError } from './error/ErrorBoundary';
 import PlaybarManager from './playbar/PlaybarManager';
 
 const Main = () => {
-  const [pageCategory, setPageCategory] = useState<
-    'artist' | 'playlist' | 'album' | 'profile' | 'other'
-  >('other');
+  const [pageCategory, setPageCategory] = useState<PageCategoryType>('other');
   const underMainViewRef = useRef<HTMLElement | null>(null);
 
   Spicetify.React.useEffect(() => {
@@ -74,6 +72,8 @@ const Main = () => {
       setPageCategory('artist');
     } else if (Spicetify.URI.isAlbum(pathname)) {
       setPageCategory('album');
+    } else if (Spicetify.URI.isShow(pathname)) {
+      setPageCategory('show');
     } else if (Spicetify.URI.isProfile(pathname)) {
       setPageCategory('profile');
     } else {
