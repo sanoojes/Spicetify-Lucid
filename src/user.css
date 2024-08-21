@@ -522,7 +522,6 @@ input,
 
 /* Main Bg */
 .Root__top-container {
-  gap: 0 var(--panel-gap);
   background-color: transparent;
 }
 
