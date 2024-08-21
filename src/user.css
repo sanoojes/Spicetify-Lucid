@@ -539,7 +539,12 @@ input,
 
 
 .spotify__container--is-desktop.spotify__os--is-windows .main-topBar-container {
-  padding-inline: var(--top-bar-padding-start, 5vw) var(--top-bar-padding-end, 8vw) !important;
+  padding-inline: var(--top-bar-padding-start, 5vw) var(--top-bar-padding-end, 8vw);
+}
+
+.spotify__container--is-desktop.spotify__os--is-windows .global-nav .main-topBar-container,
+.global-nav .main-topBar-container {
+  padding-inline: 0 !important;
 }
 
 .main-topBar-container {
