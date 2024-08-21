@@ -2659,6 +2659,40 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 /* Lucid Styles End */
 
+
+/* Ad Block Section taken from: https://github.com/Daksh777/SpotifyNoPremium */
+
+/* Context menu upgrade button */
+.upgrade-button,
+button[data-menu-item="upgrade-account"],
+.main-contextMenu-menuItem a[href="https://www.spotify.com/premium/?ref=desktop_loggedin_upgrade_menu"],
+button[id="upgradeAccount"] {
+  display: none !important;
+}
+
+/* Ad placeholder */
+.main-leaderboardComponent-container {
+  display: none !important;
+}
+
+/* Upgrade button */
+.main-topBar-UpgradeButton,
+.Button-y0gtbx-0[aria-label="Upgrade to Premium"] {
+  display: none !important;
+}
+
+/* Home page ad section */
+.desktoproutes-homepage-takeover-ad-hptoComponent-parentContainer,
+.utUDWsORU96S7boXm2Aq {
+  display: none !important;
+}
+
+/* Remove sponsor ads in playlists */
+.sponsor-container,
+.WiPggcPDzbwGxoxwLWFf {
+  display: none !important
+}
+
 /* Auto-generated CSS variables for icons */
 :root {
   --add-icon: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTEuODgzIDMuMDA3IDEyIDNhMSAxIDAgMCAxIC45OTMuODgzTDEzIDR2N2g3YTEgMSAwIDAgMSAuOTkzLjg4M0wyMSAxMmExIDEgMCAwIDEtLjg4My45OTNMMjAgMTNoLTd2N2ExIDEgMCAwIDEtLjg4My45OTNMMTIgMjFhMSAxIDAgMCAxLS45OTMtLjg4M0wxMSAyMHYtN0g0YTEgMSAwIDAgMS0uOTkzLS44ODNMMyAxMmExIDEgMCAwIDEgLjg4My0uOTkzTDQgMTFoN1Y0YTEgMSAwIDAgMSAuODgzLS45OTNMMTIgM2wtLjExNy4wMDdaIiBmaWxsPSJjdXJyZW50Q29sb3IiLz48L3N2Zz4=");
