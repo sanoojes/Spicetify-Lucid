@@ -41,7 +41,7 @@ export const defaultPlaybarStyles: PlaybarStyleSettings = {
     borderRadius: 8,
     backdropBlur: 32,
     paddingX: 6,
-    backgroundColor: 'rgba(var(--spice-rgb-main), 0.5)',
+    backgroundColor: 'rgba(var(--spice-rgb-card), 0.5)',
   },
   default: {
     opacity: 1,
@@ -51,7 +51,7 @@ export const defaultPlaybarStyles: PlaybarStyleSettings = {
     borderRadius: 8,
     brightness: 0.8,
     backdropBlur: 32,
-    backgroundColor: 'rgba(var(--spice-rgb-main), 0.5)',
+    backgroundColor: 'rgba(var(--spice-rgb-card), 0.5)',
   },
 };
 

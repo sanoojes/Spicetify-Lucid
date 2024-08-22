@@ -2147,7 +2147,8 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 }
 
 #lucid-main .card .title-wrapper {
-  max-width: 75%;
+  display: flex;
+  column-gap: var(--gap-md);
 }
 
 
@@ -2422,6 +2423,44 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   -webkit-transform: translateX(1.5rem) translateY(-50%);
   -ms-transform: translateX(1.5rem) translateY(-50%);
   transform: translateX(1.5rem) translateY(-50%);
+}
+
+/* Tooltip */
+#lucid-main .card .tooltip {
+  position: relative;
+}
+
+#lucid-main .card .tooltip .tooltip-icon {
+  height: 1rem;
+  width: 1rem;
+  display: inline-block;
+  cursor: help;
+}
+
+#lucid-main .card .tooltip .tooltip-content {
+  display: flex;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  min-width: max-content;
+  z-index: 10;
+  background-color: var(--spice-main);
+  padding: var(--padding-md) var(--padding-lg);
+  border-radius: var(--card-border-radius);
+  border: var(--default-border);
+  visibility: hidden;
+  transform-origin: left bottom;
+  opacity: 0;
+  cursor: help;
+  transform: scale(0);
+  transition: all 0.3s ease-in-out;
+}
+
+#lucid-main .card .tooltip-content:hover,
+#lucid-main .card .tooltip .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Playlist */

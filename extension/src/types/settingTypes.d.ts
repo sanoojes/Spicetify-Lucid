@@ -9,7 +9,7 @@ type SettingSectionProps = {
 
 type SettingCardProps = {
   title?: string | null;
-  tooltip?: string;
+  tooltip?: ReactNode;
   selectedValue?: string | ReactNode;
   children: ReactNode;
 };
