@@ -14,7 +14,7 @@ const SettingsCard = ({
           {title && <h5 className='title'>{title}</h5>}
           {tooltip && (
             <div className='tooltip-container'>
-              <p className='tooltip'>
+              <div className='tooltip'>
                 <span className='tooltip-icon'>
                   <svg
                     role='img'
@@ -32,7 +32,7 @@ const SettingsCard = ({
                   </svg>
                 </span>
                 <span className='tooltip-content'>{tooltip}</span>
-              </p>
+              </div>
             </div>
           )}
         </div>

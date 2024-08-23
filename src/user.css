@@ -883,6 +883,11 @@ div[data-testid="hpto-parent-container"] {
       var(--generic-modal-bg-opacity));
 }
 
+.bhvAemcPYUmxOdBe1mVi {
+  --modal-max-height: 85vh;
+  max-height: var(--modal-max-height);
+}
+
 .main-trackCreditsModal-header {
   padding: 0.75rem 0.75rem 0.75rem 1.25rem;
 }
@@ -2457,7 +2462,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 }
 
 #lucid-main .card .tooltip-content:hover,
-#lucid-main .card .tooltip .tooltip-content {
+#lucid-main .card .tooltip:hover .tooltip-content {
   visibility: visible;
   opacity: 1;
   transform: scale(1);
