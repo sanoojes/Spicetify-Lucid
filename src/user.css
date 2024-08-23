@@ -712,7 +712,7 @@ input,
 }
 
 .main-trackList-trackListHeader {
-  margin: 0 calc((var(--content-spacing) * 2 * -1) - 8px) 0 calc((var(--content-spacing) * 2 * -1) - 8px);
+  margin: 0 calc((var(--content-spacing) + 0.5rem) * -1);
   padding: 0 calc(var(--content-spacing) * 2);
 }
 
