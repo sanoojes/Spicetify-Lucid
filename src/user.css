@@ -1478,12 +1478,6 @@ button[aria-label="Add to Liked Songs"] {
   }
 }
 
-button[aria-label="Add to playlist"] {
-  background-color: var(--spice-accent) !important;
-  -webkit-mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg"));
-  mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg")) !important;
-}
-
 .main-skipBackButton-button {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));

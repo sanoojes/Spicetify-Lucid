@@ -195,29 +195,6 @@ button[aria-label="${addToPlaylistLabel}"],
   visibility: hidden;
 }
 
-button[aria-label="${addToPlaylistLabel}"],
-button[aria-label="${addToLikedLabel}"] {
-  background-color: var(--spice-subtext);
-  -webkit-mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg"));
-  mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg")) !important;
-  mask-size: 100%;
-  mask-position: 50% 50%;
-  min-width: 1.2rem;
-  min-height: 1.2rem;
-
-  svg,
-  span {
-display: none;
-visibility: hidden;
-  }
-}
-
-button[aria-label="${addToPlaylistLabel}"] {
-  background-color: var(--spice-accent);
-  -webkit-mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg"));
-  mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg")) !important;
-}
-
 .player-controls button[aria-label="${skipBackLabel}"] span,
 .player-controls button[aria-label="${skipForwardLabel}"] span {
   opacity: 0;
