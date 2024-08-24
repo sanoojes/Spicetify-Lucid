@@ -2531,6 +2531,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   pointer-events: none;
 }
 
+.global-nav .main-entityHeader-container.main-entityHeader-withBackgroundImage,
 .main-entityHeader-container.main-entityHeader-withBackgroundImage {
   height: calc(100vh - (var(--now-playing-bar-height) * 1.74));
   filter: none;
