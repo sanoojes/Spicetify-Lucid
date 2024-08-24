@@ -7,5 +7,6 @@ interface Window extends Window {
   isLightMode: boolean;
   isGlobalNav: boolean;
   isModalOpen: boolean;
+  pageCategory: PageCategoryType;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }

@@ -122,7 +122,10 @@ button[aria-label="${browseLabel}"] path {
 }
 
 button[aria-label="${browseLabel}"] svg {
-  display: none;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
   -webkit-mask-image: var(--compass-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass-outline.svg"));
   mask-image: var(--compass-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/compass-outline.svg"));
   background-color: var(--spice-subtext) !important;
@@ -238,6 +241,10 @@ button[aria-label="${friendsActivityLabel}"]>path {
 
 .main-actionButtons>div>button[aria-label="${friendsActivityLabel}"] svg,
 .main-actionButtons>button[aria-label="${friendsActivityLabel}"] svg {
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
   background-color: var(--spice-subtext) !important;
   -webkit-mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
   mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));

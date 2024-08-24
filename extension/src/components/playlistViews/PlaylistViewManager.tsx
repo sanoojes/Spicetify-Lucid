@@ -1,11 +1,11 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { useSettingsStore } from '@/store/settingsStore';
 
 const PlaylistView = () => {
   const { playlistViewMode, playlistImageMode } = useSettingsStore();
-  const backgroundRef = useRef<HTMLDivElement | null>(null);
+  const backgroundRef = React.useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const bodyClasses = document.body.classList;
 
     bodyClasses.add(`playlist-art-image-${playlistImageMode}`);
@@ -17,20 +17,24 @@ const PlaylistView = () => {
     };
   }, [playlistViewMode, playlistImageMode]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const scrollNode = document.querySelector(
       '.Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]'
     );
+
     if (scrollNode && backgroundRef.current) {
       const handleScroll = () => {
-        if (backgroundRef.current)
-          backgroundRef.current.style.transform = `translateY(-${scrollNode.scrollTop}px)`;
+        if (backgroundRef.current && !(window.pageCategory === 'other'))
+          backgroundRef.current.style.transform = `translateY(-${Math.min(
+            scrollNode.scrollTop,
+            window.screen.height
+          )}px)`;
       };
 
       scrollNode.addEventListener('scroll', handleScroll);
       return () => scrollNode.removeEventListener('scroll', handleScroll);
     }
-  }, []);
+  }, [window.screen.height]);
 
   return (
     <span

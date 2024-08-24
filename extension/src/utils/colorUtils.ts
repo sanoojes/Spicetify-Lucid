@@ -183,28 +183,31 @@ export async function saveColors(
   styleElement: HTMLElement,
   isDynamicColor: boolean
 ): Promise<ColorPalette | null> {
+  if (!isDynamicColor || !window.currentArtUrl) return null;
+
   try {
-    if (isDynamicColor) {
-      if (!window.currentArtUrl) return null;
+    const colorPalette = await getColors(window.currentArtUrl);
 
-      const colorPalette = await getColors(window.currentArtUrl);
-
-      if (colorPalette instanceof Error) {
-        console.error('[Lucid] Error extracting colors:', colorPalette.message);
-        return null;
-      }
-
-      let styleContent = ':root{';
-      for (const [name, color] of Object.entries(colorPalette)) {
-        styleContent += ` --spice-${name}: ${color.hex} !important;\n --spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;\n`;
-      }
-      styleContent += '}';
-      styleElement.innerHTML = styleContent;
-
-      return colorPalette;
+    if (colorPalette instanceof Error) {
+      console.error('[Lucid] Error extracting colors:', colorPalette.message);
+      return null;
     }
-    styleElement.innerHTML = '';
-    return null;
+
+    const styleContent = `
+      :root {
+        ${Object.entries(colorPalette)
+          .map(
+            ([name, color]) =>
+              `--spice-${name}: ${color.hex} !important;
+               --spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;`
+          )
+          .join('\n')}
+      }
+    `;
+
+    styleElement.textContent = styleContent;
+
+    return colorPalette;
   } catch (error) {
     console.error('Error saving colors to style:', error);
     return null;
@@ -212,5 +215,5 @@ export async function saveColors(
 }
 
 export async function removeColors(styleElement: HTMLElement) {
-  if (styleElement) styleElement.remove();
+  styleElement.textContent = '';
 }

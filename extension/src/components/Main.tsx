@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { replaceIcons } from '@/utils/replaceIcons';
 import { updateArtworkUrl, updatePlaylistArtworkUrl } from '@/utils/artworkUrl';
 import { setTopBarStyles } from '@/utils/windowControls';
@@ -8,13 +8,14 @@ import BackgroundManager from '@/components/background/BackgroundManager';
 import SettingsManager from '@/components/settings/SettingsManager';
 import PlaylistViewManager from '@/components/playlistViews/PlaylistViewManager';
 import FontManager from '@/components/font/FontManager';
-import GrainManeger from '@/components/grain/GrainManeger';
+import GrainManager from '@/components/grain/GrainManager';
 import { showError } from './error/ErrorBoundary';
 import PlaybarManager from './playbar/PlaybarManager';
 
 const Main = () => {
-  const [pageCategory, setPageCategory] = useState<PageCategoryType>('other');
-  const underMainViewRef = useRef<HTMLElement | null>(null);
+  const [pageCategory, setPageCategory] =
+    React.useState<PageCategoryType>('other');
+  const underMainViewRef = React.useRef<HTMLElement | null>(null);
 
   Spicetify.React.useEffect(() => {
     try {
@@ -81,14 +82,15 @@ const Main = () => {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
+    window.pageCategory = pageCategory;
     document.body.classList.add(pageCategory);
     return () => {
       document.body.classList.remove(pageCategory);
     };
   }, [pageCategory]);
 
-  const [previousPath, setPreviousPath] = useState<string | null>(null);
+  const [previousPath, setPreviousPath] = React.useState<string | null>(null);
 
   // Song Event Listener
   Spicetify.Platform.History.listen(() => {
@@ -109,7 +111,7 @@ const Main = () => {
   return (
     <>
       <div id='state'>
-        <GrainManeger />
+        <GrainManager />
         <FontManager />
         <PlaybarManager />
       </div>

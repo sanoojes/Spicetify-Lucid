@@ -4,42 +4,38 @@ import { useSettingsStore } from '@/store/settingsStore';
 
 const DynamicBackground = () => {
   const { isDynamicColor } = useSettingsStore();
+  const styleRef = React.useRef<HTMLStyleElement | null>(null);
 
-  let styleElement = document.getElementById(
-    'lucid_dynamic_colors'
-  ) as HTMLStyleElement | null;
-  if (!styleElement) {
-    styleElement = document.createElement('style');
-    styleElement.id = 'lucid_dynamic_colors';
-    document.head.appendChild(styleElement);
-  }
+  Spicetify.React.useEffect(() => {
+    if (!styleRef.current) {
+      styleRef.current = document.createElement('style');
+      styleRef.current.id = 'lucid_dynamic_colors';
+      document.head.appendChild(styleRef.current);
+    }
 
-  const songChangeHandler = () => {
-    saveColors(styleElement, isDynamicColor)
-      .then(() => console.log('[Lucid] Dynamic colors updated!'))
-      .catch((error) =>
-        console.error('[Lucid] Error updating dynamic colors:', error)
-      );
-  };
+    const updateColors = async () => {
+      try {
+        if (styleRef.current && window.currentArtUrl) {
+          await saveColors(styleRef.current, isDynamicColor);
+          console.log('[Lucid] Dynamic colors updated!');
+        }
+      } catch (error) {
+        console.error('[Lucid] Error updating dynamic colors:', error);
+      }
+    };
+    setTimeout(() => updateColors(), 1000);
 
-  React.useEffect(() => {
     if (isDynamicColor) {
-      Spicetify.Player.addEventListener('songchange', songChangeHandler);
-      saveColors(styleElement, isDynamicColor)
-        .then(() => console.log('[Lucid] Dynamic colors applied initially!'))
-        .catch((error) =>
-          console.error(
-            '[Lucid] Error applying dynamic colors initially:',
-            error
-          )
-        );
+      Spicetify.Player.addEventListener('songchange', updateColors);
+
       return () => {
-        Spicetify.Player.removeEventListener('songchange', songChangeHandler);
-        removeColors(styleElement);
+        Spicetify.Player.removeEventListener('songchange', updateColors);
+        if (styleRef.current) removeColors(styleRef.current);
       };
     }
-    removeColors(styleElement);
-  }, [isDynamicColor, styleElement]);
+
+    removeColors(styleRef.current);
+  }, [isDynamicColor]);
 
   return <div id='dynamic-colors' />;
 };

@@ -8,7 +8,8 @@ async function main() {
     while (
       !Spicetify?.showNotification ||
       !Spicetify?.Player ||
-      !Spicetify?.React
+      !Spicetify?.React ||
+      !Spicetify?.Platform
     ) {
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
@@ -26,11 +27,8 @@ async function main() {
     window.isCustomControls = false;
     window.isLightMode = Spicetify?.Config.color_scheme === 'light' || false;
     window.isWindows =
-      (Spicetify?.Platform?.operatingSystem as string).toLowerCase() ===
-        'windows' ||
-      (Spicetify?.Platform.PlatformData.os_name as string)
-        .toLowerCase()
-        .includes('win');
+      Spicetify.Platform?.operatingSystem === 'Windows' ||
+      Spicetify.Platform.PlatformData.includes('win', 'Win');
 
     window.isGlobalNav = !!(
       document.querySelector('.globalNav') ||
