@@ -1600,37 +1600,6 @@ button[aria-label="Browse"] svg {
   background-color: var(--spice-accent) !important;
 }
 
-
-button[aria-label="Add to playlist"],
-button[aria-label="Add to Liked Songs"] {
-  -webkit-mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg"));
-  mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg")) !important;
-  -webkit-mask-size: 100%;
-  -webkit-mask-position: 50% 50%;
-  mask-size: 100%;
-  mask-position: 50% 50%;
-  min-width: 1.2rem;
-  min-height: 1.2rem;
-
-  svg,
-  span {
-    display: none;
-    visibility: hidden;
-  }
-}
-
-button[aria-label="Add to playlist"] {
-  background-color: var(--spice-accent) !important;
-  -webkit-mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg"));
-  mask-image: var(--heart-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart.svg")) !important;
-}
-
-.main-skipBackButton-button {
-  background-color: var(--spice-text) !important;
-  -webkit-mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
-  mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
-}
-
 .main-yourLibraryX-navLink[aria-label="Marketplace"] svg,
 button[href="/marketplace"] svg {
   -webkit-mask-repeat: no-repeat;
