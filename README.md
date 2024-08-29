@@ -45,15 +45,6 @@ Go to [Screenshots](#screenshots)
             <li><a href="#dark-default">Dark (default)</a></li>
         </ul>
     </li>
-    <li>
-        <a href="#lucid-settings"><strong>Lucid Settings</strong></a>
-        <ul>
-            <li><a href="#background-settings">Background Settings</a></li>
-            <li><a href="#default-background-settings">Default Background Settings</a></li>
-            <li><a href="#animated-background-settings">Animated Background Settings</a></li>
-            <li><a href="#now-playing-bar-settings">Now Playing Bar Settings</a></li>
-        </ul>
-    </li>
     <li><a href="#license"><strong>License</strong></a></li>
   </ul>
 </details>
