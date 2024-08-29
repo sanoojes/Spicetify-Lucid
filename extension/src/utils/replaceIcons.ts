@@ -18,6 +18,9 @@ export const replaceIcons = () => {
   const addToLikedLabel = Locale.get(
     'web-player.aligned-curation.tooltips.add-to-liked-songs'
   );
+  const addToLikedLabel1 = Locale.get('addToPlaylist-icon.label');
+  const addToLikedLabel2 = Locale.get('contextmenu.add-to-playlist');
+
   const addToPlaylistLabel = Locale.get(
     'web-player.aligned-curation.tooltips.add-to-playlist'
   );
@@ -159,8 +162,18 @@ svg {
   aspect-ratio: 1/1;
 }
 
+button[aria-label="${addToLikedLabel}"],
+button[aria-label="${addToLikedLabel1}"],
+button[aria-label="${addToLikedLabel2}"],
+button[aria-label="${addToPlaylistLabel}"]{
+  -webkit-mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg"));
+  mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg")) !important;
+}
+
 .main-playPauseButton-button,
 button[aria-label="${addToLikedLabel}"],
+button[aria-label="${addToLikedLabel1}"],
+button[aria-label="${addToLikedLabel2}"],
 button[aria-label="${addToPlaylistLabel}"],
 .player-controls button[aria-label="${skipBackLabel}"],
 .player-controls button[aria-label="${skipForwardLabel}"]

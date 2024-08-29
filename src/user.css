@@ -743,11 +743,11 @@ input,
 }
 
 .main-nowPlayingBar-container {
-  padding: var(--padding-y) var(--padding-x);
-  background-color: var(--background-color, rgba(var(--spice-rgb-playbar), 0.5));
+  padding: var(--padding-y, 0.25rem) var(--padding-x, 0.5rem);
+  background-color: var(--background-color, rgba(var(--spice-rgb-playbar, var(--spice-rgb-card)), 0.5));
   border: var(--default-border);
-  border-radius: var(--border-radius);
-  backdrop-filter: opacity(var(--backdrop-opacity, 1)) blur(var(--backdrop-blur)) saturate(var(--saturation)) brightness(var(--brightness)) contrast(var(--contrast));
+  border-radius: var(--border-radius, var(--card-border-radius, 0.25rem));
+  backdrop-filter: opacity(var(--backdrop-opacity, 1)) blur(var(--backdrop-blur, 1rem)) saturate(var(--saturation, 1.1)) brightness(var(--brightness, 1)) contrast(var(--contrast, 1.2));
 }
 
 .playbar-compact .main-nowPlayingBar-center {
