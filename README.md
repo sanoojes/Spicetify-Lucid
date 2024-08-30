@@ -45,15 +45,6 @@ Go to [Screenshots](#screenshots)
             <li><a href="#dark-default">Dark (default)</a></li>
         </ul>
     </li>
-    <li>
-        <a href="#lucid-settings"><strong>Lucid Settings</strong></a>
-        <ul>
-            <li><a href="#background-settings">Background Settings</a></li>
-            <li><a href="#default-background-settings">Default Background Settings</a></li>
-            <li><a href="#animated-background-settings">Animated Background Settings</a></li>
-            <li><a href="#now-playing-bar-settings">Now Playing Bar Settings</a></li>
-        </ul>
-    </li>
     <li><a href="#license"><strong>License</strong></a></li>
   </ul>
 </details>
@@ -183,59 +174,6 @@ Available schemes: `dark`, `light`, `comfy`, `macos`, `coffee`, `violet`, `dracu
 ![Dark 2 Preview 3](./assets/images/lucid-dark-artist.png)
 ![Dark 2 Preview 3](./assets/images/lucid-dark-playlist.png)
 ![Dark 2 Preview 3](./assets/images/lucid-dark-playlist-1.png)
-
-## Lucid Settings
-
-This section contains available settings for customizing the Lucid theme. Settings are grouped into sections for easier navigation.
-
-### Background Settings
-
-These settings control the overall appearance of the visualizer's background.
-
-| Setting           | Options                                                     | Default            | Description                                                                                                                                                                                                                                               |
-| ----------------- | ----------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Background        | - Default Background- Animated Background- Solid Background | Default Background | Selects the type of background to display: - **Default Background:** Displays the default background image. - **Animated Background:** Displays an animated background that responds to audio. - **Solid Background:** Displays a solid color background. |
-| Background Grains | - Stary Grains (default)- Normal Grains- No Grains          | Stary Grains       | Chooses the type of grain effect applied to the background: - **Stary Grains:** Displays a subtle, sparkling grain effect. - **Normal Grains:** Displays a standard film grain effect. - **No Grains:** Disables the grain effect.                        |
-
-### Default Background Settings
-
-These settings control the appearance of the default background when no audio is playing and the "Default Background" option is selected in **Background Settings**.
-
-| Setting    | Min | Max | Default | Description                                                                                                                                                              |
-| ---------- | --- | --- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Blur       | 0   | 100 | 24      | Amount of blur applied to the background. Higher values mean more blur.                                                                                                  |
-| Brightness | 0   | 200 | 65      | Brightness level of the background. 100 is the default brightness, values below make it darker and above make it brighter.                                               |
-| Contrast   | 0   | 200 | 80      | Contrast level of the background. 100 is the default contrast, values below make it less contrasted and above make it more contrasted.                                   |
-| Saturation | 0   | 200 | 90      | Saturation level of the background. 100 is the default saturation, values below make it less saturated (more greyscale) and above make it more saturated (more vibrant). |
-
-### Animated Background Settings
-
-These settings control the appearance and behavior of the animated background when audio is playing and the "Animated Background" option is selected in **Background Settings**.
-
-| Setting        | Min | Max | Default | Description                                                                                                                                                                       |
-| -------------- | --- | --- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Blur           | 32  | 256 | 64      | Amount of blur applied to the animated background. Higher values mean more blur.                                                                                                  |
-| Saturation     | 0   | 500 | 150     | Saturation level of the animated background. 100 is the default saturation, values below make it less saturated (more greyscale) and above make it more saturated (more vibrant). |
-| Contrast       | 0   | 200 | 115     | Contrast level of the animated background. 100 is the default contrast, values below make it less contrasted and above make it more contrasted.                                   |
-| Brightness     | 0   | 200 | 65      | Brightness level of the animated background. 100 is the default brightness, values below make it darker and above make it brighter.                                               |
-| Animation Time | 0   | 120 | 45      | Duration in seconds for one animation cycle (0 = no animation, recommended: 30-60).                                                                                               |
-
-### Now Playing Bar Settings
-
-These settings control the appearance of the "Now Playing" bar.
-
-| Setting                  | Min | Max | Default | Description                                                                                                                                                       |
-| ------------------------ | --- | --- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Opacity                  | 0   | 100 | 100     | Overall opacity of the bar. 0 is completely transparent, 100 is fully opaque.                                                                                     |
-| Background Color Opacity | 0   | 100 | 50      | Opacity specifically for the bar's background color. 0 is completely transparent, 100 is fully opaque.                                                            |
-| Height                   | 0   | 500 | 80      | Height of the bar.                                                                                                                                                |
-| Padding in X axis        | 0   | 50  | 4       | Horizontal padding within the bar. Higher values mean more space between the content and the edges of the bar.                                                    |
-| Margin Bottom            | 0   | 50  | 8       | Spacing between the bottom of the bar and content below it. Higher values mean more space.                                                                        |
-| Border Radius            | 0   | 100 | 8       | Rounding of the bar's corners. Higher values mean more rounded corners.                                                                                           |
-| Blur                     | 0   | 100 | 32      | Blur applied to the bar. Higher values mean more blur.                                                                                                            |
-| Saturation               | 0   | 200 | 100     | Saturation level of the bar. 100 is the default saturation, values below make it less saturated (more greyscale) and above make it more saturated (more vibrant). |
-| Contrast                 | 0   | 200 | 100     | Contrast level of the bar. 100 is the default contrast, values below make it less contrasted and above make it more contrasted.                                   |
-| Brightness               | 0   | 200 | 100     | Brightness level of the bar. 100 is the default brightness, values below make it darker and above make it brighter.                                               |
 
 ## License
 

@@ -17,30 +17,28 @@ function luminance(r: number, g: number, b: number): number {
 }
 
 function darkenColor(color: Color, factor: number): Color {
+  const r = Math.max(0, Math.round(color.r * factor));
+  const g = Math.max(0, Math.round(color.g * factor));
+  const b = Math.max(0, Math.round(color.b * factor));
   return {
     ...color,
-    r: Math.max(0, Math.round(color.r * factor)),
-    g: Math.max(0, Math.round(color.g * factor)),
-    b: Math.max(0, Math.round(color.b * factor)),
-    hex: rgbToHex(
-      Math.max(0, Math.round(color.r * factor)),
-      Math.max(0, Math.round(color.g * factor)),
-      Math.max(0, Math.round(color.b * factor))
-    ),
+    r,
+    g,
+    b,
+    hex: rgbToHex(r, g, b),
   };
 }
 
 function lightenColor(color: Color, factor: number): Color {
+  const r = Math.min(255, Math.round(color.r + (255 - color.r) * factor));
+  const g = Math.min(255, Math.round(color.g + (255 - color.g) * factor));
+  const b = Math.min(255, Math.round(color.b + (255 - color.b) * factor));
   return {
     ...color,
-    r: Math.min(255, Math.round(color.r + (255 - color.r) * factor)),
-    g: Math.min(255, Math.round(color.g + (255 - color.g) * factor)),
-    b: Math.min(255, Math.round(color.b + (255 - color.b) * factor)),
-    hex: rgbToHex(
-      Math.min(255, Math.round(color.r + (255 - color.r) * factor)),
-      Math.min(255, Math.round(color.g + (255 - color.g) * factor)),
-      Math.min(255, Math.round(color.b + (255 - color.b) * factor))
-    ),
+    r,
+    g,
+    b,
+    hex: rgbToHex(r, g, b),
   };
 }
 
@@ -156,10 +154,7 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
     ];
     for (let color of colorsToAdjust) {
       if (luminance(color.r, color.g, color.b) > 0.3) {
-        color.r = Math.max(0, Math.round(color.r * 0.7));
-        color.g = Math.max(0, Math.round(color.g * 0.7));
-        color.b = Math.max(0, Math.round(color.b * 0.7));
-        color.hex = rgbToHex(color.r, color.g, color.b);
+        color = darkenColor(color, 0.7);
       }
 
       color = adjustColor(color, 0.5, 2);

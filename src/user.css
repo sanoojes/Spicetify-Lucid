@@ -135,8 +135,17 @@
   --now-playing-bar-height: 3.75rem;
 }
 
-* {
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+/* Transition for background color change */
+#lucid-main,
+.Root__right-sidebar,
+#Desktop_PanelContainer_Id,
+.NowPlayingView,
+.main-yourLibraryX-entryPoints,
+.main-nowPlayingBar-container,
+.yHlSWaHkqZHm5mcY8ZFh,
+.pT8jWX5PbLB2Z91Ngl7n,
+.gKtc3TdowDTXBaVESi1D {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Spicetify Overrides */
