@@ -1145,6 +1145,7 @@ div[data-testid="hpto-parent-container"] {
   transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     --progress-bar-transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
+  --bg-color: rgba(var(--spice-rgb-text), 0.1);
   --color: rgba(var(--spice-rgb-text), 0.25);
   --fg-color: rgba(var(--spice-rgb-accent), 0.75);
   --is-active-fg-color: rgba(var(--spice-rgb-accent), 1);
@@ -1337,8 +1338,6 @@ svg:has(path[d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM1 12C1 5.925 5.925 1 12 1s1
 .main-repeatButton-button[aria-label="Disable repeat"],
 .main-repeatButton-button[aria-label="Enable repeat one"],
 .main-playPauseButton-button,
-button[aria-label="Add to Liked Songs"],
-button[aria-label="Add to playlist"],
 .main-skipBackButton-button,
 .main-skipForwardButton-button,
 .main-actionButtons>div>button[aria-label="Friend Activity"] svg,
@@ -1467,25 +1466,6 @@ button[aria-label="Browse"] svg {
 .main-repeatButton-button[aria-checked="true"],
 .main-repeatButton-button[aria-checked="mixed"] {
   background-color: var(--spice-accent) !important;
-}
-
-
-button[aria-label="Add to playlist"],
-button[aria-label="Add to Liked Songs"] {
-  -webkit-mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg"));
-  mask-image: var(--heart-outline-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/heart-outline.svg")) !important;
-  -webkit-mask-size: 100%;
-  -webkit-mask-position: 50% 50%;
-  mask-size: 100%;
-  mask-position: 50% 50%;
-  min-width: 1.2rem;
-  min-height: 1.2rem;
-
-  svg,
-  span {
-    display: none;
-    visibility: hidden;
-  }
 }
 
 .main-skipBackButton-button {
