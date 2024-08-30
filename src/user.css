@@ -548,6 +548,7 @@ input,
 }
 
 
+.spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav,
 .spotify__container--is-desktop.spotify__os--is-windows .main-topBar-container {
   padding-inline: var(--top-bar-padding-start, 5vw) var(--top-bar-padding-end, 8vw);
 }
