@@ -1,3 +1,3 @@
-# Bloom extention i.e. theme.js
+# Spicetify Lucid Extension
 
-TODO: add docs for bloom extention
+TODO: add docs

@@ -12,7 +12,8 @@ export interface ColorPalette {
   accent: Color;
   highlight: Color;
   button: Color;
-  "button-active": Color;
+  player: Color;
+  'button-active': Color;
   text: Color;
   subtext: Color;
   primary: Color;

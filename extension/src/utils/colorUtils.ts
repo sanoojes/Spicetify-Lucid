@@ -1,9 +1,9 @@
-import { createCanvas, loadImage } from "canvas";
-import type { Color, ColorPalette } from "../types/colors";
+import { createCanvas, loadImage } from 'canvas';
+import type { Color, ColorPalette } from '@/types/colors';
 
 // Helper functions
 function rgbToHex(r: number, g: number, b: number): string {
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
 }
 
 function luminance(r: number, g: number, b: number): number {
@@ -17,30 +17,28 @@ function luminance(r: number, g: number, b: number): number {
 }
 
 function darkenColor(color: Color, factor: number): Color {
+  const r = Math.max(0, Math.round(color.r * factor));
+  const g = Math.max(0, Math.round(color.g * factor));
+  const b = Math.max(0, Math.round(color.b * factor));
   return {
     ...color,
-    r: Math.max(0, Math.round(color.r * factor)),
-    g: Math.max(0, Math.round(color.g * factor)),
-    b: Math.max(0, Math.round(color.b * factor)),
-    hex: rgbToHex(
-      Math.max(0, Math.round(color.r * factor)),
-      Math.max(0, Math.round(color.g * factor)),
-      Math.max(0, Math.round(color.b * factor))
-    ),
+    r,
+    g,
+    b,
+    hex: rgbToHex(r, g, b),
   };
 }
 
 function lightenColor(color: Color, factor: number): Color {
+  const r = Math.min(255, Math.round(color.r + (255 - color.r) * factor));
+  const g = Math.min(255, Math.round(color.g + (255 - color.g) * factor));
+  const b = Math.min(255, Math.round(color.b + (255 - color.b) * factor));
   return {
     ...color,
-    r: Math.min(255, Math.round(color.r + (255 - color.r) * factor)),
-    g: Math.min(255, Math.round(color.g + (255 - color.g) * factor)),
-    b: Math.min(255, Math.round(color.b + (255 - color.b) * factor)),
-    hex: rgbToHex(
-      Math.min(255, Math.round(color.r + (255 - color.r) * factor)),
-      Math.min(255, Math.round(color.g + (255 - color.g) * factor)),
-      Math.min(255, Math.round(color.b + (255 - color.b) * factor))
-    ),
+    r,
+    g,
+    b,
+    hex: rgbToHex(r, g, b),
   };
 }
 
@@ -81,7 +79,7 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
     const reducedHeight = Math.max(image.height / reductionFactor, 10);
 
     const canvas = createCanvas(reducedWidth, reducedHeight);
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     ctx.drawImage(image, 0, 0, reducedWidth, reducedHeight);
 
     const imageData = ctx.getImageData(0, 0, reducedWidth, reducedHeight);
@@ -109,10 +107,9 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
     const baseColor = sortedColors[0];
     let secondaryColor = sortedColors[1];
-    let tertiaryColor = sortedColors[2]; // Add tertiary color
+    let tertiaryColor = sortedColors[2];
     let colorIndex = 2;
 
-    // Ensure sufficient contrast between base color and secondary color
     while (!secondaryColor || contrastRatio(baseColor, secondaryColor) < 2.5) {
       if (colorIndex >= sortedColors.length) {
         secondaryColor = lightenColor(baseColor, 0.2);
@@ -122,7 +119,6 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
       colorIndex++;
     }
 
-    // Ensure sufficient contrast between base color, secondary color, and tertiary color
     while (
       !tertiaryColor ||
       contrastRatio(baseColor, tertiaryColor) < 2.5 ||
@@ -136,23 +132,22 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
       colorIndex++;
     }
 
-    // Create the color palette with adjustments
     const colorPalette: ColorPalette = {
-      main: darkenColor(baseColor, 0.8),
+      main: darkenColor(baseColor, 0.9),
       sidebar: darkenColor(secondaryColor, 0.9),
       card: darkenColor(tertiaryColor, 0.9),
-      accent: lightenColor(tertiaryColor, 0.4),
+      player: darkenColor(secondaryColor, 0.9),
+      accent: lightenColor(baseColor, 0.4),
       highlight: lightenColor(secondaryColor, 0.2),
       button: lightenColor(tertiaryColor, 0.4),
-      "button-active": lightenColor(tertiaryColor, 0.4),
-      text: lightenColor(baseColor, 0.8),
+      'button-active': lightenColor(tertiaryColor, 0.4),
+      text: lightenColor(baseColor, 1),
       subtext: lightenColor(baseColor, 0.9),
       primary: baseColor,
       secondary: secondaryColor,
       tertiary: tertiaryColor,
     };
 
-    // Adjust darkness of main, sidebar, card, and player colors
     const colorsToAdjust = [
       colorPalette.main,
       colorPalette.sidebar,
@@ -160,16 +155,12 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
     ];
     for (let color of colorsToAdjust) {
       if (luminance(color.r, color.g, color.b) > 0.3) {
-        color.r = Math.max(0, Math.round(color.r * 0.7));
-        color.g = Math.max(0, Math.round(color.g * 0.7));
-        color.b = Math.max(0, Math.round(color.b * 0.7));
-        color.hex = rgbToHex(color.r, color.g, color.b);
+        color = darkenColor(color, 0.7);
       }
 
       color = adjustColor(color, 0.5, 2);
     }
 
-    // Adjust accent and tertiary colors for better contrast
     if (colorPalette.accent && colorPalette.main) {
       const contrast = contrastRatio(colorPalette.accent, colorPalette.main);
       if (contrast < 4.5) {
@@ -179,35 +170,46 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
     return colorPalette;
   } catch (error) {
+    console.error('Error extracting colors:', error);
     return error as Error;
   }
 }
 
-// Function to generate CSS rules for the color palette
-function createStyleRule(name: string, color: Color): string {
-  return `--spice-${name}: ${color.hex} !important;
-          --spice-rgb-${name}: ${color.r},${color.g},${color.b} !important;`;
+export async function saveColors(
+  styleElement: HTMLElement,
+  isDynamicColor: boolean
+): Promise<ColorPalette | null> {
+  if (!isDynamicColor || !window.currentArtUrl) return null;
+
+  try {
+    const colorPalette = await getColors(window.currentArtUrl);
+
+    if (colorPalette instanceof Error) {
+      console.error('[Lucid] Error extracting colors:', colorPalette.message);
+      return null;
+    }
+
+    const styleContent = `
+      :root {
+        ${Object.entries(colorPalette)
+          .map(
+            ([name, color]) =>
+              `--spice-${name}: ${color.hex} !important;
+               --spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;`
+          )
+          .join('\n')}
+      }
+    `;
+
+    styleElement.textContent = styleContent;
+
+    return colorPalette;
+  } catch (error) {
+    console.error('Error saving colors to style:', error);
+    return null;
+  }
 }
 
-// Function to save the extracted colors to a CSS style element
-export async function saveColorsToStyle(
-  styleElement: HTMLStyleElement,
-  imageUrl: string
-): Promise<void> {
-  try {
-    const colorPalette = await getColors(imageUrl);
-    if (colorPalette instanceof Error) {
-      console.error("Error extracting colors:", colorPalette.message);
-      return;
-    }
-
-    let styleContent = ":root {";
-    for (const [name, color] of Object.entries(colorPalette)) {
-      styleContent += `\n${createStyleRule(name, color)}`;
-    }
-    styleContent += "\n}";
-    styleElement.innerHTML = styleContent;
-  } catch (error) {
-    console.error("Error saving colors to style:", error);
-  }
+export async function removeColors(styleElement: HTMLElement) {
+  styleElement.textContent = '';
 }
