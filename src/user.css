@@ -754,7 +754,7 @@ input,
 
 .main-nowPlayingBar-container {
   padding: var(--padding-y, 0.25rem) var(--padding-x, 0.5rem);
-  background-color: var(--background-color, rgba(var(--spice-rgb-playbar, var(--spice-rgb-card)), 0.5));
+  background-color: var(--background-color, rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5));
   border: var(--default-border);
   border-radius: var(--border-radius, var(--card-border-radius, 0.25rem));
   backdrop-filter: opacity(var(--backdrop-opacity, 1)) blur(var(--backdrop-blur, 1rem)) saturate(var(--saturation, 1.1)) brightness(var(--brightness, 1)) contrast(var(--contrast, 1.2));
