@@ -89,7 +89,11 @@ const SettingsModal = React.memo(() => {
     <Modal title='Lucid Settings'>
       <div className='settings-navigation-container'>
         <div className='navigation'>
-          <button type='button' onClick={() => handleSectionClick('all')}>
+          <button
+            type='button'
+            onClick={() => handleSectionClick('all')}
+            className={activeSection === 'all' ? 'active' : ''}
+          >
             All
           </button>
           {SETTING_SECTIONS.map((section) => (
@@ -97,6 +101,7 @@ const SettingsModal = React.memo(() => {
               type='button'
               key={section.key}
               onClick={() => handleSectionClick(section.key)}
+              className={activeSection === section.key ? 'active' : ''}
             >
               {section.title}
             </button>

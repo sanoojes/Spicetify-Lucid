@@ -136,7 +136,7 @@
 }
 
 /* Transition for background color change */
-#lucid-main,
+#lucid-main *,
 .Root__right-sidebar,
 #Desktop_PanelContainer_Id,
 .NowPlayingView,
@@ -144,7 +144,9 @@
 .main-nowPlayingBar-container,
 .yHlSWaHkqZHm5mcY8ZFh,
 .pT8jWX5PbLB2Z91Ngl7n,
-.gKtc3TdowDTXBaVESi1D {
+.gKtc3TdowDTXBaVESi1D,
+.GenericModal__overlay * {
+  will-change: background-color, color;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -2325,11 +2327,16 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   border: var(--default-border);
   border-radius: var(--button-border-radius);
   padding: var(--padding-sm) var(--padding-md);
+  color: var(--spice-text);
+}
+
+#lucid-main .navigation button.active {
+  background-color: rgba(var(--spice-rgb-accent), 0.5);
 }
 
 #lucid-main .navigation button:hover {
+  background-color: rgba(var(--spice-rgb-accent), 0.25);
   cursor: pointer;
-  background-color: var(--spice-card);
 }
 
 #lucid-main .navigation {
