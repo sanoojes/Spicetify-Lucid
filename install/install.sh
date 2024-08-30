@@ -21,7 +21,7 @@ echo "Done"
 
 # Apply theme
 echo "Applying theme"
-spicetify config current_theme Lucid color_scheme base
+spicetify config current_theme Lucid color_scheme dark
 spicetify config inject_css 1 replace_colors 1 overwrite_assets 1 inject_theme_js 1
 spicetify apply
 

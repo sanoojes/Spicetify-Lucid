@@ -1,16 +1,36 @@
-{
-  "name": "Lucid",
-  "description": "Spicetify theme inspired by Bloom and Microsoft Fluent Design",
-  "preview": "assets/images/base.png",
-  "readme": "README-Marketplace.md",
-  "usercss": "https://sanooj.is-a.dev/Spicetify-Lucid/src/user.css",
-  "schemes": "https://sanooj.is-a.dev/Spicetify-Lucid/src/color.ini",
-  "include": ["https://sanooj.is-a.dev/Spicetify-Lucid/src/theme.js"],
-  "authors": [
-    {
-      "name": "Sanoojes",
-      "url": "https://github.com/sanoojes"
-    }
-  ],
-  "tags": ["customizable", "dynamic", "dynamic", "fluent", "bloom"]
-}
+[
+  {
+    "name": "Lucid",
+    "description": "Spicetify theme inspired by Bloom and Microsoft Fluent Design",
+    "preview": "assets/images/base.png",
+    "readme": "README-Marketplace.md",
+    "usercss": "https://sanooj.is-a.dev/Spicetify-Lucid/src/user.css",
+    "schemes": "https://sanooj.is-a.dev/Spicetify-Lucid/src/color.ini",
+    "include": ["https://sanooj.is-a.dev/Spicetify-Lucid/src/theme.js"],
+    "authors": [
+      {
+        "name": "Sanoojes",
+        "url": "https://github.com/sanoojes"
+      }
+    ],
+    "tags": ["customizable", "dynamic", "dynamic", "fluent", "bloom"]
+  },
+  {
+    "name": "Lucid (Beta)",
+    "description": "Not recommended, only for development purposes.",
+    "preview": "assets/images/base.png",
+    "readme": "README-Marketplace.md",
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/color.ini",
+    "include": [
+      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/theme.js"
+    ],
+    "authors": [
+      {
+        "name": "Sanoojes",
+        "url": "https://github.com/sanoojes"
+      }
+    ],
+    "tags": ["beta", "unstable"]
+  }
+]

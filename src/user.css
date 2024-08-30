@@ -1476,6 +1476,7 @@ button[aria-label="Browse"] svg {
   mask-image: var(--prev-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/prev.svg"));
 }
 
+
 .main-yourLibraryX-navLink[aria-label="Marketplace"] svg,
 button[href="/marketplace"] svg {
   -webkit-mask-repeat: no-repeat;
