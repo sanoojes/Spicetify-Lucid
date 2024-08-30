@@ -133,14 +133,15 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
     }
 
     const colorPalette: ColorPalette = {
-      main: darkenColor(baseColor, 0.8),
+      main: darkenColor(baseColor, 0.9),
       sidebar: darkenColor(secondaryColor, 0.9),
       card: darkenColor(tertiaryColor, 0.9),
-      accent: lightenColor(tertiaryColor, 0.4),
+      player: darkenColor(secondaryColor, 0.9),
+      accent: lightenColor(baseColor, 0.4),
       highlight: lightenColor(secondaryColor, 0.2),
       button: lightenColor(tertiaryColor, 0.4),
       'button-active': lightenColor(tertiaryColor, 0.4),
-      text: lightenColor(baseColor, 0.8),
+      text: lightenColor(baseColor, 1),
       subtext: lightenColor(baseColor, 0.9),
       primary: baseColor,
       secondary: secondaryColor,
