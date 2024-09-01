@@ -308,6 +308,9 @@ textarea,
 .ChipInnerComponent-md-selected,
 .ChipInnerComponent-lg,
 .ChipInnerComponent-lg-selected,
+.ChipInnerComponent-sm-isUsingKeyboard,
+.ChipInnerComponent-md-isUsingKeyboard,
+.ChipInnerComponent-lg-isUsingKeyboard,
 .Button-small-buttonPrimary-useBrowserDefaultFocusStyle,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle:hover {
   text-wrap: nowrap;
@@ -684,6 +687,7 @@ input,
 
 .search-searchCategory-carouselButton {
   background-color: var(--main-color);
+  border-radius: var(--button-border-radius);
 }
 
 .main-topBar-overlay {
