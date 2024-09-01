@@ -1,12 +1,12 @@
 import React, { type FC } from 'react';
-import { useState, useRef } from 'react';
+import { logToConsole } from '@/utils/logUtils';
 import styles from './error.module.css';
 
 const githubRepoUrl = 'https://github.com/sanoojes/Spicetify-Lucid/issues';
 
 const ErrorNotification: FC<{ error: unknown }> = ({ error }) => {
-  const [showDetails, setShowDetails] = useState(false);
-  const errorDetailsRef = useRef<HTMLPreElement>(null);
+  const [showDetails, setShowDetails] = React.useState(false);
+  const errorDetailsRef = React.useRef<HTMLPreElement>(null);
 
   let formattedError = '';
   if (error instanceof Error) formattedError = error.message;
@@ -58,7 +58,7 @@ const ErrorNotification: FC<{ error: unknown }> = ({ error }) => {
   );
 };
 
-export const showError = (error: unknown) => {
-  console.error(`[Lucid] Error: ${error}`);
-  Spicetify.showNotification(<ErrorNotification error={error} />, true);
+export const showError = (e: unknown) => {
+  logToConsole(`Error: ${e}`, { level: 'error' });
+  Spicetify.showNotification(<ErrorNotification error={e} />, true);
 };

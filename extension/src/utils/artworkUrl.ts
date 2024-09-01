@@ -1,3 +1,5 @@
+import { logToConsole } from './logUtils';
+
 export const updateArtworkUrl = async () => {
   while (!Spicetify?.Player?.data) {
     await new Promise((resolve) => setTimeout(resolve, 100));
@@ -15,9 +17,9 @@ export const updateArtworkUrl = async () => {
       '--now-playing-art-image',
       `url(${window.currentArtUrl})`
     );
-    console.log('[Lucid] Updated artwork URL:', window.currentArtUrl);
+    logToConsole(`Updated artwork URL: ${window.currentArtUrl}`);
   } catch (error) {
-    console.error('[Lucid] Error updating artwork URL:', error);
+    logToConsole(`Error updating artwork URL: ${error}`, { level: 'error' });
   }
 };
 
@@ -125,12 +127,12 @@ export const updatePlaylistArtworkUrl = async () => {
           `url(${window.playlistArtUrl.url})`
         );
       } else {
-        console.warn(
-          `[Lucid] No playlist/artist artwork URL found for URI: ${uri}`
-        );
+        logToConsole(`No playlist/artist artwork URL found for URI: ${uri}`, {
+          level: 'warn',
+        });
       }
     }
   } catch (error) {
-    console.error('[Lucid] Error fetching playlist/artist artwork:', error);
+    logToConsole(`Error fetching playlist/artist artwork: ${error}`);
   }
 };

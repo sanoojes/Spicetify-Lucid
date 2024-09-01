@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSettingsStore } from '@/store/settingsStore';
 import type { CustomCSSProperties } from '@/types/settingTypes';
+import { logToConsole } from '@/utils/logUtils';
 
 const PlaybarManager = () => {
   const { playbarMode, playbarStyles } = useSettingsStore();
@@ -43,7 +44,7 @@ const PlaybarManager = () => {
         .map(([key, value]) => `${key}: ${value};`)
         .join(' ');
     } else {
-      console.error('[Lucid] Playbar element not found!');
+      logToConsole('Playbar element not found!', { level: 'error' });
     }
   }, [playbarMode, playbarStyles]);
 

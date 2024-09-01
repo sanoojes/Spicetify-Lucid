@@ -2,6 +2,7 @@ import React from 'react';
 import Main from '@/components/Main';
 import { showError } from '@/components/error/ErrorBoundary';
 import { checkForCustomControls } from '@/utils/windowControls';
+import { logToConsole } from './utils/logUtils';
 
 async function main() {
   try {
@@ -37,6 +38,11 @@ async function main() {
 
     // check for custom controls
     checkForCustomControls();
+
+    logToConsole('Lucid ignited! 🚀', {
+      styles:
+        'font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;',
+    });
   } catch (error) {
     if (error) showError(error);
   }

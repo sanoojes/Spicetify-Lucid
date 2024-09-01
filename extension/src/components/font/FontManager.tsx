@@ -1,4 +1,5 @@
 import { useSettingsStore } from '@/store/settingsStore';
+import { logToConsole } from '@/utils/logUtils';
 import React from 'react';
 
 const FontManager = () => {
@@ -55,7 +56,7 @@ const FontManager = () => {
 
   React.useEffect(() => {
     if (error) {
-      console.error(`[Lucid] Error Loading Font: ${error}`);
+      logToConsole(`Error Loading Font: ${error}`, { level: 'error' });
     }
   }, [error]);
 

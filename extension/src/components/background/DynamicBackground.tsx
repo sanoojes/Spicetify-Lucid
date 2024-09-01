@@ -1,6 +1,7 @@
 import React from 'react';
 import { saveColors, removeColors } from '@/utils/colorUtils';
 import { useSettingsStore } from '@/store/settingsStore';
+import { logToConsole } from '@/utils/logUtils';
 
 const DynamicBackground = () => {
   const { isDynamicColor } = useSettingsStore();
@@ -16,7 +17,7 @@ const DynamicBackground = () => {
     const updateColors = async () => {
       if (styleRef.current && window.currentArtUrl && isDynamicColor) {
         await saveColors(styleRef.current, isDynamicColor);
-        console.log('[Lucid] Dynamic colors updated!');
+        logToConsole('Dynamic colors updated!');
       }
     };
     setTimeout(() => updateColors(), 1000);

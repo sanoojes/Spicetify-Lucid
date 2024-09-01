@@ -22,7 +22,7 @@ const ModalContextProvider: React.FC<{ children: React.ReactNode }> = ({
 const useModal = (): ModalContextProps => {
   const context = Spicetify.React.useContext(ModalContext);
   if (context) return context;
-  throw new Error('[Lucid] Wrap Element with ModalContextProvider');
+  throw new Error('Wrap Element with ModalContextProvider');
 };
 
 export { ModalContextProvider, useModal };

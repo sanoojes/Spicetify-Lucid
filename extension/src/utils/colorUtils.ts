@@ -1,5 +1,6 @@
 import { createCanvas, loadImage } from 'canvas';
 import type { Color, ColorPalette } from '@/types/colors';
+import { logToConsole } from '@/utils/logUtils';
 
 // Helper functions
 function rgbToHex(r: number, g: number, b: number): string {
@@ -170,7 +171,7 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
     return colorPalette;
   } catch (error) {
-    console.error('[Lucid] Error extracting colors:', error);
+    logToConsole('Error extracting colors:', error);
     return error as Error;
   }
 }
@@ -185,7 +186,7 @@ export async function saveColors(
     const colorPalette = await getColors(window.currentArtUrl);
 
     if (colorPalette instanceof Error) {
-      console.error('[Lucid] Error extracting colors:', colorPalette.message);
+      logToConsole('Error extracting colors:', colorPalette.message);
       return null;
     }
 
@@ -205,7 +206,12 @@ export async function saveColors(
 
     return colorPalette;
   } catch (error) {
-    console.error('[Lucid] Error saving colors to style:', error);
+    logToConsole(
+      `Error saving colors to style: ${
+        error instanceof Error ? error.message : error
+      }`,
+      { level: 'error' }
+    );
     return null;
   }
 }
