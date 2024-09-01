@@ -1,4 +1,4 @@
-name-template: 'v$NEXT_PATCH_VERSION'
+name-template: 'v1.0.0'
 tag-template: 'v$NEXT_PATCH_VERSION'
 
 categories:
