@@ -1121,7 +1121,7 @@ div[data-testid="hpto-parent-container"] {
 }
 
 .search-searchCategory-categoryGrid {
-  overflow: auto;
+  overflow: hidden !important;
 }
 
 .search-searchCategory-catergoryGrid:before {
