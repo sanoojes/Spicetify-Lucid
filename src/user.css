@@ -1120,8 +1120,8 @@ div[data-testid="hpto-parent-container"] {
   background-color: rgba(var(--spice-rgb-card), 0.5) !important;
 }
 
-.search-searchCategory-catergoryGrid {
-  overflow: hidden;
+.search-searchCategory-categoryGrid {
+  overflow: auto;
 }
 
 .search-searchCategory-catergoryGrid:before {
