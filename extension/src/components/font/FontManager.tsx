@@ -51,7 +51,7 @@ const FontManager = () => {
 
   React.useEffect(() => {
     if (error) {
-      console.error('Font loading error:', error);
+      console.error('[Lucid] Font loading error:', error);
     }
   }, [error]);
 

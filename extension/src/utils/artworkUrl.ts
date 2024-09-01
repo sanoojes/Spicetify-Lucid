@@ -15,8 +15,9 @@ export const updateArtworkUrl = async () => {
       '--now-playing-art-image',
       `url(${window.currentArtUrl})`
     );
+    console.log('[Lucid] Updated artwork URL:', window.currentArtUrl);
   } catch (error) {
-    console.error('Error updating artwork URL:', error);
+    console.error('[Lucid] Error updating artwork URL:', error);
   }
 };
 
@@ -124,10 +125,12 @@ export const updatePlaylistArtworkUrl = async () => {
           `url(${window.playlistArtUrl.url})`
         );
       } else {
-        console.warn(`No playlist/artist artwork URL found for URI: ${uri}`);
+        console.warn(
+          `[Lucid] No playlist/artist artwork URL found for URI: ${uri}`
+        );
       }
     }
   } catch (error) {
-    console.error('Error fetching playlist/artist artwork:', error);
+    console.error('[Lucid] Error fetching playlist/artist artwork:', error);
   }
 };

@@ -170,7 +170,7 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
     return colorPalette;
   } catch (error) {
-    console.error('Error extracting colors:', error);
+    console.error('[Lucid] Error extracting colors:', error);
     return error as Error;
   }
 }
@@ -205,7 +205,7 @@ export async function saveColors(
 
     return colorPalette;
   } catch (error) {
-    console.error('Error saving colors to style:', error);
+    console.error('[Lucid] Error saving colors to style:', error);
     return null;
   }
 }

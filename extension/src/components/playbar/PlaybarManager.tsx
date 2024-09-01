@@ -43,7 +43,7 @@ const PlaybarManager = () => {
         .map(([key, value]) => `${key}: ${value};`)
         .join(' ');
     } else {
-      console.error('Playbar element not found!');
+      console.error('[Lucid] Playbar element not found!');
     }
   }, [playbarMode, playbarStyles]);
 
