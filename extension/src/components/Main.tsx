@@ -16,19 +16,7 @@ const Main = () => {
   const [pageCategory, setPageCategory] =
     React.useState<PageCategoryType>('other');
   const underMainViewRef = React.useRef<HTMLElement | null>(null);
-
-  Spicetify.React.useEffect(() => {
-    try {
-      setPath();
-      replaceIcons();
-      setTopBarStyles();
-      handleSongChange();
-      setUnderMainView();
-      updatePlaylistArtworkUrl();
-    } catch (error) {
-      showError(error);
-    }
-  }, []);
+  const [previousPath, setPreviousPath] = React.useState<string | null>(null);
 
   const handleSongChange = () => {
     try {
@@ -37,9 +25,6 @@ const Main = () => {
       showError(error);
     }
   };
-
-  // Resize Event
-  window.addEventListener('resize', setTopBarStyles);
 
   const setUnderMainView = () => {
     if (document.getElementById('lucid-under-main-view')) {
@@ -82,6 +67,39 @@ const Main = () => {
     }
   };
 
+  Spicetify.React.useEffect(() => {
+    try {
+      setPath();
+      replaceIcons();
+      setTopBarStyles();
+      handleSongChange();
+      setUnderMainView();
+      updatePlaylistArtworkUrl();
+
+      // Event Listeners
+      Spicetify.Platform.History.listen(() => {
+        const currentPath = Spicetify.Platform.History.location.pathname;
+        if (currentPath !== previousPath) {
+          setPreviousPath(currentPath);
+          setPath();
+          setUnderMainView();
+          updatePlaylistArtworkUrl();
+        }
+      }); // page change listener
+
+      window.addEventListener('resize', setTopBarStyles); // window resize listener
+      Spicetify.Player.addEventListener('songchange', handleSongChange); // song change listener
+    } catch (error) {
+      showError(error);
+    }
+
+    // unload all listeners on removal
+    return () => {
+      window.removeEventListener('resize', setTopBarStyles);
+      Spicetify.Player.removeEventListener('songchange', handleSongChange);
+    };
+  }, []);
+
   React.useEffect(() => {
     window.pageCategory = pageCategory;
     document.body.classList.add(pageCategory);
@@ -89,24 +107,6 @@ const Main = () => {
       document.body.classList.remove(pageCategory);
     };
   }, [pageCategory]);
-
-  const [previousPath, setPreviousPath] = React.useState<string | null>(null);
-
-  // Song Event Listener
-  Spicetify.Platform.History.listen(() => {
-    const currentPath = Spicetify.Platform.History.location.pathname;
-    if (currentPath !== previousPath) {
-      setPreviousPath(currentPath);
-    }
-  });
-
-  React.useEffect(() => {
-    setPath();
-    setUnderMainView();
-    updatePlaylistArtworkUrl();
-  }, [previousPath]);
-
-  Spicetify.Player.addEventListener('songchange', handleSongChange);
 
   return (
     <>
