@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "canvas": "^2.11.2",
-    "react": "^18.3.1"
+    "react": "^18.3.1",
+    "zustand": "^4.5.5"
   }
 }
