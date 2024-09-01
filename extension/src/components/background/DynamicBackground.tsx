@@ -15,7 +15,7 @@ const DynamicBackground = () => {
 
     const updateColors = async () => {
       try {
-        if (styleRef.current && window.currentArtUrl) {
+        if (styleRef.current && window.currentArtUrl && isDynamicColor) {
           await saveColors(styleRef.current, isDynamicColor);
           console.log('[Lucid] Dynamic colors updated!');
         }
