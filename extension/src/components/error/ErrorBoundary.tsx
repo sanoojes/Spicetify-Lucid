@@ -59,6 +59,6 @@ const ErrorNotification: FC<{ error: unknown }> = ({ error }) => {
 };
 
 export const showError = (error: unknown) => {
-  console.error('[Lucid] Error:', error);
+  console.error(`[Lucid] Error: ${error}`);
   Spicetify.showNotification(<ErrorNotification error={error} />, true);
 };

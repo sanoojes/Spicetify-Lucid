@@ -7,7 +7,7 @@ import ResetSettingsSection from '@/components/settings/sections/ResetSettingsSe
 import FontSection from '@/components/settings/sections/FontSettingsSection';
 import PlaylistViewSettingsSection from '@/components/settings/sections/PlaylistViewSettingsSection';
 import GrainSection from '@/components/settings/sections/GrainSettingsSection';
-import PlaybarSettingsSection from '../sections/PlaybarSettingsSection';
+import PlaybarSettingsSection from '@/components/settings/sections/PlaybarSettingsSection';
 
 const SettingsModal = React.memo(() => {
   const SETTING_SECTIONS: SettingSectionData = [

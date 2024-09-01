@@ -14,13 +14,9 @@ const DynamicBackground = () => {
     }
 
     const updateColors = async () => {
-      try {
-        if (styleRef.current && window.currentArtUrl && isDynamicColor) {
-          await saveColors(styleRef.current, isDynamicColor);
-          console.log('[Lucid] Dynamic colors updated!');
-        }
-      } catch (error) {
-        console.error('[Lucid] Error updating dynamic colors:', error);
+      if (styleRef.current && window.currentArtUrl && isDynamicColor) {
+        await saveColors(styleRef.current, isDynamicColor);
+        console.log('[Lucid] Dynamic colors updated!');
       }
     };
     setTimeout(() => updateColors(), 1000);
