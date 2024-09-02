@@ -27,9 +27,21 @@ async function main() {
     window.rootStyle = document.documentElement.style;
     window.isCustomControls = false;
     window.isLightMode = Spicetify?.Config.color_scheme === 'light' || false;
-    window.isWindows =
-      Spicetify.Platform?.operatingSystem === 'Windows' ||
-      Spicetify.Platform.PlatformData.includes('win', 'Win');
+
+    window.isWindows = (() => {
+      if (
+        Spicetify.Platform &&
+        Spicetify.Platform.operatingSystem === 'Windows'
+      ) {
+        return true;
+      }
+      if (Spicetify.Platform?.PlatformData?.os_name) {
+        return Spicetify.Platform.PlatformData.os_name
+          .toLowerCase()
+          .includes('win');
+      }
+      return false;
+    })();
 
     window.isGlobalNav = !!(
       document.querySelector('.globalNav') ||
