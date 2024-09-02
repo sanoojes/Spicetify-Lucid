@@ -171,7 +171,7 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
     return colorPalette;
   } catch (error) {
-    logToConsole('Error extracting colors:', error);
+    logToConsole(`Error extracting colors: ${error}`);
     return error as Error;
   }
 }
@@ -186,7 +186,7 @@ export async function saveColors(
     const colorPalette = await getColors(window.currentArtUrl);
 
     if (colorPalette instanceof Error) {
-      logToConsole('Error extracting colors:', colorPalette.message);
+      logToConsole(`Error extracting colors: ${colorPalette.message}`);
       return null;
     }
 

@@ -1,4 +1,4 @@
-import { logToConsole } from './logUtils';
+import { logToConsole } from '@/utils/logUtils';
 
 export const updateArtworkUrl = async () => {
   while (!Spicetify?.Player?.data) {
