@@ -1,50 +1,53 @@
-export const manageBackgroundZIndex = () => {
-  type BackgroundContainer = HTMLDivElement | null;
+import { logToConsole } from '@/utils/logUtils';
 
-  function applyBackgroundStyles() {
-    const lyricsCinemaContainer: BackgroundContainer = document.querySelector(
-      '#lyrics-cinema:has(.lyrics-lyrics-contentContainer)'
-    );
+function applyBackgroundStyles(
+  backgroundStyleElement: HTMLElement,
+  zIndex: number
+) {
+  backgroundStyleElement.innerHTML = `
+    #lucid-main .background-container .background-wrapper div { z-index: ${zIndex} !important; }
+  `;
+}
 
-    if (lyricsCinemaContainer) {
-      const backgroundContainer: BackgroundContainer = document.querySelector(
-        '#lucid-main .background-container .background-wrapper div'
-      );
+function removeBackgroundZIndex(backgroundStyleElement: HTMLElement) {
+  backgroundStyleElement.innerHTML = `
+    #lucid-main .background-container .background-wrapper div { z-index: -1 !important; }
+  `;
+}
 
-      if (backgroundContainer) {
-        backgroundContainer.style.zIndex =
-          'calc(var(--above-everything-except-now-playing-bar-z-index, 6) - 1)';
-      } else {
-        removeBackgroundZIndex();
+function manageBackgroundZIndexForElement(
+  element: HTMLElement,
+  selector: string,
+  backgroundStyleElement: HTMLElement,
+  zIndex = 6
+) {
+  let isContainerPresent = false;
+
+  const observer = new MutationObserver(() => {
+    const container = element.querySelector(selector);
+
+    if (container) {
+      if (!isContainerPresent) {
+        logToConsole(`Applying background z-index: ${zIndex}`);
+        isContainerPresent = true;
+        applyBackgroundStyles(backgroundStyleElement, zIndex);
       }
     } else {
-      removeBackgroundZIndex();
-    }
-  }
+      if (isContainerPresent) {
+        logToConsole(`Removing background z-index. ${zIndex}`);
+        isContainerPresent = false;
 
-  function removeBackgroundZIndex() {
-    const backgroundContainer: BackgroundContainer = document.querySelector(
-      '#lucid-main .background-container .background-wrapper div'
-    );
-
-    if (backgroundContainer) {
-      backgroundContainer.style.zIndex = '';
-    }
-  }
-
-  const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      if (
-        mutation.target instanceof HTMLElement &&
-        mutation.target.id === 'lyrics-cinema'
-      ) {
-        applyBackgroundStyles();
-      } else {
-        if (
-          mutation.target instanceof HTMLElement &&
-          mutation.target.classList.contains('lyrics-lyrics-contentContainer')
-        ) {
-          applyBackgroundStyles();
+        const lyricsCinemaElement = document.querySelector(
+          '#lyrics-cinema'
+        ) as HTMLElement;
+        if (lyricsCinemaElement) {
+          manageBackgroundZIndexForElement(
+            lyricsCinemaElement,
+            '#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container',
+            backgroundStyleElement
+          );
+        } else {
+          removeBackgroundZIndex(backgroundStyleElement);
         }
       }
     }
@@ -52,7 +55,41 @@ export const manageBackgroundZIndex = () => {
 
   const config = { childList: true, attributes: true, subtree: true };
 
-  observer.observe(document.body, config);
+  observer.observe(element, config);
+  removeBackgroundZIndex(backgroundStyleElement);
+}
 
-  applyBackgroundStyles();
+export const manageBackgroundZIndex = () => {
+  let backgroundStyleElement = document.getElementById(
+    'lucid-background-style'
+  );
+
+  if (!backgroundStyleElement) {
+    backgroundStyleElement = document.createElement('style');
+    backgroundStyleElement.id = 'lucid-background-style';
+    document.head.appendChild(backgroundStyleElement);
+  }
+
+  const lyricsCinemaElement = document.querySelector(
+    '#lyrics-cinema'
+  ) as HTMLElement;
+  if (lyricsCinemaElement) {
+    manageBackgroundZIndexForElement(
+      lyricsCinemaElement,
+      '#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container',
+      backgroundStyleElement
+    );
+  }
+
+  const fullScreenElement = document.querySelector(
+    '#main .Root'
+  ) as HTMLElement;
+  if (fullScreenElement) {
+    manageBackgroundZIndexForElement(
+      fullScreenElement,
+      '.Root div[data-testid="fullscreen-mode-container"], .Root .npv-main-container',
+      backgroundStyleElement,
+      15
+    );
+  }
 };
