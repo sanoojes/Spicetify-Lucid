@@ -546,6 +546,8 @@ input,
   -webkit-app-region: drag !important;
 }
 
+.global-nav .main-topBar-container>*,
+.global-nav .main-topBar-topbarContent,
 .main-topBar-topbarContentRight button,
 .main-topBar-topbarContentRight *,
 .main-topBar-historyButtons * {
