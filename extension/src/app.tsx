@@ -2,7 +2,8 @@ import React from 'react';
 import Main from '@/components/Main';
 import { showError } from '@/components/error/ErrorBoundary';
 import { checkForCustomControls } from '@/utils/windowControls';
-import { logToConsole } from './utils/logUtils';
+import { logToConsole } from '@/utils/logUtils';
+import { manageBackgroundZIndex } from '@/utils/backgroundUtils';
 
 async function main() {
   try {
@@ -47,6 +48,8 @@ async function main() {
       document.querySelector('.globalNav') ||
       document.querySelector('.Root__globalNav')
     );
+
+    manageBackgroundZIndex();
 
     // check for custom controls
     checkForCustomControls();

@@ -96,6 +96,7 @@ const Main = () => {
     React.useEffect(() => {
       window.pageCategory = pageCategory;
       document.body.classList.add(pageCategory);
+
       return () => {
         document.body.classList.remove(pageCategory);
       };
