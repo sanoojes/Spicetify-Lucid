@@ -3,12 +3,17 @@ import {
   calculateInverseBrowserZoom,
   calculateScaledPx,
 } from '@/utils/zoomUtils';
+import { logToConsole } from '@/utils/logUtils';
 
 async function setWindowControlsHeight(height: number) {
-  await Spicetify.CosmosAsync.post('sp://messages/v1/container/control', {
-    type: 'update_titlebar',
-    height: height,
-  });
+  try {
+    await Spicetify.CosmosAsync.post('sp://messages/v1/container/control', {
+      type: 'update_titlebar',
+      height: height,
+    });
+  } catch (error) {
+    logToConsole(`Error setting control height: ${height}`, { level: 'error' });
+  }
 }
 
 export async function setTopBarStyles() {
