@@ -49,6 +49,7 @@ async function main() {
       document.querySelector('.Root__globalNav')
     );
 
+    // change background z-index
     manageBackgroundZIndex();
 
     // check for custom controls

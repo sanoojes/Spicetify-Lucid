@@ -9,7 +9,7 @@ function applyBackgroundStyles(
   `;
 }
 
-function removeBackgroundZIndex(backgroundStyleElement: HTMLElement) {
+function setDefaultBackgroundZIndex(backgroundStyleElement: HTMLElement) {
   backgroundStyleElement.innerHTML = `
     #lucid-main .background-container .background-wrapper div { z-index: -1 !important; }
   `;
@@ -17,46 +17,46 @@ function removeBackgroundZIndex(backgroundStyleElement: HTMLElement) {
 
 function manageBackgroundZIndexForElement(
   element: HTMLElement,
-  selector: string,
+  containerSelector: string,
   backgroundStyleElement: HTMLElement,
-  zIndex = 6
+  zIndex: number
 ) {
   let isContainerPresent = false;
+  let previousContainer: HTMLElement | null = null;
 
   const observer = new MutationObserver(() => {
-    const container = element.querySelector(selector);
+    const container = element.querySelector(
+      containerSelector
+    ) as HTMLElement | null;
 
-    if (container) {
-      if (!isContainerPresent) {
+    // Check if container has changed
+    if (container !== previousContainer) {
+      if (container && !isContainerPresent) {
         logToConsole(`Applying background z-index: ${zIndex}`);
         isContainerPresent = true;
         applyBackgroundStyles(backgroundStyleElement, zIndex);
-      }
-    } else {
-      if (isContainerPresent) {
-        logToConsole(`Removing background z-index. ${zIndex}`);
+      } else if (isContainerPresent) {
+        logToConsole(`Removing background z-index: ${zIndex}`);
         isContainerPresent = false;
 
+        // Only check for lyrics cinema element when removing the fullscreen container
         const lyricsCinemaElement = document.querySelector(
-          '#lyrics-cinema'
-        ) as HTMLElement;
+          '#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container'
+        ) as HTMLElement | null;
         if (lyricsCinemaElement) {
-          manageBackgroundZIndexForElement(
-            lyricsCinemaElement,
-            '#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container',
-            backgroundStyleElement
-          );
+          applyBackgroundStyles(backgroundStyleElement, 6);
         } else {
-          removeBackgroundZIndex(backgroundStyleElement);
+          setDefaultBackgroundZIndex(backgroundStyleElement);
         }
       }
+      previousContainer = container;
     }
   });
 
-  const config = { childList: true, attributes: true, subtree: true };
+  const config = { childList: true };
 
   observer.observe(element, config);
-  removeBackgroundZIndex(backgroundStyleElement);
+  setDefaultBackgroundZIndex(backgroundStyleElement);
 }
 
 export const manageBackgroundZIndex = () => {
@@ -70,6 +70,7 @@ export const manageBackgroundZIndex = () => {
     document.head.appendChild(backgroundStyleElement);
   }
 
+  // Manage background z-index for the lyrics cinema element.
   const lyricsCinemaElement = document.querySelector(
     '#lyrics-cinema'
   ) as HTMLElement;
@@ -77,12 +78,14 @@ export const manageBackgroundZIndex = () => {
     manageBackgroundZIndexForElement(
       lyricsCinemaElement,
       '#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container',
-      backgroundStyleElement
+      backgroundStyleElement,
+      6
     );
   }
 
+  // Manage background z-index for the full screen element.
   const fullScreenElement = document.querySelector(
-    '#main .Root'
+    '#main .Root > div:last-child'
   ) as HTMLElement;
   if (fullScreenElement) {
     manageBackgroundZIndexForElement(
