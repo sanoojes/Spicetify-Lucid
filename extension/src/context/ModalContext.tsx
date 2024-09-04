@@ -1,8 +1,6 @@
 import React from 'react';
 
-const ModalContext = Spicetify.React.createContext<ModalContextProps | null>(
-  null
-);
+const ModalContext = React.createContext<ModalContextProps | null>(null);
 
 const ModalContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -20,7 +18,7 @@ const ModalContextProvider: React.FC<{ children: React.ReactNode }> = ({
 };
 
 const useModal = (): ModalContextProps => {
-  const context = Spicetify.React.useContext(ModalContext);
+  const context = React.useContext(ModalContext);
   if (context) return context;
   throw new Error('Wrap Element with ModalContextProvider');
 };

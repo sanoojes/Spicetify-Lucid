@@ -7,7 +7,7 @@ const DynamicBackground = React.memo(() => {
   const { isDynamicColor } = useSettingsStore();
   const styleRef = React.useRef<HTMLStyleElement | null>(null);
 
-  Spicetify.React.useEffect(() => {
+  React.useEffect(() => {
     if (!styleRef.current) {
       styleRef.current = document.createElement('style');
       styleRef.current.id = 'lucid_dynamic_colors';

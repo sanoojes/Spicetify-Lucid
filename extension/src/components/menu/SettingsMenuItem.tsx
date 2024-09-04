@@ -5,7 +5,7 @@ interface SettingsMenuItemProps {
 }
 
 const SettingsMenuItem: FC<SettingsMenuItemProps> = ({ cb }) => {
-  Spicetify.React.useEffect(() => {
+  React.useEffect(() => {
     const settingsMenuItem = new Spicetify.Menu.Item(
       'Lucid Settings',
       false,
