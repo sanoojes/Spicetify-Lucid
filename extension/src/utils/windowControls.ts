@@ -7,10 +7,13 @@ import { logToConsole } from '@/utils/logUtils';
 
 async function setWindowControlsHeight(height: number) {
   try {
-    await Spicetify.CosmosAsync.post('sp://messages/v1/container/control', {
-      type: 'update_titlebar',
-      height: height,
-    });
+    if (Spicetify?.CosmosAsync?.post)
+      await Spicetify.CosmosAsync.post('sp://messages/v1/container/control', {
+        type: 'update_titlebar',
+        height: height,
+      });
+
+    logToConsole(`Control height set to ${height}px`);
   } catch (error) {
     logToConsole(`Error setting control height: ${height}`, { level: 'error' });
   }
