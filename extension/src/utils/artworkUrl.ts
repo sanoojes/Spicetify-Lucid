@@ -119,30 +119,32 @@ export const updatePlaylistArtworkUrl = async () => {
         window.playlistArtUrl = { url: imageUrl, uri: uri };
       }
 
-      // Get the background image URL from under-main-view (if available)
-      const underMainView = document.querySelector('.under-main-view');
-      if (underMainView) {
-        const imageContainer = underMainView.querySelector(
-          '.main-entityHeader-background.main-entityHeader-gradient'
-        ) as HTMLElement | null;
-        if (imageContainer) {
-          const imageUrl = imageContainer.style.backgroundImage;
-          window.playlistArtUrl = { url: imageUrl, uri: uri };
-          window.rootStyle.setProperty('--playlist-art-image', `${imageUrl}`);
-          return;
+      setTimeout(() => {
+        // Get the background image URL from under-main-view (if available)
+        const underMainView = document.querySelector('.under-main-view');
+        if (underMainView) {
+          const imageContainer = underMainView.querySelector(
+            '.main-entityHeader-background.main-entityHeader-gradient'
+          ) as HTMLElement | null;
+          if (imageContainer) {
+            const imageUrl = imageContainer.style.backgroundImage;
+            window.playlistArtUrl = { url: imageUrl, uri: uri };
+            window.rootStyle.setProperty('--playlist-art-image', `${imageUrl}`);
+            return;
+          }
         }
-      }
 
-      if (window.playlistArtUrl.url) {
-        window.rootStyle.setProperty(
-          '--playlist-art-image',
-          `url(${window.playlistArtUrl.url})`
-        );
-      } else {
-        logToConsole(`No playlist/artist artwork URL found for URI: ${uri}`, {
-          level: 'warn',
-        });
-      }
+        if (window.playlistArtUrl.url) {
+          window.rootStyle.setProperty(
+            '--playlist-art-image',
+            `url(${window.playlistArtUrl.url})`
+          );
+        } else {
+          logToConsole(`No playlist/artist artwork URL found for URI: ${uri}`, {
+            level: 'warn',
+          });
+        }
+      }, 150);
     }
   } catch (error) {
     logToConsole(`Error fetching playlist/artist artwork: ${error}`);
