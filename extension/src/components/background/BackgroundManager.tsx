@@ -6,7 +6,7 @@ import DynamicBackground from '@/components/background/DynamicBackground';
 import { useSettingsStore } from '@/store/settingsStore';
 import type { CustomCSSProperties } from '@/types/settingTypes';
 
-const BackgroundManager = () => {
+const BackgroundManager = React.memo(() => {
   const { backgroundMode, backgroundStyles } = useSettingsStore();
 
   const [dynamicStyle, setDynamicStyle] = React.useState<CustomCSSProperties>(
@@ -36,6 +36,6 @@ const BackgroundManager = () => {
       <DynamicBackground />
     </div>
   );
-};
+});
 
 export default BackgroundManager;

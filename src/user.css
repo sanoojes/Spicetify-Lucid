@@ -2481,12 +2481,13 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 /* Playlist */
 
-.under-main-view {
-  display: none;
-}
-
-.other #lucid-under-main-view {
-  display: none;
+.other #lucid-under-main-view,
+.other #lucid-under-main-view *,
+.under-main-view,
+.under-main-view * {
+  display: none !important;
+  animation: none !important;
+  filter: none !important;
 }
 
 .playlist-view-card .main-entityHeader-container.main-entityHeader-nonWrapped {
@@ -2549,16 +2550,17 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   mask: none;
 }
 
-.playlist-art-container {
+#lucid-under-main-view .playlist-art-container {
   position: absolute;
   top: 0;
   left: 0;
   height: 55vh;
   width: 100%;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.playlist-art-container .background {
+#lucid-under-main-view .playlist-art-container .background {
   height: 100%;
   width: 100%;
   filter: blur(4px);
@@ -2570,11 +2572,15 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.main-view-container:has(.main-entityHeader-withBackgroundImage) #lucid-under-main-view .overlay {
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(var(--spice-rgb-shadow), .25)));
-  background: linear-gradient(transparent 0, rgba(var(--spice-rgb-shadow), .25) 100%);
+.artist #lucid-under-main-view .playlist-art-container .overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(var(--spice-rgb-main), .25)));
+  background-image: linear-gradient(transparent 60%, rgba(var(--spice-rgb-main), .25) 100%);
 }
-
 
 .main-view-container:has(.main-entityHeader-withBackgroundImage) #lucid-under-main-view .playlist-art-container {
   height: calc(100vh - (var(--now-playing-bar-height) * 1.74));
@@ -2582,44 +2588,13 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 .main-view-container:has(.main-entityHeader-withBackgroundImage) #lucid-under-main-view .playlist-art-container .background {
   filter: none;
+  mask-image: none;
+  -webkit-mask-image: none;
 }
 
 .main-entityHeader-container.main-entityHeader-withBackgroundImage {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(var(--spice-rgb-shadow), .5)));
   background: linear-gradient(transparent 0, rgba(var(--spice-rgb-shadow), .5) 100%);
-}
-
-.main-view-container:has(.main-entityHeader-withBackgroundImage) .under-main-view .main-entityHeader-background,
-.main-entityHeader-background.main-entityHeader-overlay:after {
-  height: calc(100vh - (var(--now-playing-bar-height)* 1.74));
-  filter: none;
-  mask: none;
-}
-
-.main-view-container:has(.main-entityHeader-withBackgroundImage) .under-main-view .main-entityHeader-background::after {
-  background: none !important;
-}
-
-.main-view-container:has(.main-entityHeader-withBackgroundImage)#lucid-under-main-view {
-  display: none;
-}
-
-.main-view-container:has(.main-entityHeader-withBackgroundImage) .under-main-view {
-  display: block
-}
-
-@keyframes background-animation {
-  80% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    filter: blur(var(--blur-xl)) brightness(0.25);
-  }
-
-  to {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    filter: blur(var(--blur-xl)) brightness(0.25);
-  }
 }
 
 .playlist-art-container.none .background {
@@ -2687,6 +2662,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 }
 
 .D6IunHuzuULf_Sr88GOA,
+.playlist-playlist-playlist,
 .playlist-view-card section[data-testid*="album"],
 .playlist-view-card section[data-testid*="playlist"],
 .playlist-view-card .bOAvdKi0zqyA_S6ThcvF,
