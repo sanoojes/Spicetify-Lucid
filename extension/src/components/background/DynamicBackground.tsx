@@ -3,7 +3,7 @@ import { saveColors, removeColors } from '@/utils/colorUtils';
 import { useSettingsStore } from '@/store/settingsStore';
 import { logToConsole } from '@/utils/logUtils';
 
-const DynamicBackground = () => {
+const DynamicBackground = React.memo(() => {
   const { isDynamicColor } = useSettingsStore();
   const styleRef = React.useRef<HTMLStyleElement | null>(null);
 
@@ -35,6 +35,6 @@ const DynamicBackground = () => {
   }, [isDynamicColor]);
 
   return <div id='dynamic-colors' />;
-};
+});
 
 export default DynamicBackground;
