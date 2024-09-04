@@ -854,7 +854,8 @@ div[data-testid="hpto-parent-container"] {
 
 .lyrics-lyrics-contentWrapper,
 .main-view-container__scroll-node,
-.nw2W4ZMdICuBo08Tzxg9
+.nw2W4ZMdICuBo08Tzxg9,
+.main-devicePicker-section
 
 /* ADD: Right sidebar scroll node */
   {
@@ -1055,6 +1056,11 @@ div[data-testid="hpto-parent-container"] {
 
 .tippy-box[data-theme~=device-picker] {
   background-color: var(--spice-main);
+}
+
+.main-devicePicker-troubleshootingList>div[aria-describedby="device-picker-troubleshooting-list"] a,
+.main-devicePicker-troubleshootingList>div:last-child a {
+  margin-top: var(--margin-md, 0.5rem);
 }
 
 .BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px:hover::after,
