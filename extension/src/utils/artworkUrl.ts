@@ -114,11 +114,23 @@ export const updatePlaylistArtworkUrl = async () => {
             .send();
 
           if (req?.body) imageUrl = req.body.image_url;
-        } else {
-          imageUrl = '';
         }
 
         window.playlistArtUrl = { url: imageUrl, uri: uri };
+      }
+
+      // Get the background image URL from under-main-view (if available)
+      const underMainView = document.querySelector('.under-main-view');
+      if (underMainView) {
+        const imageContainer = underMainView.querySelector(
+          '.main-entityHeader-background.main-entityHeader-gradient'
+        ) as HTMLElement | null;
+        if (imageContainer) {
+          const imageUrl = imageContainer.style.backgroundImage;
+          window.playlistArtUrl = { url: imageUrl, uri: uri };
+          window.rootStyle.setProperty('--playlist-art-image', `${imageUrl}`);
+          return;
+        }
       }
 
       if (window.playlistArtUrl.url) {
