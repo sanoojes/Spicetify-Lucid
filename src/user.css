@@ -490,7 +490,8 @@ input,
 [data-tippy-root],
 .main-contextMenu-menu,
 .main-editImageButton-rounded,
-.main-avatar-image {
+.main-avatar-image,
+.main-yourLibraryX-listItem .BfALkuQy0UjTI70U9QlQ {
   border-radius: var(--card-border-radius);
 }
 
