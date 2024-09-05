@@ -276,7 +276,7 @@ textarea,
 * {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  scrollbar-width: thin !important;
+  scrollbar-width: thin;
 }
 
 /* Button styles */
@@ -1756,9 +1756,12 @@ button[aria-label="Browse"] path {
 }
 
 /* Beautiful Lyrics */
-.BeautifulLyricsPage:not(.Fullscreen) {
-  height: calc(100% - var(--now-playing-bar-height)) !important;
+.Root__main-view:has(.BeautifulLyricsPage) .main-topBar-container {
+  padding-inline: 0;
+  visibility: hidden;
+  display: none;
 }
+
 
 /* Whats new */
 .T9iBYqbERZHdwDl0U2tC .hGbRiYkIjjy4sJvor0A2>:not(.OgaF7O4ER8AvZfFd6JdJ) {
