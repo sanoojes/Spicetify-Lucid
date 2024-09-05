@@ -1756,12 +1756,13 @@ button[aria-label="Browse"] path {
 }
 
 /* Beautiful Lyrics */
-.Root__main-view:has(.BeautifulLyricsPage) .main-topBar-container {
-  padding-inline: 0;
-  visibility: hidden;
-  display: none;
+.Root__main-view:has(.BeautifulLyricsPage) {
+  container-type: normal !important;
 }
 
+.Root__main-view>.main-view-container:has(.BeautifulLyricsPage) {
+  container-type: size;
+}
 
 /* Whats new */
 .T9iBYqbERZHdwDl0U2tC .hGbRiYkIjjy4sJvor0A2>:not(.OgaF7O4ER8AvZfFd6JdJ) {
