@@ -824,7 +824,6 @@ input,
 
 .HD9s7U5E1RLSWKpXmrqx {
   background: var(--card-color);
-  border: var(--default-border);
   border-radius: calc(var(--card-border-radius)/2);
 }
 
