@@ -70,10 +70,18 @@ type PlaybarStyleSettings = {
   [key in PlaybarMode]: StyleOptions;
 };
 
+type FontTypes = 'title' | 'body';
+
+type FontSettings = {
+  [key in FontTypes]: {
+    fontFamily: string;
+    url: string;
+  };
+};
+
 // Theme Settings
 type AppSettings = {
-  fontFamily: string;
-  fontImportUrl: string;
+  fontSettings: FontSettings;
   backgroundMode: BackgroundMode;
   backgroundStyles: BackgroundStyleSettings;
   isDynamicColor: boolean;
@@ -86,8 +94,12 @@ type AppSettings = {
 
 // Settings Actions
 type SettingsActions = {
-  setFontFamily: (fontFamily: string) => void;
-  setFontImportUrl: (fontImportUrl: string) => void;
+  updateFontSettings: (
+    fontType: FontTypes,
+    key: keyof FontSettings[FontTypes],
+    value: string
+  ) => void;
+  setFontSettings: (fontSettings: FontSettings) => void;
   setBackgroundMode: (backgroundMode: BackgroundMode) => void;
   updateBackgroundStyles: (
     mode: BackgroundMode,
@@ -111,6 +123,8 @@ type SettingsActions = {
 type SettingsStore = AppSettings & SettingsActions;
 
 export type {
+  FontSettings,
+  FontTypes,
   BackgroundMode,
   GrainEffect,
   PlaybarMode,

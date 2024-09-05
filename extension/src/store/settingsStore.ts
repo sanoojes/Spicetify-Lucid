@@ -4,8 +4,12 @@ import { persist } from 'zustand/middleware';
 import type {
   BackgroundMode,
   BackgroundStyleSettings,
+  FontSettings,
+  GrainEffect,
   PlaybarMode,
   PlaybarStyleSettings,
+  PlaylistImageMode,
+  PlaylistViewMode,
   SettingsStore,
 } from '@/types/settingTypes';
 import { defaultSettings } from '@/constants/constants';
@@ -15,16 +19,30 @@ export const useSettingsStore = create(
     (set) => ({
       ...defaultSettings,
 
-      setBackgroundMode: (backgroundMode) => set(() => ({ backgroundMode })),
-      setFontFamily: (fontFamily) => set(() => ({ fontFamily })),
-      setFontImportUrl: (fontImportUrl) => set(() => ({ fontImportUrl })),
-      setGrainEffect: (grainEffect) => set(() => ({ grainEffect })),
-      setPlaylistImageMode: (playlistImageMode) =>
+      updateFontSettings: (fontType, key, value) =>
+        set((state) => ({
+          fontSettings: {
+            ...state.fontSettings,
+            [fontType]: {
+              ...state.fontSettings[fontType],
+              [key]: value,
+            },
+          },
+        })),
+      setBackgroundMode: (backgroundMode: BackgroundMode) =>
+        set(() => ({ backgroundMode })),
+      setFontSettings: (fontSettings: FontSettings) =>
+        set(() => ({ fontSettings })),
+      setGrainEffect: (grainEffect: GrainEffect) =>
+        set(() => ({ grainEffect })),
+      setPlaylistImageMode: (playlistImageMode: PlaylistImageMode) =>
         set(() => ({ playlistImageMode })),
-      setPlaybarMode: (playbarMode) => set(() => ({ playbarMode })),
-      setPlaylistViewMode: (playlistViewMode) =>
+      setPlaybarMode: (playbarMode: PlaybarMode) =>
+        set(() => ({ playbarMode })),
+      setPlaylistViewMode: (playlistViewMode: PlaylistViewMode) =>
         set(() => ({ playlistViewMode })),
-      setDynamicColor: (isDynamicColor) => set(() => ({ isDynamicColor })),
+      setDynamicColor: (isDynamicColor: boolean) =>
+        set(() => ({ isDynamicColor })),
       updateBackgroundStyles: (
         mode: BackgroundMode,
         key: keyof BackgroundStyleSettings,

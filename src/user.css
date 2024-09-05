@@ -86,11 +86,17 @@
   --margin-bottom-now-playing-bar: calc(var(--panel-gap, 0.2rem) / 2);
 
   /* Fonts */
-  --original-fonts: CircularSpVietnameseTitle, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, CircularSpVietnamese,
+  --title-font: var(--title-font-to-use), SpotifyMixUITitle,
+    CircularSp-Arab,
+    CircularSp-Hebr,
+    CircularSp-Cyrl,
+    CircularSp-Grek,
+    CircularSp-Deva,
     var(--fallback-fonts, sans-serif);
-  --font-to-use: "Poppins", var(--original-fonts);
-  --encore-title-font-stack: var(--font-to-use) !important;
-  --encore-body-font-stack: var(--font-to-use) !important;
+  --body-font: var(--body-font-to-use), SpotifyMixUI, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif);
+
+  --encore-title-font-stack: var(--title-font) !important;
+  --encore-body-font-stack: var(--body-font) !important;
   --normal-font-weight: 500;
   --bold-font-weight: 700;
   --extra-bold-font-weight: 800;
@@ -194,14 +200,12 @@ textarea,
 .encore-text-headline-large,
 .main-nowPlayingView-sectionHeaderSpacing .main-nowPlayingView-lyricsContent {
   --text-subdued: var(--spice-subtext) !important;
-  font-family: var(--font-to-use) !important;
   letter-spacing: 0.015rem;
 }
 
 .encore-text-body-large-bold,
 .encore-text-body-medium-bold,
 .encore-text-body-small-bold {
-  font-family: var(--font-to-use) !important;
   font-weight: var(--bold-font-weight);
 }
 
@@ -232,7 +236,6 @@ textarea,
 
 .TypeElement-type-ballad-textBase-useBrowserDefaultFocusStyle {
   font-weight: var(--normal-font-weight);
-  font-family: var(--encore-title-font-stack), var(--fallback-fonts, sans-serif);
 }
 
 .TypeElement-type-ballad,

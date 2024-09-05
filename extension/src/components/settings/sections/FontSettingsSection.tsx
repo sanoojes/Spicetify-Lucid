@@ -2,42 +2,47 @@ import React from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import { FontInput } from '@/components/settings/ui/FontInput';
 import { useSettingsStore } from '@/store/settingsStore';
+import { isValidUrl, extractFontFamilyFromUrl } from '@/utils/fontUtils';
+import type { FontTypes } from '@/types/settingTypes';
+import { FontToolTip } from '@/components/settings/sections/tooltip/FontTooltip';
 
 const FontSettingsSection = () => {
-  const { fontFamily } = useSettingsStore();
+  const { fontSettings, updateFontSettings } = useSettingsStore();
+  const fontTypes: FontTypes[] = ['title', 'body'];
+
+  const handleFontChange = (newFont: string, selectedFontType: FontTypes) => {
+    if (isValidUrl(newFont)) {
+      const fontFamilyFromUrl = extractFontFamilyFromUrl(newFont);
+      updateFontSettings(selectedFontType, 'url', newFont);
+      updateFontSettings(selectedFontType, 'fontFamily', fontFamilyFromUrl);
+    } else {
+      updateFontSettings(selectedFontType, 'fontFamily', newFont);
+      updateFontSettings(selectedFontType, 'url', '');
+    }
+  };
 
   return (
-    <div>
-      <SettingsCard
-        title='Font Family'
-        selectedValue={fontFamily}
-        tooltip={<FontToolTip />}
-      >
-        <FontInput />
-      </SettingsCard>
-    </div>
+    <>
+      {fontTypes.map((type) => (
+        <SettingsCard
+          key={type}
+          title={`${type === 'title' ? 'Title' : 'Body'} Font Family`}
+          selectedValue={
+            fontSettings[type].fontFamily !== ''
+              ? fontSettings[type].fontFamily
+              : 'Default Font (Spotify Mix)'
+          }
+          tooltip={<FontToolTip />}
+        >
+          <FontInput
+            fontFamily={fontSettings[type].fontFamily}
+            fontUrl={fontSettings[type].url}
+            onFontChange={(newFont) => handleFontChange(newFont, type)}
+          />
+        </SettingsCard>
+      ))}
+    </>
   );
 };
 
 export default FontSettingsSection;
-
-const FontToolTip = () => {
-  return (
-    <div>
-      <div>
-        <img
-          width='12rem'
-          height='15rem'
-          src='https://sanooj.is-a.dev/Spicetify-Lucid/assets/tooltip/font-url.png'
-          alt='google font url img'
-          style={{ width: '12rem', height: '15rem', borderRadius: '4px' }}
-        />
-      </div>
-      <div>
-        <h4>Usage:</h4>
-        <li>Font Name (If Installed)</li>
-        <li>URL (Google Fonts)</li>
-      </div>
-    </div>
-  );
-};
