@@ -106,8 +106,8 @@ const Main = () => {
       <>
         <div id='state'>
           <GrainManager />
-          <FontManager />
           <PlaybarManager />
+          <FontManager fontType='title' />
         </div>
         <div
           id='background-container'
