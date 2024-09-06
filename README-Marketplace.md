@@ -13,81 +13,79 @@
 
 </div>
 
-## Screenshots
+## **Screenshots**
 
-### **Dark (default) with Control Nav**
+### Global Navigation
 
-![Base Dark with Control Nav](./assets/images/lucid-control-nav.png)
-![Base Dark with Control Nav 1](./assets/images/lucid-control-nav-1.png)
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem">
+  <img src="./assets/images/global-nav-solid-bg.webp" alt="Global navigation with solid background" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-static-bg.webp" alt="Global navigation with static background" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-card-playlist-solid-bg.webp" alt="Global navigation with card playlist and solid background" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-compact-playlist-solid-bg.webp" alt="Global navigation with compact playlist and solid background" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-normal-playlist-solid-bg.webp" alt="Global navigation with normal playlist and solid background" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-playlist-card-1.webp" alt="Global navigation with playlist card option" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-playlist-card.webp" alt="Global navigation with playlist card option" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-playlist-with-bg.webp" alt="Global navigation with playlist and background" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-podcast.webp" alt="Global navigation with podcast navigation option" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-artist-library-open.webp" alt="Global navigation with artist library open" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-browse-page.webp" alt="Global navigation with browse page" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-playlist-page.webp" alt="Global navigation with playlist page" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-artist-now-playing.webp" alt="Global navigation with artist now playing" style="width: 48%; border-radius: 0.25rem;">
+</div>
 
-### **Dark (default)**
+### Base
 
-![Base Dark Preview](./assets/images/base.png)
-![Dark Preview 0](./assets/images/lucid-dark.png)
-![Dark Preview 1](./assets/images/lucid-dark-1.png)
-![Dark 1 Preview 2](./assets/images/lucid-dark-1.png)
-![Dark 2 Preview 3](./assets/images/lucid-dark-artist.png)
-![Dark 2 Preview 3](./assets/images/lucid-dark-playlist.png)
-![Dark 2 Preview 3](./assets/images/lucid-dark-playlist-1.png)
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem">
+  <img src="./assets/images/base-library-x-animated.webp" alt="Library with animated background" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/base-playlist-with-bg-page.webp" alt="Playlist page with background" style="width: 48%; border-radius: 0.25rem;">
+</div>
+
+### Artist
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem">
+  <img src="./assets/images/base-artist-page.webp" alt="Artist page" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/global-nav-artist-now-playing.webp" alt="Global navigation with artist now playing" style="width: 48%; border-radius: 0.25rem;">
+</div>
+
+### Lucid Settings:
+
+<img src="./assets/images/settings-all.webp" alt="All app settings" style="width: 100%; border-radius: 0.25rem;">
+
+- **Background:**
+  <img src="./assets/images/settings-background.webp" alt="Settings for background customization" style="width: 100%; border-radius: 0.25rem;">
+- **Font:**
+  <img src="./assets/images/settings-font.webp" alt="Settings for font selection" style="width: 100%; border-radius: 0.25rem;">
+- **Playbar:**
+  <img src="./assets/images/settings-playbar.webp" alt="Settings for playbar customization" style="width: 100%; border-radius: 0.25rem;">
+- **Playlist View:**
+  <img src="./assets/images/settings-playlist-view.webp" alt="Settings for playlist view customization" style="width: 100%; border-radius: 0.25rem;">
+
+### Dynamic Color
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem">
+  <img src="./assets/images/base-dynamic-color-1.webp" alt="Dynamic color theme 1" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/base-dynamic-color-2.webp" alt="Dynamic color theme 2" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/base-dynamic-color-3.webp" alt="Dynamic color theme 3" style="width: 48%; border-radius: 0.25rem;">
+  <img src="./assets/images/base-dynamic-color-4.webp" alt="Dynamic color theme 4" style="width: 48%; border-radius: 0.25rem;">
+</div>
+
+### Other Screenshots
+
+- ![Compact playlist](./assets/images/base-playlist-compact.webp) _Compact playlist layout_
+- ![Playlist card](./assets/images/base-playlist-card.webp) _Playlist card view_
+- ![Playlist with dynamic color](./assets/images/base-playlist-dynamic-color.webp) _Dynamic color theme applied to playlist_
+- ![Lyrics cinema with solid background](./assets/images/lyrics-cinema-solid.webp) _Solid background for lyrics_
+- ![Lyrics cinema with static background](./assets/images/lyrics-cinema-static.webp) _Static background for lyrics_
+- ![Lyrics cinema with animated background](./assets/images/lyrics-cinema-animated.webp) _Animated background for lyrics_
+- ![Podcast](./assets/images/base-podcast.webp) _Podcast Page_
+- ![Lyrics page with compact playbar](./assets/images/base-normal-lyrics-page-compact-playbar.webp) _Compact playbar for lyrics view_
+- ![Playlist page with background and compact playbar](./assets/images/base-playlist-with-bg-page-compact-playbar.webp) _Background and compact playbar for playlist page_
 
 ## **Customization**
 
 ### **Color scheme:**
 
 Available schemes: `dark`, `light`, `comfy`, `macos`, `coffee`, `violet`, `dracula`, `biscuit`, `cozytile`, `rosepine`, `darkgreen`, `greenland`, `dark-bloom`, `dark-fluent`, `dracula-pro`, `cosmic-dusk`, `midnight-slate`, `nocturne-coast`, `catppuccin-mocha`, `midnight-catppuccin`, `catppuccin-macchiato`, `catppuccin-darkrose`.
-
-## Lucid Settings
-
-This section contains available settings for customizing the Lucid theme. Settings are grouped into sections for easier navigation.
-
-### Background Settings
-
-These settings control the overall appearance of the visualizer's background.
-
-| Setting           | Options                                                             | Default            | Description                                                                                                                                                                                                                                                              |
-| ----------------- | ------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Background        | - Default Background<br>- Animated Background<br>- Solid Background | Default Background | Selects the type of background to display: <br> - **Default Background:** Displays the default background image. <br> - **Animated Background:** Displays an animated background that responds to audio. <br> - **Solid Background:** Displays a solid color background. |
-| Background Grains | - Stary Grains (default)<br>- Normal Grains<br>- No Grains          | Stary Grains       | Chooses the type of grain effect applied to the background: <br> - **Stary Grains:** Displays a subtle, sparkling grain effect. <br> - **Normal Grains:** Displays a standard film grain effect. <br> - **No Grains:** Disables the grain effect.                        |
-
-### Default Background Settings
-
-These settings control the appearance of the default background when no audio is playing and the "Default Background" option is selected in **Background Settings**.
-
-| Setting    | Min | Max | Default | Description                                                                                                                                                              |
-| ---------- | --- | --- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Blur       | 0   | 100 | 24      | Amount of blur applied to the background. Higher values mean more blur.                                                                                                  |
-| Brightness | 0   | 200 | 65      | Brightness level of the background. 100 is the default brightness, values below make it darker and above make it brighter.                                               |
-| Contrast   | 0   | 200 | 80      | Contrast level of the background. 100 is the default contrast, values below make it less contrasted and above make it more contrasted.                                   |
-| Saturation | 0   | 200 | 90      | Saturation level of the background. 100 is the default saturation, values below make it less saturated (more greyscale) and above make it more saturated (more vibrant). |
-
-### Animated Background Settings
-
-These settings control the appearance and behavior of the animated background when audio is playing and the "Animated Background" option is selected in **Background Settings**.
-
-| Setting        | Min | Max | Default | Description                                                                                                                                                                       |
-| -------------- | --- | --- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Blur           | 32  | 256 | 64      | Amount of blur applied to the animated background. Higher values mean more blur.                                                                                                  |
-| Saturation     | 0   | 500 | 150     | Saturation level of the animated background. 100 is the default saturation, values below make it less saturated (more greyscale) and above make it more saturated (more vibrant). |
-| Contrast       | 0   | 200 | 115     | Contrast level of the animated background. 100 is the default contrast, values below make it less contrasted and above make it more contrasted.                                   |
-| Brightness     | 0   | 200 | 65      | Brightness level of the animated background. 100 is the default brightness, values below make it darker and above make it brighter.                                               |
-| Animation Time | 0   | 120 | 45      | Duration in seconds for one animation cycle (0 = no animation, recommended: 30-60).                                                                                               |
-
-### Now Playing Bar Settings
-
-These settings control the appearance of the "Now Playing" bar.
-
-| Setting                  | Min | Max | Default | Description                                                                                                                                                       |
-| ------------------------ | --- | --- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Opacity                  | 0   | 100 | 100     | Overall opacity of the bar. 0 is completely transparent, 100 is fully opaque.                                                                                     |
-| Background Color Opacity | 0   | 100 | 50      | Opacity specifically for the bar's background color. 0 is completely transparent, 100 is fully opaque.                                                            |
-| Height                   | 0   | 500 | 80      | Height of the bar.                                                                                                                                                |
-| Padding in X axis        | 0   | 50  | 4       | Horizontal padding within the bar. Higher values mean more space between the content and the edges of the bar.                                                    |
-| Margin Bottom            | 0   | 50  | 8       | Spacing between the bottom of the bar and content below it. Higher values mean more space.                                                                        |
-| Border Radius            | 0   | 100 | 8       | Rounding of the bar's corners. Higher values mean more rounded corners.                                                                                           |
-| Blur                     | 0   | 100 | 32      | Blur applied to the bar. Higher values mean more blur.                                                                                                            |
-| Saturation               | 0   | 200 | 100     | Saturation level of the bar. 100 is the default saturation, values below make it less saturated (more greyscale) and above make it more saturated (more vibrant). |
-| Contrast                 | 0   | 200 | 100     | Contrast level of the bar. 100 is the default contrast, values below make it less contrasted and above make it more contrasted.                                   |
-| Brightness               | 0   | 200 | 100     | Brightness level of the bar. 100 is the default brightness, values below make it darker and above make it brighter.                                               |
 
 ## Dependencies
 
