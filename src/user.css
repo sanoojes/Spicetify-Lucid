@@ -279,6 +279,11 @@ textarea,
   scrollbar-width: thin;
 }
 
+html,
+body {
+  overflow: hidden;
+}
+
 /* Button styles */
 .ap8U6ZVS8BqMxUdinBis
 /* ADD: card close button */
@@ -1289,7 +1294,6 @@ div[data-testid="hpto-parent-container"] {
   -webkit-backdrop-filter: brightness(2.12);
   backdrop-filter: brightness(2.12);
   z-index: var(--above-main-and-now-playing-view-grid-area, 6);
-
 }
 
 /* Icon Styles for Buttons */
