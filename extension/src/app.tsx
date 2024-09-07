@@ -1,8 +1,9 @@
 import React from 'react';
 import Main from '@/components/Main';
+import { logToConsole } from '@/utils/logUtils';
+import { replaceIcons } from '@/utils/replaceIcons';
 import { showError } from '@/components/error/ErrorBoundary';
 import { checkForCustomControls } from '@/utils/windowControls';
-import { logToConsole } from '@/utils/logUtils';
 import { manageBackgroundZIndex } from '@/utils/backgroundUtils';
 
 async function main() {
@@ -48,6 +49,9 @@ async function main() {
       document.querySelector('.globalNav') ||
       document.querySelector('.Root__globalNav')
     );
+
+    // replace icons
+    replaceIcons();
 
     // change background z-index
     manageBackgroundZIndex();

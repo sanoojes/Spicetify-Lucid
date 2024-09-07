@@ -1,5 +1,4 @@
 import React from 'react';
-import { replaceIcons } from '@/utils/replaceIcons';
 import { updateArtworkUrl, updatePlaylistArtworkUrl } from '@/utils/artworkUrl';
 import { setTopBarStyles } from '@/utils/windowControls';
 import { ModalContextProvider } from '@/context/ModalContext';
@@ -66,7 +65,6 @@ const Main = () => {
 
     Spicetify.React.useEffect(() => {
       setPath();
-      replaceIcons();
       setTopBarStyles();
       handleSongChange();
       setUnderMainView();
@@ -107,7 +105,7 @@ const Main = () => {
         <div id='state'>
           <GrainManager />
           <PlaybarManager />
-          <FontManager fontType='title' />
+          <FontManager />
         </div>
         <div
           id='background-container'
