@@ -513,6 +513,11 @@ input,
   transition: width 0.3s ease;
 }
 
+.main-yourLibraryX-entryPoints #spicetify-show-list,
+.main-yourLibraryX-entryPoints #spicetify-hidden-list {
+  padding-top: var(--padding-md, 0.5rem);
+}
+
 /* Background Color */
 .Root__main-view {
   background-color: var(--main-color);
