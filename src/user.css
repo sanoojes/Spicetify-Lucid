@@ -437,6 +437,15 @@ input,
   border-bottom: 2px solid rgb(var(--accent-color)) !important;
 }
 
+.spicetify-exp-features input.search {
+  background-color: rgba(var(--spice-rgb-selected-row), 0.05) !important;
+  border-color: rgba(var(--spice-rgb-selected-row), 0.1) !important;
+}
+
+.spicetify-exp-features input.search:focus {
+  background-color: rgba(var(--spice-rgb-card), 0.1) !important;
+}
+
 .search:focus,
 .search-bar:focus,
 .searchbar-bar:focus,
