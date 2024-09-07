@@ -171,10 +171,6 @@
   --background-elevated-press: var(--spice-button);
 }
 
-.spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav {
-  padding-inline: calc(64px* var(--zoom-adjust-coefficient, 1)) calc(135px* var(--zoom-adjust-coefficient, 1));
-}
-
 /* Font */
 body,
 button,
@@ -563,13 +559,17 @@ input,
   -webkit-app-region: no-drag;
 }
 
-
 .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav,
 .spotify__container--is-desktop.spotify__os--is-windows .main-topBar-container {
   padding-inline: var(--top-bar-padding-start, 5vw) var(--top-bar-padding-end, 8vw);
 }
 
-.spotify__container--is-desktop.spotify__os--is-windows .global-nav .main-topBar-container,
+.spotify__container--is-desktop.spotify__os--is-macos .main-topBar-container {
+  -webkit-padding-start: 80px !important;
+  padding-inline-start: 80px !important;
+}
+
+.spotify__container--is-desktop.spotify__os--is-macos .global-nav .main-topBar-container .spotify__container--is-desktop.spotify__os--is-windows .global-nav .main-topBar-container,
 .global-nav .main-topBar-container {
   padding-inline: 0 !important;
 }
