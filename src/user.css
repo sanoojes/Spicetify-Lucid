@@ -280,6 +280,10 @@ body {
   overflow: hidden;
 }
 
+option {
+  background-color: var(--spice-card) !important;
+}
+
 /* Button styles */
 .ap8U6ZVS8BqMxUdinBis
 /* ADD: card close button */
