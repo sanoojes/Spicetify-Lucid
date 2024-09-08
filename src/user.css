@@ -171,6 +171,23 @@
   --background-elevated-press: var(--spice-button);
 }
 
+.encore-light-theme,
+.encore-light-theme .encore-base-set {
+  --background-base: var(--spice-main);
+  --background-highlight: var(--spice-card);
+  --background-press: var(--spice-main);
+  --background-elevated-base: var(--spice-main);
+  --background-elevated-highlight: var(--spice-card);
+  --background-elevated-press: var(--spice-card);
+  --background-tinted-base: rgba(var(--spice-rgb-shadow), .12);
+  --background-tinted-highlight: rgba(var(--spice-rgb-shadow), .06);
+  --background-tinted-press: rgba(var(--spice-rgb-shadow), .17);
+  --text-base: var(--spice-text);
+  --text-subdued: var(--spice-subtext);
+  --essential-base: var(--spice-sidebar);
+  --decorative-base: var(--spice-sidebar);
+}
+
 /* Font */
 body,
 button,
@@ -910,7 +927,6 @@ div[data-testid="hpto-parent-container"] {
 }
 
 /* Generic Modal */
-
 .GenericModal__overlay {
   bottom: 0;
   display: -webkit-box;
