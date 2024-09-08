@@ -1,4 +1,5 @@
 import React from 'react';
+
 const SolidBackground = () => {
   return <div className='solid-background' />;
 };

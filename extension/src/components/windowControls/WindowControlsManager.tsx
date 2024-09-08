@@ -12,56 +12,57 @@ const WindowControlsManager = React.memo(() => {
   const { isCustomControls, rootStyle, isWindows, isLightMode } =
     useLucidStore();
 
-  async function setTopBarStyles() {
-    if (!isCustomControls) {
-      const baseHeight = 64;
-      const baseWidth = 135;
-      const constant = 0.912872807;
+  React.useEffect(() => {
+    async function setTopBarStyles() {
+      if (!isCustomControls) {
+        const baseHeight = 64;
+        const baseWidth = 135;
+        const constant = 0.912872807;
 
-      const normalZoom = calculateBrowserZoom();
-      const inverseZoom = calculateInverseBrowserZoom();
+        const normalZoom = calculateBrowserZoom();
+        const inverseZoom = calculateInverseBrowserZoom();
 
-      const finalControlHeight = Math.round(
-        (normalZoom ** constant * 100) / 100 - 3
-      );
+        const finalControlHeight = Math.round(
+          (normalZoom ** constant * 100) / 100 - 3
+        );
 
-      await setWindowControlsHeight(finalControlHeight);
+        await setWindowControlsHeight(finalControlHeight);
 
-      const paddingStart = calculateScaledPx(64, inverseZoom, 1);
-      const paddingEnd = calculateScaledPx(baseWidth, inverseZoom, 1);
+        const paddingStart = calculateScaledPx(64, inverseZoom, 1);
+        const paddingEnd = calculateScaledPx(baseWidth, inverseZoom, 1);
 
-      rootStyle.setProperty('--top-bar-padding-start', `${paddingStart}px`);
-      rootStyle.setProperty('--top-bar-padding-end', `${paddingEnd}px`);
+        rootStyle.setProperty('--top-bar-padding-start', `${paddingStart}px`);
+        rootStyle.setProperty('--top-bar-padding-end', `${paddingEnd}px`);
 
-      if (isWindows && !isCustomControls && !isLightMode) {
-        const controlHeight = baseHeight;
+        if (isWindows && !isCustomControls && !isLightMode) {
+          const controlHeight = baseHeight;
+          const controlWidth = calculateScaledPx(baseWidth, inverseZoom, 1);
 
-        const controlWidth = calculateScaledPx(baseWidth, inverseZoom, 1);
-
-        rootStyle.setProperty('--control-height', `${controlHeight}px`);
-        rootStyle.setProperty('--control-width', `${controlWidth}px`);
+          rootStyle.setProperty('--control-height', `${controlHeight}px`);
+          rootStyle.setProperty('--control-width', `${controlWidth}px`);
+        }
       }
     }
-  }
 
-  React.useEffect(() => {
     setTopBarStyles();
     window.addEventListener('resize', setTopBarStyles);
 
     return () => {
       window.removeEventListener('resize', setTopBarStyles);
     };
-  }, []);
+  }, [isCustomControls, rootStyle, isLightMode, isWindows]);
 
   return (
     <>
-      <div
-        id='transperent-controls-container'
-        className='transperent-controls-container'
-        style={{ containerType: 'normal' }}
-      >
-        <TransparentWindowControl />
-      </div>
+      {isWindows ? (
+        <div
+          id='transperent-controls-container'
+          className='transperent-controls-container'
+          style={{ containerType: 'normal' }}
+        >
+          <TransparentWindowControl />
+        </div>
+      ) : null}
     </>
   );
 });

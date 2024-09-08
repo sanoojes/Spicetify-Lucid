@@ -1,10 +1,7 @@
 import React from 'react';
 import Main from '@/components/Main';
 import { logToConsole } from '@/utils/logUtils';
-import { replaceIcons } from '@/utils/replaceIcons';
 import { showError } from '@/components/error/ErrorBoundary';
-import { manageBackgroundZIndex } from '@/utils/backgroundUtils';
-import { checkForCustomControls } from './utils/windowControlUtils';
 
 async function main() {
   try {
@@ -22,23 +19,20 @@ async function main() {
     const mainElement = document.getElementById('main');
     mainElement?.prepend(rootElement);
 
-    console.time('render');
-    if (rootElement)
-      Spicetify.ReactDOM.createRoot(rootElement).render(<Main />);
-    console.timeEnd('render');
-
-    // replace icons
-    replaceIcons();
-
-    // change background z-index
-    manageBackgroundZIndex();
+    if (rootElement) {
+      Spicetify.ReactDOM.createRoot(rootElement).render(
+        <React.StrictMode>
+          <Main />
+        </React.StrictMode>
+      );
+    }
 
     logToConsole('Lucid ignited! 🚀', {
       styles:
         'font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;',
     });
   } catch (error) {
-    if (error) showError(error);
+    showError(error);
   }
 }
 

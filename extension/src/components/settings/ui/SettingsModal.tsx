@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from '@/components/modal/Modal';
 import SettingSection from '@/components/settings/ui/SettingSection';
 import BackgroundSection from '@/components/settings/sections/BackgroundSettingsSection';
@@ -49,7 +49,7 @@ const SettingsModal = React.memo(() => {
     },
   ];
 
-  const [activeSection, setActiveSection] = useState('all');
+  const [activeSection, setActiveSection] = React.useState('all');
 
   const handleSectionClick = (sectionKey: string) => {
     setActiveSection(sectionKey);

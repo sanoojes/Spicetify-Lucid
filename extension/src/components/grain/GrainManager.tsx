@@ -1,10 +1,10 @@
+import React from 'react';
 import { useSettingsStore } from '@/store/useSettingsStore';
-import React, { useEffect } from 'react';
 
 const Grains = () => {
   const { grainEffect } = useSettingsStore();
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.body.classList.add(`grain-${grainEffect}`);
 
     return () => {

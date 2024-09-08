@@ -7,35 +7,41 @@ import {
 } from '@/utils/fontUtils';
 import type { FontTypes } from '@/types/settingTypes';
 
-const FontManager = () => {
+const FontManager = React.memo(() => {
   const { fontSettings } = useSettingsStore();
 
-  const updateCssVariable = (fontType: string, fontFamily: string) => {
-    document.documentElement.style.setProperty(
-      `--${fontType}-font-to-use`,
-      fontFamily
-    );
-  };
+  const updateCssVariable = React.useCallback(
+    (fontType: string, fontFamily: string) => {
+      document.documentElement.style.setProperty(
+        `--${fontType}-font-to-use`,
+        fontFamily
+      );
+    },
+    []
+  );
 
-  const handleFontChange = (fontType: FontTypes) => {
-    const { url, fontFamily } = fontSettings[fontType];
+  const handleFontChange = React.useCallback(
+    (fontType: FontTypes) => {
+      const { url, fontFamily } = fontSettings[fontType];
 
-    if (isValidUrl(url)) {
-      const extractedFontFamily = extractFontFamilyFromUrl(url);
-      loadFontFromUrl(url, `${fontType}-font`);
-      updateCssVariable(fontType, extractedFontFamily);
-    } else {
-      updateCssVariable(fontType, fontFamily);
-    }
-  };
+      if (isValidUrl(url)) {
+        const extractedFontFamily = extractFontFamilyFromUrl(url);
+        loadFontFromUrl(url, `${fontType}-font`);
+        updateCssVariable(fontType, extractedFontFamily);
+      } else {
+        updateCssVariable(fontType, fontFamily);
+      }
+    },
+    [fontSettings, updateCssVariable]
+  );
 
   React.useEffect(() => {
     for (const fontType of Object.keys(fontSettings)) {
       handleFontChange(fontType as FontTypes);
     }
-  }, [fontSettings]);
+  }, [fontSettings, handleFontChange]);
 
   return null;
-};
+});
 
 export default FontManager;

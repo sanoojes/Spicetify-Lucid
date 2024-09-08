@@ -1,4 +1,4 @@
-import React, { useState, type FC, type ChangeEvent } from 'react';
+import React, { type FC, type ChangeEvent } from 'react';
 import CustomInput from '@/components/ui/CustomInput';
 
 export const FontInput: FC<{
@@ -6,7 +6,7 @@ export const FontInput: FC<{
   fontUrl: string;
   onFontChange: (newFont: string) => void;
 }> = ({ fontFamily, fontUrl, onFontChange }) => {
-  const [inputValue, setInputValue] = useState(fontUrl || fontFamily);
+  const [inputValue, setInputValue] = React.useState(fontUrl || fontFamily);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

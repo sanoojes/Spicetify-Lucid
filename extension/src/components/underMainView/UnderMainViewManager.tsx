@@ -1,24 +1,24 @@
 import React from 'react';
 import { useLucidStore } from '@/store/useLucidStore';
 
-const UnderMainViewManager: React.FC = () => {
+const UnderMainViewManager = () => {
   const {
     underMainBackgroundImage,
     setUnderMainViewBackgroundImage,
     rootStyle,
   } = useLucidStore();
 
-  React.useEffect(() => {
-    const handleMutations = (mutationsList: MutationRecord[]) => {
-      const backgroundImageNode = mutationsList.reduce<HTMLElement | null>(
+  const handleMutations = React.useCallback(
+    (mutationsList: MutationRecord[]) => {
+      const backgroundImageNode = mutationsList.reduce<HTMLDivElement | null>(
         (foundNode, mutation) => {
           if (foundNode) return foundNode;
           if (
             mutation.type === 'childList' &&
             mutation.addedNodes.length > 0 &&
-            mutation.addedNodes[0].firstChild instanceof HTMLElement
+            mutation.addedNodes[0].firstChild instanceof HTMLDivElement
           ) {
-            return mutation.addedNodes[0].firstChild;
+            return mutation.addedNodes[0].firstChild as HTMLDivElement;
           }
           return null;
         },
@@ -26,38 +26,43 @@ const UnderMainViewManager: React.FC = () => {
       );
 
       if (backgroundImageNode?.style) {
-        setUnderMainViewBackgroundImage(
-          backgroundImageNode.style.backgroundImage.replace(
-            /url\(['"]?([^'"]*)['"]?\)/i,
-            '$1'
-          )
+        const imageUrl = backgroundImageNode.style.backgroundImage.replace(
+          /url\(['"]?([^'"]*)['"]?\)/i,
+          '$1'
         );
-      } else {
-        if (underMainBackgroundImage !== null) {
-          setUnderMainViewBackgroundImage(null);
-        }
+        setUnderMainViewBackgroundImage(imageUrl);
+      } else if (underMainBackgroundImage !== null) {
+        setUnderMainViewBackgroundImage(null);
       }
-    };
+    },
+    [setUnderMainViewBackgroundImage, underMainBackgroundImage]
+  );
 
+  React.useEffect(() => {
     const observer = new MutationObserver(handleMutations);
-    const underMainView = document.querySelector('.under-main-view');
+    const underMainView = document.querySelector(
+      '.under-main-view'
+    ) as HTMLDivElement | null;
+
     if (underMainView) {
       observer.observe(underMainView, { childList: true });
     }
 
     return () => observer.disconnect();
-  }, [setUnderMainViewBackgroundImage]);
+  }, [handleMutations]);
 
   React.useEffect(() => {
-    if (underMainBackgroundImage)
+    if (underMainBackgroundImage) {
       rootStyle.setProperty(
         '--under-main-view-art-image',
         `url(${underMainBackgroundImage})`
       );
-    else rootStyle.removeProperty('--under-main-view-art-image');
+    } else {
+      rootStyle.removeProperty('--under-main-view-art-image');
+    }
   }, [underMainBackgroundImage, rootStyle]);
 
-  return <></>;
+  return null;
 };
 
 export default UnderMainViewManager;

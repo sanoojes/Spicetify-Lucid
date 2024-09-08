@@ -4,6 +4,9 @@ import type { CustomCSSProperties } from '@/types/settingTypes';
 import { logToConsole } from '@/utils/logUtils';
 
 const PlaybarManager = () => {
+  const [dynamicStyle, setDynamicStyle] = React.useState<CustomCSSProperties>(
+    {}
+  );
   const { playbarMode, playbarStyles } = useSettingsStore();
 
   React.useEffect(() => {
@@ -13,10 +16,6 @@ const PlaybarManager = () => {
       document.body.classList.remove(`playbar-${playbarMode}`);
     };
   }, [playbarMode]);
-
-  const [dynamicStyle, setDynamicStyle] = React.useState<CustomCSSProperties>(
-    {}
-  );
 
   React.useEffect(() => {
     const newDynamicStyle = {

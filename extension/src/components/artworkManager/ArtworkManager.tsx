@@ -6,39 +6,44 @@ import {
   getNowPlayingArtworkUrl,
   getSpotifyURI,
 } from '@/utils/artworkUrl';
+import { useSettingsStore } from '@/store/useSettingsStore';
 
-const ArtworkManager: React.FC = () => {
+const ArtworkManager = () => {
   const { pageCategory, rootStyle, artworkData, updateArtworkData } =
     useLucidStore();
+  const { playlistImageMode } = useSettingsStore();
 
-  React.useEffect(() => {
-    const setPageArtwork = async () => {
-      try {
-        const pathname = Spicetify.Platform.History.location.pathname;
-        const currentPageURI = getSpotifyURI(pathname);
+  const setPageArtwork = React.useCallback(async () => {
+    rootStyle.setProperty('--artwork-opacity', '0');
+    try {
+      const pathname = Spicetify.Platform.History.location.pathname;
+      const currentPageURI = getSpotifyURI(pathname);
 
-        if (currentPageURI) {
-          if (artworkData.currentPageURI !== currentPageURI) {
-            const imageUrl =
-              (await fetchArtworkURLFromAPI(currentPageURI)) || '';
-
-            updateArtworkData({ currentPageArtURL: imageUrl, currentPageURI });
-          }
-        } else {
-          updateArtworkData({ currentPageArtURL: '', currentPageURI: '' });
+      if (currentPageURI) {
+        if (artworkData.currentPageURI !== currentPageURI) {
+          const imageUrl = (await fetchArtworkURLFromAPI(currentPageURI)) || '';
+          updateArtworkData({ currentPageArtURL: imageUrl, currentPageURI });
         }
-      } catch (error) {
-        console.error('Error updating artwork:', error);
+      } else {
         updateArtworkData({ currentPageArtURL: '', currentPageURI: '' });
       }
-    };
+    } catch (error) {
+      console.error('Error updating artwork:', error);
+      updateArtworkData({ currentPageArtURL: '', currentPageURI: '' });
+    } finally {
+      rootStyle.setProperty('--artwork-opacity', '1');
+    }
+  }, [artworkData.currentPageURI, rootStyle, updateArtworkData]);
 
-    const unlistenHistory = Spicetify.Platform.History.listen(setPageArtwork);
-    setPageArtwork();
+  React.useEffect(() => {
+    if (playlistImageMode === 'inherit') {
+      const unlistenHistory = Spicetify.Platform.History.listen(setPageArtwork);
+      setPageArtwork();
 
-    return () => {
-      unlistenHistory();
-    };
+      return () => {
+        unlistenHistory();
+      };
+    }
   }, []);
 
   React.useEffect(() => {
@@ -48,8 +53,10 @@ const ArtworkManager: React.FC = () => {
         `url(${artworkData.currentPageArtURL})`
       );
       logToConsole(
-        `Updated Artwork Url of page: ${artworkData.currentPageURI} to ${artworkData.currentPageArtURL}`,
-        { level: 'info' }
+        `Updated Playlist Artwork Url to ${artworkData.currentPageArtURL}`,
+        {
+          level: 'info',
+        }
       );
     } else if (pageCategory !== 'other') {
       logToConsole(
@@ -59,10 +66,10 @@ const ArtworkManager: React.FC = () => {
       rootStyle.setProperty('--playlist-art-image', 'none');
     }
   }, [
-    rootStyle,
     artworkData.currentPageArtURL,
     artworkData.currentPageURI,
     pageCategory,
+    rootStyle,
   ]);
 
   React.useEffect(() => {
@@ -71,28 +78,26 @@ const ArtworkManager: React.FC = () => {
         '--now-playing-art-image',
         `url(${artworkData.nowPlayingArtURL})`
       );
-
       logToConsole(
         `Updated Now Playing Art View: ${artworkData.nowPlayingArtURL}`,
-        {
-          level: 'info',
-        }
+        { level: 'info' }
       );
     }
   }, [artworkData.nowPlayingArtURL, rootStyle]);
 
   React.useEffect(() => {
     const handleSongChange = async () => {
-      updateArtworkData({ nowPlayingArtURL: await getNowPlayingArtworkUrl() });
+      const nowPlayingArtURL = await getNowPlayingArtworkUrl();
+      updateArtworkData({ nowPlayingArtURL });
     };
 
-    handleSongChange(); // initial run
+    handleSongChange(); // initial call
     Spicetify.Player.addEventListener('songchange', handleSongChange);
 
     return () => {
       Spicetify.Player.removeEventListener('songchange', handleSongChange);
     };
-  }, [rootStyle]);
+  }, [updateArtworkData]);
 
   return null;
 };

@@ -25,57 +25,48 @@ const PlaylistView = React.memo(() => {
     };
   }, [playlistViewMode, playlistImageMode]);
 
+  const handleScroll = React.useCallback(
+    (scrollNode: Element) => {
+      if (backgroundRef.current && blurRef.current) {
+        const scrollAmount = Math.min(scrollNode.scrollTop, window.innerHeight);
+
+        const blurAmount =
+          scrollAmount * 0.03 +
+          (pageCategory === 'playlist' && !underMainBackgroundImage ? 4 : 0);
+
+        const brightnessAdjustment = isScrollMode
+          ? ''
+          : `brightness(${1 - (scrollAmount / window.innerHeight) * 0.5})`;
+
+        blurRef.current.style.filter = `blur(${blurAmount}px) ${brightnessAdjustment}`;
+        blurRef.current.style.transform = `scale(${
+          1 + (scrollAmount / window.innerHeight) * 0.5
+        })`;
+
+        backgroundRef.current.style.transform = `translateY(${
+          isScrollMode ? -scrollAmount : 0
+        }px)`;
+      }
+    },
+    [isScrollMode, pageCategory, underMainBackgroundImage]
+  );
+
   React.useEffect(() => {
     const scrollNode = document.querySelector(
       '.Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]'
     );
 
-    if (scrollNode && backgroundRef.current) {
-      const handleScroll = () => {
-        if (
-          backgroundRef.current &&
-          !(pageCategory === 'other') &&
-          blurRef.current
-        ) {
-          const scrollAmount = Math.min(
-            scrollNode.scrollTop,
-            window.screen.height
-          );
+    if (scrollNode) {
+      const scrollHandler = () => handleScroll(scrollNode);
+      scrollHandler();
 
-          blurRef.current.style.filter = `blur(${
-            scrollAmount * 0.03 +
-            (pageCategory === 'playlist' && !underMainBackgroundImage ? 4 : 0)
-          }px) ${
-            !isScrollMode
-              ? `brightness(${
-                  1 - (scrollAmount / window.screen.height) * 0.5
-                }) `
-              : ''
-          }`;
-          blurRef.current.style.transform = `scale(${
-            1 + (scrollAmount / window.screen.height) * 0.5
-          })`;
-
-          backgroundRef.current.style.transform = `translateY(${
-            isScrollMode ? -scrollAmount : 0
-          }px)`;
-        }
-      };
-
-      handleScroll();
-
-      scrollNode.addEventListener('scroll', handleScroll, { passive: true });
+      scrollNode.addEventListener('scroll', scrollHandler, { passive: true });
 
       return () => {
-        scrollNode.removeEventListener('scroll', handleScroll);
+        scrollNode.removeEventListener('scroll', scrollHandler);
       };
     }
-  }, [
-    window.screen.height,
-    isScrollMode,
-    pageCategory,
-    underMainBackgroundImage,
-  ]);
+  }, [handleScroll]);
 
   return (
     <span
