@@ -2680,7 +2680,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 }
 
 .playlist-art-container.now-playing .background {
-  background-image: var(--now-playing-art-image);
+  background-image: var(--under-main-view-art-image, var(--now-playing-art-image));
 }
 
 .artist .playlist-art-container .background {
