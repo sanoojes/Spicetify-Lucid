@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import type { CustomCSSProperties } from '@/types/settingTypes';
 import { logToConsole } from '@/utils/logUtils';
 

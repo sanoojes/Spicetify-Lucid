@@ -1,7 +1,7 @@
 import React from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import { FontInput } from '@/components/settings/ui/FontInput';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import { isValidUrl, extractFontFamilyFromUrl } from '@/utils/fontUtils';
 import type { FontTypes } from '@/types/settingTypes';
 import { FontToolTip } from '@/components/settings/sections/tooltip/FontTooltip';

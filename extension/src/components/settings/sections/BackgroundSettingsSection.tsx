@@ -2,7 +2,7 @@ import React from 'react';
 import Dropdown from '@/components/settings/ui/Dropdown';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import SliderSwitch from '@/components/ui/SliderSwitch';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import type {
   BackgroundMode,
   BackgroundStyleSettings,

@@ -1,4 +1,4 @@
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import React, { useEffect } from 'react';
 
 const Grains = () => {

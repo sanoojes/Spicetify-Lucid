@@ -84,6 +84,7 @@ type AppSettings = {
   fontSettings: FontSettings;
   backgroundMode: BackgroundMode;
   backgroundStyles: BackgroundStyleSettings;
+  isScrollMode: boolean;
   isDynamicColor: boolean;
   grainEffect: GrainEffect;
   playlistImageMode: PlaylistImageMode;
@@ -111,6 +112,7 @@ type SettingsActions = {
     key: keyof PlaybarStyleSettings,
     value: string
   ) => void;
+  setIsScrollMode: (isDynamicColor: boolean) => void;
   setDynamicColor: (isDynamicColor: boolean) => void;
   setGrainEffect: (grainEffect: GrainEffect) => void;
   setPlaylistImageMode: (playlistImageMode: PlaylistImageMode) => void;

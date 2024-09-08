@@ -60,6 +60,7 @@ export const defaultSettings: AppSettings = {
   backgroundStyles: defaultBackgroundStyles,
   grainEffect: 'stary',
   isDynamicColor: false,
+  isScrollMode: true,
   playlistImageMode: 'inherit',
   playbarMode: 'default',
   playbarStyles: defaultPlaybarStyles,

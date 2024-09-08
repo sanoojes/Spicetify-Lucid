@@ -29,6 +29,8 @@ export const useSettingsStore = create(
             },
           },
         })),
+
+      setIsScrollMode: (isScrollMode: boolean) => set(() => ({ isScrollMode })),
       setBackgroundMode: (backgroundMode: BackgroundMode) =>
         set(() => ({ backgroundMode })),
       setFontSettings: (fontSettings: FontSettings) =>

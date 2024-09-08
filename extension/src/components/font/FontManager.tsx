@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import {
   isValidUrl,
   extractFontFamilyFromUrl,

@@ -3,7 +3,7 @@ import StaticBackground from '@/components/background/StaticBackground';
 import AnimatedBackground from '@/components/background/AnimatedBackground';
 import SolidBackground from '@/components/background/SolidBackground';
 import DynamicBackground from '@/components/background/DynamicBackground';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import type { CustomCSSProperties } from '@/types/settingTypes';
 
 const BackgroundManager = React.memo(() => {

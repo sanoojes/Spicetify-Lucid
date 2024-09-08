@@ -2,7 +2,8 @@ import React from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import Dropdown from '@/components/settings/ui/Dropdown';
 import type { PlaylistImageMode, PlaylistViewMode } from '@/types/settingTypes';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
+import SliderSwitch from '@/components/ui/SliderSwitch';
 
 const PlaylistViewSettingsSection = () => {
   const playlistViewOptions: { label: string; value: PlaylistViewMode }[] = [
@@ -22,6 +23,8 @@ const PlaylistViewSettingsSection = () => {
     playlistImageMode,
     setPlaylistViewMode,
     setPlaylistImageMode,
+    isScrollMode,
+    setIsScrollMode,
   } = useSettingsStore();
 
   const handlePlaylistViewSelect = (value: PlaylistViewMode) => {
@@ -49,6 +52,12 @@ const PlaylistViewSettingsSection = () => {
           options={playlistImageOptions}
           onSelect={handlePlaylistImageModeSelect}
           selectedValue={playlistImageMode}
+        />
+      </SettingsCard>
+      <SettingsCard title='Scroll Background Image'>
+        <SliderSwitch
+          currentValue={isScrollMode}
+          onChange={(value) => setIsScrollMode(value)}
         />
       </SettingsCard>
     </>

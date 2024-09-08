@@ -1,8 +1,5 @@
 import React from 'react';
-import { updateArtworkUrl, updatePlaylistArtworkUrl } from '@/utils/artworkUrl';
-import { setTopBarStyles } from '@/utils/windowControls';
 import { ModalContextProvider } from '@/context/ModalContext';
-import TransparentWindowControl from '@/components/windowControls/TransparentWindowControl';
 import BackgroundManager from '@/components/background/BackgroundManager';
 import SettingsManager from '@/components/settings/SettingsManager';
 import PlaylistViewManager from '@/components/playlistViews/PlaylistViewManager';
@@ -10,17 +7,17 @@ import FontManager from '@/components/font/FontManager';
 import GrainManager from '@/components/grain/GrainManager';
 import { showError } from '@/components/error/ErrorBoundary';
 import PlaybarManager from '@/components/playbar/PlaybarManager';
+import UnderMainViewManager from '@/components/underMainView/UnderMainViewManager';
+import { useLucidStore } from '@/store/useLucidStore';
+import ArtworkManager from './artworkManager/ArtworkManager';
+import WindowControlsManager from './windowControls/WindowControlsManager';
 
 const Main = () => {
   try {
-    const [pageCategory, setPageCategory] =
-      React.useState<PageCategoryType>('other');
     const underMainViewRef = React.useRef<HTMLElement | null>(null);
     const [previousPath, setPreviousPath] = React.useState<string | null>(null);
-
-    const handleSongChange = () => {
-      updateArtworkUrl(); // change art url
-    };
+    const { isWindows, isLightMode, pageCategory, setPageCategory } =
+      useLucidStore();
 
     const setUnderMainView = () => {
       if (document.getElementById('lucid-under-main-view')) {
@@ -65,34 +62,22 @@ const Main = () => {
 
     Spicetify.React.useEffect(() => {
       setPath();
-      setTopBarStyles();
-      handleSongChange();
       setUnderMainView();
-      updatePlaylistArtworkUrl();
 
       // Event Listeners
-      Spicetify.Platform.History.listen(() => {
+      const unlistenHistory = Spicetify.Platform.History.listen(() => {
         const currentPath = Spicetify.Platform.History.location.pathname;
         if (currentPath !== previousPath) {
           setPreviousPath(currentPath);
           setPath();
           setUnderMainView();
-          updatePlaylistArtworkUrl();
         }
-      }); // page change listener
+      });
 
-      window.addEventListener('resize', setTopBarStyles); // window resize listener
-      Spicetify.Player.addEventListener('songchange', handleSongChange); // song change listener
-
-      // unload all listeners on removal
-      return () => {
-        window.removeEventListener('resize', setTopBarStyles);
-        Spicetify.Player.removeEventListener('songchange', handleSongChange);
-      };
+      return () => unlistenHistory();
     }, []);
 
     React.useEffect(() => {
-      window.pageCategory = pageCategory;
       document.body.classList.add(pageCategory);
 
       return () => {
@@ -106,6 +91,8 @@ const Main = () => {
           <GrainManager />
           <PlaybarManager />
           <FontManager />
+          <UnderMainViewManager />
+          <ArtworkManager />
         </div>
         <div
           id='background-container'
@@ -123,15 +110,7 @@ const Main = () => {
             <SettingsManager />
           </ModalContextProvider>
         </div>
-        {window.isWindows && !window.isLightMode ? (
-          <div
-            id='transperent-controls-container'
-            className='transperent-controls-container'
-            style={{ containerType: 'normal' }}
-          >
-            <TransparentWindowControl />
-          </div>
-        ) : null}
+        {isWindows && !isLightMode ? <WindowControlsManager /> : null}
       </>
     );
   } catch (error) {

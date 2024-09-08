@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TransparentWindowControl = () => {
+const TransparentWindowControl = React.memo(() => {
   const TransparentWindowControlRef = React.useRef<HTMLDivElement | null>(null);
 
   return (
@@ -9,6 +9,6 @@ const TransparentWindowControl = () => {
       className='lucid-transperent-window-controls'
     />
   );
-};
+});
 
 export default TransparentWindowControl;

@@ -2606,6 +2606,15 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   width: 100%;
   pointer-events: none;
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  opacity: var(--artwork-opacity, 1);
+  transition: opacity 0.3s ease;
+}
+
+#main:has(.main-entityHeader-container.main-entityHeader-withBackgroundImage) #lucid-under-main-view .playlist-art-container {
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 #lucid-under-main-view .playlist-art-container .background {
@@ -2616,8 +2625,6 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .artist #lucid-under-main-view .playlist-art-container .overlay {
@@ -2650,7 +2657,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 }
 
 .playlist-art-container.inherit .background {
-  background-image: var(--playlist-art-image);
+  background-image: var(--under-main-view-art-image, var(--playlist-art-image));
 }
 
 .playlist-art-container.now-playing .background {
@@ -2658,7 +2665,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 }
 
 .artist .playlist-art-container .background {
-  background-image: var(--playlist-art-image);
+  background-image: var(--under-main-view-art-image, var(--playlist-art-image));
 }
 
 .playlist-view-card .main-entityHeader-container.main-entityHeader-nonWrapped {
@@ -2709,6 +2716,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   font-size: 2rem !important;
 }
 
+.Liif5fNYkY903HPAQd1N,
 .D6IunHuzuULf_Sr88GOA,
 .playlist-playlist-playlist,
 .playlist-view-card section[data-testid*="album"],

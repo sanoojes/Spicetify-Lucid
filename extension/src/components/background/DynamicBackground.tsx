@@ -1,10 +1,12 @@
 import React from 'react';
 import { saveColors, removeColors } from '@/utils/colorUtils';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import { logToConsole } from '@/utils/logUtils';
+import { useLucidStore } from '@/store/useLucidStore';
 
 const DynamicBackground = React.memo(() => {
   const { isDynamicColor } = useSettingsStore();
+  const { artworkData } = useLucidStore();
   const styleRef = React.useRef<HTMLStyleElement | null>(null);
 
   React.useEffect(() => {
@@ -14,25 +16,21 @@ const DynamicBackground = React.memo(() => {
       document.head.appendChild(styleRef.current);
     }
 
+    removeColors(styleRef.current);
+
     const updateColors = async () => {
-      if (styleRef.current && window.currentArtUrl && isDynamicColor) {
-        await saveColors(styleRef.current, isDynamicColor);
+      if (styleRef.current && artworkData.nowPlayingArtURL && isDynamicColor) {
+        await saveColors(
+          styleRef.current,
+          isDynamicColor,
+          artworkData.nowPlayingArtURL
+        );
         logToConsole('Dynamic colors updated!');
       }
     };
-    setTimeout(() => updateColors(), 1000);
 
-    if (isDynamicColor) {
-      Spicetify.Player.addEventListener('songchange', updateColors);
-
-      return () => {
-        Spicetify.Player.removeEventListener('songchange', updateColors);
-        if (styleRef.current) removeColors(styleRef.current);
-      };
-    }
-
-    removeColors(styleRef.current);
-  }, [isDynamicColor]);
+    updateColors();
+  }, [isDynamicColor, artworkData.nowPlayingArtURL]);
 
   return <div id='dynamic-colors' />;
 });

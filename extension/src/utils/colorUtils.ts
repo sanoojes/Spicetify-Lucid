@@ -178,12 +178,13 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
 
 export async function saveColors(
   styleElement: HTMLElement,
-  isDynamicColor: boolean
+  isDynamicColor: boolean,
+  currentArtUrl: string
 ): Promise<ColorPalette | null> {
-  if (!isDynamicColor || !window.currentArtUrl) return null;
+  if (!isDynamicColor || !currentArtUrl) return null;
 
   try {
-    const colorPalette = await getColors(window.currentArtUrl);
+    const colorPalette = await getColors(currentArtUrl);
 
     if (colorPalette instanceof Error) {
       logToConsole(`Error extracting colors: ${colorPalette.message}`);

@@ -3,8 +3,8 @@ import Main from '@/components/Main';
 import { logToConsole } from '@/utils/logUtils';
 import { replaceIcons } from '@/utils/replaceIcons';
 import { showError } from '@/components/error/ErrorBoundary';
-import { checkForCustomControls } from '@/utils/windowControls';
 import { manageBackgroundZIndex } from '@/utils/backgroundUtils';
+import { checkForCustomControls } from './utils/windowControlUtils';
 
 async function main() {
   try {
@@ -22,42 +22,16 @@ async function main() {
     const mainElement = document.getElementById('main');
     mainElement?.prepend(rootElement);
 
+    console.time('render');
     if (rootElement)
       Spicetify.ReactDOM.createRoot(rootElement).render(<Main />);
-
-    // initialize global variables
-    window.rootStyle = document.documentElement.style;
-    window.isCustomControls = false;
-    window.isLightMode = Spicetify?.Config.color_scheme === 'light' || false;
-
-    window.isWindows = (() => {
-      if (
-        Spicetify.Platform &&
-        Spicetify.Platform.operatingSystem === 'Windows'
-      ) {
-        return true;
-      }
-      if (Spicetify.Platform?.PlatformData?.os_name) {
-        return Spicetify.Platform.PlatformData.os_name
-          .toLowerCase()
-          .includes('win');
-      }
-      return false;
-    })();
-
-    window.isGlobalNav = !!(
-      document.querySelector('.globalNav') ||
-      document.querySelector('.Root__globalNav')
-    );
+    console.timeEnd('render');
 
     // replace icons
     replaceIcons();
 
     // change background z-index
     manageBackgroundZIndex();
-
-    // check for custom controls
-    checkForCustomControls();
 
     logToConsole('Lucid ignited! 🚀', {
       styles:

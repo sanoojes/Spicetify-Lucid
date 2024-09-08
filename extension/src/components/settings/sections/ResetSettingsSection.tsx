@@ -1,6 +1,6 @@
 import React from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 
 const ResetSettingsSection = () => {
   const { resetSettings } = useSettingsStore();

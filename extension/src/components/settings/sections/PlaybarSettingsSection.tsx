@@ -1,7 +1,7 @@
 import React, { type ChangeEvent } from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import Dropdown from '@/components/settings/ui/Dropdown';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
 import type { PlaybarMode, PlaybarStyleSettings } from '@/types/settingTypes';
 import CustomInput from '@/components/ui/CustomInput';
 

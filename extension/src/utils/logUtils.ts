@@ -14,7 +14,7 @@ type LogOptions = {
 };
 
 export const logToConsole = (
-  message: string,
+  message: any | unknown,
   options: LogOptions = {},
   ...optionalParams: unknown[]
 ) => {

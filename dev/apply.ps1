@@ -1,6 +1,8 @@
 $srcFolder = "C:\Users\Sachu\Desktop\Github\Spicetify-Lucid\src"
 $destinationFolder = "$(spicetify path userdata)\Themes\Lucid"
 
+npm run build-local
+
 # Create the destination folder if it doesn't exist
 if (!(Test-Path $destinationFolder)) {
     New-Item -ItemType Directory -Path $destinationFolder -Force

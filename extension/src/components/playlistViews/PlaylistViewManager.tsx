@@ -1,20 +1,27 @@
 import React from 'react';
-import { useSettingsStore } from '@/store/settingsStore';
+import { useSettingsStore } from '@/store/useSettingsStore';
+import { useLucidStore } from '@/store/useLucidStore';
 
 const PlaylistView = React.memo(() => {
-  const { playlistViewMode, playlistImageMode } = useSettingsStore();
+  const { playlistViewMode, playlistImageMode, isScrollMode } =
+    useSettingsStore();
+  const { pageCategory, underMainBackgroundImage } = useLucidStore();
   const backgroundRef = React.useRef<HTMLDivElement | null>(null);
   const blurRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
     const bodyClasses = document.body.classList;
 
-    bodyClasses.add(`playlist-art-image-${playlistImageMode}`);
-    bodyClasses.add(`playlist-view-${playlistViewMode}`);
+    bodyClasses.add(
+      `playlist-art-image-${playlistImageMode}`,
+      `playlist-view-${playlistViewMode}`
+    );
 
     return () => {
-      bodyClasses.remove(`playlist-view-${playlistViewMode}`);
-      bodyClasses.remove(`playlist-art-image-${playlistImageMode}`);
+      bodyClasses.remove(
+        `playlist-view-${playlistViewMode}`,
+        `playlist-art-image-${playlistImageMode}`
+      );
     };
   }, [playlistViewMode, playlistImageMode]);
 
@@ -25,28 +32,50 @@ const PlaylistView = React.memo(() => {
 
     if (scrollNode && backgroundRef.current) {
       const handleScroll = () => {
-        if (backgroundRef.current && !(window.pageCategory === 'other')) {
-          backgroundRef.current.style.transform = `translateY(-${Math.min(
+        if (
+          backgroundRef.current &&
+          !(pageCategory === 'other') &&
+          blurRef.current
+        ) {
+          const scrollAmount = Math.min(
             scrollNode.scrollTop,
             window.screen.height
-          )}px)`;
+          );
 
-          // Apply blur filter based on scroll position
-          if (blurRef.current) {
-            const scrollAmount = Math.min(
-              scrollNode.scrollTop,
-              window.screen.height
-            );
-            blurRef.current.style.filter = `blur(${scrollAmount * 0.03}px)`;
-          }
+          blurRef.current.style.filter = `blur(${
+            scrollAmount * 0.03 +
+            (pageCategory === 'playlist' && !underMainBackgroundImage ? 4 : 0)
+          }px) ${
+            !isScrollMode
+              ? `brightness(${
+                  1 - (scrollAmount / window.screen.height) * 0.5
+                }) `
+              : ''
+          }`;
+          blurRef.current.style.transform = `scale(${
+            1 + (scrollAmount / window.screen.height) * 0.5
+          })`;
+
+          backgroundRef.current.style.transform = `translateY(${
+            isScrollMode ? -scrollAmount : 0
+          }px)`;
         }
       };
 
-      // Use passive event listeners for better scroll performance
+      handleScroll();
+
       scrollNode.addEventListener('scroll', handleScroll, { passive: true });
-      return () => scrollNode.removeEventListener('scroll', handleScroll);
+
+      return () => {
+        scrollNode.removeEventListener('scroll', handleScroll);
+      };
     }
-  }, [window.screen.height]);
+  }, [
+    window.screen.height,
+    isScrollMode,
+    pageCategory,
+    underMainBackgroundImage,
+  ]);
 
   return (
     <span
