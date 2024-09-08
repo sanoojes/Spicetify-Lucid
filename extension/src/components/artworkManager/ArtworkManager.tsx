@@ -44,7 +44,7 @@ const ArtworkManager = () => {
         unlistenHistory();
       };
     }
-  }, []);
+  }, [playlistImageMode, setPageArtwork]);
 
   React.useEffect(() => {
     if (artworkData.currentPageArtURL) {
@@ -53,10 +53,8 @@ const ArtworkManager = () => {
         `url(${artworkData.currentPageArtURL})`
       );
       logToConsole(
-        `Updated Playlist Artwork Url to ${artworkData.currentPageArtURL}`,
-        {
-          level: 'info',
-        }
+        `Updated Playlist Artwork URL to ${artworkData.currentPageArtURL}`,
+        { level: 'info' }
       );
     } else if (pageCategory !== 'other') {
       logToConsole(

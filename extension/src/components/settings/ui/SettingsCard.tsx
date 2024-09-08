@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { type FC } from 'react';
 import type { SettingCardProps } from '@/types/settingTypes';
 
-const SettingsCard = ({
+const SettingsCard: FC<SettingCardProps> = ({
   title,
   tooltip,
   selectedValue,
   children,
-}: SettingCardProps) => {
+}) => {
   return (
     <div className='card'>
       <div className='title-container'>
@@ -18,7 +18,7 @@ const SettingsCard = ({
                 <span className='tooltip-icon'>
                   <svg
                     role='img'
-                    aria-label='question mark icon'
+                    aria-label='Tooltip icon'
                     width='24'
                     height='24'
                     fill='none'

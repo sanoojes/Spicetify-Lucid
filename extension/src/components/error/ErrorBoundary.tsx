@@ -1,6 +1,5 @@
 import React, { type FC } from 'react';
 import { logToConsole } from '@/utils/logUtils';
-import styles from './error.module.css';
 
 const githubRepoUrl = 'https://github.com/sanoojes/Spicetify-Lucid/issues';
 
@@ -34,7 +33,7 @@ const ErrorNotification: FC<{ error: unknown }> = ({ error }) => {
           <button
             type='button'
             onClick={() => setShowDetails(!showDetails)}
-            className={styles.button}
+            className='lucid-error-button'
           >
             {showDetails ? 'Hide Details' : 'Show Details'}
           </button>
@@ -42,7 +41,7 @@ const ErrorNotification: FC<{ error: unknown }> = ({ error }) => {
           <button
             type='button'
             onClick={handleCopyError}
-            className={styles.copyButton}
+            className='lucid-copy-button'
             style={{ marginLeft: '8px' }}
           >
             Copy Error

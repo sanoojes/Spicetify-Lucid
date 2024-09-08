@@ -16,6 +16,7 @@ async function main() {
 
     const rootElement = document.createElement('div');
     rootElement.id = 'lucid-main';
+
     const mainElement = document.getElementById('main');
     mainElement?.prepend(rootElement);
 

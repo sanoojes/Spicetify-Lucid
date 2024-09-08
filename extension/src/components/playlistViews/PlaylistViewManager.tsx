@@ -32,7 +32,10 @@ const PlaylistView = React.memo(() => {
 
         const blurAmount =
           scrollAmount * 0.03 +
-          (pageCategory === 'playlist' && !underMainBackgroundImage ? 4 : 0);
+          ((pageCategory === 'playlist' || pageCategory === 'show') &&
+          !underMainBackgroundImage
+            ? 4
+            : 0);
 
         const brightnessAdjustment = isScrollMode
           ? ''

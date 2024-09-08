@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { type FC } from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import Dropdown from '@/components/settings/ui/Dropdown';
-import type { PlaylistImageMode, PlaylistViewMode } from '@/types/settingTypes';
-import { useSettingsStore } from '@/store/useSettingsStore';
 import SliderSwitch from '@/components/ui/SliderSwitch';
+import { useSettingsStore } from '@/store/useSettingsStore';
+import type { PlaylistImageMode, PlaylistViewMode } from '@/types/settingTypes';
 
-const PlaylistViewSettingsSection = () => {
+const PlaylistViewSettingsSection: FC = () => {
   const playlistViewOptions: { label: string; value: PlaylistViewMode }[] = [
     { label: 'Default', value: 'default' },
-    { label: 'compact', value: 'compact' },
-    { label: 'card', value: 'card' },
+    { label: 'Compact', value: 'compact' },
+    { label: 'Card', value: 'card' },
   ];
 
   const playlistImageOptions: { label: string; value: PlaylistImageMode }[] = [
-    { label: 'none', value: 'none' },
+    { label: 'None', value: 'none' },
     { label: 'Playlist Art Image', value: 'inherit' },
     { label: 'Now Playing', value: 'now-playing' },
   ];
@@ -36,7 +36,7 @@ const PlaylistViewSettingsSection = () => {
   };
 
   return (
-    <>
+    <div>
       <SettingsCard title='Set View Mode' selectedValue={playlistViewMode}>
         <Dropdown
           options={playlistViewOptions}
@@ -55,12 +55,9 @@ const PlaylistViewSettingsSection = () => {
         />
       </SettingsCard>
       <SettingsCard title='Scroll Background Image'>
-        <SliderSwitch
-          currentValue={isScrollMode}
-          onChange={(value) => setIsScrollMode(value)}
-        />
+        <SliderSwitch currentValue={isScrollMode} onChange={setIsScrollMode} />
       </SettingsCard>
-    </>
+    </div>
   );
 };
 

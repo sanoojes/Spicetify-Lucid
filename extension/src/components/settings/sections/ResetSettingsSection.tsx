@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { type FC } from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import { useSettingsStore } from '@/store/useSettingsStore';
 
-const ResetSettingsSection = () => {
+const ResetSettingsSection: FC = () => {
   const { resetSettings } = useSettingsStore();
 
   const handleSettingsReset = () => {
     if (
-      confirm(
-        'Are you sure you want to reset all background settings to their default values? This action cannot be undone.'
+      window.confirm(
+        'Are you sure you want to reset all settings to their default values? This action cannot be undone.'
       )
     ) {
       resetSettings();
@@ -16,17 +16,15 @@ const ResetSettingsSection = () => {
   };
 
   return (
-    <div>
-      <SettingsCard title={'Reset to Default'}>
-        <button
-          type='button'
-          className='button reset-button'
-          onClick={handleSettingsReset}
-        >
-          Reset
-        </button>
-      </SettingsCard>
-    </div>
+    <SettingsCard title='Reset to Default'>
+      <button
+        type='button'
+        className='button reset-button'
+        onClick={handleSettingsReset}
+      >
+        Reset
+      </button>
+    </SettingsCard>
   );
 };
 

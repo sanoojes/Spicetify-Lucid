@@ -13,6 +13,7 @@ import WindowControlsManager from './windowControls/WindowControlsManager';
 import { manageBackgroundZIndex } from '@/utils/backgroundUtils';
 import { replaceIcons } from '@/utils/replaceIcons';
 import { usePathManagement } from '@/utils/pathUtils';
+import ColorManager from './colors/ColorManager';
 
 const Main = () => {
   const underMainViewRef = React.useRef<HTMLElement | null>(null);
@@ -72,11 +73,12 @@ const Main = () => {
   return (
     <>
       <div id='state'>
+        <FontManager />
+        <ColorManager />
         <GrainManager />
         <PlaybarManager />
-        <FontManager />
-        <UnderMainViewManager />
         <ArtworkManager />
+        <UnderMainViewManager />
         <WindowControlsManager />
       </div>
       <div

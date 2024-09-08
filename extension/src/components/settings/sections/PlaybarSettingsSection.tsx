@@ -1,11 +1,11 @@
-import React, { type ChangeEvent } from 'react';
+import React, { type ChangeEvent, type FC } from 'react';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import Dropdown from '@/components/settings/ui/Dropdown';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import type { PlaybarMode, PlaybarStyleSettings } from '@/types/settingTypes';
 import CustomInput from '@/components/ui/CustomInput';
 
-const PlaybarSettingsSection = () => {
+const PlaybarSettingsSection: FC = () => {
   const grainsOptions: { label: string; value: PlaybarMode }[] = [
     { label: 'Compact', value: 'compact' },
     { label: 'Default', value: 'default' },
@@ -23,8 +23,20 @@ const PlaybarSettingsSection = () => {
     key: keyof PlaybarStyleSettings
   ) => {
     const newValue = e.target.value.trim();
-
     updatePlaybarStyles(playbarMode, key, newValue);
+  };
+
+  const getTitle = (key: string) => {
+    switch (key) {
+      case 'backgroundColor':
+        return 'background color';
+      case 'backdropBlur':
+        return 'backdrop blur';
+      case 'borderRadius':
+        return 'border radius';
+      default:
+        return key;
+    }
   };
 
   return (
@@ -36,19 +48,8 @@ const PlaybarSettingsSection = () => {
           selectedValue={playbarMode}
         />
       </SettingsCard>
-      {Object.entries(playbarStyles[playbarMode]).map(([key, value]) => (
-        <SettingsCard
-          key={key}
-          title={`Set ${
-            key === 'backgroundColor'
-              ? 'background color'
-              : key === 'backdropBlur'
-              ? 'backdrop blur'
-              : key === 'borderRadius'
-              ? 'border radius'
-              : key
-          }`}
-        >
+      {Object.entries(playbarStyles[playbarMode] || {}).map(([key, value]) => (
+        <SettingsCard key={key} title={`Set ${getTitle(key)}`}>
           <CustomInput
             type={key === 'backgroundColor' ? 'text' : 'number'}
             name={key}

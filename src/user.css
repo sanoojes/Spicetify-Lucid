@@ -2546,6 +2546,24 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   transform: scale(1);
 }
 
+.lucid-copy-button,
+.lucid-error-button {
+  background-color: #330d0d;
+  color: white;
+  border: 2px solid rgba(var(--spice-rgb-text, rgb(200, 200, 200)), 0.25);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: var(--card-border-radius, 0.75rem);
+  transition: all 0.3s ease;
+}
+
+.lucid-error-button:hover,
+.lucid-copy-button:hover {
+  background-color: #616161;
+  border-radius: 100px;
+}
+
 /* Playlist */
 
 .other #lucid-under-main-view,

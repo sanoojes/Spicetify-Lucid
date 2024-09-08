@@ -34,4 +34,4 @@ const CustomInput: FC<CustomInputProps> = ({
   );
 };
 
-export default CustomInput;
+export default React.memo(CustomInput);

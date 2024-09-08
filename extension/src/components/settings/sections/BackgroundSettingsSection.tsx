@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Dropdown from '@/components/settings/ui/Dropdown';
 import SettingsCard from '@/components/settings/ui/SettingsCard';
 import SliderSwitch from '@/components/ui/SliderSwitch';
@@ -9,7 +9,7 @@ import type {
 } from '@/types/settingTypes';
 import CustomInput from '@/components/ui/CustomInput';
 
-const BackgroundSettingsSection = React.memo(() => {
+const BackgroundSettingsSection: React.FC = React.memo(() => {
   const {
     backgroundMode,
     backgroundStyles,
@@ -19,47 +19,54 @@ const BackgroundSettingsSection = React.memo(() => {
     updateBackgroundStyles,
   } = useSettingsStore();
 
+  const backgroundOptions = useMemo<
+    {
+      label: string;
+      value: BackgroundMode;
+    }[]
+  >(
+    () => [
+      { label: 'Animated', value: 'animated' },
+      { label: 'Static', value: 'static' },
+      { label: 'Solid', value: 'solid' },
+    ],
+    []
+  );
+
   const handleSelect = (value: BackgroundMode) => {
     setBackgroundMode(value);
   };
-
-  const backgroundOption: { label: string; value: BackgroundMode }[] = [
-    { label: 'Animated', value: 'animated' },
-    { label: 'Static', value: 'static' },
-    { label: 'Solid', value: 'solid' },
-  ];
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     key: keyof BackgroundStyleSettings
   ) => {
     const newValue = e.target.value.trim();
-
     updateBackgroundStyles(backgroundMode, key, newValue);
+  };
+
+  const getSelectedValue = () => {
+    switch (backgroundMode) {
+      case 'animated':
+        return 'Animated Background';
+      case 'static':
+        return 'Static Background';
+      case 'solid':
+        return 'Solid Background';
+      default:
+        return undefined;
+    }
   };
 
   return (
     <>
-      <SettingsCard
-        title='Set Background'
-        selectedValue={
-          backgroundMode === 'animated'
-            ? 'Animated Background'
-            : backgroundMode === 'solid'
-            ? 'Solid Background'
-            : backgroundMode === 'static'
-            ? 'Static Background'
-            : undefined
-        }
-      >
-        <div>
-          <Dropdown
-            options={backgroundOption}
-            selectedValue={backgroundMode}
-            onSelect={handleSelect}
-            label='Select an option'
-          />
-        </div>
+      <SettingsCard title='Set Background' selectedValue={getSelectedValue()}>
+        <Dropdown
+          options={backgroundOptions}
+          selectedValue={backgroundMode}
+          onSelect={handleSelect}
+          label='Select an option'
+        />
       </SettingsCard>
       {Object.entries(backgroundStyles[backgroundMode]).map(([key, value]) => (
         <SettingsCard
