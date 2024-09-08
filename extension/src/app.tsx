@@ -5,6 +5,7 @@ import { showError } from '@/components/error/ErrorBoundary';
 
 async function main() {
   try {
+    // Wait for necessary Spicetify objects to be available
     while (
       !Spicetify?.showNotification ||
       !Spicetify?.Player ||
@@ -14,18 +15,16 @@ async function main() {
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
 
-    const rootElement = document.createElement('div');
-    rootElement.id = 'lucid-main';
+    let rootElement = document.getElementById('lucid-main');
+    if (!rootElement) {
+      rootElement = document.createElement('div');
+      rootElement.id = 'lucid-main';
+      const mainElement = document.getElementById('main');
+      mainElement?.prepend(rootElement);
+    }
 
-    const mainElement = document.getElementById('main');
-    mainElement?.prepend(rootElement);
-
-    if (rootElement) {
-      Spicetify.ReactDOM.createRoot(rootElement).render(
-        <React.StrictMode>
-          <Main />
-        </React.StrictMode>
-      );
+    if (rootElement && !rootElement.hasChildNodes()) {
+      Spicetify.ReactDOM.createRoot(rootElement).render(<Main />);
     }
 
     logToConsole('Lucid ignited! 🚀', {

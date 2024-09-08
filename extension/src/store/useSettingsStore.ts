@@ -1,17 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import type {
-  BackgroundMode,
-  BackgroundStyleSettings,
-  FontSettings,
-  GrainEffect,
-  PlaybarMode,
-  PlaybarStyleSettings,
-  PlaylistImageMode,
-  PlaylistViewMode,
-  SettingsStore,
-} from '@/types/settingTypes';
+import type { SettingsStore } from '@/types/settingTypes';
 import { defaultSettings } from '@/constants/constants';
 
 export const useSettingsStore = create(
@@ -30,26 +20,22 @@ export const useSettingsStore = create(
           },
         })),
 
-      setIsScrollMode: (isScrollMode: boolean) => set(() => ({ isScrollMode })),
-      setBackgroundMode: (backgroundMode: BackgroundMode) =>
-        set(() => ({ backgroundMode })),
-      setFontSettings: (fontSettings: FontSettings) =>
-        set(() => ({ fontSettings })),
-      setGrainEffect: (grainEffect: GrainEffect) =>
-        set(() => ({ grainEffect })),
-      setPlaylistImageMode: (playlistImageMode: PlaylistImageMode) =>
+      setIsScrollMode: (isScrollMode) => set(() => ({ isScrollMode })),
+      setIsCustomBackground: (isCustomBackground) =>
+        set(() => ({ isCustomBackground })),
+      setCustomBackgroundURL(customBackgroundURL) {
+        set(() => ({ customBackgroundURL }));
+      },
+      setBackgroundMode: (backgroundMode) => set(() => ({ backgroundMode })),
+      setFontSettings: (fontSettings) => set(() => ({ fontSettings })),
+      setGrainEffect: (grainEffect) => set(() => ({ grainEffect })),
+      setPlaylistImageMode: (playlistImageMode) =>
         set(() => ({ playlistImageMode })),
-      setPlaybarMode: (playbarMode: PlaybarMode) =>
-        set(() => ({ playbarMode })),
-      setPlaylistViewMode: (playlistViewMode: PlaylistViewMode) =>
+      setPlaybarMode: (playbarMode) => set(() => ({ playbarMode })),
+      setPlaylistViewMode: (playlistViewMode) =>
         set(() => ({ playlistViewMode })),
-      setDynamicColor: (isDynamicColor: boolean) =>
-        set(() => ({ isDynamicColor })),
-      updateBackgroundStyles: (
-        mode: BackgroundMode,
-        key: keyof BackgroundStyleSettings,
-        value: string
-      ) => {
+      setDynamicColor: (isDynamicColor) => set(() => ({ isDynamicColor })),
+      updateBackgroundStyles: (mode, key, value) => {
         set((state) => ({
           ...state,
           backgroundStyles: {
@@ -61,11 +47,7 @@ export const useSettingsStore = create(
           },
         }));
       },
-      updatePlaybarStyles: (
-        mode: PlaybarMode,
-        key: keyof PlaybarStyleSettings,
-        value: string
-      ) => {
+      updatePlaybarStyles: (mode, key, value) => {
         set((state) => ({
           ...state,
           playbarStyles: {

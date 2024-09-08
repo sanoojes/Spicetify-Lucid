@@ -1,5 +1,6 @@
 import React from 'react';
 import type { SettingSectionProps } from '@/types/settingTypes';
+import SettingsCardWrapper from '../SettingsCardWrapper';
 
 const SettingSection = ({
   title,
@@ -12,7 +13,7 @@ const SettingSection = ({
         <h3 className='title'>{title}</h3>
         {description && <p className='description'>{description}</p>}
       </div>
-      <div className='cards-wrapper'>{children}</div>
+      <SettingsCardWrapper>{children}</SettingsCardWrapper>
     </div>
   );
 };

@@ -2220,15 +2220,47 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   overflow: hidden;
 }
 
-#lucid-main #font .cards-wrapper .children-wrapper .input {
-  width: 100%;
-}
-
 #lucid-main .card .title-wrapper {
   display: flex;
   column-gap: var(--gap-md);
 }
 
+#lucid-main .modal-container .setting-section .cards-wrapper .cards-wrapper {
+  gap: 0;
+  border: var(--default-border);
+  border-radius: var(--card-border-radius, 0.25rem);
+  transition: height 0.3s ease;
+}
+
+#lucid-main .modal-container .setting-section .cards-wrapper .cards-wrapper .card {
+  border-radius: 0;
+  border: 0;
+  min-height: 3.25rem;
+  transform: translateY(0) scaleY(1);
+}
+
+#lucid-main .modal-container .setting-section .cards-wrapper .cards-wrapper .card:not(:first-child) {
+  border-top: var(--default-border);
+}
+
+#lucid-main .custom-input-container {
+  position: relative;
+}
+
+#lucid-main .error-message {
+  background-color: rgb(191 22 39);
+  padding: var(--padding-sm, 0.25rem) var(--padding-md, 0.5rem);
+  border-radius: var(--card-border-radius, 0.25rem);
+  border: 1px solid rgba(200, 100, 100, 0.25);
+  color: var(--spice-text, white);
+  font-size: 0.875rem;
+  position: absolute;
+  top: -100%;
+  right: 50%;
+  transform: translateX(50%);
+  width: max-content;
+  z-index: 10;
+}
 
 
 /* Buttons */
@@ -2295,6 +2327,10 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   width: 6rem;
   font-size: 0.8rem;
   text-align: left;
+}
+
+#lucid-main .input.url {
+  width: 10rem;
 }
 
 #lucid-main .input[type=number]::-webkit-inner-spin-button,

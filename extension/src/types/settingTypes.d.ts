@@ -91,6 +91,8 @@ type AppSettings = {
   playlistViewMode: PlaylistViewMode;
   playbarMode: PlaybarMode;
   playbarStyles: PlaybarStyleSettings;
+  isCustomBackground: boolean;
+  customBackgroundURL: string;
 };
 
 // Settings Actions
@@ -100,6 +102,8 @@ type SettingsActions = {
     key: keyof FontSettings[FontTypes],
     value: string
   ) => void;
+  setIsCustomBackground: (isCustomBackground: boolean) => void;
+  setCustomBackgroundURL: (customBackgroundURL: string) => void;
   setFontSettings: (fontSettings: FontSettings) => void;
   setBackgroundMode: (backgroundMode: BackgroundMode) => void;
   updateBackgroundStyles: (

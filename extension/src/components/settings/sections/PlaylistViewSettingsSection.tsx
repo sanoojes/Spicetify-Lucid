@@ -36,7 +36,7 @@ const PlaylistViewSettingsSection: FC = () => {
   };
 
   return (
-    <div>
+    <>
       <SettingsCard title='Set View Mode' selectedValue={playlistViewMode}>
         <Dropdown
           options={playlistViewOptions}
@@ -57,7 +57,7 @@ const PlaylistViewSettingsSection: FC = () => {
       <SettingsCard title='Scroll Background Image'>
         <SliderSwitch currentValue={isScrollMode} onChange={setIsScrollMode} />
       </SettingsCard>
-    </div>
+    </>
   );
 };
 

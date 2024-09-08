@@ -8,23 +8,23 @@ import type {
   BackgroundStyleSettings,
 } from '@/types/settingTypes';
 import CustomInput from '@/components/ui/CustomInput';
+import SettingsCardWrapper from '../SettingsCardWrapper';
 
 const BackgroundSettingsSection: React.FC = React.memo(() => {
   const {
     backgroundMode,
-    backgroundStyles,
     isDynamicColor,
-    setBackgroundMode,
     setDynamicColor,
+    customBackgroundURL,
+    setCustomBackgroundURL,
+    backgroundStyles,
+    setBackgroundMode,
     updateBackgroundStyles,
+    isCustomBackground,
+    setIsCustomBackground,
   } = useSettingsStore();
 
-  const backgroundOptions = useMemo<
-    {
-      label: string;
-      value: BackgroundMode;
-    }[]
-  >(
+  const backgroundOptions = useMemo<{ label: string; value: BackgroundMode }[]>(
     () => [
       { label: 'Animated', value: 'animated' },
       { label: 'Static', value: 'static' },
@@ -58,6 +58,11 @@ const BackgroundSettingsSection: React.FC = React.memo(() => {
     }
   };
 
+  const handleURLInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setCustomBackgroundURL(value);
+  };
+
   return (
     <>
       <SettingsCard title='Set Background' selectedValue={getSelectedValue()}>
@@ -68,30 +73,53 @@ const BackgroundSettingsSection: React.FC = React.memo(() => {
           label='Select an option'
         />
       </SettingsCard>
-      {Object.entries(backgroundStyles[backgroundMode]).map(([key, value]) => (
-        <SettingsCard
-          key={key}
-          title={`Set ${
-            key === 'backgroundColor'
-              ? 'background color'
-              : key === 'backdropBlur'
-              ? 'backdrop blur'
-              : key === 'borderRadius'
-              ? 'border radius'
-              : key
-          }`}
-        >
-          <CustomInput
-            type={key === 'backgroundColor' ? 'text' : 'number'}
-            name={key}
-            step={0.01}
-            value={value}
-            onChange={(e) =>
-              handleInputChange(e, key as keyof BackgroundStyleSettings)
-            }
-          />
-        </SettingsCard>
-      ))}
+      {backgroundStyles[backgroundMode] &&
+        Object.entries(backgroundStyles[backgroundMode]).map(([key, value]) => (
+          <SettingsCard
+            key={key}
+            title={`Set ${
+              key === 'backgroundColor'
+                ? 'background color'
+                : key === 'backdropBlur'
+                ? 'backdrop blur'
+                : key === 'borderRadius'
+                ? 'border radius'
+                : key
+            }`}
+          >
+            <CustomInput
+              type={key === 'backgroundColor' ? 'text' : 'number'}
+              name={key}
+              step={0.01}
+              value={value}
+              onChange={(e) =>
+                handleInputChange(e, key as keyof BackgroundStyleSettings)
+              }
+            />
+          </SettingsCard>
+        ))}
+      {backgroundMode === 'static' && (
+        <SettingsCardWrapper>
+          <SettingsCard title='Set Static Background URL'>
+            <SliderSwitch
+              currentValue={isCustomBackground}
+              onChange={(value) => setIsCustomBackground(value)}
+            />
+          </SettingsCard>
+          {isCustomBackground && (
+            <SettingsCard title='Enter your custom url'>
+              <CustomInput
+                name='Custom Url'
+                onChange={handleURLInput}
+                placeholder='Enter custom url here'
+                type='text'
+                value={customBackgroundURL}
+                isURL={true}
+              />
+            </SettingsCard>
+          )}
+        </SettingsCardWrapper>
+      )}
       <SettingsCard title='Dynamic Color (Experimental)'>
         <SliderSwitch
           currentValue={isDynamicColor}
