@@ -957,6 +957,10 @@ div[data-testid="hpto-parent-container"] {
       var(--generic-modal-bg-opacity));
 }
 
+dialog {
+  border: none !important;
+}
+
 .bhvAemcPYUmxOdBe1mVi {
   --modal-max-height: 85vh;
   max-height: var(--modal-max-height);
@@ -1022,8 +1026,7 @@ div[data-testid="hpto-parent-container"] {
 /* Main view cards */
 .N_8iI7NKHP0iG2jp3g0R,
 .main-trackCreditsModal-container,
-.playlist-playlist-playlistContent,
-::backdrop {
+.playlist-playlist-playlistContent {
   background-color: transparent;
   background: none !important;
 }
