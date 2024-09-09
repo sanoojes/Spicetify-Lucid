@@ -538,7 +538,7 @@ input,
 .main-nowPlayingView-section,
 .main-globalNav-icon,
 .main-contextMenu-menu,
-[data-tippy-root] div,
+[data-tippy-root]>#context-menu:has(:nth-child(1)),
 .x-settings-equalizerSection,
 .main-actionButtons button,
 .main-topBar-button,
@@ -564,7 +564,7 @@ input,
 .Root__nav-bar,
 .main-userWidget-box,
 .x-settings-equalizerSection,
-[data-tippy-root] div,
+[data-tippy-root]>#context-menu:has(:nth-child(1)),
 .main-contextMenu-menu,
 .main-editImageButton-rounded,
 .main-avatar-image,
@@ -865,8 +865,8 @@ input,
 }
 
 /* Make play and pause button of same size */
-.playbar-compact .player-controls__buttons button[aria-label*="Pause"],
-.playbar-compact .player-controls__buttons button[aria-label*="Play"] {
+.playbar-compact .player-controls__buttons>button[aria-label*="Pause"],
+.playbar-compact .player-controls__buttons>button[aria-label*="Play"] {
   --encore-control-size-smaller: 24px !important;
 }
 
@@ -1284,7 +1284,7 @@ dialog {
 }
 
 /* Context Menu */
-[data-tippy-root]>div::before,
+[data-tippy-root] ::before,
 .main-contextMenu-menu::before {
   content: "";
   z-index: -1;
@@ -1301,7 +1301,12 @@ dialog {
   border-radius: var(--card-border-radius);
 }
 
-[data-tippy-root] div,
+#context-menu,
+[data-tippy-root] {
+  width: fit-content !important;
+}
+
+[data-tippy-root],
 [data-tippy-root] [data-tippy-root] ul,
 .main-contextMenu-menu {
   background-color: transparent !important;
@@ -1414,22 +1419,11 @@ svg:has(path[d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM1 12C1 5.925 5.925 1 12 1s1
   }
 }
 
-.player-controls__buttons button[aria-label*="Play"] span,
+.player-controls__buttons>button[aria-label*="Play"] span,
 .main-playButton-button[aria-label*="Play"],
 .main-playButton-PlayButton>button[aria-label*="Play"],
-.main-playPauseButton-button[aria-label="Play"],
-.main-playPauseButton-button[aria-label="Play"],
-.main-trackList-rowPlayPauseButton[aria-label*="Play"],
-.main-trackList-rowImagePlayButton[aria-label*="Play"][aria-label*="by"],
-.main-playButton-PlayButton>button[aria-label*="Play"],
-.player-controls__buttons button[aria-label*="Pause"] span,
+.player-controls__buttons>button[aria-label*="Pause"] span,
 .main-playButton-button[aria-label*="Pause"],
-.main-playButton-PlayButton>button[aria-label*="Pause"],
-.main-playPauseButton-button[aria-label*="Pause"],
-.main-playPauseButton-button[aria-label="Pause"],
-.main-trackList-rowPlayPauseButton[aria-label*="Pause"],
-.main-trackList-rowImagePlayButton[aria-label*="Pause"],
-.main-playButton-PlayButton>button[aria-label*="Pause"],
 .main-repeatButton-button[aria-label="Enable repeat"],
 .main-repeatButton-button[aria-label="Disable repeat"],
 .main-repeatButton-button[aria-label="Enable repeat one"],
@@ -1460,7 +1454,7 @@ button[aria-label="Browse"] svg {
   }
 }
 
-.player-controls__buttons button[aria-label*="Play"] span,
+.player-controls__buttons>button[aria-label*="Play"] span,
 .main-playButton-button[aria-label*="Play"],
 .main-playButton-PlayButton>button[aria-label*="Play"],
 .main-playPauseButton-button[aria-label="Play"],
@@ -1487,7 +1481,7 @@ button[aria-label="Browse"] svg {
   background-color: var(--spice-accent) !important;
 }
 
-.player-controls__buttons button[aria-label*="Pause"] span,
+.player-controls__buttons>button[aria-label*="Pause"] span,
 .main-playButton-button[aria-label*="Pause"],
 .main-playButton-PlayButton>button[aria-label*="Pause"],
 .main-playPauseButton-button[aria-label*="Pause"],

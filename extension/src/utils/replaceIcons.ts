@@ -91,13 +91,9 @@ export const replaceIcons = () => {
   transform: scale(0.65) !important;
 }
 
-.player-controls__buttons button[aria-label*="${playLabel}"] span,
+.player-controls__buttons>button[aria-label*="${playLabel}"] span,
 .main-playButton-button[aria-label*="${playLabel}"],
-.main-playButton-PlayButton>button[aria-label*="${playLabel}"],
-.main-playPauseButton-button[aria-label="${playLabel}"],
-.main-trackList-rowPlayPauseButton[aria-label*="${playLabel}"],
-.main-trackList-rowImagePlayButton[aria-label*="${tracklistPlayLabelOne}"][aria-label*="${tracklistPlayLabelTwo}"],
-.main-playButton-PlayButton>button[aria-label*="${playlistPlayLabel}"] {
+.main-playButton-PlayButton>button[aria-label*="${playLabel}"]{
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
   mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
@@ -106,10 +102,7 @@ export const replaceIcons = () => {
 .main-playButton-button[aria-label*="${pauseLabel}"],
 .main-playButton-PlayButton>button[aria-label*="${pauseLabel}"],
 .main-playPauseButton-button[aria-label*="${pauseLabel}"],
-.player-controls__buttons button[aria-label*="${pauseLabel}"] span,
-.main-trackList-rowPlayPauseButton[aria-label*="${pauseLabel}"],
-.main-trackList-rowImagePlayButton[aria-label*="${pauseLabel}"],
-.main-playButton-PlayButton>button[aria-label*="${playlistPauseLabel}"] {
+.player-controls__buttons>button[aria-label*="${pauseLabel}"] span, {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
   mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
@@ -148,8 +141,8 @@ svg {
 }
 }
 
-.player-controls__buttons button[aria-label*="${playLabel}"] span,
-.player-controls__buttons button[aria-label*="${pauseLabel}"] span{
+.player-controls__buttons>button[aria-label*="${playLabel}"] span,
+.player-controls__buttons>button[aria-label*="${pauseLabel}"] span{
   display: block;
   mask-size: 100%;
   -webkit-mask-position: center center;
@@ -190,8 +183,8 @@ svg {
   }
 }
 
-.player-controls__buttons button[aria-label*="${playLabel}"] span svg,
-.player-controls__buttons button[aria-label*="${pauseLabel}"] span svg {
+.player-controls__buttons>button[aria-label*="${playLabel}"] span svg,
+.player-controls__buttons>button[aria-label*="${pauseLabel}"] span svg {
   display: none;
   visibility: hidden;
 }
