@@ -538,7 +538,7 @@ input,
 .main-nowPlayingView-section,
 .main-globalNav-icon,
 .main-contextMenu-menu,
-[data-tippy-root]>#context-menu:has(:nth-child(1)),
+[data-tippy-root],
 .x-settings-equalizerSection,
 .main-actionButtons button,
 .main-topBar-button,
@@ -564,7 +564,7 @@ input,
 .Root__nav-bar,
 .main-userWidget-box,
 .x-settings-equalizerSection,
-[data-tippy-root]>#context-menu:has(:nth-child(1)),
+[data-tippy-root],
 .main-contextMenu-menu,
 .main-editImageButton-rounded,
 .main-avatar-image,
@@ -1284,7 +1284,7 @@ dialog {
 }
 
 /* Context Menu */
-[data-tippy-root] ::before,
+[data-tippy-root]::before,
 .main-contextMenu-menu::before {
   content: "";
   z-index: -1;
