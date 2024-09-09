@@ -538,7 +538,7 @@ input,
 .main-nowPlayingView-section,
 .main-globalNav-icon,
 .main-contextMenu-menu,
-[data-tippy-root],
+[data-tippy-root] div,
 .x-settings-equalizerSection,
 .main-actionButtons button,
 .main-topBar-button,
@@ -564,7 +564,7 @@ input,
 .Root__nav-bar,
 .main-userWidget-box,
 .x-settings-equalizerSection,
-[data-tippy-root],
+[data-tippy-root] div,
 .main-contextMenu-menu,
 .main-editImageButton-rounded,
 .main-avatar-image,
@@ -1284,7 +1284,7 @@ dialog {
 }
 
 /* Context Menu */
-[data-tippy-root]::before,
+[data-tippy-root]>div::before,
 .main-contextMenu-menu::before {
   content: "";
   z-index: -1;
@@ -1301,7 +1301,7 @@ dialog {
   border-radius: var(--card-border-radius);
 }
 
-[data-tippy-root],
+[data-tippy-root] div,
 [data-tippy-root] [data-tippy-root] ul,
 .main-contextMenu-menu {
   background-color: transparent !important;
