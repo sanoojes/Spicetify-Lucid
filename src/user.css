@@ -529,11 +529,6 @@ input,
   border-radius: 0 !important;
 }
 
-/* Main container */
-.spotify__container--is-desktop .Root__top-container {
-  padding-top: calc(48px + var(--panel-gap) * 2);
-}
-
 /* Left sidebar */
 #Desktop_LeftSidebar_Id {
   transition: width 0.3s ease;
