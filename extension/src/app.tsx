@@ -2,6 +2,7 @@ import React from 'react';
 import Main from '@/components/Main';
 import { logToConsole } from '@/utils/logUtils';
 import { showError } from '@/components/error/ErrorBoundary';
+import { getIsGlobalNav } from '@/utils/platformUtils';
 
 async function main() {
   try {

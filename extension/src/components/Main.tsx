@@ -8,19 +8,22 @@ import GrainManager from '@/components/grain/GrainManager';
 import PlaybarManager from '@/components/playbar/PlaybarManager';
 import UnderMainViewManager from '@/components/underMainView/UnderMainViewManager';
 import { useLucidStore } from '@/store/useLucidStore';
-import ArtworkManager from './artworkManager/ArtworkManager';
-import WindowControlsManager from './windowControls/WindowControlsManager';
+import ArtworkManager from '@/components/artworkManager/ArtworkManager';
+import WindowControlsManager from '@/components/windowControls/WindowControlsManager';
 import { manageBackgroundZIndex } from '@/utils/backgroundUtils';
 import { replaceIcons } from '@/utils/replaceIcons';
 import { usePathManagement } from '@/utils/pathUtils';
-import ColorManager from './colors/ColorManager';
+import ColorManager from '@/components/colors/ColorManager';
+import { checkForGlobalNav } from '@/utils/navUtils';
 
 const Main = () => {
   const underMainViewRef = React.useRef<HTMLElement | null>(null);
   const [previousPath, setPreviousPath] = React.useState<string | null>(null);
-  const { pageCategory, setPageCategory } = useLucidStore();
+  const { pageCategory, setPageCategory, isGlobalNav } = useLucidStore();
 
   usePathManagement();
+
+  checkForGlobalNav();
 
   React.useEffect(() => {
     const setUnderMainView = () => {
@@ -79,7 +82,6 @@ const Main = () => {
         <PlaybarManager />
         <ArtworkManager />
         <UnderMainViewManager />
-        <WindowControlsManager />
       </div>
       <div
         id='background-container'
@@ -97,6 +99,7 @@ const Main = () => {
           <SettingsManager />
         </ModalContextProvider>
       </div>
+      <WindowControlsManager />
     </>
   );
 };

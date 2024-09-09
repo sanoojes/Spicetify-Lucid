@@ -5,7 +5,7 @@ import {
   calculateInverseBrowserZoom,
   calculateScaledPx,
 } from '@/utils/zoomUtils';
-import TransparentWindowControl from './TransparentWindowControl';
+import TransparentWindowControl from '@/components/windowControls/TransparentWindowControl';
 import { setWindowControlsHeight } from '@/utils/windowControlUtils';
 
 const WindowControlsManager = React.memo(() => {
@@ -44,7 +44,7 @@ const WindowControlsManager = React.memo(() => {
       }
     }
 
-    setTopBarStyles();
+    setTimeout(setTopBarStyles, 1000);
     window.addEventListener('resize', setTopBarStyles);
 
     return () => {

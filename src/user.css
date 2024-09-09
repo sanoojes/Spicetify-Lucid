@@ -301,6 +301,15 @@ option {
   background-color: var(--spice-card) !important;
 }
 
+/* Main container */
+.spotify__container--is-desktop .Root__top-container {
+  padding-top: calc(48px + var(--panel-gap) * 2);
+}
+
+.spotify__container--is-desktop .global-nav .Root__top-container {
+  padding-top: var(--panel-gap) !important;
+}
+
 /* Button styles */
 .ap8U6ZVS8BqMxUdinBis
 /* ADD: card close button */
