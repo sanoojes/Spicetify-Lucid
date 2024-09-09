@@ -466,6 +466,27 @@ input,
   outline: 2px solid var(--spice-subtext) !important;
 }
 
+.gPP3UTf4KHCpkR7fowu7 {
+  margin-top: 2px;
+  background-color: rgba(var(--spice-rgb-card), 0.75);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: var(--default-border);
+  border-top: none;
+  border-radius: 0 0 var(--card-border-radius, 0.5rem) var(--card-border-radius, 0.5rem);
+}
+
+.HnlKe49O7x9B5Vm6aPrV,
+.zuvmONH0Veccf2MUDmno,
+.Button-medium-medium-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle {
+  border-radius: var(--card-border-radius, 0.5rem) !important;
+}
+
+.main-globalNav-searchInputContainer:has(.gPP3UTf4KHCpkR7fowu7) input:focus {
+  border-radius: 0.5rem 0.5rem 0 0 !important;
+  background: rgba(var(--spice-rgb-card, var(--card-color)), 0.75) !important;
+}
+
 /* Experimental Features */
 .spicetify-exp-features input.search {
   background-color: rgba(var(--spice-rgb-selected-row), 0.05) !important;
@@ -544,11 +565,6 @@ input,
 
 .view-homeShortcutsGrid-shortcut .view-homeShortcutsGrid-image {
   border-radius: 0 !important;
-}
-
-/* Main container */
-.spotify__container--is-desktop .Root__top-container {
-  padding-top: calc(48px + var(--panel-gap) * 2);
 }
 
 /* Left sidebar */
