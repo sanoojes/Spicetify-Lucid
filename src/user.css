@@ -2843,6 +2843,14 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 /* Lucid Styles End */
 
+/* Support for LibX-Reborn */
+.Root__top-container:has(> .global-libraryX) {
+  padding-top: calc(48px + var(--panel-gap) * 2) !important;
+}
+
+.Root__globalNav {
+  --library-bg-color: var(--card-color);
+}
 
 /* Ad Block Section taken from: https://github.com/Daksh777/SpotifyNoPremium */
 
