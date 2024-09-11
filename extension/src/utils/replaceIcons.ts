@@ -102,7 +102,7 @@ export const replaceIcons = () => {
 .main-playButton-button[aria-label*="${pauseLabel}"],
 .main-playButton-PlayButton>button[aria-label*="${pauseLabel}"],
 .main-playPauseButton-button[aria-label*="${pauseLabel}"],
-.player-controls__buttons>button[aria-label*="${pauseLabel}"] span, {
+.player-controls__buttons>button[aria-label*="${pauseLabel}"] span {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
   mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;

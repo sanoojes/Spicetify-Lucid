@@ -58,7 +58,7 @@
 .main-playButton-button[aria-label*="${l}"],
 .main-playButton-PlayButton>button[aria-label*="${l}"],
 .main-playPauseButton-button[aria-label*="${l}"],
-.player-controls__buttons>button[aria-label*="${l}"] span, {
+.player-controls__buttons>button[aria-label*="${l}"] span {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
   mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
