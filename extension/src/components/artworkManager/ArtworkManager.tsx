@@ -56,7 +56,7 @@ const ArtworkManager = () => {
         `Updated Playlist Artwork URL to ${artworkData.currentPageArtURL}`,
         { level: 'info' }
       );
-    } else if (pageCategory !== 'other') {
+    } else if (artworkData.currentPageURI && pageCategory !== 'other') {
       logToConsole(
         `No artwork URL found for URI: ${artworkData.currentPageURI}`,
         { level: 'warn' }

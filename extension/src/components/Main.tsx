@@ -19,7 +19,7 @@ import { checkForGlobalNav } from '@/utils/navUtils';
 const Main = () => {
   const underMainViewRef = React.useRef<HTMLElement | null>(null);
   const [previousPath, setPreviousPath] = React.useState<string | null>(null);
-  const { pageCategory, setPageCategory, isGlobalNav } = useLucidStore();
+  const { pageCategory, setPageCategory } = useLucidStore();
 
   usePathManagement();
 
@@ -63,7 +63,7 @@ const Main = () => {
     return () => {
       unlistenHistory();
     };
-  }, [previousPath, setPageCategory]);
+  }, [previousPath]);
 
   React.useEffect(() => {
     document.body.classList.add(pageCategory);

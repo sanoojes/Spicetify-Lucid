@@ -475,6 +475,7 @@ input,
   outline: 2px solid var(--spice-subtext) !important;
 }
 
+.MAhD1GiTZQMOyX6eUrBQ,
 .gPP3UTf4KHCpkR7fowu7 {
   margin-top: 2px;
   background-color: rgba(var(--spice-rgb-card), 0.75);
@@ -491,7 +492,7 @@ input,
   border-radius: var(--card-border-radius, 0.5rem) !important;
 }
 
-.main-globalNav-searchInputContainer:has(.gPP3UTf4KHCpkR7fowu7) input:focus {
+.main-globalNav-searchInputContainer:has(:is(.gPP3UTf4KHCpkR7fowu7, .MAhD1GiTZQMOyX6eUrBQ)) input:focus {
   border-radius: 0.5rem 0.5rem 0 0 !important;
   background: rgba(var(--spice-rgb-card, var(--card-color)), 0.75) !important;
 }
@@ -2810,6 +2811,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 .Liif5fNYkY903HPAQd1N,
 .D6IunHuzuULf_Sr88GOA,
+.y9Olwg6ho6E95Rud3iLs,
 .playlist-playlist-playlist,
 .playlist-view-card section[data-testid*="album"],
 .playlist-view-card section[data-testid*="playlist"],

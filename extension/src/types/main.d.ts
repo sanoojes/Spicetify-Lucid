@@ -4,6 +4,8 @@ type PageCategoryType =
   | 'album'
   | 'profile'
   | 'show'
+  | 'genre'
+  | 'concert'
   | 'other';
 
 // Lucid Store Types
