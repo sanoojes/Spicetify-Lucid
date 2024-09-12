@@ -2841,6 +2841,62 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 .playlist-view-default {}
 
+.lucid-changelog {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem
+}
+
+.lucid-changelog .release {
+  position: relative
+}
+
+.lucid-changelog .release h3 {
+  margin-top: 0.75rem;
+}
+
+.lucid-changelog .release-button {
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--normal-button-color, var(--spice-card, #202020));
+  border: var(--default-border);
+  color: var(--spice-text, white);
+  transition: background-color 0.2s ease;
+}
+
+.lucid-changelog .release-button:hover {
+  background-color: rgba(var(--accent-color), 0.5);
+}
+
+.lucid-changelog .release-content>ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.lucid-changelog .release-content>ul>li {
+  margin-left: 2rem;
+  list-style: disc;
+}
+
+.release-content .user-mention {
+  font-weight: 700;
+  background-color: rgba(210, 153, 34, 0.5);
+  padding: 2px 4px;
+  border-radius: 4px;
+  text-decoration: underline;
+}
+
 /* Lucid Styles End */
 
 /* Support for LibX-Reborn */

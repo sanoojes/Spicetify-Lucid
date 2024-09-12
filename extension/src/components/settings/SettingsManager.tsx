@@ -4,11 +4,12 @@ import SettingsMenuItem from '@/components/menu/SettingsMenuItem';
 import SettingsModal from '@/components/settings/ui/SettingsModal';
 
 const SettingsManager = React.memo(() => {
-  const { isOpen, openModal } = useModal();
+  const { isOpen, openModal } = useModal('settings');
+
   return (
     <>
-      <SettingsMenuItem cb={() => openModal()} />
-      {isOpen ? <SettingsModal /> : null}
+      <SettingsMenuItem cb={openModal} />
+      {isOpen && <SettingsModal />}
     </>
   );
 });

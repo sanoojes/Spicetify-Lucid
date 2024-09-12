@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import Modal from '@/components/modal/Modal';
 import SettingSection from '@/components/settings/ui/SettingSection';
 import BackgroundSection from '@/components/settings/sections/BackgroundSettingsSection';
@@ -8,9 +8,10 @@ import PlaylistViewSettingsSection from '@/components/settings/sections/Playlist
 import GrainSection from '@/components/settings/sections/GrainSettingsSection';
 import PlaybarSettingsSection from '@/components/settings/sections/PlaybarSettingsSection';
 import type { SettingSectionData } from '@/types/settingTypes';
+import { useModal } from '@/context/ModalContext';
 
 const SettingsModal: React.FC = React.memo(() => {
-  const SETTING_SECTIONS: SettingSectionData = useMemo(
+  const SETTING_SECTIONS: SettingSectionData = React.useMemo(
     () => [
       {
         key: 'background',
@@ -52,7 +53,8 @@ const SettingsModal: React.FC = React.memo(() => {
     []
   );
 
-  const [activeSection, setActiveSection] = useState<string>('all');
+  const [activeSection, setActiveSection] = React.useState<string>('all');
+  const { isOpen, closeModal } = useModal('settings');
 
   const handleSectionClick = (sectionKey: string) => {
     setActiveSection(sectionKey);
@@ -74,7 +76,7 @@ const SettingsModal: React.FC = React.memo(() => {
   };
 
   return (
-    <Modal title='Lucid Settings'>
+    <Modal title='Lucid Settings' onClose={closeModal} isOpen={isOpen}>
       <div className='settings-navigation-container'>
         <div className='navigation'>
           <button

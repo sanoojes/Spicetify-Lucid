@@ -1,5 +1,5 @@
 import React from 'react';
-import { ModalContextProvider } from '@/context/ModalContext';
+import { ModalContextProvider, useModal } from '@/context/ModalContext';
 import BackgroundManager from '@/components/background/BackgroundManager';
 import SettingsManager from '@/components/settings/SettingsManager';
 import PlaylistViewManager from '@/components/playlistViews/PlaylistViewManager';
@@ -15,11 +15,12 @@ import { replaceIcons } from '@/utils/replaceIcons';
 import { usePathManagement } from '@/utils/pathUtils';
 import ColorManager from '@/components/colors/ColorManager';
 import { checkForGlobalNav } from '@/utils/navUtils';
+import ChangeLogManager from './changelog/ChangeLogManager';
 
 const Main = () => {
   const underMainViewRef = React.useRef<HTMLElement | null>(null);
   const [previousPath, setPreviousPath] = React.useState<string | null>(null);
-  const { pageCategory, setPageCategory } = useLucidStore();
+  const { pageCategory } = useLucidStore();
 
   usePathManagement();
 
@@ -90,15 +91,16 @@ const Main = () => {
       >
         <BackgroundManager />
       </div>
-      <div
-        id='modal-container'
-        className='modal-container'
-        style={{ containerType: 'normal' }}
-      >
-        <ModalContextProvider>
+      <ModalContextProvider>
+        <div
+          id='modal-container'
+          className='modal-container'
+          style={{ containerType: 'normal' }}
+        >
           <SettingsManager />
-        </ModalContextProvider>
-      </div>
+          <ChangeLogManager />
+        </div>
+      </ModalContextProvider>
       <WindowControlsManager />
     </>
   );

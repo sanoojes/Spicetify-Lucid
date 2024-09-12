@@ -72,3 +72,6 @@ export const defaultSettings: AppSettings = {
   },
   playlistViewMode: 'card',
 };
+
+export const RELEASES_URL =
+  'https://api.github.com/repos/sanoojes/spicetify-lucid/releases';
