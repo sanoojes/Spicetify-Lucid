@@ -2907,6 +2907,18 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 
 .Root__globalNav {
   --library-bg-color: var(--card-color);
+  border: var(--default-border);
+}
+
+.spotify__container--is-desktop.spotify__os--is-macos .global-libraryX .main-globalNav-searchInputSection,
+.spotify__container--is-desktop.spotify__os--is-windows .global-libraryX .main-globalNav-searchInputSection {
+  left: 12rem;
+}
+
+.global-libraryX .main-globalNav-navLink,
+.global-libraryX .main-globalNav-link-icon {
+  border: none !important;
+  background-color: transparent !important;
 }
 
 /* Ad Block Section taken from: https://github.com/Daksh777/SpotifyNoPremium */
