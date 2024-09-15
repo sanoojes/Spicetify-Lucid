@@ -2905,7 +2905,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   padding-top: calc(48px + var(--panel-gap) * 2) !important;
 }
 
-.Root__globalNav {
+.global-libraryX.Root__globalNav {
   --library-bg-color: var(--card-color);
   border: var(--default-border);
 }
