@@ -630,7 +630,7 @@ input,
 .main-topBar-topbarContentRight button,
 .main-topBar-topbarContentRight *,
 .main-topBar-historyButtons * {
-  -webkit-app-region: no-drag;
+  -webkit-app-region: no-drag !important;
 }
 
 .spotify__container--is-desktop.spotify__os--is-windows .Root__globalNav,
