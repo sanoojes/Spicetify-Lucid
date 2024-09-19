@@ -50,7 +50,15 @@ export const replaceIcons = () => {
   const enableOneRepeatLabel = Locale.get('playback-control.enable-repeat-one');
   const disableRepeatLabel = Locale.get('playback-control.disable-repeat');
 
-  const ButtonStyles = document.createElement('style');
+  const BUTTON_STYLE_LABEL = 'lucid_button_styles';
+
+  let ButtonStyles = document.getElementById(BUTTON_STYLE_LABEL);
+  if (!ButtonStyles) {
+    ButtonStyles = document.createElement('style');
+    ButtonStyles.id = BUTTON_STYLE_LABEL;
+    document.head.appendChild(ButtonStyles);
+  }
+
   ButtonStyles.innerHTML = `
 .main-repeatButton-button[aria-checked="false"],
 .player-controls__right button[aria-label*="${enableRepeatLabel}"]  span{
@@ -258,5 +266,4 @@ max-width: 10rem;
   }
 }
 `;
-  document.head.appendChild(ButtonStyles);
 };
