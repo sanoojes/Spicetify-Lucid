@@ -87,7 +87,7 @@ const ChangeLogManager: FC<{ currentVersion?: string }> = ({
 
   return (
     <>
-      <Modal title='Changelog' onClose={handleCloseModal} isOpen={isOpen}>
+      <Modal title='Lucid Changelog' onClose={handleCloseModal} isOpen={isOpen}>
         <ChangeLog
           releases={releaseData.releases}
           isLoading={releaseData.isLoading}
