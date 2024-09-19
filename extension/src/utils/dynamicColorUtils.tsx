@@ -1,14 +1,12 @@
 import {
-  adjustBrightnessAndSaturation,
   contrastRatio,
   darkenColor,
   lightenColor,
-  luminance,
   rgbToHex,
 } from '@/utils/colorUtils';
 import { createCanvas, loadImage } from 'canvas';
 import type { ColorPalette, Color, ExtractedColors } from '@/types/colors';
-import { logToConsole } from './logUtils';
+import { logError } from '@/utils/logUtils';
 
 // Function to extract dominant colors from an image
 async function extractDominantColorsFromImage(
@@ -84,7 +82,7 @@ async function extractDominantColorsFromImage(
 
     return colorPalette;
   } catch (error) {
-    logToConsole(`Error extracting colors: ${error}`);
+    logError('Error extracting colors: ', error);
     return error as Error;
   }
 }
@@ -110,7 +108,7 @@ export async function applyExtractedColorsToCSS(
         );
 
         if (colorPalette instanceof Error) {
-          logToConsole(`Error extracting colors: ${colorPalette.message}`);
+          logError(`Error extracting colors: ${colorPalette.message}`);
           resolve(null);
           return;
         }
@@ -149,11 +147,9 @@ export async function applyExtractedColorsToCSS(
 
         resolve(colorPalette);
       } catch (error) {
-        logToConsole(
-          `Error saving colors to style: ${
-            error instanceof Error ? error.message : error
-          }`,
-          { level: 'error' }
+        logError(
+          'Error saving colors to style: ',
+          error instanceof Error ? error.message : error
         );
         resolve(null);
       }

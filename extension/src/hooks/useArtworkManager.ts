@@ -1,5 +1,5 @@
 import React from 'react';
-import { logToConsole } from '@/utils/logUtils';
+import { logError, logInfo } from '@/utils/logUtils';
 import { useLucidStore } from '@/store/useLucidStore';
 import {
   fetchArtworkURLFromAPI,
@@ -8,22 +8,25 @@ import {
 } from '@/utils/artworkUrl';
 import { useSettingsStore } from '@/store/useSettingsStore';
 
-const ArtworkManager = () => {
+const useArtworkManager = () => {
   const { pageCategory, rootStyle, artworkData, updateArtworkData } =
     useLucidStore();
   const { playlistImageMode } = useSettingsStore();
 
   const setPageArtwork = React.useCallback(async () => {
+    const pathname = Spicetify.Platform.History.location.pathname;
+    const currentPageURI = getSpotifyURI(pathname);
+
+    // Check if URI has actually changed
+    if (artworkData.currentPageURI === currentPageURI) {
+      return;
+    }
+
     rootStyle.setProperty('--artwork-opacity', '0');
     try {
-      const pathname = Spicetify.Platform.History.location.pathname;
-      const currentPageURI = getSpotifyURI(pathname);
-
       if (currentPageURI) {
-        if (artworkData.currentPageURI !== currentPageURI) {
-          const imageUrl = (await fetchArtworkURLFromAPI(currentPageURI)) || '';
-          updateArtworkData({ currentPageArtURL: imageUrl, currentPageURI });
-        }
+        const imageUrl = (await fetchArtworkURLFromAPI(currentPageURI)) || '';
+        updateArtworkData({ currentPageArtURL: imageUrl, currentPageURI });
       } else {
         updateArtworkData({ currentPageArtURL: '', currentPageURI: '' });
       }
@@ -36,38 +39,35 @@ const ArtworkManager = () => {
   }, [artworkData.currentPageURI, rootStyle, updateArtworkData]);
 
   React.useEffect(() => {
-    if (playlistImageMode === 'inherit') {
-      const unlistenHistory = Spicetify.Platform.History.listen(setPageArtwork);
-      setPageArtwork();
-
-      return () => {
-        unlistenHistory();
-      };
-    }
-  }, [playlistImageMode, setPageArtwork]);
-
-  React.useEffect(() => {
     if (artworkData.currentPageArtURL) {
       rootStyle.setProperty(
         '--playlist-art-image',
         `url(${artworkData.currentPageArtURL})`
       );
-      logToConsole(
-        `Updated Playlist Artwork URL to ${artworkData.currentPageArtURL}`,
-        { level: 'info' }
+      logInfo(
+        `Updated Playlist Artwork URL to ${artworkData.currentPageArtURL}`
       );
     } else if (artworkData.currentPageURI && pageCategory !== 'other') {
-      logToConsole(
-        `No artwork URL found for URI: ${artworkData.currentPageURI}`,
-        { level: 'warn' }
-      );
+      logError(`No artwork URL found for URI: ${artworkData.currentPageURI}`);
       rootStyle.setProperty('--playlist-art-image', 'none');
     }
+
+    // Logic for history listener moved here:
+    if (playlistImageMode === 'inherit') {
+      const unlistenHistory = Spicetify.Platform.History.listen(setPageArtwork);
+      setPageArtwork(); // Call initially
+
+      return () => {
+        unlistenHistory();
+      };
+    }
   }, [
+    playlistImageMode,
     artworkData.currentPageArtURL,
     artworkData.currentPageURI,
     pageCategory,
     rootStyle,
+    setPageArtwork,
   ]);
 
   React.useEffect(() => {
@@ -76,10 +76,7 @@ const ArtworkManager = () => {
         '--now-playing-art-image',
         `url(${artworkData.nowPlayingArtURL})`
       );
-      logToConsole(
-        `Updated Now Playing Art View: ${artworkData.nowPlayingArtURL}`,
-        { level: 'info' }
-      );
+      logInfo(`Updated Now Playing Art View: ${artworkData.nowPlayingArtURL}`);
     }
   }, [artworkData.nowPlayingArtURL, rootStyle]);
 
@@ -89,15 +86,13 @@ const ArtworkManager = () => {
       updateArtworkData({ nowPlayingArtURL });
     };
 
-    handleSongChange(); // initial call
+    handleSongChange(); // Initial call
     Spicetify.Player.addEventListener('songchange', handleSongChange);
 
     return () => {
       Spicetify.Player.removeEventListener('songchange', handleSongChange);
     };
   }, [updateArtworkData]);
-
-  return null;
 };
 
-export default ArtworkManager;
+export default useArtworkManager;

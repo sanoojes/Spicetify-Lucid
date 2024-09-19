@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { useLucidStore } from '@/store/useLucidStore';
-import { logToConsole } from '@/utils/logUtils';
+import { logError, logInfo } from '@/utils/logUtils';
 import {
   applyExtractedColorsToCSS,
   resetCSSColorVariables,
 } from '@/utils/dynamicColorUtils';
 
-const DynamicBackground = React.memo(() => {
+const useDynamicBackground = () => {
   const { isDynamicColor } = useSettingsStore();
   const { artworkData } = useLucidStore();
   const styleRef = React.useRef<HTMLStyleElement | null>(null);
@@ -46,18 +46,16 @@ const DynamicBackground = React.memo(() => {
           artworkData.nowPlayingArtURL
         )
           .then(() => {
-            logToConsole('Dynamic colors updated!', { level: 'info' });
+            logInfo('Dynamic colors updated!');
           })
           .catch((error) => {
-            logToConsole('Error updating colors:', { level: 'error' }, error);
+            logError('Error updating colors:', error);
           });
       }
 
       prevArtURL.current = artworkData.nowPlayingArtURL;
     }
   }, [isDynamicColor, artworkData.nowPlayingArtURL]);
+};
 
-  return <div id='dynamic-colors' />;
-});
-
-export default DynamicBackground;
+export default useDynamicBackground;

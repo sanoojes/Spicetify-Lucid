@@ -2,7 +2,7 @@ import React from 'react';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { useLucidStore } from '@/store/useLucidStore';
 
-const PlaylistView = React.memo(() => {
+const PlaylistViewManager = React.memo(() => {
   const { playlistViewMode, playlistImageMode, isScrollMode } =
     useSettingsStore();
   const { pageCategory, underMainBackgroundImage } = useLucidStore();
@@ -94,4 +94,4 @@ const PlaylistView = React.memo(() => {
   );
 });
 
-export default PlaylistView;
+export default PlaylistViewManager;

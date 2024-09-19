@@ -1,4 +1,4 @@
-import { logToConsole } from '@/utils/logUtils';
+import { logError, logWarn } from '@/utils/logUtils';
 
 export const getNowPlayingArtworkUrl = async () => {
   while (!Spicetify?.Player?.data) {
@@ -14,7 +14,7 @@ export const getNowPlayingArtworkUrl = async () => {
       ''
     );
   } catch (error) {
-    logToConsole(`Error updating getting URL: ${error}`, { level: 'error' });
+    logError('Error updating getting URL: ', error);
   }
 };
 
@@ -47,9 +47,8 @@ export const getArtistMetaData = async (uri: string) => {
           retries < MAX_RETRIES
         ) {
           retries++;
-          logToConsole(
-            `Duplicate request detected (getArtistMetaData). Retrying in 1 second... (Attempt ${retries})`,
-            { level: 'warn' }
+          logWarn(
+            `Duplicate request detected (getArtistMetaData). Retrying in 1 second... (Attempt ${retries})`
           );
           await new Promise((resolve) => setTimeout(resolve, 1000));
           continue;
@@ -91,9 +90,8 @@ export const getAlbumMetaData = async (uri: string) => {
           retries < MAX_RETRIES
         ) {
           retries++;
-          logToConsole(
-            `Duplicate request detected (getAlbumMetaData). Retrying in 1 second... (Attempt ${retries})`,
-            { level: 'warn' }
+          logWarn(
+            `Duplicate request detected (getAlbumMetaData). Retrying in 1 second... (Attempt ${retries})`
           );
           await new Promise((resolve) => setTimeout(resolve, 1000));
           continue;
@@ -188,11 +186,7 @@ export const fetchArtworkURLFromAPI = async (
         return null;
     }
   } catch (error) {
-    logToConsole(
-      `Error fetching artwork for ${uriType}:`,
-      { level: 'error' },
-      error
-    );
+    logError(`Error fetching artwork for ${uriType}:`, error);
     return null;
   }
 };

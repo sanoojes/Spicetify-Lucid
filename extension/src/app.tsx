@@ -1,8 +1,7 @@
 import React from 'react';
 import Main from '@/components/Main';
-import { logToConsole } from '@/utils/logUtils';
+import { logWithLevel } from '@/utils/logUtils';
 import { showError } from '@/components/error/ErrorBoundary';
-import { getIsGlobalNav } from '@/utils/platformUtils';
 
 async function main() {
   try {
@@ -28,7 +27,7 @@ async function main() {
       Spicetify.ReactDOM.createRoot(rootElement).render(<Main />);
     }
 
-    logToConsole('Lucid ignited! 🚀', {
+    logWithLevel('info', 'Lucid ignited! 🚀', {
       styles:
         'font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;',
     });

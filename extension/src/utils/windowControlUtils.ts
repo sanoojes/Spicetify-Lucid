@@ -1,4 +1,4 @@
-import { logToConsole } from '@/utils/logUtils';
+import { logError, logInfo } from '@/utils/logUtils';
 
 export async function setWindowControlsHeight(height: number) {
   try {
@@ -8,9 +8,9 @@ export async function setWindowControlsHeight(height: number) {
         height: height,
       });
 
-    logToConsole(`Control height set to ${height}px`);
+    logInfo(`Control height set to ${height}px`);
   } catch (error) {
-    logToConsole(`Error setting control height: ${height}`, { level: 'error' });
+    logError(`Error setting control height: ${height}`);
   }
 }
 

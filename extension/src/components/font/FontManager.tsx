@@ -6,8 +6,9 @@ import {
   loadFontFromUrl,
 } from '@/utils/fontUtils';
 import type { FontTypes } from '@/types/settingTypes';
+import { logDebug } from '@/utils/logUtils';
 
-const FontManager = React.memo(() => {
+export const useFontManager = () => {
   const { fontSettings } = useSettingsStore();
 
   const updateCssVariable = React.useCallback(
@@ -39,9 +40,7 @@ const FontManager = React.memo(() => {
     for (const fontType of Object.keys(fontSettings)) {
       handleFontChange(fontType as FontTypes);
     }
+
+    logDebug('useFontManager effect ran.');
   }, [fontSettings, handleFontChange]);
-
-  return null;
-});
-
-export default FontManager;
+};

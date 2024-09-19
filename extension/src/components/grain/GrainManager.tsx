@@ -1,18 +1,13 @@
 import React from 'react';
 import { useSettingsStore } from '@/store/useSettingsStore';
+import { useBodyClass } from '@/hooks/useBodyClass';
 
-const Grains = () => {
+const GrainManager = () => {
   const { grainEffect } = useSettingsStore();
 
-  React.useEffect(() => {
-    document.body.classList.add(`grain-${grainEffect}`);
-
-    return () => {
-      document.body.classList.remove(`grain-${grainEffect}`);
-    };
-  }, [grainEffect]);
+  useBodyClass(`grain-${grainEffect}`);
 
   return <div id='grainEffect' data-grainEffect={grainEffect} />;
 };
 
-export default Grains;
+export default GrainManager;

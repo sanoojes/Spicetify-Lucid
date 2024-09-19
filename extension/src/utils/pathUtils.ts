@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLucidStore } from '@/store/useLucidStore';
+import { useBodyClass } from '@/hooks/useBodyClass';
 
 export const getPathCategory = (pathname: string) => {
   if (Spicetify.URI.isPlaylistV1OrV2(pathname)) return 'playlist';
@@ -17,7 +18,9 @@ export const getPathCategory = (pathname: string) => {
 };
 
 export const usePathManagement = () => {
-  const { setPageCategory } = useLucidStore();
+  const { pageCategory, setPageCategory } = useLucidStore();
+
+  useBodyClass(pageCategory);
 
   React.useEffect(() => {
     const setPath = () => {

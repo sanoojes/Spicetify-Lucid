@@ -5,11 +5,13 @@ import { getMarkdownHTML } from '@/utils/markdownUtils';
 import Modal from '@/components/modal/Modal';
 import { useModal } from '@/context/ModalContext';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { logToConsole } from '@/utils/logUtils';
+import { logDebug, logError, logInfo } from '@/utils/logUtils';
 
 const ChangeLogManager: FC<{ currentVersion?: string }> = ({
   currentVersion,
 }) => {
+  logDebug('Rendering <ChangeLogManager />');
+
   const [releaseData, setReleaseData] = React.useState<ReleaseData>({
     isLoading: true,
     error: null,
@@ -22,8 +24,8 @@ const ChangeLogManager: FC<{ currentVersion?: string }> = ({
   );
   const { closeModal, isOpen, openModal } = useModal('changelog');
 
-  const fetchReleaseData = async () => {
-    logToConsole('Fetching release data...');
+  const fetchReleaseData = React.useCallback(async () => {
+    logInfo('Fetching release data...');
     setReleaseData((prevState) => ({ ...prevState, isLoading: true }));
 
     try {
@@ -37,7 +39,7 @@ const ChangeLogManager: FC<{ currentVersion?: string }> = ({
       }
 
       const data: Release[] = await response.json();
-      logToConsole('Fetched release data:', { level: 'info' }, data);
+      logInfo('Fetched release data:', data);
 
       const releasesWithHTML: Release[] = await Promise.all(
         data.map(async (release) => ({
@@ -59,7 +61,7 @@ const ChangeLogManager: FC<{ currentVersion?: string }> = ({
 
       const latestVersion = data[0].tag_name;
       if (previousVersion === null || latestVersion !== previousVersion) {
-        console.log('Opening changelog modal because new version detected');
+        logInfo('Opening changelog modal because new version detected');
         openModal();
       }
     } catch (error) {
@@ -68,9 +70,9 @@ const ChangeLogManager: FC<{ currentVersion?: string }> = ({
         isLoading: false,
         error: error instanceof Error ? error : new Error('Unknown error'),
       }));
-      logToConsole('Error fetching release data:', { level: 'error' }, error);
+      logError('Error fetching release data:', error);
     }
-  };
+  }, [openModal, previousVersion]);
 
   React.useEffect(() => {
     fetchReleaseData();

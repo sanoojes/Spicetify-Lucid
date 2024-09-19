@@ -4,8 +4,14 @@ import AnimatedBackground from '@/components/background/AnimatedBackground';
 import SolidBackground from '@/components/background/SolidBackground';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import type { CustomCSSProperties } from '@/types/settingTypes';
+import { logDebug } from '@/utils/logUtils';
 
+/**
+ * Renders Background and Manages Background Styles
+ */
 const BackgroundManager = React.memo(() => {
+  logDebug('Render <BackgroundManager />');
+
   const { backgroundMode, backgroundStyles } = useSettingsStore();
 
   const [dynamicStyle, setDynamicStyle] = React.useState<CustomCSSProperties>(

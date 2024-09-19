@@ -1,21 +1,17 @@
 import React from 'react';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import type { CustomCSSProperties } from '@/types/settingTypes';
-import { logToConsole } from '@/utils/logUtils';
+import { logError } from '@/utils/logUtils';
+import { useBodyClass } from '@/hooks/useBodyClass';
 
-const PlaybarManager = () => {
-  const [dynamicStyle, setDynamicStyle] = React.useState<CustomCSSProperties>(
-    {}
-  );
+const usePlaybarManager = () => {
   const { playbarMode, playbarStyles } = useSettingsStore();
 
-  React.useEffect(() => {
-    document.body.classList.add(`playbar-${playbarMode}`);
+  useBodyClass(`playbar-${playbarMode}`);
 
-    return () => {
-      document.body.classList.remove(`playbar-${playbarMode}`);
-    };
-  }, [playbarMode]);
+  const dynamicStyleRef = React.useRef<CustomCSSProperties>(
+    {} as CustomCSSProperties
+  );
 
   React.useEffect(() => {
     const newDynamicStyle = {
@@ -32,22 +28,22 @@ const PlaybarManager = () => {
       '--backdrop-blur': `${playbarStyles[playbarMode]?.backdropBlur || 0}px`,
     };
 
-    setDynamicStyle(newDynamicStyle);
+    // Update the ref object directly to avoid unnecessary re-renders
+    dynamicStyleRef.current = newDynamicStyle;
 
     const rootPlaybar = document.querySelector(
       '.Root__now-playing-bar'
     ) as HTMLElement | null;
-
     if (rootPlaybar) {
-      rootPlaybar.style.cssText = Object.entries(newDynamicStyle)
+      rootPlaybar.style.cssText = Object.entries(dynamicStyleRef.current)
         .map(([key, value]) => `${key}: ${value};`)
         .join(' ');
     } else {
-      logToConsole('Playbar element not found!', { level: 'error' });
+      logError('Playbar element not found!');
     }
   }, [playbarMode, playbarStyles]);
 
-  return <div id='playbar-styles' style={dynamicStyle} />;
+  return dynamicStyleRef.current;
 };
 
-export default PlaybarManager;
+export default usePlaybarManager;

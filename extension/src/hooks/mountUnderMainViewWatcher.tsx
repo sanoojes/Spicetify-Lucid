@@ -1,7 +1,11 @@
 import React from 'react';
 import { useLucidStore } from '@/store/useLucidStore';
 
-const UnderMainViewManager = () => {
+/**
+ * Observes changes in Spotify's "under-main-view" container
+ * to extract and apply the background image as a CSS variable.
+ */
+const mountUnderMainViewWatcher = () => {
   const {
     underMainBackgroundImage,
     setUnderMainViewBackgroundImage,
@@ -10,23 +14,23 @@ const UnderMainViewManager = () => {
 
   const handleMutations = React.useCallback(
     (mutationsList: MutationRecord[]) => {
-      const backgroundImageNode = mutationsList.reduce<HTMLDivElement | null>(
+      const targetImageNode = mutationsList.reduce<HTMLDivElement | null>(
         (foundNode, mutation) => {
-          if (foundNode) return foundNode;
-          if (
-            mutation.type === 'childList' &&
-            mutation.addedNodes.length > 0 &&
-            mutation.addedNodes[0].firstChild instanceof HTMLDivElement
-          ) {
-            return mutation.addedNodes[0].firstChild as HTMLDivElement;
+          if (foundNode) return foundNode; // Early return if already found
+
+          if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+            const firstAddedNode = mutation.addedNodes[0];
+            if (firstAddedNode.firstChild instanceof HTMLDivElement) {
+              return firstAddedNode.firstChild as HTMLDivElement;
+            }
           }
           return null;
         },
         null
       );
 
-      if (backgroundImageNode?.style) {
-        const imageUrl = backgroundImageNode.style.backgroundImage.replace(
+      if (targetImageNode?.style) {
+        const imageUrl = targetImageNode.style.backgroundImage.replace(
           /url\(['"]?([^'"]*)['"]?\)/i,
           '$1'
         );
@@ -40,9 +44,7 @@ const UnderMainViewManager = () => {
 
   React.useEffect(() => {
     const observer = new MutationObserver(handleMutations);
-    const underMainView = document.querySelector(
-      '.under-main-view'
-    ) as HTMLDivElement | null;
+    const underMainView = document.querySelector('.under-main-view');
 
     if (underMainView) {
       observer.observe(underMainView, { childList: true });
@@ -52,17 +54,14 @@ const UnderMainViewManager = () => {
   }, [handleMutations]);
 
   React.useEffect(() => {
-    if (underMainBackgroundImage) {
-      rootStyle.setProperty(
-        '--under-main-view-art-image',
-        `url(${underMainBackgroundImage})`
-      );
-    } else {
+    rootStyle.setProperty(
+      '--under-main-view-art-image',
+      underMainBackgroundImage ? `url(${underMainBackgroundImage})` : null
+    );
+    return () => {
       rootStyle.removeProperty('--under-main-view-art-image');
-    }
+    };
   }, [underMainBackgroundImage, rootStyle]);
-
-  return null;
 };
 
-export default UnderMainViewManager;
+export default mountUnderMainViewWatcher;

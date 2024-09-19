@@ -1,42 +1,45 @@
-const originalConsoleLog = console.log;
+const originalLog = console.log;
+const originalDebug = console.debug;
+const originalError = console.error;
+const originalWarn = console.warn;
 
-const logStyles = {
+type LogLevel = 'info' | 'error' | 'debug' | 'warn';
+
+const logStyles: { [K in LogLevel]: string } & { prefix: string } = {
   prefix: 'font-weight: bold; color: #4DB6AC; font-size: 0.85rem;',
   error: 'color: #dc3545;',
   warn: 'color: #ffc107;',
+  debug: 'color: #17a2b8;',
+  info: '',
 };
 
-type LogLevel = 'info' | 'error' | 'warn';
-
-type LogOptions = {
-  level?: LogLevel;
-  styles?: string;
-};
-
-export const logToConsole = (
-  message: any | unknown,
-  options: LogOptions = {},
+export const logWithLevel = (
+  level: LogLevel,
+  message: any,
   ...optionalParams: unknown[]
 ) => {
-  const { level = 'info', styles = '' } = options;
+  const logFn = {
+    info: originalLog,
+    debug: originalDebug,
+    error: originalError,
+    warn: originalWarn,
+  }[level];
 
-  let messageStyle = styles;
+  const levelStyle = logStyles[level];
 
-  switch (level) {
-    case 'error':
-      messageStyle = `${logStyles.error} ${styles}`;
-      break;
-    case 'warn':
-      messageStyle = `${logStyles.warn} ${styles}`;
-      break;
-    default:
-      break;
-  }
-
-  originalConsoleLog(
+  logFn(
     `%c[Lucid] %c${message}`,
     logStyles.prefix,
-    messageStyle,
+    levelStyle,
     ...optionalParams
   );
 };
+
+export const logInfo = (message: any, ...optionalParams: unknown[]) =>
+  logWithLevel('info', message, ...optionalParams);
+export const logDebug = (message: any, ...optionalParams: unknown[]) =>
+  logWithLevel('debug', message, ...optionalParams);
+export const logError = (message: any, ...optionalParams: unknown[]) =>
+  logWithLevel('error', message, ...optionalParams);
+export const logWarn = (message: any, ...optionalParams: unknown[]) =>
+  logWithLevel('warn', message, ...optionalParams);

@@ -1,4 +1,4 @@
-import { logToConsole } from '@/utils/logUtils';
+import { logInfo } from '@/utils/logUtils';
 
 function applyBackgroundStyles(
   backgroundStyleElement: HTMLElement,
@@ -32,11 +32,11 @@ function manageBackgroundZIndexForElement(
     // Check if container has changed
     if (container !== previousContainer) {
       if (container && !isContainerPresent) {
-        logToConsole(`Applying background z-index: ${zIndex}`);
+        logInfo(`Applying background z-index: ${zIndex}`);
         isContainerPresent = true;
         applyBackgroundStyles(backgroundStyleElement, zIndex);
       } else if (isContainerPresent) {
-        logToConsole(`Removing background z-index: ${zIndex}`);
+        logInfo(`Removing background z-index: ${zIndex}`);
         isContainerPresent = false;
 
         // Only check for lyrics cinema element when removing the fullscreen container

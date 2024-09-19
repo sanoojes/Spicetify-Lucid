@@ -1,12 +1,9 @@
 import React from 'react';
-import DynamicBackground from '@/components/colors/DynamicColors';
+import useDynamicBackground from '@/components/colors/DynamicColors';
 
 const ColorManager = () => {
-  return (
-    <>
-      <DynamicBackground />
-    </>
-  );
+  useDynamicBackground();
+  return <></>;
 };
 
 export default ColorManager;

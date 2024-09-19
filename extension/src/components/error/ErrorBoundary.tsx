@@ -1,5 +1,5 @@
 import React, { type FC } from 'react';
-import { logToConsole } from '@/utils/logUtils';
+import { logError } from '@/utils/logUtils';
 
 const githubRepoUrl = 'https://github.com/sanoojes/Spicetify-Lucid/issues';
 
@@ -57,7 +57,7 @@ const ErrorNotification: FC<{ error: unknown }> = ({ error }) => {
   );
 };
 
-export const showError = (e: unknown) => {
-  logToConsole(`Error: ${e}`, { level: 'error' });
+export const showError = (error: unknown) => {
+  logError('Error:', error);
   Spicetify.showNotification(<ErrorNotification error={e} />, true);
 };
