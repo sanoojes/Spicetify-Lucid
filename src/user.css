@@ -1011,7 +1011,7 @@ dialog {
 .GenericModal,
 .desktopmodals-aboutSpotifyModal-container {
   max-height: 90vh;
-  background-color: var(--card-color);
+  background-color: rgba(var(--spice-rgb-main), 0.5);
   border: var(--default-border);
   border-radius: var(--card-border-radius);
   -webkit-backdrop-filter: blur(var(--blur-xl));
