@@ -2919,6 +2919,7 @@ button[id="upgradeAccount"] {
 }
 
 /* Ad placeholder */
+.ReyA3uE3K7oEz7PTTnAn,
 ._Cq69xKZBtHaaeMZXIdk,
 .main-leaderboardComponent-container {
   display: none !important;
@@ -2931,6 +2932,7 @@ button[id="upgradeAccount"] {
 }
 
 /* Home page ad section */
+div[data-testid="billboard-minimized"],
 .desktoproutes-homepage-takeover-ad-hptoComponent-parentContainer,
 .utUDWsORU96S7boXm2Aq {
   display: none !important;
