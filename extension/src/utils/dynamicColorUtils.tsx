@@ -117,10 +117,14 @@ export async function applyExtractedColorsToCSS(
 
         const styleContent = `
           :root {
-            ${Object.entries(colorPalette).map(
-              ([name, color]) =>
-                `\n--spice-${name}: ${color.hex} !important;\n--spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;\n`
-            )}
+            ${Object.entries(colorPalette)
+              .map(
+                ([name, color]) =>
+                  `\n--spice-${name}: ${color.hex} !important;
+--spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;\n`
+              )
+              .join('')}
+            
             will-change: 
               --spice-main, 
               --spice-sidebar,

@@ -567,9 +567,9 @@ input,
   transition: width 0.3s ease;
 }
 
-.main-yourLibraryX-entryPoints #spicetify-show-list,
-.main-yourLibraryX-entryPoints #spicetify-hidden-list {
-  padding-top: var(--padding-md, 0.5rem);
+.main-yourLibraryX-entryPoints #spicetify-show-list>li:first-child,
+.main-yourLibraryX-entryPoints #spicetify-hidden-list>li:first-child {
+  margin-top: var(--padding-md, 0.5rem);
 }
 
 /* Background Color */
@@ -1011,7 +1011,7 @@ dialog {
 .GenericModal,
 .desktopmodals-aboutSpotifyModal-container {
   max-height: 90vh;
-  background-color: rgba(var(--spice-rgb-main), 0.25);
+  background-color: var(--card-color);
   border: var(--default-border);
   border-radius: var(--card-border-radius);
   -webkit-backdrop-filter: blur(var(--blur-xl));
@@ -2919,7 +2919,6 @@ button[id="upgradeAccount"] {
 }
 
 /* Ad placeholder */
-.ReyA3uE3K7oEz7PTTnAn,
 ._Cq69xKZBtHaaeMZXIdk,
 .main-leaderboardComponent-container {
   display: none !important;
@@ -2932,7 +2931,6 @@ button[id="upgradeAccount"] {
 }
 
 /* Home page ad section */
-div[data-testid="billboard-minimized"],
 .desktoproutes-homepage-takeover-ad-hptoComponent-parentContainer,
 .utUDWsORU96S7boXm2Aq {
   display: none !important;
