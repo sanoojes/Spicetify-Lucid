@@ -1,8 +1,11 @@
 import React from 'react';
-import { saveColors, removeColors } from '@/utils/colorUtils';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { useLucidStore } from '@/store/useLucidStore';
 import { logToConsole } from '@/utils/logUtils';
+import {
+  applyExtractedColorsToCSS,
+  resetCSSColorVariables,
+} from '@/utils/dynamicColorUtils';
 
 const DynamicBackground = React.memo(() => {
   const { isDynamicColor } = useSettingsStore();
@@ -24,12 +27,12 @@ const DynamicBackground = React.memo(() => {
 
   React.useEffect(() => {
     if (!isDynamicColor) {
-      if (styleRef.current) {
-        removeColors(styleRef.current);
-      }
-
       if (prevArtURL.current) {
         prevArtURL.current = null;
+      }
+
+      if (styleRef.current) {
+        resetCSSColorVariables(styleRef.current);
       }
 
       return;
@@ -37,7 +40,7 @@ const DynamicBackground = React.memo(() => {
 
     if (isDynamicColor && artworkData.nowPlayingArtURL !== prevArtURL.current) {
       if (styleRef?.current && isDynamicColor && artworkData.nowPlayingArtURL) {
-        saveColors(
+        applyExtractedColorsToCSS(
           styleRef.current,
           isDynamicColor,
           artworkData.nowPlayingArtURL

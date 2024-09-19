@@ -20,3 +20,9 @@ export interface ColorPalette {
   secondary: Color;
   tertiary: Color;
 }
+
+type ExtractedColors = {
+  baseColor: Color;
+  secondaryColor: Color;
+  tertiaryColor: Color;
+};
