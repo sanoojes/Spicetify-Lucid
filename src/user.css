@@ -1230,10 +1230,10 @@ dialog {
   transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     --progress-bar-transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  --bg-color: rgba(var(--spice-rgb-text), 0.1);
-  --color: rgba(var(--spice-rgb-text), 0.25);
-  --fg-color: rgba(var(--spice-rgb-accent), 0.75);
-  --is-active-fg-color: rgba(var(--spice-rgb-accent), 1);
+  --bg-color: rgba(var(--spice-rgb-progress-bar), 0.1);
+  --color: rgba(var(--spice-rgb-progress-bar), 0.25);
+  --fg-color: rgba(var(--spice-rgb-progress-bar), 0.75);
+  --is-active-fg-color: rgba(var(--spice-rgb-progress-bar), 1);
 }
 
 .progress-bar--isDragging {

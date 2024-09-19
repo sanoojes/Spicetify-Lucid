@@ -13,6 +13,7 @@ export interface ColorPalette {
   highlight: Color;
   button: Color;
   player: Color;
+  'progress-bar': Color;
   'button-active': Color;
   text: Color;
   subtext: Color;
