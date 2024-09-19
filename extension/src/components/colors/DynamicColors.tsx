@@ -1,35 +1,57 @@
 import React from 'react';
 import { saveColors, removeColors } from '@/utils/colorUtils';
 import { useSettingsStore } from '@/store/useSettingsStore';
-import { logToConsole } from '@/utils/logUtils';
 import { useLucidStore } from '@/store/useLucidStore';
+import { logToConsole } from '@/utils/logUtils';
 
 const DynamicBackground = React.memo(() => {
   const { isDynamicColor } = useSettingsStore();
   const { artworkData } = useLucidStore();
   const styleRef = React.useRef<HTMLStyleElement | null>(null);
+  const prevArtURL = React.useRef<string | null>(null);
 
   React.useEffect(() => {
-    if (!styleRef.current) {
-      styleRef.current = document.createElement('style');
-      styleRef.current.id = 'lucid_dynamic_colors';
-      document.head.appendChild(styleRef.current);
+    styleRef.current = document.createElement('style');
+    styleRef.current.id = 'lucid_dynamic_colors';
+    document.head.appendChild(styleRef.current);
+
+    return () => {
+      if (styleRef.current) {
+        document.head.removeChild(styleRef.current);
+      }
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (!isDynamicColor) {
+      if (styleRef.current) {
+        removeColors(styleRef.current);
+      }
+
+      if (prevArtURL.current) {
+        prevArtURL.current = null;
+      }
+
+      return;
     }
 
-    removeColors(styleRef.current);
-
-    const updateColors = async () => {
-      if (styleRef.current && artworkData.nowPlayingArtURL && isDynamicColor) {
-        await saveColors(
+    if (isDynamicColor && artworkData.nowPlayingArtURL !== prevArtURL.current) {
+      if (styleRef?.current && isDynamicColor && artworkData.nowPlayingArtURL) {
+        saveColors(
           styleRef.current,
           isDynamicColor,
           artworkData.nowPlayingArtURL
-        );
-        logToConsole('Dynamic colors updated!');
+        )
+          .then(() => {
+            logToConsole('Dynamic colors updated!', { level: 'info' });
+          })
+          .catch((error) => {
+            logToConsole('Error updating colors:', { level: 'error' }, error);
+          });
       }
-    };
 
-    updateColors();
+      prevArtURL.current = artworkData.nowPlayingArtURL;
+    }
   }, [isDynamicColor, artworkData.nowPlayingArtURL]);
 
   return <div id='dynamic-colors' />;

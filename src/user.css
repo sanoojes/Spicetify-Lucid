@@ -141,21 +141,6 @@
   --now-playing-bar-height: 3.75rem;
 }
 
-/* Transition for background color change */
-#lucid-main *,
-.Root__right-sidebar,
-#Desktop_PanelContainer_Id,
-.NowPlayingView,
-.main-yourLibraryX-entryPoints,
-.main-nowPlayingBar-container,
-.yHlSWaHkqZHm5mcY8ZFh,
-.pT8jWX5PbLB2Z91Ngl7n,
-.gKtc3TdowDTXBaVESi1D,
-.GenericModal__overlay * {
-  will-change: background-color, color;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 /* Spicetify Overrides */
 .encore-dark-theme,
 .encore-dark-theme .encore-base-set {
@@ -731,6 +716,7 @@ input,
   position: absolute;
   top: var(--gap-lg);
   width: 6rem;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   border: var(--default-border);
   right: var(--gap-xl) !important;
@@ -848,6 +834,7 @@ input,
   background-color: var(--background-color, rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5));
   border: var(--default-border);
   border-radius: var(--border-radius, var(--card-border-radius, 0.25rem));
+  -webkit-backdrop-filter: opacity(var(--backdrop-opacity, 1)) blur(var(--backdrop-blur, 1rem)) saturate(var(--saturation, 1.1)) brightness(var(--brightness, 1)) contrast(var(--contrast, 1.2));
   backdrop-filter: opacity(var(--backdrop-opacity, 1)) blur(var(--backdrop-blur, 1rem)) saturate(var(--saturation, 1.1)) brightness(var(--brightness, 1)) contrast(var(--contrast, 1.2));
 }
 

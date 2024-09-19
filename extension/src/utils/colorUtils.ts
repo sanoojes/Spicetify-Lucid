@@ -176,6 +176,8 @@ async function getColors(imageUrl: string): Promise<ColorPalette | Error> {
   }
 }
 
+let colorExtractionTimeout: NodeJS.Timeout | null = null;
+
 export async function saveColors(
   styleElement: HTMLElement,
   isDynamicColor: boolean,
@@ -183,40 +185,79 @@ export async function saveColors(
 ): Promise<ColorPalette | null> {
   if (!isDynamicColor || !currentArtUrl) return null;
 
-  try {
-    const colorPalette = await getColors(currentArtUrl);
-
-    if (colorPalette instanceof Error) {
-      logToConsole(`Error extracting colors: ${colorPalette.message}`);
-      return null;
+  return new Promise<ColorPalette | null>((resolve) => {
+    if (colorExtractionTimeout) {
+      clearTimeout(colorExtractionTimeout);
     }
 
-    const styleContent = `
-      :root {
-        ${Object.entries(colorPalette)
-          .map(
-            ([name, color]) =>
-              `--spice-${name}: ${color.hex} !important;
-               --spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;`
-          )
-          .join('\n')}
+    colorExtractionTimeout = setTimeout(async () => {
+      try {
+        const colorPalette = await getColors(currentArtUrl);
+
+        if (colorPalette instanceof Error) {
+          logToConsole(`Error extracting colors: ${colorPalette.message}`);
+          resolve(null);
+          return;
+        }
+
+        const styleContent = `
+          :root {
+            ${Object.entries(colorPalette).map(
+              ([name, color]) =>
+                `\n--spice-${name}: ${color.hex} !important;\n--spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;\n`
+            )}
+            will-change: 
+              --spice-main, 
+              --spice-sidebar,
+              --spice-card,
+              --spice-player,
+              --spice-accent,
+              --spice-highlight,
+              --spice-button,
+              --spice-button-active,
+              --spice-text,
+              --spice-subtext,
+              --spice-primary,
+              --spice-secondary,
+              --spice-tertiary;
+
+            transition: all 0.3s ease-in-out;
+          }
+        `;
+
+        styleElement.textContent = styleContent;
+
+        resolve(colorPalette);
+      } catch (error) {
+        logToConsole(
+          `Error saving colors to style: ${
+            error instanceof Error ? error.message : error
+          }`,
+          { level: 'error' }
+        );
+        resolve(null);
       }
-    `;
-
-    styleElement.textContent = styleContent;
-
-    return colorPalette;
-  } catch (error) {
-    logToConsole(
-      `Error saving colors to style: ${
-        error instanceof Error ? error.message : error
-      }`,
-      { level: 'error' }
-    );
-    return null;
-  }
+    }, 200);
+  });
 }
 
 export async function removeColors(styleElement: HTMLElement) {
-  styleElement.textContent = '';
+  styleElement.textContent = `:root{
+  will-change: 
+    --spice-main, 
+    --spice-sidebar,
+    --spice-card,
+    --spice-player,
+    --spice-accent,
+    --spice-highlight,
+    --spice-button,
+    --spice-button-active,
+    --spice-text,
+    --spice-subtext,
+    --spice-primary,
+    --spice-secondary,
+    --spice-tertiary;
+
+  transition: all 0.2s ease-in-out;
+}`;
 }
