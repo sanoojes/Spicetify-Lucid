@@ -46,7 +46,9 @@ const Main = () => {
           <ChangeLogManager />
         </div>
       </ModalContextProvider>
-      <WindowControlsManager />
+      <div>
+        <WindowControlsManager />
+      </div>
     </>
   );
 };

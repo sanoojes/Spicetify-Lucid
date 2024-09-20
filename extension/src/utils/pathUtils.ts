@@ -17,6 +17,9 @@ export const getPathCategory = (pathname: string) => {
   return 'other';
 };
 
+/**
+ * Sets Path as per the user navigates.
+ */
 export const usePathManagement = () => {
   const { pageCategory, setPageCategory } = useLucidStore();
 

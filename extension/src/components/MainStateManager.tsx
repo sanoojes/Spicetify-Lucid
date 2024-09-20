@@ -15,7 +15,6 @@ import { usePathManagement } from '@/utils/pathUtils';
 const MainStateManager = React.memo(() => {
   logDebug('Render <MainStateManager />');
 
-  // Change path according to the spotify page
   usePathManagement();
 
   useFontManager();

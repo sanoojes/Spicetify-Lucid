@@ -55,10 +55,6 @@
   --normal-button-color: rgba(var(--spice-rgb-card), 0.5);
   --spice-button-disabled: rgba(var(--spice-rgb-subtext), 0.5);
 
-  /* Transparent controls */
-  --control-width: 0px;
-  --control-height: 0px;
-
   /* Top Bar */
   --top-bar-bg-color: rgba(var(--spice-rgb-card), 0.25);
   --top-bar-bg-blur: var(--blur-xl);
@@ -1358,8 +1354,8 @@ dialog {
   top: 0;
   right: 0;
   pointer-events: none;
-  height: var(--control-height);
-  width: var(--control-width);
+  height: 0;
+  width: 0;
   -webkit-backdrop-filter: brightness(2.12);
   backdrop-filter: brightness(2.12);
   z-index: var(--above-main-and-now-playing-view-grid-area, 6);
