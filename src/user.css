@@ -1095,9 +1095,6 @@ dialog {
 .EmeHQXR87mUskYK6xEde
 /* ADD: Artist main card Selector */
 ,
-.Vn9yz8P5MjIvDT8c0U6w
-/* ADD: Search card selector */
-,
 .CfruGiDGW_FH4l65GMpb
 /* ADD: Card elements selector */
 ,
@@ -1183,20 +1180,6 @@ dialog {
 /* ADD: Search card <a> selector */
   {
   padding: 0 !important;
-}
-
-.Vn9yz8P5MjIvDT8c0U6w
-
-/* ADD: Search card selector */
-  {
-  background-color: rgba(var(--spice-rgb-card), 0.25) !important;
-}
-
-.Vn9yz8P5MjIvDT8c0U6w:hover
-
-/* ADD: Search card selector */
-  {
-  background-color: rgba(var(--spice-rgb-card), 0.5) !important;
 }
 
 .search-searchCategory-categoryGrid {
@@ -1604,6 +1587,26 @@ svg:has(path[d="M8 0a5.5 5.5 0 0 0-5.5 5.5v3.069L.307 12.376A.75.75 0 0 0 .25 13
 
 button[aria-label="Browse"] path {
   display: none !important;
+}
+
+/* Search card */
+.main-gridContainer-gridContainer .Vn9yz8P5MjIvDT8c0U6w::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  opacity: 1;
+  background: linear-gradient(120deg, transparent, var(--spice-main));
+}
+
+.main-gridContainer-gridContainer .Vn9yz8P5MjIvDT8c0U6w .WDC2Yzs811n7JCYtYQzc {
+  transform: scale(1) rotate(25deg) translate(18%, -2%);
+  transition: transform .3s linear;
+}
+
+.main-gridContainer-gridContainer .Vn9yz8P5MjIvDT8c0U6w:hover .WDC2Yzs811n7JCYtYQzc {
+  transform: scale(1.06) rotate(15deg) translate(15%, 0%);
 }
 
 /* Lyrics */
