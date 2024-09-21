@@ -987,8 +987,8 @@ dialog {
 .aJduGcVsoCwJvV1jVqjl,
 .BoxComponent-box-elevated {
   --text-base: var(--spice-text) !important;
-  background-color: rgba(var(--spice-rgb-shadow),
-      0.2) !important;
+  background-color: rgba(var(--spice-rgb-main),
+      0.5) !important;
   color: var(--spice-text) !important;
   -webkit-backdrop-filter: blur(var(--blur-sm));
   backdrop-filter: blur(var(--blur-sm));
