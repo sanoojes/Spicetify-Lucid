@@ -27,10 +27,10 @@ async function main() {
       Spicetify.ReactDOM.createRoot(rootElement).render(<Main />);
     }
 
-    logWithLevel('info', 'Lucid ignited! 🚀', {
-      styles:
-        'font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;',
-    });
+    console.log(
+      '%c Lucid ignited! 🚀',
+      'font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;'
+    );
   } catch (error) {
     showError(error);
   }
