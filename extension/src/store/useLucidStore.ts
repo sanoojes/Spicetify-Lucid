@@ -4,11 +4,12 @@ import {
   getIsLightMode,
   getRootStyle,
 } from '@/utils/platformUtils';
+import { getIsCustomControls } from '@/utils/windowControlUtils';
 import { create } from 'zustand';
 
 const defaultSettings: LucidStoreValues = {
   underMainBackgroundImage: '',
-  isCustomControls: false,
+  isCustomControls: getIsCustomControls(),
   pageCategory: 'other',
   artworkData: {
     nowPlayingArtURL: '',

@@ -14,11 +14,10 @@ export async function setWindowControlsHeight(height: number) {
   }
 }
 
-export async function checkForCustomControls(
-  setIsCustomControls: (value: boolean) => void
-) {
+export function getIsCustomControls(): boolean {
   if (document.getElementById('customControls')) {
-    setIsCustomControls(true);
     document.querySelector('.lucid-transperent-window-controls')?.remove();
+    return true;
   }
+  return false;
 }
