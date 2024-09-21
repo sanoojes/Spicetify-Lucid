@@ -11,7 +11,7 @@ import { logError } from '@/utils/logUtils';
 // Function to extract dominant colors from an image
 async function extractDominantColorsFromImage(
   imageUrl: string
-): Promise<ColorPalette | Error> {
+): Promise<ExtractedColors | Error> {
   try {
     const image = await loadImage(imageUrl);
 
@@ -74,13 +74,11 @@ async function extractDominantColorsFromImage(
       colorIndex++;
     }
 
-    const colorPalette: ColorPalette = generateDarkModePalette({
+    return {
       baseColor,
       secondaryColor,
       tertiaryColor,
-    });
-
-    return colorPalette;
+    };
   } catch (error) {
     logError('Error extracting colors: ', error);
     return error as Error;
@@ -93,59 +91,31 @@ export async function applyExtractedColorsToCSS(
   styleElement: HTMLElement,
   isDynamicColor: boolean,
   currentArtUrl: string
-): Promise<ColorPalette | null> {
+): Promise<ExtractedColors | null> {
   if (!isDynamicColor || !currentArtUrl) return null;
 
-  return new Promise<ColorPalette | null>((resolve) => {
+  return new Promise<ExtractedColors | null>((resolve) => {
     if (colorExtractionTimeout) {
       clearTimeout(colorExtractionTimeout);
     }
 
     colorExtractionTimeout = setTimeout(async () => {
       try {
-        const colorPalette = await extractDominantColorsFromImage(
+        const extractedColors = await extractDominantColorsFromImage(
           currentArtUrl
         );
 
-        if (colorPalette instanceof Error) {
-          logError(`Error extracting colors: ${colorPalette.message}`);
+        if (extractedColors instanceof Error) {
+          logError(`Error extracting colors: ${extractedColors.message}`);
           resolve(null);
           return;
         }
 
-        const styleContent = `
-          :root {
-            ${Object.entries(colorPalette)
-              .map(
-                ([name, color]) =>
-                  `\n--spice-${name}: ${color.hex} !important;
---spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;\n`
-              )
-              .join('')}
-            
-            will-change: 
-              --spice-main, 
-              --spice-sidebar,
-              --spice-card,
-              --spice-player,
-              --spice-accent,
-              --spice-highlight,
-              --spice-button,
-              --spice-button-active,
-              --spice-text,
-              --spice-progress-bar,
-              --spice-subtext,
-              --spice-primary,
-              --spice-secondary,
-              --spice-tertiary;
+        const colorPalette = generateDarkModePalette(extractedColors);
 
-            transition: all 0.3s ease-in-out;
-          }
-        `;
+        applyColorPaletteToCSS(styleElement, colorPalette);
 
-        styleElement.textContent = styleContent;
-
-        resolve(colorPalette);
+        resolve(extractedColors);
       } catch (error) {
         logError(
           'Error saving colors to style: ',
@@ -157,26 +127,25 @@ export async function applyExtractedColorsToCSS(
   });
 }
 
-export async function resetCSSColorVariables(styleElement: HTMLElement) {
-  styleElement.textContent = `:root{
-  will-change: 
-    --spice-main, 
-    --spice-sidebar,
-    --spice-card,
-    --spice-player,
-    --spice-accent,
-    --spice-highlight,
-    --spice-button,
-    --spice-button-active,
-    --spice-text,
-    --spice-progress-bar,
-    --spice-subtext,
-    --spice-primary,
-    --spice-secondary,
-    --spice-tertiary;
+export function applyColorPaletteToCSS(
+  styleElement: HTMLElement,
+  colorPalette: ColorPalette
+) {
+  let styleContent = `:root {${Object.entries(colorPalette)
+    .map(
+      ([name, color]) =>
+        `\n--spice-${name}: ${color.hex} !important;\n--spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;`
+    )
+    .join('')}\n}`;
+  styleContent +=
+    ':root{\nwill-change: --spice-main,--spice-rgb-main,--spice-sidebar,--spice-rgb-sidebar,--spice-card,--spice-rgb-card,--spice-player,--spice-rgb-player,--spice-accent,--spice-rgb-accent,--spice-highlight,--spice-rgb-highlight,--spice-button,--spice-rgb-button,--spice-button-active,--spice-rgb-button-active,--spice-text,--spice-rgb-text,--spice-progress-bar,--spice-rgb-progress-bar,--spice-subtext,--spice-rgb-subtext,--spice-primary,--spice-rgb-primary,--spice-secondary,--spice-rgb-secondary,--spice-tertiary,--spice-rgb-tertiary;\ntransition: all 0.3s ease-in-out;\n}';
 
-  transition: all 0.2s ease-in-out;
-}`;
+  styleElement.textContent = styleContent;
+}
+
+export async function resetCSSColorVariables(styleElement: HTMLElement) {
+  styleElement.textContent =
+    ':root{\nwill-change: --spice-main,--spice-rgb-main,--spice-sidebar,--spice-rgb-sidebar,--spice-card,--spice-rgb-card,--spice-player,--spice-rgb-player,--spice-accent,--spice-rgb-accent,--spice-highlight,--spice-rgb-highlight,--spice-button,--spice-rgb-button,--spice-button-active,--spice-rgb-button-active,--spice-text,--spice-rgb-text,--spice-progress-bar,--spice-rgb-progress-bar,--spice-subtext,--spice-rgb-subtext,--spice-primary,--spice-rgb-primary,--spice-secondary,--spice-rgb-secondary,--spice-tertiary,--spice-rgb-tertiary;\ntransition: all 0.3s ease-in-out;\n}';
 }
 
 function generateDarkModePalette({
