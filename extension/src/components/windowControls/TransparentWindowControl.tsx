@@ -29,7 +29,10 @@ const TransparentWindowControl = React.memo(() => {
 
         const constant = 0.912872807;
 
-        const finalControlHeight = calculateScaledPx(64, inverseZoom, 1);
+        const finalControlHeight = Math.round(
+          ((normalZoom * 100) ** constant * 100) / 100 -
+            (isSpotifyV16Above ? 0 : 3)
+        );
 
         await setWindowControlsHeight(finalControlHeight);
 
