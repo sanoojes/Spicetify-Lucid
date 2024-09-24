@@ -430,18 +430,21 @@ option {
 
 /* Input & Search Bar */
 input,
-.x-searchInput-searchInputInput,
+.main-topBar-searchBar,
+.b7r2WRiu5f9Q99qmyreh,
 .main-globalNav-searchInputContainer {
   border-radius: var(--card-border-radius) !important;
   background-color: rgba(var(--spice-rgb-card), 0.25) !important;
   box-shadow: none !important;
 }
 
+.main-topBar-searchBar:hover,
 .x-searchInput-searchInputInput:hover,
 .main-globalNav-searchInputContainer input:hover {
   background-color: rgba(var(--spice-rgb-card), 0.5) !important;
 }
 
+.main-topBar-searchBar:focus,
 .x-searchInput-searchInputInput:focus,
 .main-globalNav-searchInputContainer input:focus {
   background-color: rgba(var(--spice-rgb-card), 0.75) !important;
@@ -457,25 +460,20 @@ input,
 }
 
 .MAhD1GiTZQMOyX6eUrBQ,
+.GimJ6fo6WOYPyWNVpSr1,
 .gPP3UTf4KHCpkR7fowu7 {
-  margin-top: 2px;
+  margin-top: 4px;
   background-color: rgba(var(--spice-rgb-card), 0.75);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   border: var(--default-border);
-  border-top: none;
-  border-radius: 0 0 var(--card-border-radius, 0.5rem) var(--card-border-radius, 0.5rem);
+  border-radius: var(--card-border-radius, 0.5rem);
 }
 
 .HnlKe49O7x9B5Vm6aPrV,
 .zuvmONH0Veccf2MUDmno,
 .Button-medium-medium-buttonTertiary-iconOnly-useBrowserDefaultFocusStyle {
   border-radius: var(--card-border-radius, 0.5rem) !important;
-}
-
-.main-globalNav-searchInputContainer:has(:is(.gPP3UTf4KHCpkR7fowu7, .MAhD1GiTZQMOyX6eUrBQ)) input:focus {
-  border-radius: 0.5rem 0.5rem 0 0 !important;
-  background: rgba(var(--spice-rgb-card, var(--card-color)), 0.75) !important;
 }
 
 /* Experimental Features */
@@ -512,6 +510,7 @@ input,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle:hover,
 .Button-small-buttonSecondary-useBrowserDefaultFocusStyle,
 .x-searchInput-searchInputInput,
+.b7r2WRiu5f9Q99qmyreh,
 .main-globalNav-searchInputContainer,
 .Root__right-sidebar,
 .Root__main-view,
