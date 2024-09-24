@@ -658,6 +658,16 @@ input,
   transform: translateY(calc((1 - var(--top-bar-opacity)) * -100%));
 }
 
+.other .main-topBar-container {
+  -webkit-transition-delay: 0;
+  -webkit-transition: none;
+  -webkit-transform: translateY(0);
+
+  transition-delay: 0;
+  transition: none;
+  transform: translateY(0);
+}
+
 .artist-artistDiscography-topBar,
 .search-searchCategory-SearchCategory,
 .global-nav .main-home-filterChipsContainer,
