@@ -8,7 +8,7 @@ import type {
   BackgroundStyleSettings,
 } from '@/types/settingTypes';
 import CustomInput from '@/components/ui/CustomInput';
-import SettingsCardWrapper from '@/components/settings/SettingsCardWrapper';
+import SettingsCardWrapper from '@/components/settings/ui/SettingsCardWrapper';
 
 const BackgroundSettingsSection: React.FC = React.memo(() => {
   const {

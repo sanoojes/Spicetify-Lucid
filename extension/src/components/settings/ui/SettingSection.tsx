@@ -1,6 +1,6 @@
 import React from 'react';
 import type { SettingSectionProps } from '@/types/settingTypes';
-import SettingsCardWrapper from '@/components/settings/SettingsCardWrapper';
+import SettingsCardWrapper from '@/components/settings/ui/SettingsCardWrapper';
 
 const SettingSection = ({
   title,
