@@ -1,13 +1,11 @@
 import React from 'react';
-import { useLucidStore } from '@/store/useLucidStore';
 import TransparentWindowControl from '@/components/windowControls/TransparentWindowControl';
+import { isWindowsPlatform } from '@/constants/constants';
 
 const WindowControlsManager = React.memo(() => {
-  const { isWindows } = useLucidStore();
-
   return (
     <>
-      {isWindows ? (
+      {isWindowsPlatform ? (
         <div
           id='transperent-controls-container'
           className='transperent-controls-container'

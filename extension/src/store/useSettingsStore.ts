@@ -2,12 +2,12 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 import type { SettingsStore } from '@/types/settingTypes';
-import { defaultSettings } from '@/constants/constants';
+import { DEFAULT_APP_SETTINGS } from '@/constants/constants';
 
 export const useSettingsStore = create(
   persist<SettingsStore>(
     (set) => ({
-      ...defaultSettings,
+      ...DEFAULT_APP_SETTINGS,
 
       updateFontSettings: (fontType, key, value) =>
         set((state) => ({
@@ -61,7 +61,7 @@ export const useSettingsStore = create(
       },
 
       resetSettings: () => {
-        set(defaultSettings);
+        set(DEFAULT_APP_SETTINGS);
       },
     }),
     {

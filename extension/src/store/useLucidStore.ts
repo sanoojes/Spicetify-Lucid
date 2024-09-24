@@ -1,31 +1,19 @@
-import {
-  checkSpotifyVersion,
-  detectWindows,
-  getIsGlobalNav,
-  getIsLightMode,
-  getRootStyle,
-} from '@/utils/platformUtils';
-import { getIsCustomControls } from '@/utils/windowControlUtils';
+import { getRootStyle } from '@/utils/platformUtils';
 import { create } from 'zustand';
 
-const defaultSettings: LucidStoreValues = {
+const DEFAULT_APP_SETTINGS: LucidStoreValues = {
   underMainBackgroundImage: '',
-  isCustomControls: getIsCustomControls(),
   pageCategory: 'other',
   artworkData: {
     nowPlayingArtURL: '',
     currentPageURI: '',
     currentPageArtURL: '',
   },
-  isSpotifyV16Above: checkSpotifyVersion('1.2.46'),
-  isLightMode: getIsLightMode(),
-  isWindows: detectWindows(),
-  isGlobalNav: getIsGlobalNav(),
   rootStyle: getRootStyle(),
 };
 
 export const useLucidStore = create<LucidStoreState>((set) => ({
-  ...defaultSettings,
+  ...DEFAULT_APP_SETTINGS,
 
   // Setters
   updateArtworkData: (newArtwork) =>
@@ -39,6 +27,5 @@ export const useLucidStore = create<LucidStoreState>((set) => ({
     set((state) => ({ ...state, underMainBackgroundImage: url })),
   setIsCustomControls: (isCustomControls) =>
     set((state) => ({ ...state, isCustomControls })),
-  setIsLightMode: (isLightMode) => set((state) => ({ ...state, isLightMode })),
   setRootStyle: (rootStyle) => set((state) => ({ ...state, rootStyle })),
 }));

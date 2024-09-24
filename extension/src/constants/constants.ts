@@ -3,12 +3,19 @@ import type {
   BackgroundStyleSettings,
   PlaybarStyleSettings,
 } from '@/types/settingTypes';
+import {
+  detectWindows,
+  getIsGlobalNav,
+  getIsLightMode,
+  checkSpotifyVersionIsAbove,
+} from '@/utils/platformUtils';
+import { getIsCustomControls } from '@/utils/windowControlUtils';
 
 //  Settings Local Key
 export const SETTINGS_LOCAL_KEY: string = 'lucid:settings';
 
 //  Settings
-export const defaultBackgroundStyles: BackgroundStyleSettings = {
+export const DEFAULT_BACKGROUND_STYLES: BackgroundStyleSettings = {
   solid: {
     opacity: 1,
     backgroundColor: 'var(--spice-main)',
@@ -32,7 +39,7 @@ export const defaultBackgroundStyles: BackgroundStyleSettings = {
   },
 };
 
-export const defaultPlaybarStyles: PlaybarStyleSettings = {
+export const DEFAULT_PLAYBAR_STYLES: PlaybarStyleSettings = {
   compact: {
     opacity: 1,
     saturation: 1.1,
@@ -55,9 +62,9 @@ export const defaultPlaybarStyles: PlaybarStyleSettings = {
   },
 };
 
-export const defaultSettings: AppSettings = {
+export const DEFAULT_APP_SETTINGS: AppSettings = {
   backgroundMode: 'static',
-  backgroundStyles: defaultBackgroundStyles,
+  backgroundStyles: DEFAULT_BACKGROUND_STYLES,
   grainEffect: 'stary',
   isDynamicColor: false,
   isScrollMode: true,
@@ -65,7 +72,7 @@ export const defaultSettings: AppSettings = {
   customBackgroundURL: '',
   playlistImageMode: 'inherit',
   playbarMode: 'default',
-  playbarStyles: defaultPlaybarStyles,
+  playbarStyles: DEFAULT_PLAYBAR_STYLES,
   fontSettings: {
     title: { fontFamily: 'Poppins', url: '' },
     body: { fontFamily: 'Poppins', url: '' },
@@ -73,13 +80,19 @@ export const defaultSettings: AppSettings = {
   playlistViewMode: 'card',
 };
 
-export const RELEASES_URL =
+// API Urls
+export const GITHUB_RELEASES_URL =
   'https://api.github.com/repos/sanoojes/spicetify-lucid/releases';
 
-/* Scroll Node Selector */
+// DOM Selectors & Prefixes
 export const SCROLL_NODE_SELECTORS =
   '.Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]';
+export const PLAYLIST_ART_IMAGE_CLASS_PREFIX = 'playlist-art-image-';
+export const PLAYLIST_VIEW_CLASS_PREFIX = 'playlist-view-';
 
-/* Playlist Class Prefixes */
-export const PLAYLIST_ART_IMAGE_CLASS = 'playlist-art-image-';
-export const PLAYLIST_VIEW_CLASS = 'playlist-view-';
+// Feature Flags
+export const isSpotifyV16Above = checkSpotifyVersionIsAbove('1.2.46');
+export const isLightModeEnabled = getIsLightMode();
+export const isWindowsPlatform = detectWindows();
+export const isGlobalNav = getIsGlobalNav();
+export const isCustomControls = getIsCustomControls();

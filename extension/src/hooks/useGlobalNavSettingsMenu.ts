@@ -17,7 +17,7 @@ const useGlobalNavSettingsMenu = ({ onClick }: SettingsProfileMenuProps) => {
     return () => {
       settingsTopbarButton.element.remove();
     };
-  }, [onClick]);
+  }, []);
 };
 
 export default useGlobalNavSettingsMenu;

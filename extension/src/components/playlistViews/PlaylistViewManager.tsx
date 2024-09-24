@@ -2,8 +2,8 @@ import React from 'react';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { useLucidStore } from '@/store/useLucidStore';
 import {
-  PLAYLIST_ART_IMAGE_CLASS,
-  PLAYLIST_VIEW_CLASS,
+  PLAYLIST_ART_IMAGE_CLASS_PREFIX,
+  PLAYLIST_VIEW_CLASS_PREFIX,
   SCROLL_NODE_SELECTORS,
 } from '@/constants/constants';
 
@@ -16,13 +16,13 @@ const PlaylistViewManager = () => {
 
   React.useEffect(() => {
     document.body.classList.add(
-      `${PLAYLIST_ART_IMAGE_CLASS}${playlistImageMode}`,
-      `${PLAYLIST_VIEW_CLASS}${playlistViewMode}`
+      `${PLAYLIST_ART_IMAGE_CLASS_PREFIX}${playlistImageMode}`,
+      `${PLAYLIST_VIEW_CLASS_PREFIX}${playlistViewMode}`
     );
     return () => {
       document.body.classList.remove(
-        `${PLAYLIST_VIEW_CLASS}${playlistViewMode}`,
-        `${PLAYLIST_ART_IMAGE_CLASS}${playlistImageMode}`
+        `${PLAYLIST_VIEW_CLASS_PREFIX}${playlistViewMode}`,
+        `${PLAYLIST_ART_IMAGE_CLASS_PREFIX}${playlistImageMode}`
       );
     };
   }, [playlistViewMode, playlistImageMode]);

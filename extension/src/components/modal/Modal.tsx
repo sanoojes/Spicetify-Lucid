@@ -1,5 +1,4 @@
 import React from 'react';
-import { useModal } from '@/context/ModalContext';
 
 const Modal = React.memo(
   ({ title, children, headingChild, onClose, isOpen = false }: ModalProps) => {

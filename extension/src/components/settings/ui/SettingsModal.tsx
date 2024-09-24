@@ -8,7 +8,7 @@ import PlaylistViewSettingsSection from '@/components/settings/sections/Playlist
 import GrainSection from '@/components/settings/sections/GrainSettingsSection';
 import PlaybarSettingsSection from '@/components/settings/sections/PlaybarSettingsSection';
 import type { SettingSectionData } from '@/types/settingTypes';
-import { useModal } from '@/context/ModalContext';
+import { useModal } from '@/context/ModalContextProvider';
 
 const SettingsModal: React.FC = React.memo(() => {
   const SETTING_SECTIONS: SettingSectionData = React.useMemo(

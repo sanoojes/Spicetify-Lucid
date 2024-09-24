@@ -1,6 +1,6 @@
 import React from 'react';
 import { logDebug } from '@/utils/logUtils';
-import { ModalContextProvider } from '@/context/ModalContext';
+import { ModalContextProvider } from '@/context/ModalContextProvider';
 import BackgroundManager from '@/components/background/BackgroundManager';
 import SettingsManager from '@/components/settings/SettingsManager';
 import WindowControlsManager from '@/components/windowControls/WindowControlsManager';
@@ -13,7 +13,6 @@ import { useUnderMainViewLoader } from '@/hooks/useUnderMainViewLoader';
 /**
  * Renders Main things for the theme
  */
-
 const Main = () => {
   logDebug('Render <Main />');
 
