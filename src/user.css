@@ -365,6 +365,18 @@ option {
   aspect-ratio: 1/1;
 }
 
+button.main-topBar-buddyFeed[aria-label="Lucid Settings"] svg {
+  height: 1rem;
+  width: 1rem;
+  color: var(--spice-subtext);
+  fill: var(--spice-subtext);
+}
+
+button.main-topBar-buddyFeed[aria-label="Lucid Settings"]:hover svg {
+  color: var(--spice-text);
+  fill: var(--spice-text);
+}
+
 .main-avatar-avatar,
 .main-userWidget-hasAvatar,
 .main-avatar-avatar div,

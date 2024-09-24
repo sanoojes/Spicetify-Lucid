@@ -1912,12 +1912,14 @@ declare namespace Spicetify {
         label: string,
         icon: Icon | string,
         onClick: (self: Button) => void,
-        disabled?: boolean
+        disabled?: boolean,
+        isRight?: boolean
       );
       label: string;
       icon: string;
       onClick: (self: Button) => void;
       disabled: boolean;
+      isRight: boolean;
       element: HTMLButtonElement;
       tippy: any;
     }
@@ -2486,4 +2488,3 @@ declare namespace Spicetify {
     function toLocaleUpperCase(text: string): string;
   }
 }
-
