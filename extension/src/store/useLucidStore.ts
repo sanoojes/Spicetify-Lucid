@@ -1,4 +1,5 @@
 import {
+  checkSpotifyVersion,
   detectWindows,
   getIsGlobalNav,
   getIsLightMode,
@@ -16,6 +17,7 @@ const defaultSettings: LucidStoreValues = {
     currentPageURI: '',
     currentPageArtURL: '',
   },
+  isSpotifyV16Above: checkSpotifyVersion('1.2.46'),
   isLightMode: getIsLightMode(),
   isWindows: detectWindows(),
   isGlobalNav: getIsGlobalNav(),

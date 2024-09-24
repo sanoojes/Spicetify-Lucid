@@ -1,7 +1,7 @@
 export const calculateBrowserZoom = (): number => {
   const viewportWidth: number = window.innerWidth;
   const windowWidth: number = window.outerWidth;
-  const zoomLevel: number = (windowWidth / viewportWidth) * 100;
+  const zoomLevel: number = windowWidth / viewportWidth;
   return zoomLevel;
 };
 

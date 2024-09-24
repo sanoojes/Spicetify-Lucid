@@ -10,6 +10,7 @@ type PageCategoryType =
 
 // Lucid Store Types
 type LucidStoreValues = {
+  isSpotifyV16Above: boolean;
   pageCategory: PageCategoryType;
   underMainBackgroundImage: string | null;
   isCustomControls: boolean;

@@ -10,22 +10,28 @@ import { useLucidStore } from '@/store/useLucidStore';
 const TransparentWindowControl = React.memo(() => {
   const TransparentWindowControlRef = React.useRef<HTMLDivElement | null>(null);
 
-  const { isCustomControls, rootStyle, isWindows, isLightMode } =
-    useLucidStore();
+  const {
+    isCustomControls,
+    rootStyle,
+    isWindows,
+    isLightMode,
+    isSpotifyV16Above,
+  } = useLucidStore();
 
   React.useEffect(() => {
     async function setTopBarStyles() {
       if (!isCustomControls && isWindows) {
-        const baseHeight = 64;
+        const baseHeight = isSpotifyV16Above ? 32 : 64;
         const baseWidth = 135;
+
+        const normalZoom = calculateBrowserZoom();
         const inverseZoom = calculateInverseBrowserZoom();
 
         const constant = 0.912872807;
 
-        const normalZoom = calculateBrowserZoom();
-
         const finalControlHeight = Math.round(
-          (normalZoom ** constant * 100) / 100 - 3
+          ((normalZoom * 100) ** constant * 100) / 100 -
+            (isSpotifyV16Above ? 0 : 3)
         );
 
         await setWindowControlsHeight(finalControlHeight);
@@ -37,10 +43,23 @@ const TransparentWindowControl = React.memo(() => {
         rootStyle.setProperty('--top-bar-padding-end', `${paddingEnd}px`);
 
         if (isWindows && !isCustomControls && !isLightMode) {
-          const controlHeight = baseHeight;
+          const controlHeight = isSpotifyV16Above
+            ? calculateScaledPx(baseHeight, inverseZoom, 1)
+            : baseHeight;
           const controlWidth = calculateScaledPx(baseWidth, inverseZoom, 1);
 
           if (TransparentWindowControlRef.current) {
+            TransparentWindowControlRef.current.style.setProperty(
+              '--transperent-controls-top-offset',
+              `${isSpotifyV16Above ? finalControlHeight / 4 : 0}px`
+            );
+            console.log(
+              inverseZoom,
+              finalControlHeight,
+              controlHeight,
+              normalZoom
+            );
+
             TransparentWindowControlRef.current.style.height = `${controlHeight}px`;
             TransparentWindowControlRef.current.style.width = `${controlWidth}px`;
           }
@@ -54,7 +73,7 @@ const TransparentWindowControl = React.memo(() => {
     return () => {
       window.removeEventListener('resize', setTopBarStyles);
     };
-  }, [isCustomControls, rootStyle, isLightMode, isWindows]);
+  }, [isCustomControls, rootStyle, isLightMode, isWindows, isSpotifyV16Above]);
 
   return (
     <div

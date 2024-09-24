@@ -21,3 +21,6 @@ export const getIsGlobalNav = () =>
 
 export const getRootStyle = () =>
   document.body.style || document.documentElement.style;
+
+export const checkSpotifyVersion = (version: string): boolean =>
+  Spicetify.Platform.version >= version;

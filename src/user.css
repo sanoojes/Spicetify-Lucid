@@ -1344,7 +1344,7 @@ dialog {
 .lucid-transperent-window-controls {
   display: block;
   position: fixed;
-  top: 0;
+  top: var(--transperent-controls-top-offset, 0);
   right: 0;
   pointer-events: none;
   height: 0;
