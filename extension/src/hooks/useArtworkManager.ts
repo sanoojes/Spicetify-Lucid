@@ -34,7 +34,7 @@ const useArtworkManager = () => {
       console.error('Error updating artwork:', error);
       updateArtworkData({ currentPageArtURL: '', currentPageURI: '' });
     } finally {
-      rootStyle.setProperty('--artwork-opacity', '1');
+      setTimeout(() => rootStyle.setProperty('--artwork-opacity', '1'), 500);
     }
   }, [artworkData.currentPageURI, rootStyle, updateArtworkData]);
 

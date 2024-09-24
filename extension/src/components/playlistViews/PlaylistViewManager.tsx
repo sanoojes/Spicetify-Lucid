@@ -1,8 +1,13 @@
 import React from 'react';
 import { useSettingsStore } from '@/store/useSettingsStore';
 import { useLucidStore } from '@/store/useLucidStore';
+import {
+  PLAYLIST_ART_IMAGE_CLASS,
+  PLAYLIST_VIEW_CLASS,
+  SCROLL_NODE_SELECTORS,
+} from '@/constants/constants';
 
-const PlaylistViewManager = React.memo(() => {
+const PlaylistViewManager = () => {
   const { playlistViewMode, playlistImageMode, isScrollMode } =
     useSettingsStore();
   const { pageCategory, underMainBackgroundImage } = useLucidStore();
@@ -10,61 +15,50 @@ const PlaylistViewManager = React.memo(() => {
   const blurRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
-    const bodyClasses = document.body.classList;
-
-    bodyClasses.add(
-      `playlist-art-image-${playlistImageMode}`,
-      `playlist-view-${playlistViewMode}`
+    document.body.classList.add(
+      `${PLAYLIST_ART_IMAGE_CLASS}${playlistImageMode}`,
+      `${PLAYLIST_VIEW_CLASS}${playlistViewMode}`
     );
-
     return () => {
-      bodyClasses.remove(
-        `playlist-view-${playlistViewMode}`,
-        `playlist-art-image-${playlistImageMode}`
+      document.body.classList.remove(
+        `${PLAYLIST_VIEW_CLASS}${playlistViewMode}`,
+        `${PLAYLIST_ART_IMAGE_CLASS}${playlistImageMode}`
       );
     };
   }, [playlistViewMode, playlistImageMode]);
 
   const handleScroll = React.useCallback(
-    (scrollNode: Element) => {
-      if (backgroundRef.current && blurRef.current) {
-        const scrollAmount = Math.min(scrollNode.scrollTop, window.innerHeight);
+    (scrollNode: HTMLElement | Element) => {
+      const { current: background } = backgroundRef;
+      const { current: blur } = blurRef;
 
+      if (background && blur) {
+        const scrollAmount = Math.min(scrollNode.scrollTop, window.innerHeight);
         const blurAmount =
           scrollAmount * 0.03 +
-          (!(pageCategory === 'artist') && !underMainBackgroundImage ? 4 : 0);
+          (pageCategory !== 'artist' && !underMainBackgroundImage ? 4 : 0);
 
-        const brightnessAdjustment = isScrollMode
-          ? ''
-          : `brightness(${1 - (scrollAmount / window.innerHeight) * 0.5})`;
+        blur.style.setProperty('--blur', `${blurAmount}px`);
 
-        blurRef.current.style.filter = `blur(${blurAmount}px) ${brightnessAdjustment}`;
-        blurRef.current.style.transform = `scale(${
-          1 + (scrollAmount / window.innerHeight) * 0.5
-        })`;
-
-        backgroundRef.current.style.transform = `translateY(${
+        background.style.transform = `translateY(${
           isScrollMode ? -scrollAmount : 0
         }px)`;
+
+        background.style.setProperty('--scroll', `${scrollAmount / 1000}`);
       }
     },
     [isScrollMode, pageCategory, underMainBackgroundImage]
   );
 
   React.useEffect(() => {
-    const scrollNode = document.querySelector(
-      '.Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]'
-    );
+    const scrollNode = document.querySelector(SCROLL_NODE_SELECTORS);
 
     if (scrollNode) {
       const scrollHandler = () => handleScroll(scrollNode);
       scrollHandler();
 
       scrollNode.addEventListener('scroll', scrollHandler, { passive: true });
-
-      return () => {
-        scrollNode.removeEventListener('scroll', scrollHandler);
-      };
+      return () => scrollNode.removeEventListener('scroll', scrollHandler);
     }
   }, [handleScroll]);
 
@@ -72,23 +66,16 @@ const PlaylistViewManager = React.memo(() => {
     <span
       id='playlistArtContainer'
       className={`playlist-art-container ${playlistViewMode} ${playlistImageMode}`}
-      data-playlistviewmode={playlistViewMode}
+      data-playlist-view-mode={playlistViewMode}
       ref={backgroundRef}
     >
       <div className='background' ref={blurRef} />
       <div
         className='overlay'
-        style={{
-          height: '100%',
-          width: '100%',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          backgroundColor: 'transparent',
-        }}
+        style={{ height: '100%', width: '100%', position: 'absolute' }}
       />
     </span>
   );
-});
+};
 
 export default PlaylistViewManager;

@@ -75,3 +75,11 @@ export const defaultSettings: AppSettings = {
 
 export const RELEASES_URL =
   'https://api.github.com/repos/sanoojes/spicetify-lucid/releases';
+
+/* Scroll Node Selector */
+export const SCROLL_NODE_SELECTORS =
+  '.Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]';
+
+/* Playlist Class Prefixes */
+export const PLAYLIST_ART_IMAGE_CLASS = 'playlist-art-image-';
+export const PLAYLIST_VIEW_CLASS = 'playlist-view-';
