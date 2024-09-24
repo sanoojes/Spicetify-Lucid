@@ -53,12 +53,6 @@ const TransparentWindowControl = React.memo(() => {
               '--transperent-controls-top-offset',
               `${isSpotifyV16Above ? finalControlHeight / 4 : 0}px`
             );
-            console.log(
-              inverseZoom,
-              finalControlHeight,
-              controlHeight,
-              normalZoom
-            );
 
             TransparentWindowControlRef.current.style.height = `${controlHeight}px`;
             TransparentWindowControlRef.current.style.width = `${controlWidth}px`;
