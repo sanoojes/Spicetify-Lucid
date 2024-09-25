@@ -1459,7 +1459,6 @@ button[aria-label="Browse"] svg {
 .main-playPauseButton-button[aria-label="Play"],
 .main-playPauseButton-button[aria-label="Play"],
 .main-trackList-rowPlayPauseButton[aria-label*="Play"],
-.main-trackList-rowImagePlayButton[aria-label*="Play"],
 .main-playButton-PlayButton>button[aria-label*="Play"] {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--play-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/play.svg")) !important;
@@ -1486,7 +1485,6 @@ button[aria-label="Browse"] svg {
 .main-playPauseButton-button[aria-label*="Pause"],
 .main-playPauseButton-button[aria-label="Pause"],
 .main-trackList-rowPlayPauseButton[aria-label*="Pause"],
-.main-trackList-rowImagePlayButton[aria-label*="Pause"],
 .main-playButton-PlayButton>button[aria-label*="Pause"] {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--pause-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/pause.svg")) !important;
