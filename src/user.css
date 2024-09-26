@@ -1121,6 +1121,10 @@ dialog {
   background-color: transparent;
 }
 
+.main-gridContainer-gridContainer .main-card-cardContainer.Card {
+  height: 100%;
+}
+
 /* Cards */
 .jW4eWdr_LUeOXwPpKhWG,
 .EmeHQXR87mUskYK6xEde
