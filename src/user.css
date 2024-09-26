@@ -1328,12 +1328,12 @@ dialog {
 }
 
 .main-userWidget-dropDownMenu .main-contextMenu-menuItem button[role="menuitem"]:has(svg):before {
-  content: "";
+  /* content: "";
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  border-top: 1px solid rgba(var(--spice-rgb-selected-row), .1);
+  border-top: 1px solid rgba(var(--spice-rgb-selected-row), .1); */
 }
 
 .main-contextMenu-tippy {
