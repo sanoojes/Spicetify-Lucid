@@ -2073,7 +2073,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
   background-position: center center;
   transition: all var(--fade-time, 1s) ease;
   animation: rotateBg var(--time, 40s) linear infinite;
-  border-radius: var(--border-radius-rounded);
+  border-radius: 18vw;
   filter: blur(var(--blur)) saturate(var(--saturation)) brightness(var(--brightness)) contrast(var(--contrast));
   position: absolute;
   aspect-ratio: 1/1;
