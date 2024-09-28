@@ -288,7 +288,7 @@ option {
 }
 
 .spotify__container--is-desktop .global-nav .Root__top-container {
-  padding-top: var(--panel-gap) !important;
+  padding-top: var(--panel-gap);
 }
 
 /* Button styles */
@@ -2970,11 +2970,6 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 /* Lucid Styles End */
 
 /* Support for LibX-Reborn */
-.spotify__container--is-desktop .global-nav .Root__top-container:has(> .global-libraryX),
-.Root__top-container:has(> .global-libraryX) {
-  padding-top: calc(48px + var(--panel-gap) * 2) !important;
-}
-
 .global-libraryX.Root__globalNav {
   --library-bg-color: var(--card-color);
   border: var(--default-border);
