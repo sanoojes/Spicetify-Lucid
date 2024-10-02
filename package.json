@@ -5,9 +5,9 @@
 	"description": "Lucid is a Spicetify theme that blends a clean, modern aesthetic with a touch of dynamism and customization, creating a unique and personalized Spotify experience.**",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"check": "npx @biomejs/biome check --write .",
-		"lint": "npx @biomejs/biome lint --write .",
-		"fmt": "npx @biomejs/biome format --write .",
+		"biome-lint": "npx @biomejs/biome lint --write .",
+		"biome-fmt": "npx @biomejs/biome format --write .",
+		"biome-check": "npx @biomejs/biome check --write .",
 		"test-extension": "npm run compile-test-extension && spicetify config extensions theme.js inject_theme_js 0 && spicetify apply",
 		"compile-extension": "cd extension && npm run build-local",
 		"compile-test-extension": "cd extension && npm run build-local",
