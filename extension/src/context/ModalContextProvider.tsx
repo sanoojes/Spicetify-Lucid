@@ -21,19 +21,19 @@ const createModalContext = () => {
 			(modalName: ModalType) => {
 				const isOpen = modalStates[modalName];
 
-				const openModal = () => {
+				const openModal = React.useCallback(() => {
 					setModalStates((prevStates) => ({
 						...prevStates,
 						[modalName]: true,
 					}));
-				};
+				}, [modalName]);
 
-				const closeModal = () => {
+				const closeModal = React.useCallback(() => {
 					setModalStates((prevStates) => ({
 						...prevStates,
 						[modalName]: false,
 					}));
-				};
+				}, [modalName]);
 
 				return { isOpen, openModal, closeModal };
 			},
