@@ -2090,7 +2090,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa) .cZCuJDjrGA2QMXj
 	border-radius: 18vw;
 	filter: blur(var(--blur)) saturate(var(--saturation)) brightness(var(--brightness)) contrast(var(--contrast));
 	position: absolute;
-	aspect-ratio: 1 / 1;
+	aspect-ratio: 1/1;
 	width: 90%;
 	opacity: var(--opacity, 1);
 }
