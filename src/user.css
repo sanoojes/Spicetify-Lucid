@@ -720,6 +720,12 @@ input,
 	box-shadow: none !important;
 }
 
+.main-trackList-trackListRow.main-trackList-active .main-trackList-rowTitle,
+.main-trackList-trackListRow.main-trackList-active .main-trackList-rowMarker {
+  color: var(--spice-accent);
+  text-shadow: 0px 0px 4px var(--spice-accent);
+}
+
 .tLjX9htIKD_OCmEX01UN {
 	background: rgba(var(--spice-rgb-main), 0.5);
 	border-radius: var(--card-border-radius);
