@@ -1,46 +1,46 @@
-import React from 'react';
-import { useSettingsStore } from '@/store/useSettingsStore';
+import { useSettingsStore } from "@/store/useSettingsStore";
+import type { FontTypes } from "@/types/settingTypes";
 import {
-  isValidUrl,
-  extractFontFamilyFromUrl,
-  loadFontFromUrl,
-} from '@/utils/fontUtils';
-import type { FontTypes } from '@/types/settingTypes';
-import { logDebug } from '@/utils/logUtils';
+	extractFontFamilyFromUrl,
+	isValidUrl,
+	loadFontFromUrl,
+} from "@/utils/fontUtils";
+import { logDebug } from "@/utils/logUtils";
+import React from "react";
 
 export const useFontManager = () => {
-  const { fontSettings } = useSettingsStore();
+	const { fontSettings } = useSettingsStore();
 
-  const updateCssVariable = React.useCallback(
-    (fontType: string, fontFamily: string) => {
-      document.documentElement.style.setProperty(
-        `--${fontType}-font-to-use`,
-        fontFamily
-      );
-    },
-    []
-  );
+	const updateCssVariable = React.useCallback(
+		(fontType: string, fontFamily: string) => {
+			document.documentElement.style.setProperty(
+				`--${fontType}-font-to-use`,
+				fontFamily,
+			);
+		},
+		[],
+	);
 
-  const handleFontChange = React.useCallback(
-    (fontType: FontTypes) => {
-      const { url, fontFamily } = fontSettings[fontType];
+	const handleFontChange = React.useCallback(
+		(fontType: FontTypes) => {
+			const { url, fontFamily } = fontSettings[fontType];
 
-      if (isValidUrl(url)) {
-        const extractedFontFamily = extractFontFamilyFromUrl(url);
-        loadFontFromUrl(url, `${fontType}-font`);
-        updateCssVariable(fontType, extractedFontFamily);
-      } else {
-        updateCssVariable(fontType, fontFamily);
-      }
-    },
-    [fontSettings, updateCssVariable]
-  );
+			if (isValidUrl(url)) {
+				const extractedFontFamily = extractFontFamilyFromUrl(url);
+				loadFontFromUrl(url, `${fontType}-font`);
+				updateCssVariable(fontType, extractedFontFamily);
+			} else {
+				updateCssVariable(fontType, fontFamily);
+			}
+		},
+		[fontSettings, updateCssVariable],
+	);
 
-  React.useEffect(() => {
-    for (const fontType of Object.keys(fontSettings)) {
-      handleFontChange(fontType as FontTypes);
-    }
+	React.useEffect(() => {
+		for (const fontType of Object.keys(fontSettings)) {
+			handleFontChange(fontType as FontTypes);
+		}
 
-    logDebug('useFontManager effect ran.');
-  }, [fontSettings, handleFontChange]);
+		logDebug("useFontManager effect ran.");
+	}, [fontSettings, handleFontChange]);
 };

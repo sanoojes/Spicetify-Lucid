@@ -1,65 +1,55 @@
 export const replaceIcons = () => {
-  const { Locale } = Spicetify;
-  function cleanLabel(label: string): string {
-    const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, '').trim();
-    return cleanedLabel;
-  }
-  if (!Locale) return;
-  let playlistPlayLabel = (Locale.get('playlist.a11y.play') || '') as string;
-  playlistPlayLabel = cleanLabel(playlistPlayLabel);
-  let playlistPauseLabel = (Locale.get('playlist.a11y.pause') || '') as string;
-  playlistPauseLabel = cleanLabel(playlistPauseLabel);
+	const { Locale } = Spicetify;
+	function cleanLabel(label: string): string {
+		const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, "").trim();
+		return cleanedLabel;
+	}
+	if (!Locale) return;
+	let playlistPlayLabel = (Locale.get("playlist.a11y.play") || "") as string;
+	playlistPlayLabel = cleanLabel(playlistPlayLabel);
+	let playlistPauseLabel = (Locale.get("playlist.a11y.pause") || "") as string;
+	playlistPauseLabel = cleanLabel(playlistPauseLabel);
 
-  const playLabel = Locale.get('play');
-  const pauseLabel = Locale.get('pause');
+	const playLabel = Locale.get("play");
+	const pauseLabel = Locale.get("pause");
 
-  const browseLabel = Locale.get('browse');
+	const browseLabel = Locale.get("browse");
 
-  // const addToLikedLabel = Locale.get(
-  //   'web-player.aligned-curation.tooltips.add-to-liked-songs'
-  // );
-  // const addToLikedLabel1 = Locale.get('addToPlaylist-icon.label');
-  // const addToLikedLabel2 = Locale.get('contextmenu.add-to-playlist');
+	const skipForwardLabel = Locale.get("playback-control.skip-forward");
+	const skipBackLabel = Locale.get("playback-control.skip-back");
 
-  // const addToPlaylistLabel = Locale.get(
-  //   'web-player.aligned-curation.tooltips.add-to-playlist'
-  // );
+	const friendsActivityLabel = Locale.get("buddy-feed.friend-activity");
+	const tracklistPlayLabel = (Locale.get("tracklist.a11y.play") ||
+		"") as string;
 
-  const skipForwardLabel = Locale.get('playback-control.skip-forward');
-  const skipBackLabel = Locale.get('playback-control.skip-back');
+	const homeBtnLabelOne = Locale.get("view.web-player-home");
 
-  const friendsActivityLabel = Locale.get('buddy-feed.friend-activity');
-  const tracklistPlayLabel = (Locale.get('tracklist.a11y.play') ||
-    '') as string;
+	let tracklistPlayLabelOne: string;
+	let tracklistPlayLabelTwo: string;
+	if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
+		[tracklistPlayLabelOne, tracklistPlayLabelTwo] =
+			tracklistPlayLabel.split("{1}");
+	} else {
+		[tracklistPlayLabelOne, tracklistPlayLabelTwo] =
+			tracklistPlayLabel.split("{0}");
+	}
+	tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
+	tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
 
-  const homeBtnLabelOne = Locale.get('view.web-player-home');
+	const enableRepeatLabel = Locale.get("playback-control.enable-repeat");
+	const enableOneRepeatLabel = Locale.get("playback-control.enable-repeat-one");
+	const disableRepeatLabel = Locale.get("playback-control.disable-repeat");
 
-  let tracklistPlayLabelOne: string;
-  let tracklistPlayLabelTwo: string;
-  if (['zh-CN', 'zh-TW', 'am', 'fi'].includes(Locale.getLocale())) {
-    [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-      tracklistPlayLabel.split('{1}');
-  } else {
-    [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-      tracklistPlayLabel.split('{0}');
-  }
-  tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
-  tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
+	const BUTTON_STYLE_LABEL = "lucid_button_styles";
 
-  const enableRepeatLabel = Locale.get('playback-control.enable-repeat');
-  const enableOneRepeatLabel = Locale.get('playback-control.enable-repeat-one');
-  const disableRepeatLabel = Locale.get('playback-control.disable-repeat');
+	let ButtonStyles = document.getElementById(BUTTON_STYLE_LABEL);
+	if (!ButtonStyles) {
+		ButtonStyles = document.createElement("style");
+		ButtonStyles.id = BUTTON_STYLE_LABEL;
+		document.head.appendChild(ButtonStyles);
+	}
 
-  const BUTTON_STYLE_LABEL = 'lucid_button_styles';
-
-  let ButtonStyles = document.getElementById(BUTTON_STYLE_LABEL);
-  if (!ButtonStyles) {
-    ButtonStyles = document.createElement('style');
-    ButtonStyles.id = BUTTON_STYLE_LABEL;
-    document.head.appendChild(ButtonStyles);
-  }
-
-  ButtonStyles.innerHTML = `
+	ButtonStyles.innerHTML = `
 .main-repeatButton-button[aria-checked="false"],
 .player-controls__right button[aria-label*="${enableRepeatLabel}"]  span{
   -webkit-mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));

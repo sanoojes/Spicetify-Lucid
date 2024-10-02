@@ -1,26 +1,26 @@
 export const detectWindows = () => {
-  if (Spicetify.Platform && Spicetify.Platform.operatingSystem === 'Windows') {
-    return true;
-  }
-  if (Spicetify.Platform?.PlatformData?.os_name) {
-    return Spicetify.Platform.PlatformData.os_name
-      .toLowerCase()
-      .includes('win');
-  }
-  return false;
+	if (Spicetify.Platform && Spicetify.Platform.operatingSystem === "Windows") {
+		return true;
+	}
+	if (Spicetify.Platform?.PlatformData?.os_name) {
+		return Spicetify.Platform.PlatformData.os_name
+			.toLowerCase()
+			.includes("win");
+	}
+	return false;
 };
 
 export const getIsLightMode = () =>
-  Spicetify?.Config.color_scheme === 'light' || false;
+	Spicetify?.Config.color_scheme === "light" || false;
 
 export const getIsGlobalNav = () =>
-  !!(
-    document.querySelector('.globalNav') ||
-    document.querySelector('.Root__globalNav')
-  );
+	!!(
+		document.querySelector(".globalNav") ||
+		document.querySelector(".Root__globalNav")
+	);
 
 export const getRootStyle = () =>
-  document.body.style || document.documentElement.style;
+	document.body.style || document.documentElement.style;
 
 export const checkSpotifyVersionIsAbove = (version: string): boolean =>
-  Spicetify.Platform.version >= version;
+	Spicetify.Platform.version >= version;

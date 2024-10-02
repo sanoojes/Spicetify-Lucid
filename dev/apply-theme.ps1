@@ -1,7 +1,6 @@
-$srcFolder = "C:\Users\Sachu\Desktop\Github\Spicetify-Lucid\src"
-$destinationFolder = "$(spicetify path userdata)\Themes\Lucid"
-
-npm run build-local
+$srcFolder = "src"
+$themeName ="Lucid"
+$destinationFolder = "$(spicetify path userdata)\Themes\$themeName"
 
 # Create the destination folder if it doesn't exist
 if (!(Test-Path $destinationFolder)) {
@@ -16,6 +15,7 @@ try {
     Write-Host "Error copying files: $($_.Exception.Message)"
 }
 Write-Host "Applying Spicetify theme..."
+Invoke-Expression "spicetify config current_theme $themeName inject_theme_js 1 extensions theme.js-" 
 Invoke-Expression "spicetify apply" 
 
 while ((Get-Item $destinationFolder).LastWriteTime -eq $lastWriteTime) {
