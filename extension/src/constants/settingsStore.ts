@@ -84,4 +84,5 @@ export const DEFAULT_APP_SETTINGS: ThemeSettings = {
 		mode: "default",
 		styles: DEFAULT_PLAYBAR_STYLES,
 	},
+	settingAccessPosition: "context-menu",
 };

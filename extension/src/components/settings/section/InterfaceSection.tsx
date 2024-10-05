@@ -4,11 +4,13 @@ import {
 	GRAIN_MODE_OPTIONS,
 	PLAYLIST_BACKGROUND_MODE_OPTIONS,
 	PLAYLIST_VIEW_MODE_OPTIONS,
+	SETTINGS_ACCESS_MODE_OPTIONS,
 } from "@/constants/dropdown";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import type { BorderStyle } from "@/types/border";
 import type { FontTypes } from "@/types/font";
 import type { GrainEffect } from "@/types/grains";
+import type { SettingsPositions } from "@/types/main";
 import type { PlaylistBackgroundImageMode, PlaylistViewMode } from "@/types/pages";
 import type { SettingCardMap } from "@/types/settingTypes";
 import { getFontDataFromInput } from "@/utils/fontUtils";
@@ -33,6 +35,8 @@ const InterfaceSection = () => {
 		setBorderColor,
 		setBorderStyle,
 		setBorderThickness,
+		settingAccessPosition,
+		setSettingAccessPosition,
 	} = useSettingsStore();
 
 	const [selectedGrainMode, setSelectedGrainMode] = useState<string>(grainEffect);
@@ -53,6 +57,23 @@ const InterfaceSection = () => {
 	};
 
 	const INTERFACE_SETTINGS_CARDS: SettingCardMap = [
+		{
+			id: "themeSettings",
+			conditionalRender: true,
+			cardProps: {
+				title: "Settings Access Position",
+				tooltip: "Choose how to access settings: via the context menu button or a navigation button.",
+				type: "dropdown",
+				settings: {
+					options: SETTINGS_ACCESS_MODE_OPTIONS,
+					placeholder: settingAccessPosition,
+					selectedValue: settingAccessPosition,
+					onChange: (value) => {
+						setSettingAccessPosition(value as SettingsPositions);
+					},
+				},
+			},
+		},
 		{
 			id: "font",
 			conditionalRender: true,
