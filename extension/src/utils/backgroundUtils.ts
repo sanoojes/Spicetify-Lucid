@@ -1,9 +1,6 @@
 import { logInfo } from "@/utils/logUtils";
 
-function applyBackgroundStyles(
-	backgroundStyleElement: HTMLElement,
-	zIndex: number,
-) {
+function applyBackgroundStyles(backgroundStyleElement: HTMLElement, zIndex: number) {
 	backgroundStyleElement.innerHTML = `
     #lucid-main .background-container .background-wrapper div { z-index: ${zIndex} !important; }
   `;
@@ -25,9 +22,7 @@ function manageBackgroundZIndexForElement(
 	let previousContainer: HTMLElement | null = null;
 
 	const observer = new MutationObserver(() => {
-		const container = element.querySelector(
-			containerSelector,
-		) as HTMLElement | null;
+		const container = element.querySelector(containerSelector) as HTMLElement | null;
 
 		// Check if container has changed
 		if (container !== previousContainer) {
@@ -60,9 +55,7 @@ function manageBackgroundZIndexForElement(
 }
 
 export const manageBackgroundZIndex = () => {
-	let backgroundStyleElement = document.getElementById(
-		"lucid-background-style",
-	);
+	let backgroundStyleElement = document.getElementById("lucid-background-style");
 
 	if (!backgroundStyleElement) {
 		backgroundStyleElement = document.createElement("style");
@@ -71,9 +64,7 @@ export const manageBackgroundZIndex = () => {
 	}
 
 	// Manage background z-index for the lyrics cinema element.
-	const lyricsCinemaElement = document.querySelector(
-		"#lyrics-cinema",
-	) as HTMLElement;
+	const lyricsCinemaElement = document.querySelector("#lyrics-cinema") as HTMLElement;
 	if (lyricsCinemaElement) {
 		manageBackgroundZIndexForElement(
 			lyricsCinemaElement,
@@ -84,9 +75,7 @@ export const manageBackgroundZIndex = () => {
 	}
 
 	// Manage background z-index for the full screen element.
-	const fullScreenElement = document.querySelector(
-		"#main .Root > div:last-child",
-	) as HTMLElement;
+	const fullScreenElement = document.querySelector("#main .Root > div:last-child") as HTMLElement;
 	if (fullScreenElement) {
 		manageBackgroundZIndexForElement(
 			fullScreenElement,

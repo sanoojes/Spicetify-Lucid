@@ -1,3 +1,6 @@
+import { DEFAULT_APP_SETTINGS } from "@/constants/settingsStore";
+import type { FontData, FontTypes } from "@/types/font";
+
 export const isValidUrl = (url: string): boolean => {
 	try {
 		new URL(url);
@@ -8,11 +11,7 @@ export const isValidUrl = (url: string): boolean => {
 };
 
 export const extractFontFamilyFromUrl = (url: string): string => {
-	return (
-		decodeURIComponent(
-			url.match(/family=([^&:]+)/)?.[1]?.replace(/\+/g, " ") || "",
-		) || ""
-	);
+	return decodeURIComponent(url.match(/family=([^&:]+)/)?.[1]?.replace(/\+/g, " ") || "") || "";
 };
 
 export const loadFontFromUrl = (url: string, fontId: string) => {
@@ -24,4 +23,19 @@ export const loadFontFromUrl = (url: string, fontId: string) => {
 		document.head.appendChild(customFont);
 	}
 	customFont.href = url;
+};
+
+export const getFontDataFromInput = (value: string): FontData => {
+	let fontFamily = "";
+	let url = "";
+
+	if (isValidUrl(value)) {
+		url = value;
+		fontFamily = extractFontFamilyFromUrl(value);
+	} else {
+		url = value;
+		fontFamily = value;
+	}
+
+	return { url, fontFamily };
 };

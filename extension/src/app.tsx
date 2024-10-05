@@ -1,16 +1,11 @@
 import Main from "@/components/Main";
-import { showError } from "@/components/error/ErrorBoundary";
 import React from "react";
+import { logError } from "./utils/logUtils";
 
 async function main() {
 	try {
 		// Wait for necessary Spicetify objects to be available
-		while (
-			!Spicetify?.showNotification ||
-			!Spicetify?.Player ||
-			!Spicetify?.React ||
-			!Spicetify?.Platform
-		) {
+		while (!Spicetify?.showNotification || !Spicetify?.Player || !Spicetify?.React || !Spicetify?.Platform) {
 			await new Promise((resolve) => setTimeout(resolve, 100));
 		}
 
@@ -26,12 +21,10 @@ async function main() {
 			Spicetify.ReactDOM.createRoot(rootElement).render(<Main />);
 		}
 
-		console.log(
-			"%c Lucid ignited! 🚀",
-			"font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;",
-		);
+		console.log("%c Lucid ignited! 🚀", "font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;");
 	} catch (error) {
-		showError(error);
+		Spicetify.showNotification(`[Lucid] Error Occurred: ${error instanceof Error ? error.message : error}`, true);
+		logError(error);
 	}
 }
 

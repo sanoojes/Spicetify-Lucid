@@ -1,9 +1,6 @@
 import React from "react";
 
-export const useLocalStorage = <T>(
-	key: string,
-	initialValue: T,
-): [T, React.Dispatch<React.SetStateAction<T>>] => {
+export const useLocalStorage = <T>(key: string, initialValue: T): [T, React.Dispatch<React.SetStateAction<T>>] => {
 	const [storedValue, setStoredValue] = React.useState<T>(() => {
 		if (typeof window !== "undefined") {
 			const item = window.localStorage.getItem(key);

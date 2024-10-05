@@ -1,19 +1,36 @@
 import { useLucidStore } from "@/store/useLucidStore";
 import { useSettingsStore } from "@/store/useSettingsStore";
-import React from "react";
+import type { FCStyleOptions } from "@/types/styles";
+import { getFormattedStyles } from "@/utils/styleUtils";
+import React, { type FC } from "react";
 
-const StaticBackground = () => {
-	const { customBackgroundURL, isCustomBackground } = useSettingsStore();
+const StaticBackground: FC<FCStyleOptions> = ({ style }) => {
+	const {
+		backgroundSettings: { customBackgroundOverride },
+	} = useSettingsStore();
 	const { artworkData } = useLucidStore();
 
-	const backgroundImage = isCustomBackground
-		? customBackgroundURL || ""
-		: artworkData?.nowPlayingArtURL || "";
+	const backgroundImage = (() => {
+		const overrideUrl = customBackgroundOverride.url;
+
+		if (overrideUrl === "current-page") {
+			return artworkData?.currentPageArtURL || artworkData?.nowPlayingArtURL || "";
+		}
+
+		if (!overrideUrl || overrideUrl.trim() === "" || overrideUrl === "now-playing") {
+			return artworkData?.nowPlayingArtURL || "";
+		}
+
+		return overrideUrl || "";
+	})();
 
 	return (
 		<div
 			className="static-background"
-			style={{ backgroundImage: `url(${backgroundImage})` }}
+			style={{
+				backgroundImage: `url(${backgroundImage})`,
+				...getFormattedStyles(style),
+			}}
 		/>
 	);
 };

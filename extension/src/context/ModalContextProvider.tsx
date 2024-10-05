@@ -7,11 +7,9 @@ const INITIAL_MODAL_STATES: { [key in ModalType]: boolean } = {
 };
 
 const createModalContext = () => {
-	const context = React.createContext<UseModal | null>(null);
+	const ModalContext = React.createContext<UseModal | null>(null);
 
-	const ModalContextProvider: React.FC<{ children: React.ReactNode }> = ({
-		children,
-	}) => {
+	const ModalContextProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
 		const [modalStates, setModalStates] =
 			React.useState<{
 				[key in ModalType]: boolean;
@@ -42,11 +40,11 @@ const createModalContext = () => {
 
 		const value = React.useMemo(() => useModal, [useModal]);
 
-		return <context.Provider value={value}>{children}</context.Provider>;
+		return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
 	};
 
 	const useModalFromContext: UseModal = (modalName) => {
-		const contextUseModal = React.useContext(context);
+		const contextUseModal = React.useContext(ModalContext);
 		if (contextUseModal) {
 			return contextUseModal(modalName);
 		}

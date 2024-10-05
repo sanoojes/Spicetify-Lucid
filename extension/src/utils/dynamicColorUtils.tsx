@@ -1,17 +1,10 @@
 import type { Color, ColorPalette, ExtractedColors } from "@/types/colors";
-import {
-	contrastRatio,
-	darkenColor,
-	lightenColor,
-	rgbToHex,
-} from "@/utils/colorUtils";
+import { contrastRatio, darkenColor, lightenColor, rgbToHex } from "@/utils/colorUtils";
 import { logError } from "@/utils/logUtils";
 import { createCanvas, loadImage } from "canvas";
 
 // Function to extract dominant colors from an image
-async function extractDominantColorsFromImage(
-	imageUrl: string,
-): Promise<ExtractedColors | Error> {
+async function extractDominantColorsFromImage(imageUrl: string): Promise<ExtractedColors | Error> {
 	try {
 		const image = await loadImage(imageUrl);
 
@@ -101,8 +94,7 @@ export async function applyExtractedColorsToCSS(
 
 		colorExtractionTimeout = setTimeout(async () => {
 			try {
-				const extractedColors =
-					await extractDominantColorsFromImage(currentArtUrl);
+				const extractedColors = await extractDominantColorsFromImage(currentArtUrl);
 
 				if (extractedColors instanceof Error) {
 					logError(`Error extracting colors: ${extractedColors.message}`);
@@ -116,20 +108,14 @@ export async function applyExtractedColorsToCSS(
 
 				resolve(extractedColors);
 			} catch (error) {
-				logError(
-					"Error saving colors to style: ",
-					error instanceof Error ? error.message : error,
-				);
+				logError("Error saving colors to style: ", error instanceof Error ? error.message : error);
 				resolve(null);
 			}
 		}, 200);
 	});
 }
 
-export function applyColorPaletteToCSS(
-	styleElement: HTMLElement,
-	colorPalette: ColorPalette,
-) {
+export function applyColorPaletteToCSS(styleElement: HTMLElement, colorPalette: ColorPalette) {
 	let styleContent = `:root {${Object.entries(colorPalette)
 		.map(
 			([name, color]) =>
@@ -147,11 +133,7 @@ export async function resetCSSColorVariables(styleElement: HTMLElement) {
 		":root{\nwill-change: --spice-main,--spice-rgb-main,--spice-sidebar,--spice-rgb-sidebar,--spice-card,--spice-rgb-card,--spice-player,--spice-rgb-player,--spice-accent,--spice-rgb-accent,--spice-highlight,--spice-rgb-highlight,--spice-button,--spice-rgb-button,--spice-button-active,--spice-rgb-button-active,--spice-text,--spice-rgb-text,--spice-progress-bar,--spice-rgb-progress-bar,--spice-subtext,--spice-rgb-subtext,--spice-primary,--spice-rgb-primary,--spice-secondary,--spice-rgb-secondary,--spice-tertiary,--spice-rgb-tertiary;\ntransition: all 0.3s ease-in-out;\n}";
 }
 
-function generateDarkModePalette({
-	baseColor,
-	secondaryColor,
-	tertiaryColor,
-}: ExtractedColors): ColorPalette {
+function generateDarkModePalette({ baseColor, secondaryColor, tertiaryColor }: ExtractedColors): ColorPalette {
 	return {
 		main: darkenColor(secondaryColor, 0.4),
 		sidebar: darkenColor(secondaryColor, 0.5),
