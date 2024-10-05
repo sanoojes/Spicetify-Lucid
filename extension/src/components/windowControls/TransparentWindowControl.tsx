@@ -1,16 +1,7 @@
-import {
-	isCustomControls,
-	isLightModeEnabled,
-	isSpotifyV16Above,
-	isWindowsPlatform,
-} from "@/constants/constants";
+import { isCustomControls, isLightModeEnabled, isSpotifyV16Above, isWindowsPlatform } from "@/constants/constants";
 import { useLucidStore } from "@/store/useLucidStore";
 import { setWindowControlsHeight } from "@/utils/windowControlUtils";
-import {
-	calculateBrowserZoom,
-	calculateInverseBrowserZoom,
-	calculateScaledPx,
-} from "@/utils/zoomUtils";
+import { calculateBrowserZoom, calculateInverseBrowserZoom, calculateScaledPx } from "@/utils/zoomUtils";
 import React from "react";
 
 const TransparentWindowControl = React.memo(() => {
@@ -30,8 +21,7 @@ const TransparentWindowControl = React.memo(() => {
 				const constant = 0.912872807;
 
 				const finalControlHeight = Math.round(
-					((normalZoom * 100) ** constant * 100) / 100 -
-						(isSpotifyV16Above ? 0 : 3),
+					((normalZoom * 100) ** constant * 100) / 100 - (isSpotifyV16Above ? 0 : 3),
 				);
 
 				await setWindowControlsHeight(finalControlHeight);
@@ -43,9 +33,7 @@ const TransparentWindowControl = React.memo(() => {
 				rootStyle.setProperty("--top-bar-padding-end", `${paddingEnd}px`);
 
 				if (isWindowsPlatform && !isCustomControls && !isLightModeEnabled) {
-					const controlHeight = isSpotifyV16Above
-						? calculateScaledPx(baseHeight, inverseZoom, 1)
-						: baseHeight;
+					const controlHeight = isSpotifyV16Above ? calculateScaledPx(baseHeight, inverseZoom, 1) : baseHeight;
 					const controlWidth = calculateScaledPx(baseWidth, inverseZoom, 1);
 
 					if (TransparentWindowControlRef.current) {
@@ -69,12 +57,7 @@ const TransparentWindowControl = React.memo(() => {
 		};
 	}, [rootStyle]);
 
-	return (
-		<div
-			ref={TransparentWindowControlRef}
-			className="lucid-transperent-window-controls"
-		/>
-	);
+	return <div ref={TransparentWindowControlRef} className="lucid-transperent-window-controls" />;
 });
 
 export default TransparentWindowControl;

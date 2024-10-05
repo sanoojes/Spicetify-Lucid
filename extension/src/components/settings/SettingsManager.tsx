@@ -1,4 +1,4 @@
-import SettingsModal from "@/components/settings/ui/SettingsModal";
+import SettingsModal from "@/components/settings/SettingsModal";
 import { isSpotifyV16Above } from "@/constants/constants";
 import { useModal } from "@/context/ModalContextProvider";
 import useGlobalNavSettingsMenu from "@/hooks/useGlobalNavSettingsMenu";

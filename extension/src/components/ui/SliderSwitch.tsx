@@ -1,24 +1,20 @@
 import React from "react";
 
-type SliderSwitchProps = {
-	currentValue: boolean;
-	onChange: (value: boolean) => void;
+export type ToggleSetting = {
+	label: string;
+	checked: boolean;
+	onChange: (checked: boolean) => void;
 };
 
-const SliderSwitch = ({ onChange, currentValue }: SliderSwitchProps) => {
+const SliderSwitch = ({ onChange, checked, label }: ToggleSetting) => {
 	const toggleSwtich = () => {
-		onChange(!currentValue);
+		onChange(!checked);
 	};
 
 	return (
 		<div className="slider-wrapper">
-			<label className="switch">
-				<input
-					aria-label="toggleSwtich"
-					type="checkbox"
-					checked={currentValue}
-					onChange={toggleSwtich}
-				/>
+			<label className="switch" aria-label={label}>
+				<input aria-label="toggleSwtich" type="checkbox" checked={checked} onChange={toggleSwtich} />
 				<span className="slider round" />
 			</label>
 		</div>

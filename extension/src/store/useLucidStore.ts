@@ -21,11 +21,8 @@ export const useLucidStore = create<LucidStoreState>((set) => ({
 			...state,
 			artworkData: { ...state.artworkData, ...newArtwork },
 		})),
-	setPageCategory: (pageCategory: PageCategoryType) =>
-		set((state) => ({ ...state, pageCategory })),
-	setUnderMainViewBackgroundImage: (url) =>
-		set((state) => ({ ...state, underMainBackgroundImage: url })),
-	setIsCustomControls: (isCustomControls) =>
-		set((state) => ({ ...state, isCustomControls })),
+	setPageCategory: (pageCategory: PageCategoryType) => set((state) => ({ ...state, pageCategory })),
+	setUnderMainViewBackgroundImage: (url) => set((state) => ({ ...state, underMainBackgroundImage: url })),
+	setIsCustomControls: (isCustomControls) => set((state) => ({ ...state, isCustomControls })),
 	setRootStyle: (rootStyle) => set((state) => ({ ...state, rootStyle })),
 }));

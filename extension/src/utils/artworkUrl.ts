@@ -28,8 +28,7 @@ export const getArtistMetaData = async (uri: string) => {
 				{
 					name: "queryArtistOverview",
 					operation: "query",
-					sha256Hash:
-						"35648a112beb1794e39ab931365f6ae4a8d45e65396d641eeda94e4003d41497",
+					sha256Hash: "35648a112beb1794e39ab931365f6ae4a8d45e65396d641eeda94e4003d41497",
 					value: null,
 				},
 				{
@@ -42,14 +41,9 @@ export const getArtistMetaData = async (uri: string) => {
 			if (metadata) return metadata;
 		} catch (error) {
 			if (error instanceof Error) {
-				if (
-					error.message.includes("DUPLICATE_REQUEST_ERROR") &&
-					retries < MAX_RETRIES
-				) {
+				if (error.message.includes("DUPLICATE_REQUEST_ERROR") && retries < MAX_RETRIES) {
 					retries++;
-					logWarn(
-						`Duplicate request detected (getArtistMetaData). Retrying in 1 second... (Attempt ${retries})`,
-					);
+					logWarn(`Duplicate request detected (getArtistMetaData). Retrying in 1 second... (Attempt ${retries})`);
 					await new Promise((resolve) => setTimeout(resolve, 1000));
 					continue;
 				}
@@ -70,8 +64,7 @@ export const getAlbumMetaData = async (uri: string) => {
 				{
 					name: "getAlbum",
 					operation: "query",
-					sha256Hash:
-						"469874edcad37b7a379d4f22f0083a49ea3d6ae097916120d9bbe3e36ca79e9d",
+					sha256Hash: "469874edcad37b7a379d4f22f0083a49ea3d6ae097916120d9bbe3e36ca79e9d",
 					value: null,
 				},
 				{
@@ -85,14 +78,9 @@ export const getAlbumMetaData = async (uri: string) => {
 			if (metadata) return metadata;
 		} catch (error) {
 			if (error instanceof Error) {
-				if (
-					error.message.includes("DUPLICATE_REQUEST_ERROR") &&
-					retries < MAX_RETRIES
-				) {
+				if (error.message.includes("DUPLICATE_REQUEST_ERROR") && retries < MAX_RETRIES) {
 					retries++;
-					logWarn(
-						`Duplicate request detected (getAlbumMetaData). Retrying in 1 second... (Attempt ${retries})`,
-					);
+					logWarn(`Duplicate request detected (getAlbumMetaData). Retrying in 1 second... (Attempt ${retries})`);
 					await new Promise((resolve) => setTimeout(resolve, 1000));
 					continue;
 				}
@@ -111,55 +99,37 @@ export const getSpotifyURI = (pathname: string): string | null => {
 	const isProfile = Spicetify.URI.isProfile(pathname);
 
 	if (isPlaylist || isArtist || isAlbum || isProfile || isShow) {
-		const id = pathname.match(
-			/\/(?:playlist|artist|album|user|show)\/([^/]+)/,
-		)?.[1];
+		const id = pathname.match(/\/(?:playlist|artist|album|user|show)\/([^/]+)/)?.[1];
 		if (!id) {
 			console.warn("No ID found in pathname:", pathname);
 			return null;
 		}
 
 		return `spotify:${
-			isPlaylist
-				? "playlist"
-				: isArtist
-					? "artist"
-					: isAlbum
-						? "album"
-						: isShow
-							? "show"
-							: "user"
+			isPlaylist ? "playlist" : isArtist ? "artist" : isAlbum ? "album" : isShow ? "show" : "user"
 		}:${id}`;
 	}
 
 	return null;
 };
 
-export const fetchArtworkURLFromAPI = async (
-	uri: string,
-): Promise<string | null> => {
+export const fetchArtworkURLFromAPI = async (uri: string): Promise<string | null> => {
 	const uriType = uri.split(":")[1];
 
 	try {
 		switch (uriType) {
 			case "playlist":
 			case "show": {
-				const playlistMetadata =
-					await Spicetify.Platform.PlaylistAPI.getMetadata(uri);
-				return (
-					playlistMetadata.images.find((image: { url: string }) => image.url)
-						?.url || null
-				);
+				const playlistMetadata = await Spicetify.Platform.PlaylistAPI.getMetadata(uri);
+				return playlistMetadata.images.find((image: { url: string }) => image.url)?.url || null;
 			}
 
 			case "artist": {
 				const artistMetadata = await getArtistMetaData(uri);
 
 				return (
-					artistMetadata.data?.artistUnion.visuals.headerImage?.sources?.[0]
-						?.url ||
-					artistMetadata.data?.artistUnion.visuals.avatarImage?.sources?.[0]
-						?.url ||
+					artistMetadata.data?.artistUnion.visuals.headerImage?.sources?.[0]?.url ||
+					artistMetadata.data?.artistUnion.visuals.avatarImage?.sources?.[0]?.url ||
 					null
 				);
 			}

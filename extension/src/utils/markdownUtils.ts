@@ -1,8 +1,4 @@
-export async function getMarkdownHTML(
-	markdown: string,
-	user: string,
-	repo: string,
-) {
+export async function getMarkdownHTML(markdown: string, user: string, repo: string) {
 	try {
 		const postBody = {
 			text: markdown,
