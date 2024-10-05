@@ -19,19 +19,16 @@ export const replaceIcons = () => {
 	const skipBackLabel = Locale.get("playback-control.skip-back");
 
 	const friendsActivityLabel = Locale.get("buddy-feed.friend-activity");
-	const tracklistPlayLabel = (Locale.get("tracklist.a11y.play") ||
-		"") as string;
+	const tracklistPlayLabel = (Locale.get("tracklist.a11y.play") || "") as string;
 
 	const homeBtnLabelOne = Locale.get("view.web-player-home");
 
 	let tracklistPlayLabelOne: string;
 	let tracklistPlayLabelTwo: string;
 	if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
-		[tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-			tracklistPlayLabel.split("{1}");
+		[tracklistPlayLabelOne, tracklistPlayLabelTwo] = tracklistPlayLabel.split("{1}");
 	} else {
-		[tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-			tracklistPlayLabel.split("{0}");
+		[tracklistPlayLabelOne, tracklistPlayLabelTwo] = tracklistPlayLabel.split("{0}");
 	}
 	tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
 	tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);

@@ -8,9 +8,9 @@
 		"biome-lint": "npx @biomejs/biome lint --write .",
 		"biome-fmt": "npx @biomejs/biome format --write .",
 		"biome-check": "npx @biomejs/biome check --write .",
-		"test-extension": "npm run compile-test-extension && spicetify config extensions theme.js inject_theme_js 0 && spicetify apply",
-		"compile-extension": "cd extension && npm run build-local",
-		"compile-test-extension": "cd extension && npm run build-local",
+		"test-extension": "npm run biome-check && spicetify config extensions theme.js inject_theme_js 0 current_theme Lucid && npm run compile-test-extension",
+		"compile-extension": "npm run biome-check && cd extension && npm run build-local",
+		"compile-test-extension": "npm run biome-check && cd extension && npm run test-local",
 		"ps:apply": "npm run compile-extension && powershell.exe ./dev/apply-theme.ps1"
 	},
 	"author": "Sanoojes",

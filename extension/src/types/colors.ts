@@ -1,3 +1,9 @@
+export type ColorSettings = {
+	isDynamicColor: boolean;
+	colorPalette?: ColorPalette;
+	overrideColorPalette?: ColorPalette;
+};
+
 export type Color = {
 	r: number;
 	g: number;

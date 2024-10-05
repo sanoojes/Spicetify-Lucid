@@ -22,9 +22,7 @@
 		"readme": "README-Marketplace.md",
 		"usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/user.css",
 		"schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/color.ini",
-		"include": [
-			"https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/theme.js"
-		],
+		"include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/theme.js"],
 		"authors": [
 			{
 				"name": "Sanoojes",

@@ -1,12 +1,4 @@
-type PageCategoryType =
-	| "artist"
-	| "playlist"
-	| "album"
-	| "profile"
-	| "show"
-	| "genre"
-	| "concert"
-	| "other";
+type PageCategoryType = "artist" | "playlist" | "album" | "profile" | "show" | "genre" | "concert" | "other";
 
 // Lucid Store Types
 type LucidStoreValues = {

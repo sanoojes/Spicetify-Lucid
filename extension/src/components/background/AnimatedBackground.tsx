@@ -1,8 +1,10 @@
-import React from "react";
+import type { FCStyleOptions } from "@/types/styles";
+import { getFormattedStyles } from "@/utils/styleUtils";
+import React, { type FC } from "react";
 
-const AnimatedBackground = () => {
+const AnimatedBackground: FC<FCStyleOptions> = ({ style }) => {
 	return (
-		<div className="animated-background-container">
+		<div className="animated-background-container" style={getFormattedStyles(style)}>
 			<div className="back" />
 			<div className="backleft" />
 			<div className="backright" />

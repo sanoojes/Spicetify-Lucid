@@ -9,7 +9,7 @@ export type ModalContextProps = {
 export type ModalProps = {
 	isOpen?: boolean;
 	title: string;
-	children: ReactNode;
+	children?: ReactNode;
 	headingChild?: ReactNode;
 	onClose: () => void;
 };

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { DEFAULT_APP_SETTINGS } from "@/constants/constants";
+import { DEFAULT_APP_SETTINGS } from "@/constants/settingsStore";
 import type { SettingsStore } from "@/types/settingTypes";
 
 export const useSettingsStore = create(
@@ -9,58 +9,201 @@ export const useSettingsStore = create(
 		(set) => ({
 			...DEFAULT_APP_SETTINGS,
 
-			updateFontSettings: (fontType, key, value) =>
+			setBackgroundSettings: (newBackgroundSettings) =>
 				set((state) => ({
-					fontSettings: {
-						...state.fontSettings,
-						[fontType]: {
-							...state.fontSettings[fontType],
-							[key]: value,
+					backgroundSettings: {
+						...state.backgroundSettings,
+						...newBackgroundSettings,
+					},
+				})),
+
+			setCustomBackgroundOverride: (url) =>
+				set((state) => ({
+					backgroundSettings: {
+						...state.backgroundSettings,
+						customBackgroundOverride: {
+							...state.backgroundSettings.customBackgroundOverride,
+							url,
 						},
 					},
 				})),
 
-			setIsScrollMode: (isScrollMode) => set(() => ({ isScrollMode })),
-			setIsCustomBackground: (isCustomBackground) =>
-				set(() => ({ isCustomBackground })),
-			setCustomBackgroundURL(customBackgroundURL) {
-				set(() => ({ customBackgroundURL }));
-			},
-			setBackgroundMode: (backgroundMode) => set(() => ({ backgroundMode })),
-			setFontSettings: (fontSettings) => set(() => ({ fontSettings })),
-			setGrainEffect: (grainEffect) => set(() => ({ grainEffect })),
-			setPlaylistImageMode: (playlistImageMode) =>
-				set(() => ({ playlistImageMode })),
-			setPlaybarMode: (playbarMode) => set(() => ({ playbarMode })),
-			setPlaylistViewMode: (playlistViewMode) =>
-				set(() => ({ playlistViewMode })),
-			setDynamicColor: (isDynamicColor) => set(() => ({ isDynamicColor })),
-			updateBackgroundStyles: (mode, key, value) => {
+			setBorderColor: (color) =>
 				set((state) => ({
-					...state,
-					backgroundStyles: {
-						...state.backgroundStyles,
-						[mode]: {
-							...state.backgroundStyles[mode],
-							[key]: value,
+					interfaceSettings: {
+						...state.interfaceSettings,
+						borderSettings: {
+							...state.interfaceSettings.borderSettings,
+							color,
 						},
 					},
-				}));
-			},
-			updatePlaybarStyles: (mode, key, value) => {
+				})),
+			setBorderStyle: (style) =>
 				set((state) => ({
-					...state,
-					playbarStyles: {
-						...state.playbarStyles,
-						[mode]: {
-							...state.playbarStyles[mode],
-							[key]: value,
+					interfaceSettings: {
+						...state.interfaceSettings,
+						borderSettings: {
+							...state.interfaceSettings.borderSettings,
+							style,
 						},
 					},
-				}));
-			},
+				})),
 
-			resetSettings: () => {
+			setBorderThickness: (thickness) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						borderSettings: {
+							...state.interfaceSettings.borderSettings,
+							thickness,
+						},
+					},
+				})),
+
+			setBackgroundStyles: (newStyles, mode) =>
+				set((state) => ({
+					backgroundSettings: {
+						...state.backgroundSettings,
+						styles: {
+							...state.backgroundSettings.styles,
+							[mode]: {
+								...state.backgroundSettings.styles[mode],
+								...newStyles,
+							},
+						},
+					},
+				})),
+			setColorSettings: (newColorSettings) =>
+				set((state) => ({
+					colorSettings: { ...state.colorSettings, ...newColorSettings },
+				})),
+			setBorderSettings: (borderSettings) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						borderSettings: {
+							...state.interfaceSettings.borderSettings,
+							...borderSettings,
+						},
+					},
+				})),
+			setPlaybarSettings: (newPlaybarSettings) =>
+				set((state) => ({
+					playbarSettings: { ...state.playbarSettings, ...newPlaybarSettings },
+				})),
+			setInterfaceSettings: (newInterfaceSettings) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						...newInterfaceSettings,
+					},
+				})),
+
+			setBackgroundMode: (mode) =>
+				set((state) => ({
+					backgroundSettings: { ...state.backgroundSettings, mode },
+				})),
+
+			updateBackgroundStyle: (mode, key, value) =>
+				set((state) => ({
+					backgroundSettings: {
+						...state.backgroundSettings,
+						styles: {
+							...state.backgroundSettings.styles,
+							[mode]: {
+								...state.backgroundSettings.styles[mode],
+								[key]: value,
+							},
+						},
+					},
+				})),
+
+			setFont: (fontType, fontData) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						fontSettings: {
+							...state.interfaceSettings.fontSettings,
+							[fontType]: {
+								...fontData,
+							},
+						},
+					},
+				})),
+
+			setGrainEffect: (grainEffect) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						grainSettings: {
+							...state.interfaceSettings.grainSettings,
+							grainEffect,
+						},
+					},
+				})),
+
+			setIsScrollMode: (isScrollMode) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						pagesSettings: {
+							...state.interfaceSettings.pagesSettings,
+							isScrollMode,
+						},
+					},
+				})),
+
+			setPagesBackgroundImageMode: (backgroundImageMode) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						pagesSettings: {
+							...state.interfaceSettings.pagesSettings,
+							backgroundImageMode,
+						},
+					},
+				})),
+
+			setPlaylistViewMode: (playlistViewMode) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						pagesSettings: {
+							...state.interfaceSettings.pagesSettings,
+							playlistViewMode,
+						},
+					},
+				})),
+
+			setIsDynamicColor: (isDynamicColor) =>
+				set((state) => ({
+					colorSettings: { ...state.colorSettings, isDynamicColor },
+				})),
+
+			updatePlaybarStyle: (mode, key, value) =>
+				set((state) => ({
+					playbarSettings: {
+						...state.playbarSettings,
+						styles: {
+							...state.playbarSettings.styles,
+							[mode]: {
+								...state.playbarSettings.styles[mode],
+								[key]: value,
+							},
+						},
+					},
+				})),
+
+			setPlaybarMode: (mode) =>
+				set((state) => ({
+					playbarSettings: {
+						...state.playbarSettings,
+						mode,
+					},
+				})),
+
+			// Reset all settings to default
+			resetAllSettings: () => {
 				set(DEFAULT_APP_SETTINGS);
 			},
 		}),

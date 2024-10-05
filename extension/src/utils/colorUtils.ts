@@ -45,10 +45,7 @@ const contrastRatio = (color1: Color, color2: Color): number => {
 	return (lighter + 0.05) / (darker + 0.05);
 };
 
-const adjustBrightnessAndSaturation = (
-	color: Color,
-	brightnessFactor: number,
-): Color => ({
+const adjustBrightnessAndSaturation = (color: Color, brightnessFactor: number): Color => ({
 	...color,
 	r: Math.max(0, Math.min(255, Math.round(color.r * brightnessFactor))),
 	g: Math.max(0, Math.min(255, Math.round(color.g * brightnessFactor))),
@@ -60,11 +57,4 @@ const adjustBrightnessAndSaturation = (
 	),
 });
 
-export {
-	contrastRatio,
-	adjustBrightnessAndSaturation,
-	darkenColor,
-	lightenColor,
-	luminance,
-	rgbToHex,
-};
+export { contrastRatio, adjustBrightnessAndSaturation, darkenColor, lightenColor, luminance, rgbToHex };

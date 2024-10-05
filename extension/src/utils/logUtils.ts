@@ -13,11 +13,7 @@ const logStyles: { [K in LogLevel]: string } & { prefix: string } = {
 	info: "",
 };
 
-export const logWithLevel = (
-	level: LogLevel,
-	message: unknown,
-	...optionalParams: unknown[]
-) => {
+export const logWithLevel = (level: LogLevel, message: unknown, ...optionalParams: unknown[]) => {
 	const logFn = {
 		info: originalLog,
 		debug: originalDebug,
@@ -27,12 +23,7 @@ export const logWithLevel = (
 
 	const levelStyle = logStyles[level];
 
-	logFn(
-		`%c[Lucid] %c${message}`,
-		logStyles.prefix,
-		levelStyle,
-		...optionalParams,
-	);
+	logFn(`%c[Lucid] %c${message}`, logStyles.prefix, levelStyle, ...optionalParams);
 };
 
 export const logInfo = (message: unknown, ...optionalParams: unknown[]) =>

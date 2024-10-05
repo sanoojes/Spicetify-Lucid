@@ -1,4 +1,4 @@
-import PlaylistViewManager from "@/components/playlistViews/PlaylistViewManager";
+import PlaylistViewManager from "@/components/state/PlaylistViewManager";
 import React from "react";
 
 export const useUnderMainViewLoader = () => {
@@ -22,9 +22,7 @@ export const useUnderMainViewLoader = () => {
 			underMainViewRef.current = newUnderMainView;
 
 			if (underMainViewRef.current) {
-				Spicetify.ReactDOM.createRoot(underMainViewRef.current).render(
-					<PlaylistViewManager />,
-				);
+				Spicetify.ReactDOM.createRoot(underMainViewRef.current).render(<PlaylistViewManager />);
 			}
 		};
 
