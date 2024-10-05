@@ -17,6 +17,8 @@ export const useSettingsStore = create(
 					},
 				})),
 
+			setSettingAccessPosition: (settingAccessPosition) => set(() => ({ settingAccessPosition })),
+
 			setCustomBackgroundOverride: (url) =>
 				set((state) => ({
 					backgroundSettings: {

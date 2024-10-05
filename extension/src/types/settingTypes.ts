@@ -7,6 +7,7 @@ import type { FontData, FontTypes } from "@/types/font";
 import type { GrainEffect } from "@/types/grains";
 import type { InputSetting } from "@/types/input";
 import type { InterfaceSettings } from "@/types/interface";
+import type { SettingsPositions } from "@/types/main";
 import type { PlaylistBackgroundImageMode, PlaylistViewMode } from "@/types/pages";
 import type { PlaybarMode, PlaybarSettings, PlaybarStyles } from "@/types/playbar";
 import type { StyleOptions } from "@/types/styles";
@@ -19,9 +20,11 @@ export type ThemeSettings = {
 	interfaceSettings: InterfaceSettings;
 	colorSettings: ColorSettings;
 	playbarSettings: PlaybarSettings;
+	settingAccessPosition: SettingsPositions;
 };
 
 export type MainSettingsActions = {
+	setSettingAccessPosition: (settingAccessPosition: SettingsPositions) => void;
 	setBackgroundSettings: (backgroundSettings: BackgroundSettings) => void;
 	setBackgroundStyles: (styles: StyleOptions, mode: BackgroundMode) => void;
 	setInterfaceSettings: (interfaceSettings: InterfaceSettings) => void;

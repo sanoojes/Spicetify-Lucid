@@ -41,3 +41,8 @@ export const BORDER_STYLE_OPTIONS: DropdownOption[] = [
 	{ label: "Inset", value: "inset" },
 	{ label: "Outset", value: "outset" },
 ];
+
+export const SETTINGS_ACCESS_MODE_OPTIONS: DropdownOption[] = [
+	{ label: "Profile Context Menu", value: "context-menu" },
+	{ label: "Global Nav", value: "nav" },
+];
