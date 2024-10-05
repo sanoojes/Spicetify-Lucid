@@ -296,10 +296,12 @@ function Get-Lucid {
     [OutputType([System.Collections.Hashtable])]
     param (
         [ValidateSet('Remote', 'Local')]
-        [string]$Type = 'Remote'
+        [string]$Type = 'Remote',
+        
+        [string]$Branch = 'main' 
     )
     begin {
-        $baseUrl = 'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main'
+        $baseUrl = "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/$Branch"
         $filesToDownload = if ($Type -eq 'Remote') {
             @(
                 "$baseUrl/src/color.ini", 
@@ -347,13 +349,14 @@ function Install-Lucid {
         [ValidateSet('Remote', 'Local')]
         [string]$Type = 'Remote',
         
-        [string]$ColorScheme
+        [string]$ColorScheme,
+        
+        [string]$Branch = 'main' 
     )
     begin {
-        Write-Verbose -Message "Installing Lucid theme (Type: $Type)..."
-        $downloadedFiles = Get-Lucid -Type $Type
+        Write-Verbose -Message "Installing Lucid theme (Type: $Type, Branch: $Branch)..."
+        $downloadedFiles = Get-Lucid -Type $Type -Branch $Branch  
 
-        # Check if downloads were successful
         if ($downloadedFiles.Count -ne 3) {
             Write-Error -Message 'Failed to download all Lucid theme files. Installation aborted.' 
         }
@@ -378,6 +381,7 @@ function Install-Lucid {
         Submit-SpicetifyConfig -Path $Config
     }
 }
+
 
 function Uninstall-Lucid {
     <#

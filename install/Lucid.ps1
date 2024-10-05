@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param (
-    [ValidateSet('Install', 'Uninstall', 'Update')]
+    [ValidateSet('Install', 'Uninstall', 'Update','Beta')]
     [string]$Action = 'Install'
 )
 begin {
@@ -19,7 +19,7 @@ process {
     $modulePath = "$Temp\$moduleName.psm1"
     $Parameters = @{
         Uri             = (
-        'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/main/install/Functions.psm1'
+        'https://gist.githubusercontent.com/sanoojes/a6fc3176428f61fe80d580ac92c51de4/raw/05016fb7c74721dfe0434a9b130ea491edbd19b8/Functions.psm1'
         )
         UseBasicParsing = $true
         OutFile         = $modulePath
@@ -153,6 +153,20 @@ process {
         }
         
         Install-Lucid @Parameters
+        }
+        'Beta' {  
+            if (-not $isSpicetifyInstalled) {
+                Write-Error -Message 'Failed to detect Spicetify installation!'
+            }
+            
+            $spicetifyFolders = Get-SpicetifyFoldersPaths
+            $Parameters = @{
+                Destination = $spicetifyFolders.lucidPath
+                Config      = $spicetifyFolders.configPath
+                Type        = 'Local'
+                Branch      = 'beta'  
+            }
+            Install-Lucid @Parameters
         }
     }
 }
