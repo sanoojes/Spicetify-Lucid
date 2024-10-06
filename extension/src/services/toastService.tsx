@@ -1,7 +1,9 @@
 import Dismiss from "@/components/svg/Dismiss";
 import Button from "@/components/ui/Button";
 import type { ToastType } from "@/types/toast";
-import React, { useState, type FC } from "react";
+import React, { useState, type FC, useCallback } from "react";
+
+let toastId = 0;
 
 const ToastService = (() => {
 	let addToast: (message: string, isError?: boolean) => void;
@@ -9,24 +11,22 @@ const ToastService = (() => {
 	const ToastContainer: FC = () => {
 		const [toasts, setToasts] = useState<ToastType[]>([]);
 
-		addToast = (message, isError = false, exiting = false) => {
-			const id = new Date().getTime();
-			setToasts((prev) => [...prev, { id, message, isError, exiting }]);
+		const addToastInternal = useCallback((message: string, isError = false) => {
+			const id = toastId++;
+			setToasts((prev) => [...prev, { id, message, isError, exiting: false }]);
 
 			const timeoutId = setTimeout(() => {
 				handleCloseElement(id);
 			}, 3000);
 
 			return () => clearTimeout(timeoutId);
-		};
+		}, []);
+
+		addToast = addToastInternal;
 
 		const handleCloseElement = (id: number) => {
 			setToasts((prev) => {
-				const toastToClose = prev.find((t) => t.id === id);
-				if (toastToClose) {
-					return prev.map((toast) => (toast.id === id ? { ...toast, exiting: true } : toast));
-				}
-				return prev;
+				return prev.map((toast) => (toast.id === id ? { ...toast, exiting: true } : toast));
 			});
 
 			setTimeout(() => {
