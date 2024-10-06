@@ -760,7 +760,6 @@ input,
 
 .global-nav .marketplace-card-type-heading {
 	visibility: hidden;
-	/* margin: 4em 0 .5em; */
 }
 
 .marketplace-header-icon-button,
@@ -961,7 +960,8 @@ div[data-testid="hpto-parent-container"] {
 .lyrics-lyrics-contentWrapper,
 .main-view-container__scroll-node,
 .nw2W4ZMdICuBo08Tzxg9,
-.main-devicePicker-section /* ADD: Right sidebar scroll node */ {
+.main-devicePicker-section /* ADD: Right sidebar scroll node */
+{
 	padding-bottom: calc(var(--now-playing-bar-height) + var(--gap-lg));
 }
 
@@ -993,8 +993,19 @@ div[data-testid="hpto-parent-container"] {
 	overflow: hidden;
 }
 
-.JnpOnFaQfrRIA2fYe88A /* ADD: classes for artist popup */ {
+.JnpOnFaQfrRIA2fYe88A /* ADD: classes for artist popup */
+{
 	max-height: 70vh !important;
+}
+
+.guUl5dHbF5HJRvwjBxzR,
+.guUl5dHbF5HJRvwjBxzR > .main-image-image,
+.FOgY6uo_Bj_VTV5hwaix {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 16 / 7.15;
+	object-fit: cover;
+	border-radius: 0.5rem;
 }
 
 .GenericModal__overlay {
@@ -1215,7 +1226,8 @@ dialog {
 
 /* Search Section */
 .IGCDq9qa08JVVY3mcy7Y,
-.CqCtb3wr4SK8AiZwxeH0 /* ADD: Search card <a> selector */ {
+.CqCtb3wr4SK8AiZwxeH0 /* ADD: Search card <a> selector */
+{
 	padding: 0 !important;
 }
 
