@@ -1,5 +1,5 @@
 import type { ButtonProps } from "@/types/button";
-import React, { type FC, type ButtonHTMLAttributes } from "react";
+import React, { type FC } from "react";
 
 const Button: FC<ButtonProps> = ({ variant = "primary", size = "medium", icon, children, ...rest }) => {
 	return (

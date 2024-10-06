@@ -12,7 +12,7 @@ import type { PlaylistBackgroundImageMode, PlaylistViewMode } from "@/types/page
 import type { PlaybarMode, PlaybarSettings, PlaybarStyles } from "@/types/playbar";
 import type { StyleOptions } from "@/types/styles";
 import type { ToggleSetting } from "@/types/toggle";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 // Settings Store Start
 export type ThemeSettings = {
@@ -35,6 +35,10 @@ export type MainSettingsActions = {
 };
 
 export type SubSettingsActions = {
+	exportSettings: () => string;
+
+	importSettings: (json: string) => boolean;
+
 	setBackgroundMode: (mode: BackgroundMode) => void;
 
 	setBorderThickness: (thickness: number) => void;
@@ -80,7 +84,9 @@ export type SectionProps = {
 export type BaseSettingCardProps = {
 	title: string;
 	tooltip?: ReactNode;
+	children?: ReactNode;
 	selectedValue?: string | ReactNode;
+	style?: CSSProperties;
 };
 
 export type InputCardProps = BaseSettingCardProps & {
@@ -103,7 +109,13 @@ export type ButtonCardProps = BaseSettingCardProps & {
 	settings: ButtonProps;
 };
 
-export type SettingCardProps = InputCardProps | ToggleCardProps | DropdownCardProps | ButtonCardProps;
+export type NormalCardProps = BaseSettingCardProps & {
+	type: "normal";
+	children: ReactNode;
+	settings?: null;
+};
+
+export type SettingCardProps = InputCardProps | ToggleCardProps | DropdownCardProps | ButtonCardProps | NormalCardProps;
 
 export type SettingsCardSection = {
 	id: string;
