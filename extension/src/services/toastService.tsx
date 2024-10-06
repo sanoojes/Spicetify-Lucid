@@ -31,7 +31,7 @@ const ToastService = (() => {
 
 			setTimeout(() => {
 				setToasts((prev) => prev.filter((t) => t.id !== id));
-			}, 300);
+			}, 500);
 		};
 
 		return (
