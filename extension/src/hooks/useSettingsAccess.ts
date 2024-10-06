@@ -9,7 +9,10 @@ const useSettingsAccess = (openModal: () => void) => {
 	useEffect(() => {
 		let element: Spicetify.Menu.Item | HTMLButtonElement | null = null;
 
-		if (settingAccessPosition === "nav") {
+		if (
+			settingAccessPosition === "nav" &&
+			!document.querySelector(".Root__globalNav .main-actionButtons button[aria-label='Lucid Settings']")
+		) {
 			element = useGlobalNavSettingsMenu({ onClick: openModal });
 		} else if (settingAccessPosition === "context-menu") {
 			element = useSettingsProfileMenu({ onClick: openModal });
