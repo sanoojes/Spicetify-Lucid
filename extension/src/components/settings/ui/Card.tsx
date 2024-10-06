@@ -6,15 +6,16 @@ import SliderSwitch from "@/components/ui/SliderSwitch";
 import type { SettingCardProps } from "@/types/settingTypes";
 import React, { type FC } from "react";
 
-const Card: FC<SettingCardProps> = ({ title, tooltip, selectedValue, type, settings }) => {
+const Card: FC<SettingCardProps> = ({ title, tooltip, selectedValue, type, settings, children, style }) => {
 	return (
 		<div className="card">
 			<TitleContainer title={title} tooltip={tooltip} selectedValue={selectedValue} />
-			<div className="children-wrapper">
-				{type === "dropdown" ? <Dropdown {...settings} /> : null}
-				{type === "input" ? <Input {...settings} /> : null}
-				{type === "toggle" ? <SliderSwitch {...settings} /> : null}
-				{type === "button" ? <Button {...settings} /> : null}
+			<div className="children-wrapper" style={style || {}}>
+				{type === "dropdown" && <Dropdown {...settings} />}
+				{type === "input" && <Input {...settings} />}
+				{type === "toggle" && <SliderSwitch {...settings} />}
+				{type === "button" && <Button {...settings} />}
+				{children}
 			</div>
 		</div>
 	);

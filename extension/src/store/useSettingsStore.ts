@@ -2,12 +2,63 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 import { DEFAULT_APP_SETTINGS } from "@/constants/settingsStore";
+import { addToast } from "@/services/toastService";
 import type { SettingsStore } from "@/types/settingTypes";
+
+const isValidSettings = (data: unknown): data is SettingsStore => {
+	return (
+		typeof data === "object" &&
+		data !== null &&
+		"backgroundSettings" in data &&
+		"interfaceSettings" in data &&
+		"playbarSettings" in data &&
+		"colorSettings" in data &&
+		typeof (data as SettingsStore).backgroundSettings === "object" &&
+		"mode" in (data as SettingsStore).backgroundSettings &&
+		"styles" in (data as SettingsStore).backgroundSettings &&
+		typeof (data as SettingsStore).interfaceSettings === "object" &&
+		"borderSettings" in (data as SettingsStore).interfaceSettings &&
+		"fontSettings" in (data as SettingsStore).interfaceSettings &&
+		typeof (data as SettingsStore).playbarSettings === "object" &&
+		"mode" in (data as SettingsStore).playbarSettings &&
+		typeof (data as SettingsStore).colorSettings === "object" &&
+		"isDynamicColor" in (data as SettingsStore).colorSettings
+	);
+};
 
 export const useSettingsStore = create(
 	persist<SettingsStore>(
-		(set) => ({
+		(set, get) => ({
 			...DEFAULT_APP_SETTINGS,
+
+			exportSettings: () => {
+				const state = get();
+				return JSON.stringify(state);
+			},
+
+			importSettings: (json: string) => {
+				try {
+					const importedSettings = JSON.parse(json);
+
+					if (!isValidSettings(importedSettings)) {
+						throw new Error("Invalid settings structure");
+					}
+
+					set(importedSettings);
+					addToast("Settings imported successfully!");
+					return true;
+				} catch (error) {
+					const errorMessage =
+						error instanceof SyntaxError
+							? "Failed to parse JSON: Please ensure your input is valid JSON."
+							: error instanceof Error
+								? error.message
+								: "An unknown error occurred.";
+
+					addToast(errorMessage, true);
+					return false;
+				}
+			},
 
 			setBackgroundSettings: (newBackgroundSettings) =>
 				set((state) => ({

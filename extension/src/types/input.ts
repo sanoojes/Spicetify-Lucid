@@ -1,8 +1,8 @@
 export type BaseInputSetting = {
 	label: string;
 	placeholder?: string;
-	defaultValue: string | number;
-	onChange: (value: string) => void;
+	defaultValue?: string | number | null;
+	onChange?: (value: string) => void;
 };
 
 export type TextOrUrlInputSetting = BaseInputSetting & {
