@@ -2746,6 +2746,32 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa)
 	background: linear-gradient(transparent 0, rgba(var(--spice-rgb-shadow), 0.25) 100%), var(--background-noise);
 }
 
+.playlist-view-card .main-entityHeader-container.main-entityHeader-withBackgroundImage {
+	position: relative;
+}
+
+.playlist-view-card .main-entityHeader-container.main-entityHeader-withBackgroundImage > .contentSpacing {
+	height: fit-content;
+	min-width: max-content;
+	width: fit-content;
+	position: absolute;
+	bottom: calc(var(--now-playing-bar-height) / 2.5);
+	border: var(--default-border);
+	padding: 1rem 3rem 1rem 1.5rem;
+	left: 1.75rem;
+	border-radius: var(--card-border-radius);
+	backdrop-filter: blur(6px);
+	background: linear-gradient(0deg, rgba(var(--spice-rgb-card), 0.25) 0%, var(--main-color)), var(--background-noise);
+}
+
+.playlist-view-card
+	.main-entityHeader-container.main-entityHeader-withBackgroundImage
+	> .contentSpacing
+	.main-entityHeader-title
+	h1 {
+	font-size: 4rem !important;
+}
+
 .main-nowPlayingView-contextItemInfo:before {
 	display: none;
 	background: none !important;
