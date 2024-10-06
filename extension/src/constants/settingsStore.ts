@@ -50,7 +50,7 @@ export const DEFAULT_PLAYBAR_STYLES: PlaybarStyles = {
 
 export const DEFAULT_APP_SETTINGS: ThemeSettings = {
 	backgroundSettings: {
-		mode: "animated",
+		mode: "static",
 		styles: DEFAULT_BACKGROUND_STYLES,
 		customBackgroundOverride: {
 			url: null,
