@@ -945,7 +945,8 @@ div[data-testid="hpto-parent-container"] {
 .lyrics-lyrics-contentWrapper,
 .main-view-container__scroll-node,
 .nw2W4ZMdICuBo08Tzxg9,
-.main-devicePicker-section /* ADD: Right sidebar scroll node */ {
+.main-devicePicker-section /* ADD: Right sidebar scroll node */
+{
 	padding-bottom: calc(var(--now-playing-bar-height) + var(--gap-lg));
 }
 
@@ -977,7 +978,8 @@ div[data-testid="hpto-parent-container"] {
 	overflow: hidden;
 }
 
-.JnpOnFaQfrRIA2fYe88A /* ADD: classes for artist popup */ {
+.JnpOnFaQfrRIA2fYe88A /* ADD: classes for artist popup */
+{
 	max-height: 70vh !important;
 }
 
@@ -1202,7 +1204,8 @@ dialog {
 
 /* Search Section */
 .IGCDq9qa08JVVY3mcy7Y,
-.CqCtb3wr4SK8AiZwxeH0 /* ADD: Search card <a> selector */ {
+.CqCtb3wr4SK8AiZwxeH0 /* ADD: Search card <a> selector */
+{
 	padding: 0 !important;
 }
 
@@ -2762,14 +2765,6 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa)
 	border-radius: var(--card-border-radius);
 	backdrop-filter: blur(6px);
 	background: linear-gradient(0deg, rgba(var(--spice-rgb-card), 0.25) 0%, var(--main-color)), var(--background-noise);
-}
-
-.playlist-view-card
-	.main-entityHeader-container.main-entityHeader-withBackgroundImage
-	> .contentSpacing
-	.main-entityHeader-title
-	h1 {
-	font-size: 4rem !important;
 }
 
 .main-nowPlayingView-contextItemInfo:before {
