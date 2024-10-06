@@ -42,7 +42,7 @@ const PlaylistViewManager = () => {
 
 				blur.style.setProperty("--blur", `${blurAmount}px`);
 
-				background.style.transform = `translateY(${isScrollMode ? -scrollAmount : 0}px)`;
+				background.style.transform = `translate3d(0 ,${isScrollMode ? -scrollAmount : 0}px, 0)`;
 
 				background.style.setProperty("--scroll", `${scrollAmount / 1000}`);
 			}

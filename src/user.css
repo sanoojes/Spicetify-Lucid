@@ -644,18 +644,18 @@ input,
 
 .main-topBar-container {
 	-webkit-transition: opacity 0.3s 0.35s ease-in-out, transform 0.5s ease-in-out;
-	-webkit-transform: translateY(calc((1 - var(--top-bar-opacity)) * -200%));
+	-webkit-transform: translate3d(0, calc((1 - var(--top-bar-opacity)) * -100%), 0);
 
 	transition: opacity 0.3s 0.35s ease-in-out, transform 0.5s ease-in-out;
-	transform: translateY(calc((1 - var(--top-bar-opacity)) * -200%));
+	transform: translate3d(0, calc((1 - var(--top-bar-opacity)) * -100%), 0);
 }
 
 .other .main-topBar-container {
 	-webkit-transition: none;
-	-webkit-transform: translateY(0);
+	-webkit-transform: translate3d(0, 0, 0);
 
 	transition: none;
-	transform: translateY(0);
+	transform: translate3d(0, 0, 0);
 }
 
 .artist-artistDiscography-topBar,
@@ -984,6 +984,10 @@ div[data-testid="hpto-parent-container"] {
 .guUl5dHbF5HJRvwjBxzR,
 .guUl5dHbF5HJRvwjBxzR > .main-image-image,
 .FOgY6uo_Bj_VTV5hwaix {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 16 / 7.15;
+	object-fit: cover;
 	border-radius: 0.5rem;
 }
 
@@ -2281,7 +2285,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa)
 	border-radius: 0;
 	border: 0;
 	min-height: 3.25rem;
-	transform: translateY(0) scaleY(1);
+	transform: translate3d(0, 0, 0) scaleY(1);
 }
 
 #lucid-main .modal-container .setting-section .cards-wrapper .cards-wrapper .card:not(:first-child) {
@@ -2290,21 +2294,6 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa)
 
 #lucid-main .custom-input-container {
 	position: relative;
-}
-
-#lucid-main .error-message {
-	background-color: rgb(191 22 39);
-	padding: var(--padding-sm, 0.25rem) var(--padding-md, 0.5rem);
-	border-radius: var(--card-border-radius, 0.25rem);
-	border: 1px solid rgba(200, 100, 100, 0.25);
-	color: var(--spice-text, white);
-	font-size: 0.875rem;
-	position: absolute;
-	top: -100%;
-	right: 50%;
-	transform: translateX(50%);
-	width: max-content;
-	z-index: 10;
 }
 
 #lucid-main .card .button,
@@ -2583,14 +2572,14 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa)
 	-webkit-transition: .4s;
 	transition: .4s;
 	border-radius: var(--border-radius-rounded);
-	transform: translateY(-50%);
+	transform: translate3d(0, -50%, 0);
 }
 
 #lucid-main .switch input:checked + .slider:before {
 	background-color: rgba(var(--spice-rgb-text), 1);
-	-webkit-transform: translateX(1.5rem) translateY(-50%);
-	-ms-transform: translateX(1.5rem) translateY(-50%);
-	transform: translateX(1.5rem) translateY(-50%);
+	-webkit-transform: translate3d(1.5rem, -50%, 0);
+	-ms-transform: translate3d(1.5rem, -50%, 0);
+	transform: translate3d(1.5rem, -50%, 0);
 }
 
 /* Tooltip */
