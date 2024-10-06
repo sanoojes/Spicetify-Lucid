@@ -1,5 +1,6 @@
 import Modal from "@/components/modal/Modal";
 import BackgroundSection from "@/components/settings/section/BackgroundSection";
+import ImportExportSection from "@/components/settings/section/ImportExportSection";
 import InterfaceSection from "@/components/settings/section/InterfaceSection";
 import PlaybarSection from "@/components/settings/section/PlaybarSection";
 import ResetSettingsSection from "@/components/settings/section/ResetSection";
@@ -17,6 +18,7 @@ const SettingsModal: React.FC = React.memo(() => {
 				<InterfaceSection />
 				<PlaybarSection />
 				<ResetSettingsSection />
+				<ImportExportSection />
 			</div>
 		</Modal>
 	);
