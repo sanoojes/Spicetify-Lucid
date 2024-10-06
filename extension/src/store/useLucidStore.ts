@@ -1,3 +1,4 @@
+import type { LucidStoreState, LucidStoreValues, PageCategoryType } from "@/types/main";
 import { getRootStyle } from "@/utils/platformUtils";
 import { create } from "zustand";
 
