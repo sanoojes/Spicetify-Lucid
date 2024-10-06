@@ -46,10 +46,9 @@ const ArtworkManager = () => {
 			rootStyle.setProperty("--playlist-art-image", "none");
 		}
 
-		// Logic for history listener moved here:
 		if (pagesSettings.backgroundImageMode === "inherit") {
 			const unlistenHistory = Spicetify.Platform.History.listen(setPageArtwork);
-			setPageArtwork(); // Call initially
+			setPageArtwork();
 
 			return () => {
 				unlistenHistory();
@@ -66,7 +65,7 @@ const ArtworkManager = () => {
 
 	React.useEffect(() => {
 		if (artworkData.nowPlayingArtURL) {
-			rootStyle.setProperty("--now-playing-art-image", `url(${artworkData.nowPlayingArtURL})`);
+			rootStyle.setProperty("--now-playing-art-image", `url("${artworkData.nowPlayingArtURL}")`);
 			logInfo(`Updated Now Playing Art View: ${artworkData.nowPlayingArtURL}`);
 		}
 	}, [artworkData.nowPlayingArtURL, rootStyle]);
