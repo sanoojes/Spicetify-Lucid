@@ -1,21 +1,41 @@
 import { logError, logWarn } from "@/utils/logUtils";
 
 export const getNowPlayingArtworkUrl = async () => {
-	while (!Spicetify?.Player?.data) {
-		await new Promise((resolve) => setTimeout(resolve, 100));
+	const waitForPlayerData = async () => {
+		while (!Spicetify?.Player?.data) {
+			await new Promise((resolve) => setTimeout(resolve, 100));
+		}
+	};
+
+	await waitForPlayerData();
+
+	const { item } = Spicetify.Player.data;
+
+	if (!item || !item.metadata) {
+		logError("No item or metadata found in Spicetify Player data.");
+		return "";
 	}
 
-	try {
-		return (
-			Spicetify.Player.data.item.metadata.image_xlarge_url ||
-			Spicetify.Player.data.item.metadata.image_large_url ||
-			Spicetify.Player.data.item.metadata.image_url ||
-			Spicetify.Player.data.item.metadata.image_small_url ||
-			""
-		);
-	} catch (error) {
-		logError("Error updating getting URL: ", error);
-	}
+	const artworkUrls = [
+		item.metadata.image_xlarge_url,
+		item.metadata.image_large_url,
+		item.metadata.image_url,
+		item.metadata.image_small_url,
+	];
+
+	const imageUrl = artworkUrls.find((url) => url) || getFallbackImageUrl();
+
+	console.log(imageUrl);
+
+	return imageUrl || "";
+};
+
+const getFallbackImageUrl = () => {
+	const fallbackImage = document.querySelector(
+		".Root__right-sidebar .main-nowPlayingView-nowPlayingWidget .main-image-image",
+	) as HTMLImageElement;
+
+	return fallbackImage?.src || "";
 };
 
 export const getArtistMetaData = async (uri: string) => {
