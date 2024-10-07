@@ -2755,8 +2755,8 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa)
 
 .playlist-view-card .main-entityHeader-container.main-entityHeader-withBackgroundImage > .contentSpacing {
 	height: fit-content;
-	min-width: max-content;
-	width: fit-content;
+	min-width: min-content;
+	width: calc(100% - (2rem * 2));
 	position: absolute;
 	bottom: calc(var(--now-playing-bar-height) / 2.5);
 	border: var(--default-border);
