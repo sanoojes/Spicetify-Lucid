@@ -910,6 +910,7 @@ input,
 	gap: var(--gap-sm);
 }
 
+.main-nowPlayingView-content.main-nowPlayingView-gradient,
 .HD9s7U5E1RLSWKpXmrqx {
 	background: var(--card-color);
 	border-radius: calc(var(--card-border-radius) / 2);
