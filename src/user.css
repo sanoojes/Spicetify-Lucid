@@ -2156,6 +2156,7 @@ aside[aria-label="Now playing view"]:has(.W3E0IT3_STcazjTeyOJa)
 #lucid-main .modal-container .modal-section {
 	display: block;
 	position: fixed;
+	margin: 0;
 	z-index: 20;
 	top: 0;
 	left: 0;
