@@ -652,10 +652,10 @@ input,
 
 .main-topBar-container {
 	-webkit-transition: opacity 0.3s 0.35s ease-in-out, transform 0.5s ease-in-out;
-	-webkit-transform: translateY(calc((1 - var(--top-bar-opacity)) * -100%));
+	-webkit-transform: translateY(calc((1 - var(--top-bar-opacity)) * -200%));
 
 	transition: opacity 0.3s 0.35s ease-in-out, transform 0.5s ease-in-out;
-	transform: translateY(calc((1 - var(--top-bar-opacity)) * -100%));
+	transform: translateY(calc((1 - var(--top-bar-opacity)) * -200%));
 }
 
 .other .main-topBar-container {
