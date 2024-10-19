@@ -35,7 +35,7 @@ export const DEFAULT_PLAYBAR_STYLES: PlaybarStyles = {
 		borderRadius: 8,
 		backdropBlur: 32,
 		paddingX: 6,
-		backgroundColor: "rgba(var(--spice-rgb-card), 0.5)",
+		backgroundColor: "rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)",
 	},
 	default: {
 		height: 80,
@@ -46,7 +46,7 @@ export const DEFAULT_PLAYBAR_STYLES: PlaybarStyles = {
 		borderRadius: 8,
 		brightness: 0.8,
 		backdropBlur: 32,
-		backgroundColor: "rgba(var(--spice-rgb-card), 0.5)",
+		backgroundColor: "rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)",
 	},
 };
 
@@ -71,11 +71,11 @@ export const DEFAULT_APP_SETTINGS: ThemeSettings = {
 		pagesSettings: {
 			isScrollMode: false,
 			backgroundImageMode: "inherit",
-			playlistViewMode: "default",
+			playlistViewMode: "card",
 		},
 		borderSettings: {
-			color: "rgba(var(--spice-rgb-text), 0.125)",
-			style: "solid",
+			color: "rgba(var(--spice-rgb-selected-row, var(--spice-rgb-text)), 0.125)",
+			style: "inset",
 			thickness: 1,
 			roundedRadius: 12,
 		},
