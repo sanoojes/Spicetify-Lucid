@@ -1,5 +1,5 @@
 .Root__main-view {
-  @extend .border-box-shadow-with-radius;
+  @extend .default-border-with-radius;
   background: $main-bg-color;
 
   .N_8iI7NKHP0iG2jp3g0R,
@@ -105,7 +105,7 @@
     padding: 0.25rem;
     .IriswrXFrjhQwRTmrgIf {
       opacity: 0.75;
-      @extend .border-box-shadow-with-radius;
+      @extend .default-border-with-radius;
     }
   }
 

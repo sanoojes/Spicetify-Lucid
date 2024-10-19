@@ -70,7 +70,7 @@
         gap: $gap-xs;
         flex-direction: column;
         background-color: rgba(255, 255, 255, 0.02);
-        @extend .border-box-shadow-with-radius;
+        @extend .default-border-with-radius;
 
         &.combine {
           margin-top: $margin-xs;
@@ -124,7 +124,7 @@
         }
 
         .cards-wrapper {
-          @extend .border-box-shadow-with-radius;
+          @extend .default-border-with-radius;
           gap: 0;
           transition: height 0.3s ease;
 
@@ -498,7 +498,7 @@
   }
 
   .toast-element {
-    @extend .border-box-shadow-with-radius;
+    @extend .default-border-with-radius;
     background: rgba(0, 0, 0, 0.75);
     color: var(--spice-text, #fafafa);
     padding: 0.75rem 1.5rem;

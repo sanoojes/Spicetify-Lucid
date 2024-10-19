@@ -1,6 +1,6 @@
 .artist {
   .main-trackList-trackList {
-    @extend .border-box-shadow-with-radius;
+    @extend .default-border-with-radius;
     padding: $padding-sm;
   }
 

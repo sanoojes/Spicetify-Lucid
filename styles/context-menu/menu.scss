@@ -1,6 +1,6 @@
 .main-contextMenu-menu {
   background-color: rgba(var(--spice-rgb-card), 0.5);
-  @extend .border-box-shadow-with-radius;
+  @extend .default-border-with-radius;
 
   &::before {
     content: "";

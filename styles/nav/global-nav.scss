@@ -45,7 +45,7 @@ $active-bg: rgba(var(--spice-rgb-card), 0.6);
 
   // recent search container
   .GimJ6fo6WOYPyWNVpSr1 {
-    @extend .border-box-shadow-with-radius;
+    @extend .default-border-with-radius;
 
     &::before {
       content: "";

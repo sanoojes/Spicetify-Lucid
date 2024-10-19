@@ -180,21 +180,34 @@ section[data-testid*="playlist"] {
 .search-searchCategory-categoryGrid .encore-text-body-small {
 	font-weight: 500;
 }
-.border-box-shadow,
-.main-trackCreditsModal-container,
-.main-embedWidgetGenerator-container,
-.Root__main-view .mXNT9H2GU7lDW4cGx0q1,
-.Root__right-sidebar .main-nowPlayingView-section {
+.border-box-shadow {
 	-webkit-box-shadow: inset 0 0 0 var(--border-thickness) hsla(0, 0%, 100%, 0.15);
 	box-shadow: inset 0 0 0 var(--border-thickness) hsla(0, 0%, 100%, 0.15);
 }
-.border-box-shadow-with-radius,
+.border-box-shadow-with-radius {
+	-webkit-box-shadow: inset 0 0 0 var(--border-thickness) hsla(0, 0%, 100%, 0.15);
+	box-shadow: inset 0 0 0 var(--border-thickness) hsla(0, 0%, 100%, 0.15);
+	border-radius: .5rem;
+}
+.default-border,
+.main-trackCreditsModal-container,
+.main-embedWidgetGenerator-container,
+.Root__main-view .mXNT9H2GU7lDW4cGx0q1,
+.Root__right-sidebar .main-nowPlayingView-section,
+.default-border-with-radius,
 #lucid-main .toast-element,
+#lucid-main .dropdown-button,
+#lucid-main .input,
+#lucid-main .card .button,
 #lucid-main .modal-container .setting-section .cards-wrapper .cards-wrapper,
 #lucid-main .modal-container .setting-section .cards-wrapper,
 .main-contextMenu-menu,
 .search .Root__main-view .main-rootlist-wrapper,
+.Root__main-view .main-gridContainer-gridContainer .Vn9yz8P5MjIvDT8c0U6w,
+.album .main-trackList-trackList,
+.playlist .main-trackList-trackList,
 .artist .main-trackList-trackList,
+.profile .main-trackList-trackList,
 .Root__main-view .lx7nfGbsUkI_2pC6caw9 .IriswrXFrjhQwRTmrgIf,
 .Root__main-view,
 .Root__right-sidebar,
@@ -208,13 +221,11 @@ section[data-testid*="playlist"] {
 	.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id,
-.Root__globalNav .GimJ6fo6WOYPyWNVpSr1 {
-	-webkit-box-shadow: inset 0 0 0 var(--border-thickness) hsla(0, 0%, 100%, 0.15);
-	box-shadow: inset 0 0 0 var(--border-thickness) hsla(0, 0%, 100%, 0.15);
-	border-radius: .5rem;
-}
-.default-border {
+.Root__globalNav .GimJ6fo6WOYPyWNVpSr1,
+.shelf-card,
+.Root__main-view .main-view-container .main-shelf-shelfGrid .main-card-cardContainer {
 	border: var(--border-thickness) var(--border-style, solid) var(--border-color, rgba(var(--spice-rgb-text), 0.125));
+	box-shadow: none;
 }
 .header-backdrop-blur,
 .Root__main-view .search-searchCategory-SearchCategory,
@@ -227,17 +238,35 @@ section[data-testid*="playlist"] {
 	backdrop-filter: blur(1rem);
 }
 .default-border-with-radius,
+#lucid-main .toast-element,
 #lucid-main .dropdown-button,
 #lucid-main .input,
 #lucid-main .card .button,
+#lucid-main .modal-container .setting-section .cards-wrapper .cards-wrapper,
+#lucid-main .modal-container .setting-section .cards-wrapper,
+.main-contextMenu-menu,
+.search .Root__main-view .main-rootlist-wrapper,
 .Root__main-view .main-gridContainer-gridContainer .Vn9yz8P5MjIvDT8c0U6w,
 .album .main-trackList-trackList,
 .playlist .main-trackList-trackList,
 .artist .main-trackList-trackList,
 .profile .main-trackList-trackList,
+.Root__main-view .lx7nfGbsUkI_2pC6caw9 .IriswrXFrjhQwRTmrgIf,
+.Root__main-view,
+.Root__right-sidebar,
+.Root__nav-bar
+	.main-rootlist-wrapper
+	.main-yourLibraryX-listItem
+	.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
+#Desktop_LeftSidebar_Id
+	.main-rootlist-wrapper
+	.main-yourLibraryX-listItem
+	.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
+.Root__nav-bar,
+#Desktop_LeftSidebar_Id,
+.Root__globalNav .GimJ6fo6WOYPyWNVpSr1,
 .shelf-card,
 .Root__main-view .main-view-container .main-shelf-shelfGrid .main-card-cardContainer {
-	border: var(--border-thickness) var(--border-style, solid) var(--border-color, rgba(var(--spice-rgb-text), 0.125));
 	border-radius: .5rem;
 }
 .modal-background,
