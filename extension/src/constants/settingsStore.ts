@@ -13,7 +13,7 @@ export const DEFAULT_BACKGROUND_STYLES: BackgroundStyle = {
 		opacity: 1,
 		saturation: 1.1,
 		contrast: 1.2,
-		brightness: 0.6,
+		brightness: 0.5,
 	},
 	animated: {
 		blur: 32,
@@ -21,7 +21,7 @@ export const DEFAULT_BACKGROUND_STYLES: BackgroundStyle = {
 		opacity: 1,
 		saturation: 1.1,
 		contrast: 1.2,
-		brightness: 0.6,
+		brightness: 0.475,
 	},
 };
 
