@@ -1,8 +1,8 @@
 import TransparentWindowControl from "@/components/windowControls/TransparentWindowControl";
 import { isCustomControls, isWindowsPlatform } from "@/constants/constants";
-import React from "react";
+import React, { memo } from "react";
 
-const WindowControlsManager = React.memo(() => {
+const WindowControlsManager = memo(() => {
 	return (
 		<>
 			{isWindowsPlatform ? (

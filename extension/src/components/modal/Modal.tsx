@@ -1,7 +1,7 @@
 import type { ModalProps } from "@/types/modalTypes";
-import React from "react";
+import React, { memo } from "react";
 
-const Modal = React.memo(({ title, children, headingChild, onClose, isOpen = false }: ModalProps) => {
+const Modal = memo(({ title, children, headingChild, onClose, isOpen = false }: ModalProps) => {
 	return isOpen ? (
 		<div className="modal-container">
 			{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
@@ -9,7 +9,7 @@ const Modal = React.memo(({ title, children, headingChild, onClose, isOpen = fal
 			<dialog open={isOpen} className={`modal-section ${isOpen && "open"}`} aria-label={title} aria-modal="true">
 				<div className="main-embedWidgetGenerator-container">
 					<div className="main-trackCreditsModal-header">
-						<h1 className="main-type-alto">{title}</h1>
+						<h1 className="encore-text encore-title-body-medium">{title}</h1>
 						{headingChild && <div>{headingChild}</div>}
 
 						<button

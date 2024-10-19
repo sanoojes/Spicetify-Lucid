@@ -1,9 +1,9 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 	variant?: "primary" | "secondary" | "danger";
 	size?: "small" | "medium" | "large";
 	isLoading?: boolean;
-	icon?: React.ReactNode;
-	children?: React.ReactNode;
+	icon?: ReactNode;
+	children?: ReactNode;
 };

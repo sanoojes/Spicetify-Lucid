@@ -74,10 +74,10 @@ export const getFormattedStylesAsCSSProperty = (
 		styles["--saturation"] = dynamicStyles.saturation;
 	}
 	if (dynamicStyles.width !== undefined) {
-		styles["--width"] = dynamicStyles.width;
+		styles["--width"] = `${dynamicStyles.width}px`;
 	}
 	if (dynamicStyles.height !== undefined) {
-		styles["--height"] = dynamicStyles.height;
+		styles["--height"] = `${dynamicStyles.height}px`;
 	}
 	if (dynamicStyles.paddingX !== undefined) {
 		styles["--padding-x"] = `${dynamicStyles.paddingX}px`;

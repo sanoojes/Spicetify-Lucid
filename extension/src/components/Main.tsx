@@ -6,7 +6,7 @@ import { ToastContainer } from "@/services/toastService";
 import { manageBackgroundZIndex } from "@/utils/backgroundUtils";
 import { logDebug } from "@/utils/logUtils";
 import { replaceIcons } from "@/utils/replaceIcons";
-import React from "react";
+import React, { useEffect } from "react";
 
 /**
  * Renders Main things for the theme
@@ -14,7 +14,7 @@ import React from "react";
 const Main = () => {
 	logDebug("Render <Main />");
 
-	React.useEffect(() => {
+	useEffect(() => {
 		replaceIcons();
 		manageBackgroundZIndex();
 	}, []);

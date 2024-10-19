@@ -91,6 +91,7 @@ export const useSettingsStore = create(
 						},
 					},
 				})),
+
 			setBorderStyle: (style) =>
 				set((state) => ({
 					interfaceSettings: {
@@ -98,6 +99,17 @@ export const useSettingsStore = create(
 						borderSettings: {
 							...state.interfaceSettings.borderSettings,
 							style,
+						},
+					},
+				})),
+
+			setRoundedBorderRadius: (value) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						borderSettings: {
+							...state.interfaceSettings.borderSettings,
+							roundedRadius: value,
 						},
 					},
 				})),

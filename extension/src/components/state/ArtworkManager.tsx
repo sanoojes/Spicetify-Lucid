@@ -2,7 +2,7 @@ import { useLucidStore } from "@/store/useLucidStore";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import { fetchArtworkURLFromAPI, getNowPlayingArtworkUrl, getSpotifyURI } from "@/utils/artworkUrl";
 import { logDebug, logError, logInfo } from "@/utils/logUtils";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 
 const ArtworkManager = () => {
 	logDebug("Render <ArtworkManager />");
@@ -12,7 +12,7 @@ const ArtworkManager = () => {
 		interfaceSettings: { pagesSettings },
 	} = useSettingsStore();
 
-	const setPageArtwork = React.useCallback(async () => {
+	const setPageArtwork = useCallback(async () => {
 		const pathname = Spicetify.Platform.History.location.pathname;
 		const currentPageURI = getSpotifyURI(pathname);
 
@@ -37,7 +37,7 @@ const ArtworkManager = () => {
 		}
 	}, [artworkData.currentPageURI, rootStyle, updateArtworkData]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (artworkData.currentPageArtURL) {
 			rootStyle.setProperty("--playlist-art-image", `url(${artworkData.currentPageArtURL})`);
 			logInfo(`Updated Playlist Artwork URL to ${artworkData.currentPageArtURL}`);
@@ -63,14 +63,14 @@ const ArtworkManager = () => {
 		setPageArtwork,
 	]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (artworkData.nowPlayingArtURL) {
 			rootStyle.setProperty("--now-playing-art-image", `url("${artworkData.nowPlayingArtURL}")`);
 			logInfo(`Updated Now Playing Art View: ${artworkData.nowPlayingArtURL}`);
 		}
 	}, [artworkData.nowPlayingArtURL, rootStyle]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const handleSongChange = async () => {
 			const nowPlayingArtURL = await getNowPlayingArtworkUrl();
 			updateArtworkData({ nowPlayingArtURL });

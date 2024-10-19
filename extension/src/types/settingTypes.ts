@@ -45,6 +45,8 @@ export type SubSettingsActions = {
 
 	setBorderStyle: (style: BorderStyle) => void;
 
+	setRoundedBorderRadius: (value: number) => void;
+
 	setBorderColor: (color: string) => void;
 
 	updateBackgroundStyle: (mode: keyof BackgroundStyle, key: keyof StyleOptions, value: number | string) => void;

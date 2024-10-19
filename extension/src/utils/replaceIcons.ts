@@ -18,10 +18,11 @@ export const replaceIcons = () => {
 	const skipForwardLabel = Locale.get("playback-control.skip-forward");
 	const skipBackLabel = Locale.get("playback-control.skip-back");
 
-	const friendsActivityLabel = Locale.get("buddy-feed.friend-activity");
 	const tracklistPlayLabel = (Locale.get("tracklist.a11y.play") || "") as string;
 
 	const homeBtnLabelOne = Locale.get("view.web-player-home");
+
+	const upgradeToPremLabel = Locale.get("upgrade.tooltip.title") || "Upgrade to Premium";
 
 	let tracklistPlayLabelOne: string;
 	let tracklistPlayLabelTwo: string;
@@ -47,6 +48,11 @@ export const replaceIcons = () => {
 	}
 
 	ButtonStyles.innerHTML = `
+.Root__globalNav button[aria-label="${upgradeToPremLabel}"],
+.Root__globalNav button[title="${upgradeToPremLabel}"] {
+  display: none !important;
+}
+
 .main-repeatButton-button[aria-checked="false"],
 .player-controls__right button[aria-label*="${enableRepeatLabel}"]  span{
   -webkit-mask-image: var(--repeat-off-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/repeat-off.svg"));
@@ -84,6 +90,11 @@ export const replaceIcons = () => {
 
 .main-repeatButton-button {
   transform: scale(0.65) !important;
+}
+
+.player-controls__right, 
+.player-controls__left {
+    align-items: center;
 }
 
 .player-controls__buttons>button[aria-label*="${playLabel}"] span,
@@ -199,21 +210,6 @@ svg {
   background-color: var(--spice-text);
   -webkit-mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
   mask-image: var(--next-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/next.svg"));
-}
-
-button[aria-label="${friendsActivityLabel}"]>path {
-  display: none;
-}
-
-.main-actionButtons>div>button[aria-label="${friendsActivityLabel}"] svg,
-.main-actionButtons>button[aria-label="${friendsActivityLabel}"] svg {
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: center;
-  mask-position: center;
-  background-color: var(--spice-subtext) !important;
-  -webkit-mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
-  mask-image: var(--people-team-icon, url("https://sanooj.is-a.dev/Spicetify-Lucid/assets/icons/people-team.svg"));
 }
 
 .main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"] svg,

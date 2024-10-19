@@ -2,14 +2,13 @@ import SettingsModal from "@/components/settings/SettingsModal";
 import { useModal } from "@/context/ModalContextProvider";
 import useSettingsAccess from "@/hooks/useSettingsAccess";
 import { logDebug } from "@/utils/logUtils";
-import React from "react";
+import React, { memo } from "react";
 
-const SettingsManager = React.memo(() => {
+const SettingsManager = memo(() => {
 	logDebug("Render <SettingsManager />");
 
-	const { isOpen, openModal } = useModal("settings");
-
-	useSettingsAccess(openModal);
+	const { isOpen } = useModal("settings");
+	useSettingsAccess();
 
 	return <>{isOpen && <SettingsModal />}</>;
 });

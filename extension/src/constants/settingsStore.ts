@@ -27,6 +27,7 @@ export const DEFAULT_BACKGROUND_STYLES: BackgroundStyle = {
 
 export const DEFAULT_PLAYBAR_STYLES: PlaybarStyles = {
 	compact: {
+		height: 64,
 		opacity: 1,
 		saturation: 1.1,
 		contrast: 1.2,
@@ -37,6 +38,7 @@ export const DEFAULT_PLAYBAR_STYLES: PlaybarStyles = {
 		backgroundColor: "rgba(var(--spice-rgb-card), 0.5)",
 	},
 	default: {
+		height: 80,
 		opacity: 1,
 		paddingX: 6,
 		saturation: 1.1,
@@ -75,6 +77,7 @@ export const DEFAULT_APP_SETTINGS: ThemeSettings = {
 			color: "rgba(var(--spice-rgb-text), 0.125)",
 			style: "solid",
 			thickness: 1,
+			roundedRadius: 12,
 		},
 	},
 	colorSettings: {

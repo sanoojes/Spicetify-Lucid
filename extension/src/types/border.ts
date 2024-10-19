@@ -10,8 +10,11 @@ export type BorderStyle =
 	| "inset"
 	| "outset";
 
+export type BorderRadius = "card" | "rounded";
+
 export type BorderSettings = {
 	color: string;
 	style: BorderStyle;
 	thickness: number;
+	roundedRadius: number;
 };

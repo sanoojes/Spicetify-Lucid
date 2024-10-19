@@ -25,6 +25,7 @@ export const PLAYLIST_BACKGROUND_MODE_OPTIONS: DropdownOption[] = [
 
 export const PLAYLIST_VIEW_MODE_OPTIONS: DropdownOption[] = [
 	{ label: "Card", value: "card" },
+	{ label: "Compact Card", value: "compact-card" },
 	{ label: "Compact", value: "compact" },
 	{ label: "Default", value: "default" },
 ];
@@ -40,6 +41,12 @@ export const BORDER_STYLE_OPTIONS: DropdownOption[] = [
 	{ label: "Ridge", value: "ridge" },
 	{ label: "Inset", value: "inset" },
 	{ label: "Outset", value: "outset" },
+];
+
+export const BORDER_RADIUS_OPTIONS: DropdownOption[] = [
+	// { label: "Custom", value: "custom" }, // TODO
+	{ label: "Card", value: "Card" },
+	{ label: "Rounded", value: "rounded" },
 ];
 
 export const SETTINGS_ACCESS_MODE_OPTIONS: DropdownOption[] = [
