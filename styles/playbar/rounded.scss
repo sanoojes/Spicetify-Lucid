@@ -1,0 +1,11 @@
+.playbar-rounded {
+  .Root__now-playing-bar {
+    [data-testid="cover-art-button"],
+    .cover-art-image,
+    .cover-art,
+    .main-nowPlayingWidget-coverArt {
+      border-radius: $border-radius-full;
+      overflow: hidden;
+    }
+  }
+}

@@ -48,6 +48,17 @@ export const DEFAULT_PLAYBAR_STYLES: PlaybarStyles = {
 		backdropBlur: 32,
 		backgroundColor: "rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)",
 	},
+	rounded: {
+		height: 80,
+		opacity: 1,
+		paddingX: 20,
+		saturation: 1.1,
+		contrast: 1.2,
+		borderRadius: 999,
+		brightness: 0.8,
+		backdropBlur: 32,
+		backgroundColor: "rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)",
+	},
 };
 
 export const DEFAULT_APP_SETTINGS: ThemeSettings = {

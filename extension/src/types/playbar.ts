@@ -1,6 +1,6 @@
 import type { StyleOptions } from "@/types/styles";
 
-export type PlaybarMode = "compact" | "default";
+export type PlaybarMode = "compact" | "default" | "rounded";
 
 export type PlaybarStyles = {
 	[key in PlaybarMode]: StyleOptions;

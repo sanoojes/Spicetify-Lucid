@@ -90,7 +90,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: $padding-sm $padding-md;
+          padding: $padding-sm $padding-md $padding-sm $padding-lg;
 
           &:has(.switch) {
             padding: $padding-md;
@@ -310,6 +310,7 @@
   .dropdown-item {
     position: relative;
     width: 100%;
+    text-align: center;
     background: rgba(var(--spice-rgb-card), 0.75);
     padding: $padding-sm $padding-md;
     text-decoration: none;
