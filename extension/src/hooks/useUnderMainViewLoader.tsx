@@ -1,10 +1,10 @@
 import PlaylistViewManager from "@/components/state/PlaylistViewManager";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 export const useUnderMainViewLoader = () => {
-	const underMainViewRef = React.useRef<HTMLElement | null>(null);
+	const underMainViewRef = useRef<HTMLElement | null>(null);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const setUnderMainView = () => {
 			if (document.getElementById("lucid-under-main-view")) {
 				return;

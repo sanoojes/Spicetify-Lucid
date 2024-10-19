@@ -14,7 +14,7 @@ import React from "react";
 /**
  * Manages state for the whole theme
  */
-const MainStateManager = React.memo(() => {
+const MainStateManager = () => {
 	logDebug("Render <MainStateManager />");
 
 	return (
@@ -31,6 +31,6 @@ const MainStateManager = React.memo(() => {
 			<WindowControlsManager />
 		</>
 	);
-});
+};
 
 export default MainStateManager;

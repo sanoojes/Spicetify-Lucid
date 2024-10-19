@@ -1,5 +1,5 @@
 import Section from "@/components/settings/ui/SettingSection";
-import { BACKGROUND_MODE_OPTIONS, PLAYBAR_MODE_OPTIONS } from "@/constants/dropdown";
+import { PLAYBAR_MODE_OPTIONS } from "@/constants/dropdown";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import type { PlaybarMode } from "@/types/playbar";
 import type { SettingCardMap } from "@/types/settingTypes";

@@ -39,7 +39,7 @@ function manageBackgroundZIndexForElement(
 					"#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container",
 				) as HTMLElement | null;
 				if (lyricsCinemaElement) {
-					applyBackgroundStyles(backgroundStyleElement, 6);
+					applyBackgroundStyles(backgroundStyleElement, 5);
 				} else {
 					setDefaultBackgroundZIndex(backgroundStyleElement);
 				}
@@ -70,7 +70,7 @@ export const manageBackgroundZIndex = () => {
 			lyricsCinemaElement,
 			"#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container",
 			backgroundStyleElement,
-			6,
+			5,
 		);
 	}
 

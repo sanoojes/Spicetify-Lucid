@@ -1,10 +1,10 @@
 import ArrowDown from "@/components/svg/ArrowDown";
 import type { DropdownSetting } from "@/types/dropdown";
-import React, { useEffect, useRef, type FC } from "react";
+import React, { useEffect, useRef, useState, type FC } from "react";
 
 const Dropdown: FC<DropdownSetting> = ({ options, selectedValue, onChange, placeholder, disabled }) => {
 	const dropdownRef = useRef<HTMLDivElement>(null);
-	const [isOpen, setIsOpen] = React.useState<boolean>(false);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const handleToggle = () => {
 		setIsOpen((prev) => !prev);
@@ -34,7 +34,7 @@ const Dropdown: FC<DropdownSetting> = ({ options, selectedValue, onChange, place
 					onClick={handleToggle}
 					aria-label="Toggle dropdown menu"
 					type="button">
-					{placeholder || selectedValue || "Dropdown"}
+					<p className="encore-text">{placeholder || selectedValue || "Dropdown"}</p>
 					<span className="dropdown-arrow">
 						<ArrowDown />
 					</span>
@@ -48,7 +48,7 @@ const Dropdown: FC<DropdownSetting> = ({ options, selectedValue, onChange, place
 									onClick={() => !option.disabled && handleSelect(option.value)}
 									onKeyDown={(e) => !option.disabled && e.key === "Enter" && handleSelect(option.value)}
 									style={{ opacity: `${disabled ? 0.75 : 1}` }}>
-									{option.label}
+									<p className="encore-text">{option.label}</p>
 								</li>
 							))
 						: null}

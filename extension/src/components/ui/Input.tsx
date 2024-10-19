@@ -28,7 +28,7 @@ const Input = forwardRef<HTMLInputElement, InputSetting>(
 					<input
 						aria-label={label}
 						type={type}
-						className="input"
+						className="input encore-text"
 						value={inputValue ?? ""}
 						onChange={handleChange}
 						placeholder={placeholder}

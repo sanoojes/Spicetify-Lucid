@@ -1,5 +1,5 @@
+import Tooltip from "@/components/settings/ui/Tooltip";
 import React, { type FC, type ReactNode } from "react";
-import Tooltip from "./Tooltip";
 
 type TitleContainerProps = {
 	title: string;
@@ -11,7 +11,7 @@ const TitleContainer: FC<TitleContainerProps> = ({ title, tooltip, selectedValue
 	return (
 		<div className="title-container">
 			<div className="title-wrapper">
-				{title && <h5 className="title">{title}</h5>}
+				{title && <h5 className="encore-text encore-text-body-medium-bold">{title}</h5>}
 				{tooltip && <Tooltip>{tooltip}</Tooltip>}
 			</div>
 			{selectedValue && <p className="selected-value">Selected: {selectedValue}</p>}

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 
-export const useLocalStorage = <T>(key: string, initialValue: T): [T, React.Dispatch<React.SetStateAction<T>>] => {
-	const [storedValue, setStoredValue] = React.useState<T>(() => {
+export const useLocalStorage = <T>(key: string, initialValue: T): [T, Dispatch<SetStateAction<T>>] => {
+	const [storedValue, setStoredValue] = useState<T>(() => {
 		if (typeof window !== "undefined") {
 			const item = window.localStorage.getItem(key);
 			return item ? (JSON.parse(item) as T) : initialValue;
@@ -9,7 +9,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T): [T, React.Disp
 		return initialValue;
 	});
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (typeof window !== "undefined") {
 			window.localStorage.setItem(key, JSON.stringify(storedValue));
 		}

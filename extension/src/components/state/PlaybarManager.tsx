@@ -1,8 +1,38 @@
-import usePlaybarManager from "@/hooks/usePlaybarManager";
-import React from "react";
+import { useBodyClass } from "@/hooks/useBodyClass";
+import { useLucidStore } from "@/store/useLucidStore";
+import { useSettingsStore } from "@/store/useSettingsStore";
+import { logError } from "@/utils/logUtils";
+import { getFormattedStylesAsCSSProperty } from "@/utils/styleUtils";
+import React, { useEffect, useRef } from "react";
+
+const PLAYBAR_CLASS_NAME = ".Root__now-playing-bar";
 
 const PlaybarManager = () => {
-	usePlaybarManager();
+	const { playbarSettings } = useSettingsStore();
+	const { rootStyle } = useLucidStore();
+	const playbarRef = useRef<HTMLElement>(document.querySelector(PLAYBAR_CLASS_NAME));
+
+	const mainRef = useRef(document.querySelector(".Root__main-view"));
+	useEffect(() => {
+		rootStyle.setProperty("--main-view-height", `${mainRef.current?.clientHeight}px`);
+	}, [rootStyle]);
+
+	useBodyClass(`playbar-${playbarSettings.mode}`);
+
+	useEffect(() => {
+		if (!playbarRef.current) {
+			logError(`Playbar element with class '${PLAYBAR_CLASS_NAME}' not found!`);
+			return;
+		}
+
+		const { mode, styles } = playbarSettings;
+		const dynamicStyle = getFormattedStylesAsCSSProperty(styles[mode], true);
+		const height = mode === "compact" ? styles[mode].height : playbarRef.current?.clientHeight || styles[mode]?.height;
+
+		rootStyle.setProperty("--playbar-height", `${height}px`);
+
+		playbarRef.current.style.cssText = dynamicStyle.toString();
+	}, [playbarSettings, rootStyle]);
 
 	return null;
 };

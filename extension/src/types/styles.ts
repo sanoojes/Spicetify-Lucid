@@ -1,11 +1,13 @@
+import type { CSSProperties } from "react";
+
 // Style Settings
 export type FCStyleOptions = { style: StyleOptions };
 
 export type StyleOptions = {
 	blur?: number;
 	time?: number; // Time in seconds
-	width?: string;
-	height?: string;
+	width?: number;
+	height?: number;
 	opacity?: number;
 	contrast?: number;
 	paddingX?: number;
@@ -17,7 +19,7 @@ export type StyleOptions = {
 	backgroundColor?: string; // Hex color code
 };
 
-export type CustomCSSProperties = React.CSSProperties & {
+export type CustomCSSProperties = CSSProperties & {
 	"--width"?: string;
 	"--height"?: string;
 	"--opacity"?: number;

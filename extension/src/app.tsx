@@ -1,6 +1,6 @@
 import Main from "@/components/Main";
+import { logError } from "@/utils/logUtils";
 import React from "react";
-import { logError } from "./utils/logUtils";
 
 async function main() {
 	try {

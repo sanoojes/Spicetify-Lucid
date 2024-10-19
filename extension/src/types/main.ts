@@ -1,6 +1,15 @@
 export type SettingsPositions = "nav" | "context-menu";
 
-export type PageCategoryType = "artist" | "playlist" | "album" | "profile" | "show" | "genre" | "concert" | "other";
+export type PageCategoryType =
+	| "artist"
+	| "playlist"
+	| "album"
+	| "profile"
+	| "show"
+	| "genre"
+	| "concert"
+	| "other"
+	| "search";
 
 // Lucid Store Types
 export type LucidStoreValues = {

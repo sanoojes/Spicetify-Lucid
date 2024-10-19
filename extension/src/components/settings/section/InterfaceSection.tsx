@@ -7,7 +7,7 @@ import {
 	SETTINGS_ACCESS_MODE_OPTIONS,
 } from "@/constants/dropdown";
 import { useSettingsStore } from "@/store/useSettingsStore";
-import type { BorderStyle } from "@/types/border";
+import type { BorderRadius, BorderStyle } from "@/types/border";
 import type { FontTypes } from "@/types/font";
 import type { GrainEffect } from "@/types/grains";
 import type { SettingsPositions } from "@/types/main";
@@ -25,7 +25,12 @@ const InterfaceSection = () => {
 			},
 			grainSettings: { grainEffect },
 			pagesSettings: { isScrollMode, backgroundImageMode, playlistViewMode },
-			borderSettings: { color: borderColor, style: borderStyle, thickness: borderThickness },
+			borderSettings: {
+				color: borderColor,
+				style: borderStyle,
+				thickness: borderThickness,
+				roundedRadius: borderRoundedRadius,
+			},
 		},
 		setFont,
 		setGrainEffect,
@@ -36,6 +41,7 @@ const InterfaceSection = () => {
 		setBorderStyle,
 		setBorderThickness,
 		settingAccessPosition,
+		setRoundedBorderRadius,
 		setSettingAccessPosition,
 	} = useSettingsStore();
 
@@ -179,6 +185,24 @@ const InterfaceSection = () => {
 						step: 1,
 						min: 0,
 						max: 16,
+					},
+				},
+			},
+		},
+		{
+			id: "borderSettings",
+			conditionalRender: true,
+			sectionName: "Border Settings",
+			cardProps: {
+				title: "Rounded Border Radius",
+				tooltip: "",
+				type: "input",
+				settings: {
+					type: "number",
+					label: "Rounded Border Radius",
+					defaultValue: borderRoundedRadius,
+					onChange: (value: string) => {
+						setRoundedBorderRadius(Number(value));
 					},
 				},
 			},

@@ -2,7 +2,7 @@ import { useSettingsStore } from "@/store/useSettingsStore";
 import type { FontTypes } from "@/types/font";
 import { loadFontFromUrl } from "@/utils/fontUtils";
 import { logDebug } from "@/utils/logUtils";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 
 const FontStateManager = () => {
 	logDebug("Render <FontManager />");
@@ -11,11 +11,11 @@ const FontStateManager = () => {
 		interfaceSettings: { fontSettings },
 	} = useSettingsStore();
 
-	const updateCssVariable = React.useCallback((fontType: string, fontFamily: string) => {
+	const updateCssVariable = useCallback((fontType: string, fontFamily: string) => {
 		document.documentElement.style.setProperty(`--${fontType}-font-to-use`, fontFamily);
 	}, []);
 
-	const handleFontChange = React.useCallback(
+	const handleFontChange = useCallback(
 		async (fontType: FontTypes) => {
 			const { fontFamily, url } = fontSettings[fontType];
 
@@ -30,7 +30,7 @@ const FontStateManager = () => {
 		[fontSettings, updateCssVariable],
 	);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		logDebug("useFontManager effect ran.");
 		Object.keys(fontSettings).map((fontType) => handleFontChange(fontType as FontTypes));
 	}, [fontSettings, handleFontChange]);

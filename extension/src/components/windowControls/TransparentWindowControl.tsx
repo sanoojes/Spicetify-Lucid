@@ -2,14 +2,14 @@ import { isCustomControls, isLightModeEnabled, isSpotifyV16Above, isWindowsPlatf
 import { useLucidStore } from "@/store/useLucidStore";
 import { setWindowControlsHeight } from "@/utils/windowControlUtils";
 import { calculateBrowserZoom, calculateInverseBrowserZoom, calculateScaledPx } from "@/utils/zoomUtils";
-import React from "react";
+import React, { memo, useEffect, useRef, useState, type CSSProperties } from "react";
 
-const TransparentWindowControl = React.memo(() => {
-	const TransparentWindowControlRef = React.useRef<HTMLDivElement | null>(null);
-
+const TransparentWindowControl = memo(() => {
+	const TransparentWindowControlRef = useRef<HTMLDivElement | null>(null);
 	const { rootStyle } = useLucidStore();
+	const [style, setStyle] = useState<CSSProperties>({});
 
-	React.useEffect(() => {
+	useEffect(() => {
 		async function setTopBarStyles() {
 			if (!isCustomControls && isWindowsPlatform) {
 				const baseHeight = isSpotifyV16Above ? 32 : 64;
@@ -36,15 +36,18 @@ const TransparentWindowControl = React.memo(() => {
 					const controlHeight = isSpotifyV16Above ? calculateScaledPx(baseHeight, inverseZoom, 1) : baseHeight;
 					const controlWidth = calculateScaledPx(baseWidth, inverseZoom, 1);
 
-					if (TransparentWindowControlRef.current) {
-						TransparentWindowControlRef.current.style.setProperty(
-							"--transperent-controls-top-offset",
-							`${isSpotifyV16Above ? finalControlHeight / 4 : 0}px`,
-						);
+					const newStyle: CSSProperties = {
+						position: "fixed",
+						height: `${controlHeight}px`,
+						width: `${controlWidth}px`,
+						top: `${isSpotifyV16Above ? finalControlHeight / 4 : 0}px`,
+						right: 0,
+						WebkitBackdropFilter: "brightness(2.12)",
+						backdropFilter: "brightness(2.12)",
+						zIndex: "var(--above-main-and-now-playing-view-grid-area, 6)",
+					};
 
-						TransparentWindowControlRef.current.style.height = `${controlHeight}px`;
-						TransparentWindowControlRef.current.style.width = `${controlWidth}px`;
-					}
+					setStyle(newStyle);
 				}
 			}
 		}
@@ -57,7 +60,7 @@ const TransparentWindowControl = React.memo(() => {
 		};
 	}, [rootStyle]);
 
-	return <div ref={TransparentWindowControlRef} className="lucid-transperent-window-controls" />;
+	return <div ref={TransparentWindowControlRef} style={style} />;
 });
 
 export default TransparentWindowControl;
