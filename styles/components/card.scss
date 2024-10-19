@@ -1,0 +1,33 @@
+$card-bg: rgba(0, 0, 0, 0);
+$hover-bg: rgba(150, 150, 150, 0.1);
+$active-bg: rgba(255, 255, 255, 0.08);
+
+.shelf-card {
+  background: $card-bg;
+  @extend .default-border-with-radius;
+
+  &:hover,
+  &:hover::after {
+    background: $hover-bg;
+    inset: 0px;
+  }
+
+  &:active,
+  &:active::after {
+    background: $active-bg;
+    inset: 0px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: var(--encore-corner-radius-larger, 6px);
+    transition: background-color var(--animation-speed) var(--animation-ease),
+      top var(--animation-speed) var(--animation-ease),
+      left var(--animation-speed) var(--animation-ease),
+      right var(--animation-speed) var(--animation-ease),
+      bottom var(--animation-speed) var(--animation-ease);
+    inset: 12px;
+    z-index: -1;
+  }
+}

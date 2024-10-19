@@ -1,0 +1,40 @@
+.Root__right-sidebar {
+  @extend .border-box-shadow-with-radius;
+  background: $right-sidebar-bg;
+
+  .hpzTKCoO0rllEslIOMPo,
+  div[data-overlayscrollbars-initialize],
+  div[data-overlayscrollbars="host"] {
+    padding-bottom: $root-padding-bottom;
+  }
+
+  .IkRGajTjItEFQkRMeH6v,
+  .f2UE9n5nZcbgZrGYTU3r,
+  .NowPlayingView {
+    background: none;
+  }
+
+  .main-nowPlayingView-nowPlayingWidget {
+    .main-nowPlayingView-contextItemInfo:before {
+      background: none;
+    }
+  }
+
+  .main-nowPlayingView-section {
+    background-color: rgba(var(--spice-rgb-selected-row), 0.05);
+    border-radius: $border-radius-lg;
+    @extend .border-box-shadow;
+
+    .main-nowPlayingView-aboutArtistV2Button {
+      background: none;
+      .main-nowPlayingView-aboutArtistV2Bio {
+        text-wrap: balance;
+      }
+    }
+  }
+
+  .mdMUqcSHFw1lZIcYEblu {
+    @extend .box-shadow-to-bottom;
+    z-index: 1;
+  }
+}

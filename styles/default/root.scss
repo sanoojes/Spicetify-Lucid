@@ -1,0 +1,143 @@
+:root {
+  // Button Border radius override
+  --encore-button-corner-radius: var(--button-border-radius, 0.5rem);
+
+  // Color overrides
+  --spice-player: rgba(var(--spice-rgb-card), 0.5);
+}
+
+/* Scroll Node */
+.main-view-container__scroll-node-child-spacer {
+  height: 0px;
+}
+
+div[data-testid="hpto-parent-container"] {
+  padding: 0 !important;
+}
+
+// Scrollbar styles
+.os-scrollbar {
+  --os-size: 6px !important;
+  --os-padding-perpendicular: 0;
+  --os-padding-axis: 0;
+  --os-track-border-radius: 10px;
+  --os-track-bg: transparent;
+  --os-track-bg-hover: transparent;
+  --os-track-bg-active: transparent;
+  --os-track-border: none;
+  --os-track-border-hover: none;
+  --os-track-border-active: none;
+  --os-handle-border-radius: 10px;
+  --os-handle-bg: rgba(100, 100, 100, 0.6);
+  --os-handle-bg-hover: rgba(80, 80, 80, 1);
+  --os-handle-bg-active: rgba(60, 60, 60, 1);
+  --os-handle-border: none;
+  --os-handle-border-hover: none;
+  --os-handle-border-active: none;
+  --os-handle-min-size: 33px;
+  --os-handle-max-size: none;
+  --os-handle-perpendicular-size: 100%;
+  --os-handle-perpendicular-size-hover: 100%;
+  --os-handle-perpendicular-size-active: 100%;
+  --os-handle-interactive-area-offset: 0;
+}
+
+// Notification
+.notistack-SnackbarContainer {
+  bottom: calc(var(--playbar-height, 80px) + var(--panel-gap, 0.5rem));
+}
+
+// Filter Chips
+.search-searchCategory-contentArea {
+  .search-searchCategory-categoryGrid {
+    button[data-encore-id="chip"],
+    .ChipInnerComponent-sm-isUsingKeyboard,
+    .ChipInnerComponent-sm-selected-isUsingKeyboard,
+    .ChipInnerComponent-sm,
+    .ChipInnerComponent-sm-selected {
+      border-radius: $border-radius-md;
+    }
+  }
+}
+
+// margin top overrides
+.N_8iI7NKHP0iG2jp3g0R,
+.Liif5fNYkY903HPAQd1N,
+.D6IunHuzuULf_Sr88GOA,
+.y9Olwg6ho6E95Rud3iLs,
+.KY_tGmIGPqs9GPaaPqL1,
+.J6PX6RfvHlA4BPp7_8sJ,
+.playlist-playlist-playlist,
+section[data-testid*="album"],
+section[data-testid*="playlist"],
+.bOAvdKi0zqyA_S6ThcvF,
+.m2grVeuHNwfGLVpaSBle,
+.bOAvdKi0zqyA_S6ThcvF,
+.m2grVeuHNwfGLVpaSBle,
+.wmGcau34_eXQOX37kUTc,
+section[data-testid*="album"],
+section[data-testid*="playlist"] {
+  margin-top: 0;
+}
+
+.pQmF4tvRpUeLWgPKUcW7,
+.main-userWidget-box,
+.main-avatar-avatar {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.main-avatar-avatar,
+.main-userWidget-box,
+.main-avatar-image,
+.main-entityHeader-circle,
+.QeUrkqvHAbXSveKN2wCu,
+.MxmW8QkHqHWtuhO589PV,
+.x-entityImage-circle,
+.x-filterBox-expandButton,
+.x-filterBox-expandButton:focus,
+.x-filterBox-expandButton:hover {
+  border-radius: $border-radius-avatar;
+}
+
+// Windows Specific Styles
+.spotify__container--is-desktop.spotify__os--is-windows {
+  .control-nav .main-topBar-container,
+  .global-nav .Root__globalNav {
+    padding-inline: var(--top-bar-padding-start, 64px)
+      var(--top-bar-padding-end, 143px);
+  }
+}
+
+// MacOS Specific Styles
+.spotify__container--is-desktop.spotify__os--is-macos {
+  .control-nav .main-topBar-container {
+    -webkit-padding-start: 80px !important;
+    padding-inline-start: 80px !important;
+  }
+}
+
+.Root__top-container {
+  background: none;
+}
+
+.artist-artistOnTour-date.artist-artistOnTour-elevated {
+  background-color: rgba(var(--spice-rgb-card), 0.5);
+}
+
+// Device Picker menu
+.ffFwfKcPDbmAPLXzxzKq {
+  background: none !important;
+}
+
+// styles specific to lyrics plus
+.lyrics-lyricsContainer-LyricsContainer {
+  --lyrics-color-background: transparent !important;
+
+  .lyrics-config-button-container {
+    bottom: $root-padding-bottom;
+  }
+}
+
+.os-scrollbar-track {
+  padding-bottom: calc($root-padding-bottom + 8px) !important;
+}

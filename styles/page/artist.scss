@@ -1,0 +1,10 @@
+.artist {
+  .main-trackList-trackList {
+    @extend .border-box-shadow-with-radius;
+    padding: $padding-sm;
+  }
+
+  .main-trackList-rowTitle {
+    font-weight: 600;
+  }
+}

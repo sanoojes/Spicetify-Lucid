@@ -1,0 +1,92 @@
+$under-main-view-max-blur: 1.5rem;
+$under-main-view-max-scale: 1.5;
+
+.playlist-art-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 55vh;
+  width: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: var(--artwork-opacity, 1);
+  transition: opacity 0.3s ease;
+
+  .background {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-animation: background-animation 1s linear;
+    animation: background-animation 1s linear;
+    -webkit-animation-delay: calc(var(--scroll) * -1s);
+    animation-delay: calc(var(--scroll) * -1s);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+    opacity: 1;
+    -webkit-filter: blur(var(--blur, 0px));
+    filter: blur(var(--blur, 0px));
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  &.none .background {
+    background-image: none;
+  }
+}
+
+// other page
+.other {
+  .playlist-art-container {
+    .background {
+      background-image: none;
+    }
+  }
+}
+
+@-webkit-keyframes background-animation {
+  80% {
+    -webkit-transform: scale($under-main-view-max-scale);
+    -webkit-filter: blur($under-main-view-max-blur);
+    transform: scale($under-main-view-max-scale);
+    filter: blur($under-main-view-max-blur);
+  }
+
+  to {
+    -webkit-transform: scale($under-main-view-max-scale);
+    -webkit-filter: blur($under-main-view-max-blur) brightness(0.4);
+    transform: scale($under-main-view-max-scale);
+    filter: blur($under-main-view-max-blur) brightness(0.4);
+  }
+}
+
+@keyframes background-animation {
+  80% {
+    -webkit-transform: scale($under-main-view-max-scale);
+    -webkit-filter: blur($under-main-view-max-blur) brightness(0.4);
+    transform: scale($under-main-view-max-scale);
+    filter: blur($under-main-view-max-blur) brightness(0.4);
+  }
+
+  to {
+    -webkit-transform: scale($under-main-view-max-scale);
+    -webkit-filter: blur($under-main-view-max-blur) brightness(0.4);
+    transform: scale($under-main-view-max-scale);
+    filter: blur($under-main-view-max-blur) brightness(0.4);
+  }
+}

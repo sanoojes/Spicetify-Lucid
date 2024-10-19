@@ -1,0 +1,85 @@
+.main-trackList-trackListRow.main-trackList-active .main-trackList-rowTitle,
+.main-trackList-trackListRow.main-trackList-active .main-trackList-rowMarker {
+  text-shadow: 0px 0px 6px var(--spice-accent);
+}
+
+.artist-artistDiscography-topBar.artist-artistDiscography-topBarScrolled {
+  @extend .header-backdrop-blur;
+}
+.artist-artistDiscography-topBar.artist-artistDiscography-topBarScrolled,
+.artist-artistDiscography-headerContainer {
+  background: transparent !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.under-main-view-present {
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage {
+    height: $under-main-view-height;
+    border-bottom: $default-border;
+  }
+
+  .Root__main-view {
+    .main-view-container {
+      #lucid-under-main-view {
+        .playlist-art-container {
+          height: var(--main-view-height, 800px);
+          mask: none;
+
+          .overlay {
+            background: -webkit-gradient(
+                linear,
+                left top,
+                left bottom,
+                from(transparent),
+                to(rgba(var(--spice-rgb-shadow), 0.75))
+              ),
+              var(--background-noise);
+            background: linear-gradient(
+                transparent 40%,
+                rgba(var(--spice-rgb-shadow), 1) 100%
+              ),
+              var(--background-noise);
+          }
+        }
+      }
+    }
+  }
+}
+
+.main-gridContainer-gridContainer {
+  max-width: 100%;
+}
+
+// marketplace page
+.marketplace-header {
+  @extend .header-backdrop-blur;
+  margin: 0 calc(var(--content-spacing) * -1 - -2px) 0
+    calc(var(--content-spacing) * -1 - -2px);
+  padding: $padding-sm calc(var(--content-spacing) * 2);
+  background: none !important;
+  background-color: transparent !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.global-nav {
+  .marketplace-footer,
+  .marketplace-card-type-heading {
+    margin-top: 5rem;
+  }
+}
+
+// styles for libX
+.Root__globalNav.global-libraryX {
+  background-color: rgba(var(--spice-rgb-main), 0.5);
+
+  .global-nav-button,
+  .Dp3xccI7c2f_JSJ8OHYu,
+  .global-nav-icon,
+  .main-globalNav-link-icon {
+    border: none;
+    box-shadow: none;
+    background: none;
+  }
+}
