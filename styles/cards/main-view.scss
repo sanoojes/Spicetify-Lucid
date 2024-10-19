@@ -76,12 +76,12 @@
   // Filter Chips Container
   .main-home-filterChipsContainer {
     .main-home-filterChipsSection {
-      background-color: transparent !important;
+      background-color: rgba(var(--spice-rgb-card), 0.5) !important;
       @extend .header-backdrop-blur;
       border-bottom: $default-border;
 
       &:after {
-        background-color: rgba(var(--spice-rgb-shadow), 0.4);
+        background-color: rgba(var(--spice-rgb-shadow), 0.25);
       }
     }
   }

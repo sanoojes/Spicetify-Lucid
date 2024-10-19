@@ -1,11 +1,44 @@
+// Common styles
+
+.album,
+.playlist,
+.artist,
+.profile {
+  .main-trackList-trackListHeader {
+    margin-bottom: 0;
+
+    &.main-trackList-trackListHeaderStuck {
+      background-color: $top-bar-bg-color;
+      -webkit-backdrop-filter: blur($top-bar-backdrop-blur);
+      backdrop-filter: blur($top-bar-backdrop-blur);
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .main-trackList-trackList {
+    @extend .default-border-with-radius;
+    .main-trackList-trackListRow {
+      padding-left: 1.5rem;
+
+      .main-trackList-number {
+        right: 0;
+      }
+    }
+  }
+}
+
 .main-trackList-trackListRow.main-trackList-active .main-trackList-rowTitle,
 .main-trackList-trackListRow.main-trackList-active .main-trackList-rowMarker {
   text-shadow: 0px 0px 6px var(--spice-accent);
 }
 
-.artist-artistDiscography-topBar.artist-artistDiscography-topBarScrolled {
-  @extend .header-backdrop-blur;
+.artist-artistDiscography-topBar {
+  &.artist-artistDiscography-topBarScrolled {
+    @extend .header-backdrop-blur;
+  }
 }
+
 .artist-artistDiscography-topBar.artist-artistDiscography-topBarScrolled,
 .artist-artistDiscography-headerContainer {
   background: transparent !important;

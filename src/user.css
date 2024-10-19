@@ -231,7 +231,10 @@ section[data-testid*="playlist"] {
 #lucid-main .input,
 #lucid-main .card .button,
 .Root__main-view .main-gridContainer-gridContainer .Vn9yz8P5MjIvDT8c0U6w,
-.playlist-playlist-playlist .main-trackList-trackList,
+.album .main-trackList-trackList,
+.playlist .main-trackList-trackList,
+.artist .main-trackList-trackList,
+.profile .main-trackList-trackList,
 .shelf-card,
 .Root__main-view .main-view-container .main-shelf-shelfGrid .main-card-cardContainer {
 	border: var(--border-thickness) var(--border-style, solid) var(--border-color, rgba(var(--spice-rgb-text), 0.125));
@@ -497,12 +500,12 @@ section[data-testid*="playlist"] {
 	background-position: center center;
 }
 .Root__main-view .main-home-filterChipsContainer .main-home-filterChipsSection {
-	background-color: rgba(0, 0, 0, 0) !important;
+	background-color: rgba(var(--spice-rgb-card), 0.5) !important;
 	border-bottom: var(--border-thickness) var(--border-style, solid)
 		var(--border-color, rgba(var(--spice-rgb-text), 0.125));
 }
 .Root__main-view .main-home-filterChipsContainer .main-home-filterChipsSection:after {
-	background-color: rgba(var(--spice-rgb-shadow), 0.4);
+	background-color: rgba(var(--spice-rgb-shadow), 0.25);
 }
 .Root__main-view .main-topBar-container {
 	background: none;
@@ -718,6 +721,34 @@ section[data-testid*="playlist"] {
 	--background-highlight: rgba(var(--spice-rgb-selected-row), 0.125);
 	--background-elevated-highlight: rgba(var(--spice-rgb-sidebar), 0.25);
 }
+.album .main-trackList-trackListHeader,
+.playlist .main-trackList-trackListHeader,
+.artist .main-trackList-trackListHeader,
+.profile .main-trackList-trackListHeader {
+	margin-bottom: 0;
+}
+.album .main-trackList-trackListHeader.main-trackList-trackListHeaderStuck,
+.playlist .main-trackList-trackListHeader.main-trackList-trackListHeaderStuck,
+.artist .main-trackList-trackListHeader.main-trackList-trackListHeaderStuck,
+.profile .main-trackList-trackListHeader.main-trackList-trackListHeaderStuck {
+	background-color: rgba(var(--spice-rgb-main), 0.25);
+	-webkit-backdrop-filter: blur(1rem);
+	backdrop-filter: blur(1rem);
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.album .main-trackList-trackList .main-trackList-trackListRow,
+.playlist .main-trackList-trackList .main-trackList-trackListRow,
+.artist .main-trackList-trackList .main-trackList-trackListRow,
+.profile .main-trackList-trackList .main-trackList-trackListRow {
+	padding-left: 1.5rem;
+}
+.album .main-trackList-trackList .main-trackList-trackListRow .main-trackList-number,
+.playlist .main-trackList-trackList .main-trackList-trackListRow .main-trackList-number,
+.artist .main-trackList-trackList .main-trackList-trackListRow .main-trackList-number,
+.profile .main-trackList-trackList .main-trackList-trackListRow .main-trackList-number {
+	right: 0;
+}
 .main-trackList-trackListRow.main-trackList-active .main-trackList-rowTitle,
 .main-trackList-trackListRow.main-trackList-active .main-trackList-rowMarker {
 	text-shadow: 0px 0px 6px var(--spice-accent);
@@ -775,22 +806,6 @@ section[data-testid*="playlist"] {
 }
 .playlist-playlist-playlist .playlist-playlist-playlistContent {
 	background: none;
-}
-.playlist-playlist-playlist .main-trackList-trackListHeader {
-	margin-bottom: 0;
-}
-.playlist-playlist-playlist .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader {
-	background-color: rgba(var(--spice-rgb-main), 0.25);
-	-webkit-backdrop-filter: blur(1rem);
-	backdrop-filter: blur(1rem);
-	-webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}
-.playlist-playlist-playlist .main-trackList-trackList .main-trackList-trackListRow {
-	padding-left: 1.5rem;
-}
-.playlist-playlist-playlist .main-trackList-trackList .main-trackList-trackListRow .main-trackList-number {
-	right: 0;
 }
 .playlist-view-compact-card .main-entityHeader-container.main-entityHeader-nonWrapped,
 .playlist-view-card .main-entityHeader-container.main-entityHeader-nonWrapped {
@@ -854,8 +869,8 @@ section[data-testid*="playlist"] {
 }
 .playlist-view-compact-card .main-entityHeader-container.main-entityHeader-nonWrapped .contentSpacing {
 	width: fit-content;
+	max-width: 80%;
 	padding-right: 1.5rem;
-	margin: 0 3rem;
 }
 .artist .main-trackList-trackList {
 	padding: .5rem;
