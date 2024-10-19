@@ -17,7 +17,7 @@
 .main-trackCreditsModal-container,
 .main-embedWidgetGenerator-container {
   @extend .modal-background;
-  @extend .border-box-shadow;
+  @extend .default-border;
   max-height: 85vh;
 }
 

@@ -1,5 +1,5 @@
 .Root__right-sidebar {
-  @extend .border-box-shadow-with-radius;
+  @extend .default-border-with-radius;
   background: $right-sidebar-bg;
 
   .hpzTKCoO0rllEslIOMPo,
@@ -23,7 +23,7 @@
   .main-nowPlayingView-section {
     background-color: rgba(var(--spice-rgb-selected-row), 0.05);
     border-radius: $border-radius-lg;
-    @extend .border-box-shadow;
+    @extend .default-border;
 
     .main-nowPlayingView-aboutArtistV2Button {
       background: none;

@@ -1,7 +1,7 @@
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id {
   background: $left-sidebar-bg;
-  @extend .border-box-shadow-with-radius;
+  @extend .default-border-with-radius;
 
   .main-navBar-mainNav {
     .main-yourLibraryX-libraryItemContainer {
@@ -18,7 +18,7 @@
   .main-rootlist-wrapper {
     .main-yourLibraryX-listItem {
       .BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px {
-        @extend .border-box-shadow-with-radius;
+        @extend .default-border-with-radius;
       }
     }
   }
