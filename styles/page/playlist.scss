@@ -1,0 +1,107 @@
+.playlist-playlist-playlist {
+  .playlist-playlist-playlistContent {
+    background: none;
+  }
+
+  .main-trackList-trackListHeader {
+    margin-bottom: 0;
+  }
+  .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader {
+    background-color: $top-bar-bg-color;
+    -webkit-backdrop-filter: blur($top-bar-backdrop-blur);
+    backdrop-filter: blur($top-bar-backdrop-blur);
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  .main-trackList-trackList {
+    @extend .default-border-with-radius;
+    .main-trackList-trackListRow {
+      padding-left: 1.5rem;
+
+      .main-trackList-number {
+        right: 0;
+      }
+    }
+  }
+}
+
+.playlist-view-compact-card,
+.playlist-view-card {
+  .main-entityHeader-container.main-entityHeader-nonWrapped {
+    max-height: 30vh;
+
+    .contentSpacing {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage,
+  .main-entityHeader-container.main-entityHeader-nonWrapped {
+    border-bottom: $default-border;
+    overflow: hidden;
+
+    .contentSpacing {
+      bottom: var(--panel-gap, 0.5rem);
+      left: 0;
+      right: 0;
+      position: absolute;
+      width: calc(100% - (var(--content-spacing) * 2));
+      height: fit-content;
+      padding: $padding-md;
+      border-radius: $border-radius-md;
+      border: $default-border;
+      background: $card-bg-color;
+      -webkit-backdrop-filter: blur($card-backdrop-blur);
+      backdrop-filter: blur($card-backdrop-blur);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: var(--background-noise);
+        z-index: -1;
+      }
+    }
+  }
+}
+
+.playlist-view-compact {
+  .main-entityHeader-container.main-entityHeader-nonWrapped {
+    position: relative;
+    height: min(25vh, calc(var(--fluid-height) / 2)) !important;
+    min-height: 25vh;
+  }
+
+  .main-entityHeader-imageContainer.main-entityHeader-imageContainerNew {
+    height: 10rem !important;
+    width: 10rem !important;
+  }
+
+  .main-entityHeader-headerText {
+    .main-entityHeader-title {
+      * {
+        white-space: pretty !important;
+        font-size: 2rem !important;
+      }
+    }
+  }
+}
+
+.playlist-view-compact-card {
+  .main-entityHeader-container.main-entityHeader-nonWrapped {
+    .contentSpacing {
+      width: fit-content;
+      padding-right: $padding-2xl;
+      .main-entityHeader-title{
+        .encore-text{
+          font-size: 3rem !important;
+        }
+      }
+    }
+  }
+}

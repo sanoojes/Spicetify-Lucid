@@ -1,0 +1,29 @@
+.Root__nav-bar,
+#Desktop_LeftSidebar_Id {
+  background: $left-sidebar-bg;
+  @extend .border-box-shadow-with-radius;
+
+  .main-navBar-mainNav {
+    .main-yourLibraryX-libraryItemContainer {
+      padding-bottom: $root-padding-bottom;
+    }
+
+    .main-navBar-mainNav,
+    .main-yourLibraryX-library,
+    .main-yourLibraryX-entryPoints {
+      background: none;
+    }
+  }
+
+  .main-rootlist-wrapper {
+    .main-yourLibraryX-listItem {
+      .BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px {
+        @extend .border-box-shadow-with-radius;
+      }
+    }
+  }
+
+  .RHRitk6QC3rvuG24RAdj {
+    @extend .box-shadow-to-bottom;
+  }
+}

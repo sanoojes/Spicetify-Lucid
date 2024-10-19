@@ -1,0 +1,113 @@
+// TODO: make the font weight, size customisable
+
+// font-stack declaration
+$font-stack-body: var(--body-font-to-use), SpotifyMixUI, CircularSp-Arab,
+  CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva,
+  var(--fallback-fonts, sans-serif);
+$font-stack-title: var(--body-font-to-use), SpotifyMixUITitle, CircularSp-Arab,
+  CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva,
+  var(--fallback-fonts, sans-serif);
+
+// font-weight
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
+// font-size
+$text-size-smaller-2: var(--encore-text-size-smaller-2);
+$text-size-smaller: var(--encore-text-size-smaller);
+$text-size-base: var(--encore-text-size-base);
+$text-size-larger: var(--encore-text-size-larger);
+$text-size-larger-2: var(--encore-text-size-larger-2);
+$text-size-larger-3: var(--encore-text-size-larger-3);
+$text-size-larger-4: var(--encore-text-size-larger-4);
+$text-size-larger-5: var(--encore-text-size-larger-5);
+
+// override styles
+:root {
+  --encore-body-font-stack: #{$font-stack-body} !important;
+  --encore-title-font-stack: #{$font-stack-title} !important;
+}
+
+@mixin text-style($font-family, $font-size, $font-weight) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+.encore-text-headline-large {
+  @include text-style(
+    $font-stack-title,
+    $text-size-larger-5,
+    $font-weight-extra-bold
+  );
+}
+
+.encore-text-headline-medium {
+  @include text-style(
+    $font-stack-title,
+    $text-size-larger-4,
+    $font-weight-bold
+  );
+}
+
+.encore-text-title-large {
+  @include text-style(
+    $font-stack-title,
+    $text-size-larger-3,
+    $font-weight-bold
+  );
+}
+
+.encore-text-title-medium {
+  @include text-style(
+    $font-stack-title,
+    $text-size-larger-2,
+    $font-weight-bold
+  );
+}
+
+.encore-text-title-small {
+  @include text-style($font-stack-title, $text-size-larger, $font-weight-bold);
+}
+
+.encore-text-body-medium {
+  @include text-style($font-stack-body, $text-size-base, $font-weight-medium);
+}
+
+.encore-text-body-medium-bold {
+  @include text-style($font-stack-body, $text-size-base, $font-weight-bold);
+}
+
+.encore-text-body-small {
+  @include text-style(
+    $font-stack-body,
+    $text-size-smaller,
+    $font-weight-regular
+  );
+}
+
+.encore-text-body-small-bold {
+  @include text-style($font-stack-body, $text-size-smaller, $font-weight-bold);
+}
+
+.encore-text-marginal {
+  @include text-style(
+    $font-stack-body,
+    $text-size-smaller-2,
+    $font-weight-regular
+  );
+}
+
+.encore-text-marginal-bold {
+  @include text-style(
+    $font-stack-body,
+    $text-size-smaller-2,
+    $font-weight-bold
+  );
+}
+
+.search-searchCategory-categoryGrid .encore-text-body-small {
+  font-weight: 500;
+}

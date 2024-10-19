@@ -2,7 +2,7 @@
 	"private": true,
 	"name": "spicetify-lucid",
 	"version": "1.0.7",
-	"description": "Lucid is a Spicetify theme that blends a clean, modern aesthetic with a touch of dynamism and customization, creating a unique and personalized Spotify experience.**",
+	"description": "Lucid is a Spicetify theme that blends a clean, modern aesthetic with a touch of dynamism and customization, creating a unique and personalized Spotify experience.",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"biome-lint": "npx @biomejs/biome lint --write .",
@@ -11,8 +11,14 @@
 		"test-extension": "npm run biome-check && spicetify config extensions theme.js inject_theme_js 0 current_theme Lucid && npm run compile-test-extension",
 		"compile-extension": "npm run biome-check && cd extension && npm run build-local",
 		"compile-test-extension": "npm run biome-check && cd extension && npm run test-local",
-		"ps:apply": "npm run compile-extension && powershell.exe ./dev/apply-theme.ps1"
+		"compile-sass": "sass --no-source-map --style=compressed styles/main.scss src/user.css",
+		"watch-sass": "sass --watch --no-source-map --style=compressed styles/main.scss src/user.css",
+		"ps:apply": "npm run compile-sass && npm run compile-extension && powershell.exe ./dev/apply-theme.ps1",
+		"clean": "rm -f src"
 	},
 	"author": "Sanoojes",
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"sass": "^1.79.5"
+	}
 }

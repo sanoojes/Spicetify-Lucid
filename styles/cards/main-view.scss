@@ -1,0 +1,119 @@
+.Root__main-view {
+  @extend .border-box-shadow-with-radius;
+  background: $main-bg-color;
+
+  .N_8iI7NKHP0iG2jp3g0R,
+  .pT8jWX5PbLB2Z91Ngl7n,
+  .EmeHQXR87mUskYK6xEde {
+    background: $main-bg-color;
+  }
+
+  .main-view-container {
+    .under-main-view {
+      display: none;
+    }
+
+    .main-actionBarBackground-background {
+      background: none !important;
+    }
+
+    .main-home-homeHeader {
+      background: $home-header-bg !important;
+    }
+
+    .main-shelf-shelfGrid {
+      gap: 0.25rem;
+
+      .main-card-cardContainer {
+        @extend .shelf-card;
+      }
+    }
+
+    .main-entityHeader-container {
+      .main-entityHeader-backgroundColor {
+        background-color: rgba(var(--spice-rgb-main), 0.2) !important;
+        background-image: none;
+      }
+    }
+
+    // under-main-view styles
+    #lucid-under-main-view {
+      pointer-events: none;
+
+      .playlist-art-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 55vh;
+        width: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        opacity: var(--artwork-opacity, 1);
+        transition: opacity 0.3s ease;
+
+        .background {
+          height: 100%;
+          width: 100%;
+          transition: background 0.3s ease-in-out;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+      }
+    }
+  }
+
+  // Filter Chips Container
+  .main-home-filterChipsContainer {
+    .main-home-filterChipsSection {
+      background-color: transparent !important;
+      @extend .header-backdrop-blur;
+      border-bottom: $default-border;
+
+      &:after {
+        background-color: rgba(var(--spice-rgb-shadow), 0.4);
+      }
+    }
+  }
+
+  .main-topBar-container {
+    background: none;
+
+    .main-topBar-background {
+      background-color: transparent !important;
+      @extend .header-backdrop-blur;
+      border-bottom: $default-border;
+
+      .main-topBar-overlay {
+        background-color: $top-bar-bg-color;
+      }
+    }
+  }
+
+  // Card
+  .lx7nfGbsUkI_2pC6caw9 {
+    padding: 0.25rem;
+    .IriswrXFrjhQwRTmrgIf {
+      opacity: 0.75;
+      @extend .border-box-shadow-with-radius;
+    }
+  }
+
+  // bottom padding
+  .lyrics-lyrics-contentWrapper,
+  .nw2W4ZMdICuBo08Tzxg9,
+  .main-devicePicker-section,
+  .main-view-container__scroll-node-child {
+    padding-bottom: $root-padding-bottom;
+  }
+}

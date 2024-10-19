@@ -1,0 +1,118 @@
+$saturation: var(--saturation, 1.25);
+$brightness: var(--brightness,0.45);
+$opacity: var(--opacity, 1);
+$blur: var(--blur,1rem);
+$contrast: var(--contrast,0.8);
+$background-color: var(--background-color, var(--spice-main, #101010));
+$fade-time: var(--fade-time, 1s);
+$now-playing-art-image: var(--now-playing-art-image);
+
+/* Lucid Background Wrapper */
+#lucid-main {
+	.background-container {
+		.background-wrapper {
+			z-index: -1;
+
+			/* Lucid Animated Bg */
+			.animated-background-container {
+				filter: saturate($saturation) brightness($brightness);
+				height: 100%;
+				left: 0;
+				overflow: hidden;
+				pointer-events: none;
+				position: absolute;
+				top: 0;
+				width: 100%;
+				z-index: -1;
+				opacity: $opacity;
+
+				.back,
+				.backright,
+				.backleft,
+				.front {
+					pointer-events: none;
+					background-image: $now-playing-art-image;
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-position: center center;
+					transition: all $fade-time ease;
+					animation: rotateBg var(--time, 40s) linear infinite;
+					border-radius: 18vw;
+					filter: blur($blur) saturate($saturation) brightness($brightness) contrast($contrast);
+					position: absolute;
+					aspect-ratio: 1 / 1;
+					width: 90%;
+					opacity: $opacity;
+				}
+
+				.front {
+					animation-direction: reverse;
+					right: 0%;
+					top: 25%;
+				}
+
+				.back {
+					bottom: 35%;
+					left: 5%;
+				}
+
+				.backright {
+					right: -50%;
+					top: -20%;
+					width: 75%;
+				}
+
+				.backleft {
+					left: -35%;
+					top: -20%;
+					width: 75%;
+				}
+			}
+
+			/* Lucid Static Bg */
+			.static-background {
+				width: 110%;
+				height: 110%;
+				top: -64px;
+				left: -64px;
+				position: fixed;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				pointer-events: none;
+				transition: all $fade-time ease;
+				background-image: $now-playing-art-image;
+				filter: blur($blur) contrast($contrast) saturate($saturation) brightness($brightness);
+				z-index: -1;
+				opacity: $opacity;
+			}
+
+			/* Lucid Solid bg */
+			.solid-background {
+				width: 100vw;
+				height: 100vh;
+				top: 0;
+				left: 0;
+				position: fixed;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				pointer-events: none;
+				background-color: $background-color;
+				z-index: -1;
+				opacity: $opacity;
+			}
+		}
+	}
+}
+
+/* Keyframes */
+@keyframes rotateBg {
+	0% {
+		transform: rotate(var(--random-degree, 120deg));
+	}
+
+	to {
+		transform: rotate(calc(var(--random-degree, 120deg) + 1turn));
+	}
+}

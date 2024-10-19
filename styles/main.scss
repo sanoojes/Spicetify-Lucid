@@ -1,0 +1,47 @@
+// default font import
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+// Variables
+@import "variables";
+
+// Default Styles
+@import "default/root";
+@import "default/font";
+
+// Components
+@import "components/main";
+@import "components/card";
+@import "button/button-overrides";
+
+// Navigation
+@import "nav/global-nav";
+
+// Playbar
+@import "playbar/normal";
+@import "playbar/compact";
+
+// Cards
+@import "cards/left-sidebar";
+@import "cards/right-sidebar";
+@import "cards/main-view";
+
+// Extensions
+@import "extenstion/background";
+@import "extenstion/under-main-view";
+
+// Colors
+@import "colors/encore-overrides";
+
+// Pages
+@import "page/all";
+@import "page/playlist";
+@import "page/artist";
+@import "page/lyrics";
+@import "page/browse";
+
+// Context Menu
+@import "context-menu/menu";
+
+// Modals
+@import "modal/overrides";
+@import "modal/settings";

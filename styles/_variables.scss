@@ -1,0 +1,73 @@
+// Font Stack
+$font-stack: var(--body-font-to-use), SpotifyMixUI, CircularSp-Arab,
+  CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva,
+  var(--fallback-fonts, sans-serif);
+
+// Default Border
+$default-border: var(--border-thickness) var(--border-style, solid)
+  var(--border-color, rgba(var(--spice-rgb-text), 0.125));
+$border-box-shadow: inset 0 0 0 var(--border-thickness)
+  rgba(255, 255, 255, 0.15);
+
+// Border Radius
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 0.75rem;
+$border-radius-xl: 1rem;
+$border-radius-full: 50%;
+$border-radius-avatar: var(--border-roundedRadius, $border-radius-full);
+$border-radius-button: var(--button-border-radius, $border-radius-md);
+$border-radius-input: var(--input-border-radius, $border-radius-md);
+
+// Padding
+$padding-xs: 0.25rem;
+$padding-sm: 0.5rem;
+$padding-md: 0.75rem;
+$padding-lg: 1rem;
+$padding-xl: 1.5rem;
+$padding-2xl: 1.5rem;
+
+// Margin
+$margin-xs: 0.25rem;
+$margin-sm: 0.5rem;
+$margin-md: 0.75rem;
+$margin-lg: 1rem;
+$margin-xl: 1.5rem;
+
+// Gap
+$gap-xs: 0.25rem;
+$gap-sm: 0.5rem;
+$gap-md: 0.75rem;
+$gap-lg: 1rem;
+$gap-xl: 1.5rem;
+
+// Font Size
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+
+// Background
+$card-bg-color: rgba(var(--spice-rgb-sidebar), 0.5);
+$global-nav-bg: none;
+$home-header-bg: none;
+
+$main-bg-color: rgba(var(--spice-rgb-main), 0.5);
+$left-sidebar-bg: $card-bg-color;
+$right-sidebar-bg: $card-bg-color;
+
+// Backdrop Blur
+$top-bar-bg-color: rgba(var(--spice-rgb-main), 0.25);
+$top-bar-backdrop-blur: 1rem;
+
+//
+$card-backdrop-blur: 0.35rem;
+
+//
+$root-padding-bottom: var(--playbar-height, 80px);
+$under-main-view-height: calc(
+  var(--main-view-height, 800px) - var(--playbar-height, 80px)
+);
+
+//box shadow
+$box-shadow-to-bottom: 0 0.5rem 1rem rgba(var(--spice-rgb-shadow), 0.25);
