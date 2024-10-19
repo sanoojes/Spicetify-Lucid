@@ -1,6 +1,6 @@
-export type DropdownOption = {
+export type DropdownOption<T extends string = string> = {
 	label: string;
-	value: string;
+	value: T;
 	disabled?: boolean;
 };
 

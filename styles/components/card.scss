@@ -20,8 +20,8 @@ $active-bg: rgba(255, 255, 255, 0.08);
 
   &::after {
     content: "";
+    border-radius: $border-radius-md;
     position: absolute;
-    border-radius: var(--encore-corner-radius-larger, 6px);
     transition: background-color var(--animation-speed) var(--animation-ease),
       top var(--animation-speed) var(--animation-ease),
       left var(--animation-speed) var(--animation-ease),

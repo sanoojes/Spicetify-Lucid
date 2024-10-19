@@ -39,4 +39,10 @@ $playing-bar-width: calc(100% - ($left * 2));
       font-weight: 500;
     }
   }
+
+  .main-coverSlotCollapsed-container,
+  .main-coverSlotCollapsed-container > div {
+    height: 56px;
+    max-height: fit-content;
+  }
 }

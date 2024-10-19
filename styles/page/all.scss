@@ -84,6 +84,13 @@
   max-width: 100%;
 }
 
+.main-card-imageContainer,
+.main-card-PlayButtonContainer,
+.view-homeShortcutsGrid-shortcut {
+  border-radius: $border-radius-md;
+  overflow: hidden;
+}
+
 // marketplace page
 .marketplace-header {
   @extend .header-backdrop-blur;

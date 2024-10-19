@@ -1,6 +1,9 @@
 :root {
   // Button Border radius override
-  --encore-button-corner-radius: var(--button-border-radius, 0.5rem);
+  --encore-button-corner-radius: var(
+    --button-border-radius,
+    #{$border-radius-full}
+  );
 
   // Color overrides
   --spice-player: rgba(var(--spice-rgb-card), 0.5);

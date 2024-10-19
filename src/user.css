@@ -1,6 +1,6 @@
 @import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";
 :root {
-	--encore-button-corner-radius: var(--button-border-radius, 0.5rem);
+	--encore-button-corner-radius: var(--button-border-radius, var(--border-roundedRadius, 25rem));
 	--spice-player: rgba(var(--spice-rgb-card), 0.5);
 }
 .main-view-container__scroll-node-child-spacer {
@@ -77,7 +77,7 @@ section[data-testid*="playlist"] {
 .x-filterBox-expandButton,
 .x-filterBox-expandButton:focus,
 .x-filterBox-expandButton:hover {
-	border-radius: var(--border-roundedRadius, 50%);
+	border-radius: var(--border-roundedRadius, var(--border-roundedRadius, 25rem));
 }
 .spotify__container--is-desktop.spotify__os--is-windows .control-nav .main-topBar-container,
 .spotify__container--is-desktop.spotify__os--is-windows .global-nav .Root__globalNav {
@@ -201,6 +201,8 @@ section[data-testid*="playlist"] {
 #lucid-main .card .button,
 #lucid-main .modal-container .setting-section .cards-wrapper .cards-wrapper,
 #lucid-main .modal-container .setting-section .cards-wrapper,
+.DquSH3YjnaIIXMZiOvwA::before,
+.main-contextMenu-menu::before,
 .main-contextMenu-menu,
 .search .Root__main-view .main-rootlist-wrapper,
 .Root__main-view .main-gridContainer-gridContainer .Vn9yz8P5MjIvDT8c0U6w,
@@ -244,6 +246,8 @@ section[data-testid*="playlist"] {
 #lucid-main .card .button,
 #lucid-main .modal-container .setting-section .cards-wrapper .cards-wrapper,
 #lucid-main .modal-container .setting-section .cards-wrapper,
+.DquSH3YjnaIIXMZiOvwA::before,
+.main-contextMenu-menu::before,
 .main-contextMenu-menu,
 .search .Root__main-view .main-rootlist-wrapper,
 .Root__main-view .main-gridContainer-gridContainer .Vn9yz8P5MjIvDT8c0U6w,
@@ -306,8 +310,8 @@ section[data-testid*="playlist"] {
 .shelf-card::after,
 .Root__main-view .main-view-container .main-shelf-shelfGrid .main-card-cardContainer::after {
 	content: "";
+	border-radius: .5rem;
 	position: absolute;
-	border-radius: var(--encore-corner-radius-larger, 6px);
 	transition:
 		background-color var(--animation-speed) var(--animation-ease), top var(--animation-speed) var(--animation-ease), left var(
 			--animation-speed
@@ -316,9 +320,6 @@ section[data-testid*="playlist"] {
 		);
 	inset: 12px;
 	z-index: -1;
-}
-.Button-buttonPrimary-useBrowserDefaultFocusStyle-data-is-icon-only {
-	border-radius: var(--button-border-radius, 0.5rem);
 }
 .search-searchCategory-carouselButton {
 	border-radius: var(--button-border-radius, 0.5rem);
@@ -397,40 +398,52 @@ section[data-testid*="playlist"] {
 .Root__now-playing-bar .main-trackInfo-name .encore-text {
 	font-weight: 500;
 }
-.playbar-compact .main-nowPlayingBar-nowPlayingBar {
+.Root__now-playing-bar .main-coverSlotCollapsed-container,
+.Root__now-playing-bar .main-coverSlotCollapsed-container > div {
+	height: 56px;
+	max-height: fit-content;
+}
+.playbar-compact .Root__now-playing-bar .main-nowPlayingBar-nowPlayingBar {
 	height: var(--height, 64px);
 }
-.playbar-compact .main-nowPlayingBar-center {
+.playbar-compact .Root__now-playing-bar .main-nowPlayingBar-center {
 	width: 100%;
 	max-width: none;
 }
-.playbar-compact .main-nowPlayingBar-center .player-controls {
+.playbar-compact .Root__now-playing-bar .main-nowPlayingBar-center .player-controls {
 	flex-direction: row;
 }
-.playbar-compact .player-controls__buttons {
+.playbar-compact .Root__now-playing-bar .player-controls__buttons {
 	width: fit-content;
 	margin-bottom: 0;
 }
-.playbar-compact .player-controls__buttons > button[aria-label*="Pause"],
-.playbar-compact .player-controls__buttons > button[aria-label*="Play"] {
+.playbar-compact .Root__now-playing-bar .player-controls__buttons > button[aria-label*="Pause"],
+.playbar-compact .Root__now-playing-bar .player-controls__buttons > button[aria-label*="Play"] {
 	--encore-control-size-smaller: 24px !important;
 }
-.playbar-compact .main-nowPlayingBar-left {
+.playbar-compact .Root__now-playing-bar .main-nowPlayingBar-left {
 	-webkit-padding-start: 4px;
 	padding-inline-start: 4px;
 	padding-right: 8px;
 	width: 25%;
 	min-width: 20%;
 }
-.playbar-compact .main-nowPlayingWidget-nowPlaying button {
+.playbar-compact .Root__now-playing-bar .main-nowPlayingWidget-nowPlaying button {
 	margin-left: auto;
 }
-.playbar-compact .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
+.playbar-compact .Root__now-playing-bar .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
 	margin-inline-end: 0;
 }
-.playbar-compact .main-nowPlayingWidget-coverArt .cover-art {
+.playbar-compact .Root__now-playing-bar .main-nowPlayingWidget-coverArt .cover-art {
 	height: 48px !important;
 	width: 48px !important;
+}
+.playbar-rounded .Root__now-playing-bar [data-testid="cover-art-button"],
+.playbar-rounded .Root__now-playing-bar .cover-art-image,
+.playbar-rounded .Root__now-playing-bar .cover-art,
+.playbar-rounded .Root__now-playing-bar .main-nowPlayingWidget-coverArt {
+	border-radius: var(--border-roundedRadius, 25rem);
+	overflow: hidden;
 }
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id {
@@ -810,6 +823,12 @@ section[data-testid*="playlist"] {
 .main-gridContainer-gridContainer {
 	max-width: 100%;
 }
+.main-card-imageContainer,
+.main-card-PlayButtonContainer,
+.view-homeShortcutsGrid-shortcut {
+	border-radius: .5rem;
+	overflow: hidden;
+}
 .marketplace-header {
 	margin: 0 calc(var(--content-spacing) * -1 + 2px) 0 calc(var(--content-spacing) * -1 + 2px);
 	padding: .5rem calc(var(--content-spacing) * 2);
@@ -971,6 +990,7 @@ section[data-testid*="playlist"] {
 	margin-top: 0;
 }
 .main-contextMenu-menu {
+	overflow: auto;
 	background-color: rgba(var(--spice-rgb-card), 0.5);
 }
 .main-contextMenu-menu::before {
@@ -979,8 +999,6 @@ section[data-testid*="playlist"] {
 	z-index: -1;
 	-webkit-backdrop-filter: blur(1rem);
 	backdrop-filter: blur(1rem);
-	width: 100%;
-	height: 100%;
 	inset: 0;
 }
 .main-contextMenu-menu .main-contextMenu-menuItemButton {
@@ -1107,7 +1125,7 @@ dialog {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: .5rem .75rem;
+	padding: .5rem .75rem .5rem 1rem;
 }
 #lucid-main .modal-container .setting-section .cards-wrapper .card:has(.switch) {
 	padding: .75rem;
@@ -1282,6 +1300,7 @@ dialog {
 #lucid-main .dropdown-item {
 	position: relative;
 	width: 100%;
+	text-align: center;
 	background: rgba(var(--spice-rgb-card), 0.75);
 	padding: .5rem .75rem;
 	text-decoration: none;

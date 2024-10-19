@@ -9,43 +9,50 @@ $default-border: var(--border-thickness) var(--border-style, solid)
 $border-box-shadow: inset 0 0 0 var(--border-thickness)
   rgba(255, 255, 255, 0.15);
 
+// Base Values
+$base-border-radius: 0.25rem;
+$base-padding: 0.25rem;
+$base-margin: 0.25rem;
+$base-gap: 0.25rem;
+$base-font-size: 1rem;
+
 // Border Radius
-$border-radius-sm: 0.25rem;
-$border-radius-md: 0.5rem;
-$border-radius-lg: 0.75rem;
-$border-radius-xl: 1rem;
-$border-radius-full: 50%;
+$border-radius-sm: $base-border-radius;
+$border-radius-md: $base-border-radius * 2;
+$border-radius-lg: $base-border-radius * 3;
+$border-radius-xl: $base-border-radius * 4;
+$border-radius-full: var(--border-roundedRadius, #{$base-border-radius * 100});
 $border-radius-avatar: var(--border-roundedRadius, $border-radius-full);
 $border-radius-button: var(--button-border-radius, $border-radius-md);
 $border-radius-input: var(--input-border-radius, $border-radius-md);
 
 // Padding
-$padding-xs: 0.25rem;
-$padding-sm: 0.5rem;
-$padding-md: 0.75rem;
-$padding-lg: 1rem;
-$padding-xl: 1.5rem;
-$padding-2xl: 1.5rem;
+$padding-xs: $base-padding;
+$padding-sm: $base-padding * 2;
+$padding-md: $base-padding * 3;
+$padding-lg: $base-padding * 4;
+$padding-xl: $base-padding * 6;
+$padding-2xl: $base-padding * 6;
 
 // Margin
-$margin-xs: 0.25rem;
-$margin-sm: 0.5rem;
-$margin-md: 0.75rem;
-$margin-lg: 1rem;
-$margin-xl: 1.5rem;
+$margin-xs: $base-margin;
+$margin-sm: $base-margin * 2;
+$margin-md: $base-margin * 3;
+$margin-lg: $base-margin * 4;
+$margin-xl: $base-margin * 6;
 
 // Gap
-$gap-xs: 0.25rem;
-$gap-sm: 0.5rem;
-$gap-md: 0.75rem;
-$gap-lg: 1rem;
-$gap-xl: 1.5rem;
+$gap-xs: $base-gap;
+$gap-sm: $base-gap * 2;
+$gap-md: $base-gap * 3;
+$gap-lg: $base-gap * 4;
+$gap-xl: $base-gap * 6;
 
 // Font Size
-$font-size-sm: 0.875rem;
-$font-size-md: 1rem;
-$font-size-lg: 1.125rem;
-$font-size-xl: 1.25rem;
+$font-size-sm: $base-font-size * 0.875;
+$font-size-md: $base-font-size;
+$font-size-lg: $base-font-size * 1.125;
+$font-size-xl: $base-font-size * 1.25;
 
 // Background
 $card-bg-color: rgba(var(--spice-rgb-sidebar), 0.5);
