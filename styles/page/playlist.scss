@@ -97,11 +97,7 @@
     .contentSpacing {
       width: fit-content;
       padding-right: $padding-2xl;
-      .main-entityHeader-title{
-        .encore-text{
-          font-size: 3rem !important;
-        }
-      }
+      margin: 0 #{$padding-2xl + $padding-2xl};
     }
   }
 }
