@@ -143,6 +143,12 @@ section[data-testid*="playlist"] {
 // styles specific to lyrics plus
 .lyrics-lyricsContainer-LyricsContainer {
   --lyrics-color-background: transparent !important;
+  --lyrics-color-active: var(--spice-text, #fafafa) !important;
+  --lyrics-color-inactive: rgba(var(--spice-rgb-subtext), 0.75) !important;
+  --lyrics-highlight-background: rgba(
+    var(--spice-rgb-subtext),
+    0.75
+  ) !important;
 
   .lyrics-config-button-container {
     bottom: $root-padding-bottom;
