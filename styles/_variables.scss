@@ -6,6 +6,8 @@ $font-stack: var(--body-font-to-use), SpotifyMixUI, CircularSp-Arab,
 // Default Border
 $default-border: var(--border-thickness) var(--border-style, solid)
   var(--border-color, rgba(var(--spice-rgb-text), 0.125));
+$transparent-border: var(--border-thickness) var(--border-style, solid)
+  transparent;
 $border-box-shadow: inset 0 0 0 var(--border-thickness)
   rgba(255, 255, 255, 0.15);
 
