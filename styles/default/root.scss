@@ -128,7 +128,7 @@ section[data-testid*="playlist"] {
 }
 
 .Root__top-container {
-  background: none;
+  @include bg-none;
 }
 
 .artist-artistOnTour-date.artist-artistOnTour-elevated {
@@ -137,7 +137,7 @@ section[data-testid*="playlist"] {
 
 // Device Picker menu
 .ffFwfKcPDbmAPLXzxzKq {
-  background: none !important;
+  @include bg-none-important;
 }
 
 // styles specific to lyrics plus

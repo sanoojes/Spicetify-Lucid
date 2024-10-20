@@ -29,7 +29,7 @@
   }
 
   .lyrics-lyrics-background {
-    background: none !important;
+    @include bg-none-important;
   }
 }
 

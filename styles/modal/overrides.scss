@@ -18,8 +18,8 @@ $card-bg: rgba(150, 150, 150, 0.1);
 
 .main-trackCreditsModal-container,
 .main-embedWidgetGenerator-container {
-  @extend .modal-background;
-  @extend .default-border;
+  @include modal-background;
+  @include default-border;
   max-height: 85vh;
 }
 
@@ -35,7 +35,7 @@ $card-bg: rgba(150, 150, 150, 0.1);
 
 .JnpOnFaQfrRIA2fYe88A,
 .uJjmxe0T11dUVeW6Biz8 {
-  @extend .modal-background;
+  @include modal-background;
 }
 .JnpOnFaQfrRIA2fYe88A {
   max-height: 70vh !important;
@@ -46,8 +46,8 @@ dialog {
 }
 
 .desktopmodals-aboutSpotifyModal-container {
-  @extend .modal-background;
-  @extend .default-border;
+  @include modal-background;
+  @include default-border;
 
   .desktopmodals-aboutSpotifyModal-licensing {
     background-color: $card-bg;

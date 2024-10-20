@@ -1,5 +1,5 @@
 .Root__main-view {
-  @extend .default-border-with-radius;
+  @include default-border-with-radius;
   background: $main-bg-color;
 
   .N_8iI7NKHP0iG2jp3g0R,
@@ -14,7 +14,7 @@
     }
 
     .main-actionBarBackground-background {
-      background: none !important;
+      @include bg-none-important;
     }
 
     .main-home-homeHeader {
@@ -77,7 +77,7 @@
   .main-home-filterChipsContainer {
     .main-home-filterChipsSection {
       background-color: rgba(var(--spice-rgb-card), 0.5) !important;
-      @extend .header-backdrop-blur;
+      @include header-backdrop-blur;
       border-bottom: $default-border;
 
       &:after {
@@ -87,11 +87,11 @@
   }
 
   .main-topBar-container {
-    background: none;
+    @include bg-none;
 
     .main-topBar-background {
       background-color: transparent !important;
-      @extend .header-backdrop-blur;
+      @include header-backdrop-blur;
       border-bottom: $default-border;
 
       .main-topBar-overlay {
@@ -105,7 +105,7 @@
     padding: 0.25rem;
     .IriswrXFrjhQwRTmrgIf {
       opacity: 0.75;
-      @extend .default-border-with-radius;
+      @include default-border-with-radius;
     }
   }
 

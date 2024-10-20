@@ -1,16 +1,15 @@
 .main-contextMenu-menu {
-  @extend .default-border-with-radius;
+  @include default-border-with-radius;
   overflow: auto;
   background-color: rgba(var(--spice-rgb-card), 0.5);
 
   &::before {
-    @extend .default-border-with-radius;
+    @include default-border-with-radius;
     content: "";
     position: absolute;
     z-index: -1;
-    -webkit-backdrop-filter: blur(1rem);
-    backdrop-filter: blur(1rem);
     inset: 0;
+    @include backdrop-blur-1rem;
   }
 
   .main-contextMenu-menuItemButton {
@@ -27,12 +26,11 @@
   }
 
   &::before {
-    @extend .default-border-with-radius;
+    @include default-border-with-radius;
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    -webkit-backdrop-filter: blur(1rem);
-    backdrop-filter: blur(1rem);
+    @include backdrop-blur-1rem;
   }
 }

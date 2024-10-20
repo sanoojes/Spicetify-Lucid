@@ -1,6 +1,6 @@
 .artist {
   .main-trackList-trackList {
-    @extend .default-border-with-radius;
+    @include default-border-with-radius;
     padding: $padding-sm;
   }
 

@@ -1,5 +1,5 @@
 .Root__right-sidebar {
-  @extend .default-border-with-radius;
+  @include default-border-with-radius;
   background: $right-sidebar-bg;
 
   .hpzTKCoO0rllEslIOMPo,
@@ -11,22 +11,22 @@
   .IkRGajTjItEFQkRMeH6v,
   .f2UE9n5nZcbgZrGYTU3r,
   .NowPlayingView {
-    background: none;
+    @include bg-none;
   }
 
   .main-nowPlayingView-nowPlayingWidget {
     .main-nowPlayingView-contextItemInfo:before {
-      background: none;
+      @include bg-none;
     }
   }
 
   .main-nowPlayingView-section {
     background-color: rgba(var(--spice-rgb-selected-row), 0.05);
     border-radius: $border-radius-lg;
-    @extend .default-border;
+    @include default-border;
 
     .main-nowPlayingView-aboutArtistV2Button {
-      background: none;
+      @include bg-none;
       .main-nowPlayingView-aboutArtistV2Bio {
         text-wrap: balance;
       }
@@ -34,7 +34,7 @@
   }
 
   .mdMUqcSHFw1lZIcYEblu {
-    @extend .box-shadow-to-bottom;
+    @include box-shadow-to-bottom;
     z-index: 1;
   }
 }

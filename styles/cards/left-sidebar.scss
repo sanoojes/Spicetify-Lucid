@@ -2,7 +2,7 @@
 #Desktop_LeftSidebar_Id {
   background: $left-sidebar-bg;
   transition: width 0.35s ease;
-  @extend .default-border-with-radius;
+  @include default-border-with-radius;
 
   .main-navBar-mainNav {
     .main-yourLibraryX-libraryItemContainer {
@@ -12,7 +12,7 @@
     .main-navBar-mainNav,
     .main-yourLibraryX-library,
     .main-yourLibraryX-entryPoints {
-      background: none;
+      @include bg-none;
     }
   }
 
@@ -21,13 +21,13 @@
       & > div {
         border: $transparent-border;
         &.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px {
-          @extend .default-border-with-radius;
+          @include default-border-with-radius;
         }
       }
     }
   }
 
   .RHRitk6QC3rvuG24RAdj {
-    @extend .box-shadow-to-bottom;
+    @include box-shadow-to-bottom;
   }
 }

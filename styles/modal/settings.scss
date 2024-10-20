@@ -70,7 +70,7 @@
         gap: $gap-xs;
         flex-direction: column;
         background-color: rgba(255, 255, 255, 0.02);
-        @extend .default-border-with-radius;
+        @include default-border-with-radius;
 
         &.combine {
           margin-top: $margin-xs;
@@ -124,7 +124,7 @@
         }
 
         .cards-wrapper {
-          @extend .default-border-with-radius;
+          @include default-border-with-radius;
           gap: 0;
           transition: height 0.3s ease;
 
@@ -163,7 +163,7 @@
 
   /* Buttons */
   .card .button {
-    @extend .default-border-with-radius;
+    @include default-border-with-radius;
     padding: $padding-sm $padding-md;
     min-width: 5rem;
     font-size: 0.8rem;
@@ -221,7 +221,7 @@
     font-size: 0.8rem;
     text-align: left;
     background-color: rgba(var(--spice-rgb-selected-row), 0.05) !important;
-    @extend .default-border-with-radius;
+    @include default-border-with-radius;
 
     &:hover {
       background-color: rgba(var(--spice-rgb-card), 0.25) !important;
@@ -256,7 +256,7 @@
   }
 
   .dropdown-button {
-    @extend .default-border-with-radius;
+    @include default-border-with-radius;
     display: flex;
     gap: $gap-xs;
     background-color: rgba(var(--spice-rgb-selected-row), 0.05);
@@ -495,7 +495,7 @@
   }
 
   .toast-element {
-    @extend .default-border-with-radius;
+    @include default-border-with-radius;
     background: rgba(0, 0, 0, 0.75);
     color: var(--spice-text, #fafafa);
     padding: 0.75rem 1.5rem;
