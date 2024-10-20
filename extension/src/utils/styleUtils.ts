@@ -40,7 +40,7 @@ export const getFormattedStyles = (dynamicStyles: StyleOptions): CSSProperties =
 	}
 
 	if (dynamicStyles.backgroundColor !== undefined) {
-		styles.backgroundColor = `${dynamicStyles.backgroundColor}px`;
+		styles.backgroundColor = `${dynamicStyles.backgroundColor}`;
 	}
 
 	return styles;
