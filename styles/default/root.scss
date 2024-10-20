@@ -106,6 +106,8 @@ section[data-testid*="playlist"] {
 .spotify__container--is-desktop.spotify__os--is-windows {
   .control-nav .main-topBar-container,
   .global-nav .Root__globalNav {
+    --top-bar-padding-start: calc(64px / var(--zoom));
+    --top-bar-padding-end: calc(136px / var(--zoom));
     padding-inline: var(--top-bar-padding-start, 64px)
       var(--top-bar-padding-end, 143px);
   }
@@ -114,8 +116,9 @@ section[data-testid*="playlist"] {
 // MacOS Specific Styles
 .spotify__container--is-desktop.spotify__os--is-macos {
   .control-nav .main-topBar-container {
-    -webkit-padding-start: 80px !important;
-    padding-inline-start: 80px !important;
+    --top-bar-padding-start: calc(80px / var(--zoom));
+    -webkit-padding-start: var(--top-bar-padding-start, 80px) !important;
+    padding-inline-start: var(--top-bar-padding-start, 80px) !important;
   }
 }
 

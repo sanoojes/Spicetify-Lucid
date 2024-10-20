@@ -1,4 +1,5 @@
 import Section from "@/components/settings/ui/SettingSection";
+import { isWindowsPlatform } from "@/constants/constants";
 import {
 	BORDER_STYLE_OPTIONS,
 	GRAIN_MODE_OPTIONS,
@@ -20,6 +21,7 @@ import React, { useState } from "react";
 const InterfaceSection = () => {
 	const {
 		interfaceSettings: {
+			controlSettings: { height: controlHeight },
 			fontSettings: {
 				body: { fontFamily },
 			},
@@ -34,6 +36,7 @@ const InterfaceSection = () => {
 		},
 		setFont,
 		setGrainEffect,
+		setControlHeight,
 		setPagesBackgroundImageMode,
 		setPlaylistViewMode,
 		setIsScrollMode,
@@ -63,6 +66,23 @@ const InterfaceSection = () => {
 	};
 
 	const INTERFACE_SETTINGS_CARDS: SettingCardMap = [
+		{
+			id: "controlSettings",
+			conditionalRender: isWindowsPlatform,
+			cardProps: {
+				title: "Set Control Height",
+				tooltip: "Set the height of your window controls in pixels.",
+				type: "input",
+				settings: {
+					type: "number",
+					label: "Enter Control Height",
+					defaultValue: controlHeight,
+					onChange: (value: string) => {
+						setControlHeight(Number(value));
+					},
+				},
+			},
+		},
 		{
 			id: "themeSettings",
 			conditionalRender: true,
@@ -172,7 +192,6 @@ const InterfaceSection = () => {
 			sectionName: "Border Settings",
 			cardProps: {
 				title: "Border Thickness",
-				tooltip: "",
 				type: "input",
 				settings: {
 					type: "number",
@@ -195,7 +214,6 @@ const InterfaceSection = () => {
 			sectionName: "Border Settings",
 			cardProps: {
 				title: "Rounded Border Radius",
-				tooltip: "",
 				type: "input",
 				settings: {
 					type: "number",
@@ -212,7 +230,6 @@ const InterfaceSection = () => {
 			conditionalRender: true,
 			cardProps: {
 				title: "Border Color",
-				tooltip: "",
 				type: "input",
 				settings: {
 					type: "text",
@@ -229,7 +246,6 @@ const InterfaceSection = () => {
 			conditionalRender: true,
 			cardProps: {
 				title: "Border Style",
-				tooltip: "",
 				type: "dropdown",
 				settings: {
 					options: BORDER_STYLE_OPTIONS,

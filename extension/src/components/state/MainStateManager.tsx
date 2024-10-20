@@ -10,6 +10,7 @@ import UnderMainViewManager from "@/components/state/UnderMainViewManager";
 import WindowControlsManager from "@/components/state/WindowControlsManager";
 import { logDebug } from "@/utils/logUtils";
 import React from "react";
+import ZoomManager from "./ZoomManager";
 
 /**
  * Manages state for the whole theme
@@ -22,6 +23,7 @@ const MainStateManager = () => {
 			<PathManager />
 			<GrainManager />
 			<ColorManager />
+			<ZoomManager />
 			<PlaybarManager />
 			<ArtworkManager />
 			<BorderManager />

@@ -6,7 +6,7 @@ import React, { useCallback, useEffect } from "react";
  * to extract and apply the background image as a CSS variable.
  */
 const mountUnderMainViewWatcher = () => {
-	const { underMainBackgroundImage, setUnderMainViewBackgroundImage, rootStyle } = useLucidStore();
+	const { underMainBackgroundImage, setUnderMainViewBackgroundImage } = useLucidStore();
 
 	const handleMutations = useCallback(
 		(mutationsList: MutationRecord[]) => {
@@ -46,14 +46,14 @@ const mountUnderMainViewWatcher = () => {
 	}, [handleMutations]);
 
 	useEffect(() => {
-		rootStyle.setProperty(
+		document.documentElement.style.setProperty(
 			"--under-main-view-art-image",
 			underMainBackgroundImage ? `url(${underMainBackgroundImage})` : null,
 		);
 		return () => {
-			rootStyle.removeProperty("--under-main-view-art-image");
+			document.documentElement.style.removeProperty("--under-main-view-art-image");
 		};
-	}, [underMainBackgroundImage, rootStyle]);
+	}, [underMainBackgroundImage]);
 };
 
 export default mountUnderMainViewWatcher;
