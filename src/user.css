@@ -223,11 +223,11 @@ section[data-testid*="playlist"] {
 .Root__nav-bar
 	.main-rootlist-wrapper
 	.main-yourLibraryX-listItem
-	.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
+	> div.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
 #Desktop_LeftSidebar_Id
 	.main-rootlist-wrapper
 	.main-yourLibraryX-listItem
-	.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
+	> div.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id,
 .Root__globalNav .GimJ6fo6WOYPyWNVpSr1,
@@ -268,11 +268,11 @@ section[data-testid*="playlist"] {
 .Root__nav-bar
 	.main-rootlist-wrapper
 	.main-yourLibraryX-listItem
-	.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
+	> div.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
 #Desktop_LeftSidebar_Id
 	.main-rootlist-wrapper
 	.main-yourLibraryX-listItem
-	.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
+	> div.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px,
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id,
 .Root__globalNav .GimJ6fo6WOYPyWNVpSr1,
@@ -469,6 +469,10 @@ section[data-testid*="playlist"] {
 #Desktop_LeftSidebar_Id .main-navBar-mainNav .main-yourLibraryX-library,
 #Desktop_LeftSidebar_Id .main-navBar-mainNav .main-yourLibraryX-entryPoints {
 	background: none;
+}
+.Root__nav-bar .main-rootlist-wrapper .main-yourLibraryX-listItem > div,
+#Desktop_LeftSidebar_Id .main-rootlist-wrapper .main-yourLibraryX-listItem > div {
+	border: var(--border-thickness) var(--border-style, solid) rgba(0, 0, 0, 0);
 }
 .Root__right-sidebar {
 	background: rgba(var(--spice-rgb-sidebar), 0.5);

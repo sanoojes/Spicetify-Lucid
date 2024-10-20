@@ -18,8 +18,11 @@
 
   .main-rootlist-wrapper {
     .main-yourLibraryX-listItem {
-      .BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px {
-        @extend .default-border-with-radius;
+      & > div {
+        border: $transparent-border;
+        &.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px {
+          @extend .default-border-with-radius;
+        }
       }
     }
   }
