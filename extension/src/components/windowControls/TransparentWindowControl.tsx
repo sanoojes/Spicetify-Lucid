@@ -22,7 +22,7 @@ const TransparentWindowControl = () => {
 				if (!isCustomControls && !isLightModeEnabled) {
 					const normalHeight = isSpotifyV16Above ? 32 : 64;
 					const height = normalHeight / windowZoom;
-					const controlTop = (controlHeight / windowZoom - Math.min(32 / windowZoom, controlHeight)) / 2;
+					const controlTop = (controlHeight / windowZoom - Math.min(32 / windowZoom, controlHeight / windowZoom)) / 2;
 
 					const newStyle: CSSProperties = {
 						position: "fixed",
