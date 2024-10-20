@@ -448,6 +448,7 @@ section[data-testid*="playlist"] {
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id {
 	background: rgba(var(--spice-rgb-sidebar), 0.5);
+	transition: width .35s ease;
 }
 .Root__nav-bar .main-navBar-mainNav .main-yourLibraryX-libraryItemContainer,
 #Desktop_LeftSidebar_Id .main-navBar-mainNav .main-yourLibraryX-libraryItemContainer {

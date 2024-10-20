@@ -1,6 +1,7 @@
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id {
   background: $left-sidebar-bg;
+  transition: width 0.35s ease;
   @extend .default-border-with-radius;
 
   .main-navBar-mainNav {
