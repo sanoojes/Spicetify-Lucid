@@ -9,13 +9,12 @@ const PLAYBAR_CLASS_NAME = ".Root__now-playing-bar";
 
 const PlaybarManager = () => {
 	const { playbarSettings } = useSettingsStore();
-	const { rootStyle } = useLucidStore();
 	const playbarRef = useRef<HTMLElement>(document.querySelector(PLAYBAR_CLASS_NAME));
 
 	const mainRef = useRef(document.querySelector(".Root__main-view"));
 	useEffect(() => {
-		rootStyle.setProperty("--main-view-height", `${mainRef.current?.clientHeight}px`);
-	}, [rootStyle]);
+		document.documentElement.style.setProperty("--main-view-height", `${mainRef.current?.clientHeight}px`);
+	}, []);
 
 	useBodyClass(`playbar-${playbarSettings.mode}`);
 
@@ -29,10 +28,10 @@ const PlaybarManager = () => {
 		const dynamicStyle = getFormattedStylesAsCSSProperty(styles[mode], true);
 		const height = mode === "compact" ? styles[mode].height : playbarRef.current?.clientHeight || styles[mode]?.height;
 
-		rootStyle.setProperty("--playbar-height", `${height}px`);
+		document.documentElement.style.setProperty("--playbar-height", `${height}px`);
 
 		playbarRef.current.style.cssText = dynamicStyle.toString();
-	}, [playbarSettings, rootStyle]);
+	}, [playbarSettings]);
 
 	return null;
 };

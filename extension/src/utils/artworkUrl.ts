@@ -25,8 +25,6 @@ export const getNowPlayingArtworkUrl = async () => {
 
 	const imageUrl = artworkUrls.find((url) => url) || getFallbackImageUrl();
 
-	console.log(imageUrl);
-
 	return imageUrl || "";
 };
 
@@ -68,7 +66,7 @@ export const getArtistMetaData = async (uri: string) => {
 					continue;
 				}
 			}
-			console.error("Error fetching artist metadata:", error);
+			logError("Error fetching artist metadata:", error);
 			throw error;
 		}
 	}
@@ -105,7 +103,7 @@ export const getAlbumMetaData = async (uri: string) => {
 					continue;
 				}
 			}
-			console.error("Error fetching album metadata:", error);
+			logError("Error fetching album metadata:", error);
 			throw error;
 		}
 	}
@@ -121,7 +119,7 @@ export const getSpotifyURI = (pathname: string): string | null => {
 	if (isPlaylist || isArtist || isAlbum || isProfile || isShow) {
 		const id = pathname.match(/\/(?:playlist|artist|album|user|show)\/([^/]+)/)?.[1];
 		if (!id) {
-			console.warn("No ID found in pathname:", pathname);
+			logWarn("No ID found in pathname:", pathname);
 			return null;
 		}
 

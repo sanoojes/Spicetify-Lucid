@@ -1,7 +1,7 @@
 import { useSettingsStore } from "@/store/useSettingsStore";
 import type { FontTypes } from "@/types/font";
 import { loadFontFromUrl } from "@/utils/fontUtils";
-import { logDebug } from "@/utils/logUtils";
+import { logDebug, logError } from "@/utils/logUtils";
 import React, { useCallback, useEffect } from "react";
 
 const FontStateManager = () => {
@@ -23,7 +23,7 @@ const FontStateManager = () => {
 				await loadFontFromUrl(url, `${fontType}-font`);
 				updateCssVariable(fontType, fontFamily);
 			} catch (error) {
-				console.error(`Failed to load font from ${url}`, error);
+				logError(`Failed to load font from ${url}`, error);
 				updateCssVariable(fontType, fontFamily);
 			}
 		},

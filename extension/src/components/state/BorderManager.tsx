@@ -10,8 +10,6 @@ const BorderManager = () => {
 		const getFormattedStylesAsCSSProperty = (borderSettings: BorderSettings): string => {
 			if (!Object.keys(borderSettings).length) return "";
 
-			console.log(borderSettings);
-
 			return Object.entries(borderSettings)
 				.map(
 					([key, value]) =>

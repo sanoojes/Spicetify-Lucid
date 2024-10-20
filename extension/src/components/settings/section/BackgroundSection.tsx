@@ -46,7 +46,7 @@ const BackgroundSection = () => {
 			id: "backgroundCustomUrl",
 			conditionalRender: mode === "static",
 			cardProps: {
-				title: "Background image.",
+				title: "Background image",
 				type: "input",
 				tooltip: (
 					<>

@@ -15,8 +15,8 @@ export type PageCategoryType =
 export type LucidStoreValues = {
 	pageCategory: PageCategoryType;
 	underMainBackgroundImage: string | null;
-	rootStyle: CSSStyleDeclaration;
 	artworkData: ArtworkData;
+	windowZoom: number;
 };
 
 export type LucidStoreSetters = {
@@ -24,7 +24,7 @@ export type LucidStoreSetters = {
 	setPageCategory: (pageCategory: PageCategoryType) => void;
 	setUnderMainViewBackgroundImage: (url: string | null) => void;
 	setIsCustomControls: (isCustomControls: boolean) => void;
-	setRootStyle: (rootStyle: CSSStyleDeclaration) => void;
+	setWindowZoom: (windowZoom: number) => void;
 };
 
 export type LucidStoreState = LucidStoreValues & LucidStoreSetters;

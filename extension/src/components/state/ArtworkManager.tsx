@@ -7,7 +7,7 @@ import React, { useCallback, useEffect } from "react";
 const ArtworkManager = () => {
 	logDebug("Render <ArtworkManager />");
 
-	const { pageCategory, rootStyle, artworkData, updateArtworkData } = useLucidStore();
+	const { pageCategory, artworkData, updateArtworkData } = useLucidStore();
 	const {
 		interfaceSettings: { pagesSettings },
 	} = useSettingsStore();
@@ -21,7 +21,7 @@ const ArtworkManager = () => {
 			return;
 		}
 
-		rootStyle.setProperty("--artwork-opacity", "0");
+		document.documentElement.style.setProperty("--artwork-opacity", "0");
 		try {
 			if (currentPageURI) {
 				const imageUrl = (await fetchArtworkURLFromAPI(currentPageURI)) || "";
@@ -30,20 +30,20 @@ const ArtworkManager = () => {
 				updateArtworkData({ currentPageArtURL: "", currentPageURI: "" });
 			}
 		} catch (error) {
-			console.error("Error updating artwork:", error);
+			logError("Error updating artwork:", error);
 			updateArtworkData({ currentPageArtURL: "", currentPageURI: "" });
 		} finally {
-			setTimeout(() => rootStyle.setProperty("--artwork-opacity", "1"), 500);
+			setTimeout(() => document.documentElement.style.setProperty("--artwork-opacity", "1"), 500);
 		}
-	}, [artworkData.currentPageURI, rootStyle, updateArtworkData]);
+	}, [artworkData.currentPageURI, updateArtworkData]);
 
 	useEffect(() => {
 		if (artworkData.currentPageArtURL) {
-			rootStyle.setProperty("--playlist-art-image", `url(${artworkData.currentPageArtURL})`);
+			document.documentElement.style.setProperty("--playlist-art-image", `url(${artworkData.currentPageArtURL})`);
 			logInfo(`Updated Playlist Artwork URL to ${artworkData.currentPageArtURL}`);
 		} else if (artworkData.currentPageURI && pageCategory !== "other") {
 			logError(`No artwork URL found for URI: ${artworkData.currentPageURI}`);
-			rootStyle.setProperty("--playlist-art-image", "none");
+			document.documentElement.style.setProperty("--playlist-art-image", "none");
 		}
 
 		if (pagesSettings.backgroundImageMode === "inherit") {
@@ -59,16 +59,16 @@ const ArtworkManager = () => {
 		artworkData.currentPageArtURL,
 		artworkData.currentPageURI,
 		pageCategory,
-		rootStyle,
+
 		setPageArtwork,
 	]);
 
 	useEffect(() => {
 		if (artworkData.nowPlayingArtURL) {
-			rootStyle.setProperty("--now-playing-art-image", `url("${artworkData.nowPlayingArtURL}")`);
+			document.documentElement.style.setProperty("--now-playing-art-image", `url("${artworkData.nowPlayingArtURL}")`);
 			logInfo(`Updated Now Playing Art View: ${artworkData.nowPlayingArtURL}`);
 		}
-	}, [artworkData.nowPlayingArtURL, rootStyle]);
+	}, [artworkData.nowPlayingArtURL]);
 
 	useEffect(() => {
 		const handleSongChange = async () => {

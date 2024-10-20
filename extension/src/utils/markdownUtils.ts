@@ -1,3 +1,5 @@
+import { logError } from "./logUtils";
+
 export async function getMarkdownHTML(markdown: string, user: string, repo: string) {
 	try {
 		const postBody = {
@@ -18,7 +20,7 @@ export async function getMarkdownHTML(markdown: string, user: string, repo: stri
 		const html = await response.text();
 		return html;
 	} catch (err) {
-		console.error("Error parsing markdown:", err);
+		logError("Error parsing markdown:", err);
 		return null;
 	}
 }

@@ -41,6 +41,8 @@ export type SubSettingsActions = {
 
 	setBackgroundMode: (mode: BackgroundMode) => void;
 
+	setControlHeight: (height: number) => void;
+
 	setBorderThickness: (thickness: number) => void;
 
 	setBorderStyle: (style: BorderStyle) => void;

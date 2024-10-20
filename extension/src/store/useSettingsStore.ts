@@ -70,6 +70,16 @@ export const useSettingsStore = create(
 
 			setSettingAccessPosition: (settingAccessPosition) => set(() => ({ settingAccessPosition })),
 
+			setControlHeight: (height) =>
+				set((state) => ({
+					interfaceSettings: {
+						...state.interfaceSettings,
+						controlSettings: {
+							height,
+						},
+					},
+				})),
+
 			setCustomBackgroundOverride: (url) =>
 				set((state) => ({
 					backgroundSettings: {
