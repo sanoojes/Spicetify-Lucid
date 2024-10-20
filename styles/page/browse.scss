@@ -6,7 +6,7 @@
     }
 
     .Vn9yz8P5MjIvDT8c0U6w {
-      @extend .default-border-with-radius;
+      @include default-border-with-radius;
 
       &::before {
         content: "";
@@ -30,12 +30,12 @@
   }
 
   .search-searchCategory-SearchCategory {
-    @extend .header-backdrop-blur;
+    @include header-backdrop-blur;
   }
 
   .mXNT9H2GU7lDW4cGx0q1 {
     background-color: rgba(var(--spice-rgb-selected-row), 0.05);
-    @extend .default-border;
+    @include default-border;
 
     &:hover {
       background-color: rgba(var(--spice-rgb-selected-row), 0.1);
@@ -52,7 +52,7 @@
 .search {
   .Root__main-view {
     .main-rootlist-wrapper {
-      @extend .default-border-with-radius;
+      @include default-border-with-radius;
     }
   }
 }

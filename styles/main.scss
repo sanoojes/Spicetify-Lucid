@@ -3,13 +3,13 @@
 
 // Variables
 @import "variables";
+@import "mixins";
 
 // Default Styles
 @import "default/root";
 @import "default/font";
 
 // Components
-@import "components/main";
 @import "components/card";
 @import "button/button-overrides";
 

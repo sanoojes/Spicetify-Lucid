@@ -4,7 +4,7 @@ $active-bg: rgba(255, 255, 255, 0.08);
 
 .shelf-card {
   background: $card-bg;
-  @extend .default-border-with-radius;
+  @include default-border-with-radius;
 
   &:hover,
   &:hover::after {

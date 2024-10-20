@@ -1,6 +1,6 @@
 .playlist-playlist-playlist {
   .playlist-playlist-playlistContent {
-    background: none;
+    @include bg-none;
   }
 }
 

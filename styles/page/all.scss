@@ -17,7 +17,7 @@
   }
 
   .main-trackList-trackList {
-    @extend .default-border-with-radius;
+    @include default-border-with-radius;
     .main-trackList-trackListRow {
       padding-left: 1.5rem;
 
@@ -35,7 +35,7 @@
 
 .artist-artistDiscography-topBar {
   &.artist-artistDiscography-topBarScrolled {
-    @extend .header-backdrop-blur;
+    @include header-backdrop-blur;
   }
 }
 
@@ -93,11 +93,11 @@
 
 // marketplace page
 .marketplace-header {
-  @extend .header-backdrop-blur;
+  @include header-backdrop-blur;
   margin: 0 calc(var(--content-spacing) * -1 - -2px) 0
     calc(var(--content-spacing) * -1 - -2px);
   padding: $padding-sm calc(var(--content-spacing) * 2);
-  background: none !important;
+  @include bg-none-important;
   background-color: transparent !important;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -120,6 +120,6 @@
   .main-globalNav-link-icon {
     border: none;
     box-shadow: none;
-    background: none;
+    @include bg-none;
   }
 }
