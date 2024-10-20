@@ -1,3 +1,5 @@
+$card-bg: rgba(150, 150, 150, 0.1);
+
 .GenericModal__overlay {
   inset: 0;
   display: -webkit-box;
@@ -41,4 +43,13 @@
 
 dialog {
   border: none !important;
+}
+
+.desktopmodals-aboutSpotifyModal-container {
+  @extend .modal-background;
+  @extend .default-border;
+
+  .desktopmodals-aboutSpotifyModal-licensing {
+    background-color: $card-bg;
+  }
 }
