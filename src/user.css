@@ -3,6 +3,9 @@
 	--encore-button-corner-radius: var(--button-border-radius, var(--border-roundedRadius, 25rem));
 	--spice-player: rgba(var(--spice-rgb-card), 0.5);
 }
+* {
+	scrollbar-width: thin;
+}
 .main-view-container__scroll-node-child-spacer {
 	height: 0px;
 }
@@ -193,6 +196,7 @@ section[data-testid*="playlist"] {
 	border-radius: .5rem;
 }
 .default-border,
+.desktopmodals-aboutSpotifyModal-container,
 .main-trackCreditsModal-container,
 .main-embedWidgetGenerator-container,
 .Root__main-view .mXNT9H2GU7lDW4cGx0q1,
@@ -277,6 +281,7 @@ section[data-testid*="playlist"] {
 	border-radius: .5rem;
 }
 .modal-background,
+.desktopmodals-aboutSpotifyModal-container,
 .JnpOnFaQfrRIA2fYe88A,
 .uJjmxe0T11dUVeW6Biz8,
 .main-trackCreditsModal-container,
@@ -1054,6 +1059,9 @@ section[data-testid*="playlist"] {
 }
 dialog {
 	border: none !important;
+}
+.desktopmodals-aboutSpotifyModal-container .desktopmodals-aboutSpotifyModal-licensing {
+	background-color: rgba(150, 150, 150, 0.1);
 }
 #lucid-main .modal-container .modal-overlay,
 #lucid-main .modal-container .modal-section {

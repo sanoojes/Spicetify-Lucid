@@ -9,6 +9,11 @@
   --spice-player: rgba(var(--spice-rgb-card), 0.5);
 }
 
+* {
+  // scrollbar override
+  scrollbar-width: thin;
+}
+
 /* Scroll Node */
 .main-view-container__scroll-node-child-spacer {
   height: 0px;
