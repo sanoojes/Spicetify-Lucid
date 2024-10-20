@@ -11,11 +11,6 @@ const PlaybarManager = () => {
 	const { playbarSettings } = useSettingsStore();
 	const playbarRef = useRef<HTMLElement>(document.querySelector(PLAYBAR_CLASS_NAME));
 
-	const mainRef = useRef(document.querySelector(".Root__main-view"));
-	useEffect(() => {
-		document.documentElement.style.setProperty("--main-view-height", `${mainRef.current?.clientHeight}px`);
-	}, []);
-
 	useBodyClass(`playbar-${playbarSettings.mode}`);
 
 	useEffect(() => {

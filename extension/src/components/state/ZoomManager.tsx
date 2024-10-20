@@ -14,8 +14,12 @@ const ZoomManager = () => {
 	const prevRatio = useRef(window.devicePixelRatio);
 	const startup = useRef(true);
 
+	const mainRef = useRef(document.querySelector(".Root__main-view"));
+
 	useEffect(() => {
 		const updateZoom = () => {
+			document.documentElement.style.setProperty("--main-view-height", `${mainRef.current?.clientHeight}px`);
+
 			const newOuterWidth = window.outerWidth;
 			const newInnerWidth = window.innerWidth;
 			const newRatio = window.devicePixelRatio;
