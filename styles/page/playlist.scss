@@ -1,20 +1,22 @@
 .playlist-playlist-playlist {
+  .PeLrpasyfBW8ql_bmoAi,
   .playlist-playlist-playlistContent {
-    @include bg-none;
+    @include bg-none-important;
   }
 }
 
 .playlist-view-compact-card,
 .playlist-view-card {
+  .main-entityHeader-container.JYKKZFIXuf9lIHVeszuS,
   .main-entityHeader-container.main-entityHeader-nonWrapped {
     max-height: 30vh;
-
     .contentSpacing {
       top: 50%;
       transform: translateY(-50%);
     }
   }
 
+  .main-entityHeader-container.JYKKZFIXuf9lIHVeszuS,
   .main-entityHeader-container.main-entityHeader-withBackgroundImage,
   .main-entityHeader-container.main-entityHeader-nonWrapped {
     border-bottom: $default-border;
@@ -49,6 +51,7 @@
 }
 
 .playlist-view-compact {
+  .main-entityHeader-container.JYKKZFIXuf9lIHVeszuS,
   .main-entityHeader-container.main-entityHeader-nonWrapped {
     position: relative;
     height: min(25vh, calc(var(--fluid-height) / 2)) !important;
@@ -71,6 +74,7 @@
 }
 
 .playlist-view-compact-card {
+  .main-entityHeader-container.JYKKZFIXuf9lIHVeszuS,
   .main-entityHeader-container.main-entityHeader-nonWrapped {
     .contentSpacing {
       width: fit-content;

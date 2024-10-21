@@ -40,8 +40,8 @@
 
 @mixin modal-background {
   background-color: rgba(var(--spice-rgb-card), 0.5);
-  -webkit-backdrop-filter: blur(2rem);
-  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(1.25rem);
+  backdrop-filter: blur(1.25rem);
 }
 
 @mixin box-shadow-to-bottom {
