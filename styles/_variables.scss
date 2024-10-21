@@ -57,11 +57,11 @@ $font-size-lg: $base-font-size * 1.125;
 $font-size-xl: $base-font-size * 1.25;
 
 // Background
-$card-bg-color: rgba(var(--spice-rgb-sidebar), 0.5);
+$card-bg-color: rgba(var(--spice-rgb-sidebar), 0.25);
 $global-nav-bg: none;
 $home-header-bg: none;
 
-$main-bg-color: rgba(var(--spice-rgb-main), 0.5);
+$main-bg-color: rgba(var(--spice-rgb-main), 0.35);
 $left-sidebar-bg: $card-bg-color;
 $right-sidebar-bg: $card-bg-color;
 
