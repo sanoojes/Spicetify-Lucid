@@ -158,3 +158,8 @@ section[data-testid*="playlist"] {
 .os-scrollbar-track {
   padding-bottom: calc($root-padding-bottom + 8px) !important;
 }
+
+.main-dropDown-dropDown {
+  background-color: var(--spice-main);
+  @include default-border-with-radius;
+}
