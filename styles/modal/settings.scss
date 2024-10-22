@@ -215,6 +215,7 @@
 
   /* input */
   .input {
+    display: block;
     color: var(--spice-text);
     padding: $padding-sm $padding-md;
     width: 6rem;
