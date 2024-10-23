@@ -32,7 +32,7 @@ const BackgroundSection = () => {
 
   const onBackgroundModeChange = (value: string) => {
     setSelectedMode(value);
-    clearSelectedLocalImage();
+    setBackgroundMode(value as BackgroundMode);
   };
 
   const BACKGROUND_SETTINGS_CARDS: SettingCardMap = [
