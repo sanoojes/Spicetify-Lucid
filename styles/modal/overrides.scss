@@ -16,6 +16,7 @@ $card-bg: rgba(150, 150, 150, 0.1);
   background-color: rgba(var(--spice-rgb-shadow), 0.25);
 }
 
+.main-confirmDialog-container,
 .main-trackCreditsModal-container,
 .main-embedWidgetGenerator-container {
   @include modal-background;
