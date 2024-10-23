@@ -1,4 +1,65 @@
 #lucid-main {
+  .lucid-changelog {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .release {
+      position: relative;
+    }
+
+    .release h3 {
+      margin-top: 0.75rem;
+    }
+
+    .release-button {
+      @include default-border-with-radius;
+      position: absolute;
+      top: 0;
+      right: 0.5rem;
+      display: inline-block;
+      padding: $padding-sm $padding-md;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: $card-bg-color;
+      color: var(--spice-text, white);
+      transition: background-color 0.2s ease;
+      &:hover {
+        background-color: rgba(var(--spice-rgb-accent), 0.5);
+      }
+    }
+
+    .release-content {
+      & > ul {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-xs;
+
+        & > li {
+          margin-left: $margin-2xl;
+          list-style: disc;
+        }
+      }
+
+      .user-mention {
+        font-weight: 700;
+        background-color: rgba(210, 153, 34, 0.25);
+        padding: $padding-xs $padding-sm;
+        border-radius: $border-radius-sm;
+        text-decoration: underline;
+        margin-left: $margin-sm;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(210, 153, 34, 0.5);
+        }
+      }
+    }
+  }
+
   .modal-container {
     .modal-overlay,
     .modal-section {
