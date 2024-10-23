@@ -36,6 +36,7 @@
 .artist-artistDiscography-topBar {
   &.artist-artistDiscography-topBarScrolled {
     @include header-backdrop-blur;
+    background-color: rgba(var(--spice-rgb-card), 0.5);
   }
 }
 

@@ -78,8 +78,8 @@
   // Filter Chips Container
   .main-home-filterChipsContainer {
     .main-home-filterChipsSection {
-      background-color: rgba(var(--spice-rgb-card), 0.5) !important;
       @include header-backdrop-blur;
+      background-color: rgba(var(--spice-rgb-card), 0.5) !important;
       border-bottom: $default-border;
 
       &:after {

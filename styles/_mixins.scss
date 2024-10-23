@@ -28,7 +28,6 @@
 }
 
 @mixin header-backdrop-blur {
-  background-color: rgba(var(--spice-rgb-card), 0.5);
   -webkit-backdrop-filter: blur($top-bar-backdrop-blur);
   backdrop-filter: blur($top-bar-backdrop-blur);
 }

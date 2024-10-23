@@ -9,6 +9,7 @@ $active-bg: rgba(var(--spice-rgb-card), 0.6);
 
       .main-topBar-background {
         @include header-backdrop-blur;
+        background-color: rgba(var(--spice-rgb-card), 0.5) !important;
         border-bottom: $default-border;
 
         .main-topBar-overlay {
@@ -69,7 +70,7 @@ $active-bg: rgba(var(--spice-rgb-card), 0.6);
       @include bg-none;
     }
 
-    .MAhD1GiTZQMOyX6eUrBQ,
+    .gPP3UTf4KHCpkR7fowu7,
     .GimJ6fo6WOYPyWNVpSr1 {
       @include default-border-with-radius;
       background-color: $card-bg-color;
