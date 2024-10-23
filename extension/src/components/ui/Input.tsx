@@ -1,16 +1,18 @@
+import { addToast } from "@/services/toastService";
 import type { InputSetting } from "@/types/input";
 import { debounce } from "@/utils/debounce";
 import React, {
   useState,
   useCallback,
-  type ChangeEvent,
+  ChangeEvent,
   type FC,
   useMemo,
   forwardRef,
+  useEffect,
 } from "react";
 
 // TODO: implement input validation
-const Input = forwardRef<HTMLInputElement, InputSetting>(
+const Input: FC<InputSetting> = forwardRef<HTMLInputElement, InputSetting>(
   (
     { label, defaultValue, onChange, type, placeholder, settings, validation },
     ref
@@ -18,10 +20,14 @@ const Input = forwardRef<HTMLInputElement, InputSetting>(
     const [inputValue, setInputValue] = useState<string | number | null>(
       defaultValue || null
     );
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+    const isFileInput = type === "file";
+    const isNumberInput = type === "number";
 
     const debouncedStringOnChange = useMemo(() => {
       return debounce((value: string) => {
-        if (type !== "file") {
+        if (!isFileInput) {
           onChange?.(value);
         }
       }, 1000);
@@ -29,66 +35,65 @@ const Input = forwardRef<HTMLInputElement, InputSetting>(
 
     const handleChange = useCallback(
       (e: ChangeEvent<HTMLInputElement>) => {
-        if (type === "file") {
+        if (isFileInput) {
           const files = e.target.files;
           onChange?.(files);
+        } else if (isNumberInput && settings) {
+          const value = Number(e.target.value);
+          const maxValue = settings.max ?? 100;
+          const minValue = settings.min ?? 0;
+
+          if (value > maxValue) {
+            setErrorMessage(`Value cannot exceed ${maxValue}`);
+          } else if (value < minValue) {
+            setErrorMessage(`Value cannot be less than ${minValue}`);
+          } else {
+            setErrorMessage(null); // Clear error if within limits
+          }
+
+          const limitedValue = Math.min(
+            Math.max(value, minValue),
+            maxValue
+          ).toString();
+
+          setInputValue(limitedValue);
+          debouncedStringOnChange(limitedValue);
         } else {
           const value = e.target.value;
           setInputValue(value);
+          setErrorMessage(null);
+          ``;
           debouncedStringOnChange(value);
         }
       },
-      [debouncedStringOnChange]
+      [debouncedStringOnChange, settings]
     );
+
+    useEffect(() => {
+      if (errorMessage) {
+        addToast(errorMessage, true);
+      }
+    }, [errorMessage]);
 
     return (
       <div className='input-container'>
-        <label
-          aria-label={label}
-          className={type === "file" ? "input" : "label"} // acts as input button for file type
-        >
+        <label aria-label={label} className={isFileInput ? "input" : "label"}>
           <input
             aria-label={label}
             type={type}
-            accept={
-              type === "file"
-                ? settings
-                  ? settings.accept
-                  : "image/*"
-                : undefined
-            }
-            multiple={
-              type === "file"
-                ? settings
-                  ? settings.multiple
-                  : false
-                : undefined
-            }
+            accept={isFileInput ? settings?.accept ?? "image/*" : undefined}
+            multiple={isFileInput ? settings?.multiple ?? false : undefined}
             className='input encore-text'
             value={inputValue ?? ""}
             onChange={handleChange}
             placeholder={placeholder}
-            step={
-              type === "number"
-                ? settings?.step
-                  ? settings.step
-                  : 1
-                : undefined
-            }
-            min={
-              type === "number" ? (settings?.min ? settings.min : 0) : undefined
-            }
-            max={
-              type === "number"
-                ? settings?.max
-                  ? settings.max
-                  : 100
-                : undefined
-            }
+            step={isNumberInput ? settings?.step ?? 1 : undefined}
+            min={isNumberInput ? settings?.min : undefined}
+            max={isNumberInput ? settings?.max : undefined}
             ref={ref}
-            style={type === "file" ? { display: "none" } : {}}
+            style={isFileInput ? { display: "none" } : {}}
           />
-          {type === "file" ? "Upload Image" : null}
+          {isFileInput ? "Upload Image" : null}
         </label>
       </div>
     );
