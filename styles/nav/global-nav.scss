@@ -9,7 +9,6 @@ $active-bg: rgba(var(--spice-rgb-card), 0.6);
 
       .main-topBar-background {
         @include header-backdrop-blur;
-        @include bg-none-important;
         border-bottom: $default-border;
 
         .main-topBar-overlay {

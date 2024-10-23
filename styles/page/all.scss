@@ -97,8 +97,6 @@
   margin: 0 calc(var(--content-spacing) * -1 - -2px) 0
     calc(var(--content-spacing) * -1 - -2px);
   padding: $padding-sm calc(var(--content-spacing) * 2);
-  @include bg-none-important;
-  background-color: transparent !important;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
