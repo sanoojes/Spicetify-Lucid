@@ -86,7 +86,37 @@ const BackgroundSection = () => {
       cardProps: {
         title: "Use Local Image",
         type: "toggle",
-        tooltip: "Import an image from your device to use as the background.",
+        tooltip: (
+          <>
+            <p>Import an image from your device to use as the background.</p>
+            {selectedLocalImage?.dataURL ? (
+              <div>
+                <img
+                  width='20rem'
+                  src={selectedLocalImage.dataURL}
+                  alt={`${selectedLocalImage?.fileName} image`}
+                  style={{
+                    display: "block",
+                    width: "20rem",
+                    borderRadius: "0.5rem",
+                    border:
+                      "var(--border-thickness) var(--border-style, solid) var(--border-color, rgba(var(--spice-rgb-text), 0.125))",
+                  }}
+                />
+                {selectedLocalImage?.fileName ? (
+                  <p>
+                    File name: <span>{selectedLocalImage.fileName}</span>
+                  </p>
+                ) : null}
+                {selectedLocalImage?.dateAdded ? (
+                  <p>
+                    Date Added: <span>{selectedLocalImage.dateAdded}</span>
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+          </>
+        ),
         settings: {
           checked: isUseLocalImage,
           label: "Enable Local Image",
@@ -123,7 +153,7 @@ const BackgroundSection = () => {
                 setSelectedLocalImage({
                   dataURL: dataURL,
                   fileName: imgFile.name || "",
-                  dateAdded: Date.now(),
+                  dateAdded: new Date().toLocaleString(),
                 });
               };
             }
@@ -150,10 +180,6 @@ const BackgroundSection = () => {
       },
     },
   ];
-
-  useEffect(() => {
-    console.log(selectedLocalImage);
-  }, [selectedLocalImage]);
 
   return (
     <Section
