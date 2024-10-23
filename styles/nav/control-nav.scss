@@ -1,0 +1,139 @@
+$button-height: 48px;
+$button-width: 48px;
+$image-height: $button-height - 8px;
+$image-width: $button-width - 8px;
+$button-bg: rgba(var(--spice-rgb-card), 0.5);
+$hover-bg: rgba(var(--spice-rgb-card), 0.7);
+$active-bg: rgba(var(--spice-rgb-card), 0.6);
+
+@mixin button-dimensions {
+  height: $button-height !important;
+  width: $button-width !important;
+}
+
+@mixin image-dimensions {
+  height: $image-height !important;
+  width: $image-width !important;
+}
+
+@mixin button-background {
+  background: $button-bg;
+  &:hover {
+    background: $hover-bg;
+  }
+  &:active {
+    background: $active-bg;
+  }
+}
+
+.control-nav {
+  .Root__top-container {
+    padding-top: 64px !important;
+
+    &:not(.fullscreen) .main-topBar-background,
+    &:not(.fullscreen) .main-topBar-container > * {
+      @include webkit-drag;
+    }
+
+    .Root__main-view {
+      .main-trackList-trackListHeader,
+      .search-searchCategory-SearchCategory,
+      .main-home-filterChipsContainer,
+      .artist-artistDiscography-topBar {
+        inset: 0 !important;
+      }
+
+      > header,
+      .main-topBar-container {
+        @include bg-none;
+        position: fixed;
+        inset: 0px;
+        height: 64px;
+
+        .main-topBar-overlay,
+        .main-topBar-background {
+          @include bg-none-important;
+        }
+
+        .main-topBar-topbarContentWrapper {
+          @include webkit-drag;
+
+          .main-topBar-searchBar {
+            input,
+            .x-searchInput-searchInputInput {
+              background: $button-bg;
+              border-radius: $border-radius-input;
+              @include default-border;
+
+              &:hover {
+                background: $hover-bg;
+              }
+
+              &:focus {
+                background: $active-bg;
+              }
+            }
+          }
+
+          .main-topBar-topbarContent {
+            * {
+              @include webkit-no-drag;
+            }
+          }
+        }
+
+        .main-topBar-historyButtons {
+          * {
+            @include webkit-no-drag;
+          }
+
+          > button,
+          .main-topBar-button {
+            @include button-background;
+            @include default-border;
+            @include button-dimensions;
+            border-radius: $border-radius-button;
+          }
+        }
+
+        .main-topBar-topbarContentRight {
+          .main-actionButtons {
+            * {
+              @include webkit-no-drag;
+            }
+
+            > button,
+            .main-topBar-buddyFeed {
+              @include default-border;
+              @include button-dimensions;
+              @include button-background;
+              border-radius: $border-radius-button;
+            }
+          }
+
+          .main-userWidget-boxCondensed {
+            @include bg-none-important;
+            height: fit-content;
+            width: fit-content;
+
+            * {
+              @include webkit-no-drag;
+            }
+
+            .main-avatar-avatar,
+            .main-userWidget-hasAvatar {
+              @include button-dimensions;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              > div,
+              .main-image-image {
+                @include image-dimensions;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

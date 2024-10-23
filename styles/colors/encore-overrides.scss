@@ -22,3 +22,19 @@
     --background-elevated-highlight: rgba(var(--spice-rgb-sidebar), 0.25);
   }
 }
+
+.encore-light-theme,
+.encore-light-theme .encore-base-set {
+  --background-base: rgba(var(--spice-rgb-main), 0.54);
+  --background-highlight: rgba(var(--spice-rgb-main), 0.58);
+  --background-press: rgba(var(--spice-rgb-main), 0.68);
+  --background-elevated-base: rgba(var(--spice-rgb-main), 0.58);
+  --background-elevated-highlight: rgba(var(--spice-rgb-main), 0.58);
+  --background-elevated-press: rgba(var(--spice-rgb-main), 0.68);
+  --background-tinted-base: rgba(var(--spice-rgb-main), 0.54);
+  --background-tinted-highlight: rgba(var(--spice-rgb-main), 0.54);
+  --background-tinted-press: rgba(var(--spice-rgb-main), 0.54);
+  --text-base: var(--spice-text);
+  --text-subdued: var(--spice-subtext);
+  --text-bright-accent: var(--spice-text);
+}

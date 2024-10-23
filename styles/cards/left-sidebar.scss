@@ -1,18 +1,17 @@
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id {
-  background: $left-sidebar-bg;
-  transition: width 0.35s ease;
-  @include default-border-with-radius;
+  @include bg-none;
 
   .main-navBar-mainNav {
-    .main-yourLibraryX-libraryItemContainer {
-      padding-bottom: $root-padding-bottom;
+    @include bg-none;
+    .main-yourLibraryX-entryPoints {
+      background: $left-sidebar-bg;
+      transition: width 0.35s ease;
+      @include default-border-with-radius;
     }
 
-    .main-navBar-mainNav,
-    .main-yourLibraryX-library,
-    .main-yourLibraryX-entryPoints {
-      @include bg-none;
+    .main-yourLibraryX-libraryItemContainer {
+      padding-bottom: $root-padding-bottom;
     }
   }
 

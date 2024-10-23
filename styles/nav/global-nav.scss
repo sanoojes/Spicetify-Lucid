@@ -2,59 +2,92 @@ $button-bg: rgba(var(--spice-rgb-card), 0.5);
 $hover-bg: rgba(var(--spice-rgb-card), 0.7);
 $active-bg: rgba(var(--spice-rgb-card), 0.6);
 
-.Root__globalNav {
-  background: $global-nav-bg;
+.global-nav {
+  .Root__main-view {
+    .main-topBar-container {
+      @include bg-none;
 
-  .global-nav-button,
-  .global-nav-icon {
-    background-color: $button-bg;
-    border-radius: $border-radius-md;
-    box-shadow: $border-box-shadow;
+      .main-topBar-background {
+        @include header-backdrop-blur;
+        @include bg-none-important;
+        border-bottom: $default-border;
 
-    &:hover {
+        .main-topBar-overlay {
+          background-color: $top-bar-bg-color;
+        }
+      }
+    }
+  }
+
+  .Root__globalNav {
+    background: $global-nav-bg;
+
+    .global-nav-button,
+    .global-nav-icon {
+      background-color: $button-bg;
+      border-radius: $border-radius-md;
+      box-shadow: $border-box-shadow;
+
+      &:hover {
+        background: $hover-bg;
+      }
+
+      &:active {
+        background: $active-bg;
+      }
+    }
+
+    .Dp3xccI7c2f_JSJ8OHYu {
+      @extend .global-nav-button;
+    }
+
+    .main-globalNav-link-icon {
+      @extend .global-nav-button;
+    }
+
+    .main-globalNav-searchInputContainer .main-globalNav-searchInputContainer,
+    .main-globalNav-searchInputContainer .SFAoASy0S_LZJmYZ3Fh9,
+    .b7r2WRiu5f9Q99qmyreh .main-topBar-searchBar,
+    .main-topBar-searchBar {
+      background: $button-bg;
+      border-radius: $border-radius-input;
+      @include default-border;
+
+      &:focus {
+        background: $active-bg;
+      }
+    }
+
+    .main-globalNav-searchInputContainer:hover .SFAoASy0S_LZJmYZ3Fh9,
+    .main-globalNav-searchInputContainer:hover
+      .main-globalNav-searchInputContainer,
+    .b7r2WRiu5f9Q99qmyreh:hover .main-topBar-searchBar {
       background: $hover-bg;
     }
 
-    &:active {
-      background: $active-bg;
+    // recent search container
+    .MAhD1GiTZQMOyX6eUrBQ {
+      @include bg-none;
     }
-  }
 
-  .Dp3xccI7c2f_JSJ8OHYu {
-    @extend .global-nav-button;
-  }
+    .MAhD1GiTZQMOyX6eUrBQ,
+    .GimJ6fo6WOYPyWNVpSr1 {
+      @include default-border-with-radius;
+      background-color: $card-bg-color;
 
-  .main-globalNav-link-icon {
-    @extend .global-nav-button;
-  }
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        @include backdrop-blur-1rem;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+      }
 
-  .b7r2WRiu5f9Q99qmyreh .main-topBar-searchBar,
-  .main-topBar-searchBar {
-    background: $button-bg;
-    box-shadow: $border-box-shadow;
-    border-radius: $border-radius-input;
-
-    &:focus {
-      background: $active-bg;
-    }
-  }
-
-  .b7r2WRiu5f9Q99qmyreh:hover .main-topBar-searchBar {
-    background: $hover-bg;
-  }
-
-  // recent search container
-  .GimJ6fo6WOYPyWNVpSr1 {
-    @include default-border-with-radius;
-
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      @include backdrop-blur-1rem;
-      width: 100%;
-      height: 100%;
-      inset: 0;
+      .CPqBiLSmPraw0XkjjBp6 {
+        border-radius: $border-radius-avatar;
+      }
     }
   }
 }

@@ -7,4 +7,9 @@
   .main-trackList-rowTitle {
     font-weight: 600;
   }
+
+  .artist-artistDiscography-cardGrid,
+  .artist-artistDiscography-headerContainer.artist-artistDiscography-firstAlbum {
+    padding-top: calc(var(--main-view-height) - 50vh);
+  }
 }

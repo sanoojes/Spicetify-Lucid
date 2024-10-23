@@ -88,20 +88,6 @@
     }
   }
 
-  .main-topBar-container {
-    @include bg-none;
-
-    .main-topBar-background {
-      background-color: transparent !important;
-      @include header-backdrop-blur;
-      border-bottom: $default-border;
-
-      .main-topBar-overlay {
-        background-color: $top-bar-bg-color;
-      }
-    }
-  }
-
   // Card
   .lx7nfGbsUkI_2pC6caw9 {
     padding: 0.25rem;
