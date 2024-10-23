@@ -1,5 +1,6 @@
 import Section from "@/components/settings/ui/SettingSection";
 import { BACKGROUND_MODE_OPTIONS } from "@/constants/dropdown";
+import { addToast } from "@/services/toastService";
 import { useImageStore } from "@/store/useImageStore";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import type { BackgroundMode } from "@/types/background";
@@ -123,7 +124,7 @@ const BackgroundSection = () => {
           onChange: (value: boolean) => {
             setUseLocalImage(value);
             if (value === false) {
-              setSelectedLocalImage(null);
+              clearSelectedLocalImage();
             }
           },
         },
@@ -150,6 +151,16 @@ const BackgroundSection = () => {
                 const dataURL = (e.target?.result || "") as string;
                 logDebug("Local Image Data URL:", dataURL);
 
+                addToast(
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <span style={{ marginRight: "10px" }}>
+                      Successfully Added Local Image as background from File
+                      name:
+                    </span>
+                    <span style={{ fontWeight: "bold" }}>{imgFile.name}</span>
+                  </div>
+                );
+
                 setSelectedLocalImage({
                   dataURL: dataURL,
                   fileName: imgFile.name || "",
@@ -175,6 +186,9 @@ const BackgroundSection = () => {
           label: "Dynamic Color Toggle",
           onChange: (value: boolean) => {
             setIsDynamicColor(value);
+            if (value) {
+              addToast("Enabled Dynamic Color.");
+            }
           },
         },
       },
