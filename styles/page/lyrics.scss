@@ -27,10 +27,10 @@
     --lyrics-scale-coefficent: 0.01;
     --scale-constant: 1;
   }
+}
 
-  .lyrics-lyrics-background {
-    @include bg-none-important;
-  }
+.lyrics-lyrics-background {
+  @include bg-none-important;
 }
 
 .lyrics-lyricsContent-text {
