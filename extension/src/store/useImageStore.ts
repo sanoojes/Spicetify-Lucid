@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 type LocalImageData = {
   dataURL: string;
   fileName?: string;
-  dateAdded?: number;
+  dateAdded?: string;
 };
 
 type ImageStoreState = {
