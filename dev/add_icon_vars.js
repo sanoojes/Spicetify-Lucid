@@ -1,8 +1,8 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const iconFolder = "../assets/icons";
-const targetCssFile = "../src/user.css";
+const iconFolder = "./assets/icons";
+const targetCssFile = "./styles/components/icons.scss";
 
 const svgFiles = fs.readdirSync(iconFolder).filter((file) => path.extname(file) === ".svg");
 
