@@ -113,9 +113,9 @@ section[data-testid*="playlist"] {
   .control-nav .main-topBar-container,
   .global-nav .Root__globalNav {
     --top-bar-padding-start: calc(64px / var(--zoom));
-    --top-bar-padding-end: calc(136px / var(--zoom));
+    --top-bar-padding-end: calc(144px / var(--zoom));
     padding-inline: var(--top-bar-padding-start, 64px)
-      var(--top-bar-padding-end, 143px);
+      var(--top-bar-padding-end, 144px);
   }
 }
 
