@@ -4,7 +4,7 @@ import ChangeLog from "@/components/changelog/ChangeLog";
 import { getMarkdownHTML } from "@/utils/markdownUtils";
 import Modal from "@/components/modal/Modal";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { logDebug } from "@/utils/logUtils";
+import { logDebug, logError } from "@/utils/logUtils";
 import { Release, ReleaseData } from "@/types/changelog";
 import { useModal } from "@/context/ModalContextProvider";
 
@@ -38,7 +38,7 @@ const ChangeLogManager: FC<{ currentVersion?: string }> = ({
       }
 
       const data: Release[] = await response.json();
-      logDebug("Fetched release data:", { level: "info" }, data);
+      logDebug("Fetched release data:", data);
 
       const releasesWithHTML: Release[] = await Promise.all(
         data.map(async (release) => ({
@@ -69,7 +69,7 @@ const ChangeLogManager: FC<{ currentVersion?: string }> = ({
         isLoading: false,
         error: error instanceof Error ? error : new Error("Unknown error"),
       }));
-      logDebug("Error fetching release data:", { level: "error" }, error);
+      logError("Error fetching release data:", error);
     }
   };
 
