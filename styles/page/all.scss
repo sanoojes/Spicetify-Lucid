@@ -62,18 +62,16 @@
 
           .overlay {
             background: -webkit-gradient(
-                linear,
-                left top,
-                left bottom,
-                from(transparent),
-                to(rgba(var(--spice-rgb-shadow), 0.75))
-              ),
-              var(--background-noise);
+              linear,
+              left top,
+              left bottom,
+              from(transparent),
+              to(rgba(var(--spice-rgb-shadow), 0.75))
+            );
             background: linear-gradient(
-                transparent 40%,
-                rgba(var(--spice-rgb-shadow), 1) 100%
-              ),
-              var(--background-noise);
+              transparent 40%,
+              rgba(var(--spice-rgb-shadow), 1) 100%
+            );
           }
         }
       }
