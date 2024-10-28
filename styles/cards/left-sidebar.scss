@@ -8,6 +8,10 @@
       background: $left-sidebar-bg;
       transition: width 0.35s ease;
       @include default-border-with-radius;
+
+      span.LineClamp {
+        -webkit-line-clamp: 1 !important;
+      }
     }
 
     .main-yourLibraryX-libraryItemContainer {

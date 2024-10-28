@@ -2,6 +2,7 @@ $card-bg: rgba(0, 0, 0, 0);
 $hover-bg: rgba(150, 150, 150, 0.1);
 $active-bg: rgba(255, 255, 255, 0.08);
 
+.BoxComponent-box-naked-isInteractive-padding_var___encore_spacing_tighter_,
 .shelf-card {
   background: $card-bg;
   @include default-border-with-radius;
