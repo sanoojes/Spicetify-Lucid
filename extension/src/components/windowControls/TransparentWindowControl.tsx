@@ -41,6 +41,7 @@ const TransparentWindowControl = () => {
             width: `${135 / windowZoom}px`,
             WebkitBackdropFilter: "brightness(2.12)",
             backdropFilter: "brightness(2.12)",
+            pointerEvents: "none",
             zIndex: "var(--above-main-and-now-playing-view-grid-area, 6)",
           };
 
