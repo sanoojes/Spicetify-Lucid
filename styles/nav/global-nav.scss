@@ -22,6 +22,11 @@ $active-bg: rgba(var(--spice-rgb-card), 0.6);
   .Root__globalNav {
     background: $global-nav-bg;
 
+    &.global-libraryX {
+      background-color: $right-sidebar-bg;
+      @include default-border-with-radius;
+    }
+
     .global-nav-button,
     .global-nav-icon {
       background-color: $button-bg;
