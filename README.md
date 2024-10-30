@@ -76,7 +76,7 @@
 
 ```powershell
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-iex "& { $(iwr -useb 'https://sanooj.is-a.dev/Spicetify-Lucid/install/Lucid.ps1') }"
+iex "& { $(iwr -useb 'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@latest/install/Lucid.ps1') }"
 ```
 
 #### **Linux/macOS (Bash)**

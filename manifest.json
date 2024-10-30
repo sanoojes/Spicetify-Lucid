@@ -4,9 +4,9 @@
 		"description": "Spicetify theme inspired by Bloom and Microsoft Fluent Design",
 		"preview": "assets/images/base.png",
 		"readme": "README-Marketplace.md",
-		"usercss": "https://sanooj.is-a.dev/Spicetify-Lucid/src/user.css",
-		"schemes": "https://sanooj.is-a.dev/Spicetify-Lucid/src/color.ini",
-		"include": ["https://sanooj.is-a.dev/Spicetify-Lucid/src/theme.js"],
+		"usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@latest/src/user.css",
+		"schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@latest/src/color.ini",
+		"include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@latest/src/theme.js"],
 		"authors": [
 			{
 				"name": "Sanoojes",
