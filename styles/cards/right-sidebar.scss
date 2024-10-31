@@ -70,7 +70,7 @@
     }
 
     &:has(video) {
-      height: calc((var(--panel-width) * 1px) + 8rem);
+      height: calc((var(--panel-width) * 1px) + 10rem);
     }
 
     .os-scrollbar-horizontal {
