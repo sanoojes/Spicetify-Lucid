@@ -3,9 +3,12 @@ import { useSettingsStore } from "@/store/useSettingsStore";
 
 const NpvManager = () => {
   const {
-    npvSettings: { mode },
+    npvSettings: { mode, position },
   } = useSettingsStore();
+
   useBodyClass(`${mode}-npv`);
+
+  useBodyClass(`${position}-npv`);
 
   return null;
 };

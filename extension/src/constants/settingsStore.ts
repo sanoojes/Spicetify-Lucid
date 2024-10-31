@@ -100,6 +100,7 @@ export const DEFAULT_APP_SETTINGS: ThemeSettings = {
   },
   npvSettings: {
     mode: "normal",
+    position: "right",
   },
   colorSettings: {
     isDynamicColor: false,

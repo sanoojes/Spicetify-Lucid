@@ -3,7 +3,7 @@ import type { BorderRadius, BorderStyle } from "@/types/border";
 import type { DropdownOption } from "@/types/dropdown";
 import type { GrainEffect } from "@/types/grains";
 import type { SettingsPositions } from "@/types/main";
-import { NpvMode } from "@/types/npv";
+import { NpvMode, NpvPosition } from "@/types/npv";
 import type {
   PlaylistBackgroundImageMode,
   PlaylistViewMode,
@@ -70,4 +70,9 @@ export const SETTINGS_ACCESS_MODE_OPTIONS: DropdownOption<SettingsPositions>[] =
 export const NPV_MODE_OPTIONS: DropdownOption<NpvMode>[] = [
   { label: "Compact", value: "compact" },
   { label: "Normal", value: "normal" },
+];
+
+export const NPV_POSITION_OPTIONS: DropdownOption<NpvPosition>[] = [
+  { label: "Left", value: "left" },
+  { label: "Right", value: "right" },
 ];

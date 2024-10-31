@@ -24,7 +24,7 @@ import type {
 import type { StyleOptions } from "@/types/styles";
 import type { ToggleSetting } from "@/types/toggle";
 import type { CSSProperties, ReactNode } from "react";
-import type { NpvMode, NpvSettings } from "@/types/npv";
+import type { NpvMode, NpvPosition, NpvSettings } from "@/types/npv";
 
 // Settings Store Start
 export type ThemeSettings = {
@@ -55,6 +55,7 @@ export type SubSettingsActions = {
   setBackgroundMode: (mode: BackgroundMode) => void;
 
   setNpvMode: (mode: NpvMode) => void;
+  setCompactNpvPosition: (position: NpvPosition) => void;
 
   setControlHeight: (height: number) => void;
 

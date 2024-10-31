@@ -4,16 +4,17 @@ import {
   BORDER_STYLE_OPTIONS,
   GRAIN_MODE_OPTIONS,
   NPV_MODE_OPTIONS,
+  NPV_POSITION_OPTIONS,
   PLAYLIST_BACKGROUND_MODE_OPTIONS,
   PLAYLIST_VIEW_MODE_OPTIONS,
   SETTINGS_ACCESS_MODE_OPTIONS,
 } from "@/constants/dropdown";
 import { useSettingsStore } from "@/store/useSettingsStore";
-import type { BorderRadius, BorderStyle } from "@/types/border";
+import type { BorderStyle } from "@/types/border";
 import type { FontTypes } from "@/types/font";
 import type { GrainEffect } from "@/types/grains";
 import type { SettingsPositions } from "@/types/main";
-import { NpvMode } from "@/types/npv";
+import { NpvMode, NpvPosition } from "@/types/npv";
 import type {
   PlaylistBackgroundImageMode,
   PlaylistViewMode,
@@ -39,7 +40,7 @@ const InterfaceSection = () => {
         roundedRadius: borderRoundedRadius,
       },
     },
-    npvSettings: { mode: npvMode },
+    npvSettings: { mode: npvMode, position: npvPosition },
     setFont,
     setGrainEffect,
     setControlHeight,
@@ -47,6 +48,7 @@ const InterfaceSection = () => {
     setPlaylistViewMode,
     setIsScrollMode,
     setNpvMode,
+    setCompactNpvPosition,
     setBorderColor,
     setBorderStyle,
     setBorderThickness,
@@ -139,6 +141,29 @@ const InterfaceSection = () => {
           selectedValue: npvMode,
           onChange: (value) => {
             setNpvMode(value as NpvMode);
+          },
+        },
+      },
+    },
+    {
+      id: "npvSettings",
+      conditionalRender: npvMode === "compact",
+      cardProps: {
+        title: "Set Compact Sidebar Position",
+        tooltip: (
+          <>
+            <h3 className='encore-text encore-text-medium-bold'>
+              Select where the right sidebar appears.
+            </h3>
+          </>
+        ),
+        type: "dropdown",
+        settings: {
+          options: NPV_POSITION_OPTIONS,
+          placeholder: npvPosition,
+          selectedValue: npvPosition,
+          onChange: (value) => {
+            setCompactNpvPosition(value as NpvPosition);
           },
         },
       },

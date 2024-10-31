@@ -71,7 +71,16 @@ export const useSettingsStore = create(
       setNpvMode: (mode) =>
         set((state) => ({
           npvSettings: {
+            ...state.npvSettings,
             mode,
+          },
+        })),
+
+      setCompactNpvPosition: (position) =>
+        set((state) => ({
+          npvSettings: {
+            ...state.npvSettings,
+            position,
           },
         })),
 
