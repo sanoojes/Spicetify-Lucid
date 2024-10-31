@@ -125,4 +125,11 @@
       box-sizing: border-box;
     }
   }
+
+  &.left-npv {
+    .Root__right-sidebar {
+      left: calc((var(--left-sidebar-width) * 1px) + 0.5rem + 0.5rem);
+      right: inherit;
+    }
+  }
 }
