@@ -16,6 +16,10 @@
 
     .main-yourLibraryX-libraryItemContainer {
       padding-bottom: $root-padding-bottom;
+
+      #catjam-webm {
+        bottom: calc(var(--playbar-height) + var(--panel-gap)) !important;
+      }
     }
   }
 
