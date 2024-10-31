@@ -40,3 +40,89 @@
     z-index: 1;
   }
 }
+
+.compact-npv {
+  .Root__main-view {
+    grid-area: main-view/main-view/main-view/right-sidebar;
+  }
+
+  .Root__right-sidebar {
+    bottom: calc(var(--playbar-height, 80px) + 0.5rem + $padding-md);
+    // left: calc((var(--left-sidebar-width) * 1px) + 0.5rem + 0.5rem);
+    right: var(--panel-gap, $padding-sm);
+    position: fixed;
+    z-index: 5;
+    background: none;
+    border: none;
+    // width: calc(var(--panel-width) * 1px); /* Width is set by default */
+    height: calc(var(--panel-width) * 1px);
+    padding-top: 0px;
+    background-color: rgba(var(--spice-rgb-sidebar), 0.5);
+    transform-origin: bottom right;
+    box-shadow: -2px -2px 16px 6px rgba(var(--spice-rgb-shadow), 0.5);
+    border: $default-border;
+    @include backdrop-blur-1rem;
+
+    &,
+    * {
+      transition: width 0.3s linear, height 0.3s linear;
+      transform-origin: bottom right;
+    }
+
+    &:has(video) {
+      height: calc((var(--panel-width) * 1px) + 8rem);
+    }
+
+    .os-scrollbar-horizontal {
+      display: none;
+    }
+
+    .main-nowPlayingView-coverArtContainer {
+      height: calc(var(--media-container-height) + 1.5rem);
+    }
+
+    .main-nowPlayingView-contextItemInfo {
+      padding-inline: 8px;
+    }
+
+    .ylBRlfNqGnzVa4kjUQGP {
+      padding-inline: 0px;
+    }
+
+    .fNXmHtlrj4UVWmhQrJ_5,
+    .W3E0IT3_STcazjTeyOJa {
+      display: none;
+      visibility: hidden;
+    }
+
+    .LayoutResizer__resize-bar {
+      width: 2rem;
+      height: 2rem;
+      top: -0.25rem;
+      left: -0.25rem;
+      z-index: -1;
+    }
+
+    .LayoutResizer__resize-bar:hover {
+      opacity: 1;
+    }
+
+    div[data-overlayscrollbars-initialize],
+    div[data-overlayscrollbars-viewport~="scrollbarHidden"] {
+      padding: 0px !important;
+    }
+
+    .os-scrollbar-track {
+      padding: 4px !important;
+    }
+
+    .LayoutResizer__inline-end:after,
+    .LayoutResizer__inline-start:after {
+      background-color: rgb(32, 32, 32, 0.75);
+      border-radius: 0.5rem;
+      width: 100% !important;
+      height: 100% !important;
+      box-sizing: border-box;
+    }
+  }
+}

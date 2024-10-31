@@ -3,6 +3,7 @@ import { isWindowsPlatform } from "@/constants/constants";
 import {
   BORDER_STYLE_OPTIONS,
   GRAIN_MODE_OPTIONS,
+  NPV_MODE_OPTIONS,
   PLAYLIST_BACKGROUND_MODE_OPTIONS,
   PLAYLIST_VIEW_MODE_OPTIONS,
   SETTINGS_ACCESS_MODE_OPTIONS,
@@ -12,6 +13,7 @@ import type { BorderRadius, BorderStyle } from "@/types/border";
 import type { FontTypes } from "@/types/font";
 import type { GrainEffect } from "@/types/grains";
 import type { SettingsPositions } from "@/types/main";
+import { NpvMode } from "@/types/npv";
 import type {
   PlaylistBackgroundImageMode,
   PlaylistViewMode,
@@ -37,12 +39,14 @@ const InterfaceSection = () => {
         roundedRadius: borderRoundedRadius,
       },
     },
+    npvSettings: { mode: npvMode },
     setFont,
     setGrainEffect,
     setControlHeight,
     setPagesBackgroundImageMode,
     setPlaylistViewMode,
     setIsScrollMode,
+    setNpvMode,
     setBorderColor,
     setBorderStyle,
     setBorderThickness,
@@ -108,6 +112,33 @@ const InterfaceSection = () => {
           selectedValue: settingAccessPosition,
           onChange: (value) => {
             setSettingAccessPosition(value as SettingsPositions);
+          },
+        },
+      },
+    },
+    {
+      id: "npvSettings",
+      conditionalRender: true,
+      cardProps: {
+        title: "Set Right Sidebar Mode",
+        tooltip: (
+          <>
+            <h3 className='encore-text encore-text-medium-bold'>
+              Select how the right sidebar appears during playback.
+            </h3>
+            <span>
+              Choose 'Compact' for a minimized view or 'Normal' for a detailed
+              layout
+            </span>
+          </>
+        ),
+        type: "dropdown",
+        settings: {
+          options: NPV_MODE_OPTIONS,
+          placeholder: npvMode,
+          selectedValue: npvMode,
+          onChange: (value) => {
+            setNpvMode(value as NpvMode);
           },
         },
       },
