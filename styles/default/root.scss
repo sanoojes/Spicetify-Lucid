@@ -220,10 +220,19 @@ section[data-testid*="playlist"] {
     }
   }
 }
+
 .volume-bar__slider-container {
   .progress-bar__slider {
     &:hover {
       box-shadow: 0 0 0 6px rgba(var(--spice-rgb-card), 0.7);
     }
   }
+}
+
+kbd,
+.c4hmXDjs2Dv8n3VCLz1g {
+  background-color: rgba(var(--spice-rgb-selected-row), 0.1);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  @include default-border;
 }

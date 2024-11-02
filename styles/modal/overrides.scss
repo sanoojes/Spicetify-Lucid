@@ -54,3 +54,43 @@ dialog {
     background-color: $card-bg;
   }
 }
+
+.N9tnwm0XDrt_eGJd2D2A {
+  border-radius: $border-radius-md;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+
+  &:has(.zZMsUUWG29PYcwWPXhOV._kfmGT75UTPoF_D2afwa) {
+    @include modal-background;
+  }
+}
+
+.zZMsUUWG29PYcwWPXhOV {
+  border-radius: $border-radius-md;
+  @include modal-background;
+  background-color: transparent;
+
+  &._kfmGT75UTPoF_D2afwa {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+.search-modal-searchBar {
+  background: $button-bg;
+  border-radius: $border-radius-input;
+  @include default-border;
+
+  svg {
+    fill: var(--spice-text);
+  }
+
+  input,
+  .search-modal-input {
+    color: var(--spice-text) !important;
+  }
+
+  &:hover {
+    background: $active-bg;
+  }
+}

@@ -93,6 +93,7 @@
 // marketplace page
 .marketplace-header {
   @include header-backdrop-blur;
+  background-color: $top-bar-bg-color;
   margin: 0 calc(var(--content-spacing) * -1 - -2px) 0
     calc(var(--content-spacing) * -1 - -2px);
   padding: $padding-sm calc(var(--content-spacing) * 2);
