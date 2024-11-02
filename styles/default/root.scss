@@ -164,3 +164,66 @@ section[data-testid*="playlist"] {
   background-color: var(--spice-main);
   @include default-border-with-radius;
 }
+.progress-bar {
+  &__slider {
+    background-color: var(--spice-accent);
+    box-shadow: 0 0 0 0 transparent;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 0 0 6px rgba(var(--spice-rgb-card), 0.7);
+    }
+  }
+
+  &--isDragging {
+    .progress-bar__slider {
+      box-shadow: 0 0 0 4px rgba(var(--spice-rgb-card), 0.7);
+    }
+  }
+
+  .volume-bar {
+    &__slider-container {
+      .progress-bar__slider {
+        &:hover {
+          box-shadow: 0 0 0 6px rgba(var(--spice-rgb-card), 0.7);
+        }
+      }
+    }
+  }
+}
+
+@property --progress-bar-transform {
+  inherits: true;
+  initial-value: 0%;
+  syntax: "<percentage>";
+}
+
+.progress-bar {
+  --fg-color: var(--spice-accent);
+  transition: --progress-bar-transform 1s linear !important;
+
+  &__slider {
+    background-color: var(--spice-accent);
+    box-shadow: 0 0 0 0 transparent;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 0 0 6px rgba(var(--spice-rgb-card), 0.7);
+    }
+  }
+
+  &--isDragging {
+    transition-duration: 150ms !important;
+
+    .progress-bar__slider {
+      box-shadow: 0 0 0 4px rgba(var(--spice-rgb-card), 0.7);
+    }
+  }
+}
+.volume-bar__slider-container {
+  .progress-bar__slider {
+    &:hover {
+      box-shadow: 0 0 0 6px rgba(var(--spice-rgb-card), 0.7);
+    }
+  }
+}
