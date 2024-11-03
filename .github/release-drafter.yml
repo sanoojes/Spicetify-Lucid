@@ -1,0 +1,33 @@
+name-template: 'v1.0.0'
+tag-template: 'v$NEXT_PATCH_VERSION'
+
+categories:
+  - title: '✨ Features'
+    labels:
+      - 'feat'
+      - 'enhancement'
+    description: 'New features and enhancements.'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'bug'
+      - 'fix'
+    description: 'Bug fixes and patches.'
+  - title: '🧰 Maintenance'
+    labels:
+      - 'chore'
+      - 'docs'
+      - 'refactor'
+      - 'style'
+    description: 'General maintenance tasks and improvements.'
+
+exclude-labels:
+  - 'skip-release'
+
+template: |
+  ## Spicetify Lucid v$NEXT_PATCH_VERSION
+
+  ### 🚀 Highlights
+  $CHANGES
+
+  ### 🛠️ Contributors
+  $CONTRIBUTORS
