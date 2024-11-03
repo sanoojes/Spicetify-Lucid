@@ -40,30 +40,19 @@
 
         .main-coverSlotCollapsed-container {
           height: var(--height, 80px);
-          width: var(--height, 80px)
+          width: var(--height, 80px);
 
           div {
             height: var(--height, 80px);
             width: var(--height, 80px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
           }
 
-          button {
-            .main-nowPlayingWidget-coverArt {
-              width: var(--height, 80px);
-
-              .cover-art {
-                width: var(--height, 80px);
-
-                .cover-art-icon {
-                  bottom: 0;
-                  left: 0;
-                  right: 0;
-                  top: 0
-                }
-              }
+          .cover-art {
+            height: var(--height, 80px) !important;
+            width: var(--height, 80px) !important;
+            .cover-art-icon {
+              height: 56px !important;
+              width: 56px !important;
             }
           }
         }
