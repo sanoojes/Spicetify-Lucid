@@ -35,27 +35,19 @@
       width: 25%;
       min-width: 20%;
 
+      $cover-art-dimensions: calc(var(--height, 64px) - $padding-sm);
+
       .main-nowPlayingWidget-nowPlaying {
-        height: var(--height, 80px);
+        height: $cover-art-dimensions;
+      }
 
-        .main-coverSlotCollapsed-container {
-          height: var(--height, 80px);
-          width: var(--height, 80px);
-
-          div {
-            height: var(--height, 80px);
-            width: var(--height, 80px);
-          }
-
-          .cover-art {
-            height: var(--height, 80px) !important;
-            width: var(--height, 80px) !important;
-            .cover-art-icon {
-              height: 56px !important;
-              width: 56px !important;
-            }
-          }
-        }
+      .main-coverSlotCollapsed-container,
+      .main-coverSlotCollapsed-container > div,
+      .cover-art,
+      .cover-art .cover-art-image {
+        height: $cover-art-dimensions;
+        width: $cover-art-dimensions;
+        max-height: none;
       }
     }
 
