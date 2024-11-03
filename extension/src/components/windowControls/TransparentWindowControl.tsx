@@ -26,7 +26,8 @@ const TransparentWindowControl = () => {
 
         if (!isCustomControls && !isLightModeEnabled) {
           const normalHeight = controlHeight || (isSpotifyV16Above ? 32 : 64);
-          const height = normalHeight / windowZoom;
+          const height =
+            (isSpotifyV16Above ? normalHeight / 2 : normalHeight) / windowZoom;
           const controlTop = isSpotifyV16Above
             ? (controlHeight / windowZoom -
                 Math.min(32 / windowZoom, controlHeight / windowZoom)) /
