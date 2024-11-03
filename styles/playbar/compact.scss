@@ -4,6 +4,10 @@
       height: var(--height, 64px);
     }
 
+    .main-nowPlayingBar-container {
+      overflow: hidden;
+    }
+
     .main-nowPlayingBar-center {
       width: 100%;
       max-width: none;
@@ -30,6 +34,40 @@
       padding-right: 8px;
       width: 25%;
       min-width: 20%;
+
+      .main-nowPlayingWidget-nowPlaying {
+        height: var(--height, 80px);
+
+        .main-coverSlotCollapsed-container {
+          height: var(--height, 80px);
+          width: var(--height, 80px)
+
+          div {
+            height: var(--height, 80px);
+            width: var(--height, 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          button {
+            .main-nowPlayingWidget-coverArt {
+              width: var(--height, 80px);
+
+              .cover-art {
+                width: var(--height, 80px);
+
+                .cover-art-icon {
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  top: 0
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
     .main-nowPlayingWidget-nowPlaying button {
