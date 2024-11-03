@@ -45,8 +45,8 @@
       .main-coverSlotCollapsed-container > div,
       .cover-art,
       .cover-art .cover-art-image {
-        height: $cover-art-dimensions;
-        width: $cover-art-dimensions;
+        height: $cover-art-dimensions !important;
+        width: $cover-art-dimensions !important;
         max-height: none;
       }
     }
