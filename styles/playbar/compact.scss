@@ -4,6 +4,10 @@
       height: var(--height, 64px);
     }
 
+    .main-nowPlayingBar-container {
+      overflow: hidden;
+    }
+
     .main-nowPlayingBar-center {
       width: 100%;
       max-width: none;
@@ -30,6 +34,21 @@
       padding-right: 8px;
       width: 25%;
       min-width: 20%;
+
+      $cover-art-dimensions: calc(var(--height, 64px) - $padding-sm);
+
+      .main-nowPlayingWidget-nowPlaying {
+        height: $cover-art-dimensions;
+      }
+
+      .main-coverSlotCollapsed-container,
+      .main-coverSlotCollapsed-container > div,
+      .cover-art,
+      .cover-art .cover-art-image {
+        height: $cover-art-dimensions;
+        width: $cover-art-dimensions;
+        max-height: none;
+      }
     }
 
     .main-nowPlayingWidget-nowPlaying button {
