@@ -10,29 +10,26 @@
   border: $default-border;
   border-top-left-radius: $border-radius-md;
   border-top-right-radius: $border-radius-md;
+}
 
-  .FUYNhisXTCmbzt9IDxnT,
-  .lyrics-lyricsContainer-LyricsContainer {
-    background-color: transparent !important;
-    --lyrics-active-color: var(--spice-rgb-text);
-    --lyrics-color-active: var(--spice-rgb-text);
-    --lyrics-color-inactive: rgba(var(--lyrics-active-color), 0.2) !important;
-    --lyrics-color-shadow: rgba(var(--lyrics-active-color), 0.25) !important;
-    --lyrics-color-passed: rgba(var(--lyrics-active-color), 0.5) !important;
-    --lyrics-color-background: transparent !important;
-    --lyrics-color-messaging: rgb(0, 0, 0) !important;
+.FUYNhisXTCmbzt9IDxnT,
+.lyrics-lyrics-container,
+.lyrics-lyricsContainer-LyricsContainer {
+  background-color: transparent !important;
+  --lyrics-active-color: var(--spice-rgb-text);
+  --lyrics-color-active: var(--spice-rgb-text);
+  --lyrics-color-inactive: rgba(var(--lyrics-active-color), 0.2) !important;
+  --lyrics-color-shadow: rgba(var(--lyrics-active-color), 0.25) !important;
+  --lyrics-color-passed: rgba(var(--lyrics-active-color), 0.75) !important;
+  --lyrics-color-background: transparent !important;
+  --lyrics-color-messaging: rgb(0, 0, 0) !important;
 
-    --lyrics-blur-coefficent: 0.05rem;
-    --lyrics-shadow-coefficent: 0.5rem;
-    --lyrics-scale-coefficent: 0.01;
-    --scale-constant: 1;
+  .lyrics-lyrics-background {
+    @include bg-none-important;
   }
-}
 
-.lyrics-lyrics-background {
-  @include bg-none-important;
-}
-
-.lyrics-lyricsContent-text {
-  font-weight: 700;
+  .lyrics-lyricsContent-text {
+    font-weight: 700;
+    text-align: center;
+  }
 }
