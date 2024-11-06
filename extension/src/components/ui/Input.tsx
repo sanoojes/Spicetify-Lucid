@@ -12,7 +12,9 @@ import React, {
 } from "react";
 
 // TODO: implement input validation
-const Input: FC<InputSetting> = forwardRef<HTMLInputElement, InputSetting>(
+const Input: React.ForwardRefExoticComponent<
+  InputSetting & React.RefAttributes<HTMLInputElement>
+> = forwardRef<HTMLInputElement, InputSetting>(
   (
     { label, defaultValue, onChange, type, placeholder, settings, validation },
     ref
