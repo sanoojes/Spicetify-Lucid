@@ -55,6 +55,9 @@ export type SubSettingsActions = {
   setBackgroundMode: (mode: BackgroundMode) => void;
 
   setNpvMode: (mode: NpvMode) => void;
+
+  setNpvBlur: (mode: number) => void;
+
   setCompactNpvPosition: (position: NpvPosition) => void;
 
   setControlHeight: (height: number) => void;

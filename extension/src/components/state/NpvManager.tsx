@@ -3,8 +3,10 @@ import { useSettingsStore } from "@/store/useSettingsStore";
 
 const NpvManager = () => {
   const {
-    npvSettings: { mode, position },
+    npvSettings: { mode, position, blur },
   } = useSettingsStore();
+
+  document.body.style.setProperty("--compact-npv-blur", `${blur}px`);
 
   useBodyClass(`${mode}-npv`);
 

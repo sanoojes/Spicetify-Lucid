@@ -76,6 +76,14 @@ export const useSettingsStore = create(
           },
         })),
 
+      setNpvBlur: (blur) =>
+        set((state) => ({
+          npvSettings: {
+            ...state.npvSettings,
+            blur,
+          },
+        })),
+
       setCompactNpvPosition: (position) =>
         set((state) => ({
           npvSettings: {

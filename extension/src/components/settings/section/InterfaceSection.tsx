@@ -40,7 +40,7 @@ const InterfaceSection = () => {
         roundedRadius: borderRoundedRadius,
       },
     },
-    npvSettings: { mode: npvMode, position: npvPosition },
+    npvSettings: { mode: npvMode, position: npvPosition, blur: npvBlur },
     setFont,
     setGrainEffect,
     setControlHeight,
@@ -48,6 +48,7 @@ const InterfaceSection = () => {
     setPlaylistViewMode,
     setIsScrollMode,
     setNpvMode,
+    setNpvBlur,
     setCompactNpvPosition,
     setBorderColor,
     setBorderStyle,
@@ -164,6 +165,28 @@ const InterfaceSection = () => {
           selectedValue: npvPosition,
           onChange: (value) => {
             setCompactNpvPosition(value as NpvPosition);
+          },
+        },
+      },
+    },
+    {
+      id: "npvSettings",
+      sectionName: "Styles",
+      conditionalRender: true,
+      cardProps: {
+        title: `Set Npv Background Blur`,
+        type: "input",
+        settings: {
+          label: "Npv Background Blur input",
+          defaultValue: npvBlur,
+          onChange: (value) => {
+            setNpvBlur(Number(value));
+          },
+          type: "number",
+          settings: {
+            max: 256,
+            min: 0,
+            step: 0.5,
           },
         },
       },

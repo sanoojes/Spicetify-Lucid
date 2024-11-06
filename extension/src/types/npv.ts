@@ -4,4 +4,5 @@ export type NpvPosition = "left" | "right";
 export type NpvSettings = {
   mode: NpvMode;
   position: NpvPosition;
+  blur: number;
 };

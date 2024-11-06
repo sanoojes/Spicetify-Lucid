@@ -61,7 +61,8 @@
     transform-origin: bottom right;
     box-shadow: -2px -2px 16px 6px rgba(var(--spice-rgb-shadow), 0.5);
     border: $default-border;
-    @include backdrop-blur-1rem;
+    -webkit-backdrop-filter: blur(var(--compact-npv-blur, 24px));
+    backdrop-filter: blur(var(--compact-npv-blur, 24px));
 
     &,
     * {
