@@ -26,13 +26,21 @@ const TransparentWindowControl = () => {
 
         if (!isCustomControls && !isLightModeEnabled) {
           const normalHeight = controlHeight || (isSpotifyV16Above ? 32 : 64);
-          const height =
-            (isSpotifyV16Above ? normalHeight / 2 : normalHeight) / windowZoom;
           const controlTop = isSpotifyV16Above
             ? (controlHeight / windowZoom -
                 Math.min(32 / windowZoom, controlHeight / windowZoom)) /
               2
             : 0;
+          const height = (normalHeight - controlTop * 2) / windowZoom;
+
+          window.document.body.style.setProperty(
+            "--top-bar-padding-start",
+            `${(controlHeight <= 16 ? 8 : 64) / windowZoom}px`
+          );
+          window.document.body.style.setProperty(
+            "--top-bar-padding-end",
+            `${(controlHeight <= 16 ? 8 : 135) / windowZoom}px`
+          );
 
           const newStyle: CSSProperties = {
             position: "fixed",

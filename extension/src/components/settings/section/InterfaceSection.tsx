@@ -58,15 +58,14 @@ const InterfaceSection = () => {
     setSettingAccessPosition,
   } = useSettingsStore();
 
-  const [selectedGrainMode, setSelectedGrainMode] =
-    useState<string>(grainEffect);
+  const [selectedGrainMode, setSelectedGrainMode] = useState(grainEffect);
   const [selectedBackgroundImageMode, setSelectedBackgroundImageMode] =
     useState(backgroundImageMode);
   const [selectedPlaylistViewMode, setSelectedPlaylistViewMode] =
     useState(playlistViewMode);
 
   const onGrainModeChange = (value: string) => {
-    setSelectedGrainMode(value);
+    setSelectedGrainMode(value as GrainEffect);
     setGrainEffect(value as GrainEffect);
   };
   const onBackgroundImageModeChange = (value: string) => {
@@ -95,8 +94,8 @@ const InterfaceSection = () => {
           },
           settings: {
             step: 1,
-            min: 0,
-            max: 128,
+            min: 1,
+            max: 64,
           },
         },
       },

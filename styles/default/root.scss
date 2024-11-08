@@ -112,10 +112,8 @@ section[data-testid*="playlist"] {
 .spotify__container--is-desktop.spotify__os--is-windows {
   .control-nav .main-topBar-container,
   .global-nav .Root__globalNav {
-    --top-bar-padding-start: calc(64px / var(--zoom));
-    --top-bar-padding-end: calc(144px / var(--zoom));
-    padding-inline: var(--top-bar-padding-start, 64px)
-      var(--top-bar-padding-end, 144px);
+    padding-inline: var(--top-bar-padding-start, calc(64px / var(--zoom)))
+      var(--top-bar-padding-end, calc(144px / var(--zoom)));
   }
 }
 
