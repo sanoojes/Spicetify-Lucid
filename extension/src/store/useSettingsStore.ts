@@ -309,6 +309,15 @@ export const useSettingsStore = create(
     }),
     {
       name: "lucid-settings",
+      version: 1.1,
+      migrate: (persistedState) => {
+        const state = {
+          ...DEFAULT_APP_SETTINGS,
+          ...(persistedState as SettingsStore),
+        };
+
+        return state;
+      },
     }
   )
 );
