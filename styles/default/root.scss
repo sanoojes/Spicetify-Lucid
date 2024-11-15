@@ -197,7 +197,9 @@ section[data-testid*="playlist"] {
 }
 
 .progress-bar {
-  --fg-color: var(--spice-accent);
+  --fg-color: var(--spice-button);
+  --is-active-fg-color: var(--spice-button-active);
+
   transition: --progress-bar-transform 1s linear !important;
 
   &__slider {
