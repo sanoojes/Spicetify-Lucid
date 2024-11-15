@@ -171,7 +171,7 @@ const InterfaceSection = () => {
     {
       id: "npvSettings",
       sectionName: "Styles",
-      conditionalRender: true,
+      conditionalRender: npvMode === "compact",
       cardProps: {
         title: `Set Npv Background Blur`,
         type: "input",

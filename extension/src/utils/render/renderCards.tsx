@@ -1,28 +1,42 @@
 import Card from "@/components/settings/ui/Card";
 import CardWrapper from "@/components/settings/ui/CardWrapper";
 import type { SettingCardMap } from "@/types/settingTypes";
-import React from "react";
+import React, { useState } from "react";
 
 export const renderCards = (cards: SettingCardMap) => {
-	const groupedCards = new Map<string, SettingCardMap>();
+  const [cardGroups, setCardGroups] = useState<Map<string, SettingCardMap>>(
+    new Map()
+  );
 
-	for (const card of cards) {
-		if (!groupedCards.has(card.id)) {
-			groupedCards.set(card.id, []);
-		}
-		groupedCards.get(card.id)?.push(card);
-	}
+  React.useEffect(() => {
+    const newCardGroups = new Map<string, SettingCardMap>();
+    for (const card of cards) {
+      if (!newCardGroups.has(card.id)) {
+        newCardGroups.set(card.id, []);
+      }
+      newCardGroups.get(card.id)?.push(card);
+    }
+    setCardGroups(newCardGroups);
+  }, [cards]);
 
-	return Array.from(groupedCards.entries()).map(([cardId, cardGroup]) =>
-		cardGroup[0].conditionalRender ? (
-			<CardWrapper key={cardId} id={cardId} className={`${cardId} combine`}>
-				{cardGroup[0]?.sectionName ? (
-					<label aria-label={cardGroup[0]?.sectionName} htmlFor={cardId}>
-						{cardGroup[0]?.sectionName}
-					</label>
-				) : null}
-				{cardGroup.map((card) => (card.conditionalRender ? <Card key={card.id} {...card.cardProps} /> : null))}
-			</CardWrapper>
-		) : null,
-	);
+  return Array.from(cardGroups.entries()).map(([cardId, cardGroup]) => {
+    const visibleCards = cardGroup.filter((card) => card.conditionalRender);
+
+    if (visibleCards.length > 0) {
+      return (
+        <CardWrapper key={cardId} id={cardId} className={`${cardId} combine`}>
+          {visibleCards[0]?.sectionName ? (
+            <label aria-label={visibleCards[0]?.sectionName} htmlFor={cardId}>
+              {visibleCards[0]?.sectionName}
+            </label>
+          ) : null}
+          {visibleCards.map((card) => (
+            <Card key={card.id} {...card.cardProps} />
+          ))}
+        </CardWrapper>
+      );
+    } else {
+      return null;
+    }
+  });
 };
