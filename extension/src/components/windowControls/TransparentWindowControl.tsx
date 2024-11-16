@@ -31,7 +31,7 @@ const TransparentWindowControl = () => {
                 Math.min(32 / windowZoom, controlHeight / windowZoom)) /
               2
             : 0;
-          const height = (normalHeight - controlTop * 2) / windowZoom;
+          const height = normalHeight / windowZoom - controlTop * 2;
 
           window.document.body.style.setProperty(
             "--top-bar-padding-start",
