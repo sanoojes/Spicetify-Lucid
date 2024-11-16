@@ -80,6 +80,10 @@
       height: 100% !important;
     }
   }
+
+  .MLbUPrgOa58_qsGikfRG {
+    pointer-events: auto !important;
+  }
 }
 
 .compact-npv {
@@ -122,7 +126,7 @@
 
     /* CanvasNPV */
     &:has(.canvasVideoContainerNPV) {
-      height: calc((var(--panel-width) * 1px) + 10rem);
+      height: calc((var(--panel-width) * 1px) * 1.75);
     }
 
     .os-scrollbar-horizontal {
