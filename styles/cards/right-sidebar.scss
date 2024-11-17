@@ -18,7 +18,12 @@
 
   &,
   .main-nowPlayingView-coverArtContainer {
-    --media-container-height: calc(var(--panel-width, 420) * 1px) !important;
+    --media-container-height: calc(
+      (var(--panel-width, 420) * 1px) - 32px
+    ) !important;
+  }
+  .main-nowPlayingView-coverArtContainer.hjyiWzPtKHn_5kCe9vyg {
+    height: var(--height, 60vh) !important;
   }
 
   .main-nowPlayingView-nowPlayingWidget {
@@ -70,8 +75,13 @@
   }
 
   /* VideoNPV */
-  .KrBYgWLGb5aRHjoD_prX {
+  .KrBYgWLGb5aRHjoD_prX,
+  #VideoPlayerNpv_ReactPortal {
     margin-top: 8px !important;
+    margin-left: -8px;
+    margin-right: -8px;
+    border-radius: $border-radius-md;
+    overflow: hidden;
   }
 
   .ouiL5cH1WduxtprQ0Iig {
