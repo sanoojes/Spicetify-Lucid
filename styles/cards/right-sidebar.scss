@@ -125,6 +125,11 @@
       transform-origin: bottom right;
     }
 
+    &,
+    .main-nowPlayingView-coverArtContainer {
+      --media-container-height: calc(var(--panel-width, 420) * 1px) !important;
+    }
+
     /* VideoNPV section */
     &:has(.ouiL5cH1WduxtprQ0Iig) {
       height: calc((var(--panel-width) * 1px) + 2.5rem);
