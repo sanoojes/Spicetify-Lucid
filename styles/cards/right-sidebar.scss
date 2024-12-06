@@ -113,6 +113,7 @@
     border: none;
     // width: calc(var(--panel-width) * 1px); /* Width is set by default */
     height: calc(var(--panel-width) * 1px);
+    width: fit-content;
     padding-top: 0px;
     background-color: rgba(var(--spice-rgb-sidebar), 0.5);
     transform-origin: bottom right;
@@ -137,6 +138,28 @@
       height: calc((var(--panel-width) * 1px) + 2.5rem);
     }
 
+    .E08D6ucrHuPJYzzGO7HG {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .hjyiWzPtKHn_5kCe9vyg {
+      --height: calc(
+        max(
+            var(--min-height),
+            min(
+              var(--max-height),
+              (0.69 + (var(--panel-width) - 280) * 0.0003571429) * 100vh
+            )
+          ) - 72px
+      );
+    }
+
+    .E08D6ucrHuPJYzzGO7HG::after {
+      border-radius: $border-radius-md;
+      bottom: 6px;
+    }
+
     .KrBYgWLGb5aRHjoD_prX {
       margin-top: 0px !important;
     }
@@ -151,7 +174,7 @@
     }
 
     .main-nowPlayingView-contextItemInfo {
-      padding-inline: 8px;
+      padding-inline: $border-radius-md;
     }
 
     .ylBRlfNqGnzVa4kjUQGP {

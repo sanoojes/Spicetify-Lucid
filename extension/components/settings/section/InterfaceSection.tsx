@@ -14,7 +14,7 @@ import type { BorderStyle } from "@/types/border";
 import type { FontTypes } from "@/types/font";
 import type { GrainEffect } from "@/types/grains";
 import type { SettingsPositions } from "@/types/main";
-import { NpvMode, NpvPosition } from "@/types/npv";
+import type { NpvMode, NpvPosition } from "@/types/npv";
 import type {
   PlaylistBackgroundImageMode,
   PlaylistViewMode,
@@ -173,7 +173,7 @@ const InterfaceSection = () => {
       sectionName: "Styles",
       conditionalRender: npvMode === "compact",
       cardProps: {
-        title: `Set Npv Background Blur`,
+        title: "Set Npv Background Blur",
         type: "input",
         settings: {
           label: "Npv Background Blur input",

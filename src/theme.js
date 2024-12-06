@@ -1,18 +1,3170 @@
-(async()=>{for(;!Spicetify.React||!Spicetify.ReactDOM;)await new Promise(e=>setTimeout(e,10));var M=Object.create,B=Object.defineProperty,T=Object.defineProperties,D=Object.getOwnPropertyDescriptor,$=Object.getOwnPropertyDescriptors,V=Object.getOwnPropertyNames,z=Object.getOwnPropertySymbols,F=Object.getPrototypeOf,H=Object.prototype.hasOwnProperty,q=Object.prototype.propertyIsEnumerable,G=(e,t,a)=>t in e?B(e,t,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[t]=a,d=(e,t)=>{for(var a in t=t||{})H.call(t,a)&&G(e,a,t[a]);if(z)for(var a of z(t))q.call(t,a)&&G(e,a,t[a]);return e},u=(e,t)=>T(e,$(t)),W=(e,t)=>{var a={};for(n in e)H.call(e,n)&&t.indexOf(n)<0&&(a[n]=e[n]);if(null!=e&&z)for(var n of z(e))t.indexOf(n)<0&&q.call(e,n)&&(a[n]=e[n]);return a},e=(e,t,a)=>(a=null!=e?M(F(e)):{},((t,a,n,r)=>{if(a&&"object"==typeof a||"function"==typeof a)for(let e of V(a))H.call(t,e)||e===n||B(t,e,{get:()=>a[e],enumerable:!(r=D(a,e))||r.enumerable});return t})(!t&&e&&e.__esModule?a:B(a,"default",{value:e,enumerable:!0}),e)),n=(a=(e,t)=>function(){return t||(0,e[V(e)[0]])((t={exports:{}}).exports,t),t.exports})({"external-global-plugin:react"(e,t){t.exports=Spicetify.React}}),Z=a({"node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(e){function o(e){for(var t=arguments.length,a=new Array(1<t?t-1:0),n=1;n<t;n++)a[n-1]=arguments[n];var r="error",l=a,i=d.ReactDebugCurrentFrame.getStackAddendum();""!==i&&(e+="%s",l=l.concat([i])),(i=l.map(function(e){return String(e)})).unshift("Warning: "+e),Function.prototype.apply.call(console[r],console,i)}function s(e){var t=e.getSnapshot,e=e.value;try{var a=t();return!u(e,a)}catch(e){return 1}}var c,d,u,g,m,p,f,b,y,t;"undefined"!=typeof __REACT_DEVTOOLS_GLOBAL_HOOK__&&"function"==typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart&&__REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error),c=n(),d=c.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED,u="function"==typeof Object.is?Object.is:function(e,t){return e===t&&(0!==e||1/e==1/t)||e!=e&&t!=t},g=c.useState,m=c.useEffect,p=c.useLayoutEffect,f=c.useDebugValue,y=b=!1,t=!("undefined"==typeof window||void 0===window.document||void 0===window.document.createElement),t=void 0!==c.useSyncExternalStore?c.useSyncExternalStore:!t?function(e,t,a){return t()}:function(e,t,a){b||void 0!==c.startTransition&&(b=!0,o("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."));var n=t(),r=(y||(r=t(),u(n,r))||(o("The result of getSnapshot should be cached to avoid an infinite loop"),y=!0),g({inst:{value:n,getSnapshot:t}})),l=r[0].inst,i=r[1];return p(function(){l.value=n,l.getSnapshot=t,s(l)&&i({inst:l})},[e,n,t]),m(function(){s(l)&&i({inst:l});return e(function(){s(l)&&i({inst:l})})},[e]),f(n),n},e.useSyncExternalStore=t,"undefined"!=typeof __REACT_DEVTOOLS_GLOBAL_HOOK__&&"function"==typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop&&__REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error)}}),J=a({"node_modules/use-sync-external-store/shim/index.js"(e,t){t.exports=Z()}}),K=a({"node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(e){var t,a,d,l,u,g,m,p;"undefined"!=typeof __REACT_DEVTOOLS_GLOBAL_HOOK__&&"function"==typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart&&__REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error),t=n(),a=J(),d="function"==typeof Object.is?Object.is:function(e,t){return e===t&&(0!==e||1/e==1/t)||e!=e&&t!=t},l=a.useSyncExternalStore,u=t.useRef,g=t.useEffect,m=t.useMemo,p=t.useDebugValue,e.useSyncExternalStoreWithSelector=function(e,a,i,o,s){var c,t=u(null);null===t.current?(c={hasValue:!1,value:null},t.current=c):c=t.current;var n=(t=m(function(){var n,r,l=!1,e=function(e){if(l)return t=r,d(n,e)||(a=o(e),void 0!==s&&s(t,a))?t:(n=e,r=a);l=!0;var t=o(n=e);if(void 0!==s&&c.hasValue){var a=c.value;if(s(a,t))return r=a}return r=t},t=void 0===i?null:i;return[function(){return e(a())},null===t?void 0:function(){return e(t())}]},[a,i,o,s]))[0],r=l(e,n,t[1]);return g(function(){c.hasValue=!0,c.value=r},[r]),p(r),r},"undefined"!=typeof __REACT_DEVTOOLS_GLOBAL_HOOK__&&"function"==typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop&&__REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error)}}),t=a({"node_modules/use-sync-external-store/shim/with-selector.js"(e,t){t.exports=K()}}),X=a({"node_modules/canvas/lib/parse-font.js"(e,t){var a=`'([^']+)'|"([^"]+)"|[\\w\\s-]+`,r=new RegExp("(bold|bolder|lighter|[1-9]00) +","i"),l=new RegExp("(italic|oblique) +","i"),i=new RegExp("(small-caps) +","i"),o=new RegExp("(ultra-condensed|extra-condensed|condensed|semi-condensed|semi-expanded|expanded|extra-expanded|ultra-expanded) +","i"),s=new RegExp(`([\\d\\.]+)(px|pt|pc|in|cm|mm|%|em|ex|ch|rem|q) *((?:${a})( *, *(?:${a}))*)`),c={};t.exports=e=>{if(c[e])return c[e];var t=s.exec(e);if(t){var a,n={weight:"normal",style:"normal",stretch:"normal",variant:"normal",size:parseFloat(t[1]),unit:t[2],family:t[3].replace(/["']/g,"").replace(/ *, */g,",")},t=e.substring(0,t.index);switch((a=r.exec(t))&&(n.weight=a[1]),(a=l.exec(t))&&(n.style=a[1]),(a=i.exec(t))&&(n.variant=a[1]),(a=o.exec(t))&&(n.stretch=a[1]),n.unit){case"pt":n.size/=.75;break;case"pc":n.size*=16;break;case"in":n.size*=96;break;case"cm":n.size*=96/2.54;break;case"mm":n.size*=96/25.4;break;case"%":break;case"em":case"rem":n.size*=16/.75;break;case"q":n.size*=96/25.4/4}return c[e]=n}}}}),a=a({"node_modules/canvas/browser.js"(e){var t=X();e.parseFont=t,e.createCanvas=function(e,t){return Object.assign(document.createElement("canvas"),{width:e,height:t})},e.createImageData=function(e,t,a){switch(arguments.length){case 0:return new ImageData;case 1:return new ImageData(e);case 2:return new ImageData(e,t);default:return new ImageData(e,t,a)}},e.loadImage=function(r,l){return new Promise(function(e,t){let a=Object.assign(document.createElement("img"),l);function n(){a.onload=null,a.onerror=null}a.onload=function(){n(),e(a)},a.onerror=function(){n(),t(new Error('Failed to load the image "'+r+'"'))},a.src=r})}}}),l=e(n()),Q=(0,l.memo)(({title:e,children:t,headingChild:a,onClose:n,isOpen:r=!1})=>r?l.default.createElement("div",{className:"modal-container"},l.default.createElement("div",{className:"modal-overlay "+(r&&"open"),style:{zIndex:20},onClick:n}),l.default.createElement("dialog",{open:r,className:"modal-section "+(r&&"open"),"aria-label":e,"aria-modal":"true"},l.default.createElement("div",{className:"main-embedWidgetGenerator-container"},l.default.createElement("div",{className:"main-trackCreditsModal-header"},l.default.createElement("h1",{className:"encore-text encore-title-body-medium"},e),a&&l.default.createElement("div",null,a),l.default.createElement("button",{type:"button","aria-label":"Close",className:"main-trackCreditsModal-closeBtn",onClick:()=>n()},l.default.createElement("svg",{width:"18",height:"18",viewBox:"0 0 32 32",xmlns:"http://www.w3.org/2000/svg"},l.default.createElement("title",null,"Close"),l.default.createElement("path",{d:"M31.098 29.794L16.955 15.65 31.097 1.51 29.683.093 15.54 14.237 1.4.094-.016 1.508 14.126 15.65-.016 29.795l1.414 1.414L15.54 17.065l14.144 14.143",fill:"currentColor","fill-rule":"evenodd"})))),l.default.createElement("div",{className:"modal-contents"},l.default.createElement("main",{className:"modal-wrapper"},t))))):null),Y=e(n()),A=({title:e,description:t,children:a})=>Y.default.createElement("div",{className:"setting-section"},Y.default.createElement("div",{className:"heading-wrapper"},Y.default.createElement("h3",{className:"title encore-text encore-text-title-small"},e),t&&Y.default.createElement("p",{className:"desc encore-text encore-text-body-small"},t)),a),ee=[{label:"Animated",value:"animated"},{label:"Static",value:"static"},{label:"Solid",value:"solid"}],te=[{label:"Compact",value:"compact"},{label:"Default",value:"default"},{label:"Rounded",value:"rounded"}],ae=[{label:"Starry",value:"starry"},{label:"Default",value:"default"},{label:"none",value:"none"}],ne=[{label:"Now Playing",value:"now-playing"},{label:"Playlist Cover",value:"inherit"},{label:"none",value:"none"}],re=[{label:"Card",value:"card"},{label:"Compact Card",value:"compact-card"},{label:"Compact",value:"compact"},{label:"Default",value:"default"}],le=[{label:"None",value:"none"},{label:"Hidden",value:"hidden"},{label:"Dotted",value:"dotted"},{label:"Dashed",value:"dashed"},{label:"Solid",value:"solid"},{label:"Double",value:"double"},{label:"Groove",value:"groove"},{label:"Ridge",value:"ridge"},{label:"Inset",value:"inset"},{label:"Outset",value:"outset"}],ie=[{label:"Profile Context Menu",value:"context-menu"},{label:"Global Nav",value:"nav"}],oe=[{label:"Compact",value:"compact"},{label:"Normal",value:"normal"}],se=[{label:"Left",value:"left"},{label:"Right",value:"right"}],ce=e(n()),de=()=>ce.default.createElement("svg",{role:"img","aria-label":"dismiss",width:"24",height:"24",fill:"none",viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg"},ce.default.createElement("path",{d:"m4.21 4.387.083-.094a1 1 0 0 1 1.32-.083l.094.083L12 10.585l6.293-6.292a1 1 0 1 1 1.414 1.414L13.415 12l6.292 6.293a1 1 0 0 1 .083 1.32l-.083.094a1 1 0 0 1-1.32.083l-.094-.083L12 13.415l-6.293 6.292a1 1 0 0 1-1.414-1.414L10.585 12 4.293 5.707a1 1 0 0 1-.083-1.32l.083-.094-.083.094Z",fill:"#ffffff"})),ue=e(n()),o=e=>{var{variant:t="primary",size:a="medium",icon:n,children:r}=e,e=W(e,["variant","size","icon","children"]);return ue.default.createElement("button",d({className:`button button-${t} button-`+a},e),n&&ue.default.createElement("span",{className:"button-icon"},n),r)},i=e(n()),ge=0,{ToastContainer:me,addToast:y}=(()=>{let a;return{ToastContainer:()=>{let[e,r]=(0,i.useState)([]);var t=(0,i.useCallback)((t,a=!1)=>{let n=ge++,e=(r(e=>[...e,{id:n,message:t,isError:a,exiting:!1}]),setTimeout(()=>{l(n)},3e3));return()=>clearTimeout(e)},[]);a=t;let l=t=>{r(e=>e.map(e=>e.id===t?u(d({},e),{exiting:!0}):e)),setTimeout(()=>{r(e=>e.filter(e=>e.id!==t))},500)};return i.default.createElement("div",{className:"toast-container"},e.map(e=>i.default.createElement("div",{key:e.id,className:"toast-element "+(e.exiting?"toast-exit":""),style:{backgroundColor:e.isError?"rgba(200,20,20,0.5)":"rgba(20,20,20,0.5)"}},e.message,i.default.createElement(o,{icon:i.default.createElement(de,null),onClick:()=>l(e.id)}))))},addToast:(e,t)=>a(e,t)}})(),pe={},fe=e=>{let n,r=new Set;var t=(e,a)=>{e="function"==typeof e?e(n):e;if(!Object.is(e,n)){let t=n;n=(null!=a?a:"object"!=typeof e||null===e)?e:Object.assign({},n,e),r.forEach(e=>e(n,t))}},a=()=>n,l={setState:t,getState:a,getInitialState:()=>i,subscribe:e=>(r.add(e),()=>r.delete(e)),destroy:()=>{"production"!==(pe.env?pe.env.MODE:void 0)&&console.warn("[DEPRECATED] The `destroy` method will be unsupported in a future version. Instead use unsubscribe function returned by subscribe. Everything will be garbage-collected if store is garbage-collected."),r.clear()}};let i=n=e(t,a,l);return l},be=e=>e?fe(e):fe,r=e(n(),1),t=e(t(),1),ye={},ve=r.default.useDebugValue,he=t.default.useSyncExternalStoreWithSelector,Se=!1,we=e=>e,Ee=e=>{"production"!==(ye.env?ye.env.MODE:void 0)&&"function"!=typeof e&&console.warn("[DEPRECATED] Passing a vanilla store will be unsupported in a future version. Instead use `import { useStore } from 'zustand'`.");let n="function"==typeof e?be(e):e;e=(e,t)=>{return[e,t=we,a]=[n,e,t],"production"!==(ye.env?ye.env.MODE:void 0)&&a&&!Se&&(console.warn("[DEPRECATED] Use `createWithEqualityFn` instead of `create` or use `useStoreWithEqualityFn` instead of `useStore`. They can be imported from 'zustand/traditional'. https://github.com/pmndrs/zustand/discussions/1937"),Se=!0),e=he(e.subscribe,e.getState,e.getServerState||e.getInitialState,t,a),ve(e),e;var a};return Object.assign(e,n),e},ke={},b=a=>e=>{try{let t=a(e);return t instanceof Promise?t:{then(e){return b(e)(t)},catch(e){return this}}}catch(t){return{then(e){return this},catch(e){return b(e)(t)}}}},xe=(m,p)=>(a,n,e)=>{let r={storage:((e,a)=>{let n;try{n=e()}catch(e){return}return{getItem:e=>{var t=e=>null===e?null:JSON.parse(e,null==a?void 0:a.reviver),e=null!=(e=n.getItem(e))?e:null;return e instanceof Promise?e.then(t):t(e)},setItem:(e,t)=>n.setItem(e,JSON.stringify(t,null==a?void 0:a.replacer)),removeItem:e=>n.removeItem(e)}})(()=>localStorage),partialize:e=>e,version:0,merge:(e,t)=>({...t,...e}),...p},l=!1,i=new Set,o=new Set,s=r.storage;if(!s)return m((...e)=>{console.warn(`[zustand persist middleware] Unable to update item '${r.name}', the given storage is currently unavailable.`),a(...e)},n,e);let c=()=>{var e=r.partialize({...n()});return s.setItem(r.name,{state:e,version:r.version})},d=e.setState,u=(e.setState=(e,t)=>{d(e,t),c()},m((...e)=>{a(...e),c()},n,e));e.getInitialState=()=>u;let g,t=()=>{var e;if(s){l=!1,i.forEach(e=>e(null!=(e=n())?e:u));let t=(null==(e=r.onRehydrateStorage)?void 0:e.call(r,null!=(e=n())?e:u))||void 0;return b(s.getItem.bind(s))(r.name).then(e=>{if(e){if("number"!=typeof e.version||e.version===r.version)return[!1,e.state];if(r.migrate)return[!0,r.migrate(e.state,e.version)];console.error("State loaded from storage couldn't be migrated since no migrate function was provided")}return[!1,void 0]}).then(e=>{var[e,t]=e;if(g=r.merge(t,null!=(t=n())?t:u),a(g,!0),e)return c()}).then(()=>{null!=t&&t(g,void 0),g=n(),l=!0,o.forEach(e=>e(g))}).catch(e=>{null!=t&&t(void 0,e)})}};return e.persist={setOptions:e=>{r={...r,...e},e.storage&&(s=e.storage)},clearStorage:()=>{null!=s&&s.removeItem(r.name)},getOptions:()=>r,rehydrate:()=>t(),hasHydrated:()=>l,onHydrate:e=>(i.add(e),()=>{i.delete(e)}),onFinishHydration:e=>(o.add(e),()=>{o.delete(e)})},r.skipHydration||t(),g||u},Re={isUseLocalImage:!1,selectedLocalImage:null},Ce=(r=e=>e?Ee(e):Ee)((t=(e,t)=>{var p,f;return"getStorage"in t||"serialize"in t||"deserialize"in t?("production"!==(ke.env?ke.env.MODE:void 0)&&console.warn("[DEPRECATED] `getStorage`, `serialize` and `deserialize` options are deprecated. Use `storage` option instead."),p=e,f=t,(a,n,e)=>{let r={getStorage:()=>localStorage,serialize:JSON.stringify,deserialize:JSON.parse,partialize:e=>e,version:0,merge:(e,t)=>({...t,...e}),...f},l=!1,i=new Set,o=new Set,s;try{s=r.getStorage()}catch(e){}if(!s)return p((...e)=>{console.warn(`[zustand persist middleware] Unable to update item '${r.name}', the given storage is currently unavailable.`),a(...e)},n,e);let c=b(r.serialize),d=()=>{var e=r.partialize({...n()});let t;e=c({state:e,version:r.version}).then(e=>s.setItem(r.name,e)).catch(e=>{t=e});if(t)throw t;return e},u=e.setState,g=(e.setState=(e,t)=>{u(e,t),d()},p((...e)=>{a(...e),d()},n,e)),m,t=()=>{var e;if(s){l=!1,i.forEach(e=>e(n()));let t=(null==(e=r.onRehydrateStorage)?void 0:e.call(r,n()))||void 0;return b(s.getItem.bind(s))(r.name).then(e=>{if(e)return r.deserialize(e)}).then(e=>{if(e)return"number"!=typeof e.version||e.version===r.version?e.state:r.migrate?r.migrate(e.state,e.version):void console.error("State loaded from storage couldn't be migrated since no migrate function was provided")}).then(e=>(m=r.merge(e,null!=(e=n())?e:g),a(m,!0),d())).then(()=>{null!=t&&t(m,void 0),l=!0,o.forEach(e=>e(m))}).catch(e=>{null!=t&&t(void 0,e)})}};return e.persist={setOptions:e=>{r={...r,...e},e.getStorage&&(s=e.getStorage())},clearStorage:()=>{null!=s&&s.removeItem(r.name)},getOptions:()=>r,rehydrate:()=>t(),hasHydrated:()=>l,onHydrate:e=>(i.add(e),()=>{i.delete(e)}),onFinishHydration:e=>(o.add(e),()=>{o.delete(e)})},t(),m||g}):xe(e,t)})(t=>u(d({},Re),{setUseLocalImage:e=>t(()=>({isUseLocalImage:e})),setSelectedLocalImage:e=>t(()=>({selectedLocalImage:e})),clearSelectedLocalImage:()=>t(()=>d({},Re))}),{name:"lucid-bg-image"})),_e={backgroundSettings:{mode:"static",styles:{solid:{opacity:1,backgroundColor:"var(--spice-main)"},static:{blur:32,opacity:1,saturation:1.1,contrast:1.2,brightness:.5},animated:{blur:32,time:45,opacity:1,saturation:1.1,contrast:1.2,brightness:.475}},customBackgroundOverride:{url:null}},interfaceSettings:{controlSettings:{height:64},fontSettings:{body:{url:"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap",fontFamily:"Poppins"}},grainSettings:{grainEffect:"default"},pagesSettings:{isScrollMode:!1,backgroundImageMode:"inherit",playlistViewMode:"card"},borderSettings:{color:"rgba(var(--spice-rgb-selected-row, var(--spice-rgb-text)), 0.125)",style:"inset",thickness:1,roundedRadius:12}},npvSettings:{mode:"normal",position:"right",blur:24},colorSettings:{isDynamicColor:!1},playbarSettings:{mode:"default",styles:{compact:{height:64,opacity:1,saturation:1.1,contrast:1.2,brightness:.8,borderRadius:8,backdropBlur:32,paddingX:6,backgroundColor:"rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)"},default:{height:80,opacity:1,paddingX:6,saturation:1.1,contrast:1.2,borderRadius:8,brightness:.8,backdropBlur:32,backgroundColor:"rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)"},rounded:{height:80,opacity:1,paddingX:20,saturation:1.1,contrast:1.2,borderRadius:999,brightness:.8,backdropBlur:32,backgroundColor:"rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)"}}},settingAccessPosition:"context-menu"},U=r(t((r,t)=>u(d({},_e),{exportSettings:()=>{var e=t();return JSON.stringify(e)},importSettings:t=>{try{var e=JSON.parse(t);if("object"==typeof(a=e)&&null!==a&&"backgroundSettings"in a&&"interfaceSettings"in a&&"playbarSettings"in a&&"colorSettings"in a&&"object"==typeof a.backgroundSettings&&"mode"in a.backgroundSettings&&"styles"in a.backgroundSettings&&"object"==typeof a.interfaceSettings&&"borderSettings"in a.interfaceSettings&&"fontSettings"in a.interfaceSettings&&"object"==typeof a.playbarSettings&&"mode"in a.playbarSettings&&"object"==typeof a.colorSettings&&"isDynamicColor"in a.colorSettings)return r(e),y("Settings imported successfully!"),!0;throw new Error("Invalid settings structure")}catch(e){t=e instanceof SyntaxError?"Failed to parse JSON: Please ensure your input is valid JSON.":e instanceof Error?e.message:"An unknown error occurred.";return y(t,!0),!1}var a},setBackgroundSettings:t=>r(e=>({backgroundSettings:d(d({},e.backgroundSettings),t)})),setNpvMode:t=>r(e=>({npvSettings:u(d({},e.npvSettings),{mode:t})})),setNpvBlur:t=>r(e=>({npvSettings:u(d({},e.npvSettings),{blur:t})})),setCompactNpvPosition:t=>r(e=>({npvSettings:u(d({},e.npvSettings),{position:t})})),setSettingAccessPosition:e=>r(()=>({settingAccessPosition:e})),setControlHeight:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{controlSettings:{height:t}})})),setCustomBackgroundOverride:t=>r(e=>({backgroundSettings:u(d({},e.backgroundSettings),{customBackgroundOverride:u(d({},e.backgroundSettings.customBackgroundOverride),{url:t})})})),setBorderColor:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{borderSettings:u(d({},e.interfaceSettings.borderSettings),{color:t})})})),setBorderStyle:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{borderSettings:u(d({},e.interfaceSettings.borderSettings),{style:t})})})),setRoundedBorderRadius:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{borderSettings:u(d({},e.interfaceSettings.borderSettings),{roundedRadius:t})})})),setBorderThickness:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{borderSettings:u(d({},e.interfaceSettings.borderSettings),{thickness:t})})})),setBackgroundStyles:(t,a)=>r(e=>({backgroundSettings:u(d({},e.backgroundSettings),{styles:u(d({},e.backgroundSettings.styles),{[a]:d(d({},e.backgroundSettings.styles[a]),t)})})})),setColorSettings:t=>r(e=>({colorSettings:d(d({},e.colorSettings),t)})),setBorderSettings:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{borderSettings:d(d({},e.interfaceSettings.borderSettings),t)})})),setPlaybarSettings:t=>r(e=>({playbarSettings:d(d({},e.playbarSettings),t)})),setInterfaceSettings:t=>r(e=>({interfaceSettings:d(d({},e.interfaceSettings),t)})),setBackgroundMode:t=>r(e=>({backgroundSettings:u(d({},e.backgroundSettings),{mode:t})})),updateBackgroundStyle:(t,a,n)=>r(e=>({backgroundSettings:u(d({},e.backgroundSettings),{styles:u(d({},e.backgroundSettings.styles),{[t]:u(d({},e.backgroundSettings.styles[t]),{[a]:n})})})})),setFont:(t,a)=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{fontSettings:u(d({},e.interfaceSettings.fontSettings),{[t]:d({},a)})})})),setGrainEffect:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{grainSettings:u(d({},e.interfaceSettings.grainSettings),{grainEffect:t})})})),setIsScrollMode:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{pagesSettings:u(d({},e.interfaceSettings.pagesSettings),{isScrollMode:t})})})),setPagesBackgroundImageMode:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{pagesSettings:u(d({},e.interfaceSettings.pagesSettings),{backgroundImageMode:t})})})),setPlaylistViewMode:t=>r(e=>({interfaceSettings:u(d({},e.interfaceSettings),{pagesSettings:u(d({},e.interfaceSettings.pagesSettings),{playlistViewMode:t})})})),setIsDynamicColor:t=>r(e=>({colorSettings:u(d({},e.colorSettings),{isDynamicColor:t})})),updatePlaybarStyle:(t,a,n)=>r(e=>({playbarSettings:u(d({},e.playbarSettings),{styles:u(d({},e.playbarSettings.styles),{[t]:u(d({},e.playbarSettings.styles[t]),{[a]:n})})})})),setPlaybarMode:t=>r(e=>({playbarSettings:u(d({},e.playbarSettings),{mode:t})})),resetAllSettings:()=>{r(_e)}}),{name:"lucid-settings",version:1.1,migrate:e=>d(d({},_e),e)})),Pe=e=>{try{return new URL(e),!0}catch(e){return!1}},Le=e=>decodeURIComponent((null==(e=null==(e=e.match(/family=([^&:]+)/))?void 0:e[1])?void 0:e.replace(/\+/g," "))||"")||"",Oe=(e,a,n)=>Object.entries(e[a]).map(([t,e])=>({id:"style-"+a,sectionName:"Styles",conditionalRender:!0,cardProps:{title:"Set "+t,type:"input",settings:d({label:"",defaultValue:e},"number"==typeof e?{type:"number",onChange:e=>{n(a,t,Number(e))},settings:{max:256,min:0,step:.5}}:{type:"text",onChange:e=>{n(a,t,e)}})}})),Ie=console.log,Ne=console.debug,Me=console.error,Be=console.warn,Ae={prefix:"font-weight: bold; color: #4DB6AC; font-size: 0.85rem;",error:"color: #dc3545;",warn:"color: #ffc107;",debug:"color: #17a2b8;",info:""},Ue=(e,t,...a)=>{var n={info:Ie,debug:Ne,error:Me,warn:Be}[e],e=Ae[e];n("%c[Lucid] %c"+t,Ae.prefix,e,...a)},c=(e,...t)=>Ue("info",e,...t),v=(e,...t)=>Ue("debug",e,...t),w=(e,...t)=>Ue("error",e,...t),je=(e,...t)=>Ue("warn",e,...t),s=e(n()),Te=({children:e})=>s.default.createElement("div",{className:"tooltip-container"},s.default.createElement("div",{className:"tooltip"},s.default.createElement("span",{className:"tooltip-icon"},s.default.createElement("svg",{role:"img","aria-label":"Tooltip icon",width:"24",height:"24",fill:"none",viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg"},s.default.createElement("path",{d:"M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12 6.477 2 12 2Zm0 1.667c-4.595 0-8.333 3.738-8.333 8.333 0 4.595 3.738 8.333 8.333 8.333 4.595 0 8.333-3.738 8.333-8.333 0-4.595-3.738-8.333-8.333-8.333ZM12 15.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0-8.75a2.75 2.75 0 0 1 2.75 2.75c0 1.01-.297 1.574-1.051 2.359l-.169.171c-.622.622-.78.886-.78 1.47a.75.75 0 0 1-1.5 0c0-1.01.297-1.574 1.051-2.359l.169-.171c.622-.622.78-.886.78-1.47a1.25 1.25 0 0 0-2.493-.128l-.007.128a.75.75 0 0 1-1.5 0A2.75 2.75 0 0 1 12 6.75Z",fill:"currentColor"}))),s.default.createElement("span",{className:"tooltip-content"},e))),g=e(n()),De=({title:e,tooltip:t,selectedValue:a})=>g.default.createElement("div",{className:"title-container"},g.default.createElement("div",{className:"title-wrapper"},e&&g.default.createElement("h5",{className:"encore-text encore-text-body-medium-bold"},e),t&&g.default.createElement(Te,null,t)),a&&g.default.createElement("p",{className:"selected-value"},"Selected: ",a)),$e=e(n()),Ve=()=>$e.default.createElement("svg",{role:"img","aria-label":"Arrow Down",width:"24",height:"24",fill:"none",viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg"},$e.default.createElement("path",{d:"M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z",fill:"#ffffff"})),m=e(n()),ze=({options:e,selectedValue:a,onChange:t,placeholder:n,disabled:r})=>{let l=(0,m.useRef)(null),[i,o]=(0,m.useState)(!1);let s=e=>{o(!1),t(e)};return(0,m.useEffect)(()=>{let e=e=>{l.current&&!l.current.contains(e.target)&&o(!1)};return document.addEventListener("mousedown",e),()=>document.removeEventListener("mousedown",e)},[]),m.default.createElement(m.default.Fragment,null,m.default.createElement("div",{className:"dropdown-container",ref:l},m.default.createElement("button",{className:"dropdown-button "+(i?"open":""),onClick:()=>{o(e=>!e)},"aria-label":"Toggle dropdown menu",type:"button"},m.default.createElement("p",{className:"encore-text"},n||a||"Dropdown"),m.default.createElement("span",{className:"dropdown-arrow"},m.default.createElement(Ve,null))),m.default.createElement("div",{className:"dropdown-menu "+(i?"open":"")},i?null==e?void 0:e.map(t=>m.default.createElement("li",{key:t.value,className:"dropdown-item "+(a===t.value?"selected":""),onClick:()=>!t.disabled&&s(t.value),onKeyDown:e=>!t.disabled&&"Enter"===e.key&&s(t.value),style:{opacity:""+(r?.75:1)}},m.default.createElement("p",{className:"encore-text"},t.label))):null)))},h=e(n()),Fe=(0,h.forwardRef)(({label:e,defaultValue:t,onChange:r,type:a,placeholder:n,settings:l},i)=>{let o,s,c,[d,u]=(0,h.useState)(t||null),[g,m]=(0,h.useState)(null),p="file"===a,f="number"===a,b=(0,h.useMemo)(()=>((t,a)=>{let n=null;return(...e)=>{n&&clearTimeout(n),n=setTimeout(()=>{t(...e)},a)}})(e=>{p||null!=r&&r(e)},1e3),[r]);t=(0,h.useCallback)(e=>{var t,a,n;p?(a=e.target.files,null!=r&&r(a)):f&&l?(a=Number(e.target.value),t=null!=(t=l.max)?t:100,n=null!=(n=l.min)?n:0,t<a?m("Value cannot exceed "+t):a<n?m("Value cannot be less than "+n):m(null),a=Math.min(Math.max(a,n),t).toString(),u(a),b(a)):(n=e.target.value,u(n),m(null),b(n))},[b,l]);return(0,h.useEffect)(()=>{g&&y(g,!0)},[g]),h.default.createElement("div",{className:"input-container"},h.default.createElement("label",{"aria-label":e,className:p?"input":"label"},h.default.createElement("input",{"aria-label":e,type:a,accept:p?null!=(o=null==l?void 0:l.accept)?o:"image/*":void 0,multiple:p?null!=(s=null==l?void 0:l.multiple)&&s:void 0,className:"input encore-text",value:null!=d?d:"",onChange:t,placeholder:n,step:f?null!=(c=null==l?void 0:l.step)?c:1:void 0,min:!f||null==l?void 0:l.min,max:!f||null==l?void 0:l.max,ref:i,style:p?{display:"none"}:{}}),p?"Upload Image":null))}),He=e(n()),qe=({onChange:e,checked:t,label:a})=>He.default.createElement("div",{className:"slider-wrapper"},He.default.createElement("label",{className:"switch","aria-label":a},He.default.createElement("input",{"aria-label":"toggleSwtich",type:"checkbox",checked:t,onChange:()=>{e(!t)}}),He.default.createElement("span",{className:"slider round"}))),p=e(n()),Ge=({title:e,tooltip:t,selectedValue:a,type:n,settings:r,children:l,style:i})=>p.default.createElement("div",{className:"card"},p.default.createElement(De,{title:e,tooltip:t,selectedValue:a}),p.default.createElement("div",{className:"children-wrapper",style:i||{}},"dropdown"===n&&p.default.createElement(ze,d({},r)),"input"===n&&p.default.createElement(Fe,d({},r)),"toggle"===n&&p.default.createElement(qe,d({},r)),"button"===n&&p.default.createElement(o,d({},r)),l)),We=e(n()),Ze=e=>{var{children:t,className:a}=e,e=W(e,["children","className"]);return We.default.createElement("div",u(d({},e),{className:"cards-wrapper "+(a||"")}),t)},Je=e(n()),Ke=n=>{let[e,r]=(0,Je.useState)(new Map);return Je.default.useEffect(()=>{var e,t,a=new Map;for(t of n)a.has(t.id)||a.set(t.id,[]),null!=(e=a.get(t.id))&&e.push(t);r(a)},[n]),Array.from(e.entries()).map(([e,t])=>{var a,t=t.filter(e=>e.conditionalRender);return 0<t.length?Je.default.createElement(Ze,{key:e,id:e,className:e+" combine"},null!=(a=t[0])&&a.sectionName?Je.default.createElement("label",{"aria-label":null==(a=t[0])?void 0:a.sectionName,htmlFor:e},null==(a=t[0])?void 0:a.sectionName):null,t.map(e=>Je.default.createElement(Ge,d({key:e.id},e.cardProps)))):null})},S=e(n()),Xe=()=>{let{backgroundSettings:{mode:e,styles:t,customBackgroundOverride:a},colorSettings:{isDynamicColor:n},setBackgroundMode:r,updateBackgroundStyle:l,setIsDynamicColor:i,setCustomBackgroundOverride:o}=U(),{isUseLocalImage:s,setUseLocalImage:c,clearSelectedLocalImage:d,selectedLocalImage:u,setSelectedLocalImage:g}=Ce(),[m,p]=(0,S.useState)(e);var f=[{id:"backgroundOption",conditionalRender:!0,cardProps:{title:"Background Option",type:"dropdown",tooltip:"Select the background mode to customize your background.",settings:{placeholder:m,selectedValue:m,options:ee,onChange:e=>{p(e),r(e)}}}},...Oe(t,e,l),{id:"backgroundCustomImage",sectionName:"Custom Background",conditionalRender:"static"===e,cardProps:{title:"Background image",type:"input",tooltip:S.default.createElement(S.default.Fragment,null,S.default.createElement("span",null,"Use a custom URL for the background image."),S.default.createElement("span",null,"Ensure the URL is a valid image link (e.g., .jpg, .png)."),S.default.createElement("span",null,'Use "now-playing" for the now playing art image.'),S.default.createElement("span",null,'Use "current-page" for the current page art image.')),settings:{type:"text",defaultValue:(null==a?void 0:a.url)||"",label:"Url",validation:e=>Pe(e),onChange:e=>{o(e)}}}},{id:"backgroundCustomImage",conditionalRender:"static"===e,cardProps:{title:"Use Local Image",type:"toggle",tooltip:S.default.createElement(S.default.Fragment,null,S.default.createElement("p",null,"Import an image from your device to use as the background."),null!=u&&u.dataURL?S.default.createElement("div",null,S.default.createElement("img",{width:"20rem",src:u.dataURL,alt:`${null==u?void 0:u.fileName} image`,style:{display:"block",width:"20rem",borderRadius:"0.5rem",border:"var(--border-thickness) var(--border-style, solid) var(--border-color, rgba(var(--spice-rgb-text), 0.125))"}}),null!=u&&u.fileName?S.default.createElement("p",null,"File name: ",S.default.createElement("span",null,u.fileName)):null,null!=u&&u.dateAdded?S.default.createElement("p",null,"Date Added: ",S.default.createElement("span",null,u.dateAdded)):null):null),settings:{checked:s,label:"Enable Local Image",onChange:e=>{c(e),!1===e&&d()}}}},{id:"backgroundCustomImageInput",conditionalRender:"static"===e&&s,cardProps:{title:"Select Background Image",type:"input",tooltip:"Choose an image file from your device.",settings:{type:"file",label:"Choose File",onChange:e=>{let t=null==e?void 0:e[0];t&&((e=new FileReader).readAsDataURL(t),e.onload=e=>{e=(null==(e=e.target)?void 0:e.result)||"";v("Local Image Data URL:",e),y(S.default.createElement("div",{style:{display:"flex",alignItems:"center"}},S.default.createElement("span",{style:{marginRight:"10px"}},"Successfully Added Local Image as background from File name:"),S.default.createElement("span",{style:{fontWeight:"bold"}},t.name))),g({dataURL:e,fileName:t.name||"",dateAdded:(new Date).toLocaleString()})})}}}},{id:"dynamicColorToggle",conditionalRender:!0,cardProps:{title:"Dynamic Color",type:"toggle",tooltip:"Enable dynamic color to adjust colors based on current playing album art.",settings:{checked:n,label:"Dynamic Color Toggle",onChange:e=>{i(e),e&&y("Enabled Dynamic Color.")}}}}];return S.default.createElement(A,{title:"Background Settings",description:"Set your Spotify interface settings."},Ke(f))},f=e(n()),Qe=()=>{let{exportSettings:t,importSettings:a}=U(),[e,n]=(0,f.useState)(!1),r=(0,f.useRef)(null);let l=()=>{var e=(null==(e=r.current)?void 0:e.value.trim())||"{}";"{}"===e?y("Please enter valid JSON settings.",!0):a(e)};return f.default.createElement(A,{title:"Settings Import/Export",description:"Manage your settings easily."},f.default.createElement(Ze,null,f.default.createElement(Ge,{title:"Import and Export Settings",type:"normal",tooltip:"Use these buttons to import settings from a JSON file or export your current theme settings to your clipboard.",style:{display:"flex",gap:"0.5rem"}},f.default.createElement(o,{onClick:()=>{var e=t();navigator.clipboard.writeText(e).then(()=>{y("Settings exported to clipboard!")}).catch(e=>{w("Failed to copy: ",e),y("Failed to copy settings to clipboard.",!0)})}},"Export"),f.default.createElement(o,{onClick:()=>{n(e=>!e),e&&r.current&&(r.current.value="")},variant:e?"danger":"primary"},e?"Cancel Import":"Import")),e&&f.default.createElement(Ge,{title:"Import Settings JSON",type:"normal",tooltip:"Paste your JSON settings here to import them. Ensure the JSON is correctly formatted.",style:{display:"flex",gap:"0.5rem"}},f.default.createElement(o,{onClick:async()=>{try{var e=await navigator.clipboard.readText();r.current&&(r.current.value=e,l()),y("Clipboard content pasted successfully!")}catch(e){w("Failed to read clipboard: ",e),y("Failed to read clipboard content.",!0)}}},"Paste And Import"),f.default.createElement(Fe,{ref:r,type:"text",label:"Paste JSON here",placeholder:"Paste JSON here"}),f.default.createElement(o,{onClick:l},"Import"))))},Ye="1.2.46"<=Spicetify.Platform.version,et="light"===(null==Spicetify?void 0:Spicetify.Config.color_scheme)||!1,tt=!(!Spicetify.Platform||"Windows"!==Spicetify.Platform.operatingSystem)||!(null==(t=null==(t=Spicetify.Platform)?void 0:t.PlatformData)||!t.os_name)&&Spicetify.Platform.PlatformData.os_name.toLowerCase().includes("win"),at=!(!document.querySelector(".globalNav")&&!document.querySelector(".Root__globalNav")),nt=!!document.getElementById("customControls")&&(null!=(t=document.querySelector(".lucid-transperent-window-controls"))&&t.remove(),!0),j=e(n()),rt=()=>{let{interfaceSettings:{controlSettings:{height:e},fontSettings:{body:{fontFamily:t}},grainSettings:{grainEffect:a},pagesSettings:{isScrollMode:n,backgroundImageMode:r,playlistViewMode:l},borderSettings:{color:i,style:o,thickness:s,roundedRadius:c}},npvSettings:{mode:d,position:u,blur:g},setFont:m,setGrainEffect:p,setControlHeight:f,setPagesBackgroundImageMode:b,setPlaylistViewMode:y,setIsScrollMode:v,setNpvMode:h,setNpvBlur:S,setCompactNpvPosition:w,setBorderColor:E,setBorderStyle:k,setBorderThickness:x,settingAccessPosition:R,setRoundedBorderRadius:C,setSettingAccessPosition:_}=U(),[P,L]=(0,j.useState)(a),[O,I]=(0,j.useState)(r),[N,M]=(0,j.useState)(l);var B=[{id:"controlSettings",conditionalRender:tt,cardProps:{title:"Set Control Height",tooltip:"Set the height of your window controls in pixels.",type:"input",settings:{type:"number",label:"Enter Control Height",defaultValue:e,onChange:e=>{f(Number(e))},settings:{step:1,min:1,max:64}}}},{id:"themeSettings",conditionalRender:!0,cardProps:{title:"Settings Access Position",tooltip:"Choose how to access settings: via the context menu button or a navigation button.",type:"dropdown",settings:{options:ie,placeholder:R,selectedValue:R,onChange:e=>{_(e)}}}},{id:"npvSettings",conditionalRender:!0,cardProps:{title:"Set Right Sidebar Mode",tooltip:j.default.createElement(j.default.Fragment,null,j.default.createElement("h3",{className:"encore-text encore-text-medium-bold"},"Select how the right sidebar appears during playback."),j.default.createElement("span",null,"Choose 'Compact' for a minimized view or 'Normal' for a detailed layout")),type:"dropdown",settings:{options:oe,placeholder:d,selectedValue:d,onChange:e=>{h(e)}}}},{id:"npvSettings",conditionalRender:"compact"===d,cardProps:{title:"Set Compact Sidebar Position",tooltip:j.default.createElement(j.default.Fragment,null,j.default.createElement("h3",{className:"encore-text encore-text-medium-bold"},"Select where the right sidebar appears.")),type:"dropdown",settings:{options:se,placeholder:u,selectedValue:u,onChange:e=>{w(e)}}}},{id:"npvSettings",sectionName:"Styles",conditionalRender:"compact"===d,cardProps:{title:"Set Npv Background Blur",type:"input",settings:{label:"Npv Background Blur input",defaultValue:g,onChange:e=>{S(Number(e))},type:"number",settings:{max:256,min:0,step:.5}}}},{id:"font",conditionalRender:!0,cardProps:{title:"Font",type:"input",tooltip:j.default.createElement(j.default.Fragment,null,"Supports both Google Fonts via URL and local fonts.",j.default.createElement("span",null,"For Google Fonts, use the full URL (e.g., https://fonts.googleapis.com/css2?family=Roboto)."," "),j.default.createElement("span",null,"For local fonts, type the font family name (e.g., 'Arial').")),settings:{type:"text",label:"Font Family or URL",defaultValue:t,onChange:e=>{m("body",(e=>{let t="",a="";return t=Pe(e)?(a=e,Le(e)):a=e,{url:a,fontFamily:t}})(e.toString()))}}}},{id:"grains",conditionalRender:!0,cardProps:{type:"dropdown",title:"Grains",tooltip:"Choose a grain texture mode.",settings:{options:ae,placeholder:P,selectedValue:P,onChange:e=>{L(e),p(e)}}}},{id:"pageSettings",sectionName:"Pages Setting",conditionalRender:!0,cardProps:{type:"dropdown",title:"Pages Background Image",tooltip:"Choose a background image mode for playlist pages.",settings:{options:ne,placeholder:O,selectedValue:O,onChange:e=>{I(e),b(e)}}}},{id:"pageSettings",conditionalRender:!0,cardProps:{type:"dropdown",tooltip:"Sets the view mode for playlists.",title:"Playlist View",settings:{options:re,placeholder:N,selectedValue:N,onChange:e=>{M(e),y(e)}}}},{id:"pageSettings",conditionalRender:!0,cardProps:{title:"Toggle Playlist Scroll Mode",tooltip:"Enable or disable scrolling for the playlist art image.",type:"toggle",settings:{checked:n,label:"Scroll Mode Toggle",onChange:e=>{v(e)}}}},{id:"borderSettings",conditionalRender:!0,sectionName:"Border Settings",cardProps:{title:"Border Thickness",type:"input",settings:{type:"number",label:"Border Thickness",defaultValue:s,onChange:e=>{x(Number(e))},settings:{step:1,min:0,max:8}}}},{id:"borderSettings",conditionalRender:!0,sectionName:"Border Settings",cardProps:{title:"Rounded Border Radius",type:"input",settings:{type:"number",label:"Rounded Border Radius",defaultValue:c,onChange:e=>{C(Number(e))},settings:{step:1,min:0,max:999}}}},{id:"borderSettings",conditionalRender:!0,cardProps:{title:"Border Color",type:"input",settings:{type:"text",label:"Border Color",defaultValue:i,onChange:e=>{E(e)}}}},{id:"borderSettings",conditionalRender:!0,cardProps:{title:"Border Style",type:"dropdown",settings:{options:le,selectedValue:o,onChange:e=>{k(e)}}}}];return j.default.createElement(A,{title:"Interface Settings",description:"Set your Spotify interface settings."},Ke(B))},lt=e(n()),it=()=>{let{playbarSettings:{mode:e,styles:t},setPlaybarMode:a,updatePlaybarStyle:n}=U(),[r,l]=(0,lt.useState)(e);var i=[{id:"playbarOption",conditionalRender:!0,cardProps:{title:"Playbar Option",type:"dropdown",settings:{placeholder:r,selectedValue:r,options:te,onChange:e=>{l(e),a(e)}}}},...Oe(t,e,n)];return lt.default.createElement(A,{title:"Playbar Settings",description:"Set your Spotify Now Playing Bar settings."},Ke(i))},ot=e(n()),st=()=>{let e=U().resetAllSettings;return ot.default.createElement(A,{title:"Reset Settings",description:"Reset your theme settings."},Ke([{id:"resetButtonCard",conditionalRender:!0,cardProps:{title:"Reset All Settings",type:"button",settings:{variant:"danger",size:"medium",children:"Reset",onClick:()=>{window.confirm("Are you sure you want to reset all settings to their default values? This action cannot be undone.")&&e()}}}}]))},E=e(n()),ct={settings:!1,changelog:!1},{ModalContextProvider:dt,useModal:ut}=(()=>{let l=(0,E.createContext)(null);return{ModalContextProvider:({children:e})=>{let[a,n]=(0,E.useState)(ct),t=(0,E.useCallback)(t=>({isOpen:a[t],openModal:(0,E.useCallback)(()=>{n(e=>u(d({},e),{[t]:!0}))},[t]),closeModal:(0,E.useCallback)(()=>{n(e=>u(d({},e),{[t]:!1}))},[t])}),[a]);var r=(0,E.useMemo)(()=>t,[t]);return E.default.createElement(l.Provider,{value:r},e)},useModal:e=>{var t=(0,E.useContext)(l);if(t)return t(e);throw new Error("Wrap Element with ModalContextProvider")}}})(),k=e(n()),gt=(0,k.memo)(()=>{var{isOpen:e,closeModal:t}=ut("settings");return k.default.createElement(Q,{title:"Lucid Settings",onClose:t,isOpen:e},k.default.createElement("div",{className:"sections-container"},k.default.createElement(Xe,null),k.default.createElement(rt,null),k.default.createElement(it,null),k.default.createElement(st,null),k.default.createElement(Qe,null)))}),mt=e(n()),pt=()=>{v("hook running useSettingsAccess");let t=U().settingAccessPosition,a=ut("settings").openModal,n=(0,mt.useRef)(null);(0,mt.useEffect)(()=>{var e;return"context-menu"===t&&(n.current=new Spicetify.Menu.Item("Lucid Settings",!1,a,'<svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252Zm0 1.5a9.135 9.135 0 0 0-1.354.117l-.109.977A2.886 2.886 0 0 1 6.525 7.17l-.898-.394a8.293 8.293 0 0 0-1.348 2.317l.798.587a2.881 2.881 0 0 1 0 4.643l-.799.588c.32.842.776 1.626 1.348 2.322l.905-.397a2.882 2.882 0 0 1 4.017 2.318l.11.984c.889.15 1.798.15 2.687 0l.11-.984a2.881 2.881 0 0 1 4.018-2.322l.905.396a8.296 8.296 0 0 0 1.347-2.318l-.798-.588a2.881 2.881 0 0 1 0-4.643l.796-.587a8.293 8.293 0 0 0-1.348-2.317l-.896.393a2.884 2.884 0 0 1-4.023-2.324l-.11-.976a8.988 8.988 0 0 0-1.333-.117ZM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" fill="#fff"/></svg>'),n.current.register()),"nav"!==t||document.querySelector(".main-actionButtons button[aria-label='Lucid Settings']")||n.current instanceof HTMLButtonElement||(e=new Spicetify.Topbar.Button("Lucid Settings",'<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252Zm0 1.5a9.135 9.135 0 0 0-1.354.117l-.109.977A2.886 2.886 0 0 1 6.525 7.17l-.898-.394a8.293 8.293 0 0 0-1.348 2.317l.798.587a2.881 2.881 0 0 1 0 4.643l-.799.588c.32.842.776 1.626 1.348 2.322l.905-.397a2.882 2.882 0 0 1 4.017 2.318l.11.984c.889.15 1.798.15 2.687 0l.11-.984a2.881 2.881 0 0 1 4.018-2.322l.905.396a8.296 8.296 0 0 0 1.347-2.318l-.798-.588a2.881 2.881 0 0 1 0-4.643l.796-.587a8.293 8.293 0 0 0-1.348-2.317l-.896.393a2.884 2.884 0 0 1-4.023-2.324l-.11-.976a8.988 8.988 0 0 0-1.333-.117ZM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" fill="currentColor"/></svg>',a,!1,!0),n.current=e),()=>{var e;n.current instanceof Spicetify.Menu.Item&&n.current.deregister(),n.current instanceof Spicetify.Topbar.Button&&n.current.element.remove(),null!=(e=document.querySelector(".Root__globalNav .main-actionButtons div:has(button[aria-label='Lucid Settings'])"))&&e.remove()}},[t,a])},ft=e(n()),bt=(0,ft.memo)(()=>{v("Render <SettingsManager />");var e=ut("settings").isOpen;return pt(),ft.default.createElement(ft.default.Fragment,null,e&&ft.default.createElement(gt,null))}),yt=(e,t)=>[e,t].filter(Boolean).join(" ").trim(),vt=e=>{var t;return Object.keys(e).length?(t={},void 0!==e.blur&&(t.filter=yt(t.filter,`blur(${e.blur}px)`)),void 0!==e.backdropBlur&&(t.backdropFilter=`blur(${e.backdropBlur}px)`),void 0!==e.contrast&&(t.filter=yt(t.filter,`contrast(${e.contrast})`)),void 0!==e.brightness&&(t.filter=yt(t.filter,`brightness(${e.brightness})`)),void 0!==e.saturation&&(t.filter=yt(t.filter,`saturate(${e.saturation})`)),void 0!==e.width&&(t.width=e.width+"px"),void 0!==e.height&&(t.height=e.height+"px"),void 0===e.paddingX&&void 0===e.paddingY||(t.padding=`${e.paddingY||0}px ${e.paddingX||0}px`),void 0!==e.borderRadius&&(t.borderRadius=e.borderRadius+"px"),void 0!==e.backgroundColor&&(t.backgroundColor=""+e.backgroundColor),t):{}},ht=(e,t=!1)=>{var a;return Object.keys(e).length?(a={},void 0!==e.blur&&(a["--blur"]=e.blur+"px"),void 0!==e.backdropBlur&&(a["--backdrop-blur"]=e.backdropBlur+"px"),void 0!==e.contrast&&(a["--contrast"]=e.contrast),void 0!==e.brightness&&(a["--brightness"]=e.brightness),void 0!==e.saturation&&(a["--saturation"]=e.saturation),void 0!==e.width&&(a["--width"]=e.width+"px"),void 0!==e.height&&(a["--height"]=e.height+"px"),void 0!==e.paddingX&&(a["--padding-x"]=e.paddingX+"px"),void 0!==e.borderRadius&&(a["--border-radius"]=e.borderRadius+"px"),void 0!==e.backgroundColor&&(a["--background-color"]=e.backgroundColor),void 0!==e.time&&(a["--time"]=e.time+"s"),t?Object.entries(a).map(([e,t])=>e+`: ${t};`).join(" "):a):t?"":{}},St=e(n()),t=({style:e})=>St.default.createElement("div",{className:"animated-background-container",style:d({},ht(e))},St.default.createElement("div",{className:"back"}),St.default.createElement("div",{className:"backleft"}),St.default.createElement("div",{className:"backright"}),St.default.createElement("div",{className:"front"})),wt=e(n()),Et=({style:e})=>wt.default.createElement("div",{className:"solid-background",style:d({},vt(e))}),kt={underMainBackgroundImage:"",pageCategory:"other",artworkData:{nowPlayingArtURL:"",currentPageURI:"",currentPageArtURL:""},windowZoom:1},x=r(e=>u(d({},kt),{updateArtworkData:t=>e(e=>u(d({},e),{artworkData:d(d({},e.artworkData),t)})),setPageCategory:t=>e(e=>u(d({},e),{pageCategory:t})),setUnderMainViewBackgroundImage:t=>e(e=>u(d({},e),{underMainBackgroundImage:t})),setIsCustomControls:t=>e(e=>u(d({},e),{isCustomControls:t})),setWindowZoom:t=>e(e=>u(d({},e),{windowZoom:t}))})),xt=e(n()),r=({style:e})=>{let t=U().backgroundSettings.customBackgroundOverride,a=x().artworkData,{isUseLocalImage:n,selectedLocalImage:r}=Ce();var l=n&&null!=r&&r.dataURL?r.dataURL:"current-page"===(l=t.url)?(null==a?void 0:a.currentPageArtURL)||(null==a?void 0:a.nowPlayingArtURL)||"":l&&""!==l.trim()&&"now-playing"!==l?l||"":(null==a?void 0:a.nowPlayingArtURL)||"";return xt.default.createElement("div",{className:"static-background",style:d({backgroundImage:`url(${l})`},vt(e))})},Rt=e(n()),Ct={animated:t,static:r,solid:Et},_t=()=>{v("Render <BackgroundManager />");var{mode:e,styles:t}=U().backgroundSettings,t=t[e],e=Ct[e];return Rt.default.createElement("div",{className:"background-wrapper"},e?Rt.default.createElement(e,{style:t}):Rt.default.createElement(Et,{style:{backgroundColor:"#202020"}}))},Pt=()=>{var e=document.querySelector(".Root__right-sidebar .main-nowPlayingView-nowPlayingWidget .main-image-image");return(null==e?void 0:e.src)||""},Lt=async e=>{let t=0;for(;t<=3;)try{var a=await Spicetify.GraphQL.Request({name:"queryArtistOverview",operation:"query",sha256Hash:"35648a112beb1794e39ab931365f6ae4a8d45e65396d641eeda94e4003d41497",value:null},{uri:e,includePrerelease:!0,locale:null});if(a)return a}catch(e){if(!(e instanceof Error&&e.message.includes("DUPLICATE_REQUEST_ERROR")&&t<3))throw w("Error fetching artist metadata:",e),e;t++,je(`Duplicate request detected (getArtistMetaData). Retrying in 1 second... (Attempt ${t})`),await new Promise(e=>setTimeout(e,1e3))}},Ot=async e=>{let t=0;for(;t<=3;)try{var a=await Spicetify.GraphQL.Request({name:"getAlbum",operation:"query",sha256Hash:"469874edcad37b7a379d4f22f0083a49ea3d6ae097916120d9bbe3e36ca79e9d",value:null},{uri:e,locale:null,offset:0,limit:50});if(a)return a}catch(e){if(!(e instanceof Error&&e.message.includes("DUPLICATE_REQUEST_ERROR")&&t<3))throw w("Error fetching album metadata:",e),e;t++,je(`Duplicate request detected (getAlbumMetaData). Retrying in 1 second... (Attempt ${t})`),await new Promise(e=>setTimeout(e,1e3))}},It=e(n()),Nt=()=>{v("Render <ArtworkManager />");let{pageCategory:e,artworkData:o,updateArtworkData:s}=x(),{pagesSettings:t}=U().interfaceSettings,a=(0,It.useCallback)(async()=>{var e,t,a,n,r,l=Spicetify.Platform.History.location.pathname,i=(l=l,i=Spicetify.URI.isPlaylistV1OrV2(l),e=Spicetify.URI.isArtist(l),t=Spicetify.URI.isAlbum(l),a=Spicetify.URI.isShow(l),n=Spicetify.URI.isProfile(l),i||e||t||n||a?(n=null==(n=l.match(/\/(?:playlist|artist|album|user|show)\/([^/]+)/))?void 0:n[1])?`spotify:${i?"playlist":e?"artist":t?"album":a?"show":"user"}:`+n:(je("No ID found in pathname:",l),null):null);if(o.currentPageURI!==i){document.documentElement.style.setProperty("--artwork-opacity","0");try{i?(r=await(async e=>{var t,a,n,r,l,i,o,s,c,d,u,g,m,p,f,b,y=e.split(":")[1];try{switch(y){case"playlist":case"show":return(null==(t=(await Spicetify.Platform.PlaylistAPI.getMetadata(e)).images.find(e=>e.url))?void 0:t.url)||null;case"artist":var v=await Lt(e);return(null==(l=null==(r=null==(n=null==(a=v.data)?void 0:a.artistUnion.visuals.headerImage)?void 0:n.sources)?void 0:r[0])?void 0:l.url)||(null==(c=null==(s=null==(o=null==(i=v.data)?void 0:i.artistUnion.visuals.avatarImage)?void 0:o.sources)?void 0:s[0])?void 0:c.url)||null;case"album":var h=await Ot(e);return(null==(g=null==(u=null==(d=h.data)?void 0:d.albumUnion.coverArt.sources)?void 0:u[2])?void 0:g.url)||(null==(f=null==(p=null==(m=h.data)?void 0:m.albumUnion.coverArt.sources)?void 0:p[0])?void 0:f.url)||null;case"user":var S=await Spicetify.Platform.RequestBuilder.build().withHost("https://spclient.wg.spotify.com/user-profile-view/v3").withPath("/profile/"+e.split(":")[2]).send();return(null==(b=null==S?void 0:S.body)?void 0:b.image_url)||null;default:return null}}catch(e){return w(`Error fetching artwork for ${y}:`,e),null}})(i)||"",s({currentPageArtURL:r,currentPageURI:i})):s({currentPageArtURL:"",currentPageURI:""})}catch(e){w("Error updating artwork:",e),s({currentPageArtURL:"",currentPageURI:""})}finally{setTimeout(()=>document.documentElement.style.setProperty("--artwork-opacity","1"),500)}}},[o.currentPageURI,s]);return(0,It.useEffect)(()=>{if(o.currentPageArtURL?(document.documentElement.style.setProperty("--playlist-art-image",`url(${o.currentPageArtURL})`),c("Updated Playlist Artwork URL to "+o.currentPageArtURL)):o.currentPageURI&&"other"!==e&&(w("No artwork URL found for URI: "+o.currentPageURI),document.documentElement.style.setProperty("--playlist-art-image","none")),"inherit"===t.backgroundImageMode){let e=Spicetify.Platform.History.listen(a);return a(),()=>{e()}}},[t.backgroundImageMode,o.currentPageArtURL,o.currentPageURI,e,a]),(0,It.useEffect)(()=>{o.nowPlayingArtURL&&(document.documentElement.style.setProperty("--now-playing-art-image",`url("${o.nowPlayingArtURL}")`),c("Updated Now Playing Art View: "+o.nowPlayingArtURL))},[o.nowPlayingArtURL]),(0,It.useEffect)(()=>{let e=async()=>{await(async()=>{for(var e;null==(e=null==Spicetify?void 0:Spicetify.Player)||!e.data;)await new Promise(e=>setTimeout(e,100))})();var e=await((e=Spicetify.Player.data.item)&&e.metadata?[e.metadata.image_xlarge_url,e.metadata.image_large_url,e.metadata.image_url,e.metadata.image_small_url].find(e=>e)||Pt()||"":(w("No item or metadata found in Spicetify Player data."),""));s({nowPlayingArtURL:e})};return e(),Spicetify.Player.addEventListener("songchange",e),()=>{Spicetify.Player.removeEventListener("songchange",e)}},[s]),null},Mt=e(n()),Bt=()=>{let{borderSettings:t}=U().interfaceSettings;return(0,Mt.useEffect)(()=>{e=t;var e=Object.keys(e).length?Object.entries(e).map(([e,t])=>`--border-${e}: ${"thickness"===e||"roundedRadius"===e?t+"px":t};`).join(" "):"";document.documentElement.style.cssText+=e},[t]),null},At=(e,t,a)=>"#"+(e<<16|t<<8|a).toString(16).padStart(6,"0"),Ut=(e,t,a)=>{var[e,t,a]=[e/255,t/255,a/255],[e,t,a]=[e<=.03928?e/12.92:((e+.055)/1.055)**2.4,t<=.03928?t/12.92:((t+.055)/1.055)**2.4,a<=.03928?a/12.92:((a+.055)/1.055)**2.4];return.2126*e+.7152*t+.0722*a},jt=(e,t)=>u(d({},e),{r:Math.max(0,Math.round(e.r*t)),g:Math.max(0,Math.round(e.g*t)),b:Math.max(0,Math.round(e.b*t)),hex:At(Math.max(0,Math.round(e.r*t)),Math.max(0,Math.round(e.g*t)),Math.max(0,Math.round(e.b*t)))}),R=(e,t)=>u(d({},e),{r:Math.min(255,Math.round(e.r+(255-e.r)*t)),g:Math.min(255,Math.round(e.g+(255-e.g)*t)),b:Math.min(255,Math.round(e.b+(255-e.b)*t)),hex:At(Math.min(255,Math.round(e.r+(255-e.r)*t)),Math.min(255,Math.round(e.g+(255-e.g)*t)),Math.min(255,Math.round(e.b+(255-e.b)*t)))}),Tt=(e,t)=>{e=Ut(e.r,e.g,e.b),t=Ut(t.r,t.g,t.b);return(Math.max(e,t)+.05)/(Math.min(e,t)+.05)},Dt=e(a()),$t=null;async function Vt(s,e,c){return e&&c?new Promise(o=>{$t&&clearTimeout($t),$t=setTimeout(async()=>{try{var e,t,a,n=await(async r=>{try{var l=await(0,Dt.loadImage)(r),i=Math.max(l.width/10,10),o=Math.max(l.height/10,10),s=(0,Dt.createCanvas)(i,o).getContext("2d"),c=(s.drawImage(l,0,0,i,o),s.getImageData(0,0,i,o)),d=c.data,u={};let t={};var g=Math.floor(.2*d.length);for(let e=0;e<g;e+=4){var m=d[e],p=d[e+1],f=d[e+2],b=m+`-${p}-`+f;u[b]=(u[b]||0)+1,t[b]={r:m,g:p,b:f,hex:At(m,p,f)}}var y=Object.entries(u).sort((e,t)=>t[1]-e[1]).map(([e])=>t[e]),v=y[0];let e=y[1],a=y[2],n=2;for(;!e||Tt(v,e)<2.5;){if(n>=y.length){e=R(v,.2);break}e=y[n],n++}for(;!a||Tt(v,a)<2.5||Tt(e,a)<2.5;){if(n>=y.length){a=R(e,.2);break}a=y[n],n++}return{baseColor:v,secondaryColor:e,tertiaryColor:a}}catch(e){return w("Error extracting colors: ",e),e}})(c);n instanceof Error?(w("Error extracting colors: "+n.message),o(null)):(e=({baseColor:r,secondaryColor:l,tertiaryColor:i}=[n][0],{main:jt(l,.4),sidebar:jt(l,.5),card:jt(i,.5),player:jt(l,.6),"progress-bar":R(l,.6),accent:R(r,.4),highlight:R(l,.2),button:R(i,.4),"button-active":R(i,.4),text:R(r,.9),subtext:R(l,.9),primary:r,secondary:l,tertiary:i}),t=s,a=e,a=`:root {${Object.entries(a).map(([e,t])=>`
---spice-${e}: ${t.hex} !important;
---spice-rgb-${e}: ${t.r}, ${t.g}, ${t.b} !important;`).join("")}
-}`,a+=":root{\nwill-change: --spice-main,--spice-rgb-main,--spice-sidebar,--spice-rgb-sidebar,--spice-card,--spice-rgb-card,--spice-player,--spice-rgb-player,--spice-accent,--spice-rgb-accent,--spice-highlight,--spice-rgb-highlight,--spice-button,--spice-rgb-button,--spice-button-active,--spice-rgb-button-active,--spice-text,--spice-rgb-text,--spice-progress-bar,--spice-rgb-progress-bar,--spice-subtext,--spice-rgb-subtext,--spice-primary,--spice-rgb-primary,--spice-secondary,--spice-rgb-secondary,--spice-tertiary,--spice-rgb-tertiary;\ntransition: all 0.3s ease-in-out;\n}",t.textContent=a,o(n))}catch(e){w("Error saving colors to style: ",e instanceof Error?e.message:e),o(null)}var r,l,i},200)}):null}var zt=e(n()),Ft=()=>{v("Render <ColorManager />");let{isDynamicColor:e}=U().colorSettings,t=x().artworkData,a=(0,zt.useRef)(null),n=(0,zt.useRef)(null);return(0,zt.useEffect)(()=>(a.current=document.createElement("style"),a.current.id="lucid_dynamic_colors",document.head.appendChild(a.current),()=>{a.current&&document.head.removeChild(a.current)}),[]),(0,zt.useEffect)(()=>{e?e&&t.nowPlayingArtURL!==n.current&&(null!=a&&a.current&&e&&t.nowPlayingArtURL&&Vt(a.current,e,t.nowPlayingArtURL).then(()=>{c("Dynamic colors updated!")}).catch(e=>{w("Error updating colors:",e)}),n.current=t.nowPlayingArtURL):(n.current&&(n.current=null),a.current&&(async e=>{e.textContent=":root{\nwill-change: --spice-main,--spice-rgb-main,--spice-sidebar,--spice-rgb-sidebar,--spice-card,--spice-rgb-card,--spice-player,--spice-rgb-player,--spice-accent,--spice-rgb-accent,--spice-highlight,--spice-rgb-highlight,--spice-button,--spice-rgb-button,--spice-button-active,--spice-rgb-button-active,--spice-text,--spice-rgb-text,--spice-progress-bar,--spice-rgb-progress-bar,--spice-subtext,--spice-rgb-subtext,--spice-primary,--spice-rgb-primary,--spice-secondary,--spice-rgb-secondary,--spice-tertiary,--spice-rgb-tertiary;\ntransition: all 0.3s ease-in-out;\n}"})(a.current))},[e,t.nowPlayingArtURL]),null},Ht=e(n()),qt=()=>{let{fontSettings:e}=U().interfaceSettings,r=(0,Ht.useCallback)((e,t)=>{document.documentElement.style.setProperty(`--${e}-font-to-use`,t)},[]),t=(0,Ht.useCallback)(async t=>{var{fontFamily:a,url:n}=e[t];try{await((e,t)=>{let a=document.getElementById(t);a||((a=document.createElement("link")).rel="stylesheet",a.id=t,document.head.appendChild(a)),a.href=e})(n,t+"-font"),r(t,a)}catch(e){w("Failed to load font from "+n,e),r(t,a)}},[e,r]);return(0,Ht.useEffect)(()=>{Object.keys(e).map(e=>t(e))},[e,t]),null},Gt=e(n()),C=e=>{(0,Gt.useEffect)(()=>{if(e)return document.body.classList.add(e),()=>{document.body.classList.remove(e)}},[e])},Wt=()=>(v("Render <GlobalNavManager />"),C(at?"global-nav":"control-nav"),null),Zt=e(n()),Jt=()=>{v("Render <GrainManager />");var{grainSettings:{grainEffect:e}}=U().interfaceSettings;return C("grain-"+e),Zt.default.createElement("div",{id:"grainEffect","data-grainEffect":e})},Kt=e(n()),Xt=()=>{let{pageCategory:e,setPageCategory:a}=x();return C(e),(0,Kt.useEffect)(()=>{let e=()=>{var e=Spicetify.Platform.History.location.pathname;a((e=e,Spicetify.URI.isPlaylistV1OrV2(e)?"playlist":Spicetify.URI.isArtist(e)?"artist":Spicetify.URI.isAlbum(e)?"album":Spicetify.URI.isGenre(e)?"genre":Spicetify.URI.isShow(e)?"show":Spicetify.URI.isSearch(e)?"search":Spicetify.URI.isProfile(e)?"profile":Spicetify.URI.isConcert(e)||Spicetify.URI.isArtistConcerts(e)?"concert":"other"))},t=(e(),Spicetify.Platform.History.listen(()=>{e()}));return()=>{t()}},[a]),null},Qt=e(n()),Yt=".Root__now-playing-bar",ea=()=>{let r=U().playbarSettings,l=(0,Qt.useRef)(document.querySelector(Yt));return C("playbar-"+r.mode),(0,Qt.useEffect)(()=>{var e,t,a,n;l.current?({mode:t,styles:n}=r,a=ht(n[t],!0),n="compact"===t?n[t].height:(null==(e=l.current)?void 0:e.clientHeight)||(null==(e=n[t])?void 0:e.height),document.documentElement.style.setProperty("--playbar-height",n+"px"),l.current.style.cssText=a.toString()):w(`Playbar element with class '${Yt}' not found!`)},[r]),null},ta=e(n()),aa=()=>{let{underMainBackgroundImage:a,setUnderMainViewBackgroundImage:n}=x(),r=(0,ta.useCallback)(e=>{e=e.reduce((e,t)=>{if(e)return e;if("childList"===t.type&&0<t.addedNodes.length){e=t.addedNodes[0];if(e.firstChild instanceof HTMLDivElement)return e.firstChild}return null},null);let t=null;null!=e&&e.style?t=e.style.backgroundImage.replace(/url\(['"]?([^'"]*)['"]?\)/i,"$1"):null!==a&&(t=null),n(t)},[n,a]);(0,ta.useEffect)(()=>{let e=new MutationObserver(r);var t=document.querySelector(".under-main-view");return t&&e.observe(t,{childList:!0}),()=>e.disconnect()},[r]),(0,ta.useEffect)(()=>(document.documentElement.style.setProperty("--under-main-view-art-image",a?`url(${a})`:null),()=>{document.documentElement.style.removeProperty("--under-main-view-art-image")}),[a])},_=e(n()),na=()=>{let{pagesSettings:{playlistViewMode:e,isScrollMode:a,backgroundImageMode:t}}=U().interfaceSettings,{pageCategory:n,underMainBackgroundImage:r,artworkData:l}=x(),i=(0,_.useRef)(null),o=(0,_.useRef)(null),s=(C("playlist-view-"+e),C("playlist-art-image-"+t),C(r?"under-main-view-present":""),(0,_.useCallback)(e=>{var t=i.current;t&&(e=Math.min(e.scrollTop,window.innerHeight),t.style.transform=`translate3d(0, ${a?-e:0}px, 0)`,t.style.setProperty("--scroll",""+e/1e3))},[a])),c=(0,_.useMemo)(()=>"artist"===n||r?0:4,[n,r]);(0,_.useEffect)(()=>{var e=o.current;e&&e.style.setProperty("--blur",c+"px")},[c]),(0,_.useEffect)(()=>{let t=document.querySelector(".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]");if(t){let e=()=>s(t);return e(),t.addEventListener("scroll",e,{passive:!0}),()=>{t.removeEventListener("scroll",e)}}},[s]),v("New underMainBackgroundImage:",r);var d="other"!==n&&"none"!==t?r||("inherit"===t?l.currentPageArtURL||"":l.nowPlayingArtURL||""):"none";return _.default.createElement("span",{id:"playlistArtContainer",className:`playlist-art-container ${e} `+t,"data-playlist-view-mode":e,ref:i},_.default.createElement("div",{className:"background",ref:o,style:{backgroundImage:`url(${d})`}}),_.default.createElement("div",{className:"overlay",style:{height:"100%",width:"100%",position:"absolute",inset:0}}))},ra=e(n()),la=()=>(v("Render <UnderMainViewManager />"),(()=>{let a=(0,ra.useRef)(null);(0,ra.useEffect)(()=>{let e=()=>{var e,t;document.getElementById("lucid-under-main-view")||((e=document.createElement("div")).id="lucid-under-main-view",e.className="lucid-under-main-view",(t=document.querySelector(".main-view-container"))&&t.prepend(e),a.current=e,a.current&&Spicetify.ReactDOM.createRoot(a.current).render(ra.default.createElement(na,null)))},t=(e(),Spicetify.Platform.History.listen(()=>{e()}));return()=>{t()}},[])})(),aa(),null),ia=e(n()),oa=()=>{var e=(0,ia.useRef)(null);let[t,n]=(0,ia.useState)({}),r=x().windowZoom,{controlSettings:{height:l}}=U().interfaceSettings;return(0,ia.useEffect)(()=>{let e=()=>{var e,t;tt&&((async t=>{var e;try{null!=(e=null==Spicetify?void 0:Spicetify.CosmosAsync)&&e.post&&await Spicetify.CosmosAsync.post("sp://messages/v1/container/control",{type:"update_titlebar",height:t}),c(`Control height set to ${t}px`)}catch(e){w("Error setting control height: "+t)}})(l),nt||et?n({}):(e=l||(Ye?32:64),t=Ye?(l/r-Math.min(32/r,l/r))/2:0,e=e/r-2*t,window.document.body.style.setProperty("--top-bar-padding-start",(l<=16?8:64)/r+"px"),window.document.body.style.setProperty("--top-bar-padding-end",(l<=16?8:135)/r+"px"),t={position:"fixed",right:0,top:t+"px",height:e+"px",width:135/r+"px",WebkitBackdropFilter:"brightness(2.12)",backdropFilter:"brightness(2.12)",pointerEvents:"none",zIndex:"var(--above-main-and-now-playing-view-grid-area, 6)"},n(t)))},t=(e(),()=>{e()}),a=setTimeout(e,1e3);return window.addEventListener("resize",t),()=>{clearTimeout(a),window.removeEventListener("resize",t)}},[r,l]),ia.default.createElement("div",{ref:e,style:t})},sa=e(n()),ca=(0,sa.memo)(()=>sa.default.createElement(sa.default.Fragment,null,tt?sa.default.createElement("div",{id:"transperent-controls-container",style:{containerType:"normal",pointerEvents:"none"}},!nt&&tt?sa.default.createElement(oa,null):null):null)),P=e(n()),L=e(n()),da=()=>{(0,L.useRef)({outerWidth:window.outerWidth,innerWidth:window.innerWidth,ratio:window.devicePixelRatio});let r=x().setWindowZoom,l=(0,L.useRef)(window.outerWidth),i=(0,L.useRef)(window.innerWidth),o=(0,L.useRef)(window.devicePixelRatio),s=(0,L.useRef)(!0),c=(0,L.useRef)(document.querySelector(".Root__main-view"));return(0,L.useEffect)(()=>{let e=()=>{document.documentElement.style.setProperty("--main-view-height",`${null==(t=c.current)?void 0:t.clientHeight}px`);var e,t=window.outerWidth,a=window.innerWidth,n=window.devicePixelRatio;(s.current||(l.current<=160||o.current!==n)&&(l.current!==t||i.current!==a))&&(e=t/a||1,r(e),document.documentElement.style.setProperty("--zoom",""+e),v(`Zoom Updated: ${t} / ${a} = `+e),l.current=t,i.current=a,o.current=n)},t=()=>{e()};return e(),window.addEventListener("resize",t),()=>{window.removeEventListener("resize",t)}},[r]),null},ua=()=>{var{mode:e,position:t,blur:a}=U().npvSettings;return document.body.style.setProperty("--compact-npv-blur",a+"px"),C(e+"-npv"),C(t+"-npv"),null},ga=()=>(v("Render <MainStateManager />"),P.default.createElement(P.default.Fragment,null,P.default.createElement(Xt,null),P.default.createElement(Jt,null),P.default.createElement(Ft,null),P.default.createElement(da,null),P.default.createElement(ea,null),P.default.createElement(Nt,null),P.default.createElement(Bt,null),P.default.createElement(Wt,null),P.default.createElement(qt,null),P.default.createElement(ua,null),P.default.createElement(la,null),P.default.createElement(ca,null)));function ma(e,t){e.innerHTML=`
-    #lucid-main .background-container .background-wrapper div { z-index: ${t} !important; }
-  `}function pa(e){e.innerHTML=`
+(async function() {
+        while (!Spicetify.React || !Spicetify.ReactDOM) {
+          await new Promise(resolve => setTimeout(resolve, 10));
+        }
+        var lucid = (() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+
+  // lucid:react
+  var require_react = __commonJS({
+    "lucid:react"(exports, module) {
+      module.exports = Spicetify.React;
+    }
+  });
+
+  // node_modules/canvas/lib/parse-font.js
+  var require_parse_font = __commonJS({
+    "node_modules/canvas/lib/parse-font.js"(exports, module) {
+      "use strict";
+      var weights = "bold|bolder|lighter|[1-9]00";
+      var styles = "italic|oblique";
+      var variants = "small-caps";
+      var stretches = "ultra-condensed|extra-condensed|condensed|semi-condensed|semi-expanded|expanded|extra-expanded|ultra-expanded";
+      var units = "px|pt|pc|in|cm|mm|%|em|ex|ch|rem|q";
+      var string = `'([^']+)'|"([^"]+)"|[\\w\\s-]+`;
+      var weightRe = new RegExp(`(${weights}) +`, "i");
+      var styleRe = new RegExp(`(${styles}) +`, "i");
+      var variantRe = new RegExp(`(${variants}) +`, "i");
+      var stretchRe = new RegExp(`(${stretches}) +`, "i");
+      var sizeFamilyRe = new RegExp(
+        `([\\d\\.]+)(${units}) *((?:${string})( *, *(?:${string}))*)`
+      );
+      var cache = {};
+      var defaultHeight = 16;
+      module.exports = (str) => {
+        if (cache[str]) return cache[str];
+        const sizeFamily = sizeFamilyRe.exec(str);
+        if (!sizeFamily) return;
+        const font = {
+          weight: "normal",
+          style: "normal",
+          stretch: "normal",
+          variant: "normal",
+          size: parseFloat(sizeFamily[1]),
+          unit: sizeFamily[2],
+          family: sizeFamily[3].replace(/["']/g, "").replace(/ *, */g, ",")
+        };
+        let weight, style, variant, stretch;
+        const substr = str.substring(0, sizeFamily.index);
+        if (weight = weightRe.exec(substr)) font.weight = weight[1];
+        if (style = styleRe.exec(substr)) font.style = style[1];
+        if (variant = variantRe.exec(substr)) font.variant = variant[1];
+        if (stretch = stretchRe.exec(substr)) font.stretch = stretch[1];
+        switch (font.unit) {
+          case "pt":
+            font.size /= 0.75;
+            break;
+          case "pc":
+            font.size *= 16;
+            break;
+          case "in":
+            font.size *= 96;
+            break;
+          case "cm":
+            font.size *= 96 / 2.54;
+            break;
+          case "mm":
+            font.size *= 96 / 25.4;
+            break;
+          case "%":
+            break;
+          case "em":
+          case "rem":
+            font.size *= defaultHeight / 0.75;
+            break;
+          case "q":
+            font.size *= 96 / 25.4 / 4;
+            break;
+        }
+        return cache[str] = font;
+      };
+    }
+  });
+
+  // node_modules/canvas/browser.js
+  var require_browser = __commonJS({
+    "node_modules/canvas/browser.js"(exports) {
+      var parseFont = require_parse_font();
+      exports.parseFont = parseFont;
+      exports.createCanvas = function(width, height) {
+        return Object.assign(document.createElement("canvas"), { width, height });
+      };
+      exports.createImageData = function(array, width, height) {
+        switch (arguments.length) {
+          case 0:
+            return new ImageData();
+          case 1:
+            return new ImageData(array);
+          case 2:
+            return new ImageData(array, width);
+          default:
+            return new ImageData(array, width, height);
+        }
+      };
+      exports.loadImage = function(src, options) {
+        return new Promise(function(resolve, reject) {
+          const image = Object.assign(document.createElement("img"), options);
+          function cleanup() {
+            image.onload = null;
+            image.onerror = null;
+          }
+          image.onload = function() {
+            cleanup();
+            resolve(image);
+          };
+          image.onerror = function() {
+            cleanup();
+            reject(new Error('Failed to load the image "' + src + '"'));
+          };
+          image.src = src;
+        });
+      };
+    }
+  });
+
+  // extension/components/modal/Modal.tsx
+  var import_react = __toESM(require_react());
+  var Modal = (0, import_react.memo)(({ title, children, headingChild, onClose, isOpen = false }) => {
+    return isOpen ? /* @__PURE__ */ import_react.default.createElement("div", { className: "modal-container" }, /* @__PURE__ */ import_react.default.createElement("div", { className: `modal-overlay ${isOpen && "open"}`, style: { zIndex: 20 }, onClick: onClose }), /* @__PURE__ */ import_react.default.createElement("dialog", { open: isOpen, className: `modal-section ${isOpen && "open"}`, "aria-label": title, "aria-modal": "true" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "main-embedWidgetGenerator-container" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "main-trackCreditsModal-header" }, /* @__PURE__ */ import_react.default.createElement("h1", { className: "encore-text encore-title-body-medium" }, title), headingChild && /* @__PURE__ */ import_react.default.createElement("div", null, headingChild), /* @__PURE__ */ import_react.default.createElement(
+      "button",
+      {
+        type: "button",
+        "aria-label": "Close",
+        className: "main-trackCreditsModal-closeBtn",
+        onClick: () => onClose()
+      },
+      /* @__PURE__ */ import_react.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 32 32", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react.default.createElement("title", null, "Close"), /* @__PURE__ */ import_react.default.createElement(
+        "path",
+        {
+          d: "M31.098 29.794L16.955 15.65 31.097 1.51 29.683.093 15.54 14.237 1.4.094-.016 1.508 14.126 15.65-.016 29.795l1.414 1.414L15.54 17.065l14.144 14.143",
+          fill: "currentColor",
+          "fill-rule": "evenodd"
+        }
+      ))
+    )), /* @__PURE__ */ import_react.default.createElement("div", { className: "modal-contents" }, /* @__PURE__ */ import_react.default.createElement("main", { className: "modal-wrapper" }, children))))) : null;
+  });
+  var Modal_default = Modal;
+
+  // extension/components/settings/ui/SettingSection.tsx
+  var import_react2 = __toESM(require_react());
+  var Section = ({ title, description, children }) => {
+    return /* @__PURE__ */ import_react2.default.createElement("div", { className: "setting-section" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "heading-wrapper" }, /* @__PURE__ */ import_react2.default.createElement("h3", { className: "title encore-text encore-text-title-small" }, title), description && /* @__PURE__ */ import_react2.default.createElement("p", { className: "desc encore-text encore-text-body-small" }, description)), children);
+  };
+  var SettingSection_default = Section;
+
+  // extension/constants/dropdown.ts
+  var BACKGROUND_MODE_OPTIONS = [
+    { label: "Animated", value: "animated" },
+    { label: "Static", value: "static" },
+    { label: "Solid", value: "solid" }
+  ];
+  var PLAYBAR_MODE_OPTIONS = [
+    { label: "Compact", value: "compact" },
+    { label: "Default", value: "default" },
+    { label: "Rounded", value: "rounded" }
+  ];
+  var GRAIN_MODE_OPTIONS = [
+    { label: "Starry", value: "starry" },
+    { label: "Default", value: "default" },
+    { label: "none", value: "none" }
+  ];
+  var PLAYLIST_BACKGROUND_MODE_OPTIONS = [
+    { label: "Now Playing", value: "now-playing" },
+    { label: "Playlist Cover", value: "inherit" },
+    { label: "none", value: "none" }
+  ];
+  var PLAYLIST_VIEW_MODE_OPTIONS = [
+    { label: "Card", value: "card" },
+    { label: "Compact Card", value: "compact-card" },
+    { label: "Compact", value: "compact" },
+    { label: "Default", value: "default" }
+  ];
+  var BORDER_STYLE_OPTIONS = [
+    { label: "None", value: "none" },
+    { label: "Hidden", value: "hidden" },
+    { label: "Dotted", value: "dotted" },
+    { label: "Dashed", value: "dashed" },
+    { label: "Solid", value: "solid" },
+    { label: "Double", value: "double" },
+    { label: "Groove", value: "groove" },
+    { label: "Ridge", value: "ridge" },
+    { label: "Inset", value: "inset" },
+    { label: "Outset", value: "outset" }
+  ];
+  var SETTINGS_ACCESS_MODE_OPTIONS = [
+    { label: "Profile Context Menu", value: "context-menu" },
+    { label: "Global Nav", value: "nav" }
+  ];
+  var NPV_MODE_OPTIONS = [
+    { label: "Compact", value: "compact" },
+    { label: "Normal", value: "normal" }
+  ];
+  var NPV_POSITION_OPTIONS = [
+    { label: "Left", value: "left" },
+    { label: "Right", value: "right" }
+  ];
+
+  // extension/components/svg/Dismiss.tsx
+  var import_react3 = __toESM(require_react());
+  var Dismiss = () => {
+    return /* @__PURE__ */ import_react3.default.createElement(
+      "svg",
+      {
+        role: "img",
+        "aria-label": "dismiss",
+        width: "24",
+        height: "24",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        xmlns: "http://www.w3.org/2000/svg"
+      },
+      /* @__PURE__ */ import_react3.default.createElement(
+        "path",
+        {
+          d: "m4.21 4.387.083-.094a1 1 0 0 1 1.32-.083l.094.083L12 10.585l6.293-6.292a1 1 0 1 1 1.414 1.414L13.415 12l6.292 6.293a1 1 0 0 1 .083 1.32l-.083.094a1 1 0 0 1-1.32.083l-.094-.083L12 13.415l-6.293 6.292a1 1 0 0 1-1.414-1.414L10.585 12 4.293 5.707a1 1 0 0 1-.083-1.32l.083-.094-.083.094Z",
+          fill: "#ffffff"
+        }
+      )
+    );
+  };
+  var Dismiss_default = Dismiss;
+
+  // extension/components/ui/Button.tsx
+  var import_react4 = __toESM(require_react());
+  var Button = ({ variant = "primary", size = "medium", icon, children, ...rest }) => {
+    return /* @__PURE__ */ import_react4.default.createElement("button", { className: `button button-${variant} button-${size}`, ...rest }, icon && /* @__PURE__ */ import_react4.default.createElement("span", { className: "button-icon" }, icon), children);
+  };
+  var Button_default = Button;
+
+  // extension/services/toastService.tsx
+  var import_react5 = __toESM(require_react());
+  var toastId = 0;
+  var ToastService = /* @__PURE__ */ (() => {
+    let addToast2;
+    const ToastContainer2 = () => {
+      const [toasts, setToasts] = (0, import_react5.useState)([]);
+      const addToastInternal = (0, import_react5.useCallback)(
+        (message, isError = false) => {
+          const id = toastId++;
+          setToasts((prev) => [
+            ...prev,
+            { id, message, isError, exiting: false }
+          ]);
+          const timeoutId = setTimeout(() => {
+            handleCloseElement(id);
+          }, 3e3);
+          return () => clearTimeout(timeoutId);
+        },
+        []
+      );
+      addToast2 = addToastInternal;
+      const handleCloseElement = (id) => {
+        setToasts((prev) => {
+          return prev.map(
+            (toast) => toast.id === id ? { ...toast, exiting: true } : toast
+          );
+        });
+        setTimeout(() => {
+          setToasts((prev) => prev.filter((t) => t.id !== id));
+        }, 500);
+      };
+      return /* @__PURE__ */ import_react5.default.createElement("div", { className: "toast-container" }, toasts.map((toast) => /* @__PURE__ */ import_react5.default.createElement(
+        "div",
+        {
+          key: toast.id,
+          className: `toast-element ${toast.exiting ? "toast-exit" : ""}`,
+          style: {
+            backgroundColor: `${toast.isError ? "rgba(200,20,20,0.5)" : "rgba(20,20,20,0.5)"}`
+          }
+        },
+        toast.message,
+        /* @__PURE__ */ import_react5.default.createElement(
+          Button_default,
+          {
+            icon: /* @__PURE__ */ import_react5.default.createElement(Dismiss_default, null),
+            onClick: () => handleCloseElement(toast.id)
+          }
+        )
+      )));
+    };
+    return {
+      ToastContainer: ToastContainer2,
+      addToast: (message, isError) => addToast2(message, isError)
+    };
+  })();
+  var { ToastContainer, addToast } = ToastService;
+
+  // node_modules/zustand/esm/vanilla.mjs
+  var createStoreImpl = (createState) => {
+    let state;
+    const listeners = /* @__PURE__ */ new Set();
+    const setState = (partial, replace) => {
+      const nextState = typeof partial === "function" ? partial(state) : partial;
+      if (!Object.is(nextState, state)) {
+        const previousState = state;
+        state = (replace != null ? replace : typeof nextState !== "object" || nextState === null) ? nextState : Object.assign({}, state, nextState);
+        listeners.forEach((listener) => listener(state, previousState));
+      }
+    };
+    const getState = () => state;
+    const getInitialState = () => initialState;
+    const subscribe = (listener) => {
+      listeners.add(listener);
+      return () => listeners.delete(listener);
+    };
+    const api = { setState, getState, getInitialState, subscribe };
+    const initialState = state = createState(setState, getState, api);
+    return api;
+  };
+  var createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;
+
+  // node_modules/zustand/esm/react.mjs
+  var import_react6 = __toESM(require_react(), 1);
+  var identity = (arg) => arg;
+  function useStore(api, selector = identity) {
+    const slice = import_react6.default.useSyncExternalStore(
+      api.subscribe,
+      () => selector(api.getState()),
+      () => selector(api.getInitialState())
+    );
+    import_react6.default.useDebugValue(slice);
+    return slice;
+  }
+  var createImpl = (createState) => {
+    const api = createStore(createState);
+    const useBoundStore = (selector) => useStore(api, selector);
+    Object.assign(useBoundStore, api);
+    return useBoundStore;
+  };
+  var create = (createState) => createState ? createImpl(createState) : createImpl;
+
+  // node_modules/zustand/esm/middleware.mjs
+  function createJSONStorage(getStorage, options) {
+    let storage;
+    try {
+      storage = getStorage();
+    } catch (e) {
+      return;
+    }
+    const persistStorage = {
+      getItem: (name) => {
+        var _a;
+        const parse = (str2) => {
+          if (str2 === null) {
+            return null;
+          }
+          return JSON.parse(str2, options == null ? void 0 : options.reviver);
+        };
+        const str = (_a = storage.getItem(name)) != null ? _a : null;
+        if (str instanceof Promise) {
+          return str.then(parse);
+        }
+        return parse(str);
+      },
+      setItem: (name, newValue) => storage.setItem(
+        name,
+        JSON.stringify(newValue, options == null ? void 0 : options.replacer)
+      ),
+      removeItem: (name) => storage.removeItem(name)
+    };
+    return persistStorage;
+  }
+  var toThenable = (fn) => (input) => {
+    try {
+      const result = fn(input);
+      if (result instanceof Promise) {
+        return result;
+      }
+      return {
+        then(onFulfilled) {
+          return toThenable(onFulfilled)(result);
+        },
+        catch(_onRejected) {
+          return this;
+        }
+      };
+    } catch (e) {
+      return {
+        then(_onFulfilled) {
+          return this;
+        },
+        catch(onRejected) {
+          return toThenable(onRejected)(e);
+        }
+      };
+    }
+  };
+  var persistImpl = (config, baseOptions) => (set, get, api) => {
+    let options = {
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => state,
+      version: 0,
+      merge: (persistedState, currentState) => ({
+        ...currentState,
+        ...persistedState
+      }),
+      ...baseOptions
+    };
+    let hasHydrated = false;
+    const hydrationListeners = /* @__PURE__ */ new Set();
+    const finishHydrationListeners = /* @__PURE__ */ new Set();
+    let storage = options.storage;
+    if (!storage) {
+      return config(
+        (...args) => {
+          console.warn(
+            `[zustand persist middleware] Unable to update item '${options.name}', the given storage is currently unavailable.`
+          );
+          set(...args);
+        },
+        get,
+        api
+      );
+    }
+    const setItem = () => {
+      const state = options.partialize({ ...get() });
+      return storage.setItem(options.name, {
+        state,
+        version: options.version
+      });
+    };
+    const savedSetState = api.setState;
+    api.setState = (state, replace) => {
+      savedSetState(state, replace);
+      void setItem();
+    };
+    const configResult = config(
+      (...args) => {
+        set(...args);
+        void setItem();
+      },
+      get,
+      api
+    );
+    api.getInitialState = () => configResult;
+    let stateFromStorage;
+    const hydrate = () => {
+      var _a, _b;
+      if (!storage) return;
+      hasHydrated = false;
+      hydrationListeners.forEach((cb) => {
+        var _a2;
+        return cb((_a2 = get()) != null ? _a2 : configResult);
+      });
+      const postRehydrationCallback = ((_b = options.onRehydrateStorage) == null ? void 0 : _b.call(options, (_a = get()) != null ? _a : configResult)) || void 0;
+      return toThenable(storage.getItem.bind(storage))(options.name).then((deserializedStorageValue) => {
+        if (deserializedStorageValue) {
+          if (typeof deserializedStorageValue.version === "number" && deserializedStorageValue.version !== options.version) {
+            if (options.migrate) {
+              const migration = options.migrate(
+                deserializedStorageValue.state,
+                deserializedStorageValue.version
+              );
+              if (migration instanceof Promise) {
+                return migration.then((result) => [true, result]);
+              }
+              return [true, migration];
+            }
+            console.error(
+              `State loaded from storage couldn't be migrated since no migrate function was provided`
+            );
+          } else {
+            return [false, deserializedStorageValue.state];
+          }
+        }
+        return [false, void 0];
+      }).then((migrationResult) => {
+        var _a2;
+        const [migrated, migratedState] = migrationResult;
+        stateFromStorage = options.merge(
+          migratedState,
+          (_a2 = get()) != null ? _a2 : configResult
+        );
+        set(stateFromStorage, true);
+        if (migrated) {
+          return setItem();
+        }
+      }).then(() => {
+        postRehydrationCallback == null ? void 0 : postRehydrationCallback(stateFromStorage, void 0);
+        stateFromStorage = get();
+        hasHydrated = true;
+        finishHydrationListeners.forEach((cb) => cb(stateFromStorage));
+      }).catch((e) => {
+        postRehydrationCallback == null ? void 0 : postRehydrationCallback(void 0, e);
+      });
+    };
+    api.persist = {
+      setOptions: (newOptions) => {
+        options = {
+          ...options,
+          ...newOptions
+        };
+        if (newOptions.storage) {
+          storage = newOptions.storage;
+        }
+      },
+      clearStorage: () => {
+        storage == null ? void 0 : storage.removeItem(options.name);
+      },
+      getOptions: () => options,
+      rehydrate: () => hydrate(),
+      hasHydrated: () => hasHydrated,
+      onHydrate: (cb) => {
+        hydrationListeners.add(cb);
+        return () => {
+          hydrationListeners.delete(cb);
+        };
+      },
+      onFinishHydration: (cb) => {
+        finishHydrationListeners.add(cb);
+        return () => {
+          finishHydrationListeners.delete(cb);
+        };
+      }
+    };
+    if (!options.skipHydration) {
+      hydrate();
+    }
+    return stateFromStorage || configResult;
+  };
+  var persist = persistImpl;
+
+  // extension/store/useImageStore.ts
+  var DEFAULT_IMAGE_SETTINGS = {
+    isUseLocalImage: false,
+    selectedLocalImage: null
+  };
+  var useImageStore = create(
+    persist(
+      (set) => ({
+        ...DEFAULT_IMAGE_SETTINGS,
+        setUseLocalImage: (isUseLocalImage) => set(() => ({ isUseLocalImage })),
+        setSelectedLocalImage: (selectedLocalImage) => set(() => ({ selectedLocalImage })),
+        clearSelectedLocalImage: () => set(() => ({ ...DEFAULT_IMAGE_SETTINGS }))
+      }),
+      {
+        name: "lucid-bg-image"
+      }
+    )
+  );
+
+  // extension/constants/settingsStore.ts
+  var DEFAULT_BACKGROUND_STYLES = {
+    solid: {
+      opacity: 1,
+      backgroundColor: "var(--spice-main)"
+    },
+    static: {
+      blur: 32,
+      opacity: 1,
+      saturation: 1.1,
+      contrast: 1.2,
+      brightness: 0.5
+    },
+    animated: {
+      blur: 32,
+      time: 45,
+      opacity: 1,
+      saturation: 1.1,
+      contrast: 1.2,
+      brightness: 0.475
+    }
+  };
+  var DEFAULT_PLAYBAR_STYLES = {
+    compact: {
+      height: 64,
+      opacity: 1,
+      saturation: 1.1,
+      contrast: 1.2,
+      brightness: 0.8,
+      borderRadius: 8,
+      backdropBlur: 32,
+      paddingX: 6,
+      backgroundColor: "rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)"
+    },
+    default: {
+      height: 80,
+      opacity: 1,
+      paddingX: 6,
+      saturation: 1.1,
+      contrast: 1.2,
+      borderRadius: 8,
+      brightness: 0.8,
+      backdropBlur: 32,
+      backgroundColor: "rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)"
+    },
+    rounded: {
+      height: 80,
+      opacity: 1,
+      paddingX: 20,
+      saturation: 1.1,
+      contrast: 1.2,
+      borderRadius: 999,
+      brightness: 0.8,
+      backdropBlur: 32,
+      backgroundColor: "rgba(var(--spice-rgb-player, var(--spice-rgb-card)), 0.5)"
+    }
+  };
+  var DEFAULT_APP_SETTINGS = {
+    backgroundSettings: {
+      mode: "static",
+      styles: DEFAULT_BACKGROUND_STYLES,
+      customBackgroundOverride: {
+        url: null
+      }
+    },
+    interfaceSettings: {
+      controlSettings: {
+        height: 64
+      },
+      fontSettings: {
+        body: {
+          url: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap",
+          fontFamily: "Poppins"
+        }
+      },
+      grainSettings: {
+        grainEffect: "default"
+      },
+      pagesSettings: {
+        isScrollMode: false,
+        backgroundImageMode: "inherit",
+        playlistViewMode: "card"
+      },
+      borderSettings: {
+        color: "rgba(var(--spice-rgb-selected-row, var(--spice-rgb-text)), 0.125)",
+        style: "inset",
+        thickness: 1,
+        roundedRadius: 12
+      }
+    },
+    npvSettings: {
+      mode: "normal",
+      position: "right",
+      blur: 24
+    },
+    colorSettings: {
+      isDynamicColor: false
+    },
+    playbarSettings: {
+      mode: "default",
+      styles: DEFAULT_PLAYBAR_STYLES
+    },
+    settingAccessPosition: "nav"
+  };
+
+  // extension/store/useSettingsStore.ts
+  var isValidSettings = (data) => {
+    return typeof data === "object" && data !== null && "backgroundSettings" in data && "interfaceSettings" in data && "playbarSettings" in data && "colorSettings" in data && typeof data.backgroundSettings === "object" && "mode" in data.backgroundSettings && "styles" in data.backgroundSettings && typeof data.interfaceSettings === "object" && "borderSettings" in data.interfaceSettings && "fontSettings" in data.interfaceSettings && typeof data.playbarSettings === "object" && "mode" in data.playbarSettings && typeof data.colorSettings === "object" && "isDynamicColor" in data.colorSettings;
+  };
+  var useSettingsStore = create(
+    persist(
+      (set, get) => ({
+        ...DEFAULT_APP_SETTINGS,
+        exportSettings: () => {
+          const state = get();
+          return JSON.stringify(state);
+        },
+        importSettings: (json) => {
+          try {
+            const importedSettings = JSON.parse(json);
+            if (!isValidSettings(importedSettings)) {
+              throw new Error("Invalid settings structure");
+            }
+            set(importedSettings);
+            addToast("Settings imported successfully!");
+            return true;
+          } catch (error) {
+            const errorMessage = error instanceof SyntaxError ? "Failed to parse JSON: Please ensure your input is valid JSON." : error instanceof Error ? error.message : "An unknown error occurred.";
+            addToast(errorMessage, true);
+            return false;
+          }
+        },
+        setBackgroundSettings: (newBackgroundSettings) => set((state) => ({
+          backgroundSettings: {
+            ...state.backgroundSettings,
+            ...newBackgroundSettings
+          }
+        })),
+        setNpvMode: (mode) => set((state) => ({
+          npvSettings: {
+            ...state.npvSettings,
+            mode
+          }
+        })),
+        setNpvBlur: (blur) => set((state) => ({
+          npvSettings: {
+            ...state.npvSettings,
+            blur
+          }
+        })),
+        setCompactNpvPosition: (position) => set((state) => ({
+          npvSettings: {
+            ...state.npvSettings,
+            position
+          }
+        })),
+        setSettingAccessPosition: (settingAccessPosition) => set(() => ({ settingAccessPosition })),
+        setControlHeight: (height) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            controlSettings: {
+              height
+            }
+          }
+        })),
+        setCustomBackgroundOverride: (url) => set((state) => ({
+          backgroundSettings: {
+            ...state.backgroundSettings,
+            customBackgroundOverride: {
+              ...state.backgroundSettings.customBackgroundOverride,
+              url
+            }
+          }
+        })),
+        setBorderColor: (color) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            borderSettings: {
+              ...state.interfaceSettings.borderSettings,
+              color
+            }
+          }
+        })),
+        setBorderStyle: (style) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            borderSettings: {
+              ...state.interfaceSettings.borderSettings,
+              style
+            }
+          }
+        })),
+        setRoundedBorderRadius: (value) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            borderSettings: {
+              ...state.interfaceSettings.borderSettings,
+              roundedRadius: value
+            }
+          }
+        })),
+        setBorderThickness: (thickness) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            borderSettings: {
+              ...state.interfaceSettings.borderSettings,
+              thickness
+            }
+          }
+        })),
+        setBackgroundStyles: (newStyles, mode) => set((state) => ({
+          backgroundSettings: {
+            ...state.backgroundSettings,
+            styles: {
+              ...state.backgroundSettings.styles,
+              [mode]: {
+                ...state.backgroundSettings.styles[mode],
+                ...newStyles
+              }
+            }
+          }
+        })),
+        setColorSettings: (newColorSettings) => set((state) => ({
+          colorSettings: { ...state.colorSettings, ...newColorSettings }
+        })),
+        setBorderSettings: (borderSettings) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            borderSettings: {
+              ...state.interfaceSettings.borderSettings,
+              ...borderSettings
+            }
+          }
+        })),
+        setPlaybarSettings: (newPlaybarSettings) => set((state) => ({
+          playbarSettings: { ...state.playbarSettings, ...newPlaybarSettings }
+        })),
+        setInterfaceSettings: (newInterfaceSettings) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            ...newInterfaceSettings
+          }
+        })),
+        setBackgroundMode: (mode) => set((state) => ({
+          backgroundSettings: { ...state.backgroundSettings, mode }
+        })),
+        updateBackgroundStyle: (mode, key, value) => set((state) => ({
+          backgroundSettings: {
+            ...state.backgroundSettings,
+            styles: {
+              ...state.backgroundSettings.styles,
+              [mode]: {
+                ...state.backgroundSettings.styles[mode],
+                [key]: value
+              }
+            }
+          }
+        })),
+        setFont: (fontType, fontData) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            fontSettings: {
+              ...state.interfaceSettings.fontSettings,
+              [fontType]: {
+                ...fontData
+              }
+            }
+          }
+        })),
+        setGrainEffect: (grainEffect) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            grainSettings: {
+              ...state.interfaceSettings.grainSettings,
+              grainEffect
+            }
+          }
+        })),
+        setIsScrollMode: (isScrollMode) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            pagesSettings: {
+              ...state.interfaceSettings.pagesSettings,
+              isScrollMode
+            }
+          }
+        })),
+        setPagesBackgroundImageMode: (backgroundImageMode) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            pagesSettings: {
+              ...state.interfaceSettings.pagesSettings,
+              backgroundImageMode
+            }
+          }
+        })),
+        setPlaylistViewMode: (playlistViewMode) => set((state) => ({
+          interfaceSettings: {
+            ...state.interfaceSettings,
+            pagesSettings: {
+              ...state.interfaceSettings.pagesSettings,
+              playlistViewMode
+            }
+          }
+        })),
+        setIsDynamicColor: (isDynamicColor) => set((state) => ({
+          colorSettings: { ...state.colorSettings, isDynamicColor }
+        })),
+        updatePlaybarStyle: (mode, key, value) => set((state) => ({
+          playbarSettings: {
+            ...state.playbarSettings,
+            styles: {
+              ...state.playbarSettings.styles,
+              [mode]: {
+                ...state.playbarSettings.styles[mode],
+                [key]: value
+              }
+            }
+          }
+        })),
+        setPlaybarMode: (mode) => set((state) => ({
+          playbarSettings: {
+            ...state.playbarSettings,
+            mode
+          }
+        })),
+        // Reset all settings to default
+        resetAllSettings: () => {
+          set(DEFAULT_APP_SETTINGS);
+        }
+      }),
+      {
+        name: "lucid-settings",
+        version: 1.1,
+        migrate: (persistedState) => {
+          const state = {
+            ...DEFAULT_APP_SETTINGS,
+            ...persistedState
+          };
+          return state;
+        }
+      }
+    )
+  );
+
+  // extension/utils/fontUtils.ts
+  var isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+  var extractFontFamilyFromUrl = (url) => {
+    return decodeURIComponent(url.match(/family=([^&:]+)/)?.[1]?.replace(/\+/g, " ") || "") || "";
+  };
+  var loadFontFromUrl = (url, fontId) => {
+    let customFont = document.getElementById(fontId);
+    if (!customFont) {
+      customFont = document.createElement("link");
+      customFont.rel = "stylesheet";
+      customFont.id = fontId;
+      document.head.appendChild(customFont);
+    }
+    customFont.href = url;
+  };
+  var getFontDataFromInput = (value) => {
+    let fontFamily = "";
+    let url = "";
+    if (isValidUrl(value)) {
+      url = value;
+      fontFamily = extractFontFamilyFromUrl(value);
+    } else {
+      url = value;
+      fontFamily = value;
+    }
+    return { url, fontFamily };
+  };
+
+  // extension/utils/getStyleInputMap.ts
+  var getStyleInputMap = (styles, mode, setter) => {
+    return Object.entries(styles[mode]).map(
+      ([key, style]) => ({
+        id: `style-${mode}`,
+        sectionName: "Styles",
+        conditionalRender: true,
+        cardProps: {
+          title: `Set ${key}`,
+          type: "input",
+          settings: {
+            label: "",
+            defaultValue: style,
+            ...typeof style === "number" ? {
+              type: "number",
+              onChange: (value) => {
+                setter(mode, key, Number(value));
+              },
+              settings: {
+                max: 256,
+                min: 0,
+                step: 0.5
+              }
+            } : {
+              type: "text",
+              onChange: (value) => {
+                setter(mode, key, value);
+              }
+            }
+          }
+        }
+      })
+    );
+  };
+
+  // extension/utils/logUtils.ts
+  var originalLog = console.log;
+  var originalDebug = console.debug;
+  var originalError = console.error;
+  var originalWarn = console.warn;
+  var logStyles = {
+    prefix: "font-weight: bold; color: #4DB6AC; font-size: 0.85rem;",
+    error: "color: #dc3545;",
+    warn: "color: #ffc107;",
+    debug: "color: #17a2b8;",
+    info: ""
+  };
+  var logWithLevel = (level, message, ...optionalParams) => {
+    const logFn = {
+      info: originalLog,
+      debug: originalDebug,
+      error: originalError,
+      warn: originalWarn
+    }[level];
+    const levelStyle = logStyles[level];
+    logFn(`%c[Lucid] %c${message}`, logStyles.prefix, levelStyle, ...optionalParams);
+  };
+  var logInfo = (message, ...optionalParams) => logWithLevel("info", message, ...optionalParams);
+  var logDebug = (message, ...optionalParams) => logWithLevel("debug", message, ...optionalParams);
+  var logError = (message, ...optionalParams) => logWithLevel("error", message, ...optionalParams);
+  var logWarn = (message, ...optionalParams) => logWithLevel("warn", message, ...optionalParams);
+
+  // extension/components/settings/ui/Tooltip.tsx
+  var import_react7 = __toESM(require_react());
+  var Tooltip = ({ children }) => {
+    return /* @__PURE__ */ import_react7.default.createElement("div", { className: "tooltip-container" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "tooltip" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "tooltip-icon" }, /* @__PURE__ */ import_react7.default.createElement(
+      "svg",
+      {
+        role: "img",
+        "aria-label": "Tooltip icon",
+        width: "24",
+        height: "24",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        xmlns: "http://www.w3.org/2000/svg"
+      },
+      /* @__PURE__ */ import_react7.default.createElement(
+        "path",
+        {
+          d: "M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12 6.477 2 12 2Zm0 1.667c-4.595 0-8.333 3.738-8.333 8.333 0 4.595 3.738 8.333 8.333 8.333 4.595 0 8.333-3.738 8.333-8.333 0-4.595-3.738-8.333-8.333-8.333ZM12 15.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0-8.75a2.75 2.75 0 0 1 2.75 2.75c0 1.01-.297 1.574-1.051 2.359l-.169.171c-.622.622-.78.886-.78 1.47a.75.75 0 0 1-1.5 0c0-1.01.297-1.574 1.051-2.359l.169-.171c.622-.622.78-.886.78-1.47a1.25 1.25 0 0 0-2.493-.128l-.007.128a.75.75 0 0 1-1.5 0A2.75 2.75 0 0 1 12 6.75Z",
+          fill: "currentColor"
+        }
+      )
+    )), /* @__PURE__ */ import_react7.default.createElement("span", { className: "tooltip-content" }, children)));
+  };
+  var Tooltip_default = Tooltip;
+
+  // extension/components/settings/ui/TitleContainer.tsx
+  var import_react8 = __toESM(require_react());
+  var TitleContainer = ({ title, tooltip, selectedValue }) => {
+    return /* @__PURE__ */ import_react8.default.createElement("div", { className: "title-container" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "title-wrapper" }, title && /* @__PURE__ */ import_react8.default.createElement("h5", { className: "encore-text encore-text-body-medium-bold" }, title), tooltip && /* @__PURE__ */ import_react8.default.createElement(Tooltip_default, null, tooltip)), selectedValue && /* @__PURE__ */ import_react8.default.createElement("p", { className: "selected-value" }, "Selected: ", selectedValue));
+  };
+  var TitleContainer_default = TitleContainer;
+
+  // extension/components/svg/ArrowDown.tsx
+  var import_react9 = __toESM(require_react());
+  var ArrowDown = () => {
+    return /* @__PURE__ */ import_react9.default.createElement(
+      "svg",
+      {
+        role: "img",
+        "aria-label": "Arrow Down",
+        width: "24",
+        height: "24",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        xmlns: "http://www.w3.org/2000/svg"
+      },
+      /* @__PURE__ */ import_react9.default.createElement(
+        "path",
+        {
+          d: "M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z",
+          fill: "#ffffff"
+        }
+      )
+    );
+  };
+  var ArrowDown_default = ArrowDown;
+
+  // extension/components/ui/Dropdown.tsx
+  var import_react10 = __toESM(require_react());
+  var Dropdown = ({ options, selectedValue, onChange, placeholder, disabled }) => {
+    const dropdownRef = (0, import_react10.useRef)(null);
+    const [isOpen, setIsOpen] = (0, import_react10.useState)(false);
+    const handleToggle = () => {
+      setIsOpen((prev) => !prev);
+    };
+    const handleSelect = (value) => {
+      setIsOpen(false);
+      onChange(value);
+    };
+    (0, import_react10.useEffect)(() => {
+      const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+          setIsOpen(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+    return /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null, /* @__PURE__ */ import_react10.default.createElement("div", { className: "dropdown-container", ref: dropdownRef }, /* @__PURE__ */ import_react10.default.createElement(
+      "button",
+      {
+        className: `dropdown-button ${isOpen ? "open" : ""}`,
+        onClick: handleToggle,
+        "aria-label": "Toggle dropdown menu",
+        type: "button"
+      },
+      /* @__PURE__ */ import_react10.default.createElement("p", { className: "encore-text" }, placeholder || selectedValue || "Dropdown"),
+      /* @__PURE__ */ import_react10.default.createElement("span", { className: "dropdown-arrow" }, /* @__PURE__ */ import_react10.default.createElement(ArrowDown_default, null))
+    ), /* @__PURE__ */ import_react10.default.createElement("div", { className: `dropdown-menu ${isOpen ? "open" : ""}` }, isOpen ? options?.map((option) => /* @__PURE__ */ import_react10.default.createElement(
+      "li",
+      {
+        key: option.value,
+        className: `dropdown-item ${selectedValue === option.value ? "selected" : ""}`,
+        onClick: () => !option.disabled && handleSelect(option.value),
+        onKeyDown: (e) => !option.disabled && e.key === "Enter" && handleSelect(option.value),
+        style: { opacity: `${disabled ? 0.75 : 1}` }
+      },
+      /* @__PURE__ */ import_react10.default.createElement("p", { className: "encore-text" }, option.label)
+    )) : null)));
+  };
+  var Dropdown_default = Dropdown;
+
+  // extension/utils/debounce.ts
+  var debounce = (fn, delay) => {
+    let timer = null;
+    return (...args) => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        fn(...args);
+      }, delay);
+    };
+  };
+
+  // extension/components/ui/Input.tsx
+  var import_react11 = __toESM(require_react());
+  var Input = (0, import_react11.forwardRef)(
+    ({ label, defaultValue, onChange, type, placeholder, settings, validation }, ref) => {
+      const [inputValue, setInputValue] = (0, import_react11.useState)(
+        defaultValue || null
+      );
+      const [errorMessage, setErrorMessage] = (0, import_react11.useState)(null);
+      const isFileInput = type === "file";
+      const isNumberInput = type === "number";
+      const debouncedStringOnChange = (0, import_react11.useMemo)(() => {
+        return debounce((value) => {
+          if (!isFileInput) {
+            onChange?.(value);
+          }
+        }, 1e3);
+      }, [onChange]);
+      const handleChange = (0, import_react11.useCallback)(
+        (e) => {
+          if (isFileInput) {
+            const files = e.target.files;
+            onChange?.(files);
+          } else if (isNumberInput && settings) {
+            const value = Number(e.target.value);
+            const maxValue = settings.max ?? 100;
+            const minValue = settings.min ?? 0;
+            if (value > maxValue) {
+              setErrorMessage(`Value cannot exceed ${maxValue}`);
+            } else if (value < minValue) {
+              setErrorMessage(`Value cannot be less than ${minValue}`);
+            } else {
+              setErrorMessage(null);
+            }
+            const limitedValue = Math.min(
+              Math.max(value, minValue),
+              maxValue
+            ).toString();
+            setInputValue(limitedValue);
+            debouncedStringOnChange(limitedValue);
+          } else {
+            const value = e.target.value;
+            setInputValue(value);
+            setErrorMessage(null);
+            ``;
+            debouncedStringOnChange(value);
+          }
+        },
+        [debouncedStringOnChange, settings]
+      );
+      (0, import_react11.useEffect)(() => {
+        if (errorMessage) {
+          addToast(errorMessage, true);
+        }
+      }, [errorMessage]);
+      return /* @__PURE__ */ import_react11.default.createElement("div", { className: "input-container" }, /* @__PURE__ */ import_react11.default.createElement("label", { "aria-label": label, className: isFileInput ? "input" : "label" }, /* @__PURE__ */ import_react11.default.createElement(
+        "input",
+        {
+          "aria-label": label,
+          type,
+          accept: isFileInput ? settings?.accept ?? "image/*" : void 0,
+          multiple: isFileInput ? settings?.multiple ?? false : void 0,
+          className: "input encore-text",
+          value: inputValue ?? "",
+          onChange: handleChange,
+          placeholder,
+          step: isNumberInput ? settings?.step ?? 1 : void 0,
+          min: isNumberInput ? settings?.min : void 0,
+          max: isNumberInput ? settings?.max : void 0,
+          ref,
+          style: isFileInput ? { display: "none" } : {}
+        }
+      ), isFileInput ? "Upload Image" : null));
+    }
+  );
+  var Input_default = Input;
+
+  // extension/components/ui/SliderSwitch.tsx
+  var import_react12 = __toESM(require_react());
+  var SliderSwitch = ({ onChange, checked, label }) => {
+    const toggleSwtich = () => {
+      onChange(!checked);
+    };
+    return /* @__PURE__ */ import_react12.default.createElement("div", { className: "slider-wrapper" }, /* @__PURE__ */ import_react12.default.createElement("label", { className: "switch", "aria-label": label }, /* @__PURE__ */ import_react12.default.createElement("input", { "aria-label": "toggleSwtich", type: "checkbox", checked, onChange: toggleSwtich }), /* @__PURE__ */ import_react12.default.createElement("span", { className: "slider round" })));
+  };
+  var SliderSwitch_default = SliderSwitch;
+
+  // extension/components/settings/ui/Card.tsx
+  var import_react13 = __toESM(require_react());
+  var Card = ({ title, tooltip, selectedValue, type, settings, children, style }) => {
+    return /* @__PURE__ */ import_react13.default.createElement("div", { className: "card" }, /* @__PURE__ */ import_react13.default.createElement(TitleContainer_default, { title, tooltip, selectedValue }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "children-wrapper", style: style || {} }, type === "dropdown" && /* @__PURE__ */ import_react13.default.createElement(Dropdown_default, { ...settings }), type === "input" && /* @__PURE__ */ import_react13.default.createElement(Input_default, { ...settings }), type === "toggle" && /* @__PURE__ */ import_react13.default.createElement(SliderSwitch_default, { ...settings }), type === "button" && /* @__PURE__ */ import_react13.default.createElement(Button_default, { ...settings }), children));
+  };
+  var Card_default = Card;
+
+  // extension/components/settings/ui/CardWrapper.tsx
+  var import_react14 = __toESM(require_react());
+  var CardWrapper = (props) => {
+    const { children, className, ...restProps } = props;
+    return /* @__PURE__ */ import_react14.default.createElement("div", { ...restProps, className: `cards-wrapper ${className || ""}` }, children);
+  };
+  var CardWrapper_default = CardWrapper;
+
+  // extension/utils/render/renderCards.tsx
+  var import_react15 = __toESM(require_react());
+  var renderCards = (cards) => {
+    const [cardGroups, setCardGroups] = (0, import_react15.useState)(
+      /* @__PURE__ */ new Map()
+    );
+    import_react15.default.useEffect(() => {
+      const newCardGroups = /* @__PURE__ */ new Map();
+      for (const card of cards) {
+        if (!newCardGroups.has(card.id)) {
+          newCardGroups.set(card.id, []);
+        }
+        newCardGroups.get(card.id)?.push(card);
+      }
+      setCardGroups(newCardGroups);
+    }, [cards]);
+    return Array.from(cardGroups.entries()).map(([cardId, cardGroup]) => {
+      const visibleCards = cardGroup.filter((card) => card.conditionalRender);
+      if (visibleCards.length > 0) {
+        return /* @__PURE__ */ import_react15.default.createElement(CardWrapper_default, { key: cardId, id: cardId, className: `${cardId} combine` }, visibleCards[0]?.sectionName ? /* @__PURE__ */ import_react15.default.createElement("label", { "aria-label": visibleCards[0]?.sectionName, htmlFor: cardId }, visibleCards[0]?.sectionName) : null, visibleCards.map((card) => /* @__PURE__ */ import_react15.default.createElement(Card_default, { key: card.id, ...card.cardProps })));
+      } else {
+        return null;
+      }
+    });
+  };
+
+  // extension/components/settings/section/BackgroundSection.tsx
+  var import_react16 = __toESM(require_react());
+  var BackgroundSection = () => {
+    const {
+      backgroundSettings: { mode, styles, customBackgroundOverride },
+      colorSettings: { isDynamicColor },
+      setBackgroundMode,
+      updateBackgroundStyle,
+      setIsDynamicColor,
+      setCustomBackgroundOverride
+    } = useSettingsStore();
+    const {
+      isUseLocalImage,
+      setUseLocalImage,
+      clearSelectedLocalImage,
+      selectedLocalImage,
+      setSelectedLocalImage
+    } = useImageStore();
+    const [selectedMode, setSelectedMode] = (0, import_react16.useState)(mode);
+    const onBackgroundModeChange = (value) => {
+      setSelectedMode(value);
+      setBackgroundMode(value);
+    };
+    const BACKGROUND_SETTINGS_CARDS = [
+      {
+        id: "backgroundOption",
+        conditionalRender: true,
+        cardProps: {
+          title: "Background Option",
+          type: "dropdown",
+          tooltip: "Select the background mode to customize your background.",
+          settings: {
+            placeholder: selectedMode,
+            selectedValue: selectedMode,
+            options: BACKGROUND_MODE_OPTIONS,
+            onChange: onBackgroundModeChange
+          }
+        }
+      },
+      ...getStyleInputMap(styles, mode, updateBackgroundStyle),
+      {
+        id: "backgroundCustomImage",
+        sectionName: "Custom Background",
+        conditionalRender: mode === "static",
+        cardProps: {
+          title: "Background image",
+          type: "input",
+          tooltip: /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement("span", null, "Use a custom URL for the background image."), /* @__PURE__ */ import_react16.default.createElement("span", null, "Ensure the URL is a valid image link (e.g., .jpg, .png)."), /* @__PURE__ */ import_react16.default.createElement("span", null, 'Use "now-playing" for the now playing art image.'), /* @__PURE__ */ import_react16.default.createElement("span", null, 'Use "current-page" for the current page art image.')),
+          settings: {
+            type: "text",
+            defaultValue: customBackgroundOverride?.url || "",
+            label: "Url",
+            validation: (value) => isValidUrl(value),
+            onChange: (value) => {
+              setCustomBackgroundOverride(value);
+            }
+          }
+        }
+      },
+      {
+        id: "backgroundCustomImage",
+        conditionalRender: mode === "static",
+        cardProps: {
+          title: "Use Local Image",
+          type: "toggle",
+          tooltip: /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement("p", null, "Import an image from your device to use as the background."), selectedLocalImage?.dataURL ? /* @__PURE__ */ import_react16.default.createElement("div", null, /* @__PURE__ */ import_react16.default.createElement(
+            "img",
+            {
+              width: "20rem",
+              src: selectedLocalImage.dataURL,
+              alt: `${selectedLocalImage?.fileName} image`,
+              style: {
+                display: "block",
+                width: "20rem",
+                borderRadius: "0.5rem",
+                border: "var(--border-thickness) var(--border-style, solid) var(--border-color, rgba(var(--spice-rgb-text), 0.125))"
+              }
+            }
+          ), selectedLocalImage?.fileName ? /* @__PURE__ */ import_react16.default.createElement("p", null, "File name: ", /* @__PURE__ */ import_react16.default.createElement("span", null, selectedLocalImage.fileName)) : null, selectedLocalImage?.dateAdded ? /* @__PURE__ */ import_react16.default.createElement("p", null, "Date Added: ", /* @__PURE__ */ import_react16.default.createElement("span", null, selectedLocalImage.dateAdded)) : null) : null),
+          settings: {
+            checked: isUseLocalImage,
+            label: "Enable Local Image",
+            onChange: (value) => {
+              setUseLocalImage(value);
+              if (value === false) {
+                clearSelectedLocalImage();
+              }
+            }
+          }
+        }
+      },
+      {
+        id: "backgroundCustomImageInput",
+        conditionalRender: mode === "static" && isUseLocalImage,
+        cardProps: {
+          title: "Select Background Image",
+          type: "input",
+          tooltip: "Choose an image file from your device.",
+          settings: {
+            type: "file",
+            label: "Choose File",
+            onChange: (value) => {
+              const imgFile = value?.[0];
+              if (imgFile) {
+                const reader = new FileReader();
+                reader.readAsDataURL(imgFile);
+                reader.onload = (e) => {
+                  const dataURL = e.target?.result || "";
+                  logDebug("Local Image Data URL:", dataURL);
+                  addToast(
+                    /* @__PURE__ */ import_react16.default.createElement("div", { style: { display: "flex", alignItems: "center" } }, /* @__PURE__ */ import_react16.default.createElement("span", { style: { marginRight: "10px" } }, "Successfully Added Local Image as background from File name:"), /* @__PURE__ */ import_react16.default.createElement("span", { style: { fontWeight: "bold" } }, imgFile.name))
+                  );
+                  setSelectedLocalImage({
+                    dataURL,
+                    fileName: imgFile.name || "",
+                    dateAdded: (/* @__PURE__ */ new Date()).toLocaleString()
+                  });
+                };
+              }
+            }
+          }
+        }
+      },
+      {
+        // TODO: add color export and import and change it to 'ColorSection'
+        id: "dynamicColorToggle",
+        conditionalRender: true,
+        cardProps: {
+          title: "Dynamic Color",
+          type: "toggle",
+          tooltip: "Enable dynamic color to adjust colors based on current playing album art.",
+          settings: {
+            checked: isDynamicColor,
+            label: "Dynamic Color Toggle",
+            onChange: (value) => {
+              setIsDynamicColor(value);
+              if (value) {
+                addToast("Enabled Dynamic Color.");
+              }
+            }
+          }
+        }
+      }
+    ];
+    return /* @__PURE__ */ import_react16.default.createElement(
+      SettingSection_default,
+      {
+        title: "Background Settings",
+        description: "Set your Spotify interface settings."
+      },
+      renderCards(BACKGROUND_SETTINGS_CARDS)
+    );
+  };
+  var BackgroundSection_default = BackgroundSection;
+
+  // extension/components/settings/section/ImportExportSection.tsx
+  var import_react17 = __toESM(require_react());
+  var ImportExportSection = () => {
+    const { exportSettings, importSettings } = useSettingsStore();
+    const [isImportVisible, setIsImportVisible] = (0, import_react17.useState)(false);
+    const inputRef = (0, import_react17.useRef)(null);
+    const handleImportToggle = () => {
+      setIsImportVisible((prev) => !prev);
+      if (isImportVisible) {
+        if (inputRef.current) inputRef.current.value = "";
+      }
+    };
+    const handleImport = () => {
+      const jsonString = inputRef.current?.value.trim() || "{}";
+      if (jsonString === "{}") {
+        addToast("Please enter valid JSON settings.", true);
+        return;
+      }
+      importSettings(jsonString);
+    };
+    const handleExport = () => {
+      const settings = exportSettings();
+      navigator.clipboard.writeText(settings).then(() => {
+        addToast("Settings exported to clipboard!");
+      }).catch((err) => {
+        logError("Failed to copy: ", err);
+        addToast("Failed to copy settings to clipboard.", true);
+      });
+    };
+    const handlePaste = async () => {
+      try {
+        const clipboardText = await navigator.clipboard.readText();
+        if (inputRef.current) {
+          inputRef.current.value = clipboardText;
+          handleImport();
+        }
+        addToast("Clipboard content pasted successfully!");
+      } catch (err) {
+        logError("Failed to read clipboard: ", err);
+        addToast("Failed to read clipboard content.", true);
+      }
+    };
+    return /* @__PURE__ */ import_react17.default.createElement(SettingSection_default, { title: "Settings Import/Export", description: "Manage your settings easily." }, /* @__PURE__ */ import_react17.default.createElement(CardWrapper_default, null, /* @__PURE__ */ import_react17.default.createElement(
+      Card_default,
+      {
+        title: "Import and Export Settings",
+        type: "normal",
+        tooltip: "Use these buttons to import settings from a JSON file or export your current theme settings to your clipboard.",
+        style: { display: "flex", gap: "0.5rem" }
+      },
+      /* @__PURE__ */ import_react17.default.createElement(Button_default, { onClick: handleExport }, "Export"),
+      /* @__PURE__ */ import_react17.default.createElement(Button_default, { onClick: handleImportToggle, variant: isImportVisible ? "danger" : "primary" }, isImportVisible ? "Cancel Import" : "Import")
+    ), isImportVisible && /* @__PURE__ */ import_react17.default.createElement(
+      Card_default,
+      {
+        title: "Import Settings JSON",
+        type: "normal",
+        tooltip: "Paste your JSON settings here to import them. Ensure the JSON is correctly formatted.",
+        style: { display: "flex", gap: "0.5rem" }
+      },
+      /* @__PURE__ */ import_react17.default.createElement(Button_default, { onClick: handlePaste }, "Paste And Import"),
+      /* @__PURE__ */ import_react17.default.createElement(Input_default, { ref: inputRef, type: "text", label: "Paste JSON here", placeholder: "Paste JSON here" }),
+      /* @__PURE__ */ import_react17.default.createElement(Button_default, { onClick: handleImport }, "Import")
+    )));
+  };
+  var ImportExportSection_default = ImportExportSection;
+
+  // extension/utils/platformUtils.ts
+  var detectWindows = () => {
+    if (Spicetify.Platform && Spicetify.Platform.operatingSystem === "Windows") {
+      return true;
+    }
+    if (Spicetify.Platform?.PlatformData?.os_name) {
+      return Spicetify.Platform.PlatformData.os_name.toLowerCase().includes("win");
+    }
+    return false;
+  };
+  var getIsLightMode = () => Spicetify?.Config.color_scheme === "light" || false;
+  var getIsGlobalNav = () => !!(document.querySelector(".globalNav") || document.querySelector(".Root__globalNav"));
+  var checkSpotifyVersionIsAbove = (version) => Spicetify.Platform.version >= version;
+
+  // extension/utils/windowControlUtils.ts
+  async function setWindowControlsHeight(height) {
+    try {
+      if (Spicetify?.CosmosAsync?.post)
+        await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
+          type: "update_titlebar",
+          height
+        });
+      logInfo(`Control height set to ${height}px`);
+    } catch (error) {
+      logError(`Error setting control height: ${height}`);
+    }
+  }
+  function getIsCustomControls() {
+    if (document.getElementById("customControls")) {
+      document.querySelector(".lucid-transperent-window-controls")?.remove();
+      return true;
+    }
+    return false;
+  }
+
+  // extension/constants/constants.ts
+  var GITHUB_RELEASES_URL = "https://api.github.com/repos/sanoojes/spicetify-lucid/releases";
+  var SCROLL_NODE_SELECTORS = ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]";
+  var PLAYLIST_ART_IMAGE_CLASS_PREFIX = "playlist-art-image-";
+  var PLAYLIST_VIEW_CLASS_PREFIX = "playlist-view-";
+  var isSpotifyV16Above = checkSpotifyVersionIsAbove("1.2.46");
+  var isLightModeEnabled = getIsLightMode();
+  var isWindowsPlatform = detectWindows();
+  var isGlobalNav = getIsGlobalNav();
+  var isCustomControls = getIsCustomControls();
+
+  // extension/components/settings/section/InterfaceSection.tsx
+  var import_react18 = __toESM(require_react());
+  var InterfaceSection = () => {
+    const {
+      interfaceSettings: {
+        controlSettings: { height: controlHeight },
+        fontSettings: {
+          body: { fontFamily }
+        },
+        grainSettings: { grainEffect },
+        pagesSettings: { isScrollMode, backgroundImageMode, playlistViewMode },
+        borderSettings: {
+          color: borderColor,
+          style: borderStyle,
+          thickness: borderThickness,
+          roundedRadius: borderRoundedRadius
+        }
+      },
+      npvSettings: { mode: npvMode, position: npvPosition, blur: npvBlur },
+      setFont,
+      setGrainEffect,
+      setControlHeight,
+      setPagesBackgroundImageMode,
+      setPlaylistViewMode,
+      setIsScrollMode,
+      setNpvMode,
+      setNpvBlur,
+      setCompactNpvPosition,
+      setBorderColor,
+      setBorderStyle,
+      setBorderThickness,
+      settingAccessPosition,
+      setRoundedBorderRadius,
+      setSettingAccessPosition
+    } = useSettingsStore();
+    const [selectedGrainMode, setSelectedGrainMode] = (0, import_react18.useState)(grainEffect);
+    const [selectedBackgroundImageMode, setSelectedBackgroundImageMode] = (0, import_react18.useState)(backgroundImageMode);
+    const [selectedPlaylistViewMode, setSelectedPlaylistViewMode] = (0, import_react18.useState)(playlistViewMode);
+    const onGrainModeChange = (value) => {
+      setSelectedGrainMode(value);
+      setGrainEffect(value);
+    };
+    const onBackgroundImageModeChange = (value) => {
+      setSelectedBackgroundImageMode(value);
+      setPagesBackgroundImageMode(value);
+    };
+    const onPlaylistViewModeChange = (value) => {
+      setSelectedPlaylistViewMode(value);
+      setPlaylistViewMode(value);
+    };
+    const INTERFACE_SETTINGS_CARDS = [
+      {
+        id: "controlSettings",
+        conditionalRender: isWindowsPlatform,
+        cardProps: {
+          title: "Set Control Height",
+          tooltip: "Set the height of your window controls in pixels.",
+          type: "input",
+          settings: {
+            type: "number",
+            label: "Enter Control Height",
+            defaultValue: controlHeight,
+            onChange: (value) => {
+              setControlHeight(Number(value));
+            },
+            settings: {
+              step: 1,
+              min: 1,
+              max: 64
+            }
+          }
+        }
+      },
+      {
+        id: "themeSettings",
+        conditionalRender: true,
+        cardProps: {
+          title: "Settings Access Position",
+          tooltip: "Choose how to access settings: via the context menu button or a navigation button.",
+          type: "dropdown",
+          settings: {
+            options: SETTINGS_ACCESS_MODE_OPTIONS,
+            placeholder: settingAccessPosition,
+            selectedValue: settingAccessPosition,
+            onChange: (value) => {
+              setSettingAccessPosition(value);
+            }
+          }
+        }
+      },
+      {
+        id: "npvSettings",
+        conditionalRender: true,
+        cardProps: {
+          title: "Set Right Sidebar Mode",
+          tooltip: /* @__PURE__ */ import_react18.default.createElement(import_react18.default.Fragment, null, /* @__PURE__ */ import_react18.default.createElement("h3", { className: "encore-text encore-text-medium-bold" }, "Select how the right sidebar appears during playback."), /* @__PURE__ */ import_react18.default.createElement("span", null, "Choose 'Compact' for a minimized view or 'Normal' for a detailed layout")),
+          type: "dropdown",
+          settings: {
+            options: NPV_MODE_OPTIONS,
+            placeholder: npvMode,
+            selectedValue: npvMode,
+            onChange: (value) => {
+              setNpvMode(value);
+            }
+          }
+        }
+      },
+      {
+        id: "npvSettings",
+        conditionalRender: npvMode === "compact",
+        cardProps: {
+          title: "Set Compact Sidebar Position",
+          tooltip: /* @__PURE__ */ import_react18.default.createElement(import_react18.default.Fragment, null, /* @__PURE__ */ import_react18.default.createElement("h3", { className: "encore-text encore-text-medium-bold" }, "Select where the right sidebar appears.")),
+          type: "dropdown",
+          settings: {
+            options: NPV_POSITION_OPTIONS,
+            placeholder: npvPosition,
+            selectedValue: npvPosition,
+            onChange: (value) => {
+              setCompactNpvPosition(value);
+            }
+          }
+        }
+      },
+      {
+        id: "npvSettings",
+        sectionName: "Styles",
+        conditionalRender: npvMode === "compact",
+        cardProps: {
+          title: "Set Npv Background Blur",
+          type: "input",
+          settings: {
+            label: "Npv Background Blur input",
+            defaultValue: npvBlur,
+            onChange: (value) => {
+              setNpvBlur(Number(value));
+            },
+            type: "number",
+            settings: {
+              max: 256,
+              min: 0,
+              step: 0.5
+            }
+          }
+        }
+      },
+      {
+        id: "font",
+        conditionalRender: true,
+        cardProps: {
+          title: "Font",
+          type: "input",
+          tooltip: /* @__PURE__ */ import_react18.default.createElement(import_react18.default.Fragment, null, "Supports both Google Fonts via URL and local fonts.", /* @__PURE__ */ import_react18.default.createElement("span", null, "For Google Fonts, use the full URL (e.g., https://fonts.googleapis.com/css2?family=Roboto).", " "), /* @__PURE__ */ import_react18.default.createElement("span", null, "For local fonts, type the font family name (e.g., 'Arial').")),
+          settings: {
+            type: "text",
+            label: "Font Family or URL",
+            defaultValue: fontFamily,
+            onChange: (value) => {
+              const type = "body";
+              setFont(type, getFontDataFromInput(value.toString()));
+            }
+          }
+        }
+      },
+      {
+        id: "grains",
+        conditionalRender: true,
+        cardProps: {
+          type: "dropdown",
+          title: "Grains",
+          tooltip: "Choose a grain texture mode.",
+          settings: {
+            options: GRAIN_MODE_OPTIONS,
+            placeholder: selectedGrainMode,
+            selectedValue: selectedGrainMode,
+            onChange: onGrainModeChange
+          }
+        }
+      },
+      {
+        id: "pageSettings",
+        sectionName: "Pages Setting",
+        conditionalRender: true,
+        cardProps: {
+          type: "dropdown",
+          title: "Pages Background Image",
+          tooltip: "Choose a background image mode for playlist pages.",
+          settings: {
+            options: PLAYLIST_BACKGROUND_MODE_OPTIONS,
+            placeholder: selectedBackgroundImageMode,
+            selectedValue: selectedBackgroundImageMode,
+            onChange: onBackgroundImageModeChange
+          }
+        }
+      },
+      {
+        id: "pageSettings",
+        conditionalRender: true,
+        cardProps: {
+          type: "dropdown",
+          tooltip: "Sets the view mode for playlists.",
+          title: "Playlist View",
+          settings: {
+            options: PLAYLIST_VIEW_MODE_OPTIONS,
+            placeholder: selectedPlaylistViewMode,
+            selectedValue: selectedPlaylistViewMode,
+            onChange: onPlaylistViewModeChange
+          }
+        }
+      },
+      {
+        id: "pageSettings",
+        conditionalRender: true,
+        cardProps: {
+          title: "Toggle Playlist Scroll Mode",
+          tooltip: "Enable or disable scrolling for the playlist art image.",
+          type: "toggle",
+          settings: {
+            checked: isScrollMode,
+            label: "Scroll Mode Toggle",
+            onChange: (value) => {
+              setIsScrollMode(value);
+            }
+          }
+        }
+      },
+      {
+        id: "borderSettings",
+        conditionalRender: true,
+        sectionName: "Border Settings",
+        cardProps: {
+          title: "Border Thickness",
+          type: "input",
+          settings: {
+            type: "number",
+            label: "Border Thickness",
+            defaultValue: borderThickness,
+            onChange: (value) => {
+              setBorderThickness(Number(value));
+            },
+            settings: {
+              step: 1,
+              min: 0,
+              max: 8
+            }
+          }
+        }
+      },
+      {
+        id: "borderSettings",
+        conditionalRender: true,
+        sectionName: "Border Settings",
+        cardProps: {
+          title: "Rounded Border Radius",
+          type: "input",
+          settings: {
+            type: "number",
+            label: "Rounded Border Radius",
+            defaultValue: borderRoundedRadius,
+            onChange: (value) => {
+              setRoundedBorderRadius(Number(value));
+            },
+            settings: {
+              step: 1,
+              min: 0,
+              max: 999
+            }
+          }
+        }
+      },
+      {
+        id: "borderSettings",
+        conditionalRender: true,
+        cardProps: {
+          title: "Border Color",
+          type: "input",
+          settings: {
+            type: "text",
+            label: "Border Color",
+            defaultValue: borderColor,
+            onChange: (value) => {
+              setBorderColor(value);
+            }
+          }
+        }
+      },
+      {
+        id: "borderSettings",
+        conditionalRender: true,
+        cardProps: {
+          title: "Border Style",
+          type: "dropdown",
+          settings: {
+            options: BORDER_STYLE_OPTIONS,
+            selectedValue: borderStyle,
+            onChange: (value) => {
+              setBorderStyle(value);
+            }
+          }
+        }
+      }
+    ];
+    return /* @__PURE__ */ import_react18.default.createElement(
+      SettingSection_default,
+      {
+        title: "Interface Settings",
+        description: "Set your Spotify interface settings."
+      },
+      renderCards(INTERFACE_SETTINGS_CARDS)
+    );
+  };
+  var InterfaceSection_default = InterfaceSection;
+
+  // extension/components/settings/section/PlaybarSection.tsx
+  var import_react19 = __toESM(require_react());
+  var PlaybarSection = () => {
+    const {
+      playbarSettings: { mode, styles },
+      setPlaybarMode,
+      updatePlaybarStyle
+    } = useSettingsStore();
+    const [selectedMode, setSelectedMode] = (0, import_react19.useState)(mode);
+    const onPlaybarModeChange = (value) => {
+      setSelectedMode(value);
+      setPlaybarMode(value);
+    };
+    const PLAYBAR_SETTINGS_CARDS = [
+      {
+        id: "playbarOption",
+        conditionalRender: true,
+        cardProps: {
+          title: "Playbar Option",
+          type: "dropdown",
+          settings: {
+            placeholder: selectedMode,
+            selectedValue: selectedMode,
+            options: PLAYBAR_MODE_OPTIONS,
+            onChange: onPlaybarModeChange
+          }
+        }
+      },
+      ...getStyleInputMap(styles, mode, updatePlaybarStyle)
+    ];
+    return /* @__PURE__ */ import_react19.default.createElement(SettingSection_default, { title: "Playbar Settings", description: "Set your Spotify Now Playing Bar settings." }, renderCards(PLAYBAR_SETTINGS_CARDS));
+  };
+  var PlaybarSection_default = PlaybarSection;
+
+  // extension/components/settings/section/ResetSection.tsx
+  var import_react20 = __toESM(require_react());
+  var ResetSection = () => {
+    const { resetAllSettings } = useSettingsStore();
+    const handleSettingsReset = () => {
+      if (window.confirm(
+        "Are you sure you want to reset all settings to their default values? This action cannot be undone."
+      )) {
+        resetAllSettings();
+      }
+    };
+    const RESET_SETTINGS_CARDS = [
+      {
+        id: "resetButtonCard",
+        conditionalRender: true,
+        cardProps: {
+          title: "Reset All Settings",
+          type: "button",
+          settings: {
+            variant: "danger",
+            size: "medium",
+            children: "Reset",
+            onClick: handleSettingsReset
+          }
+        }
+      }
+    ];
+    return /* @__PURE__ */ import_react20.default.createElement(SettingSection_default, { title: "Reset Settings", description: "Reset your theme settings." }, renderCards(RESET_SETTINGS_CARDS));
+  };
+  var ResetSection_default = ResetSection;
+
+  // extension/context/ModalContextProvider.tsx
+  var import_react21 = __toESM(require_react());
+  var INITIAL_MODAL_STATES = {
+    settings: false,
+    changelog: false
+  };
+  var createModalContext = () => {
+    const ModalContext = (0, import_react21.createContext)(null);
+    const ModalContextProvider2 = ({ children }) => {
+      const [modalStates, setModalStates] = (0, import_react21.useState)(INITIAL_MODAL_STATES);
+      const useModal2 = (0, import_react21.useCallback)(
+        (modalName) => {
+          const isOpen = modalStates[modalName];
+          const openModal = (0, import_react21.useCallback)(() => {
+            setModalStates((prevStates) => ({
+              ...prevStates,
+              [modalName]: true
+            }));
+          }, [modalName]);
+          const closeModal = (0, import_react21.useCallback)(() => {
+            setModalStates((prevStates) => ({
+              ...prevStates,
+              [modalName]: false
+            }));
+          }, [modalName]);
+          return { isOpen, openModal, closeModal };
+        },
+        [modalStates]
+      );
+      const value = (0, import_react21.useMemo)(() => useModal2, [useModal2]);
+      return /* @__PURE__ */ import_react21.default.createElement(ModalContext.Provider, { value }, children);
+    };
+    const useModalFromContext = (modalName) => {
+      const contextUseModal = (0, import_react21.useContext)(ModalContext);
+      if (contextUseModal) {
+        return contextUseModal(modalName);
+      }
+      throw new Error("Wrap Element with ModalContextProvider");
+    };
+    return { ModalContextProvider: ModalContextProvider2, useModal: useModalFromContext };
+  };
+  var { ModalContextProvider, useModal } = createModalContext();
+
+  // extension/components/settings/SettingsModal.tsx
+  var import_react22 = __toESM(require_react());
+  var SettingsModal = (0, import_react22.memo)(() => {
+    const { isOpen, closeModal } = useModal("settings");
+    return /* @__PURE__ */ import_react22.default.createElement(Modal_default, { title: "Lucid Settings", onClose: closeModal, isOpen }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "sections-container" }, /* @__PURE__ */ import_react22.default.createElement(BackgroundSection_default, null), /* @__PURE__ */ import_react22.default.createElement(InterfaceSection_default, null), /* @__PURE__ */ import_react22.default.createElement(PlaybarSection_default, null), /* @__PURE__ */ import_react22.default.createElement(ResetSection_default, null), /* @__PURE__ */ import_react22.default.createElement(ImportExportSection_default, null)));
+  });
+  var SettingsModal_default = SettingsModal;
+
+  // extension/hooks/useSettingsAccess.ts
+  var import_react23 = __toESM(require_react());
+  var useSettingsAccess = () => {
+    logDebug("hook running useSettingsAccess");
+    const { settingAccessPosition } = useSettingsStore();
+    const { openModal } = useModal("settings");
+    const element = (0, import_react23.useRef)(null);
+    (0, import_react23.useEffect)(() => {
+      if (settingAccessPosition === "context-menu") {
+        element.current = new Spicetify.Menu.Item(
+          "Lucid Settings",
+          false,
+          openModal,
+          `<svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252Zm0 1.5a9.135 9.135 0 0 0-1.354.117l-.109.977A2.886 2.886 0 0 1 6.525 7.17l-.898-.394a8.293 8.293 0 0 0-1.348 2.317l.798.587a2.881 2.881 0 0 1 0 4.643l-.799.588c.32.842.776 1.626 1.348 2.322l.905-.397a2.882 2.882 0 0 1 4.017 2.318l.11.984c.889.15 1.798.15 2.687 0l.11-.984a2.881 2.881 0 0 1 4.018-2.322l.905.396a8.296 8.296 0 0 0 1.347-2.318l-.798-.588a2.881 2.881 0 0 1 0-4.643l.796-.587a8.293 8.293 0 0 0-1.348-2.317l-.896.393a2.884 2.884 0 0 1-4.023-2.324l-.11-.976a8.988 8.988 0 0 0-1.333-.117ZM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" fill="#fff"/></svg>`
+        );
+        element.current.register();
+      }
+      if (settingAccessPosition === "nav") {
+        if (!document.querySelector(".main-actionButtons button[aria-label='Lucid Settings']") && !(element.current instanceof HTMLButtonElement)) {
+          const newButton = new Spicetify.Topbar.Button(
+            "Lucid Settings",
+            `<svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252Zm0 1.5a9.135 9.135 0 0 0-1.354.117l-.109.977A2.886 2.886 0 0 1 6.525 7.17l-.898-.394a8.293 8.293 0 0 0-1.348 2.317l.798.587a2.881 2.881 0 0 1 0 4.643l-.799.588c.32.842.776 1.626 1.348 2.322l.905-.397a2.882 2.882 0 0 1 4.017 2.318l.11.984c.889.15 1.798.15 2.687 0l.11-.984a2.881 2.881 0 0 1 4.018-2.322l.905.396a8.296 8.296 0 0 0 1.347-2.318l-.798-.588a2.881 2.881 0 0 1 0-4.643l.796-.587a8.293 8.293 0 0 0-1.348-2.317l-.896.393a2.884 2.884 0 0 1-4.023-2.324l-.11-.976a8.988 8.988 0 0 0-1.333-.117ZM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" fill="currentColor"/></svg>`,
+            openModal,
+            false,
+            true
+          );
+          element.current = newButton;
+        }
+      }
+      return () => {
+        if (element.current instanceof Spicetify.Menu.Item) {
+          element.current.deregister();
+        }
+        if (element.current instanceof Spicetify.Topbar.Button) {
+          element.current.element.remove();
+        }
+        document.querySelector(".Root__globalNav .main-actionButtons div:has(button[aria-label='Lucid Settings'])")?.remove();
+      };
+    }, [settingAccessPosition, openModal]);
+  };
+  var useSettingsAccess_default = useSettingsAccess;
+
+  // extension/components/settings/SettingsManager.tsx
+  var import_react24 = __toESM(require_react());
+  var SettingsManager = (0, import_react24.memo)(() => {
+    logDebug("Render <SettingsManager />");
+    const { isOpen } = useModal("settings");
+    useSettingsAccess_default();
+    return /* @__PURE__ */ import_react24.default.createElement(import_react24.default.Fragment, null, isOpen && /* @__PURE__ */ import_react24.default.createElement(SettingsModal_default, null));
+  });
+  var SettingsManager_default = SettingsManager;
+
+  // extension/utils/styleUtils.ts
+  var appendFilter = (currentFilter, newFilter) => [currentFilter, newFilter].filter(Boolean).join(" ").trim();
+  var getFormattedStyles = (dynamicStyles) => {
+    if (!Object.keys(dynamicStyles).length) return {};
+    const styles = {};
+    if (dynamicStyles.blur !== void 0) {
+      styles.filter = appendFilter(styles.filter, `blur(${dynamicStyles.blur}px)`);
+    }
+    if (dynamicStyles.backdropBlur !== void 0) {
+      styles.backdropFilter = `blur(${dynamicStyles.backdropBlur}px)`;
+    }
+    if (dynamicStyles.contrast !== void 0) {
+      styles.filter = appendFilter(styles.filter, `contrast(${dynamicStyles.contrast})`);
+    }
+    if (dynamicStyles.brightness !== void 0) {
+      styles.filter = appendFilter(styles.filter, `brightness(${dynamicStyles.brightness})`);
+    }
+    if (dynamicStyles.saturation !== void 0) {
+      styles.filter = appendFilter(styles.filter, `saturate(${dynamicStyles.saturation})`);
+    }
+    if (dynamicStyles.width !== void 0) {
+      styles.width = `${dynamicStyles.width}px`;
+    }
+    if (dynamicStyles.height !== void 0) {
+      styles.height = `${dynamicStyles.height}px`;
+    }
+    if (dynamicStyles.paddingX !== void 0 || dynamicStyles.paddingY !== void 0) {
+      styles.padding = `${dynamicStyles.paddingY || 0}px ${dynamicStyles.paddingX || 0}px`;
+    }
+    if (dynamicStyles.borderRadius !== void 0) {
+      styles.borderRadius = `${dynamicStyles.borderRadius}px`;
+    }
+    if (dynamicStyles.backgroundColor !== void 0) {
+      styles.backgroundColor = `${dynamicStyles.backgroundColor}`;
+    }
+    return styles;
+  };
+  var getFormattedStylesAsCSSProperty = (dynamicStyles, isString = false) => {
+    if (!Object.keys(dynamicStyles).length) return isString ? "" : {};
+    const styles = {};
+    if (dynamicStyles.blur !== void 0) {
+      styles["--blur"] = `${dynamicStyles.blur}px`;
+    }
+    if (dynamicStyles.backdropBlur !== void 0) {
+      styles["--backdrop-blur"] = `${dynamicStyles.backdropBlur}px`;
+    }
+    if (dynamicStyles.contrast !== void 0) {
+      styles["--contrast"] = dynamicStyles.contrast;
+    }
+    if (dynamicStyles.brightness !== void 0) {
+      styles["--brightness"] = dynamicStyles.brightness;
+    }
+    if (dynamicStyles.saturation !== void 0) {
+      styles["--saturation"] = dynamicStyles.saturation;
+    }
+    if (dynamicStyles.width !== void 0) {
+      styles["--width"] = `${dynamicStyles.width}px`;
+    }
+    if (dynamicStyles.height !== void 0) {
+      styles["--height"] = `${dynamicStyles.height}px`;
+    }
+    if (dynamicStyles.paddingX !== void 0) {
+      styles["--padding-x"] = `${dynamicStyles.paddingX}px`;
+    }
+    if (dynamicStyles.borderRadius !== void 0) {
+      styles["--border-radius"] = `${dynamicStyles.borderRadius}px`;
+    }
+    if (dynamicStyles.backgroundColor !== void 0) {
+      styles["--background-color"] = dynamicStyles.backgroundColor;
+    }
+    if (dynamicStyles.time !== void 0) {
+      styles["--time"] = `${dynamicStyles.time}s`;
+    }
+    if (isString) {
+      return Object.entries(styles).map(([key, value]) => `${key}: ${value};`).join(" ");
+    }
+    return styles;
+  };
+
+  // extension/components/background/AnimatedBackground.tsx
+  var import_react25 = __toESM(require_react());
+  var AnimatedBackground = ({ style }) => {
+    return /* @__PURE__ */ import_react25.default.createElement(
+      "div",
+      {
+        className: "animated-background-container",
+        style: { ...getFormattedStylesAsCSSProperty(style) }
+      },
+      /* @__PURE__ */ import_react25.default.createElement("div", { className: "back" }),
+      /* @__PURE__ */ import_react25.default.createElement("div", { className: "backleft" }),
+      /* @__PURE__ */ import_react25.default.createElement("div", { className: "backright" }),
+      /* @__PURE__ */ import_react25.default.createElement("div", { className: "front" })
+    );
+  };
+  var AnimatedBackground_default = AnimatedBackground;
+
+  // extension/components/background/SolidBackground.tsx
+  var import_react26 = __toESM(require_react());
+  var SolidBackground = ({ style }) => {
+    return /* @__PURE__ */ import_react26.default.createElement("div", { className: "solid-background", style: { ...getFormattedStyles(style) } });
+  };
+  var SolidBackground_default = SolidBackground;
+
+  // extension/store/useLucidStore.ts
+  var DEFAULT_APP_SETTINGS2 = {
+    underMainBackgroundImage: "",
+    pageCategory: "other",
+    artworkData: {
+      nowPlayingArtURL: "",
+      currentPageURI: "",
+      currentPageArtURL: ""
+    },
+    windowZoom: 1
+  };
+  var useLucidStore = create((set) => ({
+    ...DEFAULT_APP_SETTINGS2,
+    // Setters
+    updateArtworkData: (newArtwork) => set((state) => ({
+      ...state,
+      artworkData: { ...state.artworkData, ...newArtwork }
+    })),
+    setPageCategory: (pageCategory) => set((state) => ({ ...state, pageCategory })),
+    setUnderMainViewBackgroundImage: (url) => set((state) => ({ ...state, underMainBackgroundImage: url })),
+    setIsCustomControls: (isCustomControls2) => set((state) => ({ ...state, isCustomControls: isCustomControls2 })),
+    setWindowZoom: (windowZoom) => set((state) => ({ ...state, windowZoom }))
+  }));
+
+  // extension/components/background/StaticBackground.tsx
+  var import_react27 = __toESM(require_react());
+  var StaticBackground = ({ style }) => {
+    const {
+      backgroundSettings: { customBackgroundOverride }
+    } = useSettingsStore();
+    const { artworkData } = useLucidStore();
+    const { isUseLocalImage, selectedLocalImage } = useImageStore();
+    const backgroundImage = (() => {
+      if (isUseLocalImage && selectedLocalImage?.dataURL) {
+        return selectedLocalImage.dataURL;
+      } else {
+        const overrideUrl = customBackgroundOverride.url;
+        if (overrideUrl === "current-page") {
+          return artworkData?.currentPageArtURL || artworkData?.nowPlayingArtURL || "";
+        }
+        if (!overrideUrl || overrideUrl.trim() === "" || overrideUrl === "now-playing") {
+          return artworkData?.nowPlayingArtURL || "";
+        }
+        return overrideUrl || "";
+      }
+    })();
+    return /* @__PURE__ */ import_react27.default.createElement(
+      "div",
+      {
+        className: "static-background",
+        style: {
+          backgroundImage: `url(${backgroundImage})`,
+          ...getFormattedStyles(style)
+        }
+      }
+    );
+  };
+  var StaticBackground_default = StaticBackground;
+
+  // extension/components/state/BackgroundManager.tsx
+  var import_react28 = __toESM(require_react());
+  var BackgroundComponents = {
+    animated: AnimatedBackground_default,
+    static: StaticBackground_default,
+    solid: SolidBackground_default
+  };
+  var BackgroundManager = () => {
+    logDebug("Render <BackgroundManager />");
+    const {
+      backgroundSettings: { mode: backgroundMode, styles: backgroundStyles }
+    } = useSettingsStore();
+    const currentBackgroundStyles = backgroundStyles[backgroundMode];
+    const BackgroundComponent = BackgroundComponents[backgroundMode];
+    return /* @__PURE__ */ import_react28.default.createElement("div", { className: "background-wrapper" }, BackgroundComponent ? /* @__PURE__ */ import_react28.default.createElement(BackgroundComponent, { style: currentBackgroundStyles }) : /* @__PURE__ */ import_react28.default.createElement(SolidBackground_default, { style: { backgroundColor: "#202020" } }));
+  };
+  var BackgroundManager_default = BackgroundManager;
+
+  // extension/utils/artworkUrl.ts
+  var getNowPlayingArtworkUrl = async () => {
+    const waitForPlayerData = async () => {
+      while (!Spicetify?.Player?.data) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+    };
+    await waitForPlayerData();
+    const { item } = Spicetify.Player.data;
+    if (!item || !item.metadata) {
+      logError("No item or metadata found in Spicetify Player data.");
+      return "";
+    }
+    const artworkUrls = [
+      item.metadata.image_xlarge_url,
+      item.metadata.image_large_url,
+      item.metadata.image_url,
+      item.metadata.image_small_url
+    ];
+    const imageUrl = artworkUrls.find((url) => url) || getFallbackImageUrl();
+    return imageUrl || "";
+  };
+  var getFallbackImageUrl = () => {
+    const fallbackImage = document.querySelector(
+      ".Root__right-sidebar .main-nowPlayingView-nowPlayingWidget .main-image-image"
+    );
+    return fallbackImage?.src || "";
+  };
+  var getArtistMetaData = async (uri) => {
+    const MAX_RETRIES = 3;
+    let retries = 0;
+    while (retries <= MAX_RETRIES) {
+      try {
+        const metadata = await Spicetify.GraphQL.Request(
+          {
+            name: "queryArtistOverview",
+            operation: "query",
+            sha256Hash: "35648a112beb1794e39ab931365f6ae4a8d45e65396d641eeda94e4003d41497",
+            value: null
+          },
+          {
+            uri,
+            includePrerelease: true,
+            locale: null
+          }
+        );
+        if (metadata) return metadata;
+      } catch (error) {
+        if (error instanceof Error) {
+          if (error.message.includes("DUPLICATE_REQUEST_ERROR") && retries < MAX_RETRIES) {
+            retries++;
+            logWarn(`Duplicate request detected (getArtistMetaData). Retrying in 1 second... (Attempt ${retries})`);
+            await new Promise((resolve) => setTimeout(resolve, 1e3));
+            continue;
+          }
+        }
+        logError("Error fetching artist metadata:", error);
+        throw error;
+      }
+    }
+  };
+  var getAlbumMetaData = async (uri) => {
+    const MAX_RETRIES = 3;
+    let retries = 0;
+    while (retries <= MAX_RETRIES) {
+      try {
+        const metadata = await Spicetify.GraphQL.Request(
+          {
+            name: "getAlbum",
+            operation: "query",
+            sha256Hash: "469874edcad37b7a379d4f22f0083a49ea3d6ae097916120d9bbe3e36ca79e9d",
+            value: null
+          },
+          {
+            uri,
+            locale: null,
+            offset: 0,
+            limit: 50
+          }
+        );
+        if (metadata) return metadata;
+      } catch (error) {
+        if (error instanceof Error) {
+          if (error.message.includes("DUPLICATE_REQUEST_ERROR") && retries < MAX_RETRIES) {
+            retries++;
+            logWarn(`Duplicate request detected (getAlbumMetaData). Retrying in 1 second... (Attempt ${retries})`);
+            await new Promise((resolve) => setTimeout(resolve, 1e3));
+            continue;
+          }
+        }
+        logError("Error fetching album metadata:", error);
+        throw error;
+      }
+    }
+  };
+  var getSpotifyURI = (pathname) => {
+    const isPlaylist = Spicetify.URI.isPlaylistV1OrV2(pathname);
+    const isArtist = Spicetify.URI.isArtist(pathname);
+    const isAlbum = Spicetify.URI.isAlbum(pathname);
+    const isShow = Spicetify.URI.isShow(pathname);
+    const isProfile = Spicetify.URI.isProfile(pathname);
+    if (isPlaylist || isArtist || isAlbum || isProfile || isShow) {
+      const id = pathname.match(/\/(?:playlist|artist|album|user|show)\/([^/]+)/)?.[1];
+      if (!id) {
+        logWarn("No ID found in pathname:", pathname);
+        return null;
+      }
+      return `spotify:${isPlaylist ? "playlist" : isArtist ? "artist" : isAlbum ? "album" : isShow ? "show" : "user"}:${id}`;
+    }
+    return null;
+  };
+  var fetchArtworkURLFromAPI = async (uri) => {
+    const uriType = uri.split(":")[1];
+    try {
+      switch (uriType) {
+        case "playlist":
+        case "show": {
+          const playlistMetadata = await Spicetify.Platform.PlaylistAPI.getMetadata(uri);
+          return playlistMetadata.images.find((image) => image.url)?.url || null;
+        }
+        case "artist": {
+          const artistMetadata = await getArtistMetaData(uri);
+          return artistMetadata.data?.artistUnion.visuals.headerImage?.sources?.[0]?.url || artistMetadata.data?.artistUnion.visuals.avatarImage?.sources?.[0]?.url || null;
+        }
+        case "album": {
+          const albumMetadata = await getAlbumMetaData(uri);
+          return albumMetadata.data?.albumUnion.coverArt.sources?.[2]?.url || albumMetadata.data?.albumUnion.coverArt.sources?.[0]?.url || null;
+        }
+        case "user": {
+          const req = await Spicetify.Platform.RequestBuilder.build().withHost("https://spclient.wg.spotify.com/user-profile-view/v3").withPath(`/profile/${uri.split(":")[2]}`).send();
+          return req?.body?.image_url || null;
+        }
+        default:
+          return null;
+      }
+    } catch (error) {
+      logError(`Error fetching artwork for ${uriType}:`, error);
+      return null;
+    }
+  };
+
+  // extension/components/state/ArtworkManager.tsx
+  var import_react29 = __toESM(require_react());
+  var ArtworkManager = () => {
+    logDebug("Render <ArtworkManager />");
+    const { pageCategory, artworkData, updateArtworkData } = useLucidStore();
+    const {
+      interfaceSettings: { pagesSettings }
+    } = useSettingsStore();
+    const setPageArtwork = (0, import_react29.useCallback)(async () => {
+      const pathname = Spicetify.Platform.History.location.pathname;
+      const currentPageURI = getSpotifyURI(pathname);
+      if (artworkData.currentPageURI === currentPageURI) {
+        return;
+      }
+      document.documentElement.style.setProperty("--artwork-opacity", "0");
+      try {
+        if (currentPageURI) {
+          const imageUrl = await fetchArtworkURLFromAPI(currentPageURI) || "";
+          updateArtworkData({ currentPageArtURL: imageUrl, currentPageURI });
+        } else {
+          updateArtworkData({ currentPageArtURL: "", currentPageURI: "" });
+        }
+      } catch (error) {
+        logError("Error updating artwork:", error);
+        updateArtworkData({ currentPageArtURL: "", currentPageURI: "" });
+      } finally {
+        setTimeout(() => document.documentElement.style.setProperty("--artwork-opacity", "1"), 500);
+      }
+    }, [artworkData.currentPageURI, updateArtworkData]);
+    (0, import_react29.useEffect)(() => {
+      if (artworkData.currentPageArtURL) {
+        document.documentElement.style.setProperty("--playlist-art-image", `url(${artworkData.currentPageArtURL})`);
+        logInfo(`Updated Playlist Artwork URL to ${artworkData.currentPageArtURL}`);
+      } else if (artworkData.currentPageURI && pageCategory !== "other") {
+        logError(`No artwork URL found for URI: ${artworkData.currentPageURI}`);
+        document.documentElement.style.setProperty("--playlist-art-image", "none");
+      }
+      if (pagesSettings.backgroundImageMode === "inherit") {
+        const unlistenHistory = Spicetify.Platform.History.listen(setPageArtwork);
+        setPageArtwork();
+        return () => {
+          unlistenHistory();
+        };
+      }
+    }, [
+      pagesSettings.backgroundImageMode,
+      artworkData.currentPageArtURL,
+      artworkData.currentPageURI,
+      pageCategory,
+      setPageArtwork
+    ]);
+    (0, import_react29.useEffect)(() => {
+      if (artworkData.nowPlayingArtURL) {
+        document.documentElement.style.setProperty("--now-playing-art-image", `url("${artworkData.nowPlayingArtURL}")`);
+        logInfo(`Updated Now Playing Art View: ${artworkData.nowPlayingArtURL}`);
+      }
+    }, [artworkData.nowPlayingArtURL]);
+    (0, import_react29.useEffect)(() => {
+      const handleSongChange = async () => {
+        const nowPlayingArtURL = await getNowPlayingArtworkUrl();
+        updateArtworkData({ nowPlayingArtURL });
+      };
+      handleSongChange();
+      Spicetify.Player.addEventListener("songchange", handleSongChange);
+      return () => {
+        Spicetify.Player.removeEventListener("songchange", handleSongChange);
+      };
+    }, [updateArtworkData]);
+    return null;
+  };
+  var ArtworkManager_default = ArtworkManager;
+
+  // extension/components/state/BorderManager.tsx
+  var import_react30 = __toESM(require_react());
+  var BorderManager = () => {
+    const {
+      interfaceSettings: { borderSettings }
+    } = useSettingsStore();
+    (0, import_react30.useEffect)(() => {
+      const getFormattedStylesAsCSSProperty2 = (borderSettings2) => {
+        if (!Object.keys(borderSettings2).length) return "";
+        return Object.entries(borderSettings2).map(
+          ([key, value]) => `--border-${key}: ${key === "thickness" || key === "roundedRadius" ? `${value}px` : value};`
+        ).join(" ");
+      };
+      const cssProperties = getFormattedStylesAsCSSProperty2(borderSettings);
+      document.documentElement.style.cssText += cssProperties;
+    }, [borderSettings]);
+    return null;
+  };
+  var BorderManager_default = BorderManager;
+
+  // extension/utils/colorUtils.ts
+  var rgbToHex = (r, g, b) => `#${(r << 16 | g << 8 | b).toString(16).padStart(6, "0")}`;
+  var luminance = (r, g, b) => {
+    const [r1, g1, b1] = [r / 255, g / 255, b / 255];
+    const [r2, g2, b2] = [
+      r1 <= 0.03928 ? r1 / 12.92 : ((r1 + 0.055) / 1.055) ** 2.4,
+      g1 <= 0.03928 ? g1 / 12.92 : ((g1 + 0.055) / 1.055) ** 2.4,
+      b1 <= 0.03928 ? b1 / 12.92 : ((b1 + 0.055) / 1.055) ** 2.4
+    ];
+    return 0.2126 * r2 + 0.7152 * g2 + 0.0722 * b2;
+  };
+  var darkenColor = (color, factor) => ({
+    ...color,
+    r: Math.max(0, Math.round(color.r * factor)),
+    g: Math.max(0, Math.round(color.g * factor)),
+    b: Math.max(0, Math.round(color.b * factor)),
+    hex: rgbToHex(
+      Math.max(0, Math.round(color.r * factor)),
+      Math.max(0, Math.round(color.g * factor)),
+      Math.max(0, Math.round(color.b * factor))
+    )
+  });
+  var lightenColor = (color, factor) => ({
+    ...color,
+    r: Math.min(255, Math.round(color.r + (255 - color.r) * factor)),
+    g: Math.min(255, Math.round(color.g + (255 - color.g) * factor)),
+    b: Math.min(255, Math.round(color.b + (255 - color.b) * factor)),
+    hex: rgbToHex(
+      Math.min(255, Math.round(color.r + (255 - color.r) * factor)),
+      Math.min(255, Math.round(color.g + (255 - color.g) * factor)),
+      Math.min(255, Math.round(color.b + (255 - color.b) * factor))
+    )
+  });
+  var contrastRatio = (color1, color2) => {
+    const lum1 = luminance(color1.r, color1.g, color1.b);
+    const lum2 = luminance(color2.r, color2.g, color2.b);
+    const lighter = Math.max(lum1, lum2);
+    const darker = Math.min(lum1, lum2);
+    return (lighter + 0.05) / (darker + 0.05);
+  };
+
+  // extension/utils/dynamicColorUtils.tsx
+  var import_canvas = __toESM(require_browser());
+  async function extractDominantColorsFromImage(imageUrl) {
+    try {
+      const image = await (0, import_canvas.loadImage)(imageUrl);
+      const reductionFactor = 10;
+      const reducedWidth = Math.max(image.width / reductionFactor, 10);
+      const reducedHeight = Math.max(image.height / reductionFactor, 10);
+      const canvas = (0, import_canvas.createCanvas)(reducedWidth, reducedHeight);
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0, reducedWidth, reducedHeight);
+      const imageData = ctx.getImageData(0, 0, reducedWidth, reducedHeight);
+      const pixelData = imageData.data;
+      const colorCounts = {};
+      const colorMap = {};
+      const samplePercentage = 0.2;
+      const pixelSampleSize = Math.floor(pixelData.length * samplePercentage);
+      for (let i = 0; i < pixelSampleSize; i += 4) {
+        const r = pixelData[i];
+        const g = pixelData[i + 1];
+        const b = pixelData[i + 2];
+        const colorKey = `${r}-${g}-${b}`;
+        colorCounts[colorKey] = (colorCounts[colorKey] || 0) + 1;
+        colorMap[colorKey] = { r, g, b, hex: rgbToHex(r, g, b) };
+      }
+      const sortedColors = Object.entries(colorCounts).sort((a, b) => b[1] - a[1]).map(([key]) => colorMap[key]);
+      const baseColor = sortedColors[0];
+      let secondaryColor = sortedColors[1];
+      let tertiaryColor = sortedColors[2];
+      let colorIndex = 2;
+      while (!secondaryColor || contrastRatio(baseColor, secondaryColor) < 2.5) {
+        if (colorIndex >= sortedColors.length) {
+          secondaryColor = lightenColor(baseColor, 0.2);
+          break;
+        }
+        secondaryColor = sortedColors[colorIndex];
+        colorIndex++;
+      }
+      while (!tertiaryColor || contrastRatio(baseColor, tertiaryColor) < 2.5 || contrastRatio(secondaryColor, tertiaryColor) < 2.5) {
+        if (colorIndex >= sortedColors.length) {
+          tertiaryColor = lightenColor(secondaryColor, 0.2);
+          break;
+        }
+        tertiaryColor = sortedColors[colorIndex];
+        colorIndex++;
+      }
+      return {
+        baseColor,
+        secondaryColor,
+        tertiaryColor
+      };
+    } catch (error) {
+      logError("Error extracting colors: ", error);
+      return error;
+    }
+  }
+  var colorExtractionTimeout = null;
+  async function applyExtractedColorsToCSS(styleElement, isDynamicColor, currentArtUrl) {
+    if (!isDynamicColor || !currentArtUrl) return null;
+    return new Promise((resolve) => {
+      if (colorExtractionTimeout) {
+        clearTimeout(colorExtractionTimeout);
+      }
+      colorExtractionTimeout = setTimeout(async () => {
+        try {
+          const extractedColors = await extractDominantColorsFromImage(currentArtUrl);
+          if (extractedColors instanceof Error) {
+            logError(`Error extracting colors: ${extractedColors.message}`);
+            resolve(null);
+            return;
+          }
+          const colorPalette = generateDarkModePalette(extractedColors);
+          applyColorPaletteToCSS(styleElement, colorPalette);
+          resolve(extractedColors);
+        } catch (error) {
+          logError("Error saving colors to style: ", error instanceof Error ? error.message : error);
+          resolve(null);
+        }
+      }, 200);
+    });
+  }
+  function applyColorPaletteToCSS(styleElement, colorPalette) {
+    let styleContent = `:root {${Object.entries(colorPalette).map(
+      ([name, color]) => `
+--spice-${name}: ${color.hex} !important;
+--spice-rgb-${name}: ${color.r}, ${color.g}, ${color.b} !important;`
+    ).join("")}
+}`;
+    styleContent += ":root{\nwill-change: --spice-main,--spice-rgb-main,--spice-sidebar,--spice-rgb-sidebar,--spice-card,--spice-rgb-card,--spice-player,--spice-rgb-player,--spice-accent,--spice-rgb-accent,--spice-highlight,--spice-rgb-highlight,--spice-button,--spice-rgb-button,--spice-button-active,--spice-rgb-button-active,--spice-text,--spice-rgb-text,--spice-progress-bar,--spice-rgb-progress-bar,--spice-subtext,--spice-rgb-subtext,--spice-primary,--spice-rgb-primary,--spice-secondary,--spice-rgb-secondary,--spice-tertiary,--spice-rgb-tertiary;\ntransition: all 0.3s ease-in-out;\n}";
+    styleElement.textContent = styleContent;
+  }
+  async function resetCSSColorVariables(styleElement) {
+    styleElement.textContent = ":root{\nwill-change: --spice-main,--spice-rgb-main,--spice-sidebar,--spice-rgb-sidebar,--spice-card,--spice-rgb-card,--spice-player,--spice-rgb-player,--spice-accent,--spice-rgb-accent,--spice-highlight,--spice-rgb-highlight,--spice-button,--spice-rgb-button,--spice-button-active,--spice-rgb-button-active,--spice-text,--spice-rgb-text,--spice-progress-bar,--spice-rgb-progress-bar,--spice-subtext,--spice-rgb-subtext,--spice-primary,--spice-rgb-primary,--spice-secondary,--spice-rgb-secondary,--spice-tertiary,--spice-rgb-tertiary;\ntransition: all 0.3s ease-in-out;\n}";
+  }
+  function generateDarkModePalette({ baseColor, secondaryColor, tertiaryColor }) {
+    return {
+      main: darkenColor(secondaryColor, 0.4),
+      sidebar: darkenColor(secondaryColor, 0.5),
+      card: darkenColor(tertiaryColor, 0.5),
+      player: darkenColor(secondaryColor, 0.6),
+      "progress-bar": lightenColor(secondaryColor, 0.6),
+      accent: lightenColor(baseColor, 0.4),
+      highlight: lightenColor(secondaryColor, 0.2),
+      button: lightenColor(tertiaryColor, 0.4),
+      "button-active": lightenColor(tertiaryColor, 0.4),
+      text: lightenColor(baseColor, 0.9),
+      subtext: lightenColor(secondaryColor, 0.9),
+      primary: baseColor,
+      secondary: secondaryColor,
+      tertiary: tertiaryColor
+    };
+  }
+
+  // extension/components/state/ColorManager.tsx
+  var import_react31 = __toESM(require_react());
+  var ColorManager = () => {
+    logDebug("Render <ColorManager />");
+    const {
+      colorSettings: { isDynamicColor }
+    } = useSettingsStore();
+    const { artworkData } = useLucidStore();
+    const styleRef = (0, import_react31.useRef)(null);
+    const prevArtURL = (0, import_react31.useRef)(null);
+    (0, import_react31.useEffect)(() => {
+      styleRef.current = document.createElement("style");
+      styleRef.current.id = "lucid_dynamic_colors";
+      document.head.appendChild(styleRef.current);
+      return () => {
+        if (styleRef.current) {
+          document.head.removeChild(styleRef.current);
+        }
+      };
+    }, []);
+    (0, import_react31.useEffect)(() => {
+      if (!isDynamicColor) {
+        if (prevArtURL.current) {
+          prevArtURL.current = null;
+        }
+        if (styleRef.current) {
+          resetCSSColorVariables(styleRef.current);
+        }
+        return;
+      }
+      if (isDynamicColor && artworkData.nowPlayingArtURL !== prevArtURL.current) {
+        if (styleRef?.current && isDynamicColor && artworkData.nowPlayingArtURL) {
+          applyExtractedColorsToCSS(styleRef.current, isDynamicColor, artworkData.nowPlayingArtURL).then(() => {
+            logInfo("Dynamic colors updated!");
+          }).catch((error) => {
+            logError("Error updating colors:", error);
+          });
+        }
+        prevArtURL.current = artworkData.nowPlayingArtURL;
+      }
+    }, [isDynamicColor, artworkData.nowPlayingArtURL]);
+    return null;
+  };
+  var ColorManager_default = ColorManager;
+
+  // extension/components/state/FontStateManager.tsx
+  var import_react32 = __toESM(require_react());
+  var FontStateManager = () => {
+    const {
+      interfaceSettings: { fontSettings }
+    } = useSettingsStore();
+    const updateCssVariable = (0, import_react32.useCallback)(
+      (fontType, fontFamily) => {
+        document.documentElement.style.setProperty(
+          `--${fontType}-font-to-use`,
+          fontFamily
+        );
+      },
+      []
+    );
+    const handleFontChange = (0, import_react32.useCallback)(
+      async (fontType) => {
+        const { fontFamily, url } = fontSettings[fontType];
+        try {
+          await loadFontFromUrl(url, `${fontType}-font`);
+          updateCssVariable(fontType, fontFamily);
+        } catch (error) {
+          logError(`Failed to load font from ${url}`, error);
+          updateCssVariable(fontType, fontFamily);
+        }
+      },
+      [fontSettings, updateCssVariable]
+    );
+    (0, import_react32.useEffect)(() => {
+      Object.keys(fontSettings).map(
+        (fontType) => handleFontChange(fontType)
+      );
+    }, [fontSettings, handleFontChange]);
+    return null;
+  };
+  var FontStateManager_default = FontStateManager;
+
+  // extension/hooks/useBodyClass.ts
+  var import_react33 = __toESM(require_react());
+  var useBodyClass = (className) => {
+    (0, import_react33.useEffect)(() => {
+      if (!className) return;
+      document.body.classList.add(className);
+      return () => {
+        document.body.classList.remove(className);
+      };
+    }, [className]);
+  };
+
+  // extension/components/state/GlobalNavManager.tsx
+  var GlobalNavManager = () => {
+    logDebug("Render <GlobalNavManager />");
+    useBodyClass(isGlobalNav ? "global-nav" : "control-nav");
+    return null;
+  };
+  var GlobalNavManager_default = GlobalNavManager;
+
+  // extension/components/state/GrainManager.tsx
+  var import_react34 = __toESM(require_react());
+  var GrainManager = () => {
+    logDebug("Render <GrainManager />");
+    const {
+      interfaceSettings: {
+        grainSettings: { grainEffect }
+      }
+    } = useSettingsStore();
+    useBodyClass(`grain-${grainEffect}`);
+    return /* @__PURE__ */ import_react34.default.createElement("div", { id: "grainEffect", "data-grainEffect": grainEffect });
+  };
+  var GrainManager_default = GrainManager;
+
+  // extension/utils/pathUtils.ts
+  var getPathCategory = (pathname) => {
+    if (Spicetify.URI.isPlaylistV1OrV2(pathname)) return "playlist";
+    if (Spicetify.URI.isArtist(pathname)) return "artist";
+    if (Spicetify.URI.isAlbum(pathname)) return "album";
+    if (Spicetify.URI.isGenre(pathname)) return "genre";
+    if (Spicetify.URI.isShow(pathname)) return "show";
+    if (Spicetify.URI.isSearch(pathname)) return "search";
+    if (Spicetify.URI.isProfile(pathname)) return "profile";
+    if (Spicetify.URI.isConcert(pathname) || Spicetify.URI.isArtistConcerts(pathname)) return "concert";
+    return "other";
+  };
+
+  // extension/components/state/PathManager.tsx
+  var import_react35 = __toESM(require_react());
+  var PathManager = () => {
+    const { pageCategory, setPageCategory } = useLucidStore();
+    useBodyClass(pageCategory);
+    (0, import_react35.useEffect)(() => {
+      const setPath = () => {
+        const pathname = Spicetify.Platform.History.location.pathname;
+        setPageCategory(getPathCategory(pathname));
+      };
+      setPath();
+      const unlistenHistory = Spicetify.Platform.History.listen(() => {
+        setPath();
+      });
+      return () => {
+        unlistenHistory();
+      };
+    }, [setPageCategory]);
+    return null;
+  };
+  var PathManager_default = PathManager;
+
+  // extension/components/state/PlaybarManager.tsx
+  var import_react36 = __toESM(require_react());
+  var PLAYBAR_CLASS_NAME = ".Root__now-playing-bar";
+  var PlaybarManager = () => {
+    const { playbarSettings } = useSettingsStore();
+    const playbarRef = (0, import_react36.useRef)(document.querySelector(PLAYBAR_CLASS_NAME));
+    useBodyClass(`playbar-${playbarSettings.mode}`);
+    (0, import_react36.useEffect)(() => {
+      if (!playbarRef.current) {
+        logError(`Playbar element with class '${PLAYBAR_CLASS_NAME}' not found!`);
+        return;
+      }
+      const { mode, styles } = playbarSettings;
+      const dynamicStyle = getFormattedStylesAsCSSProperty(styles[mode], true);
+      const height = mode === "compact" ? styles[mode].height : playbarRef.current?.clientHeight || styles[mode]?.height;
+      document.documentElement.style.setProperty("--playbar-height", `${height}px`);
+      playbarRef.current.style.cssText = dynamicStyle.toString();
+    }, [playbarSettings]);
+    return null;
+  };
+  var PlaybarManager_default = PlaybarManager;
+
+  // extension/hooks/mountUnderMainViewWatcher.ts
+  var import_react37 = __toESM(require_react());
+  var mountUnderMainViewWatcher = () => {
+    const { underMainBackgroundImage, setUnderMainViewBackgroundImage } = useLucidStore();
+    const handleMutations = (0, import_react37.useCallback)(
+      (mutationsList) => {
+        const targetImageNode = mutationsList.reduce((foundNode, mutation) => {
+          if (foundNode) return foundNode;
+          if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+            const firstAddedNode = mutation.addedNodes[0];
+            if (firstAddedNode.firstChild instanceof HTMLDivElement) {
+              return firstAddedNode.firstChild;
+            }
+          }
+          return null;
+        }, null);
+        let imageUrl = null;
+        if (targetImageNode?.style) {
+          imageUrl = targetImageNode.style.backgroundImage.replace(/url\(['"]?([^'"]*)['"]?\)/i, "$1");
+        } else if (underMainBackgroundImage !== null) {
+          imageUrl = null;
+        }
+        setUnderMainViewBackgroundImage(imageUrl);
+      },
+      [setUnderMainViewBackgroundImage, underMainBackgroundImage]
+    );
+    (0, import_react37.useEffect)(() => {
+      const observer = new MutationObserver(handleMutations);
+      const underMainView = document.querySelector(".under-main-view");
+      if (underMainView) {
+        observer.observe(underMainView, { childList: true });
+      }
+      return () => observer.disconnect();
+    }, [handleMutations]);
+    (0, import_react37.useEffect)(() => {
+      document.documentElement.style.setProperty(
+        "--under-main-view-art-image",
+        underMainBackgroundImage ? `url(${underMainBackgroundImage})` : null
+      );
+      return () => {
+        document.documentElement.style.removeProperty("--under-main-view-art-image");
+      };
+    }, [underMainBackgroundImage]);
+  };
+  var mountUnderMainViewWatcher_default = mountUnderMainViewWatcher;
+
+  // extension/components/state/PlaylistViewManager.tsx
+  var import_react38 = __toESM(require_react());
+  var PlaylistViewManager = () => {
+    const {
+      interfaceSettings: {
+        pagesSettings: { playlistViewMode, isScrollMode, backgroundImageMode }
+      }
+    } = useSettingsStore();
+    const { pageCategory, underMainBackgroundImage, artworkData } = useLucidStore();
+    const backgroundRef = (0, import_react38.useRef)(null);
+    const blurRef = (0, import_react38.useRef)(null);
+    useBodyClass(`${PLAYLIST_VIEW_CLASS_PREFIX}${playlistViewMode}`);
+    useBodyClass(`${PLAYLIST_ART_IMAGE_CLASS_PREFIX}${backgroundImageMode}`);
+    useBodyClass(`${underMainBackgroundImage ? "under-main-view-present" : ""}`);
+    const handleScroll = (0, import_react38.useCallback)(
+      (scrollNode) => {
+        const { current: background } = backgroundRef;
+        if (background) {
+          const scrollAmount = Math.min(scrollNode.scrollTop, window.innerHeight);
+          background.style.transform = `translate3d(0, ${isScrollMode ? -scrollAmount : 0}px, 0)`;
+          background.style.setProperty("--scroll", `${scrollAmount / 1e3}`);
+        }
+      },
+      [isScrollMode]
+    );
+    const blurAmount = (0, import_react38.useMemo)(() => {
+      return pageCategory !== "artist" && !underMainBackgroundImage ? 4 : 0;
+    }, [pageCategory, underMainBackgroundImage]);
+    (0, import_react38.useEffect)(() => {
+      const { current: blur } = blurRef;
+      if (blur) {
+        blur.style.setProperty("--blur", `${blurAmount}px`);
+      }
+    }, [blurAmount]);
+    (0, import_react38.useEffect)(() => {
+      const scrollNode = document.querySelector(SCROLL_NODE_SELECTORS);
+      if (scrollNode) {
+        const scrollHandler = () => handleScroll(scrollNode);
+        scrollHandler();
+        scrollNode.addEventListener("scroll", scrollHandler, { passive: true });
+        return () => {
+          scrollNode.removeEventListener("scroll", scrollHandler);
+        };
+      }
+    }, [handleScroll]);
+    logDebug("New underMainBackgroundImage:", underMainBackgroundImage);
+    const backgroundImageUrl = pageCategory !== "other" && backgroundImageMode !== "none" ? underMainBackgroundImage || (backgroundImageMode === "inherit" ? artworkData.currentPageArtURL || "" : artworkData.nowPlayingArtURL || "") : "none";
+    const containerClasses = `playlist-art-container ${playlistViewMode} ${backgroundImageMode}`;
+    return /* @__PURE__ */ import_react38.default.createElement(
+      "span",
+      {
+        id: "playlistArtContainer",
+        className: containerClasses,
+        "data-playlist-view-mode": playlistViewMode,
+        ref: backgroundRef
+      },
+      /* @__PURE__ */ import_react38.default.createElement(
+        "div",
+        {
+          className: "background",
+          ref: blurRef,
+          style: {
+            backgroundImage: `url(${backgroundImageUrl})`
+          }
+        }
+      ),
+      /* @__PURE__ */ import_react38.default.createElement(
+        "div",
+        {
+          className: "overlay",
+          style: {
+            height: "100%",
+            width: "100%",
+            position: "absolute",
+            inset: 0
+          }
+        }
+      )
+    );
+  };
+  var PlaylistViewManager_default = PlaylistViewManager;
+
+  // extension/hooks/useUnderMainViewLoader.tsx
+  var import_react39 = __toESM(require_react());
+  var useUnderMainViewLoader = () => {
+    const underMainViewRef = (0, import_react39.useRef)(null);
+    (0, import_react39.useEffect)(() => {
+      const setUnderMainView = () => {
+        if (document.getElementById("lucid-under-main-view")) {
+          return;
+        }
+        const newUnderMainView = document.createElement("div");
+        newUnderMainView.id = "lucid-under-main-view";
+        newUnderMainView.className = "lucid-under-main-view";
+        const mainViewContainer = document.querySelector(".main-view-container");
+        if (mainViewContainer) {
+          mainViewContainer.prepend(newUnderMainView);
+        }
+        underMainViewRef.current = newUnderMainView;
+        if (underMainViewRef.current) {
+          Spicetify.ReactDOM.createRoot(underMainViewRef.current).render(/* @__PURE__ */ import_react39.default.createElement(PlaylistViewManager_default, null));
+        }
+      };
+      setUnderMainView();
+      const unlistenHistory = Spicetify.Platform.History.listen(() => {
+        setUnderMainView();
+      });
+      return () => {
+        unlistenHistory();
+      };
+    }, []);
+  };
+
+  // extension/components/state/UnderMainViewManager.tsx
+  var UnderMainViewManager = () => {
+    logDebug("Render <UnderMainViewManager />");
+    useUnderMainViewLoader();
+    mountUnderMainViewWatcher_default();
+    return null;
+  };
+  var UnderMainViewManager_default = UnderMainViewManager;
+
+  // extension/components/windowControls/TransparentWindowControl.tsx
+  var import_react40 = __toESM(require_react());
+  var TransparentWindowControl = () => {
+    const TransparentWindowControlRef = (0, import_react40.useRef)(null);
+    const [style, setStyle] = (0, import_react40.useState)({});
+    const { windowZoom } = useLucidStore();
+    const {
+      interfaceSettings: {
+        controlSettings: { height: controlHeight }
+      }
+    } = useSettingsStore();
+    (0, import_react40.useEffect)(() => {
+      const setTopBarStyles = () => {
+        if (isWindowsPlatform) {
+          setWindowControlsHeight(controlHeight);
+          if (!isCustomControls && !isLightModeEnabled) {
+            const normalHeight = controlHeight || (isSpotifyV16Above ? 32 : 64);
+            const controlTop = isSpotifyV16Above ? (controlHeight / windowZoom - Math.min(32 / windowZoom, controlHeight / windowZoom)) / 2 : 0;
+            const height = normalHeight / windowZoom - controlTop * 2;
+            window.document.body.style.setProperty(
+              "--top-bar-padding-start",
+              `${(controlHeight <= 16 ? 8 : 64) / windowZoom}px`
+            );
+            window.document.body.style.setProperty(
+              "--top-bar-padding-end",
+              `${(controlHeight <= 16 ? 8 : 135) / windowZoom}px`
+            );
+            const newStyle = {
+              position: "fixed",
+              right: 0,
+              top: `${controlTop}px`,
+              height: `${height}px`,
+              width: `${135 / windowZoom}px`,
+              WebkitBackdropFilter: "brightness(2.12)",
+              backdropFilter: "brightness(2.12)",
+              pointerEvents: "none",
+              zIndex: "var(--above-main-and-now-playing-view-grid-area, 6)"
+            };
+            setStyle(newStyle);
+          } else {
+            setStyle({});
+          }
+        }
+      };
+      setTopBarStyles();
+      const handleResize = () => {
+        setTopBarStyles();
+      };
+      const timeoutId = setTimeout(setTopBarStyles, 1e3);
+      window.addEventListener("resize", handleResize);
+      return () => {
+        clearTimeout(timeoutId);
+        window.removeEventListener("resize", handleResize);
+      };
+    }, [windowZoom, controlHeight]);
+    return /* @__PURE__ */ import_react40.default.createElement("div", { ref: TransparentWindowControlRef, style });
+  };
+  var TransparentWindowControl_default = TransparentWindowControl;
+
+  // extension/components/state/WindowControlsManager.tsx
+  var import_react41 = __toESM(require_react());
+  var WindowControlsManager = (0, import_react41.memo)(() => {
+    return /* @__PURE__ */ import_react41.default.createElement(import_react41.default.Fragment, null, isWindowsPlatform ? /* @__PURE__ */ import_react41.default.createElement(
+      "div",
+      {
+        id: "transperent-controls-container",
+        style: { containerType: "normal", pointerEvents: "none" }
+      },
+      !isCustomControls && isWindowsPlatform ? /* @__PURE__ */ import_react41.default.createElement(TransparentWindowControl_default, null) : null
+    ) : null);
+  });
+  var WindowControlsManager_default = WindowControlsManager;
+
+  // extension/components/state/MainStateManager.tsx
+  var import_react43 = __toESM(require_react());
+
+  // extension/components/state/ZoomManager.tsx
+  var import_react42 = __toESM(require_react());
+  var ZoomManager = () => {
+    const prevValues = (0, import_react42.useRef)({
+      outerWidth: window.outerWidth,
+      innerWidth: window.innerWidth,
+      ratio: window.devicePixelRatio
+    });
+    const { windowZoom, setWindowZoom } = useLucidStore();
+    const prevOuterWidth = (0, import_react42.useRef)(window.outerWidth);
+    const prevInnerWidth = (0, import_react42.useRef)(window.innerWidth);
+    const prevRatio = (0, import_react42.useRef)(window.devicePixelRatio);
+    const startup = (0, import_react42.useRef)(true);
+    const mainRef = (0, import_react42.useRef)(document.querySelector(".Root__main-view"));
+    (0, import_react42.useEffect)(() => {
+      const updateZoom = () => {
+        document.documentElement.style.setProperty("--main-view-height", `${mainRef.current?.clientHeight}px`);
+        const newOuterWidth = window.outerWidth;
+        const newInnerWidth = window.innerWidth;
+        const newRatio = window.devicePixelRatio;
+        if (startup.current || (prevOuterWidth.current <= 160 || prevRatio.current !== newRatio) && (prevOuterWidth.current !== newOuterWidth || prevInnerWidth.current !== newInnerWidth)) {
+          const modified = newOuterWidth / newInnerWidth || 1;
+          setWindowZoom(modified);
+          document.documentElement.style.setProperty("--zoom", `${modified}`);
+          logDebug(`Zoom Updated: ${newOuterWidth} / ${newInnerWidth} = ${modified}`);
+          prevOuterWidth.current = newOuterWidth;
+          prevInnerWidth.current = newInnerWidth;
+          prevRatio.current = newRatio;
+        }
+      };
+      const handleResize = () => {
+        updateZoom();
+      };
+      updateZoom();
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, [setWindowZoom]);
+    return null;
+  };
+  var ZoomManager_default = ZoomManager;
+
+  // extension/components/state/NpvManager.tsx
+  var NpvManager = () => {
+    const {
+      npvSettings: { mode, position, blur }
+    } = useSettingsStore();
+    document.body.style.setProperty("--compact-npv-blur", `${blur}px`);
+    useBodyClass(`${mode}-npv`);
+    useBodyClass(`${position}-npv`);
+    return null;
+  };
+  var NpvManager_default = NpvManager;
+
+  // extension/components/state/MainStateManager.tsx
+  var MainStateManager = () => {
+    logDebug("Render <MainStateManager />");
+    return /* @__PURE__ */ import_react43.default.createElement(import_react43.default.Fragment, null, /* @__PURE__ */ import_react43.default.createElement(PathManager_default, null), /* @__PURE__ */ import_react43.default.createElement(GrainManager_default, null), /* @__PURE__ */ import_react43.default.createElement(ColorManager_default, null), /* @__PURE__ */ import_react43.default.createElement(ZoomManager_default, null), /* @__PURE__ */ import_react43.default.createElement(PlaybarManager_default, null), /* @__PURE__ */ import_react43.default.createElement(ArtworkManager_default, null), /* @__PURE__ */ import_react43.default.createElement(BorderManager_default, null), /* @__PURE__ */ import_react43.default.createElement(GlobalNavManager_default, null), /* @__PURE__ */ import_react43.default.createElement(FontStateManager_default, null), /* @__PURE__ */ import_react43.default.createElement(NpvManager_default, null), /* @__PURE__ */ import_react43.default.createElement(UnderMainViewManager_default, null), /* @__PURE__ */ import_react43.default.createElement(WindowControlsManager_default, null));
+  };
+  var MainStateManager_default = MainStateManager;
+
+  // extension/utils/backgroundUtils.ts
+  function applyBackgroundStyles(backgroundStyleElement, zIndex) {
+    backgroundStyleElement.innerHTML = `
+    #lucid-main .background-container .background-wrapper div { z-index: ${zIndex} !important; }
+  `;
+  }
+  function setDefaultBackgroundZIndex(backgroundStyleElement) {
+    backgroundStyleElement.innerHTML = `
     #lucid-main .background-container .background-wrapper div { z-index: -1 !important; }
-  `}function fa(t,a,n,r){let l=!1,i=null;new MutationObserver(()=>{var e=t.querySelector(a);e!==i&&(e&&!l?(c("Applying background z-index: "+r),l=!0,ma(n,r)):l&&(c("Removing background z-index: "+r),l=!1,document.querySelector("#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container")?ma(n,5):pa(n)),i=e)}).observe(t,{childList:!0}),pa(n)}var O=e(n()),I=e(n()),N=e(n()),ba=({releases:e,isLoading:t,error:a})=>t?N.default.createElement("div",null,"Loading release data..."):a?N.default.createElement("div",null,"Error fetching release data: ",a.message):e?N.default.createElement("div",{className:"lucid-changelog",id:"lucid-changelog"},e.map(e=>N.default.createElement("div",{key:e.tag_name,className:"release"},N.default.createElement("button",{className:"release-button",type:"button",onClick:()=>window.open(e.html_url,"_blank")},"View on GitHub"),e.body&&N.default.createElement("div",{className:"release-content",dangerouslySetInnerHTML:{__html:e.body}})))):N.default.createElement("div",null,"No release data found."),ya=e(n()),va=({currentVersion:e})=>{let[t,r]=I.default.useState({isLoading:!0,error:null,releases:null}),[l,a]=((t,a)=>{let[e,n]=(0,ya.useState)(()=>{var e;return"undefined"!=typeof window&&(e=window.localStorage.getItem(t))?JSON.parse(e):a});return(0,ya.useEffect)(()=>{"undefined"!=typeof window&&window.localStorage.setItem(t,JSON.stringify(e))},[t,e]),[e,n]})("lucid:previousVersion",null),{closeModal:n,isOpen:i,openModal:o}=ut("changelog"),s=async()=>{v("Fetching release data..."),r(e=>u(d({},e),{isLoading:!0}));try{var e=await fetch("https://api.github.com/repos/sanoojes/spicetify-lucid/releases");if(!e.ok)throw new Error("HTTP error! status: "+e.status);var t=await e.json(),a=(v("Fetched release data:",t),await Promise.all(t.map(async e=>u(d({},e),{body:await(async(e,t,a)=>{try{var n={text:e,context:t+"/"+a,mode:"gfm"},r=await fetch("https://api.github.com/markdown",{method:"POST",body:JSON.stringify(n)});if(r.ok)return await r.text();throw new Error("HTTP error! status: "+r.status)}catch(e){return w("Error parsing markdown:",e),null}})(e.body,"sanoojes","spicetify-lucid")||""})))),n=(r({isLoading:!1,error:null,releases:a}),t[0].tag_name);null!==l&&n===l||(console.log("Opening changelog modal because new version detected"),o())}catch(t){r(e=>u(d({},e),{isLoading:!1,error:t instanceof Error?t:new Error("Unknown error")})),w("Error fetching release data:",t)}};I.default.useEffect(()=>{s()},[]);var c=I.default.useCallback(()=>{n();var e=null==(e=null==(e=t.releases)?void 0:e[0])?void 0:e.tag_name;e&&a(e)},[n,t.releases,a]);return I.default.createElement(I.default.Fragment,null,I.default.createElement(Q,{title:"Lucid Changelog",onClose:c,isOpen:i},I.default.createElement(ba,{releases:t.releases,isLoading:t.isLoading,error:t.error,currentVersion:e})))},ha=()=>(v("Render <Main />"),(0,O.useEffect)(()=>{(()=>{var n=Spicetify.Locale;function r(e){return e.replace(/[{0}{1}«»”“]/g,"").trim()}if(n){r(n.get("playlist.a11y.play")||""),r(n.get("playlist.a11y.pause")||"");var l=n.get("play"),i=n.get("pause"),o=n.get("browse"),s=n.get("playback-control.skip-forward"),c=n.get("playback-control.skip-back"),d=n.get("tracklist.a11y.play")||"",u=n.get("view.web-player-home"),g=n.get("upgrade.tooltip.title")||"Upgrade to Premium";let e,t;["zh-CN","zh-TW","am","fi"].includes(n.getLocale())?[e,t]=d.split("{1}"):[e,t]=d.split("{0}"),e=r(e),t=r(t);var d=n.get("playback-control.enable-repeat"),m=n.get("playback-control.enable-repeat-one"),n=n.get("playback-control.disable-repeat"),p="lucid_button_styles";let a=document.getElementById(p);a||((a=document.createElement("style")).id=p,document.head.appendChild(a)),a.innerHTML=`
-.Root__globalNav button[aria-label="${g}"],
-.Root__globalNav button[title="${g}"] {
+  `;
+  }
+  function manageBackgroundZIndexForElement(element, containerSelector, backgroundStyleElement, zIndex) {
+    let isContainerPresent = false;
+    let previousContainer = null;
+    const observer = new MutationObserver(() => {
+      const container = element.querySelector(containerSelector);
+      if (container !== previousContainer) {
+        if (container && !isContainerPresent) {
+          logInfo(`Applying background z-index: ${zIndex}`);
+          isContainerPresent = true;
+          applyBackgroundStyles(backgroundStyleElement, zIndex);
+        } else if (isContainerPresent) {
+          logInfo(`Removing background z-index: ${zIndex}`);
+          isContainerPresent = false;
+          const lyricsCinemaElement = document.querySelector(
+            "#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container"
+          );
+          if (lyricsCinemaElement) {
+            applyBackgroundStyles(backgroundStyleElement, 5);
+          } else {
+            setDefaultBackgroundZIndex(backgroundStyleElement);
+          }
+        }
+        previousContainer = container;
+      }
+    });
+    const config = { childList: true };
+    observer.observe(element, config);
+    setDefaultBackgroundZIndex(backgroundStyleElement);
+  }
+  var manageBackgroundZIndex = () => {
+    let backgroundStyleElement = document.getElementById("lucid-background-style");
+    if (!backgroundStyleElement) {
+      backgroundStyleElement = document.createElement("style");
+      backgroundStyleElement.id = "lucid-background-style";
+      document.head.appendChild(backgroundStyleElement);
+    }
+    const lyricsCinemaElement = document.querySelector("#lyrics-cinema");
+    if (lyricsCinemaElement) {
+      manageBackgroundZIndexForElement(
+        lyricsCinemaElement,
+        "#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container",
+        backgroundStyleElement,
+        5
+      );
+    }
+    const fullScreenElement = document.querySelector("#main .Root > div:last-child");
+    if (fullScreenElement) {
+      manageBackgroundZIndexForElement(
+        fullScreenElement,
+        '.Root div[data-testid="fullscreen-mode-container"], .Root .npv-main-container',
+        backgroundStyleElement,
+        15
+      );
+    }
+  };
+
+  // extension/utils/replaceIcons.ts
+  var replaceIcons = () => {
+    const { Locale } = Spicetify;
+    function cleanLabel(label) {
+      const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, "").trim();
+      return cleanedLabel;
+    }
+    if (!Locale) return;
+    let playlistPlayLabel = Locale.get("playlist.a11y.play") || "";
+    playlistPlayLabel = cleanLabel(playlistPlayLabel);
+    let playlistPauseLabel = Locale.get("playlist.a11y.pause") || "";
+    playlistPauseLabel = cleanLabel(playlistPauseLabel);
+    const playLabel = Locale.get("play");
+    const pauseLabel = Locale.get("pause");
+    const browseLabel = Locale.get("browse");
+    const skipForwardLabel = Locale.get("playback-control.skip-forward");
+    const skipBackLabel = Locale.get("playback-control.skip-back");
+    const tracklistPlayLabel = Locale.get("tracklist.a11y.play") || "";
+    const homeBtnLabelOne = Locale.get("view.web-player-home");
+    const upgradeToPremLabel = Locale.get("upgrade.tooltip.title") || "Upgrade to Premium";
+    let tracklistPlayLabelOne;
+    let tracklistPlayLabelTwo;
+    if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
+      [tracklistPlayLabelOne, tracklistPlayLabelTwo] = tracklistPlayLabel.split("{1}");
+    } else {
+      [tracklistPlayLabelOne, tracklistPlayLabelTwo] = tracklistPlayLabel.split("{0}");
+    }
+    tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
+    tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
+    const enableRepeatLabel = Locale.get("playback-control.enable-repeat");
+    const enableOneRepeatLabel = Locale.get("playback-control.enable-repeat-one");
+    const disableRepeatLabel = Locale.get("playback-control.disable-repeat");
+    const BUTTON_STYLE_LABEL = "lucid_button_styles";
+    let ButtonStyles = document.getElementById(BUTTON_STYLE_LABEL);
+    if (!ButtonStyles) {
+      ButtonStyles = document.createElement("style");
+      ButtonStyles.id = BUTTON_STYLE_LABEL;
+      document.head.appendChild(ButtonStyles);
+    }
+    ButtonStyles.innerHTML = `
+.Root__globalNav button[aria-label="${upgradeToPremLabel}"],
+.Root__globalNav button[title="${upgradeToPremLabel}"] {
   display: none !important;
 }
 
 .main-repeatButton-button[aria-checked="false"],
-.player-controls__right button[aria-label*="${d}"]  span{
+.player-controls__right button[aria-label*="${enableRepeatLabel}"]  span{
   -webkit-mask-image: var(--repeat-off-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/repeat-off.svg"));
   mask-image: var(--repeat-off-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/repeat-off.svg"));
   background-color: var(--spice-subtext);
@@ -20,7 +3172,7 @@
 }
 
 .main-repeatButton-button[aria-checked="mixed"],
-.player-controls__right button[aria-label*="${n}"] span {
+.player-controls__right button[aria-label*="${disableRepeatLabel}"] span {
   -webkit-mask-image: var(--repeat-mixed-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/repeat-mixed.svg"));
   mask-image: var(--repeat-mixed-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/repeat-mixed.svg"));
   background-color: var(--spice-accent);
@@ -28,20 +3180,20 @@
 }
 
 .main-repeatButton-button[aria-checked="true"],
-.player-controls__right button[aria-label*="${m}"] span {
+.player-controls__right button[aria-label*="${enableOneRepeatLabel}"] span {
   -webkit-mask-image: var(--repeat-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/repeat.svg"));
   mask-image: var(--repeat-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/repeat.svg"));
   background-color: var(--spice-accent);
   mask-size: contain;
 }
 
-.player-controls__right button[aria-label*="${n}"] svg,
-.player-controls__right button[aria-label*="${d}"] svg {
+.player-controls__right button[aria-label*="${disableRepeatLabel}"] svg,
+.player-controls__right button[aria-label*="${enableRepeatLabel}"] svg {
   transform: scale(1.15);
 }
 
-.player-controls__right button[aria-label*="${n}"] svg,
-.player-controls__right button[aria-label*="${d}"] svg {
+.player-controls__right button[aria-label*="${disableRepeatLabel}"] svg,
+.player-controls__right button[aria-label*="${enableRepeatLabel}"] svg {
   visibility: hidden;
   opacity: 0;
 }
@@ -55,18 +3207,18 @@
     align-items: center;
 }
 
-.player-controls__buttons>button[aria-label*="${l}"] span,
-.main-playButton-button[aria-label*="${l}"],
-.main-playButton-PlayButton>button[aria-label*="${l}"]{
+.player-controls__buttons>button[aria-label*="${playLabel}"] span,
+.main-playButton-button[aria-label*="${playLabel}"],
+.main-playButton-PlayButton>button[aria-label*="${playLabel}"]{
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--play-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/play.svg")) !important;
   mask-image: var(--play-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/play.svg")) !important;
 }
 
-.main-playButton-button[aria-label*="${i}"],
-.main-playButton-PlayButton>button[aria-label*="${i}"],
-.main-playPauseButton-button[aria-label*="${i}"],
-.player-controls__buttons>button[aria-label*="${i}"] span {
+.main-playButton-button[aria-label*="${pauseLabel}"],
+.main-playButton-PlayButton>button[aria-label*="${pauseLabel}"],
+.main-playPauseButton-button[aria-label*="${pauseLabel}"],
+.player-controls__buttons>button[aria-label*="${pauseLabel}"] span {
   background-color: var(--spice-text) !important;
   -webkit-mask-image: var(--pause-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/pause.svg")) !important;
   mask-image: var(--pause-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/pause.svg")) !important;
@@ -77,11 +3229,11 @@
   border: none !important;
 }
 
-button[aria-label="${o}"] path {
+button[aria-label="${browseLabel}"] path {
   display: none !important;
 }
 
-button[aria-label="${o}"] svg {
+button[aria-label="${browseLabel}"] svg {
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-position: center;
@@ -92,9 +3244,9 @@ button[aria-label="${o}"] svg {
   scale: 1.25;
 }
 
-.main-repeatButton-button[aria-label="${d}"],
-.main-repeatButton-button[aria-label="${n}"],
-.main-repeatButton-button[aria-label="${m}"],
+.main-repeatButton-button[aria-label="${enableRepeatLabel}"],
+.main-repeatButton-button[aria-label="${disableRepeatLabel}"],
+.main-repeatButton-button[aria-label="${enableOneRepeatLabel}"],
 {
 scale: 0.75 !important;
 background-color: var(--spice-subtext) !important;
@@ -105,8 +3257,8 @@ svg {
 }
 }
 
-.player-controls__buttons>button[aria-label*="${l}"] span,
-.player-controls__buttons>button[aria-label*="${i}"] span{
+.player-controls__buttons>button[aria-label*="${playLabel}"] span,
+.player-controls__buttons>button[aria-label*="${pauseLabel}"] span{
   display: block;
   mask-size: 100%;
   -webkit-mask-position: center center;
@@ -120,8 +3272,8 @@ svg {
 }
 
 .main-playPauseButton-button,
-.player-controls button[aria-label="${c}"],
-.player-controls button[aria-label="${s}"]
+.player-controls button[aria-label="${skipBackLabel}"],
+.player-controls button[aria-label="${skipForwardLabel}"]
 {
   display: block;
   mask-size: 100%;
@@ -147,31 +3299,31 @@ svg {
   }
 }
 
-.player-controls__buttons>button[aria-label*="${l}"] span svg,
-.player-controls__buttons>button[aria-label*="${i}"] span svg {
+.player-controls__buttons>button[aria-label*="${playLabel}"] span svg,
+.player-controls__buttons>button[aria-label*="${pauseLabel}"] span svg {
   display: none;
   visibility: hidden;
 }
 
-.player-controls button[aria-label="${c}"] span,
-.player-controls button[aria-label="${s}"] span {
+.player-controls button[aria-label="${skipBackLabel}"] span,
+.player-controls button[aria-label="${skipForwardLabel}"] span {
   opacity: 0;
 }
 
-.player-controls button[aria-label="${c}"] {
+.player-controls button[aria-label="${skipBackLabel}"] {
   background-color: var(--spice-text);
   -webkit-mask-image: var(--prev-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/prev.svg"));
   mask-image: var(--prev-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/prev.svg"));
 }
 
-.player-controls button[aria-label="${s}"] {
+.player-controls button[aria-label="${skipForwardLabel}"] {
   background-color: var(--spice-text);
   -webkit-mask-image: var(--next-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/next.svg"));
   mask-image: var(--next-icon, url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/assets/icons/next.svg"));
 }
 
-.main-yourLibraryX-navLink[aria-label="${u}"] svg,
-button[aria-label="${u}"] svg {
+.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"] svg,
+button[aria-label="${homeBtnLabelOne}"] svg {
   path {
 display: none !important;
   }
@@ -182,8 +3334,8 @@ display: none !important;
 }
 
 
-.main-yourLibraryX-navLink[aria-label="${u}"].active svg,
-.main-globalNav-navLinkActive[aria-label="${u}"] svg {
+.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg,
+.main-globalNav-navLinkActive[aria-label="${homeBtnLabelOne}"] svg {
   path {
 display: none !important;
   }
@@ -193,7 +3345,7 @@ display: none !important;
   background-color: var(--spice-text) !important;
 }
 
-.main-yourLibraryX-navLink[aria-label="${u}"].active svg {
+.main-yourLibraryX-navLink[aria-label="${homeBtnLabelOne}"].active svg {
   path {
 display: none !important;
   }
@@ -206,4 +3358,226 @@ display: none !important;
 max-width: 10rem;
   }
 }
-`}})(),(()=>{let e=document.getElementById("lucid-background-style");e||((e=document.createElement("style")).id="lucid-background-style",document.head.appendChild(e));var t=document.querySelector("#lyrics-cinema"),t=(t&&fa(t,"#lyrics-cinema .lyrics-lyrics-background, #lyrics-cinema .lyrics-lyrics-container",e,5),document.querySelector("#main .Root > div:last-child"));t&&fa(t,'.Root div[data-testid="fullscreen-mode-container"], .Root .npv-main-container',e,15)})()},[]),O.default.createElement(O.default.Fragment,null,O.default.createElement("div",{id:"background-container",className:"background-container",style:{containerType:"normal"}},O.default.createElement(_t,null)),O.default.createElement(dt,null,O.default.createElement("div",{id:"modal-container",className:"modal-container",style:{containerType:"normal"}},O.default.createElement(bt,null),O.default.createElement(va,null))),O.default.createElement("div",{id:"state"},O.default.createElement(ga,null)),O.default.createElement(me,null))),Sa=e(n()),wa=async function(){try{for(;!(null!=Spicetify&&Spicetify.showNotification&&null!=Spicetify&&Spicetify.Player&&null!=Spicetify&&Spicetify.React&&null!=Spicetify&&Spicetify.Platform);)await new Promise(e=>setTimeout(e,100));let e=document.getElementById("lucid-main");var t;e||((e=document.createElement("div")).id="lucid-main",null!=(t=document.getElementById("main"))&&t.prepend(e)),e&&!e.hasChildNodes()&&Spicetify.ReactDOM.createRoot(e).render(Sa.default.createElement(ha,null)),console.log("%c Lucid ignited! 🚀","font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;")}catch(e){Spicetify.showNotification("[Lucid] Error Occurred: "+(e instanceof Error?e.message:e),!0),w(e)}};(async()=>{await wa()})()})();
+`;
+  };
+
+  // extension/components/Main.tsx
+  var import_react47 = __toESM(require_react());
+
+  // extension/components/changelog/ChangeLogManager.tsx
+  var import_react46 = __toESM(require_react());
+
+  // extension/components/changelog/ChangeLog.tsx
+  var import_react44 = __toESM(require_react());
+  var ChangeLog = ({ releases, isLoading, error }) => {
+    if (isLoading) {
+      return /* @__PURE__ */ import_react44.default.createElement("div", null, "Loading release data...");
+    }
+    if (error) {
+      return /* @__PURE__ */ import_react44.default.createElement("div", null, "Error fetching release data: ", error.message);
+    }
+    if (!releases) {
+      return /* @__PURE__ */ import_react44.default.createElement("div", null, "No release data found.");
+    }
+    return /* @__PURE__ */ import_react44.default.createElement("div", { className: "lucid-changelog", id: "lucid-changelog" }, releases.map((release) => /* @__PURE__ */ import_react44.default.createElement("div", { key: release.tag_name, className: "release" }, /* @__PURE__ */ import_react44.default.createElement(
+      "button",
+      {
+        className: "release-button",
+        type: "button",
+        onClick: () => window.open(release.html_url, "_blank")
+      },
+      "View on GitHub"
+    ), release.body && /* @__PURE__ */ import_react44.default.createElement(
+      "div",
+      {
+        className: "release-content",
+        dangerouslySetInnerHTML: { __html: release.body }
+      }
+    ))));
+  };
+  var ChangeLog_default = ChangeLog;
+
+  // extension/utils/markdownUtils.ts
+  async function getMarkdownHTML(markdown, user, repo) {
+    try {
+      const postBody = {
+        text: markdown,
+        context: `${user}/${repo}`,
+        mode: "gfm"
+      };
+      const response = await fetch("https://api.github.com/markdown", {
+        method: "POST",
+        body: JSON.stringify(postBody)
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const html = await response.text();
+      return html;
+    } catch (err) {
+      logError("Error parsing markdown:", err);
+      return null;
+    }
+  }
+
+  // extension/hooks/useLocalStorage.ts
+  var import_react45 = __toESM(require_react());
+  var useLocalStorage = (key, initialValue) => {
+    const [storedValue, setStoredValue] = (0, import_react45.useState)(() => {
+      if (typeof window !== "undefined") {
+        const item = window.localStorage.getItem(key);
+        return item ? JSON.parse(item) : initialValue;
+      }
+      return initialValue;
+    });
+    (0, import_react45.useEffect)(() => {
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(key, JSON.stringify(storedValue));
+      }
+    }, [key, storedValue]);
+    return [storedValue, setStoredValue];
+  };
+
+  // extension/components/changelog/ChangeLogManager.tsx
+  var ChangeLogManager = ({
+    currentVersion
+  }) => {
+    const [releaseData, setReleaseData] = import_react46.default.useState({
+      isLoading: true,
+      error: null,
+      releases: null
+    });
+    const [previousVersion, setPreviousVersion] = useLocalStorage(
+      "lucid:previousVersion",
+      null
+    );
+    const { closeModal, isOpen, openModal } = useModal("changelog");
+    const fetchReleaseData = async () => {
+      logDebug("Fetching release data...");
+      setReleaseData((prevState) => ({ ...prevState, isLoading: true }));
+      try {
+        const response = await fetch(
+          GITHUB_RELEASES_URL || "https://api.github.com/repos/sanoojes/spicetify-lucid/releases"
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        logDebug("Fetched release data:", data);
+        const releasesWithHTML = await Promise.all(
+          data.map(async (release) => ({
+            ...release,
+            body: await getMarkdownHTML(
+              release.body,
+              "sanoojes",
+              "spicetify-lucid"
+            ) || ""
+          }))
+        );
+        setReleaseData({
+          isLoading: false,
+          error: null,
+          releases: releasesWithHTML
+        });
+        const latestVersion = data[0].tag_name;
+        if (previousVersion === null || latestVersion !== previousVersion) {
+          console.log("Opening changelog modal because new version detected");
+          openModal();
+        }
+      } catch (error) {
+        setReleaseData((prevState) => ({
+          ...prevState,
+          isLoading: false,
+          error: error instanceof Error ? error : new Error("Unknown error")
+        }));
+        logError("Error fetching release data:", error);
+      }
+    };
+    import_react46.default.useEffect(() => {
+      fetchReleaseData();
+    }, []);
+    const handleCloseModal = import_react46.default.useCallback(() => {
+      closeModal();
+      const latestVersion = releaseData.releases?.[0]?.tag_name;
+      if (latestVersion) {
+        setPreviousVersion(latestVersion);
+      }
+    }, [closeModal, releaseData.releases, setPreviousVersion]);
+    return /* @__PURE__ */ import_react46.default.createElement(import_react46.default.Fragment, null, /* @__PURE__ */ import_react46.default.createElement(Modal_default, { title: "Lucid Changelog", onClose: handleCloseModal, isOpen }, /* @__PURE__ */ import_react46.default.createElement(
+      ChangeLog_default,
+      {
+        releases: releaseData.releases,
+        isLoading: releaseData.isLoading,
+        error: releaseData.error,
+        currentVersion
+      }
+    )));
+  };
+  var ChangeLogManager_default = ChangeLogManager;
+
+  // extension/components/Main.tsx
+  var Main = () => {
+    logDebug("Render <Main />");
+    (0, import_react47.useEffect)(() => {
+      replaceIcons();
+      manageBackgroundZIndex();
+    }, []);
+    return /* @__PURE__ */ import_react47.default.createElement(import_react47.default.Fragment, null, /* @__PURE__ */ import_react47.default.createElement(
+      "div",
+      {
+        id: "background-container",
+        className: "background-container",
+        style: { containerType: "normal" }
+      },
+      /* @__PURE__ */ import_react47.default.createElement(BackgroundManager_default, null)
+    ), /* @__PURE__ */ import_react47.default.createElement(ModalContextProvider, null, /* @__PURE__ */ import_react47.default.createElement(
+      "div",
+      {
+        id: "modal-container",
+        className: "modal-container",
+        style: { containerType: "normal" }
+      },
+      /* @__PURE__ */ import_react47.default.createElement(SettingsManager_default, null),
+      /* @__PURE__ */ import_react47.default.createElement(ChangeLogManager_default, null)
+    )), /* @__PURE__ */ import_react47.default.createElement("div", { id: "state" }, /* @__PURE__ */ import_react47.default.createElement(MainStateManager_default, null)), /* @__PURE__ */ import_react47.default.createElement(ToastContainer, null));
+  };
+  var Main_default = Main;
+
+  // extension/App.tsx
+  var import_react48 = __toESM(require_react());
+  async function App() {
+    try {
+      while (!Spicetify?.showNotification || !Spicetify?.Player || !Spicetify?.React || !Spicetify?.Platform) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+      let rootElement = document.getElementById("lucid-main");
+      if (!rootElement) {
+        rootElement = document.createElement("div");
+        rootElement.id = "lucid-main";
+        const mainElement = document.getElementById("main");
+        mainElement?.prepend(rootElement);
+      }
+      if (rootElement && !rootElement.hasChildNodes()) {
+        Spicetify.ReactDOM.createRoot(rootElement).render(/* @__PURE__ */ import_react48.default.createElement(Main_default, null));
+      }
+      console.log(
+        "%c Lucid ignited! \u{1F680}",
+        "font-weight: bold; font-size: 1.25rem; color: #2196F3; padding: 0.5rem 0;"
+      );
+    } catch (error) {
+      Spicetify.showNotification(
+        `[Lucid] Error Occurred: ${error instanceof Error ? error.message : error}`,
+        true
+      );
+      logError(error);
+    }
+  }
+  var App_default = App;
+
+  // ../../../AppData/Local/Temp/lucid-temp/index.jsx
+  (async () => {
+    await App_default();
+  })();
+})();
+
+      })();

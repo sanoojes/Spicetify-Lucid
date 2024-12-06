@@ -3,7 +3,7 @@ import type { BorderRadius, BorderStyle } from "@/types/border";
 import type { DropdownOption } from "@/types/dropdown";
 import type { GrainEffect } from "@/types/grains";
 import type { SettingsPositions } from "@/types/main";
-import { NpvMode, NpvPosition } from "@/types/npv";
+import type { NpvMode, NpvPosition } from "@/types/npv";
 import type {
   PlaylistBackgroundImageMode,
   PlaylistViewMode,
