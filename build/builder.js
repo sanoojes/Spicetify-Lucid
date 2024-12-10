@@ -33,6 +33,7 @@ export const builder = async (
       platform: "browser",
       external: ["react", "react-dom"],
       bundle: true,
+      minify: true,
       globalName: "lucid",
       plugins: [
         externalGlobalPlugin({
