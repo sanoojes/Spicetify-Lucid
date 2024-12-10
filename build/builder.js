@@ -47,14 +47,8 @@ export const builder = async (
 
     // Modify the bundled output to include the dynamic check for React and ReactDOM
     const bundleContent = await fs.readFile(compiledExtension, "utf-8");
-    const wrappedContent = `
-      (async function() {
-        while (!Spicetify.React || !Spicetify.ReactDOM) {
-          await new Promise(resolve => setTimeout(resolve, 10));
-        }
-        ${bundleContent}
-      })();
-    `.trim();
+    const wrappedContent =
+      `(async function() {while (!Spicetify.React || !Spicetify.ReactDOM) {await new Promise(resolve => setTimeout(resolve, 10));}${bundleContent}})();`.trim();
 
     // Write the final content back to the file
     await fs.writeFile(compiledExtension, wrappedContent);
