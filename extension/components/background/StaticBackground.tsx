@@ -34,7 +34,7 @@ const StaticBackground: FC<FCStyleOptions> = ({ style }) => {
 		<div
 			className="static-background"
 			style={{
-				backgroundImage: `url(${backgroundImage})`,
+				backgroundImage: `url("${backgroundImage}")`,
 				...getFormattedStyles(style),
 			}}
 		/>
