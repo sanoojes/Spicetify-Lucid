@@ -1,12 +1,27 @@
+import { isSpotifyV46Above } from "@/constants/constants";
 import { logError, logInfo } from "@/utils/logUtils";
 
 export async function setWindowControlsHeight(height: number) {
 	try {
-		if (Spicetify?.CosmosAsync?.post)
+		if (isSpotifyV46Above) {
+			// taken from noControls.js by ohitstom
+			if (Spicetify.Platform.UpdateAPI._updateUiClient?.updateTitlebarHeight) {
+				Spicetify.Platform.UpdateAPI._updateUiClient.updateTitlebarHeight({
+					height: height,
+				});
+			}
+
+			if (Spicetify.Platform.UpdateAPI._updateUiClient?.setButtonsVisibility) {
+				Spicetify.Platform.UpdateAPI._updateUiClient.setButtonsVisibility({
+					showButtons: true,
+				});
+			}
+		} else if (Spicetify?.CosmosAsync?.post) {
 			await Spicetify.CosmosAsync.post("sp://messages/v1/container/control", {
 				type: "update_titlebar",
-				height: height,
+				height: `${height}px`,
 			});
+		}
 
 		logInfo(`Control height set to ${height}px`);
 	} catch (error) {
