@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"target": "ES2017",
+		"jsx": "react",
+		"module": "commonjs",
+		"resolveJsonModule": true,
+		"outDir": "src",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./extension/*"]
+		}
+	},
+	"include": ["./extension/**/*.*"]
+}

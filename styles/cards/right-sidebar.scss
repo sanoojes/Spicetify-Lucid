@@ -96,6 +96,19 @@
   .MLbUPrgOa58_qsGikfRG {
     pointer-events: auto !important;
   }
+
+  .KYkSwfV1FCtD15TMChbH {
+    background-color: var(--spice-accent);
+    -webkit-mask-image: $equalizer-svg;
+    mask-image: $equalizer-svg;
+    height: 24px;
+    width: 24px;
+    img,
+    svg,
+    path {
+      visibility: hidden;
+    }
+  }
 }
 
 .compact-npv {
@@ -113,6 +126,7 @@
     border: none;
     // width: calc(var(--panel-width) * 1px); /* Width is set by default */
     height: calc(var(--panel-width) * 1px);
+    width: fit-content;
     padding-top: 0px;
     background-color: rgba(var(--spice-rgb-sidebar), 0.5);
     transform-origin: bottom right;
@@ -125,6 +139,7 @@
     * {
       transition: width 0.3s linear, height 0.3s linear;
       transform-origin: bottom right;
+      -webkit-app-region: no-drag;
     }
 
     &,
@@ -135,6 +150,28 @@
     /* VideoNPV section */
     &:has(.ouiL5cH1WduxtprQ0Iig) {
       height: calc((var(--panel-width) * 1px) + 2.5rem);
+    }
+
+    .E08D6ucrHuPJYzzGO7HG {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .hjyiWzPtKHn_5kCe9vyg {
+      --height: calc(
+        max(
+            var(--min-height),
+            min(
+              var(--max-height),
+              (0.69 + (var(--panel-width) - 280) * 0.0003571429) * 100vh
+            )
+          ) - 72px
+      );
+    }
+
+    .E08D6ucrHuPJYzzGO7HG::after {
+      border-radius: $border-radius-md;
+      bottom: 6px;
     }
 
     .KrBYgWLGb5aRHjoD_prX {
@@ -151,7 +188,7 @@
     }
 
     .main-nowPlayingView-contextItemInfo {
-      padding-inline: 8px;
+      padding-inline: $border-radius-md;
     }
 
     .ylBRlfNqGnzVa4kjUQGP {

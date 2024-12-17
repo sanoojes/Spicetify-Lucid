@@ -11,7 +11,7 @@
 		"lineEnding": "crlf"
 	},
 	"files": {
-		"ignore": ["src/*", "extension/src/types/spicetify.d.ts"]
+		"ignore": ["src/*", "extension/types/spicetify.d.ts"]
 	},
 	"javascript": {
 		"formatter": {
