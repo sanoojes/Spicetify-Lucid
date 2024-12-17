@@ -116,9 +116,6 @@ const BackgroundSection = () => {
 					label: "Enable Local Image",
 					onChange: (value: boolean) => {
 						setUseLocalImage(value);
-						if (value === false) {
-							clearSelectedLocalImage();
-						}
 					},
 				},
 			},
