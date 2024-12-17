@@ -12,5 +12,3 @@ export const getIsLightMode = () => Spicetify?.Config.color_scheme === "light" |
 
 export const getIsGlobalNav = () =>
 	!!(document.querySelector(".globalNav") || document.querySelector(".Root__globalNav"));
-
-export const checkSpotifyVersionIsAbove = (version: string): boolean => Spicetify.Platform.version >= version;

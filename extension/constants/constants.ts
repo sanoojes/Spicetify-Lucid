@@ -1,4 +1,4 @@
-import { checkSpotifyVersionIsAbove, detectWindows, getIsGlobalNav, getIsLightMode } from "@/utils/platformUtils";
+import { detectWindows, getIsGlobalNav, getIsLightMode } from "@/utils/platformUtils";
 import { getIsCustomControls } from "@/utils/windowControlUtils";
 
 //  Settings Local Key
@@ -14,7 +14,7 @@ export const PLAYLIST_ART_IMAGE_CLASS_PREFIX = "playlist-art-image-";
 export const PLAYLIST_VIEW_CLASS_PREFIX = "playlist-view-";
 
 // Feature Flags
-export const isSpotifyV16Above = checkSpotifyVersionIsAbove("1.2.46");
+export const isSpotifyV46Above = Spicetify?.Platform?.version >= "1.2.46";
 export const isLightModeEnabled = getIsLightMode();
 export const isWindowsPlatform = detectWindows();
 export const isGlobalNav = getIsGlobalNav();

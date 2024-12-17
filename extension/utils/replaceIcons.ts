@@ -1,57 +1,53 @@
 export const replaceIcons = () => {
-  const { Locale } = Spicetify;
-  function cleanLabel(label: string): string {
-    const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, "").trim();
-    return cleanedLabel;
-  }
-  if (!Locale) return;
-  let playlistPlayLabel = (Locale.get("playlist.a11y.play") || "") as string;
-  playlistPlayLabel = cleanLabel(playlistPlayLabel);
-  let playlistPauseLabel = (Locale.get("playlist.a11y.pause") || "") as string;
-  playlistPauseLabel = cleanLabel(playlistPauseLabel);
+	const { Locale } = Spicetify;
+	function cleanLabel(label: string): string {
+		const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, "").trim();
+		return cleanedLabel;
+	}
+	if (!Locale) return;
+	let playlistPlayLabel = (Locale.get("playlist.a11y.play") || "") as string;
+	playlistPlayLabel = cleanLabel(playlistPlayLabel);
+	let playlistPauseLabel = (Locale.get("playlist.a11y.pause") || "") as string;
+	playlistPauseLabel = cleanLabel(playlistPauseLabel);
 
-  const playLabel = Locale.get("play");
-  const pauseLabel = Locale.get("pause");
+	const playLabel = Locale.get("play");
+	const pauseLabel = Locale.get("pause");
 
-  const browseLabel = Locale.get("browse");
+	const browseLabel = Locale.get("browse");
 
-  const skipForwardLabel = Locale.get("playback-control.skip-forward");
-  const skipBackLabel = Locale.get("playback-control.skip-back");
+	const skipForwardLabel = Locale.get("playback-control.skip-forward");
+	const skipBackLabel = Locale.get("playback-control.skip-back");
 
-  const tracklistPlayLabel = (Locale.get("tracklist.a11y.play") ||
-    "") as string;
+	const tracklistPlayLabel = (Locale.get("tracklist.a11y.play") || "") as string;
 
-  const homeBtnLabelOne = Locale.get("view.web-player-home");
+	const homeBtnLabelOne = Locale.get("view.web-player-home");
 
-  const upgradeToPremLabel =
-    Locale.get("upgrade.tooltip.title") || "Upgrade to Premium";
+	const upgradeToPremLabel = Locale.get("upgrade.tooltip.title") || "Upgrade to Premium";
 
-  let tracklistPlayLabelOne: string;
-  let tracklistPlayLabelTwo: string;
-  if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
-    [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-      tracklistPlayLabel.split("{1}");
-  } else {
-    [tracklistPlayLabelOne, tracklistPlayLabelTwo] =
-      tracklistPlayLabel.split("{0}");
-  }
-  tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
-  tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
+	let tracklistPlayLabelOne: string;
+	let tracklistPlayLabelTwo: string;
+	if (["zh-CN", "zh-TW", "am", "fi"].includes(Locale.getLocale())) {
+		[tracklistPlayLabelOne, tracklistPlayLabelTwo] = tracklistPlayLabel.split("{1}");
+	} else {
+		[tracklistPlayLabelOne, tracklistPlayLabelTwo] = tracklistPlayLabel.split("{0}");
+	}
+	tracklistPlayLabelOne = cleanLabel(tracklistPlayLabelOne);
+	tracklistPlayLabelTwo = cleanLabel(tracklistPlayLabelTwo);
 
-  const enableRepeatLabel = Locale.get("playback-control.enable-repeat");
-  const enableOneRepeatLabel = Locale.get("playback-control.enable-repeat-one");
-  const disableRepeatLabel = Locale.get("playback-control.disable-repeat");
+	const enableRepeatLabel = Locale.get("playback-control.enable-repeat");
+	const enableOneRepeatLabel = Locale.get("playback-control.enable-repeat-one");
+	const disableRepeatLabel = Locale.get("playback-control.disable-repeat");
 
-  const BUTTON_STYLE_LABEL = "lucid_button_styles";
+	const BUTTON_STYLE_LABEL = "lucid_button_styles";
 
-  let ButtonStyles = document.getElementById(BUTTON_STYLE_LABEL);
-  if (!ButtonStyles) {
-    ButtonStyles = document.createElement("style");
-    ButtonStyles.id = BUTTON_STYLE_LABEL;
-    document.head.appendChild(ButtonStyles);
-  }
+	let ButtonStyles = document.getElementById(BUTTON_STYLE_LABEL);
+	if (!ButtonStyles) {
+		ButtonStyles = document.createElement("style");
+		ButtonStyles.id = BUTTON_STYLE_LABEL;
+		document.head.appendChild(ButtonStyles);
+	}
 
-  ButtonStyles.innerHTML = `
+	ButtonStyles.innerHTML = `
 .Root__globalNav button[aria-label="${upgradeToPremLabel}"],
 .Root__globalNav button[title="${upgradeToPremLabel}"] {
   display: none !important;

@@ -2,17 +2,17 @@ import { useBodyClass } from "@/hooks/useBodyClass";
 import { useSettingsStore } from "@/store/useSettingsStore";
 
 const NpvManager = () => {
-  const {
-    npvSettings: { mode, position, blur },
-  } = useSettingsStore();
+	const {
+		npvSettings: { mode, position, blur },
+	} = useSettingsStore();
 
-  document.body.style.setProperty("--compact-npv-blur", `${blur}px`);
+	document.body.style.setProperty("--compact-npv-blur", `${blur}px`);
 
-  useBodyClass(`${mode}-npv`);
+	useBodyClass(`${mode}-npv`);
 
-  useBodyClass(`${position}-npv`);
+	useBodyClass(`${position}-npv`);
 
-  return null;
+	return null;
 };
 
 export default NpvManager;
