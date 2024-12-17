@@ -1,3 +1,5 @@
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useImageStore } from "@/store/useImageStore";
 import { useLucidStore } from "@/store/useLucidStore";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import { applyExtractedColorsToCSS, resetCSSColorVariables } from "@/utils/dynamicColorUtils";
@@ -12,6 +14,7 @@ const ColorManager = () => {
 	} = useSettingsStore();
 
 	const { artworkData } = useLucidStore();
+	const { selectedLocalImage } = useImageStore();
 	const styleRef = useRef<HTMLStyleElement | null>(null);
 	const prevArtURL = useRef<string | null>(null);
 
@@ -40,9 +43,13 @@ const ColorManager = () => {
 			return;
 		}
 
-		if (isDynamicColor && artworkData.nowPlayingArtURL !== prevArtURL.current) {
+		if (isDynamicColor && (artworkData.nowPlayingArtURL !== prevArtURL.current || selectedLocalImage?.dataURL)) {
 			if (styleRef?.current && isDynamicColor && artworkData.nowPlayingArtURL) {
-				applyExtractedColorsToCSS(styleRef.current, isDynamicColor, artworkData.nowPlayingArtURL)
+				applyExtractedColorsToCSS(
+					styleRef.current,
+					isDynamicColor,
+					selectedLocalImage?.dataURL || artworkData.nowPlayingArtURL,
+				)
 					.then(() => {
 						logInfo("Dynamic colors updated!");
 					})
@@ -51,9 +58,9 @@ const ColorManager = () => {
 					});
 			}
 
-			prevArtURL.current = artworkData.nowPlayingArtURL;
+			prevArtURL.current = selectedLocalImage?.dataURL || artworkData.nowPlayingArtURL;
 		}
-	}, [isDynamicColor, artworkData.nowPlayingArtURL]);
+	}, [isDynamicColor, artworkData.nowPlayingArtURL, selectedLocalImage?.dataURL]);
 
 	return null;
 };
