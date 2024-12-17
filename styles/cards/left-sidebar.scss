@@ -2,6 +2,10 @@
 #Desktop_LeftSidebar_Id {
   @include bg-none;
 
+  .BoxComponent-group-listRow-naked-isInteractive-minBlockSize_56px-padding_8px {
+    padding: 8px 6px;
+  }
+
   .main-navBar-mainNav {
     @include bg-none;
     .main-yourLibraryX-entryPoints {

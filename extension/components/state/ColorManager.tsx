@@ -14,7 +14,7 @@ const ColorManager = () => {
 	} = useSettingsStore();
 
 	const { artworkData } = useLucidStore();
-	const { selectedLocalImage } = useImageStore();
+	const { selectedLocalImage, isUseLocalImage } = useImageStore();
 	const styleRef = useRef<HTMLStyleElement | null>(null);
 	const prevArtURL = useRef<string | null>(null);
 
@@ -48,7 +48,7 @@ const ColorManager = () => {
 				applyExtractedColorsToCSS(
 					styleRef.current,
 					isDynamicColor,
-					selectedLocalImage?.dataURL || artworkData.nowPlayingArtURL,
+					(isUseLocalImage && selectedLocalImage?.dataURL) || artworkData.nowPlayingArtURL,
 				)
 					.then(() => {
 						logInfo("Dynamic colors updated!");
@@ -58,9 +58,9 @@ const ColorManager = () => {
 					});
 			}
 
-			prevArtURL.current = selectedLocalImage?.dataURL || artworkData.nowPlayingArtURL;
+			prevArtURL.current = (isUseLocalImage && selectedLocalImage?.dataURL) || artworkData.nowPlayingArtURL;
 		}
-	}, [isDynamicColor, artworkData.nowPlayingArtURL, selectedLocalImage?.dataURL]);
+	}, [isDynamicColor, artworkData.nowPlayingArtURL, selectedLocalImage?.dataURL, isUseLocalImage]);
 
 	return null;
 };
