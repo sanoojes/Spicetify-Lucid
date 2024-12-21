@@ -11,10 +11,9 @@
     </style>
   </defs>
   <title>Playing Icon</title>
-  <rect id="bar1" class="cls-1" width="2" height="24" />
-  <rect id="bar2" class="cls-1" x="4" width="2" height="24" />
-  <rect id="bar3" class="cls-1" x="8" width="2" height="24" />
-  <rect id="bar4" class="cls-1" x="12" width="2" height="24" />
-  <rect id="bar5" class="cls-1" x="16" width="2" height="24" />
-  <rect id="bar6" class="cls-1" x="20" width="2" height="24" />
+  <rect id="bar1" width="2" height="24" />
+  <rect id="bar2" x="4" width="2" height="24" />
+  <rect id="bar3" x="8" width="2" height="24" />
+  <rect id="bar4" x="12" width="2" height="24" />
+  <rect id="bar5" x="16" width="2" height="24" />
 </svg>
