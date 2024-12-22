@@ -108,18 +108,25 @@ section[data-testid*="playlist"] {
 .x-filterBox-expandButton:hover {
   border-radius: $border-radius-avatar;
 }
+.view-homeShortcutsGrid-PlayButtonContainer {
+  border: none;
+  border-radius: 0px;
+  height: 16px;
+  width: 16px;
+}
+
+.Root__right-sidebar .KYkSwfV1FCtD15TMChbH {
+  height: 24px;
+  width: 24px;
+}
 
 .view-homeShortcutsGrid-PlayButtonContainer:has(
-    .view-homeShortcutsGrid-equaliser
+    .view-homeShortcutsGrid-equaliser[src*="gif"]
   ),
 .Root__right-sidebar .KYkSwfV1FCtD15TMChbH {
   background-color: var(--spice-accent);
   -webkit-mask-image: $equalizer-svg;
   mask-image: $equalizer-svg;
-  height: 24px;
-  width: 24px;
-  border: none;
-  border-radius: 0px;
 
   img,
   svg {
