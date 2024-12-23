@@ -65,7 +65,7 @@
 
 ## Join the Community
 
-- **Discord:** [https://discord.gg/knXP88Zbph](https://discord.gg/knXP88Zbph)
+- **Discord:** [https://discord.gg/PWEyKduwJh](https://discord.gg/PWEyKduwJh)
 - **GitHub Issues:** [https://github.com/sanoojes/Spicetify-Lucid/issues](https://github.com/sanoojes/Spicetify-Lucid/issues)
 
 ## **Installation**
