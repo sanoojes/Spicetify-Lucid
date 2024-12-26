@@ -1,6 +1,7 @@
 .Root__main-view {
   @include default-border-with-radius;
   background: $main-bg-color;
+  view-transition-name: unset;
 
   .N_8iI7NKHP0iG2jp3g0R,
   .pT8jWX5PbLB2Z91Ngl7n,
@@ -50,16 +51,12 @@
         width: 100%;
         pointer-events: none;
         overflow: hidden;
-        -webkit-mask-image: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 1) 0%,
-          rgba(0, 0, 0, 0) 100%
-        );
-        mask-image: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 1) 0%,
-          rgba(0, 0, 0, 0) 100%
-        );
+        -webkit-mask-image: linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0) 100%);
+        mask-image: linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0) 100%);
         opacity: var(--artwork-opacity, 1);
         transition: opacity 0.3s ease;
 
@@ -92,6 +89,7 @@
   // Card
   .lx7nfGbsUkI_2pC6caw9 {
     padding: 0.25rem;
+
     .IriswrXFrjhQwRTmrgIf {
       opacity: 0.75;
       @include default-border-with-radius;
