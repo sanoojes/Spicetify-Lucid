@@ -26,6 +26,9 @@ export const getFormattedStyles = (dynamicStyles: StyleOptions): CSSProperties =
 		styles.filter = appendFilter(styles.filter, `saturate(${dynamicStyles.saturation})`);
 	}
 
+	if (dynamicStyles.opacity !== undefined) {
+		styles.opacity = dynamicStyles.opacity;
+	}
 	if (dynamicStyles.width !== undefined) {
 		styles.width = `${dynamicStyles.width}px`;
 	}
@@ -90,6 +93,9 @@ export const getFormattedStylesAsCSSProperty = (
 	}
 	if (dynamicStyles.time !== undefined) {
 		styles["--time"] = `${dynamicStyles.time}s`;
+	}
+	if (dynamicStyles.opacity !== undefined) {
+		styles["--opacity"] = dynamicStyles.opacity;
 	}
 
 	// Return the styles as a string or as an object based on the flag
