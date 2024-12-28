@@ -20,10 +20,9 @@
 
   &,
   .main-nowPlayingView-coverArtContainer {
-    --media-container-height: calc(
-      (var(--panel-width, 420) * 1px) - 32px
-    ) !important;
+    --media-container-height: calc((var(--panel-width, var(--right-sidebar-width, 420)) * 1px) - 32px) !important;
   }
+
   .main-nowPlayingView-coverArtContainer.hjyiWzPtKHn_5kCe9vyg {
     height: var(--height, 60vh) !important;
   }
@@ -41,6 +40,7 @@
 
     .main-nowPlayingView-aboutArtistV2Button {
       @include bg-none;
+
       .main-nowPlayingView-aboutArtistV2Bio {
         text-wrap: balance;
       }
@@ -54,19 +54,17 @@
 
   /* CanvasNPV */
   .E08D6ucrHuPJYzzGO7HG {
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 75%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 75%,
-      rgba(0, 0, 0, 0) 100%
-    );
+    -webkit-mask-image: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 75%,
+        rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 75%,
+        rgba(0, 0, 0, 0) 100%);
+
     &::after {
       opacity: 0;
     }
+
     &::before {
       background: none;
     }
@@ -88,6 +86,7 @@
 
   .ouiL5cH1WduxtprQ0Iig {
     aspect-ratio: auto;
+
     video {
       height: 100% !important;
     }
@@ -103,6 +102,7 @@
     mask-image: $equalizer-svg;
     height: 24px;
     width: 24px;
+
     img,
     svg,
     path {
@@ -125,7 +125,7 @@
     background: none;
     border: none;
     // width: calc(var(--panel-width) * 1px); /* Width is set by default */
-    height: calc(var(--panel-width) * 1px);
+    height: calc(var(--panel-width, var(--right-sidebar-width, 420)) * 1px);
     width: fit-content;
     padding-top: 0px;
     background-color: rgba(var(--spice-rgb-sidebar), 0.5);
@@ -144,12 +144,12 @@
 
     &,
     .main-nowPlayingView-coverArtContainer {
-      --media-container-height: calc(var(--panel-width, 420) * 1px) !important;
+      --media-container-height: calc(var(--panel-width, var(--right-sidebar-width, 420)) * 1px) !important;
     }
 
     /* VideoNPV section */
     &:has(.ouiL5cH1WduxtprQ0Iig) {
-      height: calc((var(--panel-width) * 1px) + 2.5rem);
+      height: calc((var(--panel-width, var(--right-sidebar-width, 420)) * 1px) + 2.5rem);
     }
 
     .E08D6ucrHuPJYzzGO7HG {
@@ -158,15 +158,9 @@
     }
 
     .hjyiWzPtKHn_5kCe9vyg {
-      --height: calc(
-        max(
-            var(--min-height),
-            min(
-              var(--max-height),
-              (0.69 + (var(--panel-width) - 280) * 0.0003571429) * 100vh
-            )
-          ) - 72px
-      );
+      --height: calc(max(var(--min-height),
+            min(var(--max-height),
+              (0.69 + (var(--panel-width, var(--right-sidebar-width, 420)) - 280) * 0.0003571429) * 100vh)) - 72px);
     }
 
     .E08D6ucrHuPJYzzGO7HG::after {
@@ -180,7 +174,7 @@
 
     /* CanvasNPV */
     &:has(.canvasVideoContainerNPV) {
-      height: calc((var(--panel-width) * 1px) * 1.75);
+      height: calc((var(--panel-width, var(--right-sidebar-width, 420)) * 1px) * 1.75);
     }
 
     .os-scrollbar-horizontal {
