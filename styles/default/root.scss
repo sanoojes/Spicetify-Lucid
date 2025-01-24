@@ -1,9 +1,7 @@
 :root {
   // Button Border radius override
-  --encore-button-corner-radius: var(
-    --button-border-radius,
-    #{$border-radius-full}
-  );
+  --encore-button-corner-radius: var(--button-border-radius,
+    #{$border-radius-full});
 
   // Color overrides
   --spice-player: rgba(var(--spice-rgb-card), 0.5);
@@ -58,6 +56,7 @@ div[data-testid="hpto-parent-container"] {
 // Filter Chips
 .search-searchCategory-contentArea {
   .search-searchCategory-categoryGrid {
+
     button[data-encore-id="chip"],
     .ChipInnerComponent-sm-isUsingKeyboard,
     .ChipInnerComponent-sm-selected-isUsingKeyboard,
@@ -108,6 +107,7 @@ section[data-testid*="playlist"] {
 .x-filterBox-expandButton:hover {
   border-radius: $border-radius-avatar;
 }
+
 .view-homeShortcutsGrid-PlayButtonContainer {
   border: none;
   border-radius: 0px;
@@ -120,9 +120,7 @@ section[data-testid*="playlist"] {
   width: 24px;
 }
 
-.view-homeShortcutsGrid-PlayButtonContainer:has(
-    .view-homeShortcutsGrid-equaliser[src*="gif"]
-  ),
+.view-homeShortcutsGrid-PlayButtonContainer:has(.view-homeShortcutsGrid-equaliser[src*="gif"]),
 .Root__right-sidebar .KYkSwfV1FCtD15TMChbH {
   background-color: var(--spice-accent);
   -webkit-mask-image: $equalizer-svg;
@@ -136,10 +134,10 @@ section[data-testid*="playlist"] {
 
 // Windows Specific Styles
 .spotify__container--is-desktop.spotify__os--is-windows {
+
   .control-nav .main-topBar-container,
   .global-nav .Root__globalNav {
-    padding-inline: var(--top-bar-padding-start, calc(64px / var(--zoom)))
-      var(--top-bar-padding-end, calc(144px / var(--zoom)));
+    padding-inline: var(--top-bar-padding-start, calc(64px / var(--zoom))) var(--top-bar-padding-end, calc(144px / var(--zoom)));
   }
 }
 
@@ -170,10 +168,8 @@ section[data-testid*="playlist"] {
   --lyrics-color-background: transparent !important;
   --lyrics-color-active: var(--spice-text, #fafafa) !important;
   --lyrics-color-inactive: rgba(var(--spice-rgb-subtext), 0.75) !important;
-  --lyrics-highlight-background: rgba(
-    var(--spice-rgb-subtext),
-    0.75
-  ) !important;
+  --lyrics-highlight-background: rgba(var(--spice-rgb-subtext),
+      0.75) !important;
 
   .lyrics-config-button-container {
     bottom: $root-padding-bottom;
@@ -188,6 +184,7 @@ section[data-testid*="playlist"] {
   background-color: var(--spice-main);
   @include default-border-with-radius;
 }
+
 .progress-bar {
   &__slider {
     background-color: var(--spice-accent);
@@ -261,4 +258,18 @@ kbd,
   -webkit-box-shadow: none;
   box-shadow: none;
   @include default-border;
+}
+
+
+div[role="tablist"],
+.StyledTabList-tablist-tabList,
+div[data-overlayscrollbars-viewport],
+div[data-overlayscrollbars],
+.search-searchCategory-categoryGrid,
+.main-yourLibraryX-libraryContainer,
+.main-yourLibraryX-libraryFilter,
+.main-navBar-mainNav,
+.main-yourLibraryX-library {
+  will-change: transform;
+  transform: translate3d(0px, 0px, 0px);
 }
