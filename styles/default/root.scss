@@ -273,3 +273,7 @@ div[data-overlayscrollbars],
   will-change: transform;
   transform: translate3d(0px, 0px, 0px);
 }
+
+.playlist-playlist-playlistContent {
+  @include bg-none;
+}
