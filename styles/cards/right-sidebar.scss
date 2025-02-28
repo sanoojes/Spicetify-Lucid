@@ -1,6 +1,7 @@
 .Root__right-sidebar {
   @include default-border-with-radius;
   background: $right-sidebar-bg;
+  --section-background-base: rgba(var(--spice-rgb-selected-row), 0.05);
 
   .hpzTKCoO0rllEslIOMPo,
   .nw2W4ZMdICuBo08Tzxg9,
