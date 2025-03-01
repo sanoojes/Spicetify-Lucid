@@ -1,3 +1,7 @@
+.main-yourLibraryX-libraryContainer {
+  @include bg-none;
+}
+
 .Root__nav-bar,
 #Desktop_LeftSidebar_Id {
   @include bg-none;
@@ -8,6 +12,7 @@
 
   .main-navBar-mainNav {
     @include bg-none;
+
     .main-yourLibraryX-entryPoints {
       background: $left-sidebar-bg;
       transition: width 0.35s ease;
@@ -29,8 +34,9 @@
 
   .main-rootlist-wrapper {
     .main-yourLibraryX-listItem {
-      & > div {
+      &>div {
         border: $transparent-border;
+
         &.BoxComponent-group-listRow-tinted-isInteractive-minBlockSize_56px-padding_8px {
           @include default-border-with-radius;
         }
