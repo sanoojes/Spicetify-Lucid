@@ -1,0 +1,37 @@
+{
+  "version": "4",
+  "specifiers": {
+    "npm:@material/material-color-utilities@0.3": "0.3.0",
+    "npm:deepmerge-ts@^7.1.5": "7.1.5",
+    "npm:extract-colors@^4.1.1": "4.1.1",
+    "npm:immutable@5.0.3": "5.0.3"
+  },
+  "npm": {
+    "@material/material-color-utilities@0.3.0": {
+      "integrity": "sha512-ztmtTd6xwnuh2/xu+Vb01btgV8SQWYCaK56CkRK8gEkWe5TuDyBcYJ0wgkMRn+2VcE9KUmhvkz+N9GHrqw/C0g=="
+    },
+    "deepmerge-ts@7.1.5": {
+      "integrity": "sha512-HOJkrhaYsweh+W+e74Yn7YStZOilkoPb6fycpwNLKzSPtruFs48nYis0zy5yJz1+ktUhHxoRDJ27RQAWLIJVJw=="
+    },
+    "extract-colors@4.1.1": {
+      "integrity": "sha512-Gi56cSrlCWr1DnX+0hN6c12auiAtQwyq5SI1GXb/jxmKKADGbshOYvfOq8YPCicBi9LdBLJstCUu0r1HzjlNXg=="
+    },
+    "immutable@5.0.3": {
+      "integrity": "sha512-P8IdPQHq3lA1xVeBRi5VPqUm5HDgKnx0Ru51wZz5mjxHr5n3RWhjIpOFU7ybkUxfB+5IToy+OLaHYDBIWsv+uw=="
+    }
+  },
+  "remote": {
+    "https://esm.sh/deepmerge-ts@7.1.5": "df42e79f2be85a3403a9bb98f92cbcf93ae46c76dfb8a17af34159f22f4dafd5",
+    "https://esm.sh/deepmerge-ts@7.1.5/denonext/deepmerge-ts.mjs": "b399738ad7c2fa702a0e4db916382fd21eef865b844f4f1e4b8689ea1af6227c",
+    "https://esm.sh/extract-colors@4.1.1": "250571b32df47ed0e718330af8499512b4309456137a2355f5e1e861d051d13e",
+    "https://esm.sh/extract-colors@4.1.1/denonext/extract-colors.mjs": "8d2a9b4a5f0c0113a7ddc904d7a54df7e88d660dc0b39f67ecfb4eafde1ccc70"
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:@material/material-color-utilities@0.3",
+      "npm:deepmerge-ts@^7.1.5",
+      "npm:extract-colors@^4.1.1",
+      "npm:immutable@5.0.3"
+    ]
+  }
+}

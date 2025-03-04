@@ -1,35 +1,54 @@
-export type BaseInputSetting = {
-	label: string;
-	placeholder?: string;
-	defaultValue?: string | number | null;
+import type { ValidatorResult } from '@utils/validationUtils.ts';
+import type { ButtonType } from '@components/ui/button.ts';
+
+// Input types
+export type CheckboxInput = {
+  type: 'checkbox';
+  checked?: boolean;
+  onChange?: (value: boolean) => void;
 };
 
-export type TextOrUrlInputSetting = BaseInputSetting & {
-	type: "text" | "url";
-	settings?: undefined;
-	onChange?: (value: string) => void;
-	validation?: (value: string) => boolean;
+export type ButtonInput = {
+  type: 'button';
+  buttonType?: ButtonType;
+  contents?: string | HTMLElement;
+  onClick?: (e: Event) => void;
 };
 
-export type NumberInputSetting = BaseInputSetting & {
-	type: "number";
-	validation?: (value: number) => boolean;
-	onChange?: (value: string) => void;
-	settings?: {
-		step?: number;
-		min?: number;
-		max?: number;
-	};
+export type SelectInput = {
+  type: 'select';
+  options?: { value: string; label: string }[];
+  value?: string;
+  onChange?: (value: string) => void;
 };
 
-export type FileInputSetting = BaseInputSetting & {
-	type: "file";
-	settings?: {
-		accept?: string;
-		multiple?: boolean;
-	};
-	onChange?: (file: FileList | null) => void;
-	validation?: (file: FileList | null) => boolean;
+export type TextInput = {
+  type: 'text';
+  value?: string;
+  onChange?: (value: string) => void;
+  validator?: (value: string) => ValidatorResult;
 };
 
-export type InputSetting = TextOrUrlInputSetting | NumberInputSetting | FileInputSetting;
+export type NumberInput = {
+  type: 'number';
+  step?: number;
+  value?: number;
+  onChange?: (value: number) => void;
+  validator?: (value: number) => ValidatorResult;
+};
+export type ColorInput = {
+  type: 'color';
+  value?: string;
+  onChange?: (value: string) => void;
+};
+
+export type InputOptionsMap = {
+  checkbox: CheckboxInput;
+  button: ButtonInput;
+  select: SelectInput;
+  text: TextInput;
+  color: ColorInput;
+  number: NumberInput;
+};
+
+export type InputOptionsUnion = InputOptionsMap[keyof InputOptionsMap];
