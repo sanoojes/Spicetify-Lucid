@@ -893,6 +893,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               inputOptions: {
                 type: 'number',
                 value: state.playbar.options.compact.height,
+                validator: isValidNumberInRange512,
                 onChange: (height) => {
                   settings.setPlaybarOptions('compact', { height });
                 },
@@ -970,6 +971,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               inputOptions: {
                 type: 'number',
                 value: state.playbar.options.normal.height,
+                validator: isValidNumberInRange512,
                 onChange: (height) => {
                   settings.setPlaybarOptions('normal', { height });
                 },

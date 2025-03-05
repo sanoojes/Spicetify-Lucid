@@ -15,7 +15,6 @@ export function mountPageStyles(pageSettings: PageSettings = appSettingsStore.ge
   else document.body.classList.remove('hide-home-header');
 
   document.body.style.setProperty('--custom-panel-gap', `${pageSettings.panelGap}px`);
-  console.log(pageSettings.panelGap);
 }
 
 appSettingsStore.subscribe((state) => {

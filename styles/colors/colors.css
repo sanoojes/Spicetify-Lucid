@@ -4,7 +4,7 @@
   /* spice main */
   --spice-main: var(--clr-surface) !important;
   --spice-highlight: var(--clr-surface-1) !important;
-  --spice-notification: var(--clr-surface-0) !important;
+  --spice-notification: var(--clr-primary) !important;
   --spice-misc: var(--clr-on-surface-5) !important;
   --spice-notification-error: var(--clr-error) !important;
   --spice-accent: var(--clr-primary) !important;

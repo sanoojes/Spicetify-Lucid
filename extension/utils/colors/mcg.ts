@@ -83,6 +83,7 @@ function applyTheme(theme: Theme, options: ApplyThemeOptions) {
   const isTonal = options?.tonal ?? true;
 
   setSchemeProperties(target, scheme);
+  console.log(theme);
 
   setPaletteProperties(
     target,
