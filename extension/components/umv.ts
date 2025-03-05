@@ -57,9 +57,7 @@ export class UMVImageElement extends HTMLElement {
       style: {
         width: '110%',
         height: '110%',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        objectPosition: 'center',
         transform: 'translate3d(0px,0px,0px)',
         transition: `opacity ${this.transitionDuration}s ease-in-out`,
         position: 'absolute',

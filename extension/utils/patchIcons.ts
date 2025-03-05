@@ -225,5 +225,8 @@ button[aria-label="${locales.home}"] path {
 }
 .player-controls__buttons > button,
 .player-controls__buttons button[data-testid=control-button-playpause] { --encore-graphic-size-decorative-smaller: 1.5rem; --encore-control-size-smaller: 1.5rem; }
-.player-controls__buttons button[data-testid=control-button-playpause] span { background: none; }`;
+.player-controls__buttons button[data-testid=control-button-playpause],
+.player-controls__buttons button[data-testid=control-button-playpause]:hover,
+.player-controls__buttons button[data-testid=control-button-playpause] span:hover,
+.player-controls__buttons button[data-testid=control-button-playpause] span { background: none !important; }`;
 };

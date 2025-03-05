@@ -11,12 +11,14 @@ class BackgroundElement extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+
     Object.assign(this.style, {
       width: '100%',
       height: '100vh',
       display: 'block',
       position: 'fixed',
       inset: '0px',
+      backgroundColor: 'var(--clr-surface)',
     });
   }
 
