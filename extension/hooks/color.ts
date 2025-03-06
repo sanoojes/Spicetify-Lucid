@@ -8,49 +8,39 @@ const DEFAULT_COLOR = '#1bc858';
 
 let unsubscribe: (() => void) | null = null;
 
-export async function mountColor(
-  settings: AppSettings['color'] = appSettingsStore.getState().color
-) {
+async function applyExtractedColor(url: string, tonal: boolean) {
+  try {
+    const color = await extractFromImage(url);
+    if (!color?.hex) throw new Error('Extracted color is undefined');
+
+    applyThemeFromHex(color.hex, { tonal });
+  } catch (error) {
+    console.error('Error extracting color from image:', error);
+    Spicetify?.showNotification?.('Error extracting color from image.', true, 2500);
+    applyThemeFromHex(DEFAULT_COLOR, { tonal });
+  }
+}
+
+export function mountColor(settings: AppSettings['color'] = appSettingsStore.getState().color) {
+  if (unsubscribe) unsubscribe();
+
   if (settings.isDynamic) {
     const npvUrl = npvState.getState().url;
     if (npvUrl) {
-      try {
-        applyThemeFromHex((await extractFromImage(npvUrl)).hex, {
-          tonal: settings.isTonal,
-        });
-      } catch (error) {
-        console.error('Error extracting color from image:', error);
-
-        if (settings.isCustom && settings.customColor.hex) {
-          applyThemeFromHex(settings.customColor.hex, {
-            tonal: settings.isTonal,
-          });
-          return;
-        }
-        applyThemeFromHex(DEFAULT_COLOR, { tonal: settings.isTonal });
-        return;
-      }
+      applyExtractedColor(npvUrl, settings.isTonal);
     }
 
     unsubscribe = npvState.subscribe(async (state) => {
       if (state.url) {
-        try {
-          applyThemeFromHex((await extractFromImage(state.url)).hex, {
-            tonal: settings.isTonal,
-          });
-        } catch (error) {
-          console.error('Error extracting color from image during subscription:', error);
-        }
+        await applyExtractedColor(state.url, settings.isTonal);
       }
     });
+
     return;
   }
 
-  if (settings.isCustom && settings.customColor) {
-    applyThemeFromHex(settings.customColor.hex, { tonal: settings.isTonal });
-    return;
-  }
+  const themeColor =
+    settings.isCustom && settings.customColor?.hex ? settings.customColor.hex : DEFAULT_COLOR;
 
-  if (unsubscribe) unsubscribe();
-  applyThemeFromHex(DEFAULT_COLOR, { tonal: settings.isTonal });
+  applyThemeFromHex(themeColor, { tonal: settings.isTonal });
 }

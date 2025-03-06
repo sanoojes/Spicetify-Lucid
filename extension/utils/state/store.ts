@@ -106,7 +106,21 @@ class Store<T extends object> {
       const newValue = getValueByPath(this.state, path);
 
       if (JSON.stringify(oldValue) !== JSON.stringify(newValue)) {
-        subscriber(this.state);
+        const start = performance.now();
+
+        try {
+          subscriber(this.state);
+        } catch (error) {
+          console.error(`Subscriber at path "${path}" threw an error:`, error);
+        }
+
+        const duration = performance.now() - start;
+
+        if (duration > 10) {
+          console.warn(
+            `Slow subscriber at path "${path}" took ${duration.toFixed(2)}ms. Subscriber: ${subscriber}`
+          );
+        }
       }
     }
   }

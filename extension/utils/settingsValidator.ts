@@ -13,6 +13,7 @@ import type {
   PageOptions,
   PageSettings,
   PageType,
+  PlaybarOption,
   PlaybarOptions,
   PlaybarSettings,
   PlaybarTypes,
@@ -22,178 +23,170 @@ import type {
   UMVSettings,
 } from '@app/types/settings.ts';
 
-function isObject(value: any): boolean {
-  return typeof value === 'object' && value !== null;
+function isObject(val: any): val is Record<string, any> {
+  return val !== null && typeof val === 'object';
 }
 
-function isString(value: any): boolean {
-  return typeof value === 'string';
-}
-
-function isNumber(value: any): boolean {
-  return typeof value === 'number';
-}
-
-function isBoolean(value: any): boolean {
-  return typeof value === 'boolean';
-}
-
-function isValidColor(value: any): value is Color {
-  return isObject(value) && isString(value.hex) && isNumber(value.alpha);
-}
-
-function isValidCSSFilter(value: any): value is CSSFilter {
+function isValidCSSFilter(filter: any): filter is CSSFilter {
   return (
-    isObject(value) &&
-    (value.blur === undefined || isNumber(value.blur)) &&
-    (value.brightness === undefined || isNumber(value.brightness)) &&
-    (value.contrast === undefined || isNumber(value.contrast)) &&
-    (value.grayscale === undefined || isString(value.grayscale)) &&
-    (value.hueRotate === undefined || isString(value.hueRotate)) &&
-    (value.invert === undefined || isString(value.invert)) &&
-    (value.opacity === undefined || isNumber(value.opacity)) &&
-    (value.saturate === undefined || isNumber(value.saturate)) &&
-    (value.sepia === undefined || isString(value.sepia))
+    isObject(filter) &&
+    (filter.blur === undefined || typeof filter.blur === 'number') &&
+    (filter.brightness === undefined || typeof filter.brightness === 'number') &&
+    (filter.contrast === undefined || typeof filter.contrast === 'number') &&
+    (filter.grayscale === undefined || typeof filter.grayscale === 'string') &&
+    (filter.hueRotate === undefined || typeof filter.hueRotate === 'string') &&
+    (filter.invert === undefined || typeof filter.invert === 'string') &&
+    (filter.opacity === undefined || typeof filter.opacity === 'number') &&
+    (filter.saturate === undefined || typeof filter.saturate === 'number') &&
+    (filter.sepia === undefined || typeof filter.sepia === 'string')
   );
 }
 
-function isValidStaticBackgroundOptions(value: any): value is StaticBackgroundOptions {
+function isValidColor(color: any): color is Color {
+  return isObject(color) && typeof color.hex === 'string' && typeof color.alpha === 'number';
+}
+
+function isValidStaticBackgroundOptions(obj: any): obj is StaticBackgroundOptions {
   return (
-    isObject(value) &&
-    isBoolean(value.isCustomImage) &&
-    isString(value.customImageURL) &&
-    isValidCSSFilter(value.filter)
+    isObject(obj) &&
+    typeof obj.isCustomImage === 'boolean' &&
+    typeof obj.customImageURL === 'string' &&
+    isValidCSSFilter(obj.filter)
+  );
+}
+function isValidSolidBackgroundOptions(obj: any): obj is SolidBackgroundOptions {
+  return isObject(obj) && isValidColor(obj.color);
+}
+function isValidAnimatedBackgroundOptions(obj: any): obj is AnimatedBackgroundOptions {
+  return isObject(obj) && isValidCSSFilter(obj.filter);
+}
+function isValidBackgroundOptions(obj: any): obj is BackgroundOptions {
+  return (
+    isObject(obj) &&
+    isValidStaticBackgroundOptions(obj.static) &&
+    isValidSolidBackgroundOptions(obj.solid) &&
+    isValidAnimatedBackgroundOptions(obj.animated)
+  );
+}
+function isValidBackground(obj: any): obj is Background {
+  return (
+    isObject(obj) &&
+    typeof obj.mode === 'string' &&
+    (obj.mode === 'static' || obj.mode === 'solid' || obj.mode === 'animated') &&
+    isValidBackgroundOptions(obj.options)
   );
 }
 
-function isValidSolidBackgroundOptions(value: any): value is SolidBackgroundOptions {
-  return isObject(value) && isValidColor(value.color);
-}
-
-function isValidAnimatedBackgroundOptions(value: any): value is AnimatedBackgroundOptions {
-  return isObject(value) && isValidCSSFilter(value.filter);
-}
-
-function isValidBackgroundOptions(value: any): value is BackgroundOptions {
+function isValidBorderSettings(obj: any): obj is BorderSettings {
   return (
-    isObject(value) &&
-    isValidStaticBackgroundOptions(value.static) &&
-    isValidSolidBackgroundOptions(value.solid) &&
-    isValidAnimatedBackgroundOptions(value.animated)
+    isObject(obj) &&
+    typeof obj.thickness === 'number' &&
+    isValidColor(obj.color) &&
+    typeof obj.style === 'string'
   );
 }
 
-function isValidBackground(value: any): value is Background {
-  return isObject(value) && isString(value.mode) && isValidBackgroundOptions(value.options);
-}
-
-function isValidBorderSettings(value: any): value is BorderSettings {
+function isValidRightSidebarSettings(obj: any): obj is RightSidebarSettings {
   return (
-    isObject(value) &&
-    isNumber(value.thickness) &&
-    isValidColor(value.color) &&
-    isString(value.style)
+    isObject(obj) &&
+    (obj.mode === 'compact' || obj.mode === 'normal') &&
+    (obj.position === 'bottom left' ||
+      obj.position === 'bottom right' ||
+      obj.position === 'top left' ||
+      obj.position === 'top right') &&
+    typeof obj.blur === 'number' &&
+    typeof obj.size === 'number' &&
+    typeof obj.isCustomBg === 'boolean' &&
+    isValidColor(obj.color)
   );
 }
 
-function isValidRightSidebarSettings(value: any): value is RightSidebarSettings {
+function isValidPageOptions(options: any): options is PageOptions {
+  if (!isObject(options)) return false;
+  const types: PageType[] = ['normal', 'expanded', 'npv'];
+  return types.every((type) => {
+    const opt = options[type];
+    return (
+      isObject(opt) &&
+      typeof opt.isScaling === 'boolean' &&
+      typeof opt.isScroll === 'boolean' &&
+      (opt.filter === null || isValidCSSFilter(opt.filter))
+    );
+  });
+}
+function isValidUMVSettings(obj: any): obj is UMVSettings {
   return (
-    isObject(value) &&
-    isString(value.mode) &&
-    isString(value.position) &&
-    isNumber(value.blur) &&
-    isValidColor(value.color)
+    isObject(obj) &&
+    (obj.type === 'npv' || obj.type === 'normal') &&
+    isValidPageOptions(obj.options)
+  );
+}
+function isValidPageSettings(obj: any): obj is PageSettings {
+  return (
+    isObject(obj) &&
+    typeof obj.panelGap === 'number' &&
+    typeof obj.hideHomeHeader === 'boolean' &&
+    typeof obj.style === 'string' &&
+    isValidUMVSettings(obj.umv)
   );
 }
 
-function isValidPageOptionsItem(value: any): value is PageOptions[PageType] {
+function isValidColorSettings(obj: any): obj is ColorSettings {
   return (
-    isObject(value) &&
-    isBoolean(value.isScaling) &&
-    isBoolean(value.isScroll) &&
-    (value.filter === null || isValidCSSFilter(value.filter))
+    isObject(obj) &&
+    typeof obj.isDynamic === 'boolean' &&
+    typeof obj.isCustom === 'boolean' &&
+    typeof obj.isTonal === 'boolean' &&
+    isValidColor(obj.customColor)
   );
 }
 
-function isValidPageOptions(value: any): value is PageOptions {
+function isValidPlaybarOption(obj: any): obj is PlaybarOption {
   return (
-    isObject(value) &&
-    isValidPageOptionsItem(value.normal) &&
-    isValidPageOptionsItem(value.expanded) &&
-    isValidPageOptionsItem(value.npv)
+    isObject(obj) &&
+    isValidCSSFilter(obj.backdropFilter) &&
+    typeof obj.height === 'number' &&
+    typeof obj.paddingX === 'number' &&
+    isValidColor(obj.bgColor) &&
+    typeof obj.bgOpacity === 'number' &&
+    typeof obj.borderRadius === 'number'
+  );
+}
+function isValidPlaybarOptions(options: any): options is PlaybarOptions {
+  if (!isObject(options)) return false;
+  const types: PlaybarTypes[] = ['compact', 'normal'];
+  return types.every((type) => isValidPlaybarOption(options[type]));
+}
+function isValidPlaybarSettings(obj: any): obj is PlaybarSettings {
+  return (
+    isObject(obj) &&
+    (obj.type === 'compact' || obj.type === 'normal') &&
+    isValidPlaybarOptions(obj.options) &&
+    typeof obj.isFloating === 'boolean' &&
+    typeof obj.hideIcons === 'boolean'
   );
 }
 
-function isValidUMVSettings(value: any): value is UMVSettings {
-  return isObject(value) && isString(value.type) && isValidPageOptions(value.options);
+function isValidGrainSettings(obj: any): obj is GrainSettings {
+  return isObject(obj) && (obj.type === 'default' || obj.type === 'starry' || obj.type === 'none');
 }
 
-function isValidPageSettings(value: any): value is PageSettings {
-  return isObject(value) && isString(value.style) && isValidUMVSettings(value.umv);
-}
-
-function isValidColorSettings(value: any): value is ColorSettings {
+export function isValidAppSettings(obj: any): obj is AppSettings {
   return (
-    isObject(value) &&
-    isBoolean(value.isDynamic) &&
-    isBoolean(value.isCustom) &&
-    isBoolean(value.isTonal) &&
-    isValidColor(value.customColor) &&
-    isString(value.defaultPrimary)
-  );
-}
-
-function isValidPlaybarOptionsItem(value: any): value is PlaybarOptions[PlaybarTypes] {
-  return (
-    isObject(value) &&
-    isValidCSSFilter(value.backdropFilter) &&
-    isNumber(value.height) &&
-    isNumber(value.paddingX) &&
-    isValidColor(value.bgColor) &&
-    isNumber(value.bgOpacity) &&
-    isNumber(value.borderRadius)
-  );
-}
-
-function isValidPlaybarOptions(value: any): value is PlaybarOptions {
-  return (
-    isObject(value) &&
-    isValidPlaybarOptionsItem(value.compact) &&
-    isValidPlaybarOptionsItem(value.normal)
-  );
-}
-
-function isValidPlaybarSettings(value: any): value is PlaybarSettings {
-  return (
-    isObject(value) &&
-    isString(value.type) &&
-    isValidPlaybarOptions(value.options) &&
-    isBoolean(value.isFloating)
-  );
-}
-
-function isValidGrainSettings(value: any): value is GrainSettings {
-  return isObject(value) && isString(value.type);
-}
-
-export function isValidAppSettings(settings: any): settings is AppSettings {
-  if (!isObject(settings)) return false;
-  const app = settings as AppSettings;
-
-  return (
-    isValidBackground(app.background) &&
-    isValidColorSettings(app.color) &&
-    isString(app.position) &&
-    isValidBorderSettings(app.border) &&
-    isValidRightSidebarSettings(app.rightSidebar) &&
-    isObject(app.control) &&
-    isNumber(app.control.height) &&
-    isObject(app.font) &&
-    isString(app.font.fontFamily) &&
-    (app.font.fontUrl === null || isString(app.font.fontUrl)) &&
-    isBoolean(app.font.isGoogleFonts) &&
-    isValidGrainSettings(app.grains) &&
-    isValidPlaybarSettings(app.playbar) &&
-    isValidPageSettings(app.pages)
+    isObject(obj) &&
+    (obj.position === 'context-menu' || obj.position === 'nav') &&
+    isValidBackground(obj.background) &&
+    isValidBorderSettings(obj.border) &&
+    isValidPageSettings(obj.pages) &&
+    isValidColorSettings(obj.color) &&
+    isObject(obj.control) &&
+    typeof obj.control.height === 'number' &&
+    isObject(obj.font) &&
+    typeof obj.font.fontFamily === 'string' &&
+    (typeof obj.font.fontUrl === 'string' || obj.font.fontUrl === null) &&
+    typeof obj.font.isGoogleFonts === 'boolean' &&
+    isValidGrainSettings(obj.grains) &&
+    isValidPlaybarSettings(obj.playbar) &&
+    isValidRightSidebarSettings(obj.rightSidebar)
   );
 }
