@@ -13,6 +13,7 @@ import type {
   RightSidebarMode,
   RightSidebarPosition,
   SettingsPosition,
+  UMVSettings,
 } from '@app/types/settings.ts';
 import {
   isValidGoogleFontURL,
@@ -224,6 +225,10 @@ const fieldTexts: Record<string, string[]> = {
   'reset-app-settings': [
     'Reset All Settings',
     'Reset all settings to default values. This is irreversible and will reload the application.',
+  ],
+  'pages-scroll-type': [
+    'Background Image Source',
+    'Choose whether to use the Now Playing View art or the default playlist art as the background for pages.',
   ],
 };
 
@@ -701,6 +706,23 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 checked: state.pages.hideHomeHeader,
                 onChange: (hideHomeHeader) => {
                   settings.setPages({ hideHomeHeader });
+                },
+              },
+            },
+            {
+              render: true,
+              key: 'pages-scroll-type',
+              label: fieldTexts['pages-scroll-type'][0],
+              tooltip: fieldTexts['pages-scroll-type'][1],
+              inputOptions: {
+                type: 'select',
+                value: state.pages.umv.type,
+                options: [
+                  { value: 'normal', label: 'Default' },
+                  { value: 'npv', label: 'Now Playing Art' },
+                ],
+                onChange: (type) => {
+                  settings.setUMV({ type: type as UMVSettings['type'] });
                 },
               },
             },

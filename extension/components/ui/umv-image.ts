@@ -2,8 +2,9 @@ import { createElement } from '@utils/dom/createElement.ts';
 
 export class UMVImageElement extends HTMLElement {
   imgElement: HTMLImageElement;
-  transitionDuration = 0.3;
+  transitionDuration = 0.5;
   filter = 'blur(0px)';
+  transitionTimingFunction = 'ease-in-out';
 
   constructor(imageSrc?: string) {
     super();
@@ -14,6 +15,9 @@ export class UMVImageElement extends HTMLElement {
       className: 'umv-img',
       style: {
         filter: this.filter,
+        opacity: '1',
+        transition: `opacity ${this.transitionDuration}s ${this.transitionTimingFunction}`,
+        willChange: 'opacity, transform',
       },
     });
 
@@ -26,10 +30,16 @@ export class UMVImageElement extends HTMLElement {
   }
 
   set imageSrc(imageSrc: string | null) {
-    if (!imageSrc || imageSrc.trim() === '') {
+    if (!imageSrc) {
+      this.style.opacity = '0';
       return;
     }
-    if (this.imageSrc === imageSrc) return;
+    this.style.opacity = '1';
+
+    if (imageSrc.trim() === '') {
+      return;
+    }
+    if (this.imgElement.src === imageSrc) return;
 
     const preloader = new Image();
     preloader.onload = () => {
@@ -43,30 +53,39 @@ export class UMVImageElement extends HTMLElement {
 
   private _performTransition(src: string) {
     if (this.imgElement.src === src) return;
+
+    const oldElement = this.imgElement;
     const newElement = createElement('img', {
+      className: 'umv-img',
       style: {
-        width: '110%',
-        height: '110%',
+        width: '100%',
+        height: '100%',
         objectPosition: 'center',
-        transform: 'translate3d(0px,0px,0px)',
-        transition: `opacity ${this.transitionDuration}s ease-in-out`,
         position: 'absolute',
-        top: '-10%',
-        left: '-10%',
-        opacity: '0',
+        top: '0',
+        left: '0',
         objectFit: 'cover',
         filter: this.filter,
+        opacity: '0',
+        transform: 'scale(1.05)',
+        transition: `opacity ${this.transitionDuration}s ${this.transitionTimingFunction}, transform ${this.transitionDuration}s ${this.transitionTimingFunction}`,
+        willChange: 'opacity, transform',
       },
     });
     newElement.src = src;
     this.appendChild(newElement);
 
-    newElement.style.opacity = '1';
+    requestAnimationFrame(() => {
+      newElement.style.opacity = '1';
+      newElement.style.transform = 'scale(1)';
+    });
+
+    oldElement.style.opacity = '0';
+    oldElement.style.transform = 'scale(0.95)';
 
     setTimeout(() => {
-      this.removeChild(this.imgElement);
+      oldElement.remove();
       this.imgElement = newElement;
-      this.unhideImage();
     }, this.transitionDuration * 1000);
   }
 

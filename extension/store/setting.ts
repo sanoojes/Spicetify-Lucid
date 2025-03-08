@@ -59,7 +59,7 @@ const defaultAppSettings: AppSettings = {
     hideHomeHeader: false,
     style: 'card',
     umv: {
-      type: 'npv',
+      type: 'normal',
       options: {
         expanded: {
           isScroll: false,

@@ -138,6 +138,7 @@ export class UMVElement extends HTMLElement {
     if (!isNpv) {
       this.unsubscribeNPV?.();
       this.unsubscribeNPV = null;
+      this._updateImageBasedOnUrls();
       return;
     }
 
@@ -172,6 +173,12 @@ export class UMVElement extends HTMLElement {
   async updateImageUrlFromPage(url: string | null) {
     try {
       let artworkURL: string | null = null;
+      if (artworkURL === '/') {
+        this.pageArtUrl = null;
+        this._updateImageBasedOnUrls();
+
+        return;
+      }
 
       if (url) {
         artworkURL = await getArtworkBySpotifyURL(url);
@@ -179,7 +186,7 @@ export class UMVElement extends HTMLElement {
 
       this.pageArtUrl = artworkURL;
       this._updateImageBasedOnUrls();
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error updating image URL from page:', error);
       console.error('URL that caused the error:', url);
     }
