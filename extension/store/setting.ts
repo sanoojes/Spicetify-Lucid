@@ -64,17 +64,17 @@ const defaultAppSettings: AppSettings = {
         expanded: {
           isScroll: false,
           isScaling: true,
-          filter: { blur: 0, brightness: 80, saturate: 100 },
+          filter: { blur: 0 },
         },
         normal: {
           isScroll: false,
           isScaling: true,
-          filter: { blur: 8, brightness: 80, saturate: 150 },
+          filter: { blur: 8 },
         },
         npv: {
           isScroll: false,
           isScaling: true,
-          filter: { blur: 8, brightness: 80, saturate: 150 },
+          filter: { blur: 8 },
         },
       },
     },

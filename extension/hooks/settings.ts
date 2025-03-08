@@ -149,13 +149,21 @@ const fieldTexts: Record<string, string[]> = {
     'Choose how the background is displayed on different pages.',
   ],
   'pages-enable-home-header': ['Home Header Background', 'Enable/Disable Home header background.'],
-  'pages-image-scroll-enable': [
-    'Enable Image Scroll',
-    'Allow the background image to scroll with page content.',
+  'pages-scroll-fullscreen-image': [
+    'Scroll Fullscreen Background Image',
+    'Allow the background image to scroll with page content when the Under Main View is fullscreen (expanded).',
   ],
-  'pages-image-scaling-enable': [
-    'Enable Image Scaling',
-    'Enable automatic scaling of the background image to fit the page width.',
+  'pages-scale-fullscreen-image': [
+    'Scale Fullscreen Background Image',
+    'Automatically scale the background image to fit the page width when the Under Main View is fullscreen (expanded).',
+  ],
+  'pages-scroll-normal-image': [
+    'Scroll Normal Background Image',
+    'Allow the background image to scroll with page content in normal Under Main View mode.',
+  ],
+  'pages-scale-normal-image': [
+    'Scale Normal Background Image',
+    'Automatically scale the background image to fit the page width in normal Under Main View mode.',
   ],
   'right-sidebar-view-mode': [
     'View Mode',
@@ -698,27 +706,53 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
             },
             {
               render: true,
-              key: 'pages-image-scroll-enable',
-              label: fieldTexts['pages-image-scroll-enable'][0],
-              tooltip: fieldTexts['pages-image-scroll-enable'][1],
+              key: 'pages-scroll-normal-image',
+              label: fieldTexts['pages-scroll-normal-image'][0],
+              tooltip: fieldTexts['pages-scroll-normal-image'][1],
               inputOptions: {
                 type: 'checkbox',
-                checked: state.pages.umv.options[state.pages.umv.type].isScroll,
+                checked: state.pages.umv.options.normal.isScroll,
                 onChange: (isScroll) => {
-                  settings.setUMVOption(state.pages.umv.type, { isScroll });
+                  settings.setUMVOption('normal', { isScroll });
                 },
               },
             },
             {
               render: true,
-              key: 'pages-image-scaling-enable',
-              label: fieldTexts['pages-image-scaling-enable'][0],
-              tooltip: fieldTexts['pages-image-scaling-enable'][1],
+              key: 'pages-scale-normal-image',
+              label: fieldTexts['pages-scale-normal-image'][0],
+              tooltip: fieldTexts['pages-scale-normal-image'][1],
               inputOptions: {
                 type: 'checkbox',
-                checked: state.pages.umv.options[state.pages.umv.type].isScaling,
+                checked: state.pages.umv.options.normal.isScaling,
                 onChange: (isScaling) => {
-                  settings.setUMVOption(state.pages.umv.type, { isScaling });
+                  settings.setUMVOption('normal', { isScaling });
+                },
+              },
+            },
+            {
+              render: true,
+              key: 'pages-scroll-fullscreen-image',
+              label: fieldTexts['pages-scroll-fullscreen-image'][0],
+              tooltip: fieldTexts['pages-scroll-fullscreen-image'][1],
+              inputOptions: {
+                type: 'checkbox',
+                checked: state.pages.umv.options.expanded.isScroll,
+                onChange: (isScroll) => {
+                  settings.setUMVOption('expanded', { isScroll });
+                },
+              },
+            },
+            {
+              render: true,
+              key: 'pages-scale-fullscreen-image',
+              label: fieldTexts['pages-scale-fullscreen-image'][0],
+              tooltip: fieldTexts['pages-scale-fullscreen-image'][1],
+              inputOptions: {
+                type: 'checkbox',
+                checked: state.pages.umv.options.expanded.isScaling,
+                onChange: (isScaling) => {
+                  settings.setUMVOption('expanded', { isScaling });
                 },
               },
             },

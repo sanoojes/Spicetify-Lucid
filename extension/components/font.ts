@@ -38,7 +38,7 @@ function mountFont(font: AppSettings['font'] = appSettingsStore.getState().font)
     ) as HTMLLinkElement | null;
     if (!stylesheetLink) {
       stylesheetLink = createElement('link', {
-        id: '#lucid-custom-font-style',
+        id: 'lucid-custom-font-style',
         rel: 'stylesheet',
         href: font.fontUrl,
         crossOrigin: 'anonymous',

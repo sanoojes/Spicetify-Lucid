@@ -8,7 +8,7 @@
   --custom-panel-gap: 8px;
   --npv-blur: 16px;
   --npv-size: 240px;
-  --umv-offset: 146px;
+  --umv-offset: calc(var(--npb-height, 80px) + var(--nav-height, 64px));
 }
 
 :root,
@@ -442,18 +442,18 @@ body[npb-is-floating] {
       backdrop-filter: blur(var(--npb-blur, 1rem)) saturate(var(--npb-saturate, 1.5))
         brightness(var(--npb-brightness, 60%));
     }
-
-    .main-nowPlayingBar-right {
-      min-width: fit-content;
-      width: max-content;
-    }
   }
 
   .os-scrollbar-track,
   .nw2W4ZMdICuBo08Tzxg9,
+  .lyrics-config-button-container,
+  .lyrics-lyricsContainer-SyncedLyricsPage,
   div[data-testid="NPV_Panel_OpenDiv"],
   .main-yourLibraryX-libraryRootlist {
     padding-bottom: var(--npb-height, 5rem) !important;
+  }
+  .marketplace-add-snippet-btn {
+    bottom: var(--npb-height, 5rem) !important;
   }
 
   .main-view-container__scroll-node-child {
@@ -518,6 +518,13 @@ body[npb-type="compact"] {
 
   .main-nowPlayingBar-nowPlayingBar {
     height: var(--npb-height, 4rem) !important;
+  }
+
+  .main-nowPlayingBar-right {
+    max-width: fit-content;
+  }
+  .progress-bar {
+    min-width: 4cqw;
   }
 
   .Root__now-playing-bar[hide-icons] {
@@ -677,10 +684,6 @@ body[npv-mode="compact"] {
     width: var(--npv-size, 420px) !important;
     height: var(--height, var(--npv-size, 420px)) !important;
     border-radius: var(--btn-md-radius, .75rem);
-  }
-
-  .main-nowPlayingView-coverArtContainer {
-    margin-top: -2.5em;
   }
 
   .Root__right-sidebar:has(video) {
@@ -1324,4 +1327,15 @@ body[path*="genre"] {
     min-height: 10rem;
     max-height: 12rem;
   }
+}
+
+/* Lyrics plus */
+.lyrics-lyricsContainer-LyricsBackground {
+  background-color: transparent;
+  background: color-mix(in srgb, var(--lyrics-color-background), transparent 75%);
+  margin-bottom: -1rem;
+}
+.lyrics-lyricsContainer-Provider {
+  align-self: auto;
+  color: var(--clr-on-surface-5);
 }

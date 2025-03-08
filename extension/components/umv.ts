@@ -1,208 +1,233 @@
-import { createElement } from '@utils/dom/createElement.ts';
 import { getArtworkBySpotifyURL } from '@utils/artworkUtils.ts';
 import appSettingsStore from '@store/setting.ts';
-import type { PageOptions, PageSettings, PageType } from '@app/types/settings.ts';
+import type { PageOption, PageType, UMVSettings } from '@app/types/settings.ts';
 import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
-import { serializeCSSFilters } from '@utils/serializeCSSFilters.ts';
 import { extractUrl } from '@utils/dom/extractUrl.ts';
 import { waitForElement } from '@utils/dom/waitForElement.ts';
+import { npvState } from '@store/npv.ts';
+import { UMVImageElement } from '@components/ui/umv-image.ts';
 
 const SCROLL_SELECTOR =
   '.Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]';
+const UMV_OVERRIDE_STYLE_ID = 'umv-overrides';
+const ROOT_MAIN_VIEW_SELECTOR = '.Root__main-view';
+const UNDER_MAIN_VIEW_SELECTOR = '.under-main-view';
+const MAIN_ENTITY_HEADER_GRADIENT_SELECTOR = '.main-entityHeader-gradient, .XUwMufC5NCgIyRMyGXLD';
 
-export class UMVImageElement extends HTMLElement {
-  imgElement: HTMLImageElement;
-  transitionDuration = 0.3;
-  filter = 'blur(0px)';
-
-  constructor(imageSrc?: string) {
-    super();
-
-    if (imageSrc) this.imageSrc = imageSrc;
-
-    this.imgElement = createElement('img', {
-      className: 'umv-img',
-      style: {
-        filter: this.filter,
-      },
-    });
-
-    this.append(this.imgElement);
+const umvStylesContent = `
+  .under-main-view { display: none; }
+  umv-container {
+    width: 100%;
+    display: block;
+    position: absolute;
+    inset: 0px;
+    height: 50cqh;
+    -webkit-mask-image: linear-gradient(rgb(0, 0, 0) 40cqh, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(rgb(0, 0, 0) 40cqh, rgba(0, 0, 0, 0) 100%);
+    transform: translate3d(0px, 0px, 0px) scale(1);
+    will-change: transform;
   }
-
-  setFilter(filter: string) {
-    this.filter = filter;
-    this.imgElement.style.filter = filter;
+  umv-container[source="expanded"] {
+    height: calc(100cqh - var(--umv-offset, 526px));
+    transform: translate3d(0px, 0px, 0px) scale(1);
+    -webkit-mask-image: none;
+    mask-image: none;
   }
-
-  set imageSrc(imageSrc: string | null) {
-    if (!imageSrc || imageSrc.trim() === '') {
-      return;
-    }
-    if (this.imageSrc === imageSrc) return;
-
-    const preloader = new Image();
-    preloader.onload = () => {
-      this._performTransition(imageSrc);
-    };
-    preloader.onerror = () => {
-      console.error('Failed to load image:', imageSrc);
-    };
-    preloader.src = imageSrc;
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage{
+    height: calc(100cqh - var(--umv-offset) - 1rem);
   }
-
-  private _performTransition(src: string) {
-    if (this.imgElement.src === src) return;
-    const newElement = createElement('img', {
-      style: {
-        width: '110%',
-        height: '110%',
-        objectPosition: 'center',
-        transform: 'translate3d(0px,0px,0px)',
-        transition: `opacity ${this.transitionDuration}s ease-in-out`,
-        position: 'absolute',
-        top: '-10%',
-        left: '-10%',
-        opacity: '0',
-        objectFit: 'cover',
-        filter: this.filter,
-      },
-    });
-    newElement.src = src;
-    this.appendChild(newElement);
-
-    newElement.style.opacity = '1';
-
-    setTimeout(() => {
-      this.removeChild(this.imgElement);
-      this.imgElement = newElement;
-      this.unhideImage();
-    }, this.transitionDuration * 1000);
+  body[npb-is-floating] .main-entityHeader-container.main-entityHeader-withBackgroundImage{
+    height: calc(100cqh - var(--umv-offset));
   }
+  .main-entityHeader-container{ height: 40cqh; }
+  .main-entityHeader-backgroundColor,.main-actionBarBackground-background { background: none !important;}
+  .playlist-playlist-playlistContent,.EmeHQXR87mUskYK6xEde { background-color: rgba(var(--clr-surface-1-rgb),.5) !important; }
+`;
 
-  hideImage() {
-    this.imgElement.style.opacity = '0';
-  }
-  unhideImage() {
-    this.imgElement.style.opacity = '1';
-  }
-}
-
-customElements.define('umv-image', UMVImageElement);
-
-export class UnderMainViewElement extends HTMLElement {
+export class UMVElement extends HTMLElement {
   private umvImage: UMVImageElement;
-  private scrollElement: HTMLDivElement | null = null;
-  private scrollTimeout: number | null = null;
-  private mainView: HTMLElement | null = null;
-  scrolling = false;
-  scaling = false;
-  options: PageOptions | null = null;
+  private scrollElem: HTMLElement | null;
+  private mainViewElement: HTMLElement | null;
+
+  private _source: PageType;
+  private _imageUrl: string | null;
+  private _settings: UMVSettings | null;
+  private _isNpv = false;
+
+  options!: PageOption;
+  pageUrl: string;
+
+  umvArtUrl: null | string;
+  pageArtUrl: null | string;
+
+  unlistenHistory!: () => void;
+  unobserveUMV!: () => void;
+  unsubscribeNPV: (() => void) | null;
 
   constructor() {
     super();
 
-    waitForElement(['.Root__main-view'], ([element]) => {
-      if (element) this.mainView = element;
-    });
+    const umvStyles = lazyLoadStyleById(UMV_OVERRIDE_STYLE_ID);
+    umvStyles.textContent = umvStylesContent;
 
-    const umvStyles = lazyLoadStyleById('umv-overrides');
-
-    waitForElement(['.Root__now-playing-bar', '.Root__globalNav'], ([playbar, nav]) => {
-      document.body.style.setProperty(
-        '--umv-offset',
-        `${(playbar?.clientHeight || 80) + (nav?.clientHeight || 0)}px`
-      );
-    });
-
-    umvStyles.textContent = `
-		.under-main-view { display: none; }
-        umv-container { width: 100%; display: block; position: absolute; inset: 0px; height: 50cqh; -webkit-mask-image: linear-gradient(rgb(0, 0, 0) 40cqh, rgba(0, 0, 0, 0) 100%); mask-image: linear-gradient(rgb(0, 0, 0) 40cqh, rgba(0, 0, 0, 0) 100%); transform: translate3d(0px, 0px, 0px) scale(1); will-change:transform;}
-        umv-container[type="expanded"] { height: calc(100cqh - var(--umv-offset,526)); transform: translate3d(0px, 0px, 0px) scale(1); -webkit-mask-image: none; mask-image: none; }
-		.main-entityHeader-container.main-entityHeader-withBackgroundImage{ height: calc(100cqh - var(--umv-offset) - 1rem);}
-		body[npb-is-floating] .main-entityHeader-container.main-entityHeader-withBackgroundImage{ height: calc(100cqh - var(--umv-offset));}
-		.main-entityHeader-container{ height: 40cqh; }
-		.main-entityHeader-backgroundColor,.main-actionBarBackground-background { background: none !important;}
-		.playlist-playlist-playlistContent,.EmeHQXR87mUskYK6xEde { background-color: rgba(var(--clr-surface-1-rgb),.5) !important; }
-		`;
-
-    this._listenForArtworkChange();
+    this.mainViewElement = null;
 
     this.umvImage = new UMVImageElement();
-    this.scrollElement = document.querySelector(SCROLL_SELECTOR) as HTMLDivElement | null;
+    this.append(this.umvImage);
 
+    this._source = 'normal';
+    this._imageUrl = null;
+    this.pageUrl = '';
+
+    this._settings = null;
     this.settings = appSettingsStore.getState().pages.umv;
     appSettingsStore.subscribe((state) => {
       this.settings = state.pages.umv;
     }, 'pages.umv');
 
-    this._refreshOptions('normal');
-    this.append(this.umvImage);
+    this.scrollElem = null;
+    this.umvArtUrl = null;
+    this.pageArtUrl = null;
+
+    this.unsubscribeNPV = null;
   }
 
-  set settings(settings: PageSettings['umv']) {
-    this.type = settings.type;
-    this.options = settings.options;
+  connectedCallback() {
+    waitForElement([ROOT_MAIN_VIEW_SELECTOR], ([mainElem]) => {
+      this.mainViewElement = mainElem;
+    });
+    waitForElement([SCROLL_SELECTOR], ([scrollElem]) => {
+      this.scrollElem = scrollElem;
+      this._scrollEventCb = this._scrollEventCb.bind(this);
+      this._listenScrollChange();
+    });
+    this._listenForUMVChange();
+    this.updateImageUrlFromPage(Spicetify?.Platform?.History?.location?.pathname || '/');
   }
 
-  async updateURL(url: string | null) {
-    try {
-      if (url === this.page) return;
-      let artworkURL: string | null;
-
-      if (url) {
-        artworkURL = await getArtworkBySpotifyURL(url);
-        this.setAttribute('page', url);
-      } else {
-        artworkURL = await getArtworkBySpotifyURL(
-          Spicetify?.Platform?.History?.location?.pathname || '/'
-        );
-      }
-
-      if (artworkURL === this.getImage()) return;
-      if (this.type !== 'expanded') this.setImage('normal', artworkURL);
-    } catch (error) {
-      console.error('Error updating NPV state:', error);
+  disconnectedCallback() {
+    if (this.scrollElem) {
+      this.scrollElem.removeEventListener('scroll', this._scrollEventCb);
+    }
+    if (this.unobserveUMV) {
+      this.unobserveUMV();
+    }
+    if (this.unlistenHistory) {
+      this.unlistenHistory();
+    }
+    if (this.unsubscribeNPV) {
+      this.unsubscribeNPV();
+      this.unsubscribeNPV = null;
     }
   }
 
-  private _listenForArtworkChange() {
-    this.updateURL(Spicetify?.Platform?.History?.location?.pathname || '/');
+  set settings(settings: UMVSettings) {
+    this._settings = settings;
+    this.options = settings.options[this._source];
+    if (settings.type === 'npv') this.isNpv = true;
+    else this.isNpv = false;
+  }
 
-    const unlisten = Spicetify.Platform.History.listen((url: { pathname: string } | null) => {
-      if (url?.pathname) this.page = url.pathname;
-    });
+  get settings() {
+    return this._settings ?? appSettingsStore.getState().pages.umv;
+  }
 
-    const observer = this._observeUnderMainView();
+  set isNpv(isNpv: boolean) {
+    this._isNpv = isNpv;
 
-    window.addEventListener('beforeunload', () => {
-      observer?.disconnect();
-      unlisten();
-      this.setScrolling(false, true);
+    if (!isNpv) {
+      this.unsubscribeNPV?.();
+      this.unsubscribeNPV = null;
+      return;
+    }
+
+    this.imageUrl = npvState.getState().url;
+    this.unsubscribeNPV = npvState.subscribe((state) => {
+      this.imageUrl = state.url;
     });
   }
 
-  private _observeUnderMainView(): null | MutationObserver {
-    const targetNode = document.querySelector('.under-main-view');
+  get isNpv() {
+    return this._isNpv;
+  }
+
+  set source(source: PageType) {
+    this._source = source;
+    this.setAttribute('source', source);
+    this.umvImage.setFilter(`blur(${this.settings.options[source].filter?.blur ?? 0}px)`);
+    this.options = this.settings.options[source];
+  }
+  get source() {
+    return this._source;
+  }
+
+  set imageUrl(imageUrl: string | null) {
+    this._imageUrl = imageUrl;
+    this.umvImage.imageSrc = this._imageUrl;
+  }
+  get imageUrl() {
+    return this._imageUrl;
+  }
+
+  async updateImageUrlFromPage(url: string | null) {
+    try {
+      let artworkURL: string | null = null;
+
+      if (url) {
+        artworkURL = await getArtworkBySpotifyURL(url);
+      }
+
+      this.pageArtUrl = artworkURL;
+      this._updateImageBasedOnUrls();
+    } catch (error: any) {
+      console.error('Error updating image URL from page:', error);
+      console.error('URL that caused the error:', url);
+    }
+  }
+
+  private _listenForPageChanges() {
+    this.pageUrl = Spicetify?.Platform?.History?.location?.pathname || '/';
+
+    this.unlistenHistory =
+      Spicetify.Platform?.History?.listen((url: { pathname: string } | null) => {
+        if (url?.pathname) {
+          this.pageUrl = url.pathname;
+          this.umvArtUrl = null;
+          this.pageArtUrl = null;
+          this.updateImageUrlFromPage(url.pathname);
+        }
+      }) ??
+      (() => {
+        console.error(
+          'Error unloading History listener. Spicetify.Platform?.History might be undefined.'
+        );
+      });
+  }
+
+  private _observeUMVImage() {
+    const targetNode = document.querySelector(UNDER_MAIN_VIEW_SELECTOR);
     if (!targetNode) {
-      console.warn('Element .under-main-view not found');
+      console.warn(
+        `Element "${UNDER_MAIN_VIEW_SELECTOR}" not found. UMV observation will not work.`
+      );
       return null;
     }
 
     const observerCB = () => {
-      const element = targetNode.querySelector(
-        '.main-entityHeader-gradient, .XUwMufC5NCgIyRMyGXLD'
-      ) as HTMLElement;
+      const element = targetNode.querySelector(MAIN_ENTITY_HEADER_GRADIENT_SELECTOR) as HTMLElement;
 
       if (element) {
         const underMainViewURL = extractUrl(element.style.backgroundImage);
         if (underMainViewURL) {
-          this.setImage('expanded', underMainViewURL);
+          this.umvArtUrl = underMainViewURL;
         } else {
-          this.type = this.settings?.type || 'normal';
-          this.updateURL(Spicetify?.Platform?.History?.location || '/');
+          this.umvArtUrl = null;
         }
-      } else this.type = this.settings?.type || 'normal';
+        this._updateImageBasedOnUrls();
+      } else {
+        this.umvArtUrl = null;
+        this._updateImageBasedOnUrls();
+      }
     };
 
     const observer = new MutationObserver(observerCB);
@@ -212,114 +237,73 @@ export class UnderMainViewElement extends HTMLElement {
       subtree: true,
     });
 
-    return observer;
+    this.unobserveUMV = () => observer.disconnect();
   }
 
-  set type(type: PageType) {
-    this._refreshOptions(type);
-
-    document.body.setAttribute('umv-type', type);
-    this.setAttribute('type', type);
-  }
-  get type() {
-    return (this.getAttribute('type') || 'normal') as PageType;
+  private _listenForUMVChange() {
+    this._listenForPageChanges();
+    this._observeUMVImage();
   }
 
-  setImage(source: PageType, url: string | null) {
-    if (!source) return;
-    if (!url) this.umvImage.imageSrc = null;
+  private _scrollEventCb(e: Event) {
+    if (!this.settings) return;
+    const scrollTop = this.scrollElem?.scrollTop ?? (e.target as HTMLElement).scrollTop ?? 0;
+    const sourceOptions = this.settings.options[this.source];
 
-    this.type = source;
-    this.umvImage.imageSrc = url;
-  }
+    requestAnimationFrame(() => {
+      if (sourceOptions.isScaling) {
+        this.umvImage.imgElement.style.transform = `scale(${Math.min(100 + scrollTop / 10, 150)}%)`;
+      } else {
+        this.umvImage.imgElement.style.transform = 'scale(1)';
+      }
 
-  getImage() {
-    return this.umvImage.imageSrc;
-  }
+      if (sourceOptions.isScroll) {
+        this.style.transform = `translate3d(0px,-${Math.min(scrollTop, window.innerHeight)}px,0px)`;
+      } else {
+        this.style.transform = 'translate3d(0px,0px,0px)';
+      }
 
-  get page() {
-    return this.getAttribute('page') || '';
-  }
+      const blurValue = Math.min(scrollTop / 10 + (sourceOptions.filter?.blur || 0), 32);
+      const brightnessValue = Math.max(60, 100 - (scrollTop / window.innerHeight) * 40);
+      const opacityValue = Math.max(70, 100 - (scrollTop / window.innerHeight) * 30);
 
-  set page(page: string) {
-    if (this.page === page) return;
-
-    this.umvImage.hideImage();
-
-    this.updateURL(page);
-
-    this.setAttribute('page', page);
-  }
-
-  private _refreshOptions(source: PageType) {
-    if (!this.options) return;
-
-    const curr = this.options[source];
-
-    Object.assign(
-      this.style,
-      source === 'expanded'
-        ? {
-            height: `calc(100cqh - var(--umv-offset,${this.offsetHeight}))`,
-            maskImage: '',
-          }
-        : {
-            height: '75cqh',
-            maskImage: 'linear-gradient(to bottom,rgba(0, 0, 0, 1) 25cqh, rgba(0, 0, 0, 0) 100%)',
-          }
-    );
-
-    this.style.filter = serializeCSSFilters(curr.filter || {});
-
-    this.imageBlur = curr.filter?.blur || 0;
-    this.scaling = curr.isScaling;
-    this.setScrolling(curr.isScroll);
-  }
-
-  set imageBlur(blur) {
-    this.setAttribute('blur', `${blur}`);
-  }
-
-  get imageBlur() {
-    return Number.parseInt(this.getAttribute('blur') || '0');
-  }
-
-  private _scrollHandler = (e?: Event) => {
-    const target = (e?.target as HTMLElement) || this.scrollElement;
-
-    if (this.scrollTimeout) return;
-    this.scrollTimeout = requestAnimationFrame(() => {
-      const scrollTop = target.scrollTop;
-
-      if (scrollTop > window.innerHeight / 5) {
-        this.mainView?.style.setProperty('--top-bar-opacity', '1');
-      } else this.mainView?.style.setProperty('--top-bar-opacity', '0');
-
-      this.style.transform = `translate3d(0px,-${
-        this.scrolling ? Math.min(scrollTop, window.innerHeight) : 0
-      }px,0px)`;
-      this.umvImage.imgElement.style.transform = `${
-        this.scaling ? `scale(${Math.min(100 + scrollTop / 10, 150)}%)` : ''
-      }`;
-
-      this.umvImage.setFilter(`blur(${Math.min(scrollTop / 10 + (this.imageBlur || 0), 32)}px)`);
-
-      this.scrollTimeout = null;
+      this.umvImage.setFilter(
+        `blur(${blurValue}px) brightness(${brightnessValue}%) opacity(${opacityValue}%)`
+      );
     });
-  };
 
-  setScrolling(scroll: boolean, unload = false) {
-    this.scrolling = scroll;
+    if (scrollTop > window.innerHeight / 5) {
+      this.mainViewElement?.style.setProperty('--top-bar-opacity', '1');
+    } else this.mainViewElement?.style.setProperty('--top-bar-opacity', '0');
+  }
 
-    if (!this.scrollElement) return;
+  private _listenScrollChange() {
+    if (!this.scrollElem) return;
+    this.scrollElem.addEventListener('scroll', this._scrollEventCb);
+  }
 
-    if (unload) {
-      this.scrollElement.removeEventListener('scroll', this._scrollHandler);
+  private _updateImageBasedOnUrls() {
+    if (this.umvArtUrl) {
+      this.imageUrl = this.umvArtUrl;
+      this.source = 'expanded';
       return;
     }
-    this._scrollHandler();
-    this.scrollElement.addEventListener('scroll', this._scrollHandler);
+
+    if (this.isNpv) {
+      this.imageUrl = npvState.getState().url;
+      this.source = 'npv';
+      return;
+    }
+
+    if (this.pageArtUrl) {
+      this.imageUrl = this.pageArtUrl;
+      this.source = 'normal';
+      return;
+    }
+
+    this.imageUrl = null;
+    this.source = 'normal';
   }
 }
 
-customElements.define('umv-container', UnderMainViewElement);
+customElements.define('umv-container', UMVElement);

@@ -64,13 +64,12 @@ export type RightSidebarSettings = {
 
 export type PageType = 'normal' | 'expanded' | 'npv';
 
-export type PageOptions = {
-  [key in PageType]: {
-    isScaling: boolean;
-    isScroll: boolean;
-    filter: CSSFilter | null;
-  };
+export type PageOption = {
+  isScaling: boolean;
+  isScroll: boolean;
+  filter: CSSFilter | null;
 };
+export type PageOptions = Record<PageType, PageOption>;
 
 export type UMVSettings = {
   type: 'npv' | 'normal';

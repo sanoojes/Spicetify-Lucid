@@ -1,46 +1,113 @@
-import { npvState } from '@store/npv.ts';
-import { applyThemeFromHex } from '@app/utils/colors/mcg.ts';
 import type { AppSettings } from '@app/types/settings.ts';
 import appSettingsStore from '@store/setting.ts';
-import { extractFromImage } from '@utils/colors/color.ts';
+import { npvState } from '@store/npv.ts';
+import { getWorker } from '@utils/worker/getWorker.ts';
+import type { ColorMessage, ColorOptions, ImageOptions } from '@app/types/workers.ts';
+import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
 
+const PRIMARY_WORKER_URL =
+  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/beta/src/workers/getColor.js';
+const FALLBACK_WORKER_URL =
+  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/beta/src/workers/getColor.js';
 const DEFAULT_COLOR = '#1bc858';
 
-let unsubscribe: (() => void) | null = null;
+let worker: null | Worker = null;
+let unsubscribe: null | (() => void) = null;
+const styleSheet = lazyLoadStyleById('clr-lucid');
 
-async function applyExtractedColor(url: string, tonal: boolean) {
-  try {
-    const color = await extractFromImage(url);
-    if (!color?.hex) throw new Error('Extracted color is undefined');
-
-    applyThemeFromHex(color.hex, { tonal });
-  } catch (error) {
-    console.error('Error extracting color from image:', error);
-    Spicetify?.showNotification?.('Error extracting color from image.', true, 2500);
-    applyThemeFromHex(DEFAULT_COLOR, { tonal });
-  }
+function sendColorData(options: ColorOptions) {
+  if (!worker) return;
+  worker.postMessage({
+    type: 'color',
+    options,
+  } satisfies ColorMessage);
+}
+function sendImageData(options: ImageOptions) {
+  if (!worker) return;
+  worker.postMessage({
+    type: 'image',
+    options,
+  } satisfies ColorMessage);
 }
 
-export function mountColor(settings: AppSettings['color'] = appSettingsStore.getState().color) {
-  if (unsubscribe) unsubscribe();
+function convertSpotifyImageUrl(url: string): string {
+  return url.replace('spotify:image:', 'https://i.scdn.co/image/');
+}
+
+export async function mountColor(
+  settings: AppSettings['color'] = appSettingsStore.getState().color
+): Promise<void> {
+  await initWorker();
+
+  unsubscribe?.();
 
   if (settings.isDynamic) {
-    const npvUrl = npvState.getState().url;
-    if (npvUrl) {
-      applyExtractedColor(npvUrl, settings.isTonal);
+    const currentUrl = npvState.getState().url;
+    if (currentUrl) {
+      sendImageData({
+        url: convertSpotifyImageUrl(currentUrl),
+        isTonal: settings.isTonal,
+        isDark: true,
+      });
     }
-
-    unsubscribe = npvState.subscribe(async (state) => {
+    unsubscribe = npvState.subscribe((state) => {
       if (state.url) {
-        await applyExtractedColor(state.url, settings.isTonal);
+        sendImageData({
+          url: convertSpotifyImageUrl(state.url),
+          isTonal: settings.isTonal,
+          isDark: true,
+        });
       }
     });
-
     return;
   }
 
-  const themeColor =
-    settings.isCustom && settings.customColor?.hex ? settings.customColor.hex : DEFAULT_COLOR;
+  if (settings.isCustom) {
+    sendColorData({
+      hex: settings.customColor.hex,
+      isTonal: settings.isTonal,
+      isDark: true,
+    });
+    return;
+  }
 
-  applyThemeFromHex(themeColor, { tonal: settings.isTonal });
+  sendColorData({
+    hex: DEFAULT_COLOR,
+    isTonal: settings.isTonal,
+    isDark: true,
+  });
+}
+
+async function initWorker(): Promise<void> {
+  worker = await getWorker(PRIMARY_WORKER_URL);
+  if (!worker) {
+    worker = await getWorker(FALLBACK_WORKER_URL);
+  }
+
+  if (!worker) {
+    document.body.removeAttribute('color-from-worker');
+    console.error('Failed to initialize worker from both endpoints.');
+    Spicetify?.showNotification(
+      'Failed to initialize the color worker. If this issue persists, please report it. (Dynamic and custom colors may not function properly.)',
+      true,
+      5000
+    );
+    return;
+  }
+
+  document.body.setAttribute('color-from-worker', 'true');
+
+  worker.onmessage = (event) => {
+    const { message, data } = event.data || {};
+    if (data) {
+      console.debug(message, '\nEvent Data:', event.data);
+      styleSheet.textContent = `:root,body{${data.style}}`;
+    } else {
+      console.error(message ?? 'Color not applied');
+    }
+  };
+
+  worker.onerror = (event) => {
+    console.error('Worker encountered an error:', event.message || event);
+  };
 }

@@ -1,6 +1,6 @@
 import settingsManager from '@store/setting.ts';
 import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
-import { UnderMainViewElement } from '@components/umv.ts';
+import { UMVElement } from '@components/umv.ts';
 import { patchIcons } from '@utils/patchIcons.ts';
 import MainElement from '@components/main.ts';
 import { mountAndWatchFont } from '@components/font.ts';
@@ -15,6 +15,7 @@ import { mountBackground } from '@app/hooks/background.ts';
 import { alphaToHex } from '@utils/colors/convert.ts';
 import { mountNPV } from '@app/hooks/npv.ts';
 import { mountGrains } from '@app/hooks/grains.ts';
+import { waitForElement } from '@utils/dom/waitForElement.ts';
 
 const main = () => {
   const lucidMain = new MainElement();
@@ -46,7 +47,14 @@ const main = () => {
   }
 
   function mountUnderMainView() {
-    const underMainView = new UnderMainViewElement();
+    waitForElement(['.Root__now-playing-bar', '.Root__globalNav'], ([playbar, nav]) => {
+      document.body.style.setProperty(
+        '--umv-offset',
+        `${(playbar?.clientHeight || 80) + (nav?.clientHeight || 64)}px`
+      );
+    });
+
+    const underMainView = new UMVElement();
     const underMainViewParent = document.querySelector('.under-main-view')?.parentElement;
     if (underMainViewParent) underMainViewParent.prepend(underMainView);
     else document.querySelector('.main-view-container')?.prepend(underMainView);
@@ -62,8 +70,6 @@ const main = () => {
 
   mountGrains();
 
-  mountColor();
-
   mountPageStyles();
 
   mountPageType();
@@ -74,6 +80,7 @@ const main = () => {
 
   mountNPV();
 
+  mountColor();
   appSettingsStore.subscribe((state) => {
     mountColor(state.color);
   }, 'color');
