@@ -1173,8 +1173,7 @@ body[path*="discography"] {
     position: relative !important;
   }
 
-  .mxGhI8Lr7MoGOnFrbsUa,
-  .mxGhI8Lr7MoGOnFrbsUa.BHHXR8xc6m009ohY6aKU {
+  .mxGhI8Lr7MoGOnFrbsUa {
     margin-inline: -2.25rem;
     padding-inline: 2rem;
     width: calc(100% + 4.5rem);
@@ -1188,6 +1187,11 @@ body[path*="discography"] {
       inset: 0;
       border-radius: inherit;
       z-index: -1;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .BHHXR8xc6m009ohY6aKU:before {
       -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
         saturate(var(--top-bar-saturate, 1.5));
       backdrop-filter: blur(var(--top-bar-blur, 1rem))
