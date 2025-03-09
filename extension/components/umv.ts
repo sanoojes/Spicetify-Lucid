@@ -1,18 +1,19 @@
-import { getArtworkBySpotifyURL } from '@utils/artworkUtils.ts';
-import appSettingsStore from '@store/setting.ts';
-import type { PageOption, PageType, UMVSettings } from '@app/types/settings.ts';
-import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
-import { extractUrl } from '@utils/dom/extractUrl.ts';
-import { waitForElement } from '@utils/dom/waitForElement.ts';
-import { npvState } from '@store/npv.ts';
-import { UMVImageElement } from '@components/ui/umv-image.ts';
+import { getArtworkBySpotifyURL } from "@utils/artworkUtils.ts";
+import appSettingsStore from "@store/setting.ts";
+import type { PageOption, PageType, UMVSettings } from "@app/types/settings.ts";
+import { lazyLoadStyleById } from "@utils/lazyLoadUtils.ts";
+import { extractUrl } from "@utils/dom/extractUrl.ts";
+import { waitForElement } from "@utils/dom/waitForElement.ts";
+import { npvState } from "@store/npv.ts";
+import { UMVImageElement } from "@components/ui/umv-image.ts";
 
 const SCROLL_SELECTOR =
-  '.Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]';
-const UMV_OVERRIDE_STYLE_ID = 'umv-overrides';
-const ROOT_MAIN_VIEW_SELECTOR = '.Root__main-view';
-const UNDER_MAIN_VIEW_SELECTOR = '.under-main-view';
-const MAIN_ENTITY_HEADER_GRADIENT_SELECTOR = '.main-entityHeader-gradient, .XUwMufC5NCgIyRMyGXLD';
+  ".Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport]";
+const UMV_OVERRIDE_STYLE_ID = "umv-overrides";
+const ROOT_MAIN_VIEW_SELECTOR = ".Root__main-view";
+const UNDER_MAIN_VIEW_SELECTOR = ".under-main-view";
+const MAIN_ENTITY_HEADER_GRADIENT_SELECTOR =
+  ".main-entityHeader-gradient, .XUwMufC5NCgIyRMyGXLD";
 
 const umvStylesContent = `
   .under-main-view { display: none; }
@@ -53,6 +54,7 @@ export class UMVElement extends HTMLElement {
   private _imageUrl: string | null;
   private _settings: UMVSettings | null;
   private _isNpv = false;
+  private isArtist = false;
 
   options!: PageOption;
   pageUrl: string;
@@ -75,15 +77,15 @@ export class UMVElement extends HTMLElement {
     this.umvImage = new UMVImageElement();
     this.append(this.umvImage);
 
-    this._source = 'normal';
+    this._source = "normal";
     this._imageUrl = null;
-    this.pageUrl = '';
+    this.pageUrl = "";
 
     this._settings = null;
     this.settings = appSettingsStore.getState().pages.umv;
     appSettingsStore.subscribe((state) => {
       this.settings = state.pages.umv;
-    }, 'pages.umv');
+    }, "pages.umv");
 
     this.scrollElem = null;
     this.umvArtUrl = null;
@@ -102,12 +104,14 @@ export class UMVElement extends HTMLElement {
       this._listenScrollChange();
     });
     this._listenForUMVChange();
-    this.updateImageUrlFromPage(Spicetify?.Platform?.History?.location?.pathname || '/');
+    this.updateImageUrlFromPage(
+      Spicetify?.Platform?.History?.location?.pathname || "/"
+    );
   }
 
   disconnectedCallback() {
     if (this.scrollElem) {
-      this.scrollElem.removeEventListener('scroll', this._scrollEventCb);
+      this.scrollElem.removeEventListener("scroll", this._scrollEventCb);
     }
     if (this.unobserveUMV) {
       this.unobserveUMV();
@@ -124,7 +128,7 @@ export class UMVElement extends HTMLElement {
   set settings(settings: UMVSettings) {
     this._settings = settings;
     this.options = settings.options[this._source];
-    if (settings.type === 'npv') this.isNpv = true;
+    if (settings.type === "npv") this.isNpv = true;
     else this.isNpv = false;
 
     this._scrollEventCb();
@@ -156,9 +160,15 @@ export class UMVElement extends HTMLElement {
 
   set source(source: PageType) {
     this._source = source;
-    this.setAttribute('source', source);
-    this.umvImage.setFilter(`blur(${this.settings.options[source].filter?.blur ?? 0}px)`);
+    this.isArtist =
+      document.body.getAttribute("path")?.startsWith("artist", 1) ?? false;
+    this.setAttribute("source", source);
+    this.umvImage.setFilter(
+      `blur(${this.settings.options[source].filter?.blur ?? 0}px)`
+    );
     this.options = this.settings.options[source];
+
+    this._scrollEventCb()
   }
   get source() {
     return this._source;
@@ -174,7 +184,7 @@ export class UMVElement extends HTMLElement {
   async updateImageUrlFromPage(url: string | null) {
     try {
       let artworkURL: string | null = null;
-      if (artworkURL === '/') {
+      if (artworkURL === "/") {
         this.pageArtUrl = null;
         this._updateImageBasedOnUrls();
 
@@ -188,26 +198,28 @@ export class UMVElement extends HTMLElement {
       this.pageArtUrl = artworkURL;
       this._updateImageBasedOnUrls();
     } catch (error) {
-      console.error('Error updating image URL from page:', error);
-      console.error('URL that caused the error:', url);
+      console.error("Error updating image URL from page:", error);
+      console.error("URL that caused the error:", url);
     }
   }
 
   private _listenForPageChanges() {
-    this.pageUrl = Spicetify?.Platform?.History?.location?.pathname || '/';
+    this.pageUrl = Spicetify?.Platform?.History?.location?.pathname || "/";
 
     this.unlistenHistory =
-      Spicetify.Platform?.History?.listen((url: { pathname: string } | null) => {
-        if (url?.pathname) {
-          this.pageUrl = url.pathname;
-          this.umvArtUrl = null;
-          this.pageArtUrl = null;
-          this.updateImageUrlFromPage(url.pathname);
+      Spicetify.Platform?.History?.listen(
+        (url: { pathname: string } | null) => {
+          if (url?.pathname) {
+            this.pageUrl = url.pathname;
+            this.umvArtUrl = null;
+            this.pageArtUrl = null;
+            this.updateImageUrlFromPage(url.pathname);
+          }
         }
-      }) ??
+      ) ??
       (() => {
         console.error(
-          'Error unloading History listener. Spicetify.Platform?.History might be undefined.'
+          "Error unloading History listener. Spicetify.Platform?.History might be undefined."
         );
       });
   }
@@ -222,7 +234,9 @@ export class UMVElement extends HTMLElement {
     }
 
     const observerCB = () => {
-      const element = targetNode.querySelector(MAIN_ENTITY_HEADER_GRADIENT_SELECTOR) as HTMLElement;
+      const element = targetNode.querySelector(
+        MAIN_ENTITY_HEADER_GRADIENT_SELECTOR
+      ) as HTMLElement;
 
       if (element) {
         const underMainViewURL = extractUrl(element.style.backgroundImage);
@@ -256,25 +270,42 @@ export class UMVElement extends HTMLElement {
   private _scrollEventCb(e?: Event) {
     if (!this.settings) return;
     const scrollTop =
-      this.scrollElem?.scrollTop ?? (e?.target as HTMLElement | undefined)?.scrollTop ?? 0;
+      this.scrollElem?.scrollTop ??
+      (e?.target as HTMLElement | undefined)?.scrollTop ??
+      0;
     const sourceOptions = this.settings.options[this.source];
 
     requestAnimationFrame(() => {
       if (sourceOptions.isScaling) {
-        this.umvImage.style.transform = `scale(${Math.min(100 + scrollTop / 10, 150)}%)`;
+        this.umvImage.style.transform = `scale(${Math.min(
+          100 + scrollTop / 10,
+          150
+        )}%)`;
       } else {
-        this.umvImage.style.transform = 'scale(1)';
+        this.umvImage.style.transform = "scale(1)";
       }
 
       if (sourceOptions.isScroll) {
-        this.style.transform = `translate3d(0px,-${Math.min(scrollTop, window.innerHeight)}px,0px)`;
+        this.style.transform = `translate3d(0px,-${Math.min(
+          scrollTop,
+          window.innerHeight
+        )}px,0px)`;
       } else {
-        this.style.transform = 'translate3d(0px,0px,0px)';
+        this.style.transform = "translate3d(0px,0px,0px)";
       }
-
-      const blurValue = Math.min(scrollTop / 10 + (sourceOptions.filter?.blur || 0), 32);
-      const brightnessValue = Math.max(60, 100 - (scrollTop / window.innerHeight) * 40);
-      const opacityValue = Math.max(70, 100 - (scrollTop / window.innerHeight) * 30);
+      
+      const blurValue = Math.min(
+        scrollTop / 10 + (sourceOptions.filter?.blur || 0),
+        this.isArtist ? scrollTop / 10  : 32
+      );
+      const brightnessValue = Math.max(
+        60,
+        100 - (scrollTop / window.innerHeight) * 40
+      );
+      const opacityValue = Math.max(
+        70,
+        100 - (scrollTop / window.innerHeight) * 30
+      );
 
       this.umvImage.setFilter(
         `blur(${blurValue}px) brightness(${brightnessValue}%) opacity(${opacityValue}%)`
@@ -282,37 +313,37 @@ export class UMVElement extends HTMLElement {
     });
 
     if (scrollTop > window.innerHeight / 5) {
-      this.mainViewElement?.style.setProperty('--top-bar-opacity', '1');
-    } else this.mainViewElement?.style.setProperty('--top-bar-opacity', '0');
+      this.mainViewElement?.style.setProperty("--top-bar-opacity", "1");
+    } else this.mainViewElement?.style.setProperty("--top-bar-opacity", "0");
   }
 
   private _listenScrollChange() {
     if (!this.scrollElem) return;
-    this.scrollElem.addEventListener('scroll', this._scrollEventCb);
+    this.scrollElem.addEventListener("scroll", this._scrollEventCb);
   }
 
   private _updateImageBasedOnUrls() {
     if (this.umvArtUrl) {
       this.imageUrl = this.umvArtUrl;
-      this.source = 'expanded';
+      this.source = "expanded";
       return;
     }
 
     if (this.isNpv && this.pageArtUrl) {
       this.imageUrl = npvState.getState().url;
-      this.source = 'npv';
+      this.source = "npv";
       return;
     }
 
     if (this.pageArtUrl) {
       this.imageUrl = this.pageArtUrl;
-      this.source = 'normal';
+      this.source = "normal";
       return;
     }
 
     this.imageUrl = null;
-    this.source = 'normal';
+    this.source = "normal";
   }
 }
 
-customElements.define('umv-container', UMVElement);
+customElements.define("umv-container", UMVElement);
