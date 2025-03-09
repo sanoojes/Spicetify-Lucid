@@ -72,4 +72,6 @@ export function mountPlaybar() {
     hideIcons(hideIcon || (nowPlayingBar?.clientWidth || 0) < 900);
     mountPlaybarStyles(state.playbar);
   }, 'playbar');
+
+  handleResize();
 }

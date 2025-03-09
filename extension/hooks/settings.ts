@@ -152,19 +152,27 @@ const fieldTexts: Record<string, string[]> = {
   'pages-enable-home-header': ['Home Header Background', 'Enable/Disable Home header background.'],
   'pages-scroll-fullscreen-image': [
     'Scroll Fullscreen Background Image',
-    'Allow the background image to scroll with page content when the Under Main View is fullscreen (expanded).',
+    'Allow the background image to scroll with page content when the playlist background is fullscreen (expanded).',
   ],
   'pages-scale-fullscreen-image': [
     'Scale Fullscreen Background Image',
-    'Automatically scale the background image to fit the page width when the Under Main View is fullscreen (expanded).',
+    'Automatically scale the background image to fit the page width when the playlist background is fullscreen (expanded).',
+  ],
+  'pages-scroll-npv-image': [
+    'Scroll NPV Background Image',
+    'Allow the background image to scroll with page content in Now playing art playlist background mode.',
+  ],
+  'pages-scale-npv-image': [
+    'Scale NPV Background Image',
+    'Automatically scale the background image to fit the page width in Now playing art playlist background mode.',
   ],
   'pages-scroll-normal-image': [
     'Scroll Normal Background Image',
-    'Allow the background image to scroll with page content in normal Under Main View mode.',
+    'Allow the background image to scroll with page content in normal playlist background mode.',
   ],
   'pages-scale-normal-image': [
     'Scale Normal Background Image',
-    'Automatically scale the background image to fit the page width in normal Under Main View mode.',
+    'Automatically scale the background image to fit the page width in normal playlist background mode.',
   ],
   'right-sidebar-view-mode': [
     'View Mode',
@@ -727,7 +735,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               },
             },
             {
-              render: true,
+              render: state.pages.umv.type === 'normal',
               key: 'pages-scroll-normal-image',
               label: fieldTexts['pages-scroll-normal-image'][0],
               tooltip: fieldTexts['pages-scroll-normal-image'][1],
@@ -740,7 +748,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               },
             },
             {
-              render: true,
+              render: state.pages.umv.type === 'normal',
               key: 'pages-scale-normal-image',
               label: fieldTexts['pages-scale-normal-image'][0],
               tooltip: fieldTexts['pages-scale-normal-image'][1],
@@ -749,6 +757,32 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 checked: state.pages.umv.options.normal.isScaling,
                 onChange: (isScaling) => {
                   settings.setUMVOption('normal', { isScaling });
+                },
+              },
+            },
+            {
+              render: state.pages.umv.type === 'npv',
+              key: 'pages-scroll-npv-image',
+              label: fieldTexts['pages-scroll-npv-image'][0],
+              tooltip: fieldTexts['pages-scroll-npv-image'][1],
+              inputOptions: {
+                type: 'checkbox',
+                checked: state.pages.umv.options.npv.isScroll,
+                onChange: (isScroll) => {
+                  settings.setUMVOption('npv', { isScroll });
+                },
+              },
+            },
+            {
+              render: state.pages.umv.type === 'npv',
+              key: 'pages-scale-normal-image',
+              label: fieldTexts['pages-scale-npv-image'][0],
+              tooltip: fieldTexts['pages-scale-npv-image'][1],
+              inputOptions: {
+                type: 'checkbox',
+                checked: state.pages.umv.options.npv.isScaling,
+                onChange: (isScaling) => {
+                  settings.setUMVOption('npv', { isScaling });
                 },
               },
             },

@@ -11,6 +11,12 @@ export class UMVImageElement extends HTMLElement {
 
     if (imageSrc) this.imageSrc = imageSrc;
 
+    Object.assign(this.style, {
+      width: '100%',
+      height: '100%',
+      display: 'block',
+    } satisfies Partial<CSSStyleDeclaration>);
+
     this.imgElement = createElement('img', {
       className: 'umv-img',
       style: {
@@ -25,8 +31,7 @@ export class UMVImageElement extends HTMLElement {
   }
 
   setFilter(filter: string) {
-    this.filter = filter;
-    this.imgElement.style.filter = filter;
+    this.style.filter = filter;
   }
 
   set imageSrc(imageSrc: string | null) {
@@ -84,7 +89,7 @@ export class UMVImageElement extends HTMLElement {
     oldElement.style.transform = 'scale(0.95)';
 
     setTimeout(() => {
-      oldElement.remove();
+      this.imgElement.remove();
       this.imgElement = newElement;
     }, this.transitionDuration * 1000);
   }

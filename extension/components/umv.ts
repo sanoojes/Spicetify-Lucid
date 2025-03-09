@@ -126,6 +126,8 @@ export class UMVElement extends HTMLElement {
     this.options = settings.options[this._source];
     if (settings.type === 'npv') this.isNpv = true;
     else this.isNpv = false;
+
+    this._scrollEventCb();
   }
 
   get settings() {
@@ -142,9 +144,9 @@ export class UMVElement extends HTMLElement {
       return;
     }
 
-    this.imageUrl = npvState.getState().url;
-    this.unsubscribeNPV = npvState.subscribe((state) => {
-      this.imageUrl = state.url;
+    this._updateImageBasedOnUrls();
+    this.unsubscribeNPV = npvState.subscribe(() => {
+      this._updateImageBasedOnUrls();
     });
   }
 
@@ -163,11 +165,10 @@ export class UMVElement extends HTMLElement {
   }
 
   set imageUrl(imageUrl: string | null) {
+    if (imageUrl === this._imageUrl) return;
+
     this._imageUrl = imageUrl;
-    this.umvImage.imageSrc = this._imageUrl;
-  }
-  get imageUrl() {
-    return this._imageUrl;
+    this.umvImage.imageSrc = imageUrl;
   }
 
   async updateImageUrlFromPage(url: string | null) {
@@ -252,16 +253,17 @@ export class UMVElement extends HTMLElement {
     this._observeUMVImage();
   }
 
-  private _scrollEventCb(e: Event) {
+  private _scrollEventCb(e?: Event) {
     if (!this.settings) return;
-    const scrollTop = this.scrollElem?.scrollTop ?? (e.target as HTMLElement).scrollTop ?? 0;
+    const scrollTop =
+      this.scrollElem?.scrollTop ?? (e?.target as HTMLElement | undefined)?.scrollTop ?? 0;
     const sourceOptions = this.settings.options[this.source];
 
     requestAnimationFrame(() => {
       if (sourceOptions.isScaling) {
-        this.umvImage.imgElement.style.transform = `scale(${Math.min(100 + scrollTop / 10, 150)}%)`;
+        this.umvImage.style.transform = `scale(${Math.min(100 + scrollTop / 10, 150)}%)`;
       } else {
-        this.umvImage.imgElement.style.transform = 'scale(1)';
+        this.umvImage.style.transform = 'scale(1)';
       }
 
       if (sourceOptions.isScroll) {
@@ -296,7 +298,7 @@ export class UMVElement extends HTMLElement {
       return;
     }
 
-    if (this.isNpv) {
+    if (this.isNpv && this.pageArtUrl) {
       this.imageUrl = npvState.getState().url;
       this.source = 'npv';
       return;
