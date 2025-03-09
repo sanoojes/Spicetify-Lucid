@@ -25,9 +25,18 @@
 
   /* overrides */
   --encore-button-corner-radius: 0.5rem !important;
-  --main-override-color: rgba(var(--clr-surface-0-rgb), var(--root-cards-alpha, 0.5));
-  --library-override-color: rgba(var(--clr-surface-0-rgb), var(--root-cards-alpha, 0.5));
-  --npv-override-color: rgba(var(--clr-surface-0-rgb), var(--root-cards-alpha, 0.5));
+  --main-override-color: rgba(
+    var(--clr-surface-0-rgb),
+    var(--root-cards-alpha, 0.5)
+  );
+  --library-override-color: rgba(
+    var(--clr-surface-0-rgb),
+    var(--root-cards-alpha, 0.5)
+  );
+  --npv-override-color: rgba(
+    var(--clr-surface-0-rgb),
+    var(--root-cards-alpha, 0.5)
+  );
 }
 
 /* ad containers */
@@ -77,13 +86,16 @@ lucid-modal .modal,
 }
 .Root__globalNav :is(.main-topBar-searchBar, .main-globalNav-navLink),
 #global-nav-bar :is(.main-topBar-searchBar, .main-globalNav-navLink) {
-  -webkit-box-shadow: 0 0 0 var(--border-thickness, 1px) var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25)) inset;
-  box-shadow: 0 0 0 var(--border-thickness, 1px) var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25)) inset;
+  -webkit-box-shadow: 0 0 0 var(--border-thickness, 1px)
+    var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25)) inset;
+  box-shadow: 0 0 0 var(--border-thickness, 1px)
+    var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25)) inset;
   transform: scale(0.99);
 }
 
 .uJjmxe0T11dUVeW6Biz8,
 .main-entityHeader-container,
+.mxGhI8Lr7MoGOnFrbsUa,
 .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader,
 .main-topBar-background {
   box-shadow: none;
@@ -117,8 +129,10 @@ lucid-modal .modal,
     inset: 0;
     border-radius: inherit;
     z-index: -1;
-    -webkit-backdrop-filter: blur(var(--context-blur, 1rem)) saturate(var(--context-saturate, 1.5));
-    backdrop-filter: blur(var(--context-blur, 1rem)) saturate(var(--context-saturate, 1.5));
+    -webkit-backdrop-filter: blur(var(--context-blur, 1rem))
+      saturate(var(--context-saturate, 1.5));
+    backdrop-filter: blur(var(--context-blur, 1rem))
+      saturate(var(--context-saturate, 1.5));
   }
 
   .main-contextMenu-menuItemButton {
@@ -156,10 +170,8 @@ kbd,
   .main-topBar-searchBar {
     border-radius: 0.5rem;
     transform: scale(1);
-    transition:
-      border-radius 0.3s ease-in-out,
-      background-color 0.2s ease-in-out,
-      color 0.2s ease-in-out,
+    transition: border-radius 0.3s ease-in-out,
+      background-color 0.2s ease-in-out, color 0.2s ease-in-out,
       scale 0.3s ease-in-out;
 
     &:focus,
@@ -188,8 +200,10 @@ kbd,
       inset: 0;
       border-radius: inherit;
       z-index: -1;
-      -webkit-backdrop-filter: blur(var(--recent-search-blur, 1rem)) saturate(var(--recent-search-saturate, 1.5));
-      backdrop-filter: blur(var(--recent-search-blur, 1rem)) saturate(var(--recent-search-saturate, 1.5));
+      -webkit-backdrop-filter: blur(var(--recent-search-blur, 1rem))
+        saturate(var(--recent-search-saturate, 1.5));
+      backdrop-filter: blur(var(--recent-search-blur, 1rem))
+        saturate(var(--recent-search-saturate, 1.5));
     }
   }
 
@@ -228,11 +242,11 @@ kbd,
       transform: translateZ(calc(var(--top-bar-opacity, 0) * 1px));
       will-change: backdrop-filter;
       opacity: var(--top-bar-opacity, 0);
-      -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
-      backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
-      transition:
-        backdrop-filter -1s linear,
-        opacity 0.3s linear;
+      -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
+        saturate(var(--top-bar-saturate, 1.5));
+      backdrop-filter: blur(var(--top-bar-blur, 1rem))
+        saturate(var(--top-bar-saturate, 1.5));
+      transition: backdrop-filter -1s linear, opacity 0.3s linear;
     }
   }
 
@@ -268,10 +282,7 @@ kbd,
       span,
       .e-9640-button-primary__inner {
         border-radius: 0.5rem;
-        transition-property:
-          background-color,
-          transform,
-          -webkit-transform,
+        transition-property: background-color, transform, -webkit-transform,
           border-radius;
         transition-duration: 225ms;
 
@@ -287,7 +298,7 @@ kbd,
     padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
     border-radius: 0.5rem;
-    
+
     &.artist-artistDiscography-firstAlbum {
       margin-top: 5rem;
     }
@@ -310,12 +321,22 @@ kbd,
 
   /* Left to Right Fade */
   .U8wi3gXSb248Imbxy4gc {
-    --mask-gradient: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 85%, rgba(0, 0, 0, 0) 100%);
+    --mask-gradient: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.8) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 
   /* Right to Left Fade */
   .Yjx8QrpjqgjqQPj4KWCh {
-    --mask-gradient: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 85%, rgba(0, 0, 0, 0) 100%);
+    --mask-gradient: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.8) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 
   /* Center Black with Radial Fade */
@@ -365,17 +386,17 @@ kbd,
     z-index: -1;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-    transition:
-      backdrop-filter 0.3s linear,
-      opacity 0.3s linear;
+    transition: backdrop-filter 0.3s linear, opacity 0.3s linear;
   }
 }
 .mdMUqcSHFw1lZIcYEblu {
   background-color: rgba(var(--clr-surface-1-rgb), 0.5);
 
   &:before {
-    -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
-    backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
+    -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
+      saturate(var(--top-bar-saturate, 1.5));
+    backdrop-filter: blur(var(--top-bar-blur, 1rem))
+      saturate(var(--top-bar-saturate, 1.5));
   }
 }
 
@@ -445,9 +466,11 @@ body[npb-is-floating] {
       inset: 0;
       border-radius: inherit;
       z-index: -1;
-      -webkit-backdrop-filter: blur(var(--npb-blur, 1rem)) saturate(var(--npb-saturate, 1.5))
+      -webkit-backdrop-filter: blur(var(--npb-blur, 1rem))
+        saturate(var(--npb-saturate, 1.5))
         brightness(var(--npb-brightness, 60%));
-      backdrop-filter: blur(var(--npb-blur, 1rem)) saturate(var(--npb-saturate, 1.5))
+      backdrop-filter: blur(var(--npb-blur, 1rem))
+        saturate(var(--npb-saturate, 1.5))
         brightness(var(--npb-brightness, 60%));
     }
   }
@@ -555,10 +578,9 @@ body[npb-type="compact"] {
       overflow: hidden;
       padding: 0.5rem 0.5rem;
       border-radius: 0.75rem;
-      transition:
-        width 225ms ease-in-out,
-        background-color 300ms linear;
-      border: var(--border-thickness, 1px) var(--border-style, solid) rgba(0, 0, 0, 0);
+      transition: width 225ms ease-in-out, background-color 300ms linear;
+      border: var(--border-thickness, 1px) var(--border-style, solid)
+        rgba(0, 0, 0, 0);
       transform: translate3d(0px, 0px, 0px);
       will-change: width, transform;
 
@@ -599,8 +621,7 @@ body[npb-type="compact"] {
       border-radius: 0.75rem;
       border: var(--border-thickness, 1px) var(--border-style, solid)
         rgba(var(--border-color, var(--clr-surface-5-rgb)), 0.5);
-      transition:
-        backdrop-filter 225ms cubic-bezier(0.4, 0, 0.2, 1),
+      transition: backdrop-filter 225ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);
 
       &::before {
@@ -667,9 +688,7 @@ body[npv-mode="compact"] {
     z-index: 5;
     -webkit-backdrop-filter: blur(var(--npv-blur, 16px));
     backdrop-filter: blur(var(--npv-blur, 16px));
-    transition:
-      width 0.3s linear,
-      height 0.3s linear;
+    transition: width 0.3s linear, height 0.3s linear;
     transform-origin: bottom right;
   }
 
@@ -769,8 +788,16 @@ body[npv-mode="compact"] {
 .main-home-homeHeader {
   /* background-color: var(--home-header-override-color, rgba(0, 0, 0, 0)) !important; */
   height: 40vh;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 .XVz4BMGP5zAEE5p90mYK,
 .Bdcf5g__Rug3TGqSdbiy,
@@ -796,9 +823,7 @@ body[npv-mode="compact"] {
   background-color: var(--clr-primary);
   color: var(--clr-on-primary);
   border-radius: 5rem;
-  transition:
-    background-color 0.2s ease-in-out,
-    transform 0.3s ease;
+  transition: background-color 0.2s ease-in-out, transform 0.3s ease;
   &:hover {
     background-color: var(--clr-primary-2);
   }
@@ -827,8 +852,10 @@ body[npv-mode="compact"] {
     width: 100%;
     z-index: -1;
     border-radius: inherit;
-    -webkit-backdrop-filter: blur(var(--modal-bg-blur, 2rem)) saturate(var(--modal-bg-saturation, 1.7));
-    backdrop-filter: blur(var(--modal-bg-blur, 2rem)) saturate(var(--modal-bg-saturation, 1.7));
+    -webkit-backdrop-filter: blur(var(--modal-bg-blur, 2rem))
+      saturate(var(--modal-bg-saturation, 1.7));
+    backdrop-filter: blur(var(--modal-bg-blur, 2rem))
+      saturate(var(--modal-bg-saturation, 1.7));
   }
 
   * {
@@ -1034,8 +1061,10 @@ dialog {
 
 .GenericModal--overlay,
 dialog::backdrop {
-  -webkit-backdrop-filter: blur(calc(var(--modal-bg-blur, 2rem) / 3)) saturate(var(--modal-bg-saturation, 1.7));
-  backdrop-filter: blur(calc(var(--modal-bg-blur, 2rem) / 3)) saturate(var(--modal-bg-saturation, 1.7));
+  -webkit-backdrop-filter: blur(calc(var(--modal-bg-blur, 2rem) / 3))
+    saturate(var(--modal-bg-saturation, 1.7));
+  backdrop-filter: blur(calc(var(--modal-bg-blur, 2rem) / 3))
+    saturate(var(--modal-bg-saturation, 1.7));
 }
 .x-checkbox-indicatorWrapper {
   transition: all 0.3s ease-in-out;
@@ -1137,6 +1166,36 @@ input:checked ~ .x-checkbox-indicatorWrapper .x-checkbox-indicator {
   margin-top: 0;
 }
 
+body[path*="discography"] {
+  .main-trackList-trackListHeader,
+  .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader {
+    top: 0 !important;
+    position: relative !important;
+  }
+
+  .mxGhI8Lr7MoGOnFrbsUa,
+  .mxGhI8Lr7MoGOnFrbsUa.BHHXR8xc6m009ohY6aKU {
+    margin-inline: -2.25rem;
+    padding-inline: 2rem;
+    width: calc(100% + 4.5rem);
+    max-width: calc(100% + 4.5rem);
+    background-color: transparent;
+    &:before {
+      content: "";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      z-index: -1;
+      -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
+        saturate(var(--top-bar-saturate, 1.5));
+      backdrop-filter: blur(var(--top-bar-blur, 1rem))
+        saturate(var(--top-bar-saturate, 1.5));
+    }
+  }
+}
+
 /* Extension Overrides */
 /* hide main background */
 #main,
@@ -1173,18 +1232,28 @@ input:checked ~ .x-checkbox-indicatorWrapper .x-checkbox-indicator {
       background-image: var(--background-noise);
       background-color: rgba(var(--clr-surface-1-rgb), 0.5);
       will-change: backdrop-filter;
-      -webkit-backdrop-filter: blur(var(--playlist-card-blur, 12px)) saturate(var(--playlist-card-saturate, 1.5));
-      backdrop-filter: blur(var(--playlist-card-blur, 12px)) saturate(var(--playlist-card-saturate, 1.5));
+      -webkit-backdrop-filter: blur(var(--playlist-card-blur, 12px))
+        saturate(var(--playlist-card-saturate, 1.5));
+      backdrop-filter: blur(var(--playlist-card-blur, 12px))
+        saturate(var(--playlist-card-saturate, 1.5));
     }
 
     .encore-text-headline-large {
-      font-size: clamp(2cqmax, var(--main-view-grid-width) / 20, 5cqmax) !important;
+      font-size: clamp(
+        2cqmax,
+        var(--main-view-grid-width) / 20,
+        5cqmax
+      ) !important;
     }
   }
 }
 .playlist-card[umv-type="normal"] {
   .main-entityHeader-container {
-    --min-fluid-height: clamp(250px, 200px + (var(--main-view-grid-width) - 600px) / 424 * 90, 40vh);
+    --min-fluid-height: clamp(
+      250px,
+      200px + (var(--main-view-grid-width) - 600px) / 424 * 90,
+      40vh
+    );
   }
 }
 
@@ -1208,10 +1277,18 @@ input:checked ~ .x-checkbox-indicatorWrapper .x-checkbox-indicator {
 
 .playlist-compact {
   .main-entityHeader-container .encore-text-headline-large {
-    font-size: clamp(2.5cqmax, var(--main-view-grid-width) / 50, 3cqmax) !important;
+    font-size: clamp(
+      2.5cqmax,
+      var(--main-view-grid-width) / 50,
+      3cqmax
+    ) !important;
   }
   .main-entityHeader-imageContainer {
-    --img-size: clamp(80px, 80px + (var(--main-view-grid-width) - 600px) / 424 * 104, 140px);
+    --img-size: clamp(
+      80px,
+      80px + (var(--main-view-grid-width) - 600px) / 424 * 104,
+      140px
+    );
     height: var(--img-size);
     width: var(--img-size);
   }
@@ -1245,12 +1322,25 @@ input:checked ~ .x-checkbox-indicatorWrapper .x-checkbox-indicator {
       to(rgba(var(--clr-surface-0-rgb), 0.65))
     ),
     var(--background-noise) !important;
-  background: linear-gradient(to bottom, transparent, rgba(var(--clr-surface-0-rgb), 0.5)), var(--background-noise) !important;
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(var(--clr-surface-0-rgb), 0.5)
+    ),
+    var(--background-noise) !important;
 }
 .grain-starry .main-actionBarBackground-background {
   background: var(--background-noise) !important;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   opacity: 0.5;
 }
 .playlist-playlist-playlistContent:before,
@@ -1262,7 +1352,11 @@ input:checked ~ .x-checkbox-indicatorWrapper .x-checkbox-indicator {
     from(transparent),
     to(rgba(var(--clr-surface-0-rgb), 0.45))
   ) !important;
-  background: linear-gradient(to bottom, rgba(var(--clr-surface-0-rgb), 0.45), transparent) !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--clr-surface-0-rgb), 0.45),
+    transparent
+  ) !important;
 }
 
 .playlist-playlist-playlistContent {
@@ -1342,7 +1436,11 @@ body[path*="genre"] {
 /* Lyrics plus */
 .lyrics-lyricsContainer-LyricsBackground {
   background-color: transparent;
-  background: color-mix(in srgb, var(--lyrics-color-background), transparent 75%);
+  background: color-mix(
+    in srgb,
+    var(--lyrics-color-background),
+    transparent 75%
+  );
   margin-bottom: -1rem;
 }
 .lyrics-lyricsContainer-Provider {
