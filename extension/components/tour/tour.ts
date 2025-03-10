@@ -31,7 +31,7 @@ export class GuidedTourElement extends HTMLElement {
   constructor() {
     super();
     lazyLoadStyleById('guided-tour').textContent =
-      '.hidden,.tour-container.arrow-hidden .tour-arrow{display:none}.tour-btn,.tour-container,.tour-arrow{border:var(--border-thickness,1px) var(--border-style,solid) var(--border-color,rgba(var(--clr-surface-5-rgb),.25))}.tour-container{position:absolute;background-color:rgba(var(--clr-surface-1-rgb),.7);padding:1.25rem 1.5rem;border-radius:.5rem;max-width:45vw;width: fit-content;box-shadow:0 .25rem .5rem rgba(0,0,0,.15);backdrop-filter:blur(0.75rem) saturate(1.5);z-index:99999;opacity:0;visibility:hidden;transform:translateY(-10px)}.tour-container.tour-container-visible{opacity:1;visibility:visible;transform:translateY(0)}.tour-arrow{position:absolute;bottom:100%;left:50%;transform:translateY(0px) translateX(-50%);height:1.25rem;width:1.25rem;background-color:rgba(var(--clr-primary-rgb),0.7);transition:left .2s ease-out,top .2s ease-out;clip-path:polygon(50% 0, 0 100%, 100% 100%) }.tour-container.tour-arrow-top .tour-arrow{bottom:auto;top:100%;border-bottom-color:transparent;border-top-color:var(--clr-secondary);transform:translateX(-50%) translateY(-50%)}.hidden{visibility:hidden}.tour-button-wrapper{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;gap:.5rem}.tour-button-group-right{display:flex;gap:.25rem}.tour-btn{background-color:var(--clr-primary);color:var(--clr-on-primary);padding:.6rem 1rem;border:none;border-radius:.3rem;font-weight:500;cursor:pointer;transition:background-color 225ms ease-in-out,color 225ms ease-in-out}.tour-btn:hover{color:var(--clr-primary);background-color:var(--clr-on-primary)}.tour-btn.skip-btn{background-color:var(--clr-tertiary);color:var(--clr-on-tertiary)}.tour-btn.skip-btn:hover{background-color:var(--clr-on-tertiary);color:var(--clr-tertiary)}.tour-btn.prev-btn{background-color:var(--clr-secondary);color:var(--clr-on-secondary)}.tour-btn.prev-btn:hover{background-color:var(--clr-on-secondary);color:var(--clr-secondary)}';
+      '.hidden,.tour-container.arrow-hidden .tour-arrow{display:none}.tour-btn,.tour-container,.tour-arrow{border:var(--border-thickness,1px) var(--border-style,solid) var(--border-color,rgba(var(--clr-surface-5-rgb),.25))}.tour-container{position:absolute;background-color:rgba(var(--clr-surface-1-rgb),.7);padding:1.25rem 1.5rem;border-radius:.5rem;max-width:45vw;width: fit-content;box-shadow:0 .25rem .5rem rgba(0,0,0,.15);backdrop-filter:blur(0.75rem) saturate(1.5);z-index:99999;opacity:0;visibility:hidden;transform:translateY(-10px)}.tour-container.visible{opacity:1;visibility:visible;transform:translateY(0)}.tour-container.full-width{max-width:100%;}.tour-arrow{position:absolute;bottom:100%;left:50%;transform:translateY(0px) translateX(-50%);height:1.25rem;width:1.25rem;background-color:rgba(var(--clr-primary-rgb),0.7);transition:left .2s ease-out,top .2s ease-out;clip-path:polygon(50% 0, 0 100%, 100% 100%) }.tour-container.tour-arrow-top .tour-arrow{bottom:auto;top:100%;border-bottom-color:transparent;border-top-color:var(--clr-secondary);transform:translateX(-50%) translateY(-50%)}.hidden{visibility:hidden}.tour-button-wrapper{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;gap:.5rem}.tour-button-group-right{display:flex;gap:.25rem}.tour-btn{background-color:var(--clr-primary);color:var(--clr-on-primary);padding:.6rem 1rem;border:none;border-radius:.3rem;font-weight:500;cursor:pointer;transition:background-color 225ms ease-in-out,color 225ms ease-in-out}.tour-btn:hover{color:var(--clr-primary);background-color:var(--clr-on-primary)}.tour-btn.skip-btn{background-color:var(--clr-tertiary);color:var(--clr-on-tertiary)}.tour-btn.skip-btn:hover{background-color:var(--clr-on-tertiary);color:var(--clr-tertiary)}.tour-btn.prev-btn{background-color:var(--clr-secondary);color:var(--clr-on-secondary)}.tour-btn.prev-btn:hover{background-color:var(--clr-on-secondary);color:var(--clr-secondary)}';
   }
 
   public set tourSteps(steps: TourStep[]) {
@@ -95,7 +95,7 @@ export class GuidedTourElement extends HTMLElement {
       }
 
       this.tooltip.classList.remove('hidden', 'arrow-hidden', 'tour-arrow-top');
-      this.tooltip.classList.add('tour-container-visible');
+      this.tooltip.classList.add('visible');
       this.tooltip.innerHTML = `<div class="tour-arrow"></div><div class="tour-message ${getTextClass('body-medium')}" id="tour-message">${step.content}</div><div class="tour-button-wrapper">${createButton('skip-btn tour-btn', 'Skip Tour')}<div class="tour-button-group-right">${createButton('prev-btn tour-btn hidden', 'Previous')}${createButton('next-btn tour-btn', this.currentStepIndex === this.steps.length - 1 ? 'End Tour' : 'Next')}</div></div>`;
 
       if (step.arrow === false) {
@@ -191,7 +191,7 @@ export class GuidedTourElement extends HTMLElement {
     console.debug('Tour skipped or ended.');
     this.resetPointerEvents();
     if (this.tooltip) {
-      this.tooltip.classList.remove('tour-container-visible');
+      this.tooltip.classList.remove('visible');
       this.tooltip.addEventListener(
         'transitionend',
         () => {

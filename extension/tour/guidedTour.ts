@@ -32,7 +32,7 @@ const setupTour = () => {
   modal.setHeader('Welcome to Lucid Theme!');
 
   const modalContent = createElement('div', {
-    className: 'tour-container arrow-hidden tour-container-visible',
+    className: 'tour-container arrow-hidden visible full-width',
     style: { position: 'relative' },
     innerHTML: `<div class="tour-arrow"></div><div class="tour-message ${getTextClass('body-medium')}">Ready to explore lucid theme with a quick guided tour?</div><div class="tour-button-wrapper">${createButton('skip-btn tour-btn', 'Skip Tour')}${createButton('start-tour-btn tour-btn', 'Start Tour')}</div>`,
   });
