@@ -32,7 +32,6 @@ interface Window {
   };
   guide: {
     open: CallBack;
-    setup: CallBack;
   };
   EyeDropper?: EyeDropperConstructor | undefined;
   Modal?: any;
