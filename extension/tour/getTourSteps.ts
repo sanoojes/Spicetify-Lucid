@@ -59,7 +59,7 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
     },
     {
       target:
-        'setting-section[data-tab-id="background"] setting-field[data-field-id="background mode"]',
+        'setting-section[data-tab-id="background"] setting-field[data-field-id="background mode"] .label-wrapper',
       content:
         'Here you can change the background mode. Try switching between Animated, Solid Color, and Static Image to see different background types.',
       arrow: true,
@@ -70,9 +70,9 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
     },
     {
       target:
-        'setting-section[data-tab-id="background"] setting-field[data-field-id="dynamic color"]',
+        'setting-section[data-tab-id="background"] setting-field[data-field-id="dynamic color"] .label-wrapper',
       content:
-        'Move to the "Color" group and check "Dynamic Color". This feature makes your theme colors adapt to the album art of the currently playing song!',
+        "Checkout new Dynamic Color. This feature automatically adapts your theme’s colors to match the album art of the song that's playing. Try switching songs to see the effect in action!",
       arrow: true,
       wait: 700,
       interactiveElementsSelectors: [
@@ -95,10 +95,9 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
       },
     },
     {
-      target:
-        'setting-section[data-tab-id="interface"] setting-field[data-field-id="google fonts"]',
+      target: 'setting-section[data-tab-id="interface"] setting-group[data-group-id="font"]',
       content:
-        'In the "Font" group, you can enable "Google Fonts" to unlock a vast library of fonts for your theme.',
+        'Here you can enable "Google Fonts" to unlock a vast library of fonts for your theme.',
       arrow: true,
       wait: 700,
       interactiveElementsSelectors: [
@@ -106,7 +105,9 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
       ],
       onStart: () => {
         document
-          .querySelector<HTMLElement>('setting-field[data-field-id="google fonts"]')
+          .querySelector<HTMLElement>(
+            'setting-section[data-tab-id="interface"] setting-group[data-group-id="font"]'
+          )
           ?.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
@@ -114,9 +115,8 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
       },
     },
     {
-      target: 'setting-section[data-tab-id="interface"] setting-field[data-field-id="style"]',
-      content:
-        'Scroll down to the "Border" group. Here, you can change the "Style" of the application border to something other than the default solid line.',
+      target: 'setting-section[data-tab-id="interface"] setting-group[data-group-id="border"]',
+      content: 'Here, you can change the look and style of the application border.',
       arrow: true,
       wait: 700,
       interactiveElementsSelectors: [
@@ -124,7 +124,7 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
       ],
       onStart: () => {
         document
-          .querySelector<HTMLElement>('setting-field[data-field-id="style"]')
+          .querySelector<HTMLElement>('setting-group[data-group-id="border"]')
           ?.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
@@ -152,7 +152,7 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
     },
     {
       target:
-        'setting-section[data-tab-id="playbar settings"] setting-field[data-field-id="playbar type"]',
+        'setting-section[data-tab-id="playbar settings"] setting-field[data-field-id="playbar type"] .label-wrapper',
       content:
         'Try changing the "Playbar Type" between "Default" and "Compact" to see how it changes the layout.',
       arrow: true,
@@ -177,7 +177,6 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
       arrow: true,
       onComplete: () => {
         window?.lucid?.settings?.settingModal?.removeEventListener('close', settingEventCb);
-        window?.lucid?.settings?.closeSettings?.();
       },
       interactiveElementsSelectors: ['lucid-settings-modal custom-button.close'],
     },
