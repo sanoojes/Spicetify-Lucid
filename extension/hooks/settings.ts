@@ -270,6 +270,66 @@ const fieldTexts: Record<string, string[]> = {
 function getSettings(state = appSettingsStore.getState(), settings = appSettingsStore): Settings {
   return [
     {
+      name: 'General',
+      render: true,
+      groups: [
+        {
+          render: true,
+          name: 'Behavior',
+          key: 'group-behavior',
+          showName: false,
+          fields: [
+            {
+              render: true,
+              inputOptions: {
+                type: 'button',
+                buttonType: 'primary',
+                contents: 'Start',
+                onClick: () => {
+                  localStorage.removeItem('lucid-guided-tour');
+                  closeSettings?.();
+                  mountAndOpenGuide(true);
+                },
+              },
+              label: fieldTexts['start-lucid-tour'][0],
+              tooltip: fieldTexts['start-lucid-tour'][1],
+              key: 'start-lucid-tour',
+            },
+            {
+              render: true,
+              inputOptions: {
+                type: 'checkbox',
+                checked: modalState.getState().isFloating,
+                onChange: (isFloating) => {
+                  modalState.setState((state) => ({ ...state, isFloating }));
+                },
+              },
+              label: fieldTexts['floating-window'][0],
+              tooltip: fieldTexts['floating-window'][1],
+              key: 'floating-window',
+            },
+            {
+              render: true,
+              inputOptions: {
+                type: 'select',
+                value: state.position,
+                options: [
+                  { label: 'Context Menu', value: 'context-menu' },
+                  { label: 'Navigation Bar', value: 'nav' },
+                ],
+                onChange: (value) => {
+                  settings.setPosition(value as SettingsPosition);
+                },
+              },
+              label: fieldTexts['window-position'][0],
+              tooltip: fieldTexts['window-position'][1],
+              key: 'window-position',
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: 'Background',
       render: true,
       groups: [
@@ -490,51 +550,6 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
         },
       ],
     },
-    {
-      name: 'Settings Window',
-      render: true,
-      groups: [
-        {
-          render: true,
-          name: 'Behavior',
-          key: 'group-behavior',
-          showName: false,
-          fields: [
-            {
-              render: true,
-              inputOptions: {
-                type: 'checkbox',
-                checked: modalState.getState().isFloating,
-                onChange: (isFloating) => {
-                  modalState.setState((state) => ({ ...state, isFloating }));
-                },
-              },
-              label: fieldTexts['floating-window'][0],
-              tooltip: fieldTexts['floating-window'][1],
-              key: 'floating-window',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'select',
-                value: state.position,
-                options: [
-                  { label: 'Context Menu', value: 'context-menu' },
-                  { label: 'Navigation Bar', value: 'nav' },
-                ],
-                onChange: (value) => {
-                  settings.setPosition(value as SettingsPosition);
-                },
-              },
-              label: fieldTexts['window-position'][0],
-              tooltip: fieldTexts['window-position'][1],
-              key: 'window-position',
-            },
-          ],
-        },
-      ],
-    },
-
     {
       name: 'Interface',
       render: true,
@@ -1163,22 +1178,6 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               label: fieldTexts['toggle-changelog-modal'][0],
               tooltip: fieldTexts['toggle-changelog-modal'][1],
               key: 'toggle-changelog-modal',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'button',
-                buttonType: 'primary',
-                contents: 'Start',
-                onClick: () => {
-                  localStorage.removeItem('lucid-guided-tour');
-                  closeSettings?.();
-                  mountAndOpenGuide(true);
-                },
-              },
-              label: fieldTexts['start-lucid-tour'][0],
-              tooltip: fieldTexts['start-lucid-tour'][1],
-              key: 'start-lucid-tour',
             },
             {
               render: true,
