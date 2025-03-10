@@ -10,6 +10,7 @@ const WORKER_URLS = [
   'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/beta/src/workers/getColor.js',
   'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/beta/src/workers/getColor.js',
 ];
+const CACHE_KEY = 'LUCID_COLOR_SCRIPT_CACHE';
 const DEFAULT_COLOR = '#1bc858';
 
 let worker: null | Worker = null;
@@ -80,7 +81,7 @@ export async function mountColor(
 }
 
 async function initWorker() {
-  const workerScript = await fetchAndCache(WORKER_URLS, 'LUCID_COLOR_WORKER_SCRIPT');
+  const workerScript = await fetchAndCache(WORKER_URLS, CACHE_KEY);
   worker = createWorker(workerScript);
 
   if (!worker) {
