@@ -24,14 +24,13 @@ export class GuidedTourElement extends HTMLElement {
   private steps: TourStep[] = [];
   private currentStepIndex = 0;
   private tooltip?: HTMLDivElement;
-  private arrow?: HTMLDivElement;
   private targetElement?: HTMLElement;
   private interactiveElements: HTMLElement[] = [];
 
   constructor() {
     super();
     lazyLoadStyleById('guided-tour').textContent =
-      '.hidden,.tour-container.arrow-hidden .tour-arrow{display:none}.tour-btn,.tour-container,.tour-arrow{border:var(--border-thickness,1px) var(--border-style,solid) var(--border-color,rgba(var(--clr-surface-5-rgb),.25))}.tour-container{position:absolute;background-color:rgba(var(--clr-surface-1-rgb),.7);padding:1.25rem 1.5rem;border-radius:.5rem;max-width:45vw;width: fit-content;box-shadow:0 .25rem .5rem rgba(0,0,0,.15);backdrop-filter:blur(0.75rem) saturate(1.5);z-index:99999;opacity:0;visibility:hidden;transform:translateY(-10px)}.tour-container.visible{opacity:1;visibility:visible;transform:translateY(0)}.tour-container.full-width{max-width:100%;width:100%;}.tour-arrow{position:absolute;bottom:100%;left:50%;transform:translateY(0px) translateX(-50%);height:1.25rem;width:1.25rem;background-color:rgba(var(--clr-primary-rgb),0.7);transition:left .2s ease-out,top .2s ease-out;clip-path:polygon(50% 0, 0 100%, 100% 100%) }.tour-container.tour-arrow-top .tour-arrow{bottom:auto;top:100%;border-bottom-color:transparent;border-top-color:var(--clr-secondary);transform:translateX(-50%) translateY(-50%)}.hidden{visibility:hidden}.tour-button-wrapper{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;gap:.5rem}.tour-button-group-right{display:flex;gap:.25rem}.tour-btn{background-color:var(--clr-primary);color:var(--clr-on-primary);padding:.6rem 1rem;border:none;border-radius:.3rem;font-weight:500;cursor:pointer;transition:background-color 225ms ease-in-out,color 225ms ease-in-out}.tour-btn:hover{color:var(--clr-primary);background-color:var(--clr-on-primary)}.tour-btn.skip-btn{background-color:var(--clr-tertiary);color:var(--clr-on-tertiary)}.tour-btn.skip-btn:hover{background-color:var(--clr-on-tertiary);color:var(--clr-tertiary)}.tour-btn.prev-btn{background-color:var(--clr-secondary);color:var(--clr-on-secondary)}.tour-btn.prev-btn:hover{background-color:var(--clr-on-secondary);color:var(--clr-secondary)}';
+      '.hidden,.tour-container.arrow-hidden:before{display:none}.tour-btn,.tour-container.visible:before{border:var(--border-thickness,1px) var(--border-style,solid) var(--border-color,rgba(var(--clr-surface-5-rgb),.25))}.tour-container{position:absolute;background-color:var(--clr-surface-2);padding:1.25rem 1.5rem;border-radius:.5rem;max-width:45vw;width: fit-content;box-shadow:0 .25rem .5rem rgba(0,0,0,.15);z-index:99999;opacity:0;visibility:hidden;transform:translateY(-10px)}.tour-container.visible{opacity:1;visibility:visible;transform:translateY(0)}.tour-container.visible:before{content:"";position:absolute;height:1.5rem;width:1.5rem;border-radius:6px;top:0;left:50%;background-color:var(--clr-surface-2);clip-path:polygon(0 0,0% 100%,100% 0);transform:rotate(45deg) translate(-50%,0);z-index:-1}.tour-container.full-width{max-width:100%;width:100%;}.hidden{visibility:hidden}.tour-button-wrapper{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;gap:.5rem}.tour-button-group-right{display:flex;gap:.25rem}.tour-btn{background-color:var(--clr-primary);color:var(--clr-on-primary);padding:.6rem 1rem;border:none;border-radius:.3rem;font-weight:500;cursor:pointer;transition:background-color 225ms ease-in-out,color 225ms ease-in-out}.tour-btn:hover{color:var(--clr-primary);background-color:var(--clr-on-primary)}.tour-btn.skip-btn{background-color:var(--clr-tertiary);color:var(--clr-on-tertiary)}.tour-btn.skip-btn:hover{background-color:var(--clr-on-tertiary);color:var(--clr-tertiary)}.tour-btn.prev-btn{background-color:var(--clr-secondary);color:var(--clr-on-secondary)}.tour-btn.prev-btn:hover{background-color:var(--clr-on-secondary);color:var(--clr-secondary)}';
   }
 
   public set tourSteps(steps: TourStep[]) {
@@ -87,11 +86,10 @@ export class GuidedTourElement extends HTMLElement {
           className: 'tour-container',
           role: 'dialog',
           ariaModal: 'true',
-          innerHTML: '<div class="tour-arrow"></div>',
+          innerHTML: '',
         });
         this.tooltip.setAttribute('aria-labelledby', 'tour-message');
         document.body.appendChild(this.tooltip);
-        this.arrow = this.tooltip.querySelector('.tour-arrow') as HTMLDivElement;
       }
 
       this.tooltip.classList.remove('hidden', 'arrow-hidden', 'tour-arrow-top');
@@ -127,7 +125,7 @@ export class GuidedTourElement extends HTMLElement {
       };
 
       const targetRect = targetElement.getBoundingClientRect();
-      if (this.tooltip && this.arrow) {
+      if (this.tooltip) {
         let calculatedTop = targetRect.top + targetRect.height + 15;
         if (calculatedTop + this.tooltip.offsetHeight > window.innerHeight) {
           calculatedTop = targetRect.top - this.tooltip.offsetHeight - 15;
@@ -143,9 +141,6 @@ export class GuidedTourElement extends HTMLElement {
 
         this.tooltip.style.top = `${calculatedTop}px`;
         this.tooltip.style.left = `${calculatedLeft}px`;
-        if (this.arrow) {
-          this.arrow.style.left = `${targetRect.left + targetRect.width / 2 - this.tooltip.offsetLeft}px`;
-        }
       }
       resolve();
     });
@@ -198,14 +193,12 @@ export class GuidedTourElement extends HTMLElement {
           if (this.tooltip?.parentElement) {
             this.tooltip.remove();
             this.tooltip = undefined;
-            this.arrow = undefined;
           }
         },
         { once: true }
       );
     } else {
       this.tooltip = undefined;
-      this.arrow = undefined;
     }
   }
 }
