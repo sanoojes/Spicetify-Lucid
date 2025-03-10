@@ -5,13 +5,7 @@ import { createWorker } from '@utils/worker/getWorker.ts';
 import type { ColorMessage, ColorOptions, ImageOptions } from '@app/types/workers.ts';
 import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
 import { fetchAndCache } from '@utils/fetchAndCache.ts';
-
-const WORKER_URLS = [
-  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/beta/src/workers/getColor.js',
-  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/beta/src/workers/getColor.js',
-];
-const CACHE_KEY = 'LUCID_COLOR_SCRIPT_CACHE';
-const DEFAULT_COLOR = '#1bc858';
+import { DEFAULT_COLOR, WORKER_SCIRPT_URLS, WORKER_SCRIPT_CACHE_KEY } from '@app/constant.ts';
 
 let worker: null | Worker = null;
 let unsubscribe: null | (() => void) = null;
@@ -81,7 +75,7 @@ export async function mountColor(
 }
 
 async function initWorker() {
-  const workerScript = await fetchAndCache(WORKER_URLS, CACHE_KEY);
+  const workerScript = await fetchAndCache(WORKER_SCIRPT_URLS, WORKER_SCRIPT_CACHE_KEY);
   worker = createWorker(workerScript);
 
   if (!worker) {
