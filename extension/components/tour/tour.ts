@@ -55,6 +55,7 @@ export class GuidedTourElement extends HTMLElement {
   connectedCallback() {
     this.style.position = 'fixed';
     this.style.inset = '0px';
+    this.style.pointerEvents = 'none';
   }
 
   public set tourSteps(steps: TourStep[]) {
