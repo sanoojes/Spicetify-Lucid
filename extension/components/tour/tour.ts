@@ -245,6 +245,8 @@ export class GuidedTourElement extends HTMLElement {
 
   endTour() {
     console.debug('Tour skipped or ended.');
+    this.resetPointerEvents();
+
     if (this.tooltip) {
       this.tooltip.classList.remove('visible');
       this.tooltip.addEventListener(
@@ -254,12 +256,9 @@ export class GuidedTourElement extends HTMLElement {
             this.tooltip.parentElement?.removeChild(this.tooltip);
             this.tooltip = undefined;
           }
-          this.resetPointerEvents();
         },
         { once: true }
       );
-    } else {
-      this.resetPointerEvents();
     }
   }
 }
