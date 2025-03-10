@@ -19,7 +19,7 @@ const GUIDED_TOUR_STYLE_ID = 'guided-tour-styles';
 const GUIDED_TOUR_CSS = `
 body,#main{overflow:hidden}
 .hidden,.tour-container.arrow-hidden:before{display:none}
-.tour-container{position:absolute;background-color:var(--clr-surface-2);padding:1rem;border-radius:.5rem;max-width:45vw;box-shadow:0 0 2rem rgba(0,0,0,0.5);z-index:99999;opacity:0;visibility:hidden;transform:translate3d(0, -10px, 0);transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;}
+.tour-container{position:absolute;background-color:var(--clr-surface-2);padding:1rem;border-radius:.5rem;max-width:30em;box-shadow:0 0 2rem rgba(0,0,0,0.5);z-index:99999;opacity:0;visibility:hidden;transform:translate3d(0, -10px, 0);transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;}
 .tour-container.full-width{width: 100%; max-width: 100%}
 .tour-container.visible:before{content:"";position:absolute;height:1.5rem;width:1.5rem;border-radius:6px;top:0;left:50%;background-color:var(--clr-surface-2);clip-path:polygon(0 0,0% 100%,100% 0);transform:rotate(45deg) translate(-50%,0);z-index:-1}
 .tour-container.visible{opacity:1;visibility:visible;transform:translate3d(0, 0, 0)}
