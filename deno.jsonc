@@ -5,8 +5,8 @@
     "build": "spice-builder build",
     "build-minify": "spice-builder build -m",
     "build-watch": "spice-builder build -w",
-    "lint": "biome lint",
-    "format": "biome format",
+    "lint": "biome lint --write",
+    "format": "biome format --write",
     "compile-workers": "esbuild extension/workers/getColor.ts --bundle --tsconfig=tsconfig.json --minify --target=chrome58 --outdir=src/workers/"
   },
   // new relative imports should be added in tsconfig.json

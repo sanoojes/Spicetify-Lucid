@@ -333,7 +333,7 @@ class AppSettingsStore extends Store<AppSettings> {
     }));
   }
 
-  setColor(color: ColorSettings) {
+  setColor(color: Partial<ColorSettings>) {
     this.setState((state) => ({
       ...state,
       color: {

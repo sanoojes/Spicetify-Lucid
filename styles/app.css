@@ -25,18 +25,9 @@
 
   /* overrides */
   --encore-button-corner-radius: 0.5rem !important;
-  --main-override-color: rgba(
-    var(--clr-surface-0-rgb),
-    var(--root-cards-alpha, 0.5)
-  );
-  --library-override-color: rgba(
-    var(--clr-surface-0-rgb),
-    var(--root-cards-alpha, 0.5)
-  );
-  --npv-override-color: rgba(
-    var(--clr-surface-0-rgb),
-    var(--root-cards-alpha, 0.5)
-  );
+  --main-override-color: rgba(var(--clr-surface-0-rgb), var(--root-cards-alpha, 0.5));
+  --library-override-color: rgba(var(--clr-surface-0-rgb), var(--root-cards-alpha, 0.5));
+  --npv-override-color: rgba(var(--clr-surface-0-rgb), var(--root-cards-alpha, 0.5));
 }
 
 /* ad containers */
@@ -82,14 +73,14 @@ lucid-modal .modal,
 .artist-artistDiscography-headerContainer,
 .main-contextMenu-menu {
   border: var(--border-thickness, 1px) var(--border-style, solid)
-  var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
+    var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
 }
 .Root__globalNav :is(.main-topBar-searchBar, .main-globalNav-navLink),
 #global-nav-bar :is(.main-topBar-searchBar, .main-globalNav-navLink) {
   -webkit-box-shadow: 0 0 0 var(--border-thickness, 1px)
-  var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25)) inset;
+    var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25)) inset;
   box-shadow: 0 0 0 var(--border-thickness, 1px)
-  var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25)) inset;
+    var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25)) inset;
   transform: scale(0.99);
 }
 
@@ -130,10 +121,8 @@ lucid-modal .modal,
     inset: 0;
     border-radius: inherit;
     z-index: -1;
-    -webkit-backdrop-filter: blur(var(--context-blur, 1rem))
-      saturate(var(--context-saturate, 1.5));
-    backdrop-filter: blur(var(--context-blur, 1rem))
-      saturate(var(--context-saturate, 1.5));
+    -webkit-backdrop-filter: blur(var(--context-blur, 1rem)) saturate(var(--context-saturate, 1.5));
+    backdrop-filter: blur(var(--context-blur, 1rem)) saturate(var(--context-saturate, 1.5));
   }
 
   .main-contextMenu-menuItemButton {
@@ -171,9 +160,8 @@ kbd,
   .main-topBar-searchBar {
     border-radius: 0.5rem;
     transform: scale(1);
-    transition: border-radius 0.3s ease-in-out,
-      background-color 0.2s ease-in-out, color 0.2s ease-in-out,
-      scale 0.3s ease-in-out;
+    transition: border-radius 0.3s ease-in-out, background-color 0.2s ease-in-out, color 0.2s
+      ease-in-out, scale 0.3s ease-in-out;
 
     &:focus,
     &:hover {
@@ -245,8 +233,7 @@ kbd,
       opacity: var(--top-bar-opacity, 0);
       -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
         saturate(var(--top-bar-saturate, 1.5));
-      backdrop-filter: blur(var(--top-bar-blur, 1rem))
-        saturate(var(--top-bar-saturate, 1.5));
+      backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
       transition: backdrop-filter -1s linear, opacity 0.3s linear;
     }
   }
@@ -283,8 +270,7 @@ kbd,
       span,
       .e-9640-button-primary__inner {
         border-radius: 0.5rem;
-        transition-property: background-color, transform, -webkit-transform,
-          border-radius;
+        transition-property: background-color, transform, -webkit-transform, border-radius;
         transition-duration: 225ms;
 
         &:hover {
@@ -358,8 +344,6 @@ kbd,
 }
 
 /* Right Sidebar */
-.Root__right-sidebar {
-}
 .W3E0IT3_STcazjTeyOJa {
   position: absolute;
   height: 4rem;
@@ -383,20 +367,13 @@ kbd,
   background-color: rgba(var(--clr-surface-1-rgb), 0.5);
 
   &:before {
-    -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
-      saturate(var(--top-bar-saturate, 1.5));
-    backdrop-filter: blur(var(--top-bar-blur, 1rem))
-      saturate(var(--top-bar-saturate, 1.5));
+    -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
+    backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
   }
 }
 
 .cZCuJDjrGA2QMXja_Sua {
   padding-top: 4rem;
-}
-
-/* Left Sidebar */
-#Desktop_LeftSidebar_Id,
-.Root__nav-bar {
 }
 
 /* NP Bar */
@@ -456,11 +433,9 @@ body[npb-is-floating] {
       inset: 0;
       border-radius: inherit;
       z-index: -1;
-      -webkit-backdrop-filter: blur(var(--npb-blur, 1rem))
-        saturate(var(--npb-saturate, 1.5))
+      -webkit-backdrop-filter: blur(var(--npb-blur, 1rem)) saturate(var(--npb-saturate, 1.5))
         brightness(var(--npb-brightness, 60%));
-      backdrop-filter: blur(var(--npb-blur, 1rem))
-        saturate(var(--npb-saturate, 1.5))
+      backdrop-filter: blur(var(--npb-blur, 1rem)) saturate(var(--npb-saturate, 1.5))
         brightness(var(--npb-brightness, 60%));
     }
   }
@@ -569,8 +544,7 @@ body[npb-type="compact"] {
       padding: 0.5rem 0.5rem;
       border-radius: 0.75rem;
       transition: width 225ms ease-in-out, background-color 300ms linear;
-      border: var(--border-thickness, 1px) var(--border-style, solid)
-        rgba(0, 0, 0, 0);
+      border: var(--border-thickness, 1px) var(--border-style, solid) rgba(0, 0, 0, 0);
       transform: translate3d(0px, 0px, 0px);
       will-change: width, transform;
 
@@ -611,8 +585,8 @@ body[npb-type="compact"] {
       border-radius: 0.75rem;
       border: var(--border-thickness, 1px) var(--border-style, solid)
         rgba(var(--border-color, var(--clr-surface-5-rgb)), 0.5);
-      transition: backdrop-filter 225ms cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: backdrop-filter 225ms cubic-bezier(0.4, 0, 0.2, 1), opacity 225ms
+        cubic-bezier(0.4, 0, 0.2, 1);
 
       &::before {
         content: "";
@@ -778,16 +752,8 @@ body[npv-mode="compact"] {
 .main-home-homeHeader {
   /* background-color: var(--home-header-override-color, rgba(0, 0, 0, 0)) !important; */
   height: 40vh;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 .XVz4BMGP5zAEE5p90mYK,
 .Bdcf5g__Rug3TGqSdbiy,
@@ -844,8 +810,7 @@ body[npv-mode="compact"] {
     border-radius: inherit;
     -webkit-backdrop-filter: blur(var(--modal-bg-blur, 2rem))
       saturate(var(--modal-bg-saturation, 1.7));
-    backdrop-filter: blur(var(--modal-bg-blur, 2rem))
-      saturate(var(--modal-bg-saturation, 1.7));
+    backdrop-filter: blur(var(--modal-bg-blur, 2rem)) saturate(var(--modal-bg-saturation, 1.7));
   }
 
   * {
@@ -1163,7 +1128,6 @@ body[path*="discography"] {
     position: relative !important;
   }
 
-
   .artist-artistDiscography-headerContainer {
     background-color: rgba(var(--clr-surface-rgb), 0.5);
     padding: 0.75rem 1rem;
@@ -1175,10 +1139,10 @@ body[path*="discography"] {
     }
   }
 
-  .main-topBar-container{
+  .main-topBar-container {
     top: 51px !important;
   }
-  .main-topBar-background{
+  .main-topBar-background {
     border-radius: 0px;
   }
 
@@ -1209,8 +1173,7 @@ body[path*="discography"] {
     &.BHHXR8xc6m009ohY6aKU:before {
       -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
         saturate(var(--top-bar-saturate, 1.5));
-      backdrop-filter: blur(var(--top-bar-blur, 1rem))
-        saturate(var(--top-bar-saturate, 1.5));
+      backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
     }
   }
 }
@@ -1228,6 +1191,7 @@ body[path*="discography"] {
 .playlist-compact-card .main-entityHeader-container,
 .playlist-card .main-entityHeader-container {
   position: relative;
+  min-height: 16rem;
 
   .contentSpacing {
     width: calc(100% - 2rem);
@@ -1258,21 +1222,13 @@ body[path*="discography"] {
     }
 
     .encore-text-headline-large {
-      font-size: clamp(
-        2cqmax,
-        var(--main-view-grid-width) / 20,
-        5cqmax
-      ) !important;
+      font-size: clamp(2cqmax, var(--main-view-grid-width) / 20, 5cqmax) !important;
     }
   }
 }
 .playlist-card[umv-type="normal"] {
   .main-entityHeader-container {
-    --min-fluid-height: clamp(
-      250px,
-      200px + (var(--main-view-grid-width) - 600px) / 424 * 90,
-      40vh
-    );
+    --min-fluid-height: clamp(250px, 200px + (var(--main-view-grid-width) - 600px) / 424 * 90, 40vh);
   }
 }
 
@@ -1296,18 +1252,10 @@ body[path*="discography"] {
 
 .playlist-compact {
   .main-entityHeader-container .encore-text-headline-large {
-    font-size: clamp(
-      2.5cqmax,
-      var(--main-view-grid-width) / 50,
-      3cqmax
-    ) !important;
+    font-size: clamp(2.5cqmax, var(--main-view-grid-width) / 50, 3cqmax) !important;
   }
   .main-entityHeader-imageContainer {
-    --img-size: clamp(
-      80px,
-      80px + (var(--main-view-grid-width) - 600px) / 424 * 104,
-      140px
-    );
+    --img-size: clamp(80px, 80px + (var(--main-view-grid-width) - 600px) / 424 * 104, 140px);
     height: var(--img-size);
     width: var(--img-size);
   }
@@ -1339,27 +1287,14 @@ body[path*="discography"] {
       left bottom,
       from(transparent),
       to(rgba(var(--clr-surface-0-rgb), 0.65))
-    ),
-    var(--background-noise) !important;
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgba(var(--clr-surface-0-rgb), 0.5)
-    ),
+    ), var(--background-noise) !important;
+  background: linear-gradient(to bottom, transparent, rgba(var(--clr-surface-0-rgb), 0.5)),
     var(--background-noise) !important;
 }
 .grain-starry .main-actionBarBackground-background {
   background: var(--background-noise) !important;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
   opacity: 0.5;
 }
 .playlist-playlist-playlistContent:before,
@@ -1371,11 +1306,7 @@ body[path*="discography"] {
     from(transparent),
     to(rgba(var(--clr-surface-0-rgb), 0.45))
   ) !important;
-  background: linear-gradient(
-    to bottom,
-    rgba(var(--clr-surface-0-rgb), 0.45),
-    transparent
-  ) !important;
+  background: linear-gradient(to bottom, rgba(var(--clr-surface-0-rgb), 0.45), transparent) !important;
 }
 
 .playlist-playlist-playlistContent {
@@ -1454,12 +1385,7 @@ body[path*="genre"] {
 
 /* Lyrics plus */
 .lyrics-lyricsContainer-LyricsBackground {
-  background-color: transparent;
-  background: color-mix(
-    in srgb,
-    var(--lyrics-color-background),
-    transparent 75%
-  );
+  background: color-mix(in srgb, var(--lyrics-color-background), transparent 75%);
   margin-bottom: -1rem;
 }
 .lyrics-lyricsContainer-Provider {
