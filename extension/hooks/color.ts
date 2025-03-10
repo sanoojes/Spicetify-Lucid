@@ -1,14 +1,15 @@
 import type { AppSettings } from '@app/types/settings.ts';
 import appSettingsStore from '@store/setting.ts';
 import { npvState } from '@store/npv.ts';
-import { getWorker } from '@utils/worker/getWorker.ts';
+import { createWorker } from '@utils/worker/getWorker.ts';
 import type { ColorMessage, ColorOptions, ImageOptions } from '@app/types/workers.ts';
 import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
+import { fetchAndCache } from '@utils/fetchAndCache.ts';
 
-const PRIMARY_WORKER_URL =
-  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/beta/src/workers/getColor.js';
-const FALLBACK_WORKER_URL =
-  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/beta/src/workers/getColor.js';
+const WORKER_URLS = [
+  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/beta/src/workers/getColor.js',
+  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/beta/src/workers/getColor.js',
+];
 const DEFAULT_COLOR = '#1bc858';
 
 let worker: null | Worker = null;
@@ -78,11 +79,9 @@ export async function mountColor(
   });
 }
 
-async function initWorker(): Promise<void> {
-  worker = await getWorker(PRIMARY_WORKER_URL);
-  if (!worker) {
-    worker = await getWorker(FALLBACK_WORKER_URL);
-  }
+async function initWorker() {
+  const workerScript = await fetchAndCache(WORKER_URLS, 'LUCID_COLOR_WORKER_SCRIPT');
+  worker = createWorker(workerScript);
 
   if (!worker) {
     document.body.removeAttribute('color-from-worker');

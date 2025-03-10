@@ -1,12 +1,18 @@
 import { TOUR_STORAGE_KEY } from '@app/constant.ts';
 import { createElement } from '@utils/dom/createElement.ts';
+import { fetchAndCache } from '@utils/fetchAndCache.ts';
+
+const GUIDE_SCRIPT_CACHE_KEY = 'GUIDE_SCRIPT_CACHE';
+const GUIDE_SCRIPT_LINKS = [
+  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/beta/src/guidedTour.js',
+  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/src/guidedTour.js',
+];
 
 export async function mountAndOpenGuide(open = false) {
   if (!localStorage.getItem(TOUR_STORAGE_KEY) || open) {
     await mountGuide();
     if (window?.guide?.open) {
       window.guide.open();
-
       localStorage.setItem(TOUR_STORAGE_KEY, 'true');
     } else {
       console.error('Guide script loaded, but window.guide is not available.');
@@ -26,15 +32,7 @@ export async function mountGuide(): Promise<void> {
   try {
     Spicetify?.showNotification('Please wait. Guided Tour is loading.', false, 1000);
 
-    const response = await fetch(
-      'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/beta/src/guidedTour.js'
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const scriptText = await response.text();
+    const scriptText = await fetchAndCache(GUIDE_SCRIPT_LINKS, GUIDE_SCRIPT_CACHE_KEY);
 
     guideScript = createElement('script', {
       id,
