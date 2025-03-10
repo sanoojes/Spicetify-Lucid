@@ -124,24 +124,23 @@ export class GuidedTourElement extends HTMLElement {
         this.endTour();
       };
 
-      const targetRect = targetElement.getBoundingClientRect();
-      if (this.tooltip) {
-        let calculatedTop = targetRect.top + targetRect.height + 15;
-        if (calculatedTop + this.tooltip.offsetHeight > window.innerHeight) {
-          calculatedTop = targetRect.top - this.tooltip.offsetHeight - 15;
-          this.tooltip.classList.add('tour-arrow-top');
+      const updatePos = () => {
+        const targetRect = targetElement.getBoundingClientRect();
+        if (!this.tooltip) return;
+
+        let top = targetRect.top + targetRect.height + 15;
+        if (top + this.tooltip.offsetHeight > window.innerHeight) {
+          top = targetRect.top - this.tooltip.offsetHeight - 15;
         }
 
-        let calculatedLeft = targetRect.left + targetRect.width / 2 - this.tooltip.offsetWidth / 2;
-        if (calculatedLeft < 0) {
-          calculatedLeft = 10;
-        } else if (calculatedLeft + this.tooltip.offsetWidth > window.innerWidth) {
-          calculatedLeft = window.innerWidth - this.tooltip.offsetWidth - 10;
-        }
+        const left = targetRect.left + targetRect.width / 2 - this.tooltip.offsetWidth / 2;
 
-        this.tooltip.style.top = `${calculatedTop}px`;
-        this.tooltip.style.left = `${calculatedLeft}px`;
-      }
+        this.tooltip.style.top = `${top}px`;
+        this.tooltip.style.left = `${left}px`;
+      };
+
+      updatePos();
+      window.addEventListener('resize', updatePos);
       resolve();
     });
   }
