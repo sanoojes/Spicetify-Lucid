@@ -287,7 +287,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 contents: 'Start',
                 onClick: () => {
                   localStorage.removeItem('lucid-guided-tour');
-                  closeSettings?.();
+                  closeSettings();
                   mountAndOpenGuide(true);
                 },
               },
