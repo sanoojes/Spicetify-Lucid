@@ -14,15 +14,27 @@ interface EyeDropperConstructor {
   new (): EyeDropper;
 }
 
+type CallBack = () => void;
 interface Window {
   lucidMainElement: HTMLElement | undefined;
   lucidState: {
     NPVArtworkUrl: string | null | undefined;
   };
   lucid: {
-    config?: () => void;
-    reset?: () => void;
-    store?: unknown;
+    config?: CallBack;
+    reset?: CallBack;
+    store?: any;
+    settings?: {
+      openSettings?: CallBack;
+      closeSettings?: CallBack;
+      settingModal: any;
+    };
+  };
+  guide: {
+    open: CallBack;
+    setup: CallBack;
   };
   EyeDropper?: EyeDropperConstructor | undefined;
+  Modal?: any;
+  FloatingModal?: any;
 }

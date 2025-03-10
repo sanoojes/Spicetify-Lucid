@@ -23,6 +23,7 @@ import { deepmerge } from 'deepmerge-ts';
 import { isValidAppSettings } from '@utils/settingsValidator.ts';
 
 const defaultAppSettings: AppSettings = {
+  showChangelog: true,
   position: 'nav',
   background: {
     mode: 'static',
@@ -143,6 +144,10 @@ class AppSettingsStore extends Store<AppSettings> {
     }
   ) {
     super(initialState, options);
+  }
+
+  setChangelog(showChangelog: boolean) {
+    this.setState((state) => ({ ...state, showChangelog }));
   }
 
   setPages(pages: Partial<PageSettings>) {
@@ -457,6 +462,8 @@ class AppSettingsStore extends Store<AppSettings> {
 
   resetState() {
     this.setState(() => defaultAppSettings);
+    localStorage.removeItem('lucid-guided-tour');
+    window.location.reload();
   }
 
   exportSettings(): string {
@@ -487,7 +494,6 @@ window.lucid = {
   config: () => appSettingsStore.getState(),
   reset: () => {
     appSettingsStore.resetState();
-    window.location.reload();
   },
   store: appSettingsStore,
 };

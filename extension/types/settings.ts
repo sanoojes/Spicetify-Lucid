@@ -113,6 +113,7 @@ export type PlaybarSettings = {
 export type GrainSettings = { type: 'default' | 'starry' | 'none' };
 
 export type AppSettings = {
+  showChangelog: boolean;
   position: SettingsPosition;
   background: Background;
   border: BorderSettings;

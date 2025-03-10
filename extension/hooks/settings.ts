@@ -27,6 +27,25 @@ import {
 import { isWindows } from '@utils/platformUtils.ts';
 import { copyToClipboard } from '@utils/clipboardUtils.ts';
 import { isValidAppSettings } from '@utils/settingsValidator.ts';
+import { mountAndOpenGuide } from '@app/hooks/guide.ts';
+
+let _openSettings: (() => void) | null = null;
+let _closeSettings: (() => void) | null = null;
+
+export const settingModal: FloatingModal = new FloatingModal();
+export const openSettings = () => {
+  _openSettings?.();
+};
+
+export const closeSettings = () => {
+  _closeSettings?.();
+};
+
+window.lucid.settings = {
+  openSettings,
+  closeSettings,
+  settingModal,
+};
 
 const getSettingsContents = () => {
   const settingsContainer = createElement('div', { id: 'settings-container' });
@@ -44,21 +63,21 @@ const getSettingsContents = () => {
 };
 
 export function mountSettings(lucidMain: HTMLElement) {
-  const settings = new FloatingModal();
-  settings.isFloating = modalState.getState().isFloating;
-  settings.setContent(getSettingsContents());
+  settingModal.isFloating = modalState.getState().isFloating;
+  settingModal.setContent(getSettingsContents());
 
   modalState.subscribe((state) => {
-    settings.isFloating = state.isFloating;
+    settingModal.isFloating = state.isFloating;
   }, 'isFloating');
 
-  (lucidMain ?? document.getElementById('main'))?.append(settings);
+  (lucidMain ?? document.getElementById('main'))?.append(settingModal);
 
-  const openSettings = () => settings.open();
+  _openSettings = () => settingModal.open();
+  _closeSettings = () => settingModal.close();
   addSettingAccess(appSettingsStore.getState().position, openSettings);
 
   appSettingsStore.subscribe((state) => {
-    addSettingAccess(state.position, openSettings);
+    if (_openSettings) addSettingAccess(state.position, openSettings);
   }, 'position');
 }
 
@@ -222,6 +241,14 @@ const fieldTexts: Record<string, string[]> = {
     'Backdrop Brightness',
     'Adjust the color brightness of the normal playbar backdrop (0-256).',
   ],
+  'toggle-changelog-modal': [
+    'Show Changelog',
+    'Enable or disable the changelog modal that appears after theme updates.',
+  ],
+  'start-lucid-tour': [
+    'Take a Lucid Tour',
+    'Start a guided walkthrough of the Lucid theme to learn its features.',
+  ],
   'export-app-settings': [
     'Export Settings',
     'Export your settings to the clipboard as JSON for backup or sharing.',
@@ -242,50 +269,6 @@ const fieldTexts: Record<string, string[]> = {
 
 function getSettings(state = appSettingsStore.getState(), settings = appSettingsStore): Settings {
   return [
-    {
-      name: 'Settings Window',
-      render: true,
-      groups: [
-        {
-          render: true,
-          name: 'Behavior',
-          key: 'group-behavior',
-          showName: false,
-          fields: [
-            {
-              render: true,
-              inputOptions: {
-                type: 'checkbox',
-                checked: modalState.getState().isFloating,
-                onChange: (isFloating) => {
-                  modalState.setState((state) => ({ ...state, isFloating }));
-                },
-              },
-              label: fieldTexts['floating-window'][0],
-              tooltip: fieldTexts['floating-window'][1],
-              key: 'floating-window',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'select',
-                value: state.position,
-                options: [
-                  { label: 'Context Menu', value: 'context-menu' },
-                  { label: 'Navigation Bar', value: 'nav' },
-                ],
-                onChange: (value) => {
-                  settings.setPosition(value as SettingsPosition);
-                },
-              },
-              label: fieldTexts['window-position'][0],
-              tooltip: fieldTexts['window-position'][1],
-              key: 'window-position',
-            },
-          ],
-        },
-      ],
-    },
     {
       name: 'Background',
       render: true,
@@ -507,6 +490,51 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
         },
       ],
     },
+    {
+      name: 'Settings Window',
+      render: true,
+      groups: [
+        {
+          render: true,
+          name: 'Behavior',
+          key: 'group-behavior',
+          showName: false,
+          fields: [
+            {
+              render: true,
+              inputOptions: {
+                type: 'checkbox',
+                checked: modalState.getState().isFloating,
+                onChange: (isFloating) => {
+                  modalState.setState((state) => ({ ...state, isFloating }));
+                },
+              },
+              label: fieldTexts['floating-window'][0],
+              tooltip: fieldTexts['floating-window'][1],
+              key: 'floating-window',
+            },
+            {
+              render: true,
+              inputOptions: {
+                type: 'select',
+                value: state.position,
+                options: [
+                  { label: 'Context Menu', value: 'context-menu' },
+                  { label: 'Navigation Bar', value: 'nav' },
+                ],
+                onChange: (value) => {
+                  settings.setPosition(value as SettingsPosition);
+                },
+              },
+              label: fieldTexts['window-position'][0],
+              tooltip: fieldTexts['window-position'][1],
+              key: 'window-position',
+            },
+          ],
+        },
+      ],
+    },
+
     {
       name: 'Interface',
       render: true,
@@ -1123,6 +1151,35 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-application-settings',
           showName: false,
           fields: [
+            {
+              render: true,
+              inputOptions: {
+                type: 'checkbox',
+                checked: state.showChangelog,
+                onChange: (state) => {
+                  settings.setChangelog(state);
+                },
+              },
+              label: fieldTexts['toggle-changelog-modal'][0],
+              tooltip: fieldTexts['toggle-changelog-modal'][1],
+              key: 'toggle-changelog-modal',
+            },
+            {
+              render: true,
+              inputOptions: {
+                type: 'button',
+                buttonType: 'primary',
+                contents: 'Start',
+                onClick: () => {
+                  localStorage.removeItem('lucid-guided-tour');
+                  closeSettings?.();
+                  mountAndOpenGuide(true);
+                },
+              },
+              label: fieldTexts['start-lucid-tour'][0],
+              tooltip: fieldTexts['start-lucid-tour'][1],
+              key: 'start-lucid-tour',
+            },
             {
               render: true,
               inputOptions: {

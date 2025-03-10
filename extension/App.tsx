@@ -16,6 +16,7 @@ import { alphaToHex } from '@utils/colors/convert.ts';
 import { mountNPV } from '@app/hooks/npv.ts';
 import { mountGrains } from '@app/hooks/grains.ts';
 import { waitForElement } from '@utils/dom/waitForElement.ts';
+import { mountAndOpenGuide } from '@app/hooks/guide.ts';
 
 const main = () => {
   const lucidMain = new MainElement();
@@ -86,6 +87,8 @@ const main = () => {
   }, 'color');
 
   mountSettings(lucidMain);
+
+  mountAndOpenGuide();
 };
 
 console.time('Main fn start');

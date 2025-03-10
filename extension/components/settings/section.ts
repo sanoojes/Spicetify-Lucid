@@ -227,6 +227,7 @@ export class SettingSection extends HTMLElement {
     if (!this._groups || this._groups.length === 0 || this.rendered) {
       return;
     }
+    this.dataset.tabId = this._name.toLocaleLowerCase();
 
     this.clear();
 
