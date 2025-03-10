@@ -4,6 +4,7 @@ import type { AppSettings } from '@app/types/settings.ts';
 import type { Modal } from '@components/settings/modal.ts';
 import { createButton, GuidedTourElement } from '@components/tour/tour.ts';
 import { getTourSteps } from '@app/tour/getTourSteps.ts';
+import { GUIDE_STORAGE_KEY } from '@app/constant.ts';
 
 let modal: Modal | null = null;
 
@@ -44,16 +45,20 @@ const setupTour = () => {
     document.body
   )?.appendChild(modal);
 
+  localStorage.removeItem(GUIDE_STORAGE_KEY);
+
   const startTourButton = modalContent.querySelector('.start-tour-btn') as HTMLButtonElement;
   const skipTourButton = modalContent.querySelector('.skip-btn') as HTMLButtonElement;
 
   startTourButton.onclick = () => {
+    localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
     tourElement.start();
     tourElement.tourSteps = getTourSteps();
     modal?.close();
   };
 
   skipTourButton.onclick = () => {
+    localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
     tourElement.endTour();
     modal?.close();
   };

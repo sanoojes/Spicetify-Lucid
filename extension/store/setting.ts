@@ -355,11 +355,16 @@ class AppSettingsStore extends Store<AppSettings> {
   }
 
   resetState() {
-    this.setState(() => DEFAULT_APP_SETTINGS);
-    localStorage.removeItem(GUIDE_STORAGE_KEY);
-    localStorage.removeItem(GUIDE_SCRIPT_CACHE_KEY);
-    localStorage.removeItem(WORKER_SCRIPT_CACHE_KEY);
-    window.location.reload();
+    try {
+      this.setState(() => DEFAULT_APP_SETTINGS);
+      localStorage.removeItem(GUIDE_STORAGE_KEY);
+      localStorage.removeItem(GUIDE_SCRIPT_CACHE_KEY);
+      localStorage.removeItem(WORKER_SCRIPT_CACHE_KEY);
+      window.location.reload();
+    } catch (e) {
+      Spicetify?.showNotification('Error reseting settings.', true, 5000);
+      console.error('Error reseting settings.', e);
+    }
   }
 
   exportSettings(): string {
