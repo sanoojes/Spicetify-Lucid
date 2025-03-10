@@ -3,12 +3,12 @@ import { createElement } from '@utils/dom/createElement.ts';
 import type { AppSettings } from '@app/types/settings.ts';
 import type { Modal } from '@components/settings/modal.ts';
 import { createButton, GuidedTourElement } from '@components/tour/tour.ts';
-import { getTourSteps } from '@app/tour/getTourSteps.ts';
+import { getTourSteps, settingEventCb } from '@app/tour/getTourSteps.ts';
 import { GUIDE_STORAGE_KEY } from '@app/constant.ts';
 
 let modal: Modal | null = null;
 
-const startTour = () => {
+export const startTour = () => {
   try {
     if (!modal) setupTour();
     modal?.open();
@@ -55,12 +55,15 @@ const setupTour = () => {
     tourElement.start();
     tourElement.tourSteps = getTourSteps();
     modal?.close();
+
+    document.body.appendChild(tourElement);
   };
 
   skipTourButton.onclick = () => {
     localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
     tourElement.endTour();
     modal?.close();
+    window?.lucid?.settings?.settingModal?.removeEventListener('close', settingEventCb);
   };
 
   modal?.open();

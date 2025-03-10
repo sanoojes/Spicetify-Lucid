@@ -1,6 +1,6 @@
 import type { TourStep } from '@components/tour/tour.ts';
 
-const settingEventCb = () => {
+export const settingEventCb = () => {
   window?.lucid?.settings?.openSettings?.();
 };
 
@@ -63,6 +63,7 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
         'Here you can change the background mode. Try switching between Animated, Solid Color, and Static Image to see different background types.',
       arrow: true,
       wait: 700,
+      position: 'bottom left',
       interactiveElementsSelector:
         'setting-section[data-tab-id="background"] setting-field[data-field-id="background mode"]',
     },
