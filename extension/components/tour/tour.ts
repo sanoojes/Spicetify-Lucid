@@ -1,8 +1,6 @@
 import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
 import { createElement } from '@utils/dom/createElement.ts';
 import { getTextClass } from '@utils/styles/encoreUtils.ts';
-import { Button } from '@components/ui/button.ts';
-
 export type TourStep = {
   target: string;
   content: string;
@@ -11,14 +9,15 @@ export type TourStep = {
   onPrevious?: (() => void) | null;
   arrow?: boolean;
   interactiveElementsSelectors?: string[];
+  onStart?: (() => void) | null;
 };
 
-export const createButton = (className: string, text: string) => {
-  const button = new Button();
-  button.type = 'primary';
-  button.classList.add(...className.split(' '));
-  button.textContent = text;
-  return button.toString();
+export const createButton = (className: string, textContent: string): string => {
+  const button = createElement('button', {
+    className: `lucid-button ${getTextClass('body-small-bold')} ${className}`,
+    textContent,
+  });
+  return button.outerHTML;
 };
 
 export class GuidedTourElement extends HTMLElement {
@@ -32,7 +31,7 @@ export class GuidedTourElement extends HTMLElement {
   constructor() {
     super();
     lazyLoadStyleById('guided-tour').textContent =
-      '.hidden,.tour-container.arrow-hidden .tour-arrow{display:none}.tour-btn,.tour-container{border:var(--border-thickness,1px) var(--border-style,solid) var(--border-color,rgba(var(--clr-surface-5-rgb),.25))}.tour-container{position:absolute;background-color:rgba(var(--clr-surface-1-rgb),.7);padding:1.25rem 1.5rem;border-radius:.5rem;min-width:20rem;box-shadow:0 .25rem .5rem rgba(0,0,0,.15);backdrop-filter:blur(0.75rem) saturate(1.5);z-index:99999;opacity:0;visibility:hidden;transform:translateY(-10px)}.tour-container.tour-container-visible{opacity:1;visibility:visible;transform:translateY(0)}.tour-arrow{position:absolute;bottom:100%;left:49%;transform:rotate(45deg) translateY(1rem);height:2rem;width:2rem;transition:left .2s ease-out,top .2s ease-out}.tour-container.tour-arrow-top .tour-arrow{bottom:auto;top:100%;border-bottom-color:transparent;border-top-color:var(--clr-secondary);transform:translateX(-50%) translateY(-50%)}.hidden{visibility:hidden}.tour-button-wrapper{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;gap:.5rem}.tour-button-group-right{display:flex;gap:.25rem}.tour-btn{background-color:var(--clr-primary);color:var(--clr-on-primary);padding:.6rem 1rem;border:none;border-radius:.3rem;font-weight:500;cursor:pointer;transition:background-color 225ms ease-in-out,color 225ms ease-in-out}.tour-btn:hover{color:var(--clr-primary);background-color:var(--clr-on-primary)}.tour-btn.skip-btn{background-color:var(--clr-tertiary);color:var(--clr-on-tertiary)}.tour-btn.skip-btn:hover{background-color:var(--clr-on-tertiary);color:var(--clr-tertiary)}.tour-btn.prev-btn{background-color:var(--clr-secondary);color:var(--clr-on-secondary)}.tour-btn.prev-btn:hover{background-color:var(--clr-on-secondary);color:var(--clr-secondary)}';
+      '.hidden,.tour-container.arrow-hidden .tour-arrow{display:none}.tour-btn,.tour-container,.tour-arrow{border:var(--border-thickness,1px) var(--border-style,solid) var(--border-color,rgba(var(--clr-surface-5-rgb),.25))}.tour-container{position:absolute;background-color:rgba(var(--clr-surface-1-rgb),.7);padding:1.25rem 1.5rem;border-radius:.5rem;max-width:45vw;width: fit-content;box-shadow:0 .25rem .5rem rgba(0,0,0,.15);backdrop-filter:blur(0.75rem) saturate(1.5);z-index:99999;opacity:0;visibility:hidden;transform:translateY(-10px)}.tour-container.tour-container-visible{opacity:1;visibility:visible;transform:translateY(0)}.tour-arrow{position:absolute;bottom:100%;left:50%;transform:translateY(0px) translateX(-50%);height:1.25rem;width:1.25rem;background-color:rgba(var(--clr-primary-rgb),0.7);transition:left .2s ease-out,top .2s ease-out;clip-path:polygon(50% 0, 0 100%, 100% 100%) }.tour-container.tour-arrow-top .tour-arrow{bottom:auto;top:100%;border-bottom-color:transparent;border-top-color:var(--clr-secondary);transform:translateX(-50%) translateY(-50%)}.hidden{visibility:hidden}.tour-button-wrapper{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;gap:.5rem}.tour-button-group-right{display:flex;gap:.25rem}.tour-btn{background-color:var(--clr-primary);color:var(--clr-on-primary);padding:.6rem 1rem;border:none;border-radius:.3rem;font-weight:500;cursor:pointer;transition:background-color 225ms ease-in-out,color 225ms ease-in-out}.tour-btn:hover{color:var(--clr-primary);background-color:var(--clr-on-primary)}.tour-btn.skip-btn{background-color:var(--clr-tertiary);color:var(--clr-on-tertiary)}.tour-btn.skip-btn:hover{background-color:var(--clr-on-tertiary);color:var(--clr-tertiary)}.tour-btn.prev-btn{background-color:var(--clr-secondary);color:var(--clr-on-secondary)}.tour-btn.prev-btn:hover{background-color:var(--clr-on-secondary);color:var(--clr-secondary)}';
   }
 
   public set tourSteps(steps: TourStep[]) {
@@ -43,6 +42,9 @@ export class GuidedTourElement extends HTMLElement {
   }
 
   public start() {
+    if (this.steps.length > 0 && this.steps[0].onStart) {
+      this.steps[0].onStart?.();
+    }
     this.currentStepIndex = 0;
     this.showStep();
   }

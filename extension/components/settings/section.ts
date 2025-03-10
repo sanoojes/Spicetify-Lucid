@@ -227,7 +227,7 @@ export class SettingSection extends HTMLElement {
     if (!this._groups || this._groups.length === 0 || this.rendered) {
       return;
     }
-    this.dataset.tabId = this._name.toLocaleLowerCase();
+    this.dataset.tabId = this._name.toLowerCase();
 
     this.clear();
 
@@ -363,6 +363,8 @@ class SettingGroup extends HTMLElement {
       return;
     }
 
+    this.dataset.groupId = this._name.toLowerCase();
+
     this.clear();
 
     if (this._name && this._showName) {
@@ -460,6 +462,8 @@ class SettingField extends HTMLElement {
     if (!this.inputOptions || this.rendered) {
       return;
     }
+
+    this.dataset.fieldId = this._label.toLowerCase();
 
     this._labelContainer.append(
       createElement('p', {

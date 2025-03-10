@@ -27,7 +27,7 @@ export async function mountGuide(): Promise<void> {
     Spicetify?.showNotification('Please wait. Guided Tour is loading.', false, 1000);
 
     const response = await fetch(
-      'https://gist.githubusercontent.com/sanoojes/8ae5a99170b0cf660d6ce3ffc8f3632b/raw/622962edc7f79e680fd77a9979d55307152a4ea6/gistfile1.txt'
+      'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/beta/src/guidedTour.js'
     );
 
     if (!response.ok) {

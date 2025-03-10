@@ -9,6 +9,7 @@ export type CreateElementOptions<T extends keyof HTMLElementTagNameMap | string 
   | {
       style?: Partial<CSSStyleDeclaration>;
       attributes?: Partial<Record<string, string>>;
+      [key: string]: any;
     };
 
 export function createElement<T extends keyof HTMLElementTagNameMap | string = 'div'>(
