@@ -101,4 +101,4 @@
       <div class="tour-button-wrapper">
         ${w("skip-btn tour-btn","Skip Tour")}
         ${w("start-tour-btn tour-btn","Start Tour")}
-      </div>`});u.setContent(t),(c=document.getElementById("lucid-main")||document.getElementById("main"))==null||c.appendChild(u);let r=t.querySelector(".start-tour-btn"),n=t.querySelector(".skip-btn");return r.onclick=()=>{o.start(),o.tourSteps=_(),u==null||u.close()},n.onclick=()=>{o.endTour(),u==null||u.close()},u.addEventListener("open",()=>{localStorage.setItem(E,"true")}),u},z;(z=window==null?void 0:window.lucid)!=null&&z.guide&&(window.lucid.guide.open=he,window.lucid.guide.setup=G);})();
+      </div>`});u.setContent(t),(c=document.getElementById("lucid-main")||document.getElementById("main"))==null||c.appendChild(u);let r=t.querySelector(".start-tour-btn"),n=t.querySelector(".skip-btn");return r.onclick=()=>{o.start(),o.tourSteps=_(),u==null||u.close()},n.onclick=()=>{o.endTour(),u==null||u.close()},u.addEventListener("open",()=>{localStorage.setItem(E,"true")}),u},z;(z=window==null?void 0:window.lucid)!=null&&z.guide&&(window.lucid.guide.open=he,window.lucid.guide.setup=G);console.log("loaded");})();
