@@ -1,0 +1,26 @@
+[
+  {
+    "version": "2.0.0",
+    "date": "2024-03-11",
+    "desc": "🎉 Big update! Enjoy a fresh, redesigned settings experience that's easier to navigate.  Your settings are reset with this update.",
+    "changes": {
+      "Added": [
+        "Guided Tour: <strong>Interactive walkthrough</strong> to help you discover Lucid's features.",
+        "Playbar: <strong>Floating and Non-Floating</strong> playbar options for flexible placement.",
+        "Colors: New <strong>Tonal, and Custom Color</strong> options."
+      ],
+      "Changed": [
+        "Settings: <strong>Rewritten</strong> system for better organization.",
+        "Colors: Dynamic color got better."
+      ],
+      "Deprecated": [],
+      "Removed": ["Filter: Some of the filters."],
+      "Notes": [
+        "Animated Background needs improvement.",
+        "Full screen styles, Lyrics Styles are not added.",
+        "These features will be added soon."
+      ],
+      "Fixed": []
+    }
+  }
+]

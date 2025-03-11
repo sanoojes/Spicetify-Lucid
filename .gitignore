@@ -134,3 +134,6 @@ dist
 
 # node modules
 .node_modules/
+
+# source maps 
+*.map

@@ -1,0 +1,13 @@
+{
+  "themeName": "Lucid",
+  "colorScheme": "dark",
+  "isLiveReload": true,
+  "genExample": true,
+  "themeFolders": {
+    "main": ".",
+    "colors": "./colors",
+    "extension": "./extension",
+    "styles": "./styles",
+    "types": "./extension/types"
+  }
+}

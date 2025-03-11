@@ -1,33 +1,48 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
-	"formatter": {
-		"enabled": true,
-		"formatWithErrors": false,
-		"ignore": [],
-		"attributePosition": "auto",
-		"indentStyle": "tab",
-		"indentWidth": 2,
-		"lineWidth": 120,
-		"lineEnding": "crlf"
-	},
-	"files": {
-		"ignore": ["src/*", "extension/types/spicetify.d.ts"]
-	},
-	"javascript": {
-		"formatter": {
-			"arrowParentheses": "always",
-			"bracketSameLine": true,
-			"bracketSpacing": true,
-			"jsxQuoteStyle": "double",
-			"quoteProperties": "asNeeded",
-			"semicolons": "always",
-			"trailingCommas": "all"
-		}
-	},
-	"json": {
-		"formatter": {
-			"trailingCommas": "none",
-			"indentWidth": 2
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "nursery": {
+        "all": false
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noConsoleLog": "warn"
+      },
+      "a11y": {
+        "useAltText": "warn"
+      }
+    },
+    "ignore": ["dist/*", "src/*", "extension/utils/dom/waitForElement.ts", "types/spicetify.d.ts"]
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf",
+    "ignore": ["dist/*", "src/*", "extension/utils/dom/waitForElement.ts", "types/spicetify.d.ts"]
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
+      "jsxQuoteStyle": "double",
+      "quoteStyle": "single",
+      "trailingCommas": "es5"
+    }
+  },
+  "css": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  }
 }

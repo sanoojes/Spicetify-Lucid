@@ -1,0 +1,42 @@
+{
+  "tasks": {
+    "dev": "spice-builder apply -w",
+    "apply": "spice-builder apply",
+    "build": "spice-builder build",
+    "build-minify": "spice-builder build -m",
+    "build-watch": "spice-builder build -w",
+    "lint": "biome lint --write",
+    "format": "biome format --write",
+    "compile": "deno run --allow-all ../spice-builder/main.ts build -m && deno run compile-tour && deno run compile-workers",
+    "compile-tour": "esbuild extension/tour/guidedTour.ts --bundle --tsconfig=tsconfig.json --minify --target=chrome58 --outdir=src/",
+    "compile-workers": "esbuild extension/workers/getColor.ts --bundle --tsconfig=tsconfig.json --minify --target=chrome58 --outdir=src/workers/"
+  },
+  // new relative imports should be added in tsconfig.json
+  "imports": {
+    // relative imports.
+    "@app/": "./extension/",
+    "@utils/": "./extension/utils/",
+    "@components/": "./extension/components/",
+    "@store/": "./extension/store/",
+    "@core/": "./extension/core/",
+    "@styles/": "./styles/",
+    "@colors/": "./colors/",
+
+    // // react things.
+    // "react": "npm:react@^19.0.0",
+    // "react-dom": "npm:react-dom@^19.0.0",
+    // "@types/react": "npm:@types/react@^19.0.7",
+    // "@types/react-dom": "npm:@types/react-dom@^19.0.3"
+
+    "@material/material-color-utilities": "npm:@material/material-color-utilities@^0.3.0",
+    "deepmerge-ts": "npm:deepmerge-ts@^7.1.5",
+    "extract-colors": "npm:extract-colors@^4.1.1",
+    "immutable": "npm:immutable@5.0.3"
+  },
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "deno_dom"],
+    "jsx": "react"
+  },
+  "nodeModulesDir": "auto"
+}
