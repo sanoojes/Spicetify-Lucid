@@ -34,5 +34,23 @@
       }
     ],
     "tags": ["beta", "unstable"]
+  },
+  {
+    "name": "Lucid (Legacy)",
+    "description": "Not recommended, only for development purposes.",
+    "preview": "assets/images/base.png",
+    "readme": "README-Marketplace.md",
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/legacy/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/legacy/src/color.ini",
+    "include": [
+      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/legacy/src/theme.js"
+    ],
+    "authors": [
+      {
+        "name": "Sanoojes",
+        "url": "https://github.com/sanoojes"
+      }
+    ],
+    "tags": ["legacy", "v1.2.45 - v1.2.55", "unmaintained"]
   }
 ]
