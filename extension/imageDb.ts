@@ -56,3 +56,4 @@ export const initializeImage = async () => {
     console.error('Unexpected error during initialization: ', e);
   }
 };
+initializeImage();
