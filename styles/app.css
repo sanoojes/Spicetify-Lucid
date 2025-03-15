@@ -146,9 +146,7 @@ kbd,
 .xlLQHgpip3xYOwRYpwun {
   box-shadow: none !important;
 }
-.b7r2WRiu5f9Q99qmyreh .EJttP30F1zYHeAw7ISHb {
-  display: flex;
-}
+
 .Root__globalNav,
 #global-nav-bar {
   form:hover .main-topBar-searchBar {
@@ -249,7 +247,6 @@ kbd,
       z-index: -1;
       background-color: rgba(var(--clr-surface-1-rgb), 0.7);
       transform: translateZ(var(--changing-pixels));
-      will-change: backdrop-filter;
       opacity: var(--top-bar-opacity, 0);
       -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
         saturate(var(--top-bar-saturate, 1.5));
@@ -601,7 +598,6 @@ body[npb-type="compact"] {
       transition: width 225ms ease-in-out, background-color 300ms linear;
       border: var(--border-thickness, 1px) var(--border-style, solid) rgba(0, 0, 0, 0);
       transform: translate3d(0px, 0px, 0px);
-      will-change: width, transform;
 
       &:hover {
         width: fit-content;
@@ -879,7 +875,6 @@ body[npv-mode="compact"] {
 .N9tnwm0XDrt_eGJd2D2A,
 .GenericModal,
 .zZMsUUWG29PYcwWPXhOV {
-  will-change: contents;
   transform: translateZ(var(--changing-pixels));
   &:before {
     position: absolute;
@@ -1303,7 +1298,6 @@ body[path*="discography"] {
       z-index: -1;
       background-image: var(--background-noise);
       background-color: rgba(var(--clr-surface-1-rgb), 0.5);
-      will-change: backdrop-filter;
       -webkit-backdrop-filter: blur(var(--playlist-card-blur, 12px))
         saturate(var(--playlist-card-saturate, 1.5));
       backdrop-filter: blur(var(--playlist-card-blur, 12px))
