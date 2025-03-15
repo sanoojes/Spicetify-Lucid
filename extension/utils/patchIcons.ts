@@ -43,20 +43,30 @@ type Locales = {
 };
 
 async function mountIconVariables() {
-  const css = await fetchAndCache(ICON_CSS_URLS, ICON_CSS_CACHE_KEY);
-  lazyLoadStyleById(ICON_CSS_STYLE_ID).textContent = css;
+  ICON_CSS_URLS.forEach((url) => {
+    const existingLink = document.querySelector(`link[href="${url}"]`);
+
+    if (!existingLink) {
+      const linkElement = document.createElement('link');
+      linkElement.rel = 'stylesheet';
+      linkElement.href = url;
+      document.head.appendChild(linkElement);
+    } else {
+      console.debug(`Link element with URL "${url}" already exists, skipping.`); // Optional debug log
+    }
+  });
 }
 
 export const patchIcons = () => {
   try {
     mountIconVariables();
 
-    function cleanLabel(label: string): string {
-      const cleanedLabel = label.replace(/[{0}{1}«»”“]/g, '').trim();
-      return cleanedLabel;
-    }
     const g = (value: string, clean = false) =>
-      clean ? cleanLabel(LocaleAPI.get(value)) : LocaleAPI.get(value);
+      clean
+        ? LocaleAPI.get(value)
+            .replace(/[{0}{1}«»”“]/g, '')
+            .trim()
+        : LocaleAPI.get(value);
 
     const LocaleAPI = Spicetify.Locale;
     if (!LocaleAPI) return;

@@ -15,7 +15,7 @@ export const lazyLoadStyleById = (id: string): HTMLStyleElement => {
 
   if (!element) {
     element = createElement('style', { id: `style-${id}` });
-    document.head.appendChild(element);
+    document.body.appendChild(element);
   }
 
   return element;
