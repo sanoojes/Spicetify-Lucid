@@ -42,19 +42,15 @@ type Locales = {
   [key in LocaleKeys]: string;
 };
 
-async function mountIconVariables() {
-  ICON_CSS_URLS.forEach((url) => {
+function mountIconVariables() {
+  for (const url of ICON_CSS_URLS) {
     const existingLink = document.querySelector(`link[href="${url}"]`);
 
     if (!existingLink) {
-      const linkElement = document.createElement('link');
-      linkElement.rel = 'stylesheet';
-      linkElement.href = url;
+      const linkElement = createElement('link', { rel: 'stylesheet', href: url });
       document.head.appendChild(linkElement);
-    } else {
-      console.debug(`Link element with URL "${url}" already exists, skipping.`); // Optional debug log
     }
-  });
+  }
 }
 
 export const patchIcons = () => {

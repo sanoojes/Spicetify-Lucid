@@ -58,13 +58,13 @@ const getSettingsContents = () => {
   return settingsContainer;
 };
 
-export function mountSettings(lucidMain: HTMLElement) {
+export function mountSettings() {
   settingModal.isFloating = modalState.getState().isFloating;
   settingModal.setContent(getSettingsContents());
   modalState.subscribe((state) => {
     settingModal.isFloating = state.isFloating;
   }, 'isFloating');
-  (lucidMain ?? document.getElementById('main'))?.append(settingModal);
+  document.getElementById('main')?.append(settingModal);
   _openSettings = () => settingModal.open();
   _closeSettings = () => settingModal.close();
   addSettingAccess(appSettingsStore.getState().position, openSettings);

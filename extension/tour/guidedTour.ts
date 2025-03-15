@@ -39,11 +39,7 @@ const setupTour = () => {
   });
   modal.setContent(modalContent);
 
-  (
-    document.getElementById('lucid-main') ??
-    document.getElementById('main') ??
-    document.body
-  )?.appendChild(modal);
+  (document.getElementById('main') ?? document.body)?.appendChild(modal);
 
   localStorage.removeItem(GUIDE_STORAGE_KEY);
 

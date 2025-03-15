@@ -2,7 +2,6 @@ import settingsManager from '@store/setting.ts';
 import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
 import { UMVElement } from '@components/umv.ts';
 import { patchIcons } from '@utils/patchIcons.ts';
-import MainElement from '@components/main.ts';
 import { mountAndWatchFont } from '@components/font.ts';
 import appSettingsStore from '@store/setting.ts';
 import { mountPageStyles } from '@app/hooks/pageStyles.ts';
@@ -24,9 +23,6 @@ import { showNotification } from '@utils/showNotification.ts';
 
 const main = () => {
   try {
-    const lucidMain = new MainElement();
-    mountMain(lucidMain);
-
     setGlobals();
 
     initializeImage();
@@ -56,7 +52,7 @@ const main = () => {
       mountColor(state.color);
     }, 'color');
 
-    mountSettings(lucidMain);
+    mountSettings();
 
     mountAndOpenGuide();
 
@@ -70,12 +66,6 @@ const main = () => {
 console.time('Main fn start');
 main();
 console.timeEnd('Main fn start');
-
-function mountMain(lucidMain: HTMLElement | MainElement) {
-  const mainElement = document.getElementById('main');
-  if (mainElement) mainElement.append(lucidMain);
-  else document.body.appendChild(lucidMain);
-}
 
 function mountBorders() {
   const setStyles = () => {
