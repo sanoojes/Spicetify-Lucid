@@ -136,7 +136,6 @@ export const patchIcons = () => {
  .main-topBar-buddyFeed .Svg-img-icon-small[aria-label*="${locales.whatsNew}"] .Svg-img-icon-small-textBase path {
  	d: var(--bell-filled-icon);
  }
- .b7r2WRiu5f9Q99qmyreh .M9l40ptEBXPm03dU3X1k,
  .player-controls__left button[aria-label*="${locales.disableShuffle}"] path:nth-of-type(n+2),
  .player-controls__left button[aria-label*="${locales.disableShuffleSpecific}"] path:nth-of-type(n+2),
  .player-controls__left button[aria-label*="${locales.disableShuffleGeneric}"] path:nth-of-type(n+2),
