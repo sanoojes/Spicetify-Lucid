@@ -4,11 +4,9 @@
     "description": "Spicetify theme inspired by Bloom and Microsoft Fluent Design",
     "preview": "assets/images/base.png",
     "readme": "README-Marketplace.md",
-    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/src/user.css",
-    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/src/color.ini",
-    "include": [
-      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/src/theme.js"
-    ],
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main/src/color.ini",
+    "include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main/src/theme.js"],
     "authors": [
       {
         "name": "Sanoojes",
@@ -22,11 +20,9 @@
     "description": "Not recommended, only for development purposes.",
     "preview": "assets/images/base.png",
     "readme": "README-Marketplace.md",
-    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/beta/src/user.css",
-    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/beta/src/color.ini",
-    "include": [
-      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/beta/src/theme.js"
-    ],
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/color.ini",
+    "include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@beta/src/theme.js"],
     "authors": [
       {
         "name": "Sanoojes",
@@ -40,11 +36,9 @@
     "description": "Not recommended, only for development purposes.",
     "preview": "assets/images/base.png",
     "readme": "README-Marketplace.md",
-    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/legacy/src/user.css",
-    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/legacy/src/color.ini",
-    "include": [
-      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/legacy/src/theme.js"
-    ],
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@legacy/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@legacy/src/color.ini",
+    "include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@legacy/src/theme.js"],
     "authors": [
       {
         "name": "Sanoojes",

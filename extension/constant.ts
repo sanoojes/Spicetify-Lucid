@@ -1,8 +1,7 @@
 import type { AppSettings } from '@app/types/settings.ts';
 export const GITHUB_PATH =
   'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/main';
-export const JSDELIVER_PATH =
-  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main';
+export const JSDELIVER_PATH = 'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main';
 
 export const APPLICATION_VERSION = window?.lucid?.version ?? '2.0.0';
 export const GUIDE_STORAGE_KEY = 'lucid-guided-tour';
