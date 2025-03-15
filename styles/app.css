@@ -824,6 +824,10 @@ body[npv-mode="compact"] {
 }
 
 /* marketplace specific */
+#marketplace-readme {
+  background: transparent;
+  color: var(--on-surface);
+}
 .marketplace-reload-modal__button-container button,
 .marketplace-installButton {
   background-color: var(--clr-primary);
