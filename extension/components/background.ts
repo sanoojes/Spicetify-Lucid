@@ -25,14 +25,11 @@ class BackgroundElement extends HTMLElement {
   }
 
   set image(value: string) {
-    console.log(value, this.backgroundElement, this.currentMode);
-
     if (
       (this.backgroundElement instanceof StaticBackground ||
         this.backgroundElement instanceof AnimatedBackground) &&
       this.currentMode !== 'solid'
     ) {
-      console.log(value);
       this.backgroundElement.setImageSource(value);
     }
   }
