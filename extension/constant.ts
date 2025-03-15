@@ -3,7 +3,7 @@ export const GITHUB_PATH =
   'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/main';
 export const JSDELIVER_PATH = 'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main';
 
-export const APPLICATION_VERSION = window?.lucid?.version ?? '2.0.0';
+export const APPLICATION_VERSION = '2.1.0';
 export const GUIDE_STORAGE_KEY = 'lucid-guided-tour';
 export const WORKER_SCIRPT_URLS = [
   `${GITHUB_PATH}/src/workers/getColor.js`,

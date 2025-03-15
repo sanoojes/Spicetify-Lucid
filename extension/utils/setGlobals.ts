@@ -9,7 +9,7 @@ export default () => {
       appSettingsStore.resetState();
     },
     store: appSettingsStore,
-    version: localStorage.getItem(LUCID_VERSION_STORAGE_KEY) ?? '2.0.0',
+    version: localStorage.getItem(LUCID_VERSION_STORAGE_KEY) ?? '2.1.0',
     settings: { openSettings, closeSettings, settingModal },
   };
 };
