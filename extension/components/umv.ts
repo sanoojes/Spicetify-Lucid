@@ -157,10 +157,10 @@ export class UMVElement extends HTMLElement {
 
   set source(source: PageType) {
     this._source = source;
-    this.isArtist = document.body.getAttribute('path')?.startsWith('artist', 1) ?? false;
     this.setAttribute('source', source);
-    this.umvImage.setFilter(`blur(${this.settings.options[source].filter?.blur ?? 0}px)`);
+    this.isArtist = document.body.getAttribute('path')?.startsWith('artist', 1) ?? false;
     this.options = this.settings.options[source];
+    this.umvImage.setFilter(`blur(${this.settings.options[source].filter?.blur ?? 0}px)`);
 
     this._scrollEventCb();
   }
@@ -263,9 +263,12 @@ export class UMVElement extends HTMLElement {
       this.scrollElem?.scrollTop ?? (e?.target as HTMLElement | undefined)?.scrollTop ?? 0;
     const sourceOptions = this.settings.options[this.source];
 
+    if (scrollTop < 100)
+      document.body.style.setProperty('--changing-pixels', `${Math.random().toFixed(1)}px`);
+
     requestAnimationFrame(() => {
       if (sourceOptions.isScaling) {
-        this.umvImage.style.transform = `scale(${Math.min(100 + scrollTop / 10, 150)}%)`;
+        this.umvImage.style.transform = `scale(${Math.round(Math.min(100 + scrollTop / 10, 175))}%)`;
       } else {
         this.umvImage.style.transform = 'scale(1)';
       }
@@ -302,6 +305,12 @@ export class UMVElement extends HTMLElement {
     if (this.umvArtUrl) {
       this.imageUrl = this.umvArtUrl;
       this.source = 'expanded';
+      return;
+    }
+
+    if (this.settings.type === 'custom') {
+      this.source = 'custom';
+      this.imageUrl = this.settings.options.custom.url;
       return;
     }
 

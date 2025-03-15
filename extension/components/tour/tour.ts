@@ -17,21 +17,21 @@ export type TourStep = {
 const GUIDED_TOUR_STYLE_ID = 'guided-tour-styles';
 
 const GUIDED_TOUR_CSS = `
-body,#main{overflow:hidden}
-.hidden,.tour-container.arrow-hidden:before{display:none}
-.tour-container{position:absolute;background-color:var(--clr-surface-2);padding:1rem;border-radius:.5rem;max-width:30em;box-shadow:0 0 2rem rgba(0,0,0,0.5);z-index:99999;opacity:0;visibility:hidden;transform:translate3d(0, -10px, 0);transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;}
-.tour-container.full-width{width: 100%; max-width: 100%}
-.tour-container.visible:before{content:"";position:absolute;height:1.5rem;width:1.5rem;border-radius:6px;top:0;left:50%;background-color:var(--clr-surface-2);clip-path:polygon(0 0,0% 100%,100% 0);transform:rotate(45deg) translate(-50%,0);z-index:-1}
-.tour-container.visible{opacity:1;visibility:visible;transform:translate3d(0, 0, 0)}
-.tour-btn{border: var(--border-thickness, 1px) var(--border-style, solid) var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));background-color:var(--clr-tertiary);color:var(--clr-on-tertiary);padding:.5rem 1rem;border-radius:.3rem;font-weight:500;cursor:pointer;transition:background-color 225ms ease-in-out}
-.tour-btn:hover{background-color:var(--clr-on-tertiary);color:var(--clr-tertiary)}
-.tour-btn.skip-btn{background-color:var(--clr-secondary);color:var(--clr-on-secondary)}
-.tour-btn.skip-btn:hover{background-color:var(--clr-on-secondary);color:var(--clr-secondary)}
-.tour-btn.prev-btn{background-color:var(--clr-primary);color:var(--clr-on-primary)}
-.tour-btn.prev-btn:hover{background-color:var(--clr-on-primary);color:var(--clr-primary)}
-.tour-button-wrapper{display:flex;justify-content:space-between;margin-top:1rem;gap:.5rem;}
-.tour-step-counter{margin-bottom:0.5rem;text-align:center;font-weight:bold;color:var(--clr-on-surface);}
-.tour-navigation-wrapper{display:flex; gap: 0.5rem;}
+body, #main { overflow: hidden; } 
+.hidden, .tour-container.arrow-hidden:before { display: none; }
+.tour-container {position: absolute;background-color: var(--clr-surface-2);padding: 1rem;border-radius: .5rem;max-width: 30em;box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);z-index: 99999;opacity: 0;visibility: hidden;transform: translate3d(0, -10px, 0);transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;}
+.tour-container.full-width { width: 100%; max-width: 100% }
+.tour-container.visible:before {content: "";position: absolute;height: 1.5rem;width: 1.5rem;border-radius: 6px;top: 0;left: 50%;background-color: var(--clr-surface-2);clip-path: polygon(0 0, 0% 100%, 100% 0);transform: rotate(45deg) translate(-50%, 0);z-index: -1;}
+.tour-container.visible { opacity: 1; visibility: visible; transform: translate3d(0, 0, 0) }
+.tour-btn {border: var(--border-thickness, 1px) var(--border-style, solid) var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));background-color: var(--clr-tertiary);color: var(--clr-on-tertiary);padding: .5rem 1rem;border-radius: .3rem;font-weight: 500;cursor: pointer;transition: background-color 225ms ease-in-out;}
+.tour-btn:hover { background-color: var(--clr-on-tertiary); color: var(--clr-tertiary) }
+.tour-btn.skip-btn { background-color: var(--clr-secondary); color: var(--clr-on-secondary) }
+.tour-btn.skip-btn:hover { background-color: var(--clr-on-secondary); color: var(--clr-secondary) }
+.tour-btn.prev-btn { background-color: var(--clr-primary); color: var(--clr-on-primary) }
+.tour-btn.prev-btn:hover { background-color: var(--clr-on-primary); color: var(--clr-primary) }
+.tour-button-wrapper { display: flex; justify-content: space-between; margin-top: 1rem; gap: .5rem; }
+.tour-step-counter { margin-bottom: 0.5rem; text-align: center; font-weight: bold; color: var(--clr-on-surface); }
+.tour-navigation-wrapper { display: flex; gap: 0.5rem; }
 .tour-navigation-wrapper .next-btn { margin-left: 0.5rem; }
 `;
 
@@ -121,7 +121,7 @@ export class GuidedTourElement extends HTMLElement {
     return button;
   }
 
-  private async showStep() {
+  private async showStep(prev = false) {
     if (this.currentStepIndex >= this.steps.length) {
       this.endTour();
       return;
@@ -132,8 +132,17 @@ export class GuidedTourElement extends HTMLElement {
 
     if (!this.targetElement || this.targetElement.offsetParent === null) {
       console.warn(`Skipping invisible or missing target: ${step.target}`);
-      this.currentStepIndex++;
-      this.showStep();
+      if (prev) this.currentStepIndex--;
+      else this.currentStepIndex++;
+      this.showStep(prev);
+      return;
+    }
+
+    if (!this.targetElement) {
+      console.warn(`Target element not found: ${step.target}. Skipping step.`);
+      if (prev) this.currentStepIndex--;
+      else this.currentStepIndex++;
+      this.showStep(prev);
       return;
     }
 
@@ -207,15 +216,23 @@ export class GuidedTourElement extends HTMLElement {
   }
 
   private nextStep() {
-    this.steps[this.currentStepIndex].onComplete?.();
+    if (this.steps[this.currentStepIndex].onComplete) {
+      this.steps[this.currentStepIndex].onComplete?.();
+    }
     this.currentStepIndex++;
     this.showStep();
   }
 
   private prevStep() {
-    this.steps[this.currentStepIndex].onPrevious?.();
-    this.currentStepIndex--;
-    this.showStep();
+    if (this.currentStepIndex > 0) {
+      if (this.steps[this.currentStepIndex - 1]?.onPrevious) {
+        this.steps[this.currentStepIndex - 1].onPrevious?.();
+      }
+      this.currentStepIndex--;
+      this.showStep(true);
+    } else {
+      console.warn('Already at the first step, cannot go back.');
+    }
   }
 
   private disablePointerEvents() {

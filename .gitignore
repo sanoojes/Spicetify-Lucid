@@ -137,3 +137,6 @@ dist
 
 # source maps 
 *.map
+
+dev
+trials

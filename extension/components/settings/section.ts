@@ -44,7 +44,6 @@ export class SettingsMain extends HTMLElement {
   }
 
   set options(options: Settings) {
-    console.debug('SettingsMain options updated:', options);
     this._settings = options;
     this.updateSectionElements();
     this.render();
@@ -78,7 +77,6 @@ export class SettingsMain extends HTMLElement {
 
   private createSectionElements() {
     this.sectionElements = [];
-    console.debug('Creating Section Elements:', this._settings);
     for (const section of this._settings) {
       const sectionElement = new SettingSection();
       sectionElement.options = section;
@@ -250,7 +248,7 @@ export class SettingSection extends HTMLElement {
 }
 customElements.define('setting-section', SettingSection);
 
-class SettingGroup extends HTMLElement {
+export class SettingGroup extends HTMLElement {
   private _isRender = false;
   private rendered = false;
   private _nameContainerElement: HTMLDivElement;
@@ -391,7 +389,7 @@ class SettingGroup extends HTMLElement {
 
 customElements.define('setting-group', SettingGroup);
 
-class SettingField extends HTMLElement {
+export class SettingField extends HTMLElement {
   private _isRender: boolean;
   private rendered: boolean;
   private _labelContainer: HTMLDivElement;

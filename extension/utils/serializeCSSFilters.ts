@@ -31,5 +31,5 @@ export function serializeCSSFilters(filters: CSSFilter): string {
     filterString += `sepia(${filters.sepia}) `;
   }
 
-  return filterString.trim(); // Remove trailing space
+  return filterString.trim();
 }

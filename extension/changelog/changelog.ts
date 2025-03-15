@@ -27,10 +27,6 @@ async function getChangelogData(): Promise<ChangelogData> {
 
 export async function mountChangelog(targetElement: HTMLElement = document.body) {
   if (!appSettingsStore.getState().showChangelog) return;
-  // if (!window.Modal) {
-  //   console.error('window.Modal not found.');
-  //   return;
-  // }
 
   const data = await getChangelogData();
 
@@ -52,7 +48,6 @@ export async function mountChangelog(targetElement: HTMLElement = document.body)
 
     localStorage.setItem(LUCID_VERSION_STORAGE_KEY, APPLICATION_VERSION);
   } else {
-    console.debug('Changelog update available, but already shown for this version.');
+    console.debug('Changelog already shown for this version.');
   }
 }
-mountChangelog();

@@ -18,7 +18,13 @@
         "useAltText": "warn"
       }
     },
-    "ignore": ["dist/*", "src/*", "extension/utils/dom/waitForElement.ts", "types/spicetify.d.ts"]
+    "ignore": [
+      "dist/*",
+      "src/*",
+      "extension/utils/dom/waitForElement.ts",
+      "types/spicetify.d.ts",
+      "trials/*"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -27,7 +33,13 @@
     "indentWidth": 2,
     "lineWidth": 100,
     "lineEnding": "lf",
-    "ignore": ["dist/*", "src/*", "extension/utils/dom/waitForElement.ts", "types/spicetify.d.ts"]
+    "ignore": [
+      "dist/*",
+      "src/*",
+      "extension/utils/dom/waitForElement.ts",
+      "types/spicetify.d.ts",
+      "trials/*"
+    ]
   },
   "javascript": {
     "formatter": {

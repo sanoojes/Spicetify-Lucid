@@ -10,7 +10,7 @@ lucid-modal {
     z-index: 20;
     border-radius: 0.75rem;
     border: var(--border-thickness, 1px) var(--border-style, solid)
-      rgba(var(--border-color, var(--clr-surface-5-rgb)), 0.5);
+      var(--border-color, var(--clr-surface-4));
     background-color: rgba(var(--clr-surface-0-rgb), 0.75);
     max-height: 80vh;
     display: none;
@@ -65,6 +65,7 @@ lucid-modal {
 
   .modal-header-buttons {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
   }
@@ -82,92 +83,6 @@ lucid-modal {
 
   lucid-modal[dragging] .modal-header-container {
     cursor: grabbing;
-  }
-
-  custom-input {
-    flex-direction: row;
-    height: 2.25em;
-
-    input {
-      background-color: rgba(var(--clr-surface-2-rgb), 0.7);
-      color: var(--clr-on-surface);
-      border: 0;
-      border-radius: var(--btn-base-radius, 0.5rem);
-      padding: 0.75rem 1rem;
-      transition: all 225ms ease-in-out;
-
-      &:hover {
-        background-color: rgba(var(--clr-surface-4-rgb), 0.7);
-      }
-    }
-
-    .checkbox::before,
-    .checkbox {
-      background: -webkit-gradient(
-          linear,
-          left top,
-          right top,
-          color-stop(50%, var(--clr-on-primary)),
-          color-stop(50%, var(--clr-primary))
-        )
-        no-repeat;
-      background: -o-linear-gradient(left, var(--clr-on-primary) 50%, var(--clr-primary) 50%)
-        no-repeat;
-      background: linear-gradient(to right, var(--clr-on-primary) 50%, var(--clr-primary) 50%)
-        no-repeat;
-    }
-    .checkbox {
-      --toggle-size: 2.25em;
-      --checkbox-size: 0.5rem;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      width: 6.25em;
-      min-width: 6.25em;
-      height: 3.125em;
-      box-shadow: none;
-      background-size: 205%;
-      background-position: 0;
-      -webkit-transition: 0.4s;
-      -o-transition: 0.4s;
-      transition: 0.4s;
-      border-radius: 99em;
-      position: relative;
-      cursor: pointer;
-      font-size: var(--checkbox-size);
-
-      border: var(--border-thickness, 1px) var(--border-style, solid)
-        var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
-
-      &::before {
-        content: "";
-        width: var(--toggle-size, 1rem);
-        height: var(--toggle-size, 1rem);
-        position: absolute;
-        top: 0.438em;
-        left: 0.438em;
-        background-size: 205%;
-        background-position: 100%;
-        border-radius: 50%;
-        -webkit-transition: 0.4s;
-        -o-transition: 0.4s;
-        transition: 0.4s;
-      }
-      &:checked::before {
-        left: calc(100% - var(--toggle-size, 1rem) - 0.438em);
-        background-position: 0;
-      }
-      &:checked {
-        background-position: 100%;
-        border: var(--border-thickness, 1px) var(--border-style, solid)
-          var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
-      }
-    }
-
-    .invalid-input {
-      box-shadow: 0 0 0 2px var(--clr-on-error) inset !important;
-      background-color: rgba(var(--clr-error-rgb), 0.1) !important;
-    }
   }
 
   setting-field {
@@ -217,66 +132,6 @@ lucid-modal {
   settings-main {
     gap: 1.5rem;
   }
-
-  custom-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: var(--btn-base-radius);
-    background-color: rgba(var(--clr-surface-2-rgb), 0.7);
-    color: var(--clr-on-surface);
-    transition: all 225ms ease-in-out;
-
-    &:hover {
-      background-color: rgba(var(--clr-surface-4-rgb), 0.7);
-    }
-
-    &.icon {
-      padding: 0.5rem;
-      height: 2.25rem;
-      width: 2.25rem;
-    }
-
-    &.discord:hover,
-    &.discord:focus {
-      background-color: #5865f2;
-      color: #e0e0d8;
-    }
-
-    &.github:hover,
-    &.github:focus {
-      color: #2a313c;
-      background-color: #f0f6fc;
-    }
-
-    &.danger {
-      background-image: linear-gradient(45deg, rgba(var(--clr-on-error-rgb), 0.5), transparent);
-    }
-
-    &.danger:hover,
-    &.danger:focus,
-    &.close:hover,
-    &.close:focus {
-      background-color: var(--clr-on-error);
-      color: var(--clr-error);
-    }
-  }
-
-  custom-input {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-  }
-
-  custom-button,
-  custom-input input {
-    height: 100%;
-    cursor: pointer;
-    color: var(--clr-on-surface);
-    border: var(--border-thickness, 1px) var(--border-style, solid)
-      var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
-  }
 }
 
 @keyframes shake {
@@ -323,4 +178,191 @@ input[type="color"]::-webkit-color-swatch {
 .tooltip-content a {
   text-decoration: underline;
   color: var(--clr-primary);
+}
+custom-input {
+  flex-direction: row;
+  height: 2.25em;
+
+  input {
+    background-color: rgba(var(--clr-surface-2-rgb), 0.7);
+    color: var(--clr-on-surface);
+    border: 0;
+    border-radius: var(--btn-base-radius, 0.5rem);
+    padding: 0.75rem 1rem;
+    transition: all 225ms ease-in-out;
+
+    &:hover {
+      background-color: rgba(var(--clr-surface-4-rgb), 0.7);
+    }
+  }
+
+  .checkbox::before,
+  .checkbox {
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(50%, var(--clr-on-primary)),
+        color-stop(50%, var(--clr-primary))
+      )
+      no-repeat;
+    background: -o-linear-gradient(left, var(--clr-on-primary) 50%, var(--clr-primary) 50%)
+      no-repeat;
+    background: linear-gradient(to right, var(--clr-on-primary) 50%, var(--clr-primary) 50%)
+      no-repeat;
+  }
+  .checkbox {
+    --toggle-size: 2.25em;
+    --checkbox-size: 0.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 6.25em;
+    min-width: 6.25em;
+    height: 3.125em;
+    box-shadow: none;
+    background-size: 205%;
+    background-position: 0;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 99em;
+    position: relative;
+    cursor: pointer;
+    font-size: var(--checkbox-size);
+
+    border: var(--border-thickness, 1px) var(--border-style, solid)
+      var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
+
+    &::before {
+      content: "";
+      width: var(--toggle-size, 1rem);
+      height: var(--toggle-size, 1rem);
+      position: absolute;
+      top: 0.438em;
+      left: 0.438em;
+      background-size: 205%;
+      background-position: 100%;
+      border-radius: 50%;
+      -webkit-transition: 0.4s;
+      -o-transition: 0.4s;
+      transition: 0.4s;
+    }
+    &:checked::before {
+      left: calc(100% - var(--toggle-size, 1rem) - 0.438em);
+      background-position: 0;
+    }
+    &:checked {
+      background-position: 100%;
+      border: var(--border-thickness, 1px) var(--border-style, solid)
+        var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
+    }
+  }
+
+  .invalid-input {
+    box-shadow: 0 0 0 2px var(--clr-on-error) inset !important;
+    background-color: rgba(var(--clr-error-rgb), 0.1) !important;
+  }
+}
+custom-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--btn-base-radius);
+  background-color: rgba(var(--clr-surface-2-rgb), 0.7);
+  color: var(--clr-on-surface);
+  pointer-events: all;
+  transition: all 225ms ease-in-out;
+
+  &:hover {
+    background-color: rgba(var(--clr-surface-4-rgb), 0.7);
+  }
+
+  &.shadow {
+    box-shadow: 0 0 0.75rem 0.25rem rgba(0, 0, 0, 0.5);
+  }
+
+  &.icon {
+    padding: 0.5rem;
+    aspect-ratio: 1 / 1;
+    max-height: 2rem;
+    max-width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.primary {
+    color: var(--clr-primary);
+    background-color: var(--clr-on-primary);
+  }
+
+  &.primary:hover,
+  &.primary:focus {
+    color: var(--clr-on-primary);
+    background-color: var(--clr-primary);
+  }
+
+  &.secondary {
+    color: var(--clr-secondary);
+    background-color: var(--clr-on-secondary);
+  }
+
+  &.secondary:hover,
+  &.secondary:focus {
+    color: var(--clr-on-secondary);
+    background-color: var(--clr-secondary);
+  }
+
+  &.tertiary {
+    color: var(--clr-tertiary);
+    background-color: var(--clr-on-tertiary);
+  }
+
+  &.tertiary:hover,
+  &.tertiary:focus {
+    color: var(--clr-on-tertiary);
+    background-color: var(--clr-tertiary);
+  }
+
+  &.discord:hover,
+  &.discord:focus {
+    background-color: #5865f2;
+    color: #e0e0d8;
+  }
+
+  &.github:hover,
+  &.github:focus {
+    color: #2a313c;
+    background-color: #f0f6fc;
+  }
+
+  &.danger {
+    background-color: var(--clr-on-error);
+    color: var(--clr-error);
+  }
+
+  &.danger:hover,
+  &.danger:focus,
+  &.close:hover,
+  &.close:focus {
+    background-color: var(--clr-error);
+    color: var(--clr-on-error);
+  }
+}
+
+custom-input {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+custom-button,
+custom-input input {
+  height: 100%;
+  cursor: pointer;
+  color: var(--clr-on-surface);
+  border: var(--border-thickness, 1px) var(--border-style, solid)
+    var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
 }

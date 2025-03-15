@@ -7,7 +7,10 @@ import type {
   Color,
   ColorSettings,
   CSSFilter,
+  CustomImageSetting,
   GrainSettings,
+  LocalImageSetting,
+  PageImageStyle,
   PageSettings,
   PageStyle,
   PlaybarOption,
@@ -18,6 +21,7 @@ import type {
   SettingsPosition,
   StaticBackgroundOptions,
   UMVSettings,
+  UrlImageSetting,
 } from '@app/types/settings.ts';
 import { deepmerge } from 'deepmerge-ts';
 import { isValidAppSettings } from '@utils/settingsValidator.ts';
@@ -30,6 +34,7 @@ import {
   GUIDE_STORAGE_KEY,
   WORKER_SCRIPT_CACHE_KEY,
 } from '@app/constant.ts';
+import { showNotification } from '@utils/showNotification.ts';
 
 class AppSettingsStore extends Store<AppSettings> {
   constructor(
@@ -78,6 +83,55 @@ class AppSettingsStore extends Store<AppSettings> {
               ...state.pages.umv.options[key],
               ...options,
             },
+          },
+        },
+      },
+    }));
+  }
+  setUMVFilter(key: keyof UMVSettings['options'], filter: Partial<CSSFilter>) {
+    this.setState((state) => ({
+      ...state,
+      pages: {
+        ...state.pages,
+        umv: {
+          ...state.pages.umv,
+          options: {
+            ...state.pages.umv.options,
+            [key]: {
+              ...state.pages.umv.options[key],
+              filter: {
+                ...state.pages.umv.options[key].filter,
+                ...filter,
+              },
+            },
+          },
+        },
+      },
+    }));
+  }
+
+  setCustomImageType(type: CustomImageSetting['type']) {
+    this.setState((state) => ({
+      ...state,
+      customImage: {
+        ...state.customImage,
+        type,
+      },
+    }));
+  }
+  setCustomImageOptions<T extends keyof CustomImageSetting['options']>(
+    option: T,
+    options: Partial<CustomImageSetting['options'][T]>
+  ) {
+    this.setState((state) => ({
+      ...state,
+      customImage: {
+        ...state.customImage,
+        options: {
+          ...state.customImage.options,
+          [option]: {
+            ...state.customImage.options[option],
+            ...options,
           },
         },
       },
@@ -243,6 +297,18 @@ class AppSettingsStore extends Store<AppSettings> {
       },
     }));
   }
+  setColorExtractorOptions(extractorOptions: Partial<ColorSettings['extractorOptions']>) {
+    this.setState((state) => ({
+      ...state,
+      color: {
+        ...state.color,
+        extractorOptions: {
+          ...state.color.extractorOptions,
+          ...extractorOptions,
+        },
+      },
+    }));
+  }
 
   setPageStyle(style: PageStyle) {
     this.setState((state) => ({
@@ -250,6 +316,15 @@ class AppSettingsStore extends Store<AppSettings> {
       pages: {
         ...state.pages,
         style,
+      },
+    }));
+  }
+  setPageImageStyle(imageStyle: PageImageStyle) {
+    this.setState((state) => ({
+      ...state,
+      pages: {
+        ...state.pages,
+        imageStyle,
       },
     }));
   }
@@ -366,7 +441,7 @@ class AppSettingsStore extends Store<AppSettings> {
       localStorage.removeItem(LUCID_VERSION_STORAGE_KEY);
       window.location.reload();
     } catch (e) {
-      Spicetify?.showNotification('Error reseting settings.', true, 5000);
+      showNotification('Error reseting settings.', true, 5000);
       console.error('Error reseting settings.', e);
     }
   }
@@ -381,26 +456,17 @@ class AppSettingsStore extends Store<AppSettings> {
       const parsed = JSON.parse(json);
       if (!isValidAppSettings(parsed)) {
         console.error('Invalid settings format.');
-        Spicetify?.showNotification('Import failed: Invalid settings format.', true, 5000);
+        showNotification('Import failed: Invalid settings format.', true, 5000);
       } else {
         appSettingsStore.setState((state) => deepmerge(state, parsed));
-        Spicetify?.showNotification('Settings imported successfully!', false, 5000);
+        showNotification('Settings imported successfully!', false, 5000);
       }
     } catch (error) {
       console.error('Error importing settings:', error);
-      Spicetify?.showNotification('Import failed: Unable to parse settings JSON.', true, 5000);
+      showNotification('Import failed: Unable to parse settings JSON.', true, 5000);
     }
   }
 }
 
 const appSettingsStore = new AppSettingsStore();
-
-window.lucid = {
-  config: () => appSettingsStore.getState(),
-  reset: () => {
-    appSettingsStore.resetState();
-  },
-  store: appSettingsStore,
-  version: localStorage.getItem(LUCID_VERSION_STORAGE_KEY) ?? '2.0.0',
-};
 export default appSettingsStore;

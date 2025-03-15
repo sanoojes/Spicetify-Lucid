@@ -5,11 +5,13 @@ import { Select } from '@components/ui/select.ts';
 import { shallowEqual } from '@utils/shallowEqual.ts';
 import type { InputOptionsUnion } from '@app/types/input.ts';
 import type { ValidatorResult } from '@utils/validationUtils.ts';
+import { showNotification } from '@utils/showNotification.ts';
 
 export class CustomInput extends HTMLElement {
   private _inputOptions!: InputOptionsUnion;
   private _renderedOptions: InputOptionsUnion | null = null;
   private _inputElement: Select | Button | HTMLInputElement | null = null;
+  private _previewElement: HTMLImageElement | null = null;
 
   set inputOptions(options: InputOptionsUnion) {
     this._inputOptions = options;
@@ -26,6 +28,7 @@ export class CustomInput extends HTMLElement {
 
   removeContent() {
     this._inputElement = null;
+    this._previewElement = null;
     this.innerHTML = '';
   }
 
@@ -60,7 +63,7 @@ export class CustomInput extends HTMLElement {
         target.classList.add('error', 'shake-error');
 
         if (res.message) {
-          Spicetify?.showNotification(res.message, true, 2000);
+          showNotification(res.message, true, 2000);
         }
       }
     };
@@ -144,11 +147,7 @@ export class CustomInput extends HTMLElement {
         eyeDropperButton.type = 'icon';
         eyeDropperButton.onclick = async () => {
           if (!('EyeDropper' in window) && window.EyeDropper) {
-            Spicetify?.showNotification(
-              'EyeDropper API is not supported in this browser.',
-              true,
-              3000
-            );
+            showNotification('EyeDropper API is not supported in this browser.', true, 3000);
             return;
           }
 
@@ -164,7 +163,7 @@ export class CustomInput extends HTMLElement {
           } catch (e) {
             if (e instanceof Error && e.message !== 'No color selected') {
               console.error('EyeDropper Error:', e);
-              Spicetify?.showNotification('Failed to pick color with EyeDropper.', true, 3000);
+              showNotification('Failed to pick color with EyeDropper.', true, 3000);
             }
           }
         };
@@ -181,6 +180,62 @@ export class CustomInput extends HTMLElement {
 
         break;
       }
+      case 'image': {
+        const { onChange } = this._inputOptions;
+        this._inputElement = createElement('input', {
+          type: 'file',
+          accept: 'image/*',
+          className: 'input image',
+          style: {
+            display: 'none',
+            visibility: 'hidden',
+          },
+        });
+
+        this._previewElement = createElement('img', {
+          className: 'image-preview',
+          style: {
+            borderRadius: '0.5rem',
+          },
+        }) as HTMLImageElement;
+        this._previewElement.src = this._inputOptions.value ?? '';
+        this.prepend(this._previewElement);
+
+        this._inputElement.onchange = (e) => {
+          const target = e.target as HTMLInputElement;
+          const file = target.files?.[0];
+
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              const dataUrl = event.target?.result as string;
+              onChange?.(dataUrl);
+
+              if (!this._previewElement) return;
+              this._previewElement.src = dataUrl;
+            };
+            reader.readAsDataURL(file);
+          } else {
+            onChange?.(null);
+            if (this._previewElement) {
+              this._previewElement.src = '';
+            }
+          }
+        };
+
+        this.append(
+          new Button({
+            type: 'primary',
+            textContent: 'Select Image',
+            onChange: () => {
+              this._inputElement?.click();
+            },
+          }),
+          this._inputElement
+        );
+        break;
+      }
+
       default:
         console.error('Unsupported input options:', this._inputOptions);
     }

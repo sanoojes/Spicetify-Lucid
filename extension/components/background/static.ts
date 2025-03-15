@@ -5,7 +5,7 @@ import { createElement } from '@utils/dom/createElement.ts';
 class StaticBackground extends HTMLElement {
   private imgElement: HTMLDivElement;
   private transitionDuration = '0.3s';
-  private currentFilters: CSSFilter | null = null; // Store the current filter value
+  private currentFilters: CSSFilter | null = null;
   src = '';
 
   constructor() {
@@ -13,7 +13,7 @@ class StaticBackground extends HTMLElement {
     this.imgElement = createElement('div', {
       style: {
         width: '100%',
-        height: '100ch',
+        height: '100vh',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -51,7 +51,7 @@ class StaticBackground extends HTMLElement {
     const newImgElement = createElement('div', {
       style: {
         width: '100%',
-        height: '100ch',
+        height: '100vh',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

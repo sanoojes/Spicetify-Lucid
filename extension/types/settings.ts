@@ -1,3 +1,6 @@
+import type { BrowserOptions } from 'extract-colors';
+import { KeyIsOptional } from 'deepmerge-ts';
+
 export type CSSFilter = {
   blur?: number;
   brightness?: number;
@@ -11,9 +14,20 @@ export type CSSFilter = {
 };
 
 export type Color = { hex: string; alpha: number };
+
+export type UrlImageSetting = { url: string };
+
+export type SlideshowSetting = {
+  isSlideshow: boolean;
+  timeDelay: number;
+};
+export type LocalImageSetting = {
+  selectedIds: number[];
+  slideshow: SlideshowSetting;
+};
+
 export type StaticBackgroundOptions = {
   isCustomImage: boolean;
-  customImageURL: string;
   filter: CSSFilter;
 };
 export type SolidBackgroundOptions = {
@@ -62,25 +76,31 @@ export type RightSidebarSettings = {
   color: Color;
 };
 
-export type PageType = 'normal' | 'expanded' | 'npv';
-
 export type PageOption = {
   isScaling: boolean;
   isScroll: boolean;
   filter: CSSFilter | null;
 };
-export type PageOptions = Record<PageType, PageOption>;
+export type PageOptions = {
+  normal: PageOption;
+  expanded: PageOption;
+  npv: PageOption;
+  custom: PageOption & { url: string };
+};
+export type PageType = keyof PageOptions;
 
 export type UMVSettings = {
-  type: 'npv' | 'normal';
+  type: 'normal' | 'npv' | 'custom';
   options: PageOptions;
 };
 
 export type PageStyle = 'card' | 'compact-card' | 'compact' | 'default';
+export type PageImageStyle = 'hidden' | 'as-bg' | 'default';
 export type PageSettings = {
   panelGap: number;
   hideHomeHeader: boolean;
   style: PageStyle;
+  imageStyle: PageImageStyle;
   umv: UMVSettings;
 };
 
@@ -89,6 +109,7 @@ export type ColorSettings = {
   isCustom: boolean;
   isTonal: boolean;
   customColor: Color;
+  extractorOptions: Partial<BrowserOptions>;
 };
 
 export type PlaybarTypes = 'compact' | 'normal';
@@ -99,6 +120,7 @@ export type PlaybarOption = {
   bgColor: Color;
   bgOpacity: number;
   borderRadius: number;
+  imageRadius: number;
 };
 export type PlaybarOptions = {
   [key in PlaybarTypes]: PlaybarOption;
@@ -112,6 +134,17 @@ export type PlaybarSettings = {
 
 export type GrainSettings = { type: 'default' | 'starry' | 'none' };
 
+export type CustomImageSetting = {
+  type: 'url' | 'local';
+  options: {
+    url: {
+      data: string;
+    };
+    local: null;
+  };
+};
+export type CustomImageTypes = CustomImageSetting['type'];
+
 export type AppSettings = {
   showChangelog: boolean;
   position: SettingsPosition;
@@ -124,4 +157,5 @@ export type AppSettings = {
   grains: GrainSettings;
   playbar: PlaybarSettings;
   rightSidebar: RightSidebarSettings;
+  customImage: CustomImageSetting;
 };

@@ -15,6 +15,7 @@ export class UMVImageElement extends HTMLElement {
       width: '100%',
       height: '100%',
       display: 'block',
+      willChange: 'transform',
     } satisfies Partial<CSSStyleDeclaration>);
 
     this.imgElement = createElement('img', {

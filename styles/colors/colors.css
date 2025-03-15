@@ -23,7 +23,7 @@
   --spice-subtext: var(--clr-on-surface-5) !important;
 }
 .progress-bar {
-  --bg-color: rgba(var(--clr-on-primary-4-rgb), 0.2);
+  --bg-color: rgba(var(--clr-on-surface-4-rgb), 0.2);
   --mg-color: rgba(var(--clr-primary-5-rgb), 0.7);
   --fg-color: var(--clr-primary-1);
   --is-active-fg-color: var(--clr-primary-3);
@@ -69,4 +69,12 @@
 }
 .encore-dark-theme .encore-bright-accent-set > * {
   --parents-essential-base: #000;
+}
+
+.qSTDtICR1fiIGRni1cwy,
+.CUSHxAzlZWmBNuM0o1Vq,
+.CUSHxAzlZWmBNuM0o1Vq:before,
+div[data-popper-arrow] {
+  background-color: var(--clr-tertiary);
+  color: var(--clr-on-tertiary);
 }

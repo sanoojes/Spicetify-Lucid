@@ -7,10 +7,10 @@ import { alphaToHex } from '@utils/colors/convert.ts';
 class BackgroundElement extends HTMLElement {
   private backgroundElement: StaticBackground | AnimatedBackground | HTMLElement | null = null;
   private options: AppSettings['background']['options'] | null = null;
+  private currentMode: AppSettings['background']['mode'] = 'static';
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
 
     Object.assign(this.style, {
       width: '100%',
@@ -20,73 +20,94 @@ class BackgroundElement extends HTMLElement {
       inset: '0px',
       backgroundColor: 'var(--clr-surface)',
     });
+
+    this.render();
   }
 
-  static get observedAttributes() {
-    return ['image', 'mode'];
-  }
-
-  get image() {
-    return this.getAttribute('image') || '';
-  }
   set image(value: string) {
-    if (this.mode !== 'solid') this.setAttribute('image', value);
-    else this.removeAttribute('image');
+    console.log(value, this.backgroundElement, this.currentMode);
+
+    if (
+      (this.backgroundElement instanceof StaticBackground ||
+        this.backgroundElement instanceof AnimatedBackground) &&
+      this.currentMode !== 'solid'
+    ) {
+      console.log(value);
+      this.backgroundElement.setImageSource(value);
+    }
   }
 
   get mode() {
-    return (this.getAttribute('mode') as AppSettings['background']['mode']) || 'static';
+    return this.currentMode;
   }
   set mode(value: AppSettings['background']['mode']) {
-    this.setAttribute('mode', value);
+    if (this.currentMode !== value) {
+      this.currentMode = value;
+      this.setAttribute('mode', value);
+      this.render();
+    }
   }
 
   setOptions(options: AppSettings['background']['options']) {
     this.options = options;
-    this.render();
+    this.updateOptions();
   }
   getOptions() {
     return this.options;
   }
 
-  connectedCallback() {
-    if (!this.isConnected) {
-      this.render();
-    }
-  }
+  private updateOptions() {
+    if (!this.options || !this.backgroundElement) return;
 
-  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
-    if (
-      (name === 'image' && this.backgroundElement instanceof StaticBackground) ||
-      this.backgroundElement instanceof AnimatedBackground
-    ) {
-      if (this.mode === 'static' || this.mode === 'animated') {
-        this.backgroundElement.setImageSource(newValue || '');
-      }
-    } else if (name === 'mode') {
-      if (this.isConnected) this.render();
+    switch (this.currentMode) {
+      case 'static':
+        if (this.backgroundElement instanceof StaticBackground) {
+          this.backgroundElement.customFilter = this.options.static.filter || {};
+        }
+        break;
+      case 'solid':
+        if (
+          this.backgroundElement instanceof HTMLDivElement &&
+          this.backgroundElement.classList.contains('solid')
+        ) {
+          Object.assign(this.backgroundElement.style, {
+            backgroundColor:
+              this.options.solid.color.hex + alphaToHex(this.options.solid.color.alpha || 1) ||
+              'var(--clr-surface, #101010)',
+          });
+        }
+        break;
+      case 'animated':
+        if (this.backgroundElement instanceof AnimatedBackground) {
+          this.backgroundElement.customFilter = this.options.animated.filter || {};
+        }
+        break;
     }
   }
 
   private render() {
-    if (!this.shadowRoot) return;
-
-    const mode = this.mode;
+    const mode = this.currentMode;
     const imageUrl = this.image;
-    const backgroundContainer = createElement('div');
-    backgroundContainer.style.width = '100%';
-    backgroundContainer.style.height = '100%';
+    let backgroundContainer = this.querySelector('#bg-wrapper');
+
+    if (!backgroundContainer) {
+      backgroundContainer = createElement('div', {
+        id: 'bg-wrapper',
+        style: { width: '100%', height: '100%' },
+        innerHTML: '',
+      });
+      backgroundContainer.setAttribute('mode', this.currentMode);
+      this.appendChild(backgroundContainer);
+    }
 
     switch (mode) {
       case 'static': {
         let staticElement: StaticBackground;
         if (this.backgroundElement instanceof StaticBackground) {
           staticElement = this.backgroundElement;
-          staticElement.customFilter = this.options?.static.filter || {}; // Update filter
         } else {
           staticElement = new StaticBackground();
           staticElement.setImageSource(imageUrl);
-          staticElement.customFilter = this.options?.static.filter || {};
           this.backgroundElement = staticElement;
         }
         backgroundContainer.appendChild(staticElement);
@@ -99,19 +120,11 @@ class BackgroundElement extends HTMLElement {
           this.backgroundElement.classList.contains('solid')
         ) {
           solidElement = this.backgroundElement;
-          Object.assign(solidElement.style, {
-            backgroundColor:
-              this.options?.solid.color.hex + alphaToHex(this.options?.solid.color.alpha || 1) ||
-              'var(--clr-surface, #101010)',
-          });
         } else {
           solidElement = createElement('div', {
             className: 'solid background',
           });
           Object.assign(solidElement.style, {
-            backgroundColor:
-              this.options?.solid.color.hex + alphaToHex(this.options?.solid.color.alpha || 1) ||
-              'var(--clr-surface, #101010)',
             width: '100%',
             height: '100vh',
           });
@@ -124,11 +137,9 @@ class BackgroundElement extends HTMLElement {
         let animatedElement: AnimatedBackground;
         if (this.backgroundElement instanceof AnimatedBackground) {
           animatedElement = this.backgroundElement;
-          animatedElement.customFilter = this.options?.animated.filter || {};
         } else {
           animatedElement = new AnimatedBackground();
           animatedElement.setImageSource(imageUrl);
-          animatedElement.customFilter = this.options?.animated.filter || {};
           this.backgroundElement = animatedElement;
         }
         backgroundContainer.appendChild(animatedElement);
@@ -136,8 +147,7 @@ class BackgroundElement extends HTMLElement {
       }
     }
 
-    this.shadowRoot.innerHTML = '';
-    this.shadowRoot.appendChild(backgroundContainer);
+    this.updateOptions();
   }
 }
 

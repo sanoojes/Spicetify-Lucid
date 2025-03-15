@@ -7,7 +7,9 @@ import { createElement } from '@utils/dom/createElement.ts';
 import type {
   BackgroundMode,
   BorderStyle,
+  CustomImageTypes,
   GrainSettings,
+  PageImageStyle,
   PageStyle,
   PlaybarTypes,
   RightSidebarMode,
@@ -28,6 +30,7 @@ import { isWindows } from '@utils/platformUtils.ts';
 import { copyToClipboard } from '@utils/clipboardUtils.ts';
 import { isValidAppSettings } from '@utils/settingsValidator.ts';
 import { mountAndOpenGuide } from '@app/hooks/guide.ts';
+import { editImage, getImage } from '@app/imageDb.ts';
 
 let _openSettings: (() => void) | null = null;
 let _closeSettings: (() => void) | null = null;
@@ -41,233 +44,136 @@ export const closeSettings = () => {
   _closeSettings?.();
 };
 
-window.lucid.settings = {
-  openSettings,
-  closeSettings,
-  settingModal,
-};
-
-const getSettingsContents = () => {
+const getSettingsContents = async () => {
   const settingsContainer = createElement('div', { id: 'settings-container' });
   const settingSectionElement = new SettingsMain();
   settingSectionElement.isRender = true;
-  settingSectionElement.options = getSettings();
+  settingSectionElement.options = await getSettings();
 
-  appSettingsStore.subscribe((state) => {
-    settingSectionElement.options = getSettings(state);
+  appSettingsStore.subscribe(async (state) => {
+    settingSectionElement.options = await getSettings(state);
   });
 
   settingsContainer.appendChild(settingSectionElement);
-
   return settingsContainer;
 };
 
-export function mountSettings(lucidMain: HTMLElement) {
+export async function mountSettings(lucidMain: HTMLElement) {
   settingModal.isFloating = modalState.getState().isFloating;
-  settingModal.setContent(getSettingsContents());
-
+  settingModal.setContent(await getSettingsContents());
   modalState.subscribe((state) => {
     settingModal.isFloating = state.isFloating;
   }, 'isFloating');
-
   (lucidMain ?? document.getElementById('main'))?.append(settingModal);
-
   _openSettings = () => settingModal.open();
   _closeSettings = () => settingModal.close();
   addSettingAccess(appSettingsStore.getState().position, openSettings);
-
   appSettingsStore.subscribe((state) => {
     if (_openSettings) addSettingAccess(state.position, openSettings);
   }, 'position');
 }
 
-const fieldTexts: Record<string, string[]> = {
-  'floating-window': [
-    'Floating Window',
-    'Allows the settings window to float above other content. Drag the header to reposition it.',
+const fieldTexts = {
+  floatWin: ['Floating Window', 'Allows settings to float. Drag header to reposition.'],
+  winPos: ['Window Position', 'Settings window opens from context menu or nav bar.'],
+  bgMode: ['Mode', 'Select background type.'],
+  solidColor: ['Solid Color', 'Pick solid background color.'],
+  custImg: ['Custom Image', 'Use custom image URL for static background.'],
+  custUMVImg: ['Custom Image', 'Use custom image URL for playlist background.'],
+  imgSrc: ['Image Source', 'Upload image or use URL for custom background.'],
+  custImgUrl: ['Custom Image URL', 'Enter image URL for static background.'],
+  custImgInput: ['Select Custom Image', 'Select local image for static background.'],
+  custImgLocal: ['Select Local Image', 'Select images for static background.'],
+  filterBlur: ['Blur', 'Blur level of image (0-200).'],
+  filterBlurCustom: ['Blur (Custom)', 'Blur level for custom page background (0-200).'],
+  filterBlurNormal: ['Blur (Default)', 'Blur level for default page background (0-200).'],
+  filterBlurNpv: ['Blur (NPV)', 'Blur level for NPV page background (0-200).'],
+  filterExtendedBlur: [
+    'Extended background Blur',
+    'Blur level of extended page background (0-200).',
   ],
-  'window-position': [
-    'Window Position',
-    'Choose where the settings window opens: from the context menu or the navigation bar.',
-  ],
-  'background-mode': ['Background Mode', 'Select the type of background you want to display.'],
-  'solid-color': ['Solid Color', 'Pick a solid background color using the color picker.'],
-  'custom-image': [
-    'Custom Image',
-    'Use a custom image URL for the static background instead of the default image.',
-  ],
-  'custom-image-url': [
-    'Custom Image URL',
-    'Enter the full URL of the image for your static background. URL validation is enabled.',
-  ],
-  'static-image-blur': [
-    'Image Blur',
-    'Adjust the blur level of the static background image (0-200). 0 is no blur, 200 is maximum blur.',
-  ],
-  'static-image-brightness': [
-    'Image Brightness',
-    'Adjust the brightness of the static background image (0-200). 0 is darkest, 200 is brightest.',
-  ],
-  'static-image-saturation': [
-    'Image Saturation',
-    'Adjust the color saturation of the static background image (0-200). 0 is grayscale, 200 is highly saturated.',
-  ],
-  'animated-blur': [
-    'Animation Blur',
-    'Adjust the blur level of the animated background (0-200). 0 is no blur, 200 is maximum blur.',
-  ],
-  'animated-brightness': [
-    'Animation Brightness',
-    'Adjust the brightness of the animated background (0-200). 0 is darkest, 200 is brightest.',
-  ],
-  'animated-saturation': [
-    'Animation Saturation',
-    'Adjust the color saturation of the animated background (0-200). 0 is grayscale, 200 is highly saturated.',
-  ],
-  'dynamic-color': [
-    'Dynamic Color',
-    'Enable dynamic color themes based on the artwork of the currently playing music.',
-  ],
-  'tonal-color': [
-    'Tonal Color',
-    'Apply a tonal color scheme for a more harmonious user interface.',
-  ],
-  'custom-color-enable': [
-    'Custom Color',
-    'Enable a custom color to override the default or dynamic theme color when dynamic color is off.',
-  ],
-  'custom-color-picker': [
+  filterBright: ['Brightness', 'Brightness of image (0-200).'],
+  filterSat: ['Saturation', 'Saturation of image (0-200).'],
+  dynColor: ['Dynamic Color', 'Dynamic color themes based on artwork.'],
+  tonalColor: ['Tonal Color', 'Tonal color scheme for UI.'],
+  custColorEnable: ['Custom Color', 'Enable custom color to override theme color.'],
+  custColorPicker: [
     'Select Custom Color',
-    `Choose a base color for your application theme. For preview, use the <a href="https://material-foundation.github.io/material-theme-builder/">Material Theme Builder</a>`,
+    `Choose base theme color. Preview: <a href="https://material-foundation.github.io/material-theme-builder/">Material Theme Builder</a>`,
   ],
-  'google-fonts-enable': [
-    'Google Fonts',
-    'Enable fonts from Google Fonts for a wider typography selection.',
-  ],
-  'google-fonts-url': [
-    'Google Fonts URL',
-    'Enter the URL of the Google Fonts stylesheet to load custom fonts from Google.',
-  ],
-  'font-family': [
-    'Font Family',
-    'Enter the name of a font family installed on your system to use as the interface font when Google Fonts is disabled.',
-  ],
-  'grain-type': [
-    'Grain Type',
-    'Select the type of grain effect to overlay for a textured appearance.',
-  ],
-  'win-control-height': [
-    'Control Height',
-    'Adjust the height of window control buttons (minimize, maximize, close) on Windows (0-200).',
-  ],
-  'win-panel-gap': ['Panel Gap', 'Set gap between main cards (main, now playing, library).'],
-  'border-thickness': ['Thickness', 'Set the thickness of the interface border in pixels (0-10).'],
-  'border-color': ['Color', 'Choose the color of the application border using the color picker.'],
-  'border-style': ['Style', 'Select the visual style of the interface border.'],
-  'pages-background-style': [
-    'Background Style',
-    'Choose how the background is displayed on different pages.',
-  ],
-  'pages-enable-home-header': ['Home Header Background', 'Enable/Disable Home header background.'],
-  'pages-scroll-fullscreen-image': [
-    'Scroll Fullscreen Background Image',
-    'Allow the background image to scroll with page content when the playlist background is fullscreen (expanded).',
-  ],
-  'pages-scale-fullscreen-image': [
-    'Scale Fullscreen Background Image',
-    'Automatically scale the background image to fit the page width when the playlist background is fullscreen (expanded).',
-  ],
-  'pages-scroll-npv-image': [
-    'Scroll NPV Background Image',
-    'Allow the background image to scroll with page content in Now playing art playlist background mode.',
-  ],
-  'pages-scale-npv-image': [
-    'Scale NPV Background Image',
-    'Automatically scale the background image to fit the page width in Now playing art playlist background mode.',
-  ],
-  'pages-scroll-normal-image': [
-    'Scroll Normal Background Image',
-    'Allow the background image to scroll with page content in normal playlist background mode.',
-  ],
-  'pages-scale-normal-image': [
-    'Scale Normal Background Image',
-    'Automatically scale the background image to fit the page width in normal playlist background mode.',
-  ],
-  'right-sidebar-view-mode': [
-    'View Mode',
-    "Select between normal or compact display for the 'Now Playing' sidebar.",
-  ],
-  'right-sidebar-size': [
-    'Compact Sidebar Width',
-    "Set the width of the 'Now Playing' sidebar when in compact mode.  Enter a value between 0 and 512 pixels.",
-  ],
-  'right-sidebar-position': [
-    'Position',
-    "In compact mode, choose if 'Now Playing' appears on the left or right.",
-  ],
-  'right-sidebar-background-blur': [
-    'Background Blur',
-    "Adjust the background blur of the 'Now Playing' view in compact mode (0-256).",
-  ],
-  'right-sidebar-custom-bg-enable': [
-    'Custom Background',
-    'Enable a custom background for the Now Playing view.',
-  ],
-  'right-sidebar-background-color': [
-    'Background',
-    "Set the background color for the 'Now Playing' sidebar.",
-  ],
-  'right-sidebar-background-alpha': [
-    'Background Alpha',
-    'Set the background transparency (alpha) value (0-100).',
-  ],
-  'playbar-type': ['Playbar Type', 'Choose between a Default or Compact style for the playbar.'],
-  'compact-playbar-hide-icons': [
+  gFontsEnable: ['Google Fonts', 'Enable fonts from Google Fonts.'],
+  gFontsUrl: ['Google Fonts URL', 'URL of Google Fonts stylesheet.'],
+  fontFamily: ['Font Family', 'Font family for UI when Google Fonts disabled.'],
+  grainType: ['Grain Type', 'Type of grain effect overlay.'],
+  winCtrlHeight: ['Control Height', 'Height of window control buttons on Windows (0-200).'],
+  winPanelGap: ['Panel Gap', 'Gap between main cards.'],
+  borderThick: ['Thickness', 'Thickness of interface border (0-10).'],
+  borderColor: ['Color', 'Color of application border.'],
+  borderStyle: ['Style', 'Visual style of interface border.'],
+  pagesBgStyle: ['Style', 'Background display on pages.'],
+  pagesImageStyle: ['Image Style', 'Image on pages. (playlist/album art)'],
+  homeHeaderBg: ['Home Header Background', 'Enable/Disable Home header background.'],
+  scrollFullBg: ['Scroll Fullscreen Background', 'Scroll background in fullscreen playlist.'],
+  scaleFullBg: ['Scale Fullscreen Background', 'Scale background for fullscreen playlist.'],
+  scrollNpvBg: ['Scroll Background', 'Scroll background for Now playing art playlist.'],
+  scaleNpvBg: ['Scale Background', 'Scale background for Now playing art playlist.'],
+  scrollNormBg: ['Scroll Background', 'Scroll background for normal playlist.'],
+  scaleNormBg: ['Scale Background', 'Scale background for normal playlist.'],
+  scrollCusBg: ['Scroll Background', 'Scroll background for custom playlist.'],
+  scaleCusBg: ['Scale Custom Background', 'Scale background for custom playlist.'],
+  rsbViewMode: ['View Mode', "Normal or compact 'Now Playing' sidebar."],
+  rsbSize: ['Compact Sidebar Width', "Width of compact 'Now Playing' sidebar (0-512px)."],
+  rsbPos: ['Position', "Position of compact 'Now Playing' sidebar."],
+  rsbBgBlur: ['Blur', "Background blur of compact 'Now Playing' view (0-256)."],
+  rsbCustBgEnable: ['Custom Background', 'Enable custom background for Now Playing view.'],
+  rsbBgColor: ['Color', "Background color for 'Now Playing' sidebar."],
+  rsbBgAlpha: ['Alpha', 'Background transparency (alpha) value (0-100).'],
+  rsbBorderAlpha: ['Border Alpha', 'Border transparency (alpha) value (0-100).'],
+  playbarType: ['Playbar Type', 'Default or Compact playbar style.'],
+  compactPbHideIcons: [
     'Hide Extra Playbar Icons',
-    'Hides extra icons in compact playbar (visible on hover). Main controls remain visible.',
+    'Hides extra icons in compact playbar (on hover).',
   ],
-  'compact-playbar-height': ['Height', 'Set the height of the compact playbar in pixels.'],
-  'normal-playbar-height': ['Height', 'Set the height of the normal playbar in pixels.'],
-  'playbar-is-floating': ['Floating', 'Set if the now playing bar is floating.'],
-  'playbar-backdrop-blur': [
-    'Backdrop Blur',
-    'Adjust the blur intensity of the normal playbar backdrop (0-256).',
+  compactPbBorderRad: ['Border Radius', 'Border Radius of compact playbar in pixels.'],
+  normalPbBorderRad: ['Border Radius', 'Border Radius of normal playbar in pixels.'],
+  compactPbImgBorderRad: [
+    'Art Border Radius',
+    'Border Radius of the cover image in compact playbar in pixels.',
   ],
-  'playbar-backdrop-saturation': [
-    'Backdrop Saturation',
-    'Adjust the color saturation of the normal playbar backdrop (0-256).',
+  normalPbImgBorderRad: [
+    'Art Border Radius',
+    'Border Radius of the cover image in normal playbar in pixels.',
   ],
-  'playbar-backdrop-brightness': [
-    'Backdrop Brightness',
-    'Adjust the color brightness of the normal playbar backdrop (0-256).',
-  ],
-  'toggle-changelog-modal': [
-    'Show Changelog',
-    'Enable or disable the changelog modal that appears after theme updates.',
-  ],
-  'start-lucid-tour': [
-    'Take a Lucid Tour',
-    'Start a guided walkthrough of the Lucid theme to learn its features.',
-  ],
-  'export-app-settings': [
-    'Export Settings',
-    'Export your settings to the clipboard as JSON for backup or sharing.',
-  ],
-  'import-app-settings': [
-    'Import Settings',
-    'Paste exported JSON settings here to import and apply them.',
-  ],
-  'reset-app-settings': [
-    'Reset All Settings',
-    'Reset all settings to default values. This is irreversible and will reload the application.',
-  ],
-  'pages-scroll-type': [
-    'Background Image Source',
-    'Choose whether to use the Now Playing View art or the default playlist art as the background for pages.',
-  ],
-};
+  compactPbHeight: ['Height', 'Height of compact playbar in pixels.'],
+  normalPbHeight: ['Height', 'Height of normal playbar in pixels.'],
+  playbarFloat: ['Floating', 'Now playing bar is floating.'],
+  pbBackdropBlur: ['Backdrop Blur', 'Blur of normal playbar backdrop (0-256).'],
+  pbBackdropSat: ['Backdrop Saturation', 'Saturation of normal playbar backdrop (0-256).'],
+  pbBackdropBright: ['Backdrop Brightness', 'Brightness of normal playbar backdrop (0-256).'],
+  showChangelog: ['Show Changelog', 'Changelog modal after updates.'],
+  lucidTour: ['Take a Lucid Tour', 'Guided walkthrough of Lucid theme features.'],
+  exportSettings: ['Export Settings', 'Export settings to clipboard as JSON.'],
+  importSettings: ['Import Settings', 'Import settings from JSON.'],
+  resetSettings: ['Reset All Settings', 'Reset all settings to default values (irreversible).'],
+  pagesScrollType: ['Image Source', 'Now Playing View art or default playlist art for pages.'],
+} as const;
 
-function getSettings(state = appSettingsStore.getState(), settings = appSettingsStore): Settings {
+async function getSettings(
+  state = appSettingsStore.getState(),
+  settings = appSettingsStore
+): Promise<Settings> {
+  const field = (
+    key: keyof typeof fieldTexts,
+    inputOptions: SettingsMain['options'][0]['groups'][0]['fields'][0]['inputOptions'],
+    render?: boolean
+  ) => ({
+    render: render === undefined ? true : render,
+    inputOptions,
+    label: fieldTexts[key][0],
+    tooltip: fieldTexts[key][1],
+    key: key.replace(/([A-Z])/g, '-$1').toLowerCase(),
+  });
+
   return [
     {
       name: 'General',
@@ -279,52 +185,34 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-behavior',
           showName: false,
           fields: [
-            {
-              render: true,
-              inputOptions: {
-                type: 'button',
-                buttonType: 'primary',
-                contents: 'Start',
-                onClick: () => {
-                  localStorage.removeItem('lucid-guided-tour');
-                  closeSettings();
-                  mountAndOpenGuide(true);
-                },
+            field('lucidTour', {
+              type: 'button',
+              buttonType: 'primary',
+              contents: 'Start',
+              onClick: () => {
+                localStorage.removeItem('lucid-guided-tour');
+                closeSettings();
+                mountAndOpenGuide(true);
               },
-              label: fieldTexts['start-lucid-tour'][0],
-              tooltip: fieldTexts['start-lucid-tour'][1],
-              key: 'start-lucid-tour',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'checkbox',
-                checked: modalState.getState().isFloating,
-                onChange: (isFloating) => {
-                  modalState.setState((state) => ({ ...state, isFloating }));
-                },
+            }),
+            field('floatWin', {
+              type: 'checkbox',
+              checked: modalState.getState().isFloating,
+              onChange: (isFloating) => {
+                modalState.setState((state) => ({ ...state, isFloating }));
               },
-              label: fieldTexts['floating-window'][0],
-              tooltip: fieldTexts['floating-window'][1],
-              key: 'floating-window',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'select',
-                value: state.position,
-                options: [
-                  { label: 'Context Menu', value: 'context-menu' },
-                  { label: 'Navigation Bar', value: 'nav' },
-                ],
-                onChange: (value) => {
-                  settings.setPosition(value as SettingsPosition);
-                },
+            }),
+            field('winPos', {
+              type: 'select',
+              value: state.position,
+              options: [
+                { label: 'Context Menu', value: 'context-menu' },
+                { label: 'Navigation Bar', value: 'nav' },
+              ],
+              onChange: (value) => {
+                settings.setPosition(value as SettingsPosition);
               },
-              label: fieldTexts['window-position'][0],
-              tooltip: fieldTexts['window-position'][1],
-              key: 'window-position',
-            },
+            }),
           ],
         },
       ],
@@ -338,68 +226,111 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           name: 'Mode',
           key: 'group-background-mode',
           fields: [
-            {
-              render: true,
-              inputOptions: {
-                type: 'select',
-                value: state.background.mode,
-                options: [
-                  { label: 'Animated', value: 'animated' },
-                  { label: 'Solid Color', value: 'solid' },
-                  { label: 'Static Image', value: 'static' },
-                ],
-                onChange: (value) => {
-                  settings.setBackgroundMode(value as BackgroundMode);
-                },
+            field('bgMode', {
+              type: 'select',
+              value: state.background.mode,
+              options: [
+                { label: 'Animated', value: 'animated' },
+                { label: 'Solid Color', value: 'solid' },
+                { label: 'Static Image', value: 'static' },
+              ],
+              onChange: (value) => {
+                settings.setBackgroundMode(value as BackgroundMode);
               },
-              label: fieldTexts['background-mode'][0],
-              tooltip: fieldTexts['background-mode'][1],
-              key: 'background-mode',
-            },
-            {
-              render: state.background.mode === 'solid',
-              inputOptions: {
+            }),
+          ],
+        },
+        {
+          name: 'Background',
+          key: 'group-bg-background',
+          render: true,
+          fields: [
+            field(
+              'solidColor',
+              {
                 type: 'color',
                 value: state.background.options.solid.color.hex,
                 onChange: (hex) => {
                   settings.setSolidBackgroundColor({ hex });
                 },
               },
-              label: fieldTexts['solid-color'][0],
-              tooltip: fieldTexts['solid-color'][1],
-              key: 'solid-color',
-            },
-            {
-              render: state.background.mode === 'static',
-              inputOptions: {
+              state.background.mode === 'solid'
+            ),
+            field(
+              'rsbBgAlpha',
+              {
+                type: 'number',
+                value: state.background.options.solid.color.alpha,
+                validator: isValidNumberInRange100,
+                onChange: (alpha) => {
+                  settings.setSolidBackgroundColor({ alpha });
+                },
+              },
+              state.background.mode === 'solid'
+            ),
+            field(
+              'custImg',
+              {
                 type: 'checkbox',
-                checked: state.background.options.static.isCustomImage || false,
+                checked: state.background.options.static.isCustomImage,
                 onChange: (isCustomImage) => {
                   settings.setStaticBackgroundOptions({ isCustomImage });
                 },
               },
-              label: fieldTexts['custom-image'][0],
-              tooltip: fieldTexts['custom-image'][1],
-              key: 'custom-image',
-            },
-            {
-              render:
-                state.background.mode === 'static' && state.background.options.static.isCustomImage,
-              inputOptions: {
-                type: 'text',
-                value: state.background.options.static.customImageURL || 'Enter Image URL',
-                validator: isValidUrl,
-                onChange: (customImageURL) => {
-                  settings.setStaticBackgroundOptions({ customImageURL });
+              state.background.mode === 'static'
+            ),
+            field(
+              'imgSrc',
+              {
+                type: 'select',
+                value: state.customImage.type,
+                options: [
+                  { label: 'Local', value: 'local' },
+                  { label: 'From Url', value: 'url' },
+                ],
+                onChange: (type) => {
+                  settings.setCustomImageType(type as CustomImageTypes);
                 },
               },
-              label: fieldTexts['custom-image-url'][0],
-              tooltip: fieldTexts['custom-image-url'][1],
-              key: 'custom-image-url',
-            },
-            {
-              render: state.background.mode === 'static',
-              inputOptions: {
+              state.background.mode === 'static' && state.background.options.static.isCustomImage
+            ),
+            field(
+              'custImgUrl',
+              {
+                type: 'text',
+                value: state.customImage.options.url.data ?? 'Enter Image URL',
+                validator: isValidUrl,
+                onChange: (data) => {
+                  settings.setCustomImageOptions('url', { data });
+                },
+              },
+              state.background.mode === 'static' &&
+                state.background.options.static.isCustomImage &&
+                state.customImage.type === 'url'
+            ),
+            field(
+              'custImgInput',
+              {
+                type: 'image',
+                value: (await getImage())[0].data,
+                onChange: async (data) => {
+                  if (data) editImage({ ...(await getImage())[0], data });
+                },
+              },
+              state.background.mode === 'static' &&
+                state.background.options.static.isCustomImage &&
+                state.customImage.type === 'local'
+            ),
+          ],
+        },
+        {
+          render: state.background.mode !== 'solid',
+          name: 'Filters',
+          key: 'group-bg-filters',
+          fields: [
+            field(
+              'filterBlur',
+              {
                 type: 'number',
                 value: state.background.options.static.filter.blur,
                 onChange: (blur) => {
@@ -408,13 +339,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 step: 1,
                 validator: isValidNumberInRange200,
               },
-              label: fieldTexts['static-image-blur'][0],
-              tooltip: fieldTexts['static-image-blur'][1],
-              key: 'static-image-blur',
-            },
-            {
-              render: state.background.mode === 'static',
-              inputOptions: {
+              state.background.mode === 'static'
+            ),
+            field(
+              'filterBright',
+              {
                 type: 'number',
                 value: state.background.options.static.filter.brightness,
                 onChange: (brightness) => {
@@ -423,13 +352,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 step: 1,
                 validator: isValidNumberInRange200,
               },
-              label: fieldTexts['static-image-brightness'][0],
-              tooltip: fieldTexts['static-image-brightness'][1],
-              key: 'static-image-brightness',
-            },
-            {
-              render: state.background.mode === 'static',
-              inputOptions: {
+              state.background.mode === 'static'
+            ),
+            field(
+              'filterSat',
+              {
                 type: 'number',
                 value: state.background.options.static.filter.saturate,
                 onChange: (saturate) => {
@@ -438,13 +365,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 step: 0.1,
                 validator: isValidNumberInRange200,
               },
-              label: fieldTexts['static-image-saturation'][0],
-              tooltip: fieldTexts['static-image-saturation'][1],
-              key: 'static-image-saturation',
-            },
-            {
-              render: state.background.mode === 'animated',
-              inputOptions: {
+              state.background.mode === 'static'
+            ),
+            field(
+              'filterBlur',
+              {
                 type: 'number',
                 value: state.background.options.animated.filter.blur,
                 onChange: (blur) => {
@@ -453,13 +378,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 step: 1,
                 validator: isValidNumberInRange200,
               },
-              label: fieldTexts['animated-blur'][0],
-              tooltip: fieldTexts['animated-blur'][1],
-              key: 'animated-blur',
-            },
-            {
-              render: state.background.mode === 'animated',
-              inputOptions: {
+              state.background.mode === 'animated'
+            ),
+            field(
+              'filterBright',
+              {
                 type: 'number',
                 value: state.background.options.animated.filter.brightness,
                 onChange: (brightness) => {
@@ -468,13 +391,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 step: 1,
                 validator: isValidNumberInRange200,
               },
-              label: fieldTexts['animated-brightness'][0],
-              tooltip: fieldTexts['animated-brightness'][1],
-              key: 'animated-brightness',
-            },
-            {
-              render: state.background.mode === 'animated',
-              inputOptions: {
+              state.background.mode === 'animated'
+            ),
+            field(
+              'filterSat',
+              {
                 type: 'number',
                 value: state.background.options.animated.filter.saturate,
                 onChange: (saturate) => {
@@ -483,10 +404,8 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 step: 1,
                 validator: isValidNumberInRange200,
               },
-              label: fieldTexts['animated-saturation'][0],
-              tooltip: fieldTexts['animated-saturation'][1],
-              key: 'animated-saturation',
-            },
+              state.background.mode === 'animated'
+            ),
           ],
         },
         {
@@ -494,58 +413,42 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           name: 'Color',
           key: 'group-color',
           fields: [
-            {
-              key: 'dynamic-color',
-              render: true,
-              label: fieldTexts['dynamic-color'][0],
-              tooltip: fieldTexts['dynamic-color'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.color.isDynamic,
-                onChange: (value) => {
-                  settings.setDynamicColor(value);
-                },
+            field('dynColor', {
+              type: 'checkbox',
+              checked: state.color.isDynamic,
+              onChange: (value) => {
+                settings.setDynamicColor(value);
               },
-            },
-            {
-              key: 'tonal-color',
-              render: true,
-              label: fieldTexts['tonal-color'][0],
-              tooltip: fieldTexts['tonal-color'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.color.isTonal,
-                onChange: (value) => {
-                  settings.setTonalColor(value);
-                },
+            }),
+            field('tonalColor', {
+              type: 'checkbox',
+              checked: state.color.isTonal,
+              onChange: (value) => {
+                settings.setTonalColor(value);
               },
-            },
-            {
-              key: 'custom-color-enable',
-              render: !state.color.isDynamic,
-              label: fieldTexts['custom-color-enable'][0],
-              tooltip: fieldTexts['custom-color-enable'][1],
-              inputOptions: {
+            }),
+            field(
+              'custColorEnable',
+              {
                 type: 'checkbox',
                 checked: state.color.isCustom,
                 onChange: (value) => {
                   settings.setIsCustomColor(value);
                 },
               },
-            },
-            {
-              key: 'custom-color-picker',
-              render: !state.color.isDynamic && state.color.isCustom,
-              label: fieldTexts['custom-color-picker'][0],
-              tooltip: fieldTexts['custom-color-picker'][1],
-              inputOptions: {
+              !state.color.isDynamic
+            ),
+            field(
+              'custColorPicker',
+              {
                 type: 'color',
                 value: state.color.customColor.hex,
                 onChange: (hex) => {
                   settings.setCustomColor({ hex });
                 },
               },
-            },
+              !state.color.isDynamic && state.color.isCustom
+            ),
           ],
         },
       ],
@@ -559,25 +462,16 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           name: 'Font',
           key: 'group-font',
           fields: [
-            {
-              render: true,
-              key: 'google-fonts-enable',
-              label: fieldTexts['google-fonts-enable'][0],
-              tooltip: fieldTexts['google-fonts-enable'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.font.isGoogleFonts,
-                onChange: (isGoogleFonts) => {
-                  settings.setFont({ isGoogleFonts });
-                },
+            field('gFontsEnable', {
+              type: 'checkbox',
+              checked: state.font.isGoogleFonts,
+              onChange: (isGoogleFonts) => {
+                settings.setFont({ isGoogleFonts });
               },
-            },
-            {
-              render: state.font.isGoogleFonts,
-              key: 'google-fonts-url',
-              label: fieldTexts['google-fonts-url'][0],
-              tooltip: fieldTexts['google-fonts-url'][1],
-              inputOptions: {
+            }),
+            field(
+              'gFontsUrl',
+              {
                 type: 'text',
                 value: state.font.fontUrl || '',
                 validator: isValidGoogleFontURL,
@@ -585,20 +479,19 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setFont({ fontUrl });
                 },
               },
-            },
-            {
-              render: !state.font.isGoogleFonts,
-              key: 'font-family',
-              label: fieldTexts['font-family'][0],
-              tooltip: fieldTexts['font-family'][1],
-              inputOptions: {
+              state.font.isGoogleFonts
+            ),
+            field(
+              'fontFamily',
+              {
                 type: 'text',
                 value: state.font.fontFamily || '',
                 onChange: (fontFamily) => {
                   settings.setFont({ fontFamily });
                 },
               },
-            },
+              !state.font.isGoogleFonts
+            ),
           ],
         },
         {
@@ -606,24 +499,18 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-grain-effect',
           name: 'Grain Effect',
           fields: [
-            {
-              render: true,
-              inputOptions: {
-                type: 'select',
-                value: state.grains.type,
-                options: [
-                  { label: 'Normal', value: 'default' },
-                  { label: 'Starry', value: 'starry' },
-                  { label: 'None', value: 'none' },
-                ],
-                onChange: (value) => {
-                  settings.setGrainsType(value as GrainSettings['type']);
-                },
+            field('grainType', {
+              type: 'select',
+              value: state.grains.type,
+              options: [
+                { label: 'Normal', value: 'default' },
+                { label: 'Starry', value: 'starry' },
+                { label: 'None', value: 'none' },
+              ],
+              onChange: (value) => {
+                settings.setGrainsType(value as GrainSettings['type']);
               },
-              label: fieldTexts['grain-type'][0],
-              tooltip: fieldTexts['grain-type'][1],
-              key: 'grain-type',
-            },
+            }),
           ],
         },
         {
@@ -631,25 +518,19 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-window-controls',
           name: 'Window',
           fields: [
-            {
-              render: true,
-              inputOptions: {
-                type: 'number',
-                step: 1,
-                value: state.pages.panelGap,
-                validator: isValidNumberInRange100,
-                onChange: (panelGap) => {
-                  settings.setPages({ panelGap });
-                },
+            field('winPanelGap', {
+              type: 'number',
+              step: 1,
+              value: state.pages.panelGap,
+              validator: isValidNumberInRange100,
+              onChange: (panelGap) => {
+                settings.setPages({ panelGap });
               },
-              label: fieldTexts['win-panel-gap'][0],
-              tooltip: fieldTexts['win-panel-gap'][1],
-              key: 'win-panel-gap',
-            },
+            }),
 
-            {
-              render: isWindows(),
-              inputOptions: {
+            field(
+              'winCtrlHeight',
+              {
                 type: 'number',
                 step: 1,
                 value: state.control.height,
@@ -658,10 +539,8 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setControlHeight(value);
                 },
               },
-              label: fieldTexts['win-control-height'][0],
-              tooltip: fieldTexts['win-control-height'][1],
-              key: 'win-control-height',
-            },
+              isWindows()
+            ),
           ],
         },
         {
@@ -669,192 +548,48 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-border',
           name: 'Border',
           fields: [
-            {
-              render: true,
-              inputOptions: {
-                type: 'number',
-                step: 1,
-                value: state.border.thickness,
-                validator: isValidNumberInRange10,
-                onChange: (thickness) => {
-                  settings.setBorder({ thickness });
-                },
+            field('borderThick', {
+              type: 'number',
+              step: 1,
+              value: state.border.thickness,
+              validator: isValidNumberInRange10,
+              onChange: (thickness) => {
+                settings.setBorder({ thickness });
               },
-              label: fieldTexts['border-thickness'][0],
-              tooltip: fieldTexts['border-thickness'][1],
-              key: 'border-thickness',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'color',
-                value: state.border.color.hex,
-                onChange: (hex) => {
-                  settings.setBorderColor({ hex });
-                },
+            }),
+            field('borderStyle', {
+              type: 'select',
+              options: [
+                { label: 'None', value: 'none' },
+                { label: 'Solid', value: 'solid' },
+                { label: 'Dotted', value: 'dotted' },
+                { label: 'Dashed', value: 'dashed' },
+                { label: 'Double', value: 'double' },
+                { label: 'Groove', value: 'groove' },
+                { label: 'Ridge', value: 'ridge' },
+                { label: 'Inset', value: 'inset' },
+                { label: 'Outset', value: 'outset' },
+              ],
+              onChange: (style) => {
+                settings.setBorder({ style: style as BorderStyle });
               },
-              label: fieldTexts['border-color'][0],
-              tooltip: fieldTexts['border-color'][1],
-              key: 'border-color',
-            },
-            {
-              render: true,
-              label: fieldTexts['border-style'][0],
-              key: 'border-style',
-              inputOptions: {
-                type: 'select',
-                options: [
-                  { label: 'None', value: 'none' },
-                  { label: 'Solid', value: 'solid' },
-                  { label: 'Dotted', value: 'dotted' },
-                  { label: 'Dashed', value: 'dashed' },
-                  { label: 'Double', value: 'double' },
-                  { label: 'Groove', value: 'groove' },
-                  { label: 'Ridge', value: 'ridge' },
-                  { label: 'Inset', value: 'inset' },
-                  { label: 'Outset', value: 'outset' },
-                ],
-                onChange: (style) => {
-                  settings.setBorder({ style: style as BorderStyle });
-                },
-                value: state.border.style,
+              value: state.border.style,
+            }),
+            field('borderColor', {
+              type: 'color',
+              value: state.border.color.hex,
+              onChange: (hex) => {
+                settings.setBorderColor({ hex });
               },
-              tooltip: fieldTexts['border-style'][1],
-            },
-          ],
-        },
-        {
-          render: true,
-          key: 'group-page-display',
-          name: 'Page Display',
-          fields: [
-            {
-              key: 'pages-background-style',
-              label: fieldTexts['pages-background-style'][0],
-              render: true,
-              tooltip: fieldTexts['pages-background-style'][1],
-              inputOptions: {
-                type: 'select',
-                value: state.pages.style,
-                onChange: (style) => {
-                  settings.setPageStyle(style as PageStyle);
-                },
-                options: [
-                  { label: 'Default', value: 'normal' },
-                  { label: 'Card', value: 'card' },
-                  { label: 'Compact', value: 'compact' },
-                  { label: 'Compact Card', value: 'compact-card' },
-                ],
+            }),
+            field('rsbBorderAlpha', {
+              type: 'number',
+              value: state.border.color.alpha,
+              validator: isValidNumberInRange100,
+              onChange: (alpha) => {
+                settings.setBorderColor({ alpha });
               },
-            },
-            {
-              render: true,
-              key: 'pages-enable-home-header',
-              label: fieldTexts['pages-enable-home-header'][0],
-              tooltip: fieldTexts['pages-enable-home-header'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.pages.hideHomeHeader,
-                onChange: (hideHomeHeader) => {
-                  settings.setPages({ hideHomeHeader });
-                },
-              },
-            },
-            {
-              render: true,
-              key: 'pages-scroll-type',
-              label: fieldTexts['pages-scroll-type'][0],
-              tooltip: fieldTexts['pages-scroll-type'][1],
-              inputOptions: {
-                type: 'select',
-                value: state.pages.umv.type,
-                options: [
-                  { value: 'normal', label: 'Default' },
-                  { value: 'npv', label: 'Now Playing Art' },
-                ],
-                onChange: (type) => {
-                  settings.setUMV({ type: type as UMVSettings['type'] });
-                },
-              },
-            },
-            {
-              render: state.pages.umv.type === 'normal',
-              key: 'pages-scroll-normal-image',
-              label: fieldTexts['pages-scroll-normal-image'][0],
-              tooltip: fieldTexts['pages-scroll-normal-image'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.pages.umv.options.normal.isScroll,
-                onChange: (isScroll) => {
-                  settings.setUMVOption('normal', { isScroll });
-                },
-              },
-            },
-            {
-              render: state.pages.umv.type === 'normal',
-              key: 'pages-scale-normal-image',
-              label: fieldTexts['pages-scale-normal-image'][0],
-              tooltip: fieldTexts['pages-scale-normal-image'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.pages.umv.options.normal.isScaling,
-                onChange: (isScaling) => {
-                  settings.setUMVOption('normal', { isScaling });
-                },
-              },
-            },
-            {
-              render: state.pages.umv.type === 'npv',
-              key: 'pages-scroll-npv-image',
-              label: fieldTexts['pages-scroll-npv-image'][0],
-              tooltip: fieldTexts['pages-scroll-npv-image'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.pages.umv.options.npv.isScroll,
-                onChange: (isScroll) => {
-                  settings.setUMVOption('npv', { isScroll });
-                },
-              },
-            },
-            {
-              render: state.pages.umv.type === 'npv',
-              key: 'pages-scale-normal-image',
-              label: fieldTexts['pages-scale-npv-image'][0],
-              tooltip: fieldTexts['pages-scale-npv-image'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.pages.umv.options.npv.isScaling,
-                onChange: (isScaling) => {
-                  settings.setUMVOption('npv', { isScaling });
-                },
-              },
-            },
-            {
-              render: true,
-              key: 'pages-scroll-fullscreen-image',
-              label: fieldTexts['pages-scroll-fullscreen-image'][0],
-              tooltip: fieldTexts['pages-scroll-fullscreen-image'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.pages.umv.options.expanded.isScroll,
-                onChange: (isScroll) => {
-                  settings.setUMVOption('expanded', { isScroll });
-                },
-              },
-            },
-            {
-              render: true,
-              key: 'pages-scale-fullscreen-image',
-              label: fieldTexts['pages-scale-fullscreen-image'][0],
-              tooltip: fieldTexts['pages-scale-fullscreen-image'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.pages.umv.options.expanded.isScaling,
-                onChange: (isScaling) => {
-                  settings.setUMVOption('expanded', { isScaling });
-                },
-              },
-            },
+            }),
           ],
         },
         {
@@ -862,28 +597,20 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-now-playing-view',
           name: 'Now Playing View',
           fields: [
-            {
-              key: 'right-sidebar-view-mode',
-              label: fieldTexts['right-sidebar-view-mode'][0],
-              render: true,
-              tooltip: fieldTexts['right-sidebar-view-mode'][1],
-              inputOptions: {
-                type: 'select',
-                value: state.rightSidebar.mode,
-                options: [
-                  { label: 'Normal', value: 'normal' },
-                  { label: 'Compact', value: 'compact' },
-                ],
-                onChange: (mode) => {
-                  settings.setRightSidebar({ mode: mode as RightSidebarMode });
-                },
+            field('rsbViewMode', {
+              type: 'select',
+              value: state.rightSidebar.mode,
+              options: [
+                { label: 'Normal', value: 'normal' },
+                { label: 'Compact', value: 'compact' },
+              ],
+              onChange: (mode) => {
+                settings.setRightSidebar({ mode: mode as RightSidebarMode });
               },
-            },
-            {
-              key: 'right-sidebar-size',
-              label: fieldTexts['right-sidebar-size'][0],
-              render: state.rightSidebar.mode === 'compact',
-              inputOptions: {
+            }),
+            field(
+              'rsbSize',
+              {
                 type: 'number',
                 value: state.rightSidebar.size,
                 validator: isValidNumberInRange512,
@@ -891,13 +618,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setRightSidebar({ size });
                 },
               },
-              tooltip: fieldTexts['right-sidebar-size'][1],
-            },
-            {
-              key: 'right-sidebar-position',
-              label: fieldTexts['right-sidebar-position'][0],
-              render: state.rightSidebar.mode === 'compact',
-              inputOptions: {
+              state.rightSidebar.mode === 'compact'
+            ),
+            field(
+              'rsbPos',
+              {
                 type: 'select',
                 value: state.rightSidebar.position,
                 options: [
@@ -910,13 +635,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setRightSidebar({ position: position as RightSidebarPosition });
                 },
               },
-              tooltip: fieldTexts['right-sidebar-position'][1],
-            },
-            {
-              key: 'right-sidebar-background-blur',
-              label: fieldTexts['right-sidebar-background-blur'][0],
-              render: state.rightSidebar.mode === 'compact',
-              inputOptions: {
+              state.rightSidebar.mode === 'compact'
+            ),
+            field(
+              'rsbBgBlur',
+              {
                 type: 'number',
                 value: state.rightSidebar.blur,
                 validator: isValidNumberInRange256,
@@ -924,39 +647,29 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setRightSidebar({ blur });
                 },
               },
-              tooltip: fieldTexts['right-sidebar-background-blur'][1],
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.rightSidebar.isCustomBg,
-                onChange: (isCustomBg) => {
-                  settings.setRightSidebar({ isCustomBg });
-                },
+              state.rightSidebar.mode === 'compact'
+            ),
+            field('rsbCustBgEnable', {
+              type: 'checkbox',
+              checked: state.rightSidebar.isCustomBg,
+              onChange: (isCustomBg) => {
+                settings.setRightSidebar({ isCustomBg });
               },
-              label: fieldTexts['right-sidebar-custom-bg-enable'][0],
-              tooltip: fieldTexts['right-sidebar-custom-bg-enable'][1],
-              key: 'right-sidebar-custom-bg-enable',
-            },
-            {
-              key: 'right-sidebar-background-color',
-              label: fieldTexts['right-sidebar-background-color'][0],
-              render: state.rightSidebar.isCustomBg,
-              inputOptions: {
+            }),
+            field(
+              'rsbBgColor',
+              {
                 type: 'color',
                 value: state.rightSidebar.color.hex,
                 onChange: (hex) => {
                   settings.setRightSidebarColor({ hex });
                 },
               },
-              tooltip: fieldTexts['right-sidebar-background-color'][1],
-            },
-            {
-              key: 'right-sidebar-background-alpha',
-              label: fieldTexts['right-sidebar-background-alpha'][0],
-              render: state.rightSidebar.isCustomBg,
-              inputOptions: {
+              state.rightSidebar.isCustomBg
+            ),
+            field(
+              'rsbBgAlpha',
+              {
                 type: 'number',
                 value: state.rightSidebar.color.alpha,
                 validator: isValidNumberInRange100,
@@ -964,8 +677,215 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setRightSidebarColor({ alpha });
                 },
               },
-              tooltip: fieldTexts['right-sidebar-background-alpha'][1],
-            },
+              state.rightSidebar.isCustomBg
+            ),
+          ],
+        },
+      ],
+    },
+    {
+      name: 'Page Settings',
+      render: true,
+      groups: [
+        {
+          render: true,
+          key: 'group-page-style',
+          name: 'Page Styles',
+          fields: [
+            field('homeHeaderBg', {
+              type: 'checkbox',
+              checked: state.pages.hideHomeHeader,
+              onChange: (hideHomeHeader) => {
+                settings.setPages({ hideHomeHeader });
+              },
+            }),
+            field('pagesBgStyle', {
+              type: 'select',
+              value: state.pages.style,
+              onChange: (style) => {
+                settings.setPageStyle(style as PageStyle);
+              },
+              options: [
+                { label: 'Default', value: 'normal' },
+                { label: 'Card', value: 'card' },
+                { label: 'Compact', value: 'compact' },
+                { label: 'Compact Card', value: 'compact-card' },
+              ],
+            }),
+            field('pagesImageStyle', {
+              type: 'select',
+              value: state.pages.imageStyle,
+              onChange: (style) => {
+                settings.setPageImageStyle(style as PageImageStyle);
+              },
+              options: [
+                { label: 'Default', value: 'default' },
+                { label: 'As Bg', value: 'as-bg' },
+                { label: 'Hidden', value: 'hidden' },
+              ],
+            }),
+            field('pagesScrollType', {
+              type: 'select',
+              value: state.pages.umv.type,
+              options: [
+                { value: 'normal', label: 'Default' },
+                { value: 'custom', label: 'Custom' },
+                { value: 'npv', label: 'Now Playing Art' },
+              ],
+              onChange: (type) => {
+                settings.setUMV({ type: type as UMVSettings['type'] });
+              },
+            }),
+            field(
+              'custUMVImg',
+              {
+                type: 'text',
+                validator: isValidUrl,
+                value: state.pages.umv.options.custom.url ?? 'Enter a Url',
+                onChange: (url) => {
+                  settings.setUMVOption('custom', { url });
+                },
+              },
+              state.pages.umv.type === 'custom'
+            ),
+          ],
+        },
+        {
+          key: 'group-page-image-filter',
+          name: 'Page Background Image Filter',
+          render: true,
+          fields: [
+            field(
+              'filterBlurCustom',
+              {
+                type: 'number',
+                validator: isValidNumberInRange200,
+                value: state.pages.umv.options.custom.filter?.blur,
+                onChange: (blur) => {
+                  settings.setUMVFilter('custom', { blur });
+                },
+              },
+              state.pages.umv.type === 'custom'
+            ),
+            field(
+              'filterBlurNormal',
+              {
+                type: 'number',
+                validator: isValidNumberInRange200,
+                value: state.pages.umv.options.normal.filter?.blur,
+                onChange: (blur) => {
+                  settings.setUMVFilter('normal', { blur });
+                },
+              },
+              state.pages.umv.type === 'normal'
+            ),
+            field(
+              'filterBlurNpv',
+              {
+                type: 'number',
+                validator: isValidNumberInRange200,
+                value: state.pages.umv.options.npv.filter?.blur,
+                onChange: (blur) => {
+                  settings.setUMVFilter('npv', { blur });
+                },
+              },
+              state.pages.umv.type === 'npv'
+            ),
+            field('filterExtendedBlur', {
+              type: 'number',
+              validator: isValidNumberInRange200,
+              value: state.pages.umv.options.expanded.filter?.blur,
+              onChange: (blur) => {
+                settings.setUMVFilter('expanded', { blur });
+              },
+            }),
+          ],
+        },
+        {
+          key: 'group-page-bg-behavior',
+          name: 'Background Behavior',
+          render: true,
+          fields: [
+            field(
+              'scrollCusBg',
+              {
+                type: 'checkbox',
+                checked: state.pages.umv.options.custom.isScroll,
+                onChange: (isScroll) => {
+                  settings.setUMVOption('custom', { isScroll });
+                },
+              },
+              state.pages.umv.type === 'custom'
+            ),
+            field(
+              'scaleCusBg',
+              {
+                type: 'checkbox',
+                checked: state.pages.umv.options.custom.isScaling,
+                onChange: (isScaling) => {
+                  settings.setUMVOption('custom', { isScaling });
+                },
+              },
+              state.pages.umv.type === 'custom'
+            ),
+            field(
+              'scrollNormBg',
+              {
+                type: 'checkbox',
+                checked: state.pages.umv.options.normal.isScroll,
+                onChange: (isScroll) => {
+                  settings.setUMVOption('normal', { isScroll });
+                },
+              },
+              state.pages.umv.type === 'normal'
+            ),
+            field(
+              'scaleNormBg',
+              {
+                type: 'checkbox',
+                checked: state.pages.umv.options.normal.isScaling,
+                onChange: (isScaling) => {
+                  settings.setUMVOption('normal', { isScaling });
+                },
+              },
+              state.pages.umv.type === 'normal'
+            ),
+            field(
+              'scrollNpvBg',
+              {
+                type: 'checkbox',
+                checked: state.pages.umv.options.npv.isScroll,
+                onChange: (isScroll) => {
+                  settings.setUMVOption('npv', { isScroll });
+                },
+              },
+              state.pages.umv.type === 'npv'
+            ),
+            field(
+              'scaleNpvBg',
+              {
+                type: 'checkbox',
+                checked: state.pages.umv.options.npv.isScaling,
+                onChange: (isScaling) => {
+                  settings.setUMVOption('npv', { isScaling });
+                },
+              },
+              state.pages.umv.type === 'npv'
+            ),
+            field('scrollFullBg', {
+              type: 'checkbox',
+              checked: state.pages.umv.options.expanded.isScroll,
+              onChange: (isScroll) => {
+                settings.setUMVOption('expanded', { isScroll });
+              },
+            }),
+            field('scaleFullBg', {
+              type: 'checkbox',
+              checked: state.pages.umv.options.expanded.isScaling,
+              onChange: (isScaling) => {
+                settings.setUMVOption('expanded', { isScaling });
+              },
+            }),
           ],
         },
       ],
@@ -980,36 +900,24 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-playbar-general',
           showName: false,
           fields: [
-            {
-              key: 'playbar-type',
-              label: fieldTexts['playbar-type'][0],
-              render: true,
-              tooltip: fieldTexts['playbar-type'][1],
-              inputOptions: {
-                type: 'select',
-                value: state.playbar.type,
-                onChange: (type) => {
-                  settings.setPlaybar({ type: type as PlaybarTypes });
-                },
-                options: [
-                  { label: 'Default', value: 'normal' },
-                  { label: 'Compact', value: 'compact' },
-                ],
+            field('playbarType', {
+              type: 'select',
+              value: state.playbar.type,
+              onChange: (type) => {
+                settings.setPlaybar({ type: type as PlaybarTypes });
               },
-            },
-            {
-              render: true,
-              key: 'playbar-is-floating',
-              label: fieldTexts['playbar-is-floating'][0],
-              tooltip: fieldTexts['playbar-is-floating'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.playbar.isFloating,
-                onChange: (isFloating) => {
-                  settings.setPlaybar({ isFloating });
-                },
+              options: [
+                { label: 'Default', value: 'normal' },
+                { label: 'Compact', value: 'compact' },
+              ],
+            }),
+            field('playbarFloat', {
+              type: 'checkbox',
+              checked: state.playbar.isFloating,
+              onChange: (isFloating) => {
+                settings.setPlaybar({ isFloating });
               },
-            },
+            }),
           ],
         },
         {
@@ -1018,39 +926,32 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-playbar-compact',
           showName: true,
           fields: [
-            {
-              render: true,
-              key: 'compact-playbar-height',
-              label: fieldTexts['compact-playbar-height'][0],
-              tooltip: fieldTexts['compact-playbar-height'][1],
-              inputOptions: {
-                type: 'number',
-                value: state.playbar.options.compact.height,
-                validator: isValidNumberInRange512,
-                onChange: (height) => {
-                  settings.setPlaybarOptions('compact', { height });
-                },
+            field('compactPbHideIcons', {
+              type: 'checkbox',
+              checked: state.playbar.hideIcons,
+              onChange: (hideIcons) => {
+                settings.setPlaybar({ hideIcons });
               },
-            },
-            {
-              render: true,
-              key: 'compact-playbar-hide-icons',
-              label: fieldTexts['compact-playbar-hide-icons'][0],
-              tooltip: fieldTexts['compact-playbar-hide-icons'][1],
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.playbar.hideIcons,
-                onChange: (hideIcons) => {
-                  settings.setPlaybar({ hideIcons });
-                },
+            }),
+            field('compactPbHeight', {
+              type: 'number',
+              value: state.playbar.options.compact.height,
+              validator: isValidNumberInRange512,
+              onChange: (height) => {
+                settings.setPlaybarOptions('compact', { height });
               },
-            },
-            {
-              render: state.playbar.isFloating,
-              key: 'compact-playbar-backdrop-blur',
-              label: fieldTexts['playbar-backdrop-blur'][0],
-              tooltip: fieldTexts['playbar-backdrop-blur'][1],
-              inputOptions: {
+            }),
+            field('compactPbBorderRad', {
+              type: 'number',
+              value: state.playbar.options.compact.borderRadius,
+              validator: isValidNumberInRange512,
+              onChange: (borderRadius) => {
+                settings.setPlaybarOptions('compact', { borderRadius });
+              },
+            }),
+            field(
+              'pbBackdropBlur',
+              {
                 type: 'number',
                 value: state.playbar.options.compact.backdropFilter.blur,
                 validator: isValidNumberInRange256,
@@ -1058,13 +959,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setPlaybarFilter('compact', { blur });
                 },
               },
-            },
-            {
-              render: state.playbar.isFloating,
-              key: 'compact-playbar-backdrop-saturation',
-              label: fieldTexts['playbar-backdrop-saturation'][0],
-              tooltip: fieldTexts['playbar-backdrop-saturation'][1],
-              inputOptions: {
+              state.playbar.isFloating
+            ),
+            field(
+              'pbBackdropSat',
+              {
                 type: 'number',
                 value: state.playbar.options.compact.backdropFilter.saturate,
                 validator: isValidNumberInRange256,
@@ -1072,13 +971,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setPlaybarFilter('compact', { saturate });
                 },
               },
-            },
-            {
-              render: state.playbar.isFloating,
-              key: 'compact-playbar-backdrop-brightness',
-              label: fieldTexts['playbar-backdrop-brightness'][0],
-              tooltip: fieldTexts['playbar-backdrop-brightness'][1],
-              inputOptions: {
+              state.playbar.isFloating
+            ),
+            field(
+              'pbBackdropBright',
+              {
                 type: 'number',
                 value: state.playbar.options.compact.backdropFilter.brightness,
                 validator: isValidNumberInRange256,
@@ -1086,7 +983,16 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setPlaybarFilter('compact', { brightness });
                 },
               },
-            },
+              state.playbar.isFloating
+            ),
+            field('compactPbImgBorderRad', {
+              type: 'number',
+              value: state.playbar.options.compact.imageRadius,
+              validator: isValidNumberInRange512,
+              onChange: (imageRadius) => {
+                settings.setPlaybarOptions('compact', { imageRadius });
+              },
+            }),
           ],
         },
 
@@ -1096,26 +1002,25 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-playbar-normal',
           showName: true,
           fields: [
-            {
-              render: true,
-              key: 'normal-playbar-height',
-              label: fieldTexts['normal-playbar-height'][0],
-              tooltip: fieldTexts['normal-playbar-height'][1],
-              inputOptions: {
-                type: 'number',
-                value: state.playbar.options.normal.height,
-                validator: isValidNumberInRange512,
-                onChange: (height) => {
-                  settings.setPlaybarOptions('normal', { height });
-                },
+            field('normalPbHeight', {
+              type: 'number',
+              value: state.playbar.options.normal.height,
+              validator: isValidNumberInRange512,
+              onChange: (height) => {
+                settings.setPlaybarOptions('normal', { height });
               },
-            },
-            {
-              render: state.playbar.isFloating,
-              key: 'playbar-backdrop-blur',
-              label: fieldTexts['playbar-backdrop-blur'][0],
-              tooltip: fieldTexts['playbar-backdrop-blur'][1],
-              inputOptions: {
+            }),
+            field('normalPbBorderRad', {
+              type: 'number',
+              value: state.playbar.options.normal.borderRadius,
+              validator: isValidNumberInRange512,
+              onChange: (borderRadius) => {
+                settings.setPlaybarOptions('normal', { borderRadius });
+              },
+            }),
+            field(
+              'pbBackdropBlur',
+              {
                 type: 'number',
                 value: state.playbar.options.normal.backdropFilter.blur,
                 validator: isValidNumberInRange256,
@@ -1123,13 +1028,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setPlaybarFilter('normal', { blur });
                 },
               },
-            },
-            {
-              render: state.playbar.isFloating,
-              key: 'playbar-backdrop-saturation',
-              label: fieldTexts['playbar-backdrop-saturation'][0],
-              tooltip: fieldTexts['playbar-backdrop-saturation'][1],
-              inputOptions: {
+              state.playbar.isFloating
+            ),
+            field(
+              'pbBackdropSat',
+              {
                 type: 'number',
                 value: state.playbar.options.normal.backdropFilter.saturate,
                 validator: isValidNumberInRange256,
@@ -1137,13 +1040,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setPlaybarFilter('normal', { saturate });
                 },
               },
-            },
-            {
-              render: state.playbar.isFloating,
-              key: 'playbar-backdrop-brightness',
-              label: fieldTexts['playbar-backdrop-brightness'][0],
-              tooltip: fieldTexts['playbar-backdrop-brightness'][1],
-              inputOptions: {
+              state.playbar.isFloating
+            ),
+            field(
+              'pbBackdropBright',
+              {
                 type: 'number',
                 value: state.playbar.options.normal.backdropFilter.brightness,
                 validator: isValidNumberInRange256,
@@ -1151,7 +1052,16 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setPlaybarFilter('normal', { brightness });
                 },
               },
-            },
+              state.playbar.isFloating
+            ),
+            field('normalPbImgBorderRad', {
+              type: 'number',
+              value: state.playbar.options.normal.imageRadius,
+              validator: isValidNumberInRange512,
+              onChange: (imageRadius) => {
+                settings.setPlaybarOptions('normal', { imageRadius });
+              },
+            }),
           ],
         },
       ],
@@ -1166,75 +1076,51 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           key: 'group-application-settings',
           showName: false,
           fields: [
-            {
-              render: true,
-              inputOptions: {
-                type: 'checkbox',
-                checked: state.showChangelog,
-                onChange: (state) => {
-                  settings.setChangelog(state);
-                },
+            field('showChangelog', {
+              type: 'checkbox',
+              checked: state.showChangelog,
+              onChange: (state) => {
+                settings.setChangelog(state);
               },
-              label: fieldTexts['toggle-changelog-modal'][0],
-              tooltip: fieldTexts['toggle-changelog-modal'][1],
-              key: 'toggle-changelog-modal',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'button',
-                buttonType: 'primary',
-                contents: 'Copy Settings',
-                onClick: () => {
-                  copyToClipboard(settings.exportSettings(), 'Settings copied to clipboard!');
-                },
+            }),
+            field('exportSettings', {
+              type: 'button',
+              buttonType: 'primary',
+              contents: 'Copy Settings',
+              onClick: () => {
+                copyToClipboard(settings.exportSettings(), 'Settings copied to clipboard!');
               },
-              label: fieldTexts['export-app-settings'][0],
-              tooltip: fieldTexts['export-app-settings'][1],
-              key: 'export-app-settings',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'text',
-                value: '',
-                validator: (text) => {
-                  try {
-                    if (isValidAppSettings(JSON.parse(text))) return { isValid: true };
-                    return { isValid: false, message: 'Not a valid lucid settings.' };
-                  } catch {
-                    return { isValid: false, message: 'Not a valid lucid settings.' };
-                  }
-                },
-                onChange: (json) => {
-                  settings.importSettings(json);
-                },
+            }),
+            field('importSettings', {
+              type: 'text',
+              value: '',
+              validator: (text) => {
+                try {
+                  if (isValidAppSettings(JSON.parse(text))) return { isValid: true };
+                  return { isValid: false, message: 'Not a valid lucid settings.' };
+                } catch {
+                  return { isValid: false, message: 'Not a valid lucid settings.' };
+                }
               },
-              label: fieldTexts['import-app-settings'][0],
-              tooltip: fieldTexts['import-app-settings'][1],
-              key: 'import-app-settings',
-            },
-            {
-              render: true,
-              inputOptions: {
-                type: 'button',
-                buttonType: 'danger',
-                contents: 'Reset',
-                onClick: () => {
-                  if (
-                    confirm(
-                      'Are you sure you want to reset all settings to default values? This action cannot be undone.'
-                    )
-                  ) {
-                    settings.resetState();
-                    window.location.reload();
-                  }
-                },
+              onChange: (json) => {
+                settings.importSettings(json);
               },
-              label: fieldTexts['reset-app-settings'][0],
-              tooltip: fieldTexts['reset-app-settings'][1],
-              key: 'reset-app-settings',
-            },
+            }),
+            field('resetSettings', {
+              type: 'button',
+              buttonType: 'danger',
+              contents: 'Reset',
+              onClick: () => {
+                if (
+                  confirm(
+                    'Are you sure you want to reset all settings to default values? This action cannot be undone.'
+                  )
+                ) {
+                  settings.resetState();
+                  window.location.reload();
+                }
+              },
+            }),
           ],
         },
       ],

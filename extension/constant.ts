@@ -1,25 +1,40 @@
 import type { AppSettings } from '@app/types/settings.ts';
+export const GITHUB_PATH =
+  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/main';
+export const JSDELIVER_PATH =
+  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main';
 
 export const APPLICATION_VERSION = window?.lucid?.version ?? '2.0.0';
 export const GUIDE_STORAGE_KEY = 'lucid-guided-tour';
 export const WORKER_SCIRPT_URLS = [
-  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/main/src/workers/getColor.js',
-  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/src/workers/getColor.js',
+  `${GITHUB_PATH}/src/workers/getColor.js`,
+  `${JSDELIVER_PATH}/src/workers/getColor.js`,
 ];
 export const WORKER_SCRIPT_CACHE_KEY = 'LUCID_COLOR_SCRIPT_CACHE';
 export const DEFAULT_COLOR = '#1bc858';
 export const GUIDE_SCRIPT_CACHE_KEY = 'LUCID_GUIDE_SCRIPT_CACHE';
 export const GUIDE_SCRIPT_URLS = [
-  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/main/src/guidedTour.js',
-  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/src/guidedTour.js',
+  `${GITHUB_PATH}/src/guidedTour.js`,
+  `${JSDELIVER_PATH}/src/guidedTour.js`,
 ];
 export const APP_SETTINGS_KEY = 'lucid-theme-settings';
 export const LUCID_VERSION_STORAGE_KEY = 'lucid-current-version';
 export const CHANGELOG_DATA_URLS = [
-  'https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/refs/heads/main/changelog.json',
-  'https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@refs/heads/main/changelog.json',
+  `${GITHUB_PATH}/changelog.json`,
+  `${JSDELIVER_PATH}/changelog.json`,
 ];
 export const CHANGELOG_DATA_STORAGE_KEY = 'lucid-changelog-data';
+
+export const DB_NAME = 'LucidIDB';
+
+export const ICON_CSS_URLS = [
+  `${GITHUB_PATH}/src/icons.css`,
+  `${JSDELIVER_PATH}/src/icons.css`,
+  `${GITHUB_PATH}/styles/icons.css`,
+  `${JSDELIVER_PATH}/styles/icons.css`,
+];
+export const ICON_CSS_CACHE_KEY = 'LUCID_CSS_SCRIPT_CACHE';
+export const ICON_CSS_STYLE_ID = 'lucid-icons';
 
 export const DEFAULT_APP_SETTINGS = {
   showChangelog: true,
@@ -29,7 +44,6 @@ export const DEFAULT_APP_SETTINGS = {
     options: {
       static: {
         isCustomImage: false,
-        customImageURL: 'https://picsum.photos/1920/1080?random',
         filter: {
           blur: 32,
           brightness: 60,
@@ -53,11 +67,19 @@ export const DEFAULT_APP_SETTINGS = {
     isTonal: true,
     isCustom: false,
     isDynamic: false,
+    extractorOptions: {
+      pixels: 360000,
+      distance: 0.1,
+      hueDistance: 0.2,
+      lightnessDistance: 0.2,
+      saturationDistance: 0.2,
+    },
   },
   pages: {
     panelGap: 8,
     hideHomeHeader: false,
     style: 'card',
+    imageStyle: 'default',
     umv: {
       type: 'normal',
       options: {
@@ -65,6 +87,12 @@ export const DEFAULT_APP_SETTINGS = {
           isScroll: false,
           isScaling: true,
           filter: { blur: 0 },
+        },
+        custom: {
+          url: 'https://picsum.photos/1920/1080?random',
+          isScroll: false,
+          isScaling: true,
+          filter: { blur: 8 },
         },
         normal: {
           isScroll: false,
@@ -111,11 +139,9 @@ export const DEFAULT_APP_SETTINGS = {
       normal: {
         height: 80,
         paddingX: 8,
-        bgColor: {
-          hex: '',
-          alpha: 50,
-        },
+        bgColor: { hex: '', alpha: 50 },
         bgOpacity: 100,
+        imageRadius: 8,
         borderRadius: 8,
         backdropFilter: { blur: 32, saturate: 150, brightness: 60 },
       },
@@ -127,10 +153,15 @@ export const DEFAULT_APP_SETTINGS = {
           alpha: 50,
         },
         bgOpacity: 100,
+        imageRadius: 8,
         borderRadius: 8,
         backdropFilter: { blur: 32, saturate: 150, brightness: 60 },
       },
     },
     isFloating: true,
+  },
+  customImage: {
+    type: 'url',
+    options: { url: { data: 'https://picsum.photos/1920/1080?random' }, local: null },
   },
 } satisfies AppSettings;

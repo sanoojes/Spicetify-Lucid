@@ -6,6 +6,7 @@ import type { ColorMessage, ColorOptions, ImageOptions } from '@app/types/worker
 import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
 import { fetchAndCache } from '@utils/fetchAndCache.ts';
 import { DEFAULT_COLOR, WORKER_SCIRPT_URLS, WORKER_SCRIPT_CACHE_KEY } from '@app/constant.ts';
+import { showNotification } from '@utils/showNotification.ts';
 
 let worker: null | Worker = null;
 let unsubscribe: null | (() => void) = null;
@@ -44,6 +45,7 @@ export async function mountColor(
         url: convertSpotifyImageUrl(currentUrl),
         isTonal: settings.isTonal,
         isDark: true,
+        extractorOptions: settings?.extractorOptions ?? {},
       });
     }
     unsubscribe = npvState.subscribe((state) => {
@@ -52,6 +54,7 @@ export async function mountColor(
           url: convertSpotifyImageUrl(state.url),
           isTonal: settings.isTonal,
           isDark: true,
+          extractorOptions: settings?.extractorOptions ?? {},
         });
       }
     });
@@ -81,7 +84,7 @@ async function initWorker() {
   if (!worker) {
     document.body.removeAttribute('color-from-worker');
     console.error('Failed to initialize worker from both endpoints.');
-    Spicetify?.showNotification(
+    showNotification(
       'Failed to initialize the color worker. If this issue persists, please report it. (Dynamic and custom colors may not function properly.)',
       true,
       5000

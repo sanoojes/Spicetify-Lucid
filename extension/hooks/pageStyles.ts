@@ -1,14 +1,23 @@
 import type { PageSettings } from '@app/types/settings.ts';
 import appSettingsStore from '@store/setting.ts';
 
-let lastClassName: string | null = null;
+let lastStyle: string | null = null;
+let lastImageStyle: string | null = null;
 export function mountPageStyles(pageSettings: PageSettings = appSettingsStore.getState().pages) {
-  const newClassName = `playlist-${pageSettings.style}`;
-  if (lastClassName !== newClassName) {
-    if (lastClassName) {
-      document.body.classList.replace(lastClassName, newClassName);
-    } else document.body.classList.add(newClassName);
-    lastClassName = newClassName;
+  const newStyle = `playlist-${pageSettings.style}`;
+  if (lastStyle !== newStyle) {
+    if (lastStyle) {
+      document.body.classList.replace(lastStyle, newStyle);
+    } else document.body.classList.add(newStyle);
+    lastStyle = newStyle;
+  }
+
+  const newImageStyle = `playlist-image-${pageSettings.imageStyle}`;
+  if (lastImageStyle !== newImageStyle) {
+    if (lastImageStyle) {
+      document.body.classList.replace(lastImageStyle, newImageStyle);
+    } else document.body.classList.add(newImageStyle);
+    lastImageStyle = newImageStyle;
   }
 
   if (!pageSettings.hideHomeHeader) document.body.classList.add('hide-home-header');

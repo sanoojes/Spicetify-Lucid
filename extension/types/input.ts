@@ -42,6 +42,12 @@ export type ColorInput = {
   onChange?: (value: string) => void;
 };
 
+export type ImageInput = {
+  type: 'image';
+  value?: string;
+  onChange?: (value: string | null) => void;
+};
+
 export type InputOptionsMap = {
   checkbox: CheckboxInput;
   button: ButtonInput;
@@ -49,6 +55,7 @@ export type InputOptionsMap = {
   text: TextInput;
   color: ColorInput;
   number: NumberInput;
+  image: ImageInput;
 };
 
 export type InputOptionsUnion = InputOptionsMap[keyof InputOptionsMap];

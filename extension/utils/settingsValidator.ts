@@ -9,7 +9,9 @@ import type {
   Color,
   ColorSettings,
   CSSFilter,
+  CustomImageSetting,
   GrainSettings,
+  LocalImageSetting,
   PageOptions,
   PageSettings,
   PageType,
@@ -21,6 +23,7 @@ import type {
   SolidBackgroundOptions,
   StaticBackgroundOptions,
   UMVSettings,
+  UrlImageSetting,
 } from '@app/types/settings.ts';
 
 function isObject(val: any): val is Record<string, any> {
@@ -46,12 +49,41 @@ function isValidColor(color: any): color is Color {
   return isObject(color) && typeof color.hex === 'string' && typeof color.alpha === 'number';
 }
 
-function isValidStaticBackgroundOptions(obj: any): obj is StaticBackgroundOptions {
+function isValidUrlImageSetting(obj: any): obj is UrlImageSetting {
+  return isObject(obj) && typeof obj.url === 'string';
+}
+
+function isValidLocalImageSetting(obj: any): obj is LocalImageSetting {
   return (
     isObject(obj) &&
-    typeof obj.isCustomImage === 'boolean' &&
-    typeof obj.customImageURL === 'string' &&
-    isValidCSSFilter(obj.filter)
+    Array.isArray(obj.selectedIds) &&
+    obj.selectedIds.every((id: any) => typeof id === 'number') &&
+    isObject(obj.slideshow) &&
+    typeof obj.slideshow.isSlideshow === 'boolean' &&
+    typeof obj.slideshow.timeDelay === 'number'
+  );
+}
+
+export function isValidCustomImageSetting(obj: any): obj is CustomImageSetting {
+  if (!isObject(obj)) return false;
+  if (typeof obj.isCustom !== 'boolean') return false;
+  if (obj.type !== 'url' && obj.type !== 'local') return false;
+  if (!isObject(obj.options)) return false;
+
+  if (obj.type === 'url') {
+    return isValidUrlImageSetting(obj.options.url);
+  }
+  if (obj.type === 'local') {
+    return isValidLocalImageSetting(obj.options.local);
+  }
+  return false;
+}
+
+export function isValidStaticBackgroundOptions(obj: any): obj is StaticBackgroundOptions {
+  return (
+    isObject(obj) &&
+    isValidCustomImageSetting(obj.customImage) &&
+    (obj.filter === undefined || isValidCSSFilter(obj.filter))
   );
 }
 function isValidSolidBackgroundOptions(obj: any): obj is SolidBackgroundOptions {

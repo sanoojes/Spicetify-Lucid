@@ -1,5 +1,28 @@
 [
   {
+    "version": "2.1.0",
+    "date": "2024-03-15",
+    "desc": "Bug fixes and additions.",
+    "changes": {
+      "Added": [
+        "Local image support for static background",
+        "New icons for pip, fullscreen, add, clock, dismiss (close), list, share, download"
+      ],
+      "Changed": [
+        "Playbar border-radius added (customizable for a rounded look)",
+        "Color picking tweak in image settings"
+      ],
+      "Deprecated": [],
+      "Removed": [],
+      "Fixed": [
+        "Lyrics plus styles",
+        "Compatibility with Beautiful Lyrics and LibX Reborn",
+        "Repeat button icon"
+      ],
+      "Notes": ["Animated Background needs improvement.", "Full screen styles are not added."]
+    }
+  },
+  {
     "version": "2.0.0",
     "date": "2024-03-11",
     "desc": "🎉 Big update! Enjoy a fresh, redesigned settings experience that's easier to navigate.  Your settings are reset with this update.",

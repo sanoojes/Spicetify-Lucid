@@ -18,9 +18,14 @@ import { mountGrains } from '@app/hooks/grains.ts';
 import { waitForElement } from '@utils/dom/waitForElement.ts';
 import { mountAndOpenGuide } from '@app/hooks/guide.ts';
 import { mountChangelog } from '@app/changelog/changelog.ts';
+import setGlobals from '@utils/setGlobals.ts';
+import { initializeImage } from '@app/imageDb.ts';
 
 const main = () => {
   const lucidMain = new MainElement();
+  setGlobals();
+
+  initializeImage();
 
   function mountMain() {
     const mainElement = document.getElementById('main');

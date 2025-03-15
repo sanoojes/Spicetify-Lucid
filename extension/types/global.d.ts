@@ -25,10 +25,11 @@ interface Window {
     reset?: CallBack;
     version?: string;
     store?: any;
+    imageDb?: any;
     settings?: {
       openSettings?: CallBack;
       closeSettings?: CallBack;
-      settingModal: any;
+      settingModal?: any;
     };
   };
   guide: {

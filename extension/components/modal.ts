@@ -4,6 +4,7 @@ import { CLOSE_ICON, DISCORD_ICON, GITHUB_ICON } from '@app/icons.ts';
 import { DISCORD_LINK, GITHUB_LINK } from '@app/links.ts';
 import { getTextClass } from '@utils/styles/encoreUtils.ts';
 import { Button } from '@components/ui/button.ts';
+
 export class Modal extends HTMLElement {
   protected _modalElem: HTMLDivElement;
   protected _bodyElem: HTMLDivElement;
@@ -15,6 +16,7 @@ export class Modal extends HTMLElement {
   protected _headerElem: HTMLDivElement;
   protected _bgElem: HTMLDivElement;
   protected _previouslyFocusedElement: HTMLElement | null = null;
+  private static zIndexCounter = 1000;
 
   constructor() {
     super();
@@ -104,6 +106,10 @@ export class Modal extends HTMLElement {
     this._closeBtn.focus();
     this.resetPosition();
 
+    Modal.zIndexCounter += 1;
+    this._bgElem.style.zIndex = String(Modal.zIndexCounter);
+    this._modalElem.style.zIndex = String(Modal.zIndexCounter);
+
     this.dispatchEvent(new Event('open'));
   }
 
@@ -120,7 +126,7 @@ export class Modal extends HTMLElement {
     this.dispatchEvent(new Event('close'));
   }
 
-  public setContent(content: string | Node): void {
+  public setContent(content: string | any): void {
     this._scrollElem.textContent = '';
     if (typeof content === 'string') {
       this._scrollElem.textContent = content;

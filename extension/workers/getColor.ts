@@ -18,7 +18,14 @@ self.addEventListener('message', async (event: MessageEvent<ColorMessage>) => {
       if (cachedColor !== undefined) {
         color = cachedColor;
       } else {
-        color = await getImageColor(event.data.options.url, { requestMode: 'cors' });
+        color = await getImageColor(event.data.options.url, {
+          requestMode: 'cors',
+          pixels: event.data.options?.extractorOptions?.pixels ?? 360000,
+          distance: event.data.options?.extractorOptions?.distance ?? 0.2,
+          hueDistance: event.data.options?.extractorOptions?.hueDistance ?? 0.2,
+          lightnessDistance: event.data.options?.extractorOptions?.lightnessDistance ?? 0.2,
+          saturationDistance: event.data.options?.extractorOptions?.saturationDistance ?? 0.2,
+        });
         colorCache.set(cacheKey, color);
       }
     } else {

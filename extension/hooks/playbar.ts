@@ -15,12 +15,13 @@ function mountPlaybarStyles(settings = appSettingsStore.getState().playbar) {
         --npb-padding-x: ${curr.paddingX ?? 8}px;
         --npb-saturate: ${curr.backdropFilter.saturate ?? 150}%;
         --npb-brightness: ${curr.backdropFilter.brightness ?? 80}%;
-        --npb-border-radius: ${curr.borderRadius ?? 16}px;
+        --npb-border-radius: ${curr.borderRadius ?? 8}px;
+        --npb-image-radius: ${curr.imageRadius ?? 16}px;
         --npb-bg-opacity: ${curr.bgOpacity ?? 50}%;
         --npb-bg-color: ${
           curr.bgColor.hex
             ? curr.bgColor.hex + alphaToHex(curr.bgColor.alpha)
-            : `rgba(var(--clr-surface-1-rgb), ${curr.bgColor.alpha}%)` // Corrected template literal syntax
+            : `rgba(var(--clr-surface-1-rgb), ${curr.bgColor.alpha}%)`
         } ;
     }`;
 
