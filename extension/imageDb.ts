@@ -96,3 +96,4 @@ export const getImageData = (): Promise<string | null> => {
     }
   });
 };
+initializeImage();
