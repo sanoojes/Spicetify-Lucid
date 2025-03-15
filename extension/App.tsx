@@ -20,85 +20,93 @@ import { mountAndOpenGuide } from '@app/hooks/guide.ts';
 import { mountChangelog } from '@app/changelog/changelog.ts';
 import setGlobals from '@utils/setGlobals.ts';
 import { initializeImage } from '@app/imageDb.ts';
+import { showNotification } from '@utils/showNotification.ts';
 
 const main = () => {
-  const lucidMain = new MainElement();
-  setGlobals();
+  try {
+    const lucidMain = new MainElement();
+    mountMain(lucidMain);
 
-  initializeImage();
+    setGlobals();
 
-  function mountMain() {
-    const mainElement = document.getElementById('main');
-    if (mainElement) mainElement.append(lucidMain);
-    else document.body.appendChild(lucidMain);
+    initializeImage();
+
+    setTimeout(mountUnderMainView, 500);
+
+    // Call all fns here
+    mountBorders();
+    mountBackground();
+    patchIcons();
+    mountAndWatchFont();
+
+    mountGrains();
+
+    mountPageStyles();
+
+    mountPageType();
+
+    mountControls();
+
+    mountPlaybar();
+
+    mountNPV();
+
+    mountColor();
+    appSettingsStore.subscribe((state) => {
+      mountColor(state.color);
+    }, 'color');
+
+    mountSettings(lucidMain);
+
+    mountAndOpenGuide();
+
+    mountChangelog();
+  } catch (e) {
+    console.error('Unexpected Error: ', e);
+    showNotification('Lucid: Unexpected error. please report it to dev');
   }
-
-  function mountBorders() {
-    const setStyles = () => {
-      const borderSetting = settingsManager.getState().border;
-      const styleSheet = lazyLoadStyleById('lucid-border');
-      styleSheet.textContent = ':root{';
-      styleSheet.textContent += `--border-color:${borderSetting.color.hex}${alphaToHex(
-        borderSetting.color.alpha
-      )};`;
-      if (borderSetting.style) {
-        styleSheet.textContent += `--border-style:${borderSetting.style};`;
-      }
-      if (borderSetting.thickness) {
-        styleSheet.textContent += `--border-thickness:${borderSetting.thickness}px;`;
-      }
-      styleSheet.textContent += '}';
-    };
-    setStyles();
-    settingsManager.subscribe(setStyles, 'border');
-  }
-
-  function mountUnderMainView() {
-    waitForElement(['.Root__now-playing-bar', '.Root__globalNav'], ([playbar, nav]) => {
-      document.body.style.setProperty(
-        '--umv-offset',
-        `${(playbar?.clientHeight || 80) + (nav?.clientHeight || 64)}px`
-      );
-    });
-
-    const underMainView = new UMVElement();
-    const underMainViewParent = document.querySelector('.under-main-view')?.parentElement;
-    if (underMainViewParent) underMainViewParent.prepend(underMainView);
-    else document.querySelector('.main-view-container')?.prepend(underMainView);
-  }
-  setTimeout(mountUnderMainView, 500);
-
-  // Call all fns here
-  mountMain();
-  mountBorders();
-  mountBackground();
-  patchIcons();
-  mountAndWatchFont();
-
-  mountGrains();
-
-  mountPageStyles();
-
-  mountPageType();
-
-  mountControls();
-
-  mountPlaybar();
-
-  mountNPV();
-
-  mountColor();
-  appSettingsStore.subscribe((state) => {
-    mountColor(state.color);
-  }, 'color');
-
-  mountSettings(lucidMain);
-
-  mountAndOpenGuide();
-
-  mountChangelog();
 };
 
 console.time('Main fn start');
 main();
 console.timeEnd('Main fn start');
+
+function mountMain(lucidMain: HTMLElement | MainElement) {
+  const mainElement = document.getElementById('main');
+  if (mainElement) mainElement.append(lucidMain);
+  else document.body.appendChild(lucidMain);
+}
+
+function mountBorders() {
+  const setStyles = () => {
+    const borderSetting = settingsManager.getState().border;
+    const styleSheet = lazyLoadStyleById('lucid-border');
+    styleSheet.textContent = ':root{';
+    styleSheet.textContent += `--border-color:${borderSetting.color.hex}${alphaToHex(
+      borderSetting.color.alpha
+    )};`;
+    if (borderSetting.style) {
+      styleSheet.textContent += `--border-style:${borderSetting.style};`;
+    }
+    if (borderSetting.thickness) {
+      styleSheet.textContent += `--border-thickness:${borderSetting.thickness}px;`;
+    }
+    styleSheet.textContent += '}';
+  };
+  setStyles();
+  settingsManager.subscribe(setStyles, 'border');
+}
+
+function mountUnderMainView() {
+  waitForElement(['.Root__now-playing-bar', '.Root__globalNav'], ([playbar, nav]) => {
+    document.body.style.setProperty(
+      '--umv-offset',
+      `${(playbar?.clientHeight || 80) + (nav?.clientHeight || 64)}px`
+    );
+  });
+
+  const underMainView = new UMVElement();
+  const underMainViewParent = document.querySelector('.under-main-view')?.parentElement;
+  if (underMainViewParent) underMainViewParent.prepend(underMainView);
+  else document.querySelector('.main-view-container')?.prepend(underMainView);
+}
