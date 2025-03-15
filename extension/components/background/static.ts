@@ -3,35 +3,47 @@ import { serializeCSSFilters } from '@utils/serializeCSSFilters.ts';
 import { createElement } from '@utils/dom/createElement.ts';
 
 class StaticBackground extends HTMLElement {
-  private imgElement: HTMLDivElement;
+  private currentImgElement: HTMLImageElement;
+  private nextImgElement: HTMLImageElement;
   private transitionDuration = '0.3s';
   private currentFilters: CSSFilter | null = null;
   src = '';
+  private transitioning = false;
 
   constructor() {
     super();
-    this.imgElement = createElement('div', {
-      style: {
-        width: '100%',
-        height: '100vh',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        transform: 'translate3d(0px,0px,0px)',
-        transition: `background-image ${this.transitionDuration} ease-in-out`,
-      },
-    });
-    this.appendChild(this.imgElement);
+    this.currentImgElement = createElement('img', {
+      style: this.getBaseImageStyle({ opacity: '1' }),
+    }) as HTMLImageElement;
+    this.nextImgElement = createElement('img', {
+      style: this.getBaseImageStyle({ opacity: '0', position: 'absolute', top: '0', left: '0' }),
+    }) as HTMLImageElement;
+
+    this.appendChild(this.currentImgElement);
+    this.appendChild(this.nextImgElement);
+  }
+
+  private getBaseImageStyle(extraStyle: Record<string, string>): Record<string, string> {
+    return {
+      display: 'block',
+      width: '100%',
+      height: '100vh',
+      objectFit: 'cover',
+      objectPosition: 'center',
+      transform: 'translate3d(0px,0px,0px)',
+      transition: `opacity ${this.transitionDuration} ease-in-out`,
+      ...extraStyle,
+    };
   }
 
   set customFilter(filters: CSSFilter) {
     this.currentFilters = filters;
-    this.style.filter = serializeCSSFilters(filters);
+    this.currentImgElement.style.filter = serializeCSSFilters(filters);
+    this.nextImgElement.style.filter = serializeCSSFilters(filters);
   }
 
   setImageSource(src: string) {
-    if (this.src === src) return;
-
+    if (this.src === src || this.transitioning) return;
     this.src = src;
 
     const preloader = new Image();
@@ -47,42 +59,25 @@ class StaticBackground extends HTMLElement {
   }
 
   performTransition(src: string) {
-    const oldImgElement = this.imgElement;
-    const newImgElement = createElement('div', {
-      style: {
-        width: '100%',
-        height: '100vh',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        transform: 'translate3d(0px,0px,0px)',
-        transition: `opacity ${this.transitionDuration} ease-in-out`,
-        backgroundImage: `url(${src})`,
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        opacity: '0',
-      },
-    });
+    this.transitioning = true;
+    this.nextImgElement.src = src;
 
-    this.appendChild(newImgElement);
+    const tempImg = this.currentImgElement;
+    this.currentImgElement = this.nextImgElement;
+    this.nextImgElement = tempImg;
 
-    newImgElement.offsetWidth;
-
-    newImgElement.style.opacity = '1';
+    this.currentImgElement.style.opacity = '1';
+    this.nextImgElement.style.opacity = '0';
 
     setTimeout(() => {
       if (this.src !== src) {
-        this.removeChild(newImgElement);
+        this.transitioning = false;
         return;
       }
-
-      this.removeChild(oldImgElement);
-      this.imgElement = newImgElement;
+      this.transitioning = false;
       if (this.currentFilters) {
-        this.style.filter = serializeCSSFilters(this.currentFilters);
+        this.currentImgElement.style.filter = serializeCSSFilters(this.currentFilters);
       }
-      newImgElement.style.position = '';
     }, Number.parseFloat(this.transitionDuration) * 1000);
   }
 }
