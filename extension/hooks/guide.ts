@@ -6,12 +6,14 @@ import { showNotification } from '@utils/showNotification.ts';
 export async function mountAndOpenGuide(open = false) {
   if (!localStorage.getItem(GUIDE_STORAGE_KEY) || open) {
     await mountGuide();
-    if (window?.guide?.open) {
-      window.guide.open();
-      localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
-    } else {
-      console.error('Guide script loaded, but window.guide is not available.');
-    }
+    setTimeout(() => {
+      if (window?.guide) {
+        window.guide.open();
+        localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
+      } else {
+        console.error('Guide script loaded, but window.guide is not available.');
+      }
+    }, 1000);
   }
 }
 

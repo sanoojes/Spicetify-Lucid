@@ -198,7 +198,7 @@ export class CustomInput extends HTMLElement {
             borderRadius: '0.5rem',
           },
         }) as HTMLImageElement;
-        this._previewElement.src = this._inputOptions.value ?? '';
+        this._previewElement.src = '';
         this.prepend(this._previewElement);
 
         this._inputElement.onchange = (e) => {

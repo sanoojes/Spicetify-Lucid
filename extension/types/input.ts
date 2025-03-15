@@ -44,7 +44,6 @@ export type ColorInput = {
 
 export type ImageInput = {
   type: 'image';
-  value?: string;
   onChange?: (value: string | null) => void;
 };
 

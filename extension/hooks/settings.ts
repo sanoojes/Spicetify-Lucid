@@ -44,23 +44,23 @@ export const closeSettings = () => {
   _closeSettings?.();
 };
 
-const getSettingsContents = async () => {
+const getSettingsContents = () => {
   const settingsContainer = createElement('div', { id: 'settings-container' });
   const settingSectionElement = new SettingsMain();
   settingSectionElement.isRender = true;
-  settingSectionElement.options = await getSettings();
+  settingSectionElement.options = getSettings();
 
-  appSettingsStore.subscribe(async (state) => {
-    settingSectionElement.options = await getSettings(state);
+  appSettingsStore.subscribe((state) => {
+    settingSectionElement.options = getSettings(state);
   });
 
   settingsContainer.appendChild(settingSectionElement);
   return settingsContainer;
 };
 
-export async function mountSettings(lucidMain: HTMLElement) {
+export function mountSettings(lucidMain: HTMLElement) {
   settingModal.isFloating = modalState.getState().isFloating;
-  settingModal.setContent(await getSettingsContents());
+  settingModal.setContent(getSettingsContents());
   modalState.subscribe((state) => {
     settingModal.isFloating = state.isFloating;
   }, 'isFloating');
@@ -158,10 +158,7 @@ const fieldTexts = {
   pagesScrollType: ['Image Source', 'Now Playing View art or default playlist art for pages.'],
 } as const;
 
-async function getSettings(
-  state = appSettingsStore.getState(),
-  settings = appSettingsStore
-): Promise<Settings> {
+function getSettings(state = appSettingsStore.getState(), settings = appSettingsStore): Settings {
   const field = (
     key: keyof typeof fieldTexts,
     inputOptions: SettingsMain['options'][0]['groups'][0]['fields'][0]['inputOptions'],
@@ -312,7 +309,6 @@ async function getSettings(
               'custImgInput',
               {
                 type: 'image',
-                value: (await getImage())[0].data,
                 onChange: async (data) => {
                   if (data) editImage({ ...(await getImage())[0], data });
                 },
