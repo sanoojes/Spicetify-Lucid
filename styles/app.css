@@ -8,6 +8,10 @@
   --npv-blur: 16px;
   --npv-size: 240px;
   --umv-offset: calc(var(--npb-height, 80px) + var(--nav-height, 64px));
+
+  /* Border fallback */
+  --default-border: var(--border-thickness, 1px) var(--border-style, solid)
+    var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
 }
 
 :root,
@@ -75,8 +79,7 @@ kbd,
 .N9tnwm0XDrt_eGJd2D2A /* search modal */,
 .artist-artistDiscography-headerContainer,
 .main-contextMenu-menu {
-  border: var(--border-thickness, 1px) var(--border-style, solid)
-    var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
+  border: var(--default-border);
 }
 .Root__globalNav :is(.main-topBar-searchBar, .main-globalNav-navLink),
 #global-nav-bar :is(.main-topBar-searchBar, .main-globalNav-navLink) {

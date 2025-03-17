@@ -30,7 +30,8 @@ import { isWindows } from '@utils/platformUtils.ts';
 import { copyToClipboard } from '@utils/clipboardUtils.ts';
 import { isValidAppSettings } from '@utils/settingsValidator.ts';
 import { mountAndOpenGuide } from '@app/hooks/guide.ts';
-import { editImage, getImage } from '@app/imageDb.ts';
+import { addImage } from '@app/imageDb.ts';
+import { reloadImage } from '@app/hooks/background.ts';
 
 let _openSettings: (() => void) | null = null;
 let _closeSettings: (() => void) | null = null;
@@ -274,7 +275,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setStaticBackgroundOptions({ isCustomImage });
                 },
               },
-              state.background.mode === 'static'
+              state.background.mode !== 'solid'
             ),
             field(
               'imgSrc',
@@ -289,7 +290,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setCustomImageType(type as CustomImageTypes);
                 },
               },
-              state.background.mode === 'static' && state.background.options.static.isCustomImage
+              state.background.mode !== 'solid' && state.background.options.static.isCustomImage
             ),
             field(
               'custImgUrl',
@@ -301,7 +302,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                   settings.setCustomImageOptions('url', { data });
                 },
               },
-              state.background.mode === 'static' &&
+              state.background.mode !== 'solid' &&
                 state.background.options.static.isCustomImage &&
                 state.customImage.type === 'url'
             ),
@@ -309,11 +310,11 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               'custImgInput',
               {
                 type: 'image',
-                onChange: async (data) => {
-                  if (data) editImage({ ...(await getImage())[0], data });
+                onChange: (data) => {
+                  if (data) addImage(data, reloadImage);
                 },
               },
-              state.background.mode === 'static' &&
+              state.background.mode !== 'solid' &&
                 state.background.options.static.isCustomImage &&
                 state.customImage.type === 'local'
             ),

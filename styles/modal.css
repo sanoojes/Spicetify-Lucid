@@ -1,5 +1,11 @@
 lucid-settings-modal,
 lucid-modal {
+  display: none;
+
+  &[open] {
+    display: block;
+  }
+
   .modal {
     width: max-content;
     position: fixed;

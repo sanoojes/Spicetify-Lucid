@@ -1,5 +1,24 @@
 [
   {
+    "version": "2.1.1",
+    "date": "2024-03-15",
+    "desc": "Quick fixes and additions.",
+    "changes": {
+      "Added": ["Animated background support"],
+      "Changed": [
+        "Improved background",
+        "Improved performance by optimizing CSS selectors (removed :is overload)"
+      ],
+      "Deprecated": [],
+      "Removed": [],
+      "Fixed": [
+        "Fixed custom static background setting issue",
+        "Fixed missing settings button issue"
+      ],
+      "Notes": ["Full screen styles are not added."]
+    }
+  },
+  {
     "version": "2.1.0",
     "date": "2024-03-15",
     "desc": "Bug fixes and additions.",
