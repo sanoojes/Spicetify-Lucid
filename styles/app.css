@@ -752,10 +752,6 @@ body[npv-mode="compact"] {
     display: none;
   }
 
-  .main-nowPlayingView-contextItemInfo {
-    padding: 2rem 0.5rem 0px;
-  }
-
   .ylBRlfNqGnzVa4kjUQGP {
     padding-left: 0;
     padding-right: 0;
@@ -879,6 +875,7 @@ body[npv-mode="compact"] {
 .N9tnwm0XDrt_eGJd2D2A,
 .GenericModal,
 .JnpOnFaQfrRIA2fYe88A,
+.DquSH3YjnaIIXMZiOvwA,
 .zZMsUUWG29PYcwWPXhOV {
   transform: translateZ(var(--changing-pixels));
   &:before {
@@ -892,6 +889,19 @@ body[npv-mode="compact"] {
     -webkit-backdrop-filter: blur(var(--modal-bg-blur, 2rem))
       saturate(var(--modal-bg-saturation, 1.7));
     backdrop-filter: blur(var(--modal-bg-blur, 2rem)) saturate(var(--modal-bg-saturation, 1.7));
+  }
+}
+
+.DquSH3YjnaIIXMZiOvwA {
+  .Column-md {
+    gap: 0;
+  }
+
+  .XvgFwKtvocRdadc47KE9 {
+    transition: background-color 225ms ease-in-out;
+    &:active {
+      background-color: var(--clr-surface-3);
+    }
   }
 }
 
@@ -1133,6 +1143,10 @@ input:checked ~ .x-checkbox-indicatorWrapper .x-checkbox-indicator {
 .x-settings-equalizerSection {
   background-color: rgba(var(--clr-surface-1-rgb), 0.6);
   border-radius: 0.75rem;
+}
+
+.LineClamp {
+  -webkit-line-clamp: 1;
 }
 
 /* Search Modal */
