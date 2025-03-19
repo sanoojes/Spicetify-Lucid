@@ -1,3 +1,5 @@
+# Docs are outdated and needs update !
+
 ## 🎨 Spicetify Lucid Theme
 
 **Lucid is a Spicetify theme that blends a clean, modern aesthetic with a touch of dynamism and customization, creating a unique and personalized Spotify experience.**

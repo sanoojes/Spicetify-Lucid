@@ -1,3 +1,5 @@
+# Docs are outdated and needs update !
+
 <div align="center">
   <h1>Spiceity Lucid</h1>
   Spicetify theme inspired by Bloom and Microsoft Fluent Design
