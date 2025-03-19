@@ -6,20 +6,18 @@ import { alphaToHex } from '@utils/colors/convert.ts';
 import { serializeCSSFilters } from '@utils/serializeCSSFilters.ts';
 import { getImageData } from '@app/imageDb.ts';
 
-let backgroundWrapper = document.querySelector('lucid-bg-wrapper');
-let backgroundElem: HTMLDivElement | null = backgroundWrapper?.querySelector(
-  'lucid-bg'
-) as HTMLDivElement | null;
-let staticBgImage: HTMLImageElement | null = null;
-let solidBgElem: HTMLDivElement | null = null;
-let animatedBgWrapper: HTMLDivElement | null = null;
+let bgWrapper = document.querySelector('lucid-bg-wrapper');
+let bgElem: HTMLDivElement | null = bgWrapper?.querySelector('lucid-bg') as HTMLDivElement | null;
+let staticImage: HTMLImageElement | null = null;
+let solidBg: HTMLDivElement | null = null;
+let animatedBg: HTMLDivElement | null = null;
 
-const setSolidBg = () => {
-  staticBgImage = null;
-  animatedBgWrapper = null;
-  if (!backgroundElem) addBgToDOM();
-  if (!solidBgElem && backgroundElem) {
-    solidBgElem = createElement('div', {
+const createSolidBg = () => {
+  staticImage = null;
+  animatedBg = null;
+  if (!bgElem) ensureBgInDOM();
+  if (!solidBg && bgElem) {
+    solidBg = createElement('div', {
       className: 'solid-bg',
       style: {
         backgroundColor: 'var(--solid-bg-color, var(--clr-surface))',
@@ -27,17 +25,17 @@ const setSolidBg = () => {
         width: '100%',
       },
     });
-    backgroundElem.innerHTML = '';
-    backgroundElem.appendChild(solidBgElem);
+    bgElem.innerHTML = '';
+    bgElem.appendChild(solidBg);
   }
 };
 
-const setStaticBg = () => {
-  solidBgElem = null;
-  animatedBgWrapper = null;
-  if (!backgroundElem) addBgToDOM();
-  if (!staticBgImage && backgroundElem) {
-    staticBgImage = createElement('img', {
+const createStaticBg = () => {
+  solidBg = null;
+  animatedBg = null;
+  if (!bgElem) ensureBgInDOM();
+  if (!staticImage && bgElem) {
+    staticImage = createElement('img', {
       className: 'static-bg',
       style: {
         display: 'block',
@@ -48,17 +46,17 @@ const setStaticBg = () => {
       },
     });
 
-    backgroundElem.innerHTML = '';
-    backgroundElem.appendChild(staticBgImage);
+    bgElem.innerHTML = '';
+    bgElem.appendChild(staticImage);
   }
 };
 
-const setAnimatedBg = () => {
-  staticBgImage = null;
-  solidBgElem = null;
-  if (!backgroundElem) addBgToDOM();
-  if (!animatedBgWrapper && backgroundElem) {
-    animatedBgWrapper = createElement('div', {
+const createAnimatedBg = () => {
+  staticImage = null;
+  solidBg = null;
+  if (!bgElem) ensureBgInDOM();
+  if (!animatedBg && bgElem) {
+    animatedBg = createElement('div', {
       className: 'animated-bg-wrapper',
       style: {
         position: 'relative',
@@ -67,7 +65,7 @@ const setAnimatedBg = () => {
       },
     });
 
-    backgroundElem.innerHTML = `
+    bgElem.innerHTML = `
 <style>
 .img{ position: absolute; border-radius: 20em; width: 200%; animation: animBg 40s linear infinite;}
 .img-0 { right: 30%; top: 0; z-index: 2 }
@@ -77,55 +75,55 @@ const setAnimatedBg = () => {
 </style>
 `;
     for (let i = 0; i < 3; i++) {
-      const imageDiv = createElement('img', {
+      const imgDiv = createElement('img', {
         className: `img img-${i}`,
         style: {
           willChange: 'transform',
           backgroundImage: 'url(var(--image-url))',
         },
       });
-      animatedBgWrapper.appendChild(imageDiv);
+      animatedBg.appendChild(imgDiv);
     }
 
-    backgroundElem.appendChild(animatedBgWrapper);
+    bgElem.appendChild(animatedBg);
   }
 };
 
-const setBackground = (settings = appSettingsStore.getState()) => {
+const applyBgSettings = (settings = appSettingsStore.getState()) => {
   const background = settings.background;
   switch (background.mode) {
     case 'solid': {
-      if (!solidBgElem) setSolidBg();
+      if (!solidBg) createSolidBg();
 
       const { hex, alpha } = background.options.solid.color;
-      solidBgElem?.style.setProperty('--solid-bg-color', `${hex}${alphaToHex(alpha)}`);
+      solidBg?.style.setProperty('--solid-bg-color', `${hex}${alphaToHex(alpha)}`);
       break;
     }
     case 'static': {
-      if (!staticBgImage) setStaticBg();
-      if (!staticBgImage) return;
+      if (!staticImage) createStaticBg();
+      if (!staticImage) return;
 
       const { filter, isCustomImage } = background.options.static;
 
       if (isCustomImage) {
-        staticBgImage.setAttribute('custom-image', '');
+        staticImage.setAttribute('custom-image', '');
       } else {
-        staticBgImage.removeAttribute('custom-image');
+        staticImage.removeAttribute('custom-image');
       }
 
-      staticBgImage.style.setProperty('--static-bg-filter', serializeCSSFilters(filter));
-      reloadImage();
+      staticImage.style.setProperty('--static-bg-filter', serializeCSSFilters(filter));
+      reloadBgImage();
       break;
     }
     case 'animated': {
-      if (!animatedBgWrapper) setAnimatedBg();
-      if (!animatedBgWrapper) return;
+      if (!animatedBg) createAnimatedBg();
+      if (!animatedBg) return;
 
       const { filter } = background.options.animated;
-      if (animatedBgWrapper) {
-        animatedBgWrapper.style.filter = serializeCSSFilters(filter);
+      if (animatedBg) {
+        animatedBg.style.filter = serializeCSSFilters(filter);
       }
-      reloadImage();
+      reloadBgImage();
       break;
     }
     default: {
@@ -136,18 +134,18 @@ const setBackground = (settings = appSettingsStore.getState()) => {
   }
 };
 
-const setImage = (imageUrl: string) => {
-  if (backgroundElem && imageUrl) {
+const setBgImage = (imageUrl: string) => {
+  if (bgElem && imageUrl) {
     const image = new Image();
     image.src = imageUrl;
 
     image.onload = () => {
-      if (!backgroundElem) {
-        addBgToDOM();
+      if (!bgElem) {
+        ensureBgInDOM();
       }
-      if (staticBgImage) staticBgImage.src = imageUrl ?? '';
-      if (animatedBgWrapper) {
-        const elems = animatedBgWrapper.querySelectorAll('img');
+      if (staticImage) staticImage.src = imageUrl ?? '';
+      if (animatedBg) {
+        const elems = animatedBg.querySelectorAll('img');
         for (const elem of elems) {
           elem.src = imageUrl ?? '';
         }
@@ -156,9 +154,9 @@ const setImage = (imageUrl: string) => {
   }
 };
 
-const addBgToDOM = () => {
-  if (!backgroundWrapper) {
-    backgroundWrapper = createElement('div', {
+const ensureBgInDOM = () => {
+  if (!bgWrapper) {
+    bgWrapper = createElement('div', {
       className: 'lucid-bg-wrapper',
       style: {
         display: 'block',
@@ -172,11 +170,11 @@ const addBgToDOM = () => {
       },
     });
     const mainElement = document.getElementById('main');
-    (mainElement ?? document.body).prepend(backgroundWrapper);
+    (mainElement ?? document.body).prepend(bgWrapper);
   }
 
-  if (!backgroundElem) {
-    backgroundElem = createElement('div', {
+  if (!bgElem) {
+    bgElem = createElement('div', {
       className: 'lucid-bg',
       style: {
         display: 'block',
@@ -185,11 +183,11 @@ const addBgToDOM = () => {
         overflow: 'hidden',
       },
     });
-    backgroundWrapper.prepend(backgroundElem);
+    bgWrapper.prepend(bgElem);
   }
 };
 
-export const reloadImage = async () => {
+export const reloadBgImage = async () => {
   const settings = appSettingsStore.getState();
   if (settings.background.mode === 'solid') return;
 
@@ -204,23 +202,23 @@ export const reloadImage = async () => {
   } else {
     imageUrl = npvState.getState().url;
   }
-  setImage(imageUrl ?? '');
+  setBgImage(imageUrl ?? '');
 };
 
-export function mountBackground() {
-  addBgToDOM();
-  setBackground();
-  reloadImage();
+export function initBackground() {
+  ensureBgInDOM();
+  applyBgSettings();
+  reloadBgImage();
 
   appSettingsStore.subscribe((state) => {
-    setBackground(state);
+    applyBgSettings(state);
   }, 'background');
 
   appSettingsStore.subscribe(() => {
-    reloadImage();
+    reloadBgImage();
   }, 'customImage.type');
 
   npvState.subscribe(() => {
-    reloadImage();
+    reloadBgImage();
   });
 }

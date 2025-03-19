@@ -31,7 +31,7 @@ import { copyToClipboard } from '@utils/clipboardUtils.ts';
 import { isValidAppSettings } from '@utils/settingsValidator.ts';
 import { mountAndOpenGuide } from '@app/hooks/guide.ts';
 import { addImage } from '@app/imageDb.ts';
-import { reloadImage } from '@app/hooks/background.ts';
+import { reloadBgImage } from '@app/hooks/background.ts';
 
 let _openSettings: (() => void) | null = null;
 let _closeSettings: (() => void) | null = null;
@@ -114,14 +114,8 @@ const fieldTexts = {
   pagesBgStyle: ['Style', 'Background display on pages.'],
   pagesImageStyle: ['Image Style', 'Image on pages. (playlist/album art)'],
   homeHeaderBg: ['Home Header Background', 'Enable/Disable Home header background.'],
-  scrollFullBg: ['Scroll Fullscreen Background', 'Scroll background in fullscreen playlist.'],
-  scaleFullBg: ['Scale Fullscreen Background', 'Scale background for fullscreen playlist.'],
-  scrollNpvBg: ['Scroll Background', 'Scroll background for Now playing art playlist.'],
-  scaleNpvBg: ['Scale Background', 'Scale background for Now playing art playlist.'],
-  scrollNormBg: ['Scroll Background', 'Scroll background for normal playlist.'],
-  scaleNormBg: ['Scale Background', 'Scale background for normal playlist.'],
-  scrollCusBg: ['Scroll Background', 'Scroll background for custom playlist.'],
-  scaleCusBg: ['Scale Custom Background', 'Scale background for custom playlist.'],
+  scrollUmvBg: ['Scroll Background', 'Scroll background main view background.'],
+  scaleUmvBg: ['Scale Background', 'Scale background main view background.'],
   rsbViewMode: ['View Mode', "Normal or compact 'Now Playing' sidebar."],
   rsbSize: ['Compact Sidebar Width', "Width of compact 'Now Playing' sidebar (0-512px)."],
   rsbPos: ['Position', "Position of compact 'Now Playing' sidebar."],
@@ -311,7 +305,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               {
                 type: 'image',
                 onChange: (data) => {
-                  if (data) addImage(data, reloadImage);
+                  if (data) addImage(data, reloadBgImage);
                 },
               },
               state.background.mode !== 'solid' &&
@@ -803,84 +797,18 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           name: 'Background Behavior',
           render: true,
           fields: [
-            field(
-              'scrollCusBg',
-              {
-                type: 'checkbox',
-                checked: state.pages.umv.options.custom.isScroll,
-                onChange: (isScroll) => {
-                  settings.setUMVOption('custom', { isScroll });
-                },
-              },
-              state.pages.umv.type === 'custom'
-            ),
-            field(
-              'scaleCusBg',
-              {
-                type: 'checkbox',
-                checked: state.pages.umv.options.custom.isScaling,
-                onChange: (isScaling) => {
-                  settings.setUMVOption('custom', { isScaling });
-                },
-              },
-              state.pages.umv.type === 'custom'
-            ),
-            field(
-              'scrollNormBg',
-              {
-                type: 'checkbox',
-                checked: state.pages.umv.options.normal.isScroll,
-                onChange: (isScroll) => {
-                  settings.setUMVOption('normal', { isScroll });
-                },
-              },
-              state.pages.umv.type === 'normal'
-            ),
-            field(
-              'scaleNormBg',
-              {
-                type: 'checkbox',
-                checked: state.pages.umv.options.normal.isScaling,
-                onChange: (isScaling) => {
-                  settings.setUMVOption('normal', { isScaling });
-                },
-              },
-              state.pages.umv.type === 'normal'
-            ),
-            field(
-              'scrollNpvBg',
-              {
-                type: 'checkbox',
-                checked: state.pages.umv.options.npv.isScroll,
-                onChange: (isScroll) => {
-                  settings.setUMVOption('npv', { isScroll });
-                },
-              },
-              state.pages.umv.type === 'npv'
-            ),
-            field(
-              'scaleNpvBg',
-              {
-                type: 'checkbox',
-                checked: state.pages.umv.options.npv.isScaling,
-                onChange: (isScaling) => {
-                  settings.setUMVOption('npv', { isScaling });
-                },
-              },
-              state.pages.umv.type === 'npv'
-            ),
-            field('scrollFullBg', {
+            field('scrollUmvBg', {
               type: 'checkbox',
-              checked: state.pages.umv.options.expanded.isScroll,
+              checked: state.pages.umv.isScroll,
               onChange: (isScroll) => {
-                settings.setUMVOption('expanded', { isScroll });
+                settings.setUMV({ isScroll });
               },
             }),
-            field('scaleFullBg', {
+            field('scaleUmvBg', {
               type: 'checkbox',
-              checked: state.pages.umv.options.expanded.isScaling,
+              checked: state.pages.umv.isScaling,
               onChange: (isScaling) => {
-                settings.setUMVOption('expanded', { isScaling });
+                settings.setUMV({ isScaling });
               },
             }),
           ],

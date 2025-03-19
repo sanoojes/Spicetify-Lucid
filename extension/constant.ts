@@ -35,6 +35,12 @@ export const ICON_CSS_URLS = [
 export const ICON_CSS_CACHE_KEY = 'LUCID_CSS_SCRIPT_CACHE';
 export const ICON_CSS_STYLE_ID = 'lucid-icons';
 
+export const SCROLL_SELECTOR =
+  '.Root__main-view [data-overlayscrollbars-viewport], .Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport], .main-view-container__scroll-node div:nth-child(2)';
+export const UNDER_MAIN_VIEW_SELECTOR = '.under-main-view';
+export const MAIN_ENTITY_HEADER_GRADIENT_SELECTOR =
+  '.main-entityHeader-gradient, .XUwMufC5NCgIyRMyGXLD';
+
 export const DEFAULT_APP_SETTINGS = {
   showChangelog: true,
   position: 'nav',
@@ -81,26 +87,20 @@ export const DEFAULT_APP_SETTINGS = {
     imageStyle: 'default',
     umv: {
       type: 'normal',
+      isScaling: true,
+      isScroll: false,
       options: {
         expanded: {
-          isScroll: false,
-          isScaling: true,
           filter: { blur: 0 },
         },
         custom: {
           url: 'https://picsum.photos/1920/1080?random',
-          isScroll: false,
-          isScaling: true,
           filter: { blur: 8 },
         },
         normal: {
-          isScroll: false,
-          isScaling: true,
           filter: { blur: 8 },
         },
         npv: {
-          isScroll: false,
-          isScaling: true,
           filter: { blur: 8 },
         },
       },

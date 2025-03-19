@@ -101,7 +101,7 @@ export const getArtistMetaData = (uri: string) =>
   );
 
 export const getSpotifyURL = (pathname: string): string | null => {
-  const id = pathname.match(/\/(playlist|artist|album|user|show)\/([^/]+)/);
+  const id = pathname.match(/\/(playlist|artist|album|user|show|collection)\/([^/]+)/);
 
   if (!id) {
     console.warn('No valid type or ID found in pathname:', pathname);
@@ -113,6 +113,10 @@ export const getSpotifyURL = (pathname: string): string | null => {
 };
 
 export const getArtworkBySpotifyURL = async (url: string): Promise<string | null> => {
+  if (url === '/collection/tracks') {
+    return 'https://misc.scdn.co/liked-songs/liked-songs-300.jpg'; // its liked songs
+  }
+
   const uri = getSpotifyURL(url);
   if (!uri) return null;
   const [, type, id] = uri.split(':');

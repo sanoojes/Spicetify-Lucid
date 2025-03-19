@@ -24,8 +24,8 @@ const getPathCategory = (pathname: string): PageCategoryType => {
 };
 
 function setPage(pathname: string) {
-  document.body.setAttribute('path', pathname);
-  document.body.setAttribute('page-type', getPathCategory(pathname));
+  document.body.dataset.path = pathname;
+  document.body.dataset.pageType = getPathCategory(pathname);
 }
 export function mountPageType() {
   setPage(Spicetify?.Platform?.History?.location?.pathname || '/');

@@ -6,7 +6,8 @@
     "npm:@material/material-color-utilities@0.3": "0.3.0",
     "npm:deepmerge-ts@^7.1.5": "7.1.5",
     "npm:extract-colors@^4.1.1": "4.1.1",
-    "npm:immutable@5.0.3": "5.0.3"
+    "npm:immutable@5.0.3": "5.0.3",
+    "npm:lenis@^1.2.3": "1.2.3"
   },
   "npm": {
     "@biomejs/biome@1.9.4": {
@@ -57,6 +58,9 @@
     },
     "immutable@5.0.3": {
       "integrity": "sha512-P8IdPQHq3lA1xVeBRi5VPqUm5HDgKnx0Ru51wZz5mjxHr5n3RWhjIpOFU7ybkUxfB+5IToy+OLaHYDBIWsv+uw=="
+    },
+    "lenis@1.2.3": {
+      "integrity": "sha512-H3VUn62jvQPfyxGW2F0STJPhP1VzX5r05KtiZ0uxHYD9xtbfTvj2eX/Km26+x13zlaKfHacEe1DTC3ouFrxw+g=="
     }
   },
   "remote": {
@@ -70,7 +74,8 @@
       "npm:@material/material-color-utilities@0.3",
       "npm:deepmerge-ts@^7.1.5",
       "npm:extract-colors@^4.1.1",
-      "npm:immutable@5.0.3"
+      "npm:immutable@5.0.3",
+      "npm:lenis@^1.2.3"
     ]
   }
 }

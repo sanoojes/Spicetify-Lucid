@@ -77,8 +77,6 @@ export type RightSidebarSettings = {
 };
 
 export type PageOption = {
-  isScaling: boolean;
-  isScroll: boolean;
   filter: CSSFilter | null;
 };
 export type PageOptions = {
@@ -92,6 +90,8 @@ export type PageType = keyof PageOptions;
 export type UMVSettings = {
   type: 'normal' | 'npv' | 'custom';
   options: PageOptions;
+  isScaling: boolean;
+  isScroll: boolean;
 };
 
 export type PageStyle = 'card' | 'compact-card' | 'compact' | 'default';

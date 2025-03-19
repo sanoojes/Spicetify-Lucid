@@ -32,7 +32,8 @@
     "@material/material-color-utilities": "npm:@material/material-color-utilities@^0.3.0",
     "deepmerge-ts": "npm:deepmerge-ts@^7.1.5",
     "extract-colors": "npm:extract-colors@^4.1.1",
-    "immutable": "npm:immutable@5.0.3"
+    "immutable": "npm:immutable@5.0.3",
+    "lenis": "npm:lenis@^1.2.3"
   },
   "compilerOptions": {
     "strict": true,

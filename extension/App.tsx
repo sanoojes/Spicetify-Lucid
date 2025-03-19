@@ -7,7 +7,7 @@ import { mountPageType } from '@app/hooks/pageType.ts';
 import mountControls from '@app/hooks/controls.ts';
 import { mountPlaybar } from '@app/hooks/playbar.ts';
 import { mountSettings } from '@app/hooks/settings.ts';
-import { mountBackground } from '@app/hooks/background.ts';
+import { initBackground } from '@app/hooks/background.ts';
 import { mountNPV } from '@app/hooks/npv.ts';
 import { mountGrains } from '@app/hooks/grains.ts';
 import { mountAndOpenGuide } from '@app/hooks/guide.ts';
@@ -15,18 +15,26 @@ import { mountChangelog } from '@app/changelog/changelog.ts';
 import setGlobals from '@utils/setGlobals.ts';
 import { showNotification } from '@utils/showNotification.ts';
 import { mountBorders } from '@app/hooks/border.ts';
-import { mountUnderMainView } from '@app/hooks/umv.ts';
+import { initUMV } from '@app/hooks/umv.ts';
+import { waitForElement } from '@utils/dom/waitForElement.ts';
 
 const main = () => {
   try {
     setGlobals();
 
-    setTimeout(mountUnderMainView, 500);
+    waitForElement(['.Root__now-playing-bar', '.Root__globalNav'], ([playbar, nav]) => {
+      document.body.style.setProperty(
+        '--umv-offset',
+        `${(playbar?.clientHeight || 80) + (nav?.clientHeight || 64)}px`
+      );
+    });
+
+    initUMV();
+    initBackground();
 
     // Call all fns here
     mountBorders();
 
-    mountBackground();
     patchIcons();
     mountAndWatchFont();
 

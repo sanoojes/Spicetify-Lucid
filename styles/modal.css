@@ -269,6 +269,7 @@ custom-input {
     background-color: rgba(var(--clr-error-rgb), 0.1) !important;
   }
 }
+
 custom-button {
   display: flex;
   justify-content: center;

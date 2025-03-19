@@ -82,7 +82,7 @@ async function initWorker() {
   worker = createWorker(workerScript);
 
   if (!worker) {
-    document.body.removeAttribute('color-from-worker');
+    document.body.dataset.colorFromWorker = 'false';
     console.error('Failed to initialize worker from both endpoints.');
     showNotification(
       'Failed to initialize the color worker. If this issue persists, please report it. (Dynamic and custom colors may not function properly.)',
@@ -92,7 +92,7 @@ async function initWorker() {
     return;
   }
 
-  document.body.setAttribute('color-from-worker', 'true');
+  document.body.dataset.colorFromWorker = 'true';
 
   worker.onmessage = (event) => {
     const { message, data } = event.data || {};

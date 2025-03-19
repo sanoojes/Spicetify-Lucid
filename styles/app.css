@@ -44,12 +44,10 @@
 
 /* border */
 dialog,
-.Root__nav-bar,
 .NowPlayingView,
 .Root__main-view,
 .ffFwfKcPDbmAPLXzxzKq,
 .main-nowPlayingView-section,
-#Desktop_LeftSidebar_Id,
 .GimJ6fo6WOYPyWNVpSr1,
 .main-card-card,
 .main-dropDown-dropDown,
@@ -70,9 +68,10 @@ lucid-modal .modal,
 .Root__now-playing-bar .main-nowPlayingBar-container,
 .BoxComponent-box-naked-isInteractive-padding_var___encore_spacing_tighter_,
 .mXNT9H2GU7lDW4cGx0q1 /* Browse */,
-/* body[path*="search"] .main-rootlist-wrapper, */
+/* body[data-path*="search"] .main-rootlist-wrapper, */
   .Vn9yz8P5MjIvDT8c0U6w,
 .mXNT9H2GU7lDW4cGx0q1,
+.JnpOnFaQfrRIA2fYe88A,
 .OOmw6k8Nm2wxqdp3iMEi,
 kbd,
 .c4hmXDjs2Dv8n3VCLz1g /* kbd */,
@@ -233,7 +232,7 @@ kbd,
     background-color: transparent;
   }
   .marketplace-header,
-  .main-home-filterChipsContainer,
+  .main-home-filterChipsSection,
   .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader,
   .main-topBar-background,
   .search-searchCategory-SearchCategory {
@@ -248,8 +247,8 @@ kbd,
       border-radius: inherit;
       z-index: -1;
       background-color: rgba(var(--clr-surface-1-rgb), 0.7);
-      transform: translateZ(var(--changing-pixels));
-      opacity: var(--top-bar-opacity, 0);
+      will-change: transform;
+      transform: translateZ(var(--scroll-trigger-px));
       -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
         saturate(var(--top-bar-saturate, 1.5));
       backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
@@ -670,13 +669,15 @@ body[npb-type="compact"] {
   background-color: var(--main-override-color, var(--clr-surface-0));
   border-radius: var(--root-cards-radius, 0.5rem);
 }
-.Root__nav-bar {
+.main-yourLibraryX-entryPoints {
   background-color: var(--library-override-color, var(--clr-surface-0));
   border-radius: var(--root-cards-radius, 0.5rem);
-  .main-yourLibraryX-entryPoints,
-  .main-yourLibraryX-libraryContainer {
-    background-color: transparent !important;
-  }
+}
+#Desktop_LeftSidebar_Id,
+.Root__nav-bar,
+.main-navBar-mainNav,
+.main-yourLibraryX-libraryContainer {
+  background-color: transparent !important;
 }
 .NowPlayingView,
 #Desktop_PanelContainer_Id,
@@ -851,6 +852,7 @@ body[npv-mode="compact"] {
 .spicetify-exp-features button.switch[disabled] {
   background-color: rgba(var(--clr-surface-5-rgb), 0.25);
 }
+
 .spicetify-exp-features button.switch,
 .spicetify-exp-features button.switch {
   border-radius: 0.5rem !important;
@@ -876,6 +878,7 @@ body[npv-mode="compact"] {
 
 .N9tnwm0XDrt_eGJd2D2A,
 .GenericModal,
+.JnpOnFaQfrRIA2fYe88A,
 .zZMsUUWG29PYcwWPXhOV {
   transform: translateZ(var(--changing-pixels));
   &:before {
@@ -966,6 +969,7 @@ body[npv-mode="compact"] {
 }
 
 /* artist modal */
+.ReactModalPortal,
 dialog {
   background-color: rgba(var(--clr-surface-0-rgb), 0.75) !important;
   border-radius: 0.75rem !important;
@@ -986,6 +990,7 @@ dialog {
     padding: 2rem 1rem;
   }
 
+  .zQy0G59IX5G4Cc9AtWRT,
   .TkEnV1bItcSb11Yb8h7h,
   .NPv26QCDgdnwsPOlYJmQ {
     height: fit-content;
@@ -1000,8 +1005,10 @@ dialog {
     }
   }
 
+  .zQy0G59IX5G4Cc9AtWRT,
   .TkEnV1bItcSb11Yb8h7h {
     background-color: rgba(var(--clr-primary-2-rgb), 0.5);
+    color: var(--clr-on-primary-2);
   }
 
   .tLjX9htIKD_OCmEX01UN,
@@ -1059,6 +1066,7 @@ dialog {
   }
 
   /* button */
+  .pSxFsY9Fgcj5f8Gf05mh,
   .mKUj4tXOjumlcv0q9Qta,
   .qyKJPLjz8o4jnbk92JOn {
     border: var(--border-thickness, 1px) var(--border-style, solid)
@@ -1203,7 +1211,7 @@ input:checked ~ .x-checkbox-indicatorWrapper .x-checkbox-indicator {
   margin-top: 0;
 }
 
-body[path*="discography"] {
+body[data-path*="discography"] {
   .main-trackList-trackListHeader,
   .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader {
     top: 0 !important;
@@ -1458,7 +1466,7 @@ body[path*="discography"] {
   --background-noise: none !important;
 }
 
-body[path*="genre"] {
+body[data-path*="genre"] {
   h1 {
     text-align: center;
   }
