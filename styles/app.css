@@ -878,6 +878,7 @@ body[npv-mode="compact"] {
 
 .N9tnwm0XDrt_eGJd2D2A,
 .GenericModal,
+.DquSH3YjnaIIXMZiOvwA,
 .JnpOnFaQfrRIA2fYe88A,
 .zZMsUUWG29PYcwWPXhOV {
   transform: translateZ(var(--changing-pixels));
@@ -894,7 +895,12 @@ body[npv-mode="compact"] {
     backdrop-filter: blur(var(--modal-bg-blur, 2rem)) saturate(var(--modal-bg-saturation, 1.7));
   }
 }
-
+.LineClamp {
+  -webkit-line-clamp: 1;
+}
+.DquSH3YjnaIIXMZiOvwA .Column-md {
+  gap: 0;
+}
 .ReactModalPortal,
 .GenericModal__overlay,
 .GenericModal {
