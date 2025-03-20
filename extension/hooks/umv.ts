@@ -43,17 +43,16 @@ function mountScrollIndicator() {
       return;
     }
     styleElement.textContent = `
-      @property --scroll-top {
-        syntax: '<length>';
-        inherits: false;
-        initial-value: 0;
-      }
-      @property --scroll-coefficient {
-        syntax: '<number>';
-        inherits: false;
-        initial-value: 0;
-      }
-    `;
+@property --scroll-top {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0;
+}
+@property --scroll-coefficient {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}`;
 
     let isReadyForTrigger = true;
 
@@ -61,6 +60,19 @@ function mountScrollIndicator() {
       isReadyForTrigger = true;
     });
 
+    scrollElem.addEventListener('scroll', () => {
+      if (isReadyForTrigger) {
+        const elems = document.querySelectorAll(
+          '.Root__main-view .marketplace-header, .Root__main-view .main-home-filterChipsSection, .Root__main-view .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader, .Root__main-view .main-topBar-background, .Root__main-view .search-searchCategory-SearchCategory'
+        );
+        for (const elem of elems) {
+          (elem as HTMLElement).style.willChange = 'transform';
+          (elem as HTMLElement).offsetWidth;
+        }
+
+        isReadyForTrigger = false;
+      }
+    });
     scrollElem.addEventListener('scroll', (e) => {
       const target = e.target;
       if (!(target instanceof HTMLElement)) return;
@@ -73,15 +85,6 @@ function mountScrollIndicator() {
         '--scroll-coefficient',
         `${Math.min(1, Math.max(0, scrollTop / window.innerHeight))}`
       );
-
-      if (isReadyForTrigger) {
-        (document.querySelector('#main') as HTMLElement | null)?.style.setProperty(
-          '--scroll-trigger-px',
-          `${Math.random().toFixed(1)}px`
-        );
-
-        isReadyForTrigger = false;
-      }
     });
   });
 }

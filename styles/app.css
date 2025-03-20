@@ -237,24 +237,11 @@ kbd,
   .main-trackList-trackListHeaderStuck.main-trackList-trackListHeader,
   .main-topBar-background,
   .search-searchCategory-SearchCategory {
-    background-color: transparent !important;
-
-    &::before {
-      content: "";
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      z-index: -1;
-      background-color: rgba(var(--clr-surface-1-rgb), 0.7);
-      will-change: transform;
-      transform: translateZ(var(--scroll-trigger-px));
-      -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem))
-        saturate(var(--top-bar-saturate, 1.5));
-      backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
-      transition: backdrop-filter -1s linear, opacity 0.3s linear;
-    }
+    background-color: rgba(var(--clr-surface-1-rgb), 0.7);
+    will-change: transform;
+    -webkit-backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
+    backdrop-filter: blur(var(--top-bar-blur, 1rem)) saturate(var(--top-bar-saturate, 1.5));
+    transition: backdrop-filter -1s linear, opacity 0.3s linear;
   }
 
   .main-card-cardContainer {
