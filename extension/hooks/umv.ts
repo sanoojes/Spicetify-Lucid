@@ -100,6 +100,7 @@ function injectUMVStyles() {
 body[npb-is-floating] .main-entityHeader-container.main-entityHeader-withBackgroundImage{height: calc(100cqh - var(--umv-offset))}
 .${UMV_IMAGE_CLASS} {height: 100%;width: 100%;object-fit: contain;border: none;box-shadow: none;background-image: none;transition: background-image .3s ease-in-out;background-position: center center;background-repeat: no-repeat;background-size: cover;-webkit-mask-image: linear-gradient(rgb(0, 0, 0) 35cqh, rgba(0, 0, 0, 0) 100%);mask-image: linear-gradient(rgb(0, 0, 0) 35cqh, rgba(0, 0, 0, 0) 100%)}
 .normal .${UMV_IMAGE_CLASS}{background-image: var(--page-img-url);filter: var(--normal-filter)}
+.npv .${UMV_IMAGE_CLASS}{background-image: var(--npv-img-url);filter: var(--npv-filter)}
 .custom .${UMV_IMAGE_CLASS}{background-image: var(--custom-img-url);filter: var(--custom-filter)}
 .expanded .${UMV_IMAGE_CLASS}{background-image: var(--umv-img-url);filter: var(--expanded-filter);-webkit-mask-image: none;mask-image: none}
 `;
@@ -119,6 +120,7 @@ function applyUMVOptions(settings = appSettingsStore.getState().pages.umv) {
       umvImgElem.style.setProperty('--custom-img-url', `url(${option?.url ?? ''})`);
     }
     imgWrapperElem.classList.toggle('custom', settings.type === 'custom');
+    imgWrapperElem.classList.toggle('npv', settings.type === 'npv');
   }
 }
 

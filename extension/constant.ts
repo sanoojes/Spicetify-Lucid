@@ -41,6 +41,9 @@ export const UNDER_MAIN_VIEW_SELECTOR = '.under-main-view';
 export const MAIN_ENTITY_HEADER_GRADIENT_SELECTOR =
   '.main-entityHeader-gradient, .XUwMufC5NCgIyRMyGXLD';
 
+export const PLACEHOLDER_IMAGE =
+  'url("https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main/assets/placeholder.png")';
+
 export const DEFAULT_APP_SETTINGS = {
   showChangelog: true,
   position: 'nav',

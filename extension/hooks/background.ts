@@ -1,10 +1,10 @@
-import { npvState } from '@store/npv.ts';
 import appSettingsStore from '@store/setting.ts';
 import { createElement } from '@utils/dom/createElement.ts';
 import { showNotification } from '@utils/showNotification.ts';
 import { alphaToHex } from '@utils/colors/convert.ts';
 import { serializeCSSFilters } from '@utils/serializeCSSFilters.ts';
 import { getImageData } from '@app/imageDb.ts';
+import { PLACEHOLDER_IMAGE } from '@app/constant.ts';
 
 let bgWrapper = document.querySelector('lucid-bg-wrapper');
 let bgElem: HTMLDivElement | null = bgWrapper?.querySelector('lucid-bg') as HTMLDivElement | null;
@@ -200,7 +200,7 @@ export const reloadBgImage = async () => {
       imageUrl = settings.customImage.options.url.data;
     }
   } else {
-    imageUrl = npvState.getState().url;
+    imageUrl = 'var(--npv-img-url)';
   }
   setBgImage(imageUrl ?? '');
 };
@@ -217,8 +217,4 @@ export function initBackground() {
   appSettingsStore.subscribe(() => {
     reloadBgImage();
   }, 'customImage.type');
-
-  npvState.subscribe(() => {
-    reloadBgImage();
-  });
 }
