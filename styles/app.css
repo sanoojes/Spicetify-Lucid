@@ -463,9 +463,9 @@ kbd,
 body[npb-is-floating] {
   .Root__now-playing-bar {
     position: fixed;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    width: calc(100% - 2 * 0.5rem);
+    bottom: var(--panel-gap, 0.5rem);
+    left: var(--panel-gap, 0.5rem);
+    width: calc(100% - 2 * var(--panel-gap, 0.5rem));
 
     .main-nowPlayingBar-container:before {
       content: "";
