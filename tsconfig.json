@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "strict": true,
+    "module": "ES2020",
+    "target": "ES2020",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "forceConsistentCasingInFileNames": true,
@@ -8,13 +10,15 @@
     "lib": ["DOM", "ES2020", "DOM.Iterable"],
     "jsx": "react",
     "paths": {
-      "@app/*": ["./extension/*"],
-      "@utils/*": ["./extension/utils/*"],
-      "@components/*": ["./extension/components/*"],
-      "@store/*": ["./extension/store/*"],
-      "@core/*": ["./extension/core/*"],
-      "@styles/*": ["./styles/*"],
-      "@colors/*": ["./colors/*"]
+      "@app/*": ["extension/*"],
+      "@utils/*": ["extension/utils/*"],
+      "@components/*": ["extension/components/*"],
+      "@store/*": ["extension/store/*"],
+      "@core/*": ["extension/core/*"],
+      "@styles/*": ["styles/*"],
+      "@colors/*": ["colors/*"]
     }
-  }
+  },
+  "include": ["extension/**/*"],
+  "exclude": ["node_modules", "src"]
 }
