@@ -1,69 +1,92 @@
 import { getTextClass } from '@utils/styles/encoreUtils.ts';
 import { createElement } from '@utils/dom/createElement.ts';
 import type { AppSettings } from '@app/types/settings.ts';
-import type { Modal } from '@components/modal.ts';
+import { Modal } from '@components/modal.ts';
 import { createButton, GuidedTourElement } from '@components/tour/tour.ts';
 import { getTourSteps, settingEventCb } from '@app/tour/getTourSteps.ts';
 import { GUIDE_STORAGE_KEY } from '@app/constant.ts';
+import appSettingsStore from '@store/setting.ts';
+import { showNotification } from '@utils/showNotification.ts';
 
-let modal: Modal | null = null;
+let currentModal: Modal | null = null;
+let currentTourElement: GuidedTourElement | null = null;
 
-export const startTour = () => {
-  try {
-    if (!modal) setupTour();
-    modal?.open();
-  } catch (e) {
-    console.error('Failed to open guided tour modal.', e);
-  }
+const handleStartTour = () => {
+  if (!currentTourElement) return;
+  localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
+  currentTourElement.start();
+  removeModal();
+  document.body.appendChild(currentTourElement);
 };
 
-const setupTour = () => {
-  if (!window?.Modal) {
-    console.warn('Modal class is not available, guided tour setup failed.');
-    return null;
-  }
+const handleSkipTour = () => {
+  if (!currentTourElement) return;
+  localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
+  currentTourElement.endTour();
+  removeModal();
+  window?.lucid?.settings?.settingModal?.removeEventListener('close', settingEventCb);
+};
 
-  const tourElement = new GuidedTourElement();
-  tourElement.tourSteps = getTourSteps();
-  window?.lucid?.store?.subscribe?.((state: AppSettings) => {
-    tourElement.tourSteps = getTourSteps(state);
-  }, 'position');
-
-  modal = new window.Modal() as Modal;
-  modal.setHeader('Welcome to Lucid Theme!');
-
+const createModalContent = () => {
   const modalContent = createElement('div', {
     className: 'tour-container arrow-hidden visible full-width',
     style: { position: 'relative' },
-    html: `<div class="tour-arrow"></div><div class="tour-message ${getTextClass('body-medium')}">Ready to explore lucid theme with a quick guided tour?</div><div class="tour-button-wrapper">${createButton('skip-btn tour-btn', 'Skip Tour')}${createButton('start-tour-btn tour-btn', 'Start Tour')}</div>`,
+    innerHTML: `<div class="tour-arrow"></div><div class="tour-message ${getTextClass('body-medium')}">Ready to explore lucid theme with a quick guided tour?</div><div class="tour-button-wrapper">${createButton('skip-btn tour-btn', 'Skip Tour')}${createButton('start-tour-btn tour-btn', 'Start Tour')}</div>`,
   });
-  modal.setContent(modalContent);
-
-  (document.getElementById('main') ?? document.body)?.appendChild(modal);
-
-  localStorage.removeItem(GUIDE_STORAGE_KEY);
 
   const startTourButton = modalContent.querySelector('.start-tour-btn') as HTMLButtonElement;
   const skipTourButton = modalContent.querySelector('.skip-btn') as HTMLButtonElement;
 
-  startTourButton.onclick = () => {
-    localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
-    tourElement.start();
-    tourElement.tourSteps = getTourSteps();
-    modal?.close();
-
-    document.body.appendChild(tourElement);
-  };
-
-  skipTourButton.onclick = () => {
-    localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
-    tourElement.endTour();
-    modal?.close();
-    window?.lucid?.settings?.settingModal?.removeEventListener('close', settingEventCb);
-  };
-
-  modal?.open();
+  startTourButton.addEventListener('click', handleStartTour);
+  skipTourButton.addEventListener('click', handleSkipTour);
+  return modalContent;
 };
-setupTour();
 
-window.guide = { open: startTour };
+const startModal = () => {
+  currentModal = new Modal();
+  currentModal.setHeader('Welcome to Lucid Theme!');
+  currentModal.setContent(createModalContent());
+};
+
+const renderModal = () => {
+  if (!currentModal) return;
+  (document.getElementById('main') ?? document.body)?.appendChild(currentModal);
+  currentModal.open();
+};
+
+const removeModal = () => {
+  if (!currentModal) return;
+  currentModal.close();
+  currentModal = null;
+};
+
+export const openTour = () => {
+  try {
+    localStorage.removeItem(GUIDE_STORAGE_KEY);
+    startTour();
+  } catch (e) {
+    console.error('Error opening guide', e);
+    showNotification('Error opening guide');
+  }
+};
+
+export const startTour = () => {
+  try {
+    if (localStorage.getItem(GUIDE_STORAGE_KEY) === 'true') {
+      return;
+    }
+    localStorage.setItem(GUIDE_STORAGE_KEY, 'true');
+
+    currentTourElement = new GuidedTourElement();
+    const updateTourSteps = (settings?: AppSettings) => {
+      if (currentTourElement) currentTourElement.tourSteps = getTourSteps(settings);
+    };
+    updateTourSteps();
+    appSettingsStore.subscribe(updateTourSteps, 'position');
+
+    startModal();
+    renderModal();
+  } catch (e) {
+    console.error('Error in tour: ', e);
+  }
+};

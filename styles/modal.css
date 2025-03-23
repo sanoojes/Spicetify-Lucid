@@ -46,6 +46,7 @@ lucid-modal {
     width: 100%;
     z-index: -1;
     border-radius: inherit;
+    background-image: var(--normal-background-noise);
     -webkit-backdrop-filter: blur(var(--modal-bg-blur, 2rem))
       saturate(var(--modal-bg-saturation, 1.7));
     backdrop-filter: blur(var(--modal-bg-blur, 2rem)) saturate(var(--modal-bg-saturation, 1.7));
@@ -94,7 +95,7 @@ lucid-modal {
     gap: 1rem;
     justify-content: space-between;
     padding: 0.5rem 1rem;
-    border-radius: var(--btn-base-radius);
+    border-radius: 0.5rem;
     background-color: rgba(var(--clr-surface-2-rgb), 0.5);
     border: var(--border-thickness, 1px) var(--border-style, solid)
       var(--border-color, rgba(var(--clr-surface-5-rgb), 0.25));
@@ -275,7 +276,7 @@ custom-button {
   justify-content: center;
   align-items: center;
   padding: 0.5rem 1rem;
-  border-radius: var(--btn-base-radius);
+  border-radius: 0.5rem;
   background-color: rgba(var(--clr-surface-2-rgb), 0.7);
   color: var(--clr-on-surface);
   pointer-events: all;

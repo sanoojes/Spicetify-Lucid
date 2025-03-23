@@ -5,8 +5,8 @@ export type CSSFilter = {
   blur?: number;
   brightness?: number;
   contrast?: number;
-  grayscale?: string;
-  hueRotate?: string;
+  grayscale?: number;
+  hueRotate?: number;
   invert?: string;
   opacity?: number;
   saturate?: number;
@@ -33,7 +33,7 @@ export type StaticBackgroundOptions = {
 export type SolidBackgroundOptions = {
   color: Color;
 };
-export type AnimatedBackgroundOptions = { filter: CSSFilter };
+export type AnimatedBackgroundOptions = { filter: CSSFilter; time: number };
 
 export type BackgroundOptions = {
   static: StaticBackgroundOptions;
@@ -97,11 +97,14 @@ export type UMVSettings = {
 export type PageStyle = 'card' | 'compact-card' | 'compact' | 'default';
 export type PageImageStyle = 'hidden' | 'as-bg' | 'default';
 export type PageSettings = {
+  homeCardGap: number;
   panelGap: number;
   hideHomeHeader: boolean;
   style: PageStyle;
   imageStyle: PageImageStyle;
   umv: UMVSettings;
+  isNewHome: boolean;
+  isFlexyHome: boolean;
 };
 
 export type ColorSettings = {
@@ -145,6 +148,11 @@ export type CustomImageSetting = {
 };
 export type CustomImageTypes = CustomImageSetting['type'];
 
+export type TopbarSettings = {
+  isCustomColor: boolean;
+  backdropFilter: CSSFilter;
+  bgColor: Color;
+};
 export type AppSettings = {
   showChangelog: boolean;
   position: SettingsPosition;
@@ -158,4 +166,5 @@ export type AppSettings = {
   playbar: PlaybarSettings;
   rightSidebar: RightSidebarSettings;
   customImage: CustomImageSetting;
+  topbar: TopbarSettings;
 };

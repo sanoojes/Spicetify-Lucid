@@ -1,6 +1,5 @@
 import { createElement } from '@utils/dom/createElement.ts';
-import { fetchAndCache } from '@utils/fetchAndCache.ts';
-import { ICON_CSS_CACHE_KEY, ICON_CSS_STYLE_ID, ICON_CSS_URLS } from '@app/constant.ts';
+import { ICON_CSS_URLS } from '@app/constant.ts';
 import { lazyLoadStyleById } from '@utils/lazyLoadUtils.ts';
 import { showNotification } from '@utils/showNotification.ts';
 
@@ -256,7 +255,7 @@ export const patchIcons = () => {
  .player-controls__buttons button[data-testid=control-button-playpause],
  .player-controls__buttons button[data-testid=control-button-playpause]:hover,
  .player-controls__buttons button[data-testid=control-button-playpause] span:hover,
- .player-controls__buttons button[data-testid=control-button-playpause] span { background: none !important; }
+ .player-controls__buttons button[data-testid=control-button-playpause] span { background: none !important; color: var(--clr-on-surface) }
  
  .x-downloadButton-DownloadButton button[aria-label="${locales.download}"] path,
  .x-downloadButton-DownloadButton button[aria-label="${locales.downloadContext}"] path {

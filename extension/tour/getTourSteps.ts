@@ -1,6 +1,7 @@
 import type { TourStep } from '@components/tour/tour.ts';
 import appSettingsStore from '@store/setting.ts';
 import { modalState } from '@store/modal.ts';
+import { openSettings } from '@app/hooks/settings.ts';
 
 export const settingEventCb = () => {
   window?.lucid?.settings?.openSettings?.();
@@ -39,9 +40,9 @@ const tourText = {
     "That's all for the essential settings tour! Explore other options to fully customize Lucid. Click here to close settings.",
 };
 
-export function getTourSteps(settings = window?.lucid?.store?.getState()) {
+export function getTourSteps(settings = appSettingsStore.getState()) {
   function onSettingOpen() {
-    window?.lucid?.settings?.openSettings?.();
+    openSettings();
     window?.lucid?.settings?.settingModal?.addEventListener('close', settingEventCb, {
       once: true,
     });
@@ -302,6 +303,7 @@ export function getTourSteps(settings = window?.lucid?.store?.getState()) {
       arrow: true,
       onComplete: () => {
         window?.lucid?.settings?.settingModal?.removeEventListener('close', settingEventCb);
+        window.dispatchEvent(new CustomEvent('remove-tour'));
       },
       interactiveElementsSelector: 'lucid-settings-modal',
     },

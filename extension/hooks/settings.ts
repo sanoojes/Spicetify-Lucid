@@ -29,9 +29,10 @@ import {
 import { isWindows } from '@utils/platformUtils.ts';
 import { copyToClipboard } from '@utils/clipboardUtils.ts';
 import { isValidAppSettings } from '@utils/settingsValidator.ts';
-import { mountAndOpenGuide } from '@app/hooks/guide.ts';
+
 import { addImage } from '@app/imageDb.ts';
 import { reloadBgImage } from '@app/hooks/background.ts';
+import { openTour } from '@app/tour/guidedTour.ts';
 
 let _openSettings: (() => void) | null = null;
 let _closeSettings: (() => void) | null = null;
@@ -70,7 +71,7 @@ export function mountSettings() {
   _closeSettings = () => settingModal.close();
   addSettingAccess(appSettingsStore.getState().position, openSettings);
   appSettingsStore.subscribe((state) => {
-    if (_openSettings) addSettingAccess(state.position, openSettings);
+    addSettingAccess(state.position, openSettings);
   }, 'position');
 }
 
@@ -78,7 +79,8 @@ const fieldTexts = {
   floatWin: ['Floating Window', 'Allows settings to float. Drag header to reposition.'],
   winPos: ['Window Position', 'Settings window opens from context menu or nav bar.'],
   bgMode: ['Mode', 'Select background type.'],
-  solidColor: ['Solid Color', 'Pick solid background color.'],
+  isCusTopbarColor: ['Set Custom Color', 'Set custom color for topbar background color.'],
+  backgroundColor: ['Background Color', 'Pick solid background color.'],
   custImg: ['Custom Image', 'Use custom image URL for static background.'],
   custUMVImg: ['Custom Image', 'Use custom image URL for playlist background.'],
   imgSrc: ['Image Source', 'Upload image or use URL for custom background.'],
@@ -86,6 +88,8 @@ const fieldTexts = {
   custImgInput: ['Select Custom Image', 'Select local image for static background.'],
   custImgLocal: ['Select Local Image', 'Select images for static background.'],
   filterBlur: ['Blur', 'Blur level of image (0-200).'],
+  animatedTime: ['Time', 'Time of animated background (1-512).'],
+  animFilterBlur: ['Blur', 'Blur level of animated background (0-200).'],
   filterBlurCustom: ['Blur (Custom)', 'Blur level for custom page background (0-200).'],
   filterBlurNormal: ['Blur (Default)', 'Blur level for default page background (0-200).'],
   filterBlurNpv: ['Blur (NPV)', 'Blur level for NPV page background (0-200).'],
@@ -93,6 +97,8 @@ const fieldTexts = {
     'Extended background Blur',
     'Blur level of extended page background (0-200).',
   ],
+  animFilterBright: ['Brightness', 'Brightness of animated background (0-200).'],
+  animFilterSat: ['Saturation', 'Saturation of animated background (0-200).'],
   filterBright: ['Brightness', 'Brightness of image (0-200).'],
   filterSat: ['Saturation', 'Saturation of image (0-200).'],
   dynColor: ['Dynamic Color', 'Dynamic color themes based on artwork.'],
@@ -107,7 +113,13 @@ const fieldTexts = {
   fontFamily: ['Font Family', 'Font family for UI when Google Fonts disabled.'],
   grainType: ['Grain Type', 'Type of grain effect overlay.'],
   winCtrlHeight: ['Control Height', 'Height of window control buttons on Windows (0-200).'],
-  winPanelGap: ['Panel Gap', 'Gap between main cards.'],
+  winPanelGap: ['Panel Gap', 'Gap between main sections.'],
+  homeCardGap: ['Home Card Gap', 'Gap between cards in main view.'],
+  newHomeStyle: ['New Home Style', 'Add new styles for home.'],
+  flexyHomeStyle: [
+    'Flexy cards',
+    'Responsive and flexible card layout. Cards adapt to different screen sizes and arrange themselves for optimal viewing on any device.',
+  ],
   borderThick: ['Thickness', 'Thickness of interface border (0-10).'],
   borderColor: ['Color', 'Color of application border.'],
   borderStyle: ['Style', 'Visual style of interface border.'],
@@ -145,6 +157,9 @@ const fieldTexts = {
   pbBackdropBlur: ['Backdrop Blur', 'Blur of normal playbar backdrop (0-256).'],
   pbBackdropSat: ['Backdrop Saturation', 'Saturation of normal playbar backdrop (0-256).'],
   pbBackdropBright: ['Backdrop Brightness', 'Brightness of normal playbar backdrop (0-256).'],
+  topBarBackdropBlur: ['Backdrop Blur', 'Blur of normal playbar backdrop (0-256).'],
+  topBarBackdropSat: ['Backdrop Saturation', 'Saturation of normal playbar backdrop (0-256).'],
+  topBarBackdropBright: ['Backdrop Brightness', 'Brightness of normal playbar backdrop (0-256).'],
   showChangelog: ['Show Changelog', 'Changelog modal after updates.'],
   lucidTour: ['Take a Lucid Tour', 'Guided walkthrough of Lucid theme features.'],
   exportSettings: ['Export Settings', 'Export settings to clipboard as JSON.'],
@@ -184,7 +199,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               onClick: () => {
                 localStorage.removeItem('lucid-guided-tour');
                 closeSettings();
-                mountAndOpenGuide(true);
+                openTour();
               },
             }),
             field('floatWin', {
@@ -238,7 +253,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
           render: true,
           fields: [
             field(
-              'solidColor',
+              'backgroundColor',
               {
                 type: 'color',
                 value: state.background.options.solid.color.hex,
@@ -312,6 +327,19 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 state.background.options.static.isCustomImage &&
                 state.customImage.type === 'local'
             ),
+            field(
+              'animatedTime',
+              {
+                type: 'number',
+                step: 1,
+                value: state.background.options.animated.time,
+                validator: isValidNumberInRange512,
+                onChange: (time) => {
+                  settings.setAnimatedBackgroundOptions({ time });
+                },
+              },
+              state.background.mode === 'animated'
+            ),
           ],
         },
         {
@@ -359,7 +387,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               state.background.mode === 'static'
             ),
             field(
-              'filterBlur',
+              'animFilterBlur',
               {
                 type: 'number',
                 value: state.background.options.animated.filter.blur,
@@ -372,7 +400,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               state.background.mode === 'animated'
             ),
             field(
-              'filterBright',
+              'animFilterBright',
               {
                 type: 'number',
                 value: state.background.options.animated.filter.brightness,
@@ -385,7 +413,7 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               state.background.mode === 'animated'
             ),
             field(
-              'filterSat',
+              'animFilterSat',
               {
                 type: 'number',
                 value: state.background.options.animated.filter.saturate,
@@ -500,6 +528,40 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
               ],
               onChange: (value) => {
                 settings.setGrainsType(value as GrainSettings['type']);
+              },
+            }),
+          ],
+        },
+        {
+          render: true,
+          key: 'group-home-controls',
+          name: 'Home',
+          fields: [
+            field('newHomeStyle', {
+              type: 'checkbox',
+              checked: state.pages.isNewHome,
+              onChange: (newHome) => {
+                settings.setPages({ isNewHome: newHome });
+              },
+            }),
+            field(
+              'flexyHomeStyle',
+              {
+                type: 'checkbox',
+                checked: state.pages.isFlexyHome,
+                onChange: (isFlexyHome) => {
+                  settings.setPages({ isFlexyHome });
+                },
+              },
+              state.pages.isNewHome
+            ),
+            field('homeCardGap', {
+              type: 'number',
+              step: 1,
+              value: state.pages.homeCardGap,
+              validator: isValidNumberInRange100,
+              onChange: (homeCardGap) => {
+                settings.setPages({ homeCardGap });
               },
             }),
           ],
@@ -811,6 +873,94 @@ function getSettings(state = appSettingsStore.getState(), settings = appSettings
                 settings.setUMV({ isScaling });
               },
             }),
+          ],
+        },
+      ],
+    },
+    {
+      name: 'Topbar Settings',
+      render: true,
+      groups: [
+        {
+          render: true,
+          showName: true,
+          name: 'Background',
+          key: 'topbar-setting-background',
+          fields: [
+            field('isCusTopbarColor', {
+              type: 'checkbox',
+              checked: state.topbar.isCustomColor,
+              onChange: (state) => {
+                settings.setIsCustomTopbarColor(state);
+              },
+            }),
+            field(
+              'backgroundColor',
+              {
+                type: 'color',
+                value: state.topbar.bgColor.hex,
+                onChange: (hex) => {
+                  settings.setTopbarColor({ hex });
+                },
+              },
+              state.topbar.isCustomColor
+            ),
+            field(
+              'rsbBgAlpha',
+              {
+                type: 'number',
+                value: state.topbar.bgColor.alpha,
+                validator: isValidNumberInRange100,
+                onChange: (alpha) => {
+                  settings.setTopbarColor({ alpha });
+                },
+              },
+              state.topbar.isCustomColor
+            ),
+          ],
+        },
+        {
+          render: true,
+          showName: true,
+          name: 'Backdrop Filters',
+          key: 'topbar-setting-filters',
+          fields: [
+            field(
+              'topBarBackdropBlur',
+              {
+                type: 'number',
+                value: state.topbar.backdropFilter.blur,
+                validator: isValidNumberInRange256,
+                onChange: (blur) => {
+                  settings.setTopbarFilter({ blur });
+                },
+              },
+              state.playbar.isFloating
+            ),
+            field(
+              'topBarBackdropSat',
+              {
+                type: 'number',
+                value: state.topbar.backdropFilter.saturate,
+                validator: isValidNumberInRange256,
+                onChange: (saturate) => {
+                  settings.setTopbarFilter({ saturate });
+                },
+              },
+              state.playbar.isFloating
+            ),
+            field(
+              'topBarBackdropBright',
+              {
+                type: 'number',
+                value: state.topbar.backdropFilter.brightness,
+                validator: isValidNumberInRange256,
+                onChange: (brightness) => {
+                  settings.setTopbarFilter({ brightness });
+                },
+              },
+              state.playbar.isFloating
+            ),
           ],
         },
       ],

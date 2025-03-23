@@ -24,6 +24,9 @@ export function mountPageStyles(pageSettings: PageSettings = appSettingsStore.ge
   else document.body.classList.remove('hide-home-header');
 
   document.body.style.setProperty('--custom-panel-gap', `${pageSettings.panelGap}px`);
+  document.body.style.setProperty('--home-card-gap', `${pageSettings.homeCardGap}px`);
+  document.body.classList.toggle('new-home', pageSettings.isNewHome);
+  document.body.classList.toggle('flexy-home', pageSettings.isNewHome && pageSettings.isFlexyHome);
 }
 
 appSettingsStore.subscribe((state) => {

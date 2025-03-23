@@ -67,7 +67,7 @@ const createAnimatedBg = () => {
 
     bgElem.innerHTML = `
 <style>
-.img{ position: absolute; border-radius: 20em; width: 200%; animation: animBg 40s linear infinite;}
+.img{ position: absolute; border-radius: 20em; width: 200%; animation: animBg var(--anim-bg-time,60s) linear infinite;}
 .img-0 { right: 30%; top: 0; z-index: 2 }
 .img-1 { animation-direction: reverse; bottom: 0; left: 0; z-index: 1}
 .img-2 { animation-direction: reverse; right: -50%; top: -20%; width: 300%; z-index: 0 }
@@ -119,10 +119,10 @@ const applyBgSettings = (settings = appSettingsStore.getState()) => {
       if (!animatedBg) createAnimatedBg();
       if (!animatedBg) return;
 
-      const { filter } = background.options.animated;
-      if (animatedBg) {
-        animatedBg.style.filter = serializeCSSFilters(filter);
-      }
+      const { filter, time } = background.options.animated;
+      animatedBg.style.filter = serializeCSSFilters(filter);
+      animatedBg.style.setProperty('--anim-bg-time', `${time}s`);
+
       reloadBgImage();
       break;
     }

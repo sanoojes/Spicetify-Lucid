@@ -7,8 +7,7 @@
     "build-watch": "spice-builder build -w",
     "lint": "biome lint --write",
     "format": "biome format --write",
-    "compile": "deno run --allow-all ../spice-builder/main.ts build -m && deno run compile-tour && deno run compile-workers && deno run compile-icon-style",
-    "compile-tour": "esbuild extension/tour/guidedTour.ts --bundle --tsconfig=tsconfig.json --minify --target=chrome58 --outdir=src/",
+    "compile": "deno run --allow-all ../spice-builder/main.ts build -m && deno run compile-workers && deno run compile-icon-style",
     "compile-workers": "esbuild extension/workers/getColor.ts --bundle --tsconfig=tsconfig.json --minify --target=chrome58 --outdir=src/workers/",
     "compile-icon-style": "esbuild styles/icons.css --tsconfig=tsconfig.json --minify --outdir=src/"
   },

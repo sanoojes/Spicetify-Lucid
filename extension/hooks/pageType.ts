@@ -1,3 +1,5 @@
+import { changeRGBAlpha } from '@utils/changeRGBAlpha.ts';
+
 type PageCategoryType =
   | 'artist'
   | 'playlist'
@@ -22,10 +24,17 @@ const getPathCategory = (pathname: string): PageCategoryType => {
   }
   return 'other';
 };
-
+let intervalId: number | undefined = undefined;
 function setPage(pathname: string) {
   document.body.dataset.path = pathname;
   document.body.dataset.pageType = getPathCategory(pathname);
+
+  if (pathname === '/search') {
+    intervalId = setInterval(() => changeRGBAlpha('.Vn9yz8P5MjIvDT8c0U6w'), 300);
+    setTimeout(() => {
+      clearInterval(intervalId);
+    }, 2000);
+  }
 }
 export function mountPageType() {
   setPage(Spicetify?.Platform?.History?.location?.pathname || '/');

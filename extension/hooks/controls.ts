@@ -31,7 +31,8 @@ body::after {content: ""; height: 0; width: 0; position: fixed; top: 0; right: 0
 
   transparentStyles.textContent = `
 :root {--zoom: ${zoom};--inverse-zoom: ${inverseZoom};}
-body:after {content: ""; height: var(--control-height, ${controlHeight}px); width: var(--control-width, ${controlWidth}px); position: fixed; top: ${topOffset}px; right: 0; -webkit-backdrop-filter: brightness(2.1); backdrop-filter: brightness(2.1);}
+body:after {content: ""; height: var(--control-height, ${controlHeight}px); width: var(--control-width, ${controlWidth}px); position: fixed; top: ${topOffset}px; right: 0; -webkit-backdrop-filter: brightness(2.1); backdrop-filter: brightness(2.1); pointer-events: none;}
+html[dir="rtl"] body:after{left: 0;right: inherit}
 body.hide-transparent-controls:after{display: none; content: none;}`;
 }
 

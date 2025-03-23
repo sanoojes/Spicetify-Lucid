@@ -30,6 +30,7 @@
 }
 
 .encore-dark-theme,
+.encore-light-theme,
 .encore-dark-theme .encore-base-set {
   --background-base: var(--clr-surface-1) !important;
   --background-highlight: var(--clr-surface-3) !important;
@@ -77,4 +78,14 @@
 div[data-popper-arrow] {
   background-color: var(--clr-tertiary);
   color: var(--clr-on-tertiary);
+}
+
+.Button-buttonSecondary-small-useBrowserDefaultFocusStyle,
+.e-9640-button--small {
+  background-color: rgba(var(--clr-surface-2-rgb), 0.5);
+  transition: scale .3s ease-in-out, background-color .3s ease-in-out;
+
+  &:hover {
+    background-color: rgba(var(--clr-surface-4-rgb), 0.75);
+  }
 }

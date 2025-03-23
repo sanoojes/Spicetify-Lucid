@@ -38,6 +38,24 @@ function getValueByPath<T extends object>(obj: T, path?: Path<T>): unknown {
   return current;
 }
 
+function shallowCompareObjects(objA: any, objB: any): boolean {
+  if (objA === objB) return true;
+
+  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null)
+    return false;
+
+  const keysA = Object.keys(objA);
+  const keysB = Object.keys(objB);
+
+  if (keysA.length !== keysB.length) return false;
+
+  for (const key of keysA) {
+    if (!Object.prototype.hasOwnProperty.call(objB, key) || objA[key] !== objB[key]) return false;
+  }
+
+  return true;
+}
+
 class Store<T extends object> {
   private state: T;
   private subscribers: KeyWiseSubscriber<T>[] = [];
@@ -74,7 +92,7 @@ class Store<T extends object> {
   }
 
   public setState(reducer: Reducer<T>, payload?: unknown): void {
-    const oldState = { ...this.state }; // Create a shallow copy
+    const oldState = { ...this.state };
     const newState = reducer(this.state, payload);
     this.updateStateAndNotify(newState, oldState);
   }
@@ -105,7 +123,7 @@ class Store<T extends object> {
       const oldValue = getValueByPath(oldState, path);
       const newValue = getValueByPath(this.state, path);
 
-      if (JSON.stringify(oldValue) !== JSON.stringify(newValue)) {
+      if (!shallowCompareObjects(oldValue, newValue)) {
         const start = performance.now();
 
         try {
@@ -130,7 +148,7 @@ class Store<T extends object> {
       if (this.options.localStorageKey) {
         localStorage.setItem(this.options.localStorageKey, JSON.stringify(this.state));
       } else {
-        throw new Error('localStorage key not found!');
+        console.warn('localStorageKey is not defined, skipping persistence.');
       }
     } catch (error) {
       console.error('Error saving state to localStorage:', error);

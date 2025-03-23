@@ -21,7 +21,6 @@ import type {
   SettingsPosition,
   StaticBackgroundOptions,
   UMVSettings,
-  UrlImageSetting,
 } from '@app/types/settings.ts';
 import { deepmerge } from 'deepmerge-ts';
 import { isValidAppSettings } from '@utils/settingsValidator.ts';
@@ -234,12 +233,15 @@ class AppSettingsStore extends Store<AppSettings> {
     }));
   }
 
-  setAnimatedBackgroundOptions(options: AnimatedBackgroundOptions) {
+  setAnimatedBackgroundOptions(options: Partial<AnimatedBackgroundOptions>) {
     this.setState((state) => ({
       ...state,
       background: {
         ...state.background,
-        options: { ...state.background.options, animated: options },
+        options: {
+          ...state.background.options,
+          animated: { ...state.background.options.animated, ...options },
+        },
       },
     }));
   }
@@ -369,6 +371,34 @@ class AppSettingsStore extends Store<AppSettings> {
             },
           },
         },
+      },
+    }));
+  }
+
+  setTopbarFilter(value: Partial<CSSFilter>) {
+    this.setState((state) => ({
+      ...state,
+      topbar: {
+        ...state.topbar,
+        backdropFilter: { ...state.topbar.backdropFilter, ...value },
+      },
+    }));
+  }
+  setTopbarColor(value: Partial<Color>) {
+    this.setState((state) => ({
+      ...state,
+      topbar: {
+        ...state.topbar,
+        bgColor: { ...state.topbar.bgColor, ...value },
+      },
+    }));
+  }
+  setIsCustomTopbarColor(isCustomColor: boolean) {
+    this.setState((state) => ({
+      ...state,
+      topbar: {
+        ...state.topbar,
+        isCustomColor,
       },
     }));
   }

@@ -283,7 +283,7 @@ export class GuidedTourElement extends HTMLElement {
 
 customElements.define('guided-tour', GuidedTourElement);
 
-export const createButton = (className: string, textContent: string): string => {
+export const createButton = (className: string, textContent: string) => {
   const button = createElement('button', {
     className: `lucid-button ${getTextClass('body-small-bold')} ${className}`,
     textContent,

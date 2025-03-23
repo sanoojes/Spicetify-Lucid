@@ -62,6 +62,7 @@ export const DEFAULT_APP_SETTINGS = {
         color: { hex: '#1a211c', alpha: 100 },
       },
       animated: {
+        time: 120,
         filter: {
           blur: 32,
           brightness: 60,
@@ -84,7 +85,10 @@ export const DEFAULT_APP_SETTINGS = {
     },
   },
   pages: {
-    panelGap: 8,
+    homeCardGap: 8,
+    panelGap: 4,
+    isNewHome: false,
+    isFlexyHome: true,
     hideHomeHeader: false,
     style: 'card',
     imageStyle: 'default',
@@ -118,9 +122,8 @@ export const DEFAULT_APP_SETTINGS = {
     height: 40,
   },
   font: {
-    fontFamily: 'Poppins',
-    fontUrl:
-      'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+    fontFamily: 'Outfit',
+    fontUrl: 'https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap',
     isGoogleFonts: true,
   },
   grains: {
@@ -165,5 +168,19 @@ export const DEFAULT_APP_SETTINGS = {
   customImage: {
     type: 'url',
     options: { url: { data: 'https://picsum.photos/1920/1080?random' }, local: null },
+  },
+  topbar: {
+    isCustomColor: false,
+    backdropFilter: {
+      blur: 32,
+      brightness: 75,
+      contrast: 80,
+      grayscale: 25,
+      saturate: 200,
+    },
+    bgColor: {
+      hex: '#1e201d',
+      alpha: 20,
+    },
   },
 } satisfies AppSettings;
