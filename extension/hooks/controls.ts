@@ -24,10 +24,16 @@ body::after {content: ""; height: 0; width: 0; position: fixed; top: 0; right: 0
   }
 
   const controlWidth = Math.round(135 * inverseZoom);
+  if (controlWidth > 500) {
+    return false;
+  }
   const scaledHeight = height / zoom;
   const minHeight = 32 / zoom;
   const topOffset = isV46Above ? (scaledHeight - Math.min(minHeight, scaledHeight)) / 2 : 0;
   const controlHeight = normalHeight / zoom - topOffset * 2;
+  if (controlHeight > 500) {
+    return false;
+  }
 
   transparentStyles.textContent = `
 :root {--zoom: ${zoom};--inverse-zoom: ${inverseZoom};}
@@ -61,7 +67,6 @@ function intervalCall() {
 export default () => {
   if (isWindows()) {
     mountControls();
-    intervalCall();
     window.addEventListener('resize', intervalCall);
     document.addEventListener('fullscreenchange', () => {
       document.body.classList.toggle(
