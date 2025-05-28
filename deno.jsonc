@@ -1,10 +1,7 @@
 {
   "tasks": {
-    "dev": "spice-builder apply -w",
-    "apply": "spice-builder apply",
-    "build": "spice-builder build",
-    "build-minify": "spice-builder build -m",
-    "build-watch": "spice-builder build -w",
+    "dev": "deno run --allow-net --allow-env --allow-read --allow-write --allow-run builder/builder.ts -w",
+    "build": "deno run --allow-net --allow-env --allow-read --allow-write --allow-run builder/builder.ts",
     "lint": "biome lint --write",
     "format": "biome format --write",
     "compile": "deno run --allow-all ../spice-builder/main.ts build -m && deno run compile-workers && deno run compile-icon-style",
@@ -15,12 +12,15 @@
   "imports": {
     // relative imports.
     "@app/": "./extension/",
+    "@std/cli": "jsr:@std/cli@^1.0.18",
+    "@std/path": "jsr:@std/path@^1.1.0",
     "@utils/": "./extension/utils/",
     "@components/": "./extension/components/",
     "@store/": "./extension/store/",
     "@core/": "./extension/core/",
     "@styles/": "./styles/",
     "@colors/": "./colors/",
+    "@lib/": "./lib/",
 
     // // react things.
     // "react": "npm:react@^19.0.0",
@@ -36,7 +36,7 @@
   },
   "compilerOptions": {
     "strict": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable", "deno_dom"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "deno_dom", "deno.ns"],
     "jsx": "react"
   },
   "nodeModulesDir": "auto"
