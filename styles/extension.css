@@ -268,14 +268,19 @@ body {
 }
 
 /* ========== Global Nav Floating ========== */
-.Root__main-view header,
-.main-topBar-container,
-.main-home-filterChipsContainer {
-  top: 0;
-  border-radius: 0;
-}
 
 .global-nav-floating {
+  .main-view-container__scroll-node-child {
+    padding-top: var(--global-nav-height);
+  }
+
+  .Root__main-view header,
+  .main-topBar-container,
+  .main-home-filterChipsContainer {
+    top: 0;
+    border-radius: 0;
+  }
+
   .Root__globalNav {
     --gap: calc(var(--panel-gap) + 8px);
     position: fixed;

@@ -181,6 +181,7 @@
 }
 
 /* ========== Context Menu ========== */
+.wlb3dYO07PZuYfmNfmkS,
 .main-contextMenu-menu {
   scrollbar-width: thin;
   background: var(--background-base);
@@ -229,8 +230,7 @@
       background-color: rgba(var(--clr-primary-rgb), 0.125);
       border-radius: 0.75rem;
       border: var(--default-border);
-      transition:
-        backdrop-filter 225ms cubic-bezier(0.4, 0, 0.2, 1),
+      transition: backdrop-filter 225ms cubic-bezier(0.4, 0, 0.2, 1),
         opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);
 
       &::before {
@@ -315,7 +315,11 @@
 }
 .main-home-homeHeader {
   height: 40vh;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .hide-home-header .main-home-homeHeader {
@@ -351,7 +355,8 @@
 
 .main-trackList-trackListHeader {
   padding: 0 calc(var(--content-spacing) + 12px);
-  margin: 0 calc((var(--content-spacing) * -1) - 6px) calc(var(--content-spacing) - 12px);
+  margin: 0 calc((var(--content-spacing) * -1) - 6px)
+    calc(var(--content-spacing) - 12px);
 
   .main-trackList-rowSectionIndex,
   .main-trackList-rowSectionStart {
@@ -532,9 +537,7 @@ div.main-trackList-trackListRow {
     z-index: -1;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-    transition:
-      backdrop-filter 0.3s linear,
-      opacity 0.3s linear;
+    transition: backdrop-filter 0.3s linear, opacity 0.3s linear;
   }
 }
 .mdMUqcSHFw1lZIcYEblu /* Header - box shadow */ {

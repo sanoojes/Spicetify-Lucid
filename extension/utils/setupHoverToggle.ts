@@ -1,13 +1,13 @@
-import debounce from '@utils/debounce.ts';
-import getOrCreateElement from '@utils/dom/getOrCreateElement.ts';
-import waitForElements from '@utils/dom/waitForElements.ts';
+import debounce from "@utils/debounce.ts";
+import getOrCreateElement from "@utils/dom/getOrCreateElement.ts";
+import waitForElements from "@utils/dom/waitForElements.ts";
 
 export default function setupHoverToggle({
   containerSelector,
   onTopContainerSelectors,
-  className = 'show',
+  className = "show",
   condition = true,
-  hoverTargetId = 'hover-target',
+  hoverTargetId = "hover-target",
   bodyClass,
   onHoverBodyClass,
   onNotHoverBodyClass,
@@ -27,17 +27,21 @@ export default function setupHoverToggle({
   let isHoveringElements = false;
   let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
   let isDelayingUpdate = false;
-
-  if (bodyClass) document.body.classList.toggle(bodyClass, condition);
+  let mutationObserver: MutationObserver | null = null;
 
   const isResizingOrContextMenuOpen = () =>
     targetElements.some((el) =>
-      el.querySelector('.LayoutResizer__resize-bar--resizing, [data-context-menu-open="true"]')
+      el.querySelector(
+        '.LayoutResizer__resize-bar--resizing, [data-context-menu-open="true"]'
+      )
     );
 
   const performUpdateVisibility = () => {
     if (onHoverBodyClass)
-      document.body.classList.toggle(onHoverBodyClass, isHoveringElements || isHoveringTarget);
+      document.body.classList.toggle(
+        onHoverBodyClass,
+        isHoveringElements || isHoveringTarget
+      );
     if (onNotHoverBodyClass)
       document.body.classList.toggle(
         onNotHoverBodyClass,
@@ -70,15 +74,6 @@ export default function setupHoverToggle({
     performUpdateVisibility();
   };
 
-  const attachHoverListeners = () => {
-    targetElements.forEach((el) => {
-      el.removeEventListener('mouseenter', handleElementEnter);
-      el.removeEventListener('mouseleave', handleElementLeave);
-      el.addEventListener('mouseenter', handleElementEnter);
-      el.addEventListener('mouseleave', handleElementLeave);
-    });
-  };
-
   const handleElementEnter = () => {
     isHoveringElements = true;
     updateVisibility();
@@ -87,6 +82,15 @@ export default function setupHoverToggle({
   const handleElementLeave = () => {
     isHoveringElements = false;
     updateVisibility();
+  };
+
+  const attachHoverListeners = () => {
+    targetElements.forEach((el) => {
+      el.removeEventListener("mouseenter", handleElementEnter);
+      el.removeEventListener("mouseleave", handleElementLeave);
+      el.addEventListener("mouseenter", handleElementEnter);
+      el.addEventListener("mouseleave", handleElementLeave);
+    });
   };
 
   const updateTargetElements = () => {
@@ -108,7 +112,7 @@ export default function setupHoverToggle({
   const debouncedUpdate = debounce(updateTargetElements, 100);
 
   const observeBodyChanges = () => {
-    const observer = new MutationObserver((mutations) => {
+    mutationObserver = new MutationObserver((mutations) => {
       const relevantChange = mutations.some(
         (mutation) =>
           Array.from(mutation.addedNodes).some(
@@ -130,28 +134,61 @@ export default function setupHoverToggle({
       if (relevantChange) debouncedUpdate();
     });
 
-    observer.observe(document.body, {
+    mutationObserver.observe(document.body, {
       childList: true,
       subtree: true,
     });
   };
 
+  const destroy = () => {
+    targetElements.forEach((el) => {
+      el.removeEventListener("mouseenter", handleElementEnter);
+      el.removeEventListener("mouseleave", handleElementLeave);
+      el.classList.remove(className);
+    });
+
+    if (hoverTarget) {
+      hoverTarget.remove();
+      hoverTarget = null;
+    }
+
+    if (bodyClass) document.body.classList.remove(bodyClass);
+    if (onHoverBodyClass) document.body.classList.remove(onHoverBodyClass);
+    if (onNotHoverBodyClass)
+      document.body.classList.remove(onNotHoverBodyClass);
+
+    if (mutationObserver) {
+      mutationObserver.disconnect();
+      mutationObserver = null;
+    }
+
+    if (resizeTimeout) {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = null;
+    }
+
+    targetElements = [];
+    isHoveringTarget = false;
+    isHoveringElements = false;
+  };
+
   const init = () => {
     waitForElements(containerSelector).then((container) => {
       if (!condition) {
-        const existingTarget = document.getElementById(hoverTargetId);
-        if (existingTarget) existingTarget.remove();
+        destroy();
         return;
       }
 
-      hoverTarget = getOrCreateElement('div', hoverTargetId, container);
+      if (bodyClass) document.body.classList.toggle(bodyClass, condition);
 
-      hoverTarget.addEventListener('mouseenter', () => {
+      hoverTarget = getOrCreateElement("div", hoverTargetId, container);
+
+      hoverTarget.addEventListener("mouseenter", () => {
         isHoveringTarget = true;
         updateVisibility();
       });
 
-      hoverTarget.addEventListener('mouseleave', () => {
+      hoverTarget.addEventListener("mouseleave", () => {
         isHoveringTarget = false;
         updateVisibility();
       });

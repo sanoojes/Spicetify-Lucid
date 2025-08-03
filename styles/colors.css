@@ -16,62 +16,118 @@
 .encore-light-theme,
 .encore-light-theme .encore-base-set,
 .encore-dark-theme .encore-base-set {
-  --background-base: rgba(var(--clr-surface-rgb), var(--clr-bg-alpha));
-  --background-highlight: rgba(var(--clr-surface-1-rgb), var(--clr-bg-alpha));
-  --background-press: rgba(var(--clr-surface-rgb), var(--clr-bg-alpha));
-  --background-elevated-base: rgba(var(--clr-surface-1-rgb), var(--clr-bg-alpha));
-  --background-elevated-highlight: rgba(var(--clr-surface-2-rgb), var(--clr-bg-alpha));
-  --background-elevated-press: rgba(var(--clr-surface-3-rgb), var(--clr-bg-alpha));
+  --background-base: rgba(
+    var(--clr-surface-rgb),
+    var(--clr-bg-alpha)
+  ) !important;
+  --background-highlight: rgba(
+    var(--clr-surface-1-rgb),
+    var(--clr-bg-alpha)
+  ) !important;
+  --background-press: rgba(
+    var(--clr-surface-rgb),
+    var(--clr-bg-alpha)
+  ) !important;
+  --background-elevated-base: rgba(
+    var(--clr-surface-1-rgb),
+    var(--clr-bg-alpha)
+  ) !important;
+  --background-elevated-highlight: rgba(
+    var(--clr-surface-2-rgb),
+    var(--clr-bg-alpha)
+  ) !important;
+  --background-elevated-press: rgba(
+    var(--clr-surface-3-rgb),
+    var(--clr-bg-alpha)
+  ) !important;
 
-  --background-tinted-base: #ffffff1a;
-  --background-tinted-highlight: #ffffff24;
-  --background-tinted-press: #ffffff36;
-  --text-base: var(--clr-on-surface);
-  --text-subdued: var(--clr-on-surface-variant);
-  --text-bright-accent: var(--clr-primary);
-  --text-negative: #f3727f;
-  --text-warning: #ffa42b;
-  --text-positive: var(--clr-primary);
-  --text-announcement: #4cb3ff;
-  --essential-base: #fff;
-  --essential-subdued: #7c7c7c;
-  --essential-bright-accent: var(--clr-primary);
-  --essential-negative: #ed2c3f;
-  --essential-warning: #ffa42b;
-  --essential-positive: var(--clr-primary);
-  --essential-announcement: #4cb3ff;
-  --decorative-base: #fff;
-  --decorative-subdued: var(--clr-background);
+  --background-tinted-base: #ffffff1a !important;
+  --background-tinted-highlight: #ffffff24 !important;
+  --background-tinted-press: #ffffff36 !important;
+  --text-base: var(--clr-on-surface) !important;
+  --text-subdued: var(--clr-on-surface-variant) !important;
+  --text-bright-accent: var(--clr-primary) !important;
+  --text-negative: #f3727f !important;
+  --text-warning: #ffa42b !important;
+  --text-positive: var(--clr-primary) !important;
+  --text-announcement: #4cb3ff !important;
+  --essential-base: #fff !important;
+  --essential-subdued: #7c7c7c !important;
+  --essential-bright-accent: var(--clr-primary) !important;
+  --essential-negative: #ed2c3f !important;
+  --essential-warning: #ffa42b !important;
+  --essential-positive: var(--clr-primary) !important;
+  --essential-announcement: #4cb3ff !important;
+  --decorative-base: #fff !important;
+  --decorative-subdued: var(--clr-background) !important;
 }
 .encore-dark-theme .encore-inverted-light-set,
 .encore-dark-theme .encore-bright-accent-set {
-  --background-base: var(--clr-primary);
-  --background-highlight: var(--clr-on-primary);
-  --background-press: var(--clr-inverse-primary);
-  --background-elevated-base: var(--clr-on-primary);
-  --background-elevated-highlight: var(--clr-on-primary);
-  --background-elevated-press: var(--clr-inverse-primary);
-  --background-tinted-base: var(--clr-primary);
-  --background-tinted-highlight: var(--clr-primary);
-  --background-tinted-press: var(--clr-primary);
-  --text-base: var(--clr-on-primary);
-  --text-subdued: var(--clr-primary);
-  --text-bright-accent: var(--clr-on-primary);
-
-  --text-negative: #000;
-  --text-warning: #000;
-  --text-positive: #000;
-  --text-announcement: #000;
-  --essential-base: #000;
-  --essential-subdued: #000;
-  --essential-bright-accent: #000;
-  --essential-negative: #000;
-  --essential-warning: #000;
-  --essential-positive: #000;
-  --essential-announcement: #000;
-  --decorative-base: #000;
-
+  --background-base: var(--clr-primary) !important;
+  --background-highlight: var(--clr-on-primary) !important;
+  --background-press: var(--clr-inverse-primary) !important;
+  --background-elevated-base: var(--clr-on-primary) !important;
+  --background-elevated-highlight: var(--clr-on-primary) !important;
+  --background-elevated-press: var(--clr-inverse-primary) !important;
+  --background-tinted-base: var(--clr-primary) !important;
+  --background-tinted-highlight: var(--clr-primary) !important;
+  --background-tinted-press: var(--clr-primary) !important;
+  --text-base: var(--clr-on-primary) !important;
+  --text-subdued: var(--clr-primary) !important;
+  --text-bright-accent: var(--clr-on-primary) !important;
+  --text-negative: #000 !important;
+  --text-warning: #000 !important;
+  --text-positive: #000 !important;
+  --text-announcement: #000 !important;
+  --essential-base: #000 !important;
+  --essential-subdued: #000 !important;
+  --essential-bright-accent: #000 !important;
+  --essential-negative: #000 !important;
+  --essential-warning: #000 !important;
+  --essential-positive: #000 !important;
+  --essential-announcement: #000 !important;
+  --decorative-base: #000 !important;
   --decorative-subdued: var(--clr-inverse-primary);
+}
+
+:root {
+  --spice-button: var(--clr-primary);
+  --spice-highlight-elevated: var(--clr-surface-2);
+  --spice-button-disabled: var(--clr-surface-4);
+  --spice-button-active: var(--clr-primary-container);
+  --spice-misc: var(--clr-on-surface-variant) !important;
+  --spice-subtext: var(--clr-on-surface-variant) !important;
+  --spice-tab-active: var(--clr-surface-2) !important;
+  --spice-notification-error: var(--clr-error-container) !important;
+  --spice-player: var(--clr-surface) !important;
+  --spice-shadow: var(--clr-surface) !important;
+  --spice-notification: var(--clr-tertiary) !important;
+  --spice-card: var(--clr-surface-1) !important;
+  --spice-selected-row: var(--clr-on-surface) !important;
+  --spice-text: var(--clr-on-surface) !important;
+  --spice-main-elevated: var(--clr-surface-1) !important;
+  --spice-highlight: var(--clr-surface-2) !important;
+  --spice-main: var(--clr-surface) !important;
+  --spice-sidebar: var(--clr-surface) !important;
+
+  --spice-rgb-button: 29, 185, 84;
+  --spice-rgb-highlight-elevated: 42, 42, 42;
+  --spice-rgb-button-disabled: 83, 83, 83;
+  --spice-rgb-button-active: 30, 215, 96;
+  --spice-rgb-misc: 127, 127, 127;
+  --spice-rgb-subtext: 179, 179, 179;
+  --spice-rgb-tab-active: 51, 51, 51;
+  --spice-rgb-notification-error: 226, 33, 52;
+  --spice-rgb-player: 24, 24, 24;
+  --spice-rgb-shadow: 0, 0, 0;
+  --spice-rgb-notification: 70, 135, 214;
+  --spice-rgb-card: 40, 40, 40;
+  --spice-rgb-selected-row: 255, 255, 255;
+  --spice-rgb-text: 255, 255, 255;
+  --spice-rgb-main-elevated: 36, 36, 36;
+  --spice-rgb-highlight: 26, 26, 26;
+  --spice-rgb-main: 18, 18, 18;
+  --spice-rgb-sidebar: 0, 0, 0;
 }
 
 .e-9890-text,

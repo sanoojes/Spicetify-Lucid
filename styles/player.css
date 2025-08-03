@@ -12,6 +12,15 @@
   --player-opacity: 100%;
   --player-contrast: 100%;
 } */
+.Root__now-playing-bar {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nowPlayingBar-container {
+  position: relative;
+}
 
 .main-nowPlayingBar-nowPlayingBar {
   height: var(--player-height, 80px);
@@ -43,12 +52,14 @@
       inset: 0;
       border-radius: inherit;
       z-index: -1;
-      -webkit-backdrop-filter: blur(var(--player-blur, 1rem)) saturate(var(--player-saturate, 1.5))
-        brightness(var(--player-brightness, 60%)) contrast(var(--player-contrast))
-        opacity(var(--player-opacity, 1));
-      backdrop-filter: blur(var(--player-blur, 1rem)) saturate(var(--player-saturate, 1.5))
-        brightness(var(--player-brightness, 60%)) contrast(var(--player-contrast))
-        opacity(var(--player-opacity, 1));
+      -webkit-backdrop-filter: blur(var(--player-blur, 1rem))
+        saturate(var(--player-saturate, 1.5))
+        brightness(var(--player-brightness, 60%))
+        contrast(var(--player-contrast)) opacity(var(--player-opacity, 1));
+      backdrop-filter: blur(var(--player-blur, 1rem))
+        saturate(var(--player-saturate, 1.5))
+        brightness(var(--player-brightness, 60%))
+        contrast(var(--player-contrast)) opacity(var(--player-opacity, 1));
     }
   }
 }
@@ -135,10 +146,9 @@
     overflow: hidden;
     padding: 0.5rem 0.5rem;
     border-radius: 0.75rem;
-    transition:
-      width 225ms ease-in-out,
-      background-color 300ms linear;
-    border: var(--border-thickness, 1px) var(--border-style, solid) rgba(0, 0, 0, 0);
+    transition: width 225ms ease-in-out, background-color 300ms linear;
+    border: var(--border-thickness, 1px) var(--border-style, solid)
+      rgba(0, 0, 0, 0);
     transform: translate3d(0px, 0px, 0px);
 
     &:hover {
