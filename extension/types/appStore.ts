@@ -1,0 +1,144 @@
+// deno-lint-ignore ban-types
+type Stringify<T extends string> = T | (string & {}); // just to trick the compiler
+
+type Color = string;
+export interface ColorState {
+  mode: Stringify<'default' | 'dynamic' | 'custom'>;
+  accentColor: Color;
+  isTinted: boolean;
+  isDark: boolean;
+}
+
+export interface CSSFilter {
+  brightness?: number;
+  contrast?: number;
+  saturation?: number;
+  opacity?: number;
+  blur?: number;
+}
+
+export interface BodyClassState {
+  hideHomeHeader: boolean;
+  newHome: boolean;
+  flexyHome: boolean;
+}
+
+type BackgroundMode = Stringify<'solid' | 'static' | 'animated'>;
+type BackgroundImageMode = Stringify<'custom' | 'player' | 'page'>;
+export interface BackgroundState {
+  mode: BackgroundMode;
+  options: {
+    // For Animated and Static
+    filter: CSSFilter;
+    imageMode: BackgroundImageMode;
+    imageSrc: string | null;
+
+    // Solid Background
+    color: Color;
+
+    // Animated Background
+    autoStopAnimation: boolean;
+  };
+}
+
+type FontState = {
+  family: string;
+  variants: string[];
+};
+
+export type BorderStyle = Stringify<
+  'none' | 'dotted' | 'dashed' | 'solid' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset'
+>;
+
+type BorderState = {
+  color: Color;
+  hoverColor: Color;
+  thickness: number;
+  style: BorderStyle;
+};
+
+export interface UIPreferencesState {
+  titleFont: FontState;
+  // variableFont: GoogleFont;
+  bodyFont: FontState;
+
+  border: BorderState;
+}
+
+type UnderMainViewTypes = Stringify<'default' | 'playing' | 'custom-img' | 'custom-color' | 'none'>;
+export interface UnderMainViewState {
+  type: UnderMainViewTypes;
+
+  isScrolling: boolean;
+  isScaling: boolean;
+
+  filter: CSSFilter;
+  customUrl: string;
+
+  customColor: Color;
+}
+
+type SettingModalAccessPoint = Stringify<'menu' | 'nav'>;
+export interface SettingModalState {
+  accessPoint: SettingModalAccessPoint;
+  isFloating: boolean;
+  floatingPosition: { x: number; y: number };
+}
+
+type PlayerTypes = Stringify<'compact' | 'default'>;
+export type PlayerStyle = {
+  height: number;
+  bgColor: Color | null; // null for default
+  bgOpacity: number;
+  paddingX: number;
+  borderRadius: number;
+  coverArtRadius: number;
+  backdropFilter: CSSFilter;
+};
+
+export type PlayerState = {
+  mode: PlayerTypes;
+  autoHide: boolean;
+  isFloating: boolean;
+  hideExtraIcon: boolean;
+  defaultStyle: PlayerStyle;
+  compactStyle: PlayerStyle;
+};
+
+export type PageMode = Stringify<'card' | 'compact-card' | 'compact' | 'default'>;
+export type PageCoverImageMode = Stringify<'hidden' | 'as-bg' | 'default'>;
+export type PageState = {
+  mode: PageMode;
+  coverMode: PageCoverImageMode;
+  homeCardGap: number;
+  panelGap: number;
+};
+
+type AutoHideBaseState = {
+  floating: boolean;
+  autoHide: boolean;
+  hoverTargetWidth: number;
+};
+
+export type LibraryState = AutoHideBaseState & {};
+
+export type RightSidebarState = AutoHideBaseState & {
+  mode: Stringify<'compact' | 'default'>;
+  positionX: Stringify<'right' | 'left'>;
+  positionY: Stringify<'top' | 'bottom'>;
+};
+export type GlobalNavState = AutoHideBaseState & {};
+
+export interface AppState {
+  color: ColorState;
+  bg: BackgroundState;
+  umv: UnderMainViewState;
+  page: PageState;
+  bodyClass: BodyClassState;
+  settingModal: SettingModalState;
+  uiPreferences: UIPreferencesState;
+  player: PlayerState;
+  library: LibraryState;
+  rightSidebar: RightSidebarState;
+  globalNav: GlobalNavState;
+}

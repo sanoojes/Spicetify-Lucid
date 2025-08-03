@@ -1,0 +1,161 @@
+/* These variables are set by the extension */
+/* :root {
+  --player-height: 80px;
+  --player-padding-x: 8px;
+  --player-border-radius: 8px;
+  --player-image-radius: 8px;
+  --player-bg-opacity: 50%;
+  --player-bg-color: rgba(var(--clr-surface-1-rgb), 0.7);
+  --player-blur: 32px;
+  --player-saturate: 150%;
+  --player-brightness: 80%;
+  --player-opacity: 100%;
+  --player-contrast: 100%;
+} */
+
+.main-nowPlayingBar-nowPlayingBar {
+  height: var(--player-height, 80px);
+  background: var(--player-bg-color, var(--main-bg));
+}
+.main-nowPlayingBar-container {
+  overflow: hidden;
+  border: var(--default-border);
+  border-radius: var(--player-border-radius, var(--m-br));
+}
+
+.floating.Root__now-playing-bar {
+  position: fixed;
+  bottom: var(--panel-gap, 8px);
+  left: var(--panel-gap, 8px);
+  width: calc(100% - 2 * var(--panel-gap, 8px));
+  animation: none;
+  transition: none;
+
+  .main-nowPlayingBar-container {
+    animation: none;
+    transition: none;
+
+    &:before {
+      content: "";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      z-index: -1;
+      -webkit-backdrop-filter: blur(var(--player-blur, 1rem)) saturate(var(--player-saturate, 1.5))
+        brightness(var(--player-brightness, 60%)) contrast(var(--player-contrast))
+        opacity(var(--player-opacity, 1));
+      backdrop-filter: blur(var(--player-blur, 1rem)) saturate(var(--player-saturate, 1.5))
+        brightness(var(--player-brightness, 60%)) contrast(var(--player-contrast))
+        opacity(var(--player-opacity, 1));
+    }
+  }
+}
+
+.main-nowPlayingWidget-coverArt,
+.cover-art,
+.HD9s7U5E1RLSWKpXmrqx,
+.main-coverSlotCollapsed-container,
+.main-coverSlotCollapsed-container div,
+.cover-art-image {
+  border-radius: var(--player-image-radius, 8px);
+}
+
+.player-compact .Root__now-playing-bar {
+  --cover-art-size: calc(var(--player-height) - 16px);
+  .cover-art {
+    position: relative;
+  }
+
+  .cover-art-icon {
+    inset: 0;
+  }
+
+  .main-nowPlayingWidget-trackInfo.main-trackInfo-container {
+    width: 100%;
+  }
+
+  .main-nowPlayingBar-center {
+    width: 75cqw;
+    max-width: 100%;
+  }
+
+  .main-nowPlayingBar-center .player-controls {
+    flex-direction: row;
+  }
+
+  .player-controls__buttons {
+    width: fit-content;
+    margin-bottom: 0;
+  }
+
+  /* Make play and pause button of same size */
+  .player-controls__buttons button {
+    --encore-control-size-smaller: 24px !important;
+  }
+
+  .main-nowPlayingBar-left {
+    -webkit-padding-start: 4px;
+    padding-inline-start: 4px;
+    padding-right: 8px;
+    width: 25%;
+    min-width: 20%;
+  }
+
+  .main-nowPlayingBar-nowPlayingBar {
+    height: var(--player-height, 4rem) !important;
+  }
+
+  .main-nowPlayingBar-right {
+    max-width: fit-content;
+  }
+  .progress-bar {
+    min-width: 4cqw;
+  }
+}
+
+.Root__now-playing-bar.hide-icons {
+  div.main-nowPlayingBar-left {
+    min-width: 25%;
+  }
+
+  div.main-nowPlayingBar-right {
+    min-height: 2rem;
+    min-width: 9rem;
+    width: 12rem;
+    position: relative;
+  }
+
+  .main-nowPlayingBar-extraControls {
+    position: absolute;
+    top: -0.55rem;
+    right: 0rem;
+    width: 9rem;
+    overflow: hidden;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0.75rem;
+    transition:
+      width 225ms ease-in-out,
+      background-color 300ms linear;
+    border: var(--border-thickness, 1px) var(--border-style, solid) rgba(0, 0, 0, 0);
+    transform: translate3d(0px, 0px, 0px);
+
+    &:hover {
+      width: fit-content;
+      min-width: fit-content;
+      max-width: 50cqw;
+      background-color: var(--clr-surface);
+      border: var(--hover-border);
+    }
+
+    .volume-bar {
+      min-width: 6rem;
+      order: 1;
+    }
+
+    button[data-testid="fullscreen-mode-button"] {
+      order: 2;
+    }
+  }
+}
