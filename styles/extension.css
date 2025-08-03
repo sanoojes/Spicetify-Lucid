@@ -9,13 +9,19 @@
 }
 body {
   & * {
-    --main-view-display-height: calc(var(--main-view-height) - var(--panel-gap));
-    --x-hover-target-top: calc(var(--lib-top-offset, 64px) + (var(--panel-gap) * 2));
+    --main-view-display-height: calc(
+      var(--main-view-height) - var(--panel-gap)
+    );
+    --x-hover-target-top: calc(
+      var(--lib-top-offset, 64px) + (var(--panel-gap) * 2)
+    );
     --x-hover-target-height: var(--main-view-height);
   }
 
   &.global-nav-floating * {
-    --x-hover-target-top: calc(var(--lib-top-offset, 64px) + (var(--panel-gap) * 3));
+    --x-hover-target-top: calc(
+      var(--lib-top-offset, 64px) + (var(--panel-gap) * 3)
+    );
   }
 
   &.global-nav-floating.global-nav-auto-hide * {
@@ -25,36 +31,38 @@ body {
 
   &.player-floating * {
     --main-view-display-height: calc(
-      var(--main-view-height) -
-      var(--player-height) -
-      (var(--panel-gap) * 2)
+      var(--main-view-height) - var(--player-height) - (var(--panel-gap) * 2)
     );
   }
 
   &.global-nav-floating.player-floating * {
-    --x-hover-target-top: calc(var(--lib-top-offset, 64px) + (var(--panel-gap) * 3.5));
+    --x-hover-target-top: calc(
+      var(--lib-top-offset, 64px) + (var(--panel-gap) * 3.5)
+    );
     --main-view-display-height: calc(
-      var(--main-view-height) -
-      var(--player-height) -
-      var(--global-nav-height) -
-      var(--panel-gap)
+      var(--main-view-height) - var(--player-height) - var(--global-nav-height) -
+        var(--panel-gap)
     );
   }
 
   &.player-floating.player-auto-hide * {
     --main-view-display-height: calc(
-      var(--main-view-height) -
-      var(--global-nav-height) +
-      (var(--panel-gap) * 2)
+      var(--main-view-height) - var(--global-nav-height) +
+        (var(--panel-gap) * 2)
     );
   }
 
   &.player-floating.player-auto-hide.global-nav-floating * {
-    --main-view-display-height: calc(var(--main-view-height) - var(--global-nav-height));
+    --main-view-display-height: calc(
+      var(--main-view-height) - var(--global-nav-height)
+    );
   }
 
-  &.player-floating.player-auto-hide.global-nav-floating.global-nav-auto-hide * {
-    --main-view-display-height: calc(var(--main-view-height) + var(--panel-gap));
+  &.player-floating.player-auto-hide.global-nav-floating.global-nav-auto-hide
+    * {
+    --main-view-display-height: calc(
+      var(--main-view-height) + var(--panel-gap)
+    );
   }
 }
 
@@ -98,7 +106,9 @@ body {
       transform: translateX(0) !important;
     }
 
-    button:has(path[d="M10.03 10.53a.75.75 0 1 1-1.06-1.06L10.44 8 8.97 6.53a.75.75 0 0 1 1.06-1.06l2 2a.75.75 0 0 1 0 1.06l-2 2Z"]) {
+    button:has(
+        path[d="M10.03 10.53a.75.75 0 1 1-1.06-1.06L10.44 8 8.97 6.53a.75.75 0 0 1 1.06-1.06l2 2a.75.75 0 0 1 0 1.06l-2 2Z"]
+      ) {
       display: none;
     }
   }
@@ -146,7 +156,9 @@ body {
     left: var(--panel-gap);
   }
 
-  .main-yourLibraryX-button:has(path[d="M6.53 9.47a.75.75 0 0 1 0 1.06l-2.72 2.72h1.018a.75.75 0 0 1 0 1.5H1.25v-3.579a.75.75 0 0 1 1.5 0v1.018l2.72-2.72a.75.75 0 0 1 1.06 0zm2.94-2.94a.75.75 0 0 1 0-1.06l2.72-2.72h-1.018a.75.75 0 1 1 0-1.5h3.578v3.579a.75.75 0 0 1-1.5 0V3.81l-2.72 2.72a.75.75 0 0 1-1.06 0z"]) {
+  .main-yourLibraryX-button:has(
+      path[d="M6.53 9.47a.75.75 0 0 1 0 1.06l-2.72 2.72h1.018a.75.75 0 0 1 0 1.5H1.25v-3.579a.75.75 0 0 1 1.5 0v1.018l2.72-2.72a.75.75 0 0 1 1.06 0zm2.94-2.94a.75.75 0 0 1 0-1.06l2.72-2.72h-1.018a.75.75 0 1 1 0-1.5h3.578v3.579a.75.75 0 0 1-1.5 0V3.81l-2.72 2.72a.75.75 0 0 1-1.06 0z"]
+    ) {
     display: none;
   }
 }
@@ -154,7 +166,11 @@ body {
 /* ========== Player ========== */
 .main-entityHeader-container.main-entityHeader-withBackgroundImage {
   height: var(--main-view-height);
-  background-image: linear-gradient(to bottom, transparent 75%, rgba(var(--clr-surface-rgb), 0.25));
+  background-image: linear-gradient(
+    to bottom,
+    transparent 75%,
+    rgba(var(--clr-surface-rgb), 0.25)
+  );
 }
 .player-floating {
   .main-entityHeader-container.main-entityHeader-withBackgroundImage {
@@ -163,7 +179,9 @@ body {
 }
 .global-nav-floating {
   .main-entityHeader-container.main-entityHeader-withBackgroundImage {
-    height: calc(var(--main-view-height) + var(--global-nav-height) - var(--panel-gap));
+    height: calc(
+      var(--main-view-height) + var(--global-nav-height) - var(--panel-gap)
+    );
   }
 }
 
@@ -204,7 +222,9 @@ body {
   }
 
   .main-view-container__scroll-node-child {
-    padding-bottom: calc(var(--player-height, 5rem) - var(--panel-gap)) !important;
+    padding-bottom: calc(
+      var(--player-height, 5rem) - var(--panel-gap)
+    ) !important;
   }
 }
 
@@ -299,6 +319,7 @@ body {
 .global-nav-floating {
   .Root__main-view {
     grid-row-start: global-nav !important;
+    grid-row-start: top-banner !important;
   }
 }
 .global-nav-auto-hide {
@@ -306,10 +327,12 @@ body {
   .Root__right-sidebar,
   #Desktop_LeftSidebar_Id {
     grid-row-start: global-nav !important;
+    grid-row-start: top-banner !important;
   }
 
   .QdB2YtfEq0ks5O4QbtwX /* now playing card in root */ {
     grid-row-start: global-nav !important;
+    grid-row-start: top-banner !important;
   }
 
   .QdB2YtfEq0ks5O4QbtwX.FWlHsHhD0hSw1ldIXnOF,
@@ -452,7 +475,8 @@ body {
 }
 
 /* ========== New Home Styles ========== */
-.new-home:not(.flexy-home) .cZrkCxXnCc7KLZqAqWoz
+.new-home:not(.flexy-home)
+  .cZrkCxXnCc7KLZqAqWoz
   .main-home-content
   > [data-shelf-collapsable]
   + [data-shelf]:nth-child(2),
@@ -656,6 +680,7 @@ body {
 }
 
 /* ========== Under Main View ==========  */
+.before-scroll-node,
 .under-main-view /* Default one */ {
   display: none;
 }
@@ -679,7 +704,10 @@ body {
   will-change: transform, filter;
   transition: all -1s linear;
 
-  mask-image: linear-gradient(rgb(0, 0, 0) calc(var(--umv-height) / 2), rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(
+    rgb(0, 0, 0) calc(var(--umv-height) / 2),
+    rgba(0, 0, 0, 0) 100%
+  );
   transform-origin: center center;
 
   &.color {
@@ -688,7 +716,10 @@ body {
 
   &.desktop {
     --umv-height: calc(var(--main-view-height, 95vh) * 1.125);
-    mask-image: linear-gradient(rgb(0, 0, 0) calc(var(--umv-height) / 1.125), rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(
+      rgb(0, 0, 0) calc(var(--umv-height) / 1.125),
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 
   &.fade-in {
@@ -1195,8 +1226,8 @@ input.lucid-input {
   cursor: all-scroll;
   width: 100%;
   position: relative;
-  background-image:
-    linear-gradient(to bottom, transparent, black), linear-gradient(to right, white, transparent);
+  background-image: linear-gradient(to bottom, transparent, black),
+    linear-gradient(to right, white, transparent);
   border-radius: 8px 8px 0 0;
 }
 
@@ -1216,7 +1247,16 @@ input.lucid-input {
   position: relative;
   width: 100%;
   height: 2rem;
-  background-image: linear-gradient(to right, red, #ff0, #0f0, #0ff, #00f, #f0f, red);
+  background-image: linear-gradient(
+    to right,
+    red,
+    #ff0,
+    #0f0,
+    #0ff,
+    #00f,
+    #f0f,
+    red
+  );
   border-radius: 8px;
 }
 
