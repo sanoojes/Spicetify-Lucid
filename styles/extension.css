@@ -643,6 +643,95 @@ body {
   }
 }
 
+/* ========== Page Styles ========== */
+.page-compact-card .main-entityHeader-container,
+.page-card .main-entityHeader-container {
+  position: relative;
+  min-height: 10rem;
+  height: min(32vh, var(--fluid-height));
+
+  .contentSpacing {
+    width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
+    height: fit-content;
+    left: 50%;
+    bottom: 1rem;
+    transform: translate3d(-50%, 0px, 0px);
+    position: absolute;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    container-type: inline-size;
+    border: var(--default-border);
+    transition: var(--default-transition);
+    &:hover {
+      border: var(--hover-border);
+    }
+
+    &::before {
+      content: "";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      z-index: -1;
+      background-color: rgba(var(--clr-surface-1-rgb), 0.5);
+      -webkit-backdrop-filter: blur(var(--page-blur, 12px))
+        saturate(var(--page-saturate, 1.5));
+      backdrop-filter: blur(var(--page-blur, 12px))
+        saturate(var(--page-saturate, 1.5));
+    }
+  }
+}
+.page-card {
+  .main-entityHeader-container {
+    --min-fluid-height: clamp(
+      250px,
+      200px + (var(--main-view-width) - 600px) / 424 * 90,
+      40vh
+    );
+  }
+}
+.page-card .main-entityHeader-container .encore-text-headline-large {
+  font-size: clamp(2cqmax, var(--main-view-width) / 20, 5cqmax) !important;
+}
+.page-compact-card {
+  .eFZahdafW8vQ7xY1kfBg {
+    height: fit-content;
+  }
+  .main-entityHeader-container .contentSpacing {
+    min-width: calc(var(--main-view-width) / 2);
+    width: calc(var(--main-view-width) / 1.5);
+  }
+  .main-entityHeader-imageContainer,
+  .main-entityHeader-imageContainerNew {
+    height: 8rem;
+    width: 8rem;
+  }
+  .encore-text-headline-large {
+    font-size: 2cqmax !important;
+  }
+}
+
+.page-compact {
+  .main-entityHeader-container {
+    min-height: 20vh;
+    height: 20vh;
+  }
+  .main-entityHeader-container .encore-text-headline-large {
+    font-size: clamp(2.5cqmax, var(--main-view-width) / 50, 3cqmax) !important;
+  }
+  .main-entityHeader-imageContainer {
+    --img-size: clamp(
+      80px,
+      80px + (var(--main-view-width) - 600px) / 424 * 104,
+      140px
+    );
+    height: var(--img-size);
+    width: var(--img-size);
+  }
+}
+
 /* ========== background ========== */
 .lucid-bg {
   display: block;
@@ -707,7 +796,7 @@ body {
   background-repeat: no-repeat;
 
   will-change: transform, filter;
-  transition: all -1s linear;
+  transition: all 0s linear;
 
   mask-image: linear-gradient(
     rgb(0, 0, 0) calc(var(--umv-height) / 2),
@@ -1141,7 +1230,7 @@ input.lucid-input {
   backdrop-filter: blur(24px);
   opacity: 1;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 
   &.fade-out {
