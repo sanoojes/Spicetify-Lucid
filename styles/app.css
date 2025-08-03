@@ -54,6 +54,7 @@
 .ChipInnerComponent-sm-selected,
 .ChipInnerComponent-sm,
 .main-card-card,
+.marketplace-add-snippet-btn,
 .Button-buttonSecondary-small-disabled-useBrowserDefaultFocusStyle,
 .Button-buttonSecondary-small-useBrowserDefaultFocusStyle {
   border: var(--default-border);
@@ -152,18 +153,16 @@
 }
 
 /* ========== Marketplace ========== */
-.marketplace-content {
-  .main-card-card {
-    button {
-      background-color: var(--clr-primary);
-      color: var(--clr-on-primary);
-      transition: var(--default-transition);
+.button-module__button___hf2qg_marketplace,
+.marketplace-add-snippet-btn,
+.marketplace-content button {
+  background-color: var(--clr-primary);
+  color: var(--clr-on-primary);
+  transition: var(--default-transition);
 
-      &:hover {
-        background-color: var(--clr-on-primary);
-        color: var(--clr-primary);
-      }
-    }
+  &:hover {
+    background-color: var(--clr-on-primary);
+    color: var(--clr-primary);
   }
 }
 .main-gridContainer-gridContainer {
@@ -220,10 +219,11 @@
     -webkit-backdrop-filter: blur(22px) saturate(1.5);
     backdrop-filter: blur(22px) saturate(1.5);
   }
-
+  .niXChlbt7kxslMUdfwu9,
   .main-contextMenu-menuItemButton {
     border-radius: 0.5rem;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.5rem;
+    height: fit-content;
   }
 }
 .main-contextMenu-tippy,
@@ -275,6 +275,9 @@
   .main-topBar-searchBar {
     box-shadow: none !important;
   }
+  .main-globalNav-navLink {
+    min-width: 52px;
+  }
 
   .GimJ6fo6WOYPyWNVpSr1,
   .main-topBar-searchBar,
@@ -283,6 +286,7 @@
     transition: var(--default-transition);
     border: var(--default-border);
     border-radius: var(--br);
+    height: 52px;
 
     &:hover {
       border: var(--hover-border);

@@ -141,7 +141,7 @@ export const patchIcons = () => {
  }
  .Root__globalNav .main-globalNav-navLink.custom-navlink[aria-label*="Marketplace"] path {
  	d: var(--appstore-icon-24);
- 	transform: scale(3) !important;
+ 	transform: scale(3.2) !important;
  }
  .Root__globalNav .main-globalNav-navLinkActive.custom-navlink[aria-label*="Marketplace"] path {
  	d: var(--appstore-filled-icon-24);

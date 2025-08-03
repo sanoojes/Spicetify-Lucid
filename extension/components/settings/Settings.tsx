@@ -1,23 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { useStore } from 'zustand';
-import type { SectionProps, GroupProps, Component } from '@app/types/settingSchema.ts';
-import getSettingsSections from '@components/settings/helper/getSettingsSections.ts';
-import Section from '@components/settings/ui/Section.tsx';
-import appStore from '@store/appStore.ts';
-import addSocialButtonsToModal from '@utils/addSocialButtonsToModal.tsx';
-import setFloating from '@utils/dom/setFloating.ts';
-import UI from '@components/UI.tsx';
+import React, { useEffect, useState } from "react";
+import { useStore } from "zustand";
+import type {
+  SectionProps,
+  GroupProps,
+  Component,
+} from "@app/types/settingSchema.ts";
+import getSettingsSections from "@components/settings/helper/getSettingsSections.ts";
+import Section from "@components/settings/ui/Section.tsx";
+import appStore from "@store/appStore.ts";
+import addSocialButtonsToModal from "@utils/addSocialButtonsToModal.tsx";
+import setFloating from "@utils/dom/setFloating.ts";
+import UI from "@components/UI.tsx";
 
 const Settings = () => {
   const [sections, setSections] = useState<SectionProps[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const isFloating = useStore(appStore, (state) => state.settingModal.isFloating);
+  const isFloating = useStore(
+    appStore,
+    (state) => state.settingModal.isFloating
+  );
 
   useEffect(() => {
-    document.body.classList.add('settings-open');
+    document.body.classList.add("settings-open");
     addSocialButtonsToModal();
 
     const initialSections = getSettingsSections();
@@ -30,16 +37,18 @@ const Settings = () => {
     });
 
     return () => {
-      document.body.classList.remove('settings-open');
+      document.body.classList.remove("settings-open");
       unsubscribe();
     };
   }, []);
 
   useEffect(() => {
     if (!isFloating) return;
-    const target = document.querySelector('generic-modal .GenericModal') as HTMLElement | null;
+    const target = document.querySelector(
+      "generic-modal .GenericModal"
+    ) as HTMLElement | null;
     const dragTarget = document.querySelector(
-      '.main-trackCreditsModal-header'
+      ".main-trackCreditsModal-header"
     ) as HTMLElement | null;
     if (!target || !dragTarget) return;
 
@@ -48,7 +57,7 @@ const Settings = () => {
       dragTarget,
       defaultPosition: appStore.getState().settingModal.floatingPosition,
       addClassTarget: document.querySelectorAll(
-        'generic-modal,.main-embedWidgetGenerator-container'
+        ".GenericModal__overlay,.GenericModal,.main-embedWidgetGenerator-container"
       ),
       onDragEnd: (x, y) => appStore.getState().setSettingModalPosition(x, y),
     });
@@ -59,12 +68,15 @@ const Settings = () => {
   const lowerSearch = searchQuery.toLowerCase();
 
   const filteredSections = sections
-    .filter((section) => section.sectionName === selectedCategory || selectedCategory === 'All')
+    .filter(
+      (section) =>
+        section.sectionName === selectedCategory || selectedCategory === "All"
+    )
     .map((section) => {
       const filteredGroups = section.groups
         .map((group) => {
-          const filteredComponents = group.components.filter((comp: Component) =>
-            comp.label.toLowerCase().includes(lowerSearch)
+          const filteredComponents = group.components.filter(
+            (comp: Component) => comp.label.toLowerCase().includes(lowerSearch)
           );
           if (filteredComponents.length === 0) return null;
           return { ...group, components: filteredComponents };
@@ -76,7 +88,7 @@ const Settings = () => {
     })
     .filter(Boolean) as SectionProps[];
 
-  const categories = ['All', ...sections.map((s) => s.sectionName)];
+  const categories = ["All", ...sections.map((s) => s.sectionName)];
 
   return (
     <div className="lucid-settings">
@@ -105,7 +117,9 @@ const Settings = () => {
           <p className="encore-text lucid-error-text">No settings found.</p>
         </div>
       ) : (
-        filteredSections.map((section) => <Section key={section.id} {...section} />)
+        filteredSections.map((section) => (
+          <Section key={section.id} {...section} />
+        ))
       )}
     </div>
   );

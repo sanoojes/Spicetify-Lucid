@@ -822,18 +822,14 @@ body {
 }
 
 /* ========== Settings - Modal ==========  */
-generic-modal.floating {
-  .GenericModal__overlay {
-    height: 0;
-    width: 0;
-    pointer-events: none;
-  }
-
-  .GenericModal {
-    position: fixed;
-    pointer-events: all;
-  }
-
+.GenericModal__overlay.floating {
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+.GenericModal.floating {
+  position: fixed;
+  pointer-events: all;
   .main-embedWidgetGenerator-container {
     max-width: 32rem;
     max-height: 60vh;

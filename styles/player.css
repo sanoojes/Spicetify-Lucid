@@ -21,12 +21,14 @@
 .main-nowPlayingBar-container {
   position: relative;
 }
+.player-controls__buttons {
+  margin-bottom: 4px;
+}
 
 .main-nowPlayingBar-nowPlayingBar {
   height: var(--player-height, 80px);
   background: var(--player-bg-color, var(--main-bg));
-}
-.main-nowPlayingBar-container {
+  padding: 0 var(--player-padding-x);
   overflow: hidden;
   border: var(--default-border);
   border-radius: var(--player-border-radius, var(--m-br));
