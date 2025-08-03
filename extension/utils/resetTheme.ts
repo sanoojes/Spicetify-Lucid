@@ -2,7 +2,7 @@ import appStore from '@store/appStore.ts';
 
 function resetTheme() {
   appStore.getState().resetStore();
-  // location.reload();
+  location.reload();
 }
 
 export default resetTheme;
