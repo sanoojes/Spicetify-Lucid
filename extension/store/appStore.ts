@@ -69,6 +69,7 @@ export const DEFAULT_STATE: AppState = {
     customUrl: "https://picsum.photos/1920/1080",
   },
   uiPreferences: {
+    windowControlHeight: 64,
     bodyFont: DEFAULT_FONT,
     titleFont: DEFAULT_FONT,
     border: {
@@ -114,7 +115,6 @@ export const DEFAULT_STATE: AppState = {
     floatingPosition: { x: 64, y: 64 },
   },
   library: {
-    floating: false,
     autoHide: false,
     hoverTargetWidth: 40,
   },
@@ -122,7 +122,6 @@ export const DEFAULT_STATE: AppState = {
     mode: "default",
     positionX: "right", // only used in compact mode
     positionY: "bottom", // only used in compact mode
-    floating: false,
     autoHide: false,
     hoverTargetWidth: 40,
   },

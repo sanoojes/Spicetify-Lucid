@@ -1,36 +1,45 @@
-import appStore from '@store/appStore.ts';
-import setupHoverToggle from '@utils/setupHoverToggle.ts';
-import { updateCardBgAlpha } from '@utils/updateCardBgAlpha.ts';
+import appStore from "@store/appStore.ts";
+import setupHoverToggle from "@utils/setupHoverToggle.ts";
+import { updateCardBgAlpha } from "@utils/updateCardBgAlpha.ts";
 
-const FULL_SCREEN_CLASS_NAME = '.a7Ka5yznvrbSDPk1G36o,.pd3cZQBgtgOFLAp9ns7Q,.JVoVebPNAPKBLKSlIBXw';
+const FULL_SCREEN_CLASS_NAME =
+  ".a7Ka5yznvrbSDPk1G36o,.pd3cZQBgtgOFLAp9ns7Q,.JVoVebPNAPKBLKSlIBXw";
 
-export function setRightSidebar(rightSidebar = appStore.getState().rightSidebar) {
-  const { mode, autoHide, floating, hoverTargetWidth, positionX, positionY } = rightSidebar;
+export function setRightSidebar(
+  rightSidebar = appStore.getState().rightSidebar
+) {
+  const { mode, autoHide, hoverTargetWidth, positionX, positionY } =
+    rightSidebar;
 
-  ['compact', 'default'].forEach((type) =>
+  ["compact", "default"].forEach((type) =>
     document.body.classList.toggle(`npv-${type}`, mode === type)
   );
-  ['left', 'right'].forEach((pos) =>
+  ["left", "right"].forEach((pos) =>
     document.body.classList.toggle(`npv-${pos}`, positionX === pos)
   );
-  ['bottom', 'top'].forEach((pos) =>
+  ["bottom", "top"].forEach((pos) =>
     document.body.classList.toggle(`npv-${pos}`, positionY === pos)
   );
 
-  document.body.classList.toggle('right-sidebar-floating', floating && mode === 'default');
-  document.body.classList.toggle('right-sidebar-auto-hide', autoHide && mode === 'default');
+  document.body.classList.toggle(
+    "right-sidebar-auto-hide",
+    autoHide && mode === "default"
+  );
 
   if (autoHide) {
-    document.body.style.setProperty('--rs-target-width', `${hoverTargetWidth}px`);
+    document.body.style.setProperty(
+      "--rs-target-width",
+      `${hoverTargetWidth}px`
+    );
   } else {
-    document.body.style.removeProperty('--rs-target-width');
+    document.body.style.removeProperty("--rs-target-width");
   }
 
   setupHoverToggle({
-    containerSelector: '.Root__top-container',
-    onTopContainerSelectors: ['.Root__right-sidebar'],
-    hoverTargetId: 'rs-hover-target',
-    className: 'show',
+    containerSelector: ".Root__top-container",
+    onTopContainerSelectors: [".Root__right-sidebar"],
+    hoverTargetId: "rs-hover-target",
+    className: "show",
     condition: autoHide,
   });
 
@@ -44,7 +53,7 @@ export function setRightSidebar(rightSidebar = appStore.getState().rightSidebar)
     });
     targetObserver.observe(el, {
       attributes: true,
-      attributeFilter: ['style'],
+      attributeFilter: ["style"],
     });
   };
 

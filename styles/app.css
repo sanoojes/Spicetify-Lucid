@@ -2,6 +2,7 @@
 @import "colors.css";
 @import "keyframes.css";
 @import "player.css";
+@import "icons.css";
 
 :root {
   --header-filters: blur(32px) saturate(1.5) brightness(0.7);
@@ -52,6 +53,7 @@
 .ChipInnerComponent-sm-isUsingKeyboard,
 .ChipInnerComponent-sm-selected,
 .ChipInnerComponent-sm,
+.main-card-card,
 .Button-buttonSecondary-small-disabled-useBrowserDefaultFocusStyle,
 .Button-buttonSecondary-small-useBrowserDefaultFocusStyle {
   border: var(--default-border);
@@ -147,6 +149,25 @@
     border: var(--hover-border);
     background-color: var(--clr-surface);
   }
+}
+
+/* ========== Marketplace ========== */
+.marketplace-content {
+  .main-card-card {
+    button {
+      background-color: var(--clr-primary);
+      color: var(--clr-on-primary);
+      transition: var(--default-transition);
+
+      &:hover {
+        background-color: var(--clr-on-primary);
+        color: var(--clr-primary);
+      }
+    }
+  }
+}
+.main-gridContainer-gridContainer {
+  gap: 8px;
 }
 
 /* ========== Scrollbar ========== */

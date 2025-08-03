@@ -1,33 +1,41 @@
-import appStore from '@store/appStore.ts';
-import tempStore from '@store/tempStore.ts';
-import serializeFilters from '@utils/dom/serializeFilters.ts';
-import waitForElements from '@utils/dom/waitForElements.ts';
-import React, { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
-import { useStore } from 'zustand';
+import appStore from "@store/appStore.ts";
+import tempStore from "@store/tempStore.ts";
+import serializeFilters from "@utils/dom/serializeFilters.ts";
+import waitForElements from "@utils/dom/waitForElements.ts";
+import React, {
+  type CSSProperties,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { useStore } from "zustand";
 
 export const SCROLL_SELECTOR =
-  '.Root__main-view [data-overlayscrollbars-viewport], .Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport], .main-view-container__scroll-node div:nth-child(2)';
+  ".Root__main-view [data-overlayscrollbars-viewport], .Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport], .main-view-container__scroll-node div:nth-child(2)";
 
 const UnderMainView = () => {
-  const { type, customUrl, customColor, filter, isScaling, isScrolling } = useStore(
-    appStore,
-    (s) => s.umv
-  );
+  const { type, customUrl, customColor, filter, isScaling, isScrolling } =
+    useStore(appStore, (s) => s.umv);
   const { desktop, cover } = useStore(tempStore, (s) => s.pageImg);
   const imgUrl = useStore(tempStore, (s) => s.player?.current?.url);
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const [styles, setStyles] = useState({ scale: 1, translateY: 0, blur: '0px' });
+  const [styles, setStyles] = useState({
+    scale: 1,
+    translateY: 0,
+    blur: "0px",
+  });
 
   const currentImage = useMemo(() => {
     if (desktop) return desktop;
-    if (type === 'custom-img' && cover) return customUrl ?? cover;
-    if (type === 'playing' && imgUrl && cover) return imgUrl;
-    return cover ?? '';
+    if (type === "custom-img" && cover) return customUrl ?? cover;
+    if (type === "playing" && imgUrl && cover) return imgUrl;
+    return cover ?? "";
   }, [type, customUrl, cover, imgUrl, desktop]);
 
   useEffect(() => {
-    if (type === 'custom-color') return;
+    if (type === "custom-color") return;
 
     const el = document.querySelector(SCROLL_SELECTOR) as HTMLDivElement;
     if (!el) return;
@@ -47,7 +55,7 @@ const UnderMainView = () => {
         const scale = isScaling ? 1.1 + 0.75 * progress : 1;
         const translateY = isScrolling ? -scrollTop : 0;
 
-        const baseBlur = currentImage !== desktop ? (filter.blur ?? 0) : 0;
+        const baseBlur = currentImage !== desktop ? filter.blur ?? 0 : 0;
         const blur = `${baseBlur + 32 * progress}px`;
 
         setStyles({ scale, translateY, blur });
@@ -56,23 +64,25 @@ const UnderMainView = () => {
     };
 
     handleScroll();
-    el.addEventListener('scroll', handleScroll);
-    return () => el.removeEventListener('scroll', handleScroll);
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
   }, [type, currentImage, desktop, filter.blur, isScaling, isScrolling]);
 
   const isDesktop = currentImage === desktop;
-  const isColor = type === 'custom-color';
+  const isColor = type === "custom-color";
 
   return (
     <div
-      className={`umv${isDesktop ? ' desktop' : isColor ? ' color' : ' img'}`}
+      className={`umv${isDesktop ? " desktop" : isColor ? " color" : " img"}`}
       style={
         {
-          display: type === 'none' ? 'none' : undefined,
-          '--umv-bg': !isColor ? `url("${currentImage}")` : '',
-          '--umv-bg-color': isColor && cover ? customColor : '',
-          ...(type !== 'custom-color' && {
-            filter: `blur(${styles.blur}) ${serializeFilters(filter, { skipBlur: true })}`,
+          display: type === "none" && !desktop ? "none" : "",
+          "--umv-bg": !isColor ? `url("${currentImage}")` : "",
+          "--umv-bg-color": isColor && cover ? customColor : "",
+          ...(type !== "custom-color" && {
+            filter: `blur(${styles.blur}) ${serializeFilters(filter, {
+              skipBlur: true,
+            })}`,
             transform: `translate3d(0, ${styles.translateY}px, 0) scale(${styles.scale})`,
           }),
         } as CSSProperties

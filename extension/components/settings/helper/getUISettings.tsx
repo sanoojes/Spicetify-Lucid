@@ -20,6 +20,22 @@ export const getUISettings = (
     sectionName: "UI Settings",
     groups: [
       {
+        id: "window-controls",
+        visible: isWindows,
+        groupName: "Window Controls",
+        components: [
+          {
+            id: "mode",
+            type: "Input",
+            inputType: "number",
+            label: "Window Control Height",
+            value: uiPreferences.windowControlHeight,
+            onChange: (windowControlHeight) =>
+              state.setUIPreferences({ windowControlHeight }),
+          },
+        ],
+      },
+      {
         id: "page",
         groupName: "Page",
         components: [
@@ -99,7 +115,7 @@ export const getUISettings = (
             id: "floating-sensitivity",
             type: "Input",
             label: "Hover Width",
-            visible: () => library.floating,
+            visible: () => library.autoHide,
             tippy:
               "Trigger zone (in pixels) from the left edge to reveal the library.",
             inputType: "number",
@@ -203,7 +219,7 @@ export const getUISettings = (
             id: "floating-sensitivity",
             type: "Input",
             label: "Hover Width",
-            visible: () => rightSidebar.floating,
+            visible: () => rightSidebar.autoHide,
             tippy:
               "Trigger zone (in pixels) from the right edge to show the sidebar.",
             inputType: "number",
