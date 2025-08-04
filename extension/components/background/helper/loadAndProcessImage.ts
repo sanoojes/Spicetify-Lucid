@@ -49,10 +49,10 @@ async function loadAndProcessImage(url: string, filter: CSSFilter): Promise<THRE
       return null;
     }
 
-    blurredCtx.filter = serializeFilters(filter);
+    blurredCtx.filter = serializeFilters(filter, { skipOpacity: true });
     blurredCtx.drawImage(circleCanvas, padding / 2, padding / 2);
 
-    const texture = new THREE.CanvasTexture(blurredCanvas as unknown as HTMLCanvasElement);
+    const texture = new THREE.CanvasTexture(blurredCanvas);
     texture.needsUpdate = true;
     return texture;
   } catch (err) {

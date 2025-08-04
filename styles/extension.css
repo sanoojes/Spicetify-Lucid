@@ -365,7 +365,7 @@ body {
 /* ========== Compact Right Sidebar ========== */
 .npv-compact {
   .Root__main-view {
-    grid-column-end: now-playing-bar !important;
+    grid-row-end: now-playing-bar !important;
   }
 
   .Root__right-sidebar {

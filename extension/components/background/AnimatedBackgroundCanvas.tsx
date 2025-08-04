@@ -166,7 +166,14 @@ const AnimatedBackgroundCanvas: FC<{ imageSrc?: string }> = ({ imageSrc }) => {
     <canvas
       ref={canvasRef}
       className="animated-bg-canvas"
-      style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        opacity: `${filter.opacity ?? 100}%`,
+      }}
     />
   );
 };

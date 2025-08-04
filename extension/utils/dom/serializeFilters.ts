@@ -1,13 +1,16 @@
 import type { CSSFilter } from '@app/types/appStore.ts';
 
-function serializeFilters(filters: CSSFilter, options: { skipBlur?: boolean } = {}): string {
-  const { skipBlur = false } = options;
+function serializeFilters(
+  filters: CSSFilter,
+  options: { skipBlur?: boolean; skipOpacity?: boolean } = {}
+): string {
+  const { skipBlur = false, skipOpacity = false } = options;
   return [
     !skipBlur && filters?.blur !== undefined ? `blur(${filters.blur}px)` : '',
     filters?.brightness !== undefined ? `brightness(${filters.brightness}%)` : '',
     filters?.contrast !== undefined ? `contrast(${filters.contrast}%)` : '',
     filters?.saturation !== undefined ? `saturate(${filters.saturation}%)` : '',
-    filters?.opacity !== undefined ? `opacity(${filters.opacity}%)` : '',
+    !skipOpacity && filters?.opacity !== undefined ? `opacity(${filters.opacity}px)` : '',
   ]
     .filter(Boolean)
     .join(' ');

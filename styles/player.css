@@ -19,7 +19,13 @@
 }
 
 .main-nowPlayingBar-container {
+  height: var(--player-height, 80px);
+  background: var(--player-bg-color, var(--main-bg));
   position: relative;
+  padding: 0 var(--player-padding-x);
+  overflow: hidden;
+  border: var(--default-border);
+  border-radius: var(--player-border-radius, var(--m-br));
 }
 .player-controls__buttons {
   margin-bottom: 4px;
@@ -27,11 +33,6 @@
 
 .main-nowPlayingBar-nowPlayingBar {
   height: var(--player-height, 80px);
-  background: var(--player-bg-color, var(--main-bg));
-  padding: 0 var(--player-padding-x);
-  overflow: hidden;
-  border: var(--default-border);
-  border-radius: var(--player-border-radius, var(--m-br));
 }
 
 .floating.Root__now-playing-bar {
