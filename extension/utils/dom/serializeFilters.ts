@@ -10,7 +10,7 @@ function serializeFilters(
     filters?.brightness !== undefined ? `brightness(${filters.brightness}%)` : '',
     filters?.contrast !== undefined ? `contrast(${filters.contrast}%)` : '',
     filters?.saturation !== undefined ? `saturate(${filters.saturation}%)` : '',
-    !skipOpacity && filters?.opacity !== undefined ? `opacity(${filters.opacity}px)` : '',
+    !skipOpacity && filters?.opacity !== undefined ? `opacity(${filters.opacity}%)` : '',
   ]
     .filter(Boolean)
     .join(' ');
