@@ -17,17 +17,17 @@ export const getColorSettings = (state: ReturnType<typeof appStore.getState>): S
           {
             id: 'color-mode',
             type: 'Dropdown',
-            label: 'Theme Mode',
+            label: 'Color Theme',
             tippy: (
               <div>
                 <p>
-                  <strong>Default:</strong> Uses the app theme.
+                  <strong>Default:</strong> Uses the app’s default theme colors.
                 </p>
                 <p>
-                  <strong>Dynamic:</strong> Adapts to media artwork.
+                  <strong>Dynamic:</strong> Automatically adapts to media artwork.
                 </p>
                 <p>
-                  <strong>Custom:</strong> Use your own accent color.
+                  <strong>Custom:</strong> Pick your own accent color.
                 </p>
               </div>
             ),
@@ -42,24 +42,24 @@ export const getColorSettings = (state: ReturnType<typeof appStore.getState>): S
           {
             id: 'is-dark',
             type: 'Toggle',
-            label: 'Light Mode (experimental)',
-            tippy: 'Light mode is not ready yet. need ideas.',
+            label: 'Enable Light Mode (Experimental)',
+            tippy: 'Light mode is in development. Feedback and ideas are welcome!',
             isChecked: !color.isDark,
             onChange: (isDark) => state.setColor({ isDark: !isDark }),
           },
           {
             id: 'is-tinted',
             type: 'Toggle',
-            label: 'UI Tint',
-            tippy: 'Adds a subtle color tint to the UI.',
+            label: 'Enable UI Tinting',
+            tippy: 'Applies a soft tint of your chosen accent color to the UI.',
             isChecked: color.isTinted,
             onChange: (isTinted) => state.setColor({ isTinted }),
           },
           {
             id: 'set-color',
             type: 'Color',
-            label: 'Accent Color',
-            tippy: 'Custom accent color.',
+            label: 'Select Accent Color',
+            tippy: 'Choose your preferred accent color.',
             color: color.accentColor,
             initialColor: DEFAULT_STATE.color.accentColor,
             hideAlpha: true,

@@ -15,14 +15,14 @@ export const getModalSettings = (state: ReturnType<typeof appStore.getState>): S
           {
             id: 'modal-position',
             type: 'Dropdown',
-            label: 'Opener Location',
+            label: 'Settings Access Position',
             value: settingModal.accessPoint,
             options: [
               ['Menu', 'menu'],
               ['Navigation', 'nav'],
             ],
             onChange: (accessPoint) => state.setSettingModal({ accessPoint }),
-            tippy: 'Choose where the modal button appears.',
+            tippy: 'Select where the settings button should appear in the interface.',
           },
           {
             id: 'is-floating',
@@ -30,7 +30,7 @@ export const getModalSettings = (state: ReturnType<typeof appStore.getState>): S
             label: 'Floating Modal',
             isChecked: settingModal.isFloating,
             onChange: (isFloating) => state.setSettingModal({ isFloating }),
-            tippy: 'Allow modal to be draggable on screen.',
+            tippy: 'Allows the settings modal to float and be repositioned by dragging.',
           },
         ],
       },

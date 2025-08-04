@@ -22,7 +22,7 @@ export const getBackgroundSettings = (
           {
             id: 'mode',
             type: 'Dropdown',
-            label: 'Background Type',
+            label: 'Background Style',
             value: bgMode,
             options: [
               ['Static Image', 'static'],
@@ -40,8 +40,8 @@ export const getBackgroundSettings = (
           {
             id: 'auto-stop-anim',
             type: 'Toggle',
-            label: 'Auto-Stop',
-            tippy: 'Pause animation when Spotify is not in focus.',
+            label: 'Pause When Inactive',
+            tippy: 'Stops animation when Spotify is not the active window.',
             isChecked: bgOptions.autoStopAnimation,
             onChange: (autoStopAnimation) => state.setBgOptions({ autoStopAnimation }),
           },
@@ -49,14 +49,14 @@ export const getBackgroundSettings = (
       },
       {
         id: 'background-color',
-        groupName: 'Color',
+        groupName: 'Solid Color Settings',
         visible: () => bgMode === 'solid',
         components: [
           {
             id: 'color',
             type: 'Color',
-            label: 'Color',
-            tippy: 'Choose a solid background color.',
+            label: 'Select Background Color',
+            tippy: 'Pick a solid color for the background.',
             color: bgOptions.color,
             initialColor: DEFAULT_STATE.bg.options.color,
             onChange: (color) => state.setBgOptions({ color }),
@@ -65,28 +65,28 @@ export const getBackgroundSettings = (
       },
       {
         id: 'background-image',
-        groupName: 'Image Source',
+        groupName: 'Image Settings',
         visible: () => bgMode !== 'solid',
         components: [
           {
             id: 'img-mode',
             type: 'Dropdown',
-            label: 'Source',
+            label: 'Image Source',
             value: imageMode,
             options: [
-              ['Now Playing', 'player'],
-              ['Page Cover', 'page'],
-              ['Custom URL', 'custom'],
+              ['Now Playing Track', 'player'],
+              ['Page Cover Art', 'page'],
+              ['Custom Image URL', 'custom'],
             ],
             onChange: (imageMode) => state.setBgOptions({ imageMode }),
           },
           {
             id: 'img-src',
             type: 'Input',
-            label: 'Image URL',
+            label: 'Custom Image URL',
             inputType: 'text',
             value: bgOptions.imageSrc ?? undefined,
-            placeholder: 'Enter image URL...',
+            placeholder: 'Paste your image URL here...',
             visible: () => imageMode === 'custom',
             validation: (value) => z.url({ error: 'Invalid URL' }).safeParse(value),
             onChange: (imageSrc) => state.setBgOptions({ imageSrc }),

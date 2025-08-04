@@ -16,37 +16,38 @@ export const getUnderMainViewSettings = (
     groups: [
       {
         id: 'type',
-        groupName: 'Type',
+        groupName: 'Background Style',
         components: [
           {
             id: 'type',
             type: 'Dropdown',
-            label: 'Type',
+            label: 'Background Style',
             value: type,
             options: [
               ['Default', 'default'],
-              ['Now Playing', 'playing'],
+              ['Now Playing Artwork', 'playing'],
               ['Custom Color', 'custom-color'],
-              ['Custom Image/GIF', 'custom-img'],
-              ['None', 'none'],
+              ['Custom Image or GIF', 'custom-img'],
+              ['Hidden', 'none'],
             ],
             onChange: (selectedType) => state.setUMV({ type: selectedType }),
             tippy: (
               <div>
                 <p>
-                  <strong>Default:</strong> Playlist/page cover
+                  <strong>Default:</strong> Uses playlist or page cover.
                 </p>
                 <p>
-                  <strong>Now Playing:</strong> Current track artwork
+                  <strong>Now Playing:</strong> Shows current track artwork.
                 </p>
                 <p>
-                  <strong>Custom Color:</strong> Your own color
+                  <strong>Custom Color:</strong> Use your own background color.
                 </p>
                 <p>
-                  <strong>Custom Image/GIF:</strong> URL-based image or GIF
+                  <strong>Custom Image or GIF:</strong> Provide a URL to display a static or
+                  animated image.
                 </p>
                 <p>
-                  <strong>None:</strong> Hidden
+                  <strong>Hidden:</strong> Disables the background.
                 </p>
               </div>
             ),
@@ -61,16 +62,17 @@ export const getUnderMainViewSettings = (
           {
             id: 'is-scrolling',
             type: 'Toggle',
-            label: 'Scrolling',
-            tippy: 'Not recommended unless necessary.',
+            label: 'Enable Scrolling Effect',
+            tippy: 'Add scrolling effect. May cause performance issues.',
             isChecked: isScrolling,
             onChange: (isScrolling) => state.setUMV({ isScrolling }),
           },
           {
             id: 'is-scaling',
             type: 'Toggle',
-            label: 'Scaling',
+            label: 'Enable Scaling Effect',
             visible: () => type !== 'custom-color',
+            tippy: 'Applies a zoom-in/out effect to the background.',
             isChecked: isScaling,
             onChange: (isScaling) => state.setUMV({ isScaling }),
           },
@@ -78,15 +80,15 @@ export const getUnderMainViewSettings = (
       },
       {
         id: 'custom-url',
-        groupName: 'Custom URL',
+        groupName: 'Custom Image',
         visible: () => type === 'custom-img',
         components: [
           {
             id: 'custom-url',
             type: 'Input',
-            label: 'Image/GIF URL',
+            label: 'Image or GIF URL',
             inputType: 'text',
-            placeholder: 'Paste URL...',
+            placeholder: 'Paste a direct image/GIF URL...',
             value: customUrl,
             validation: (val) => z.url({ error: 'Invalid URL' }).safeParse(val).success,
             onChange: (url) => state.setUMV({ customUrl: url }),
@@ -95,14 +97,14 @@ export const getUnderMainViewSettings = (
       },
       {
         id: 'custom-color',
-        groupName: 'Color',
+        groupName: 'Custom Color',
         visible: () => type === 'custom-color',
         components: [
           {
             id: 'color',
             type: 'Color',
-            label: 'Background',
-            tippy: 'HEX color code.',
+            label: 'Background Color',
+            tippy: 'Select a HEX color for the background.',
             color: customColor,
             initialColor: DEFAULT_STATE.umv.customColor,
             onChange: (customColor) => state.setUMV({ customColor }),
@@ -117,7 +119,7 @@ export const getUnderMainViewSettings = (
           {
             id: 'blur',
             type: 'Input',
-            label: 'Blur',
+            label: 'Blur Amount',
             inputType: 'number',
             value: filter.blur,
             validation: (val) => CSSFilterSchema.shape.blur.safeParse(val),

@@ -48,7 +48,7 @@ export const getPlayerSettings = (state: ReturnType<typeof appStore.getState>): 
           {
             id: `bg-color-${mode}`,
             type: 'Color',
-            label: 'Background',
+            label: 'Background Color',
             color: styles.bgColor,
             initialColor:
               DEFAULT_STATE.player[mode === 'compact' ? 'compactStyle' : 'defaultStyle'].bgColor,
@@ -160,7 +160,7 @@ export const getPlayerSettings = (state: ReturnType<typeof appStore.getState>): 
           {
             id: 'hide-icons',
             type: 'Toggle',
-            label: 'Hide Icons',
+            label: 'Hide Extra Controls',
             visible: () => player.mode === 'compact',
             isChecked: player.hideExtraIcon,
             onChange: (hideExtraIcon) => state.setPlayer({ hideExtraIcon }),
@@ -174,14 +174,14 @@ export const getPlayerSettings = (state: ReturnType<typeof appStore.getState>): 
           {
             id: 'is-floating',
             type: 'Toggle',
-            label: 'Enable Floating',
+            label: 'Make the Player Floating',
             isChecked: player.isFloating,
             onChange: (isFloating) => state.setPlayer({ isFloating }),
           },
           {
             id: 'auto-hide',
             type: 'Toggle',
-            label: 'Auto Hide',
+            label: 'Auto Hide Player',
             visible: () => player.isFloating,
             isChecked: player.autoHide,
             onChange: (autoHide) => state.setPlayer({ autoHide }),

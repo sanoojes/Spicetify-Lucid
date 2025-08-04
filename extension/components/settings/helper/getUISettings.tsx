@@ -38,7 +38,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
           {
             id: 'mode',
             type: 'Dropdown',
-            label: 'Page Mode',
+            label: 'Layout Mode',
             options: [
               ['Default', 'default'],
               ['Card', 'card'],
@@ -64,21 +64,21 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
       },
       {
         id: 'home',
-        groupName: 'Home Page',
+        groupName: 'Homepage',
         components: [
           {
             id: 'hide-header',
             type: 'Toggle',
             label: 'Hide Header Background',
-            tippy: 'Removes the background image from the homepage header.',
+            tippy: 'Hides the background image behind the homepage header.',
             isChecked: bodyClass.hideHomeHeader,
             onChange: (hideHomeHeader) => state.setBodyClass({ hideHomeHeader }),
           },
           {
             id: 'new-home',
             type: 'Toggle',
-            label: 'Enable New Layout',
-            tippy: 'Activates the redesigned homepage layout.',
+            label: 'Use New Homepage Layout',
+            tippy: 'Enables the redesigned layout for the homepage.',
             isChecked: bodyClass.newHome,
             onChange: (newHome) => state.setBodyClass({ newHome }),
           },
@@ -86,7 +86,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
             id: 'flexy-home',
             type: 'Toggle',
             label: 'Pair Cards',
-            tippy: 'Display homepage cards in pairs. Applies only to the new layout.',
+            tippy: 'Displays homepage cards in pairs.',
             visible: () => state.bodyClass.newHome,
             isChecked: bodyClass.flexyHome,
             onChange: (flexyHome) => state.setBodyClass({ flexyHome }),
@@ -95,22 +95,22 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
       },
       {
         id: 'lib',
-        groupName: 'Library',
+        groupName: 'Library Panel',
         components: [
           {
             id: 'auto-hide',
             type: 'Toggle',
-            label: 'Auto Hide',
-            tippy: 'Hides the library panel when not hovered.',
+            label: 'Auto-Hide Library',
+            tippy: 'Automatically hides the library panel when the cursor is not over it.',
             isChecked: library.autoHide,
             onChange: (autoHide) => state.setLibrary({ autoHide }),
           },
           {
             id: 'floating-sensitivity',
             type: 'Input',
-            label: 'Hover Width',
+            label: 'Hover Activation Width',
             visible: () => library.autoHide,
-            tippy: 'Trigger zone (in pixels) from the left edge to reveal the library.',
+            tippy: 'Width (in pixels) from the left edge where hovering shows the library.',
             inputType: 'number',
             value: library.hoverTargetWidth,
             validation: (value) => LibraryStateSchema.shape.hoverTargetWidth.safeParse(value),
@@ -120,21 +120,21 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
       },
       {
         id: 'global-nav',
-        groupName: 'Global Navigation',
+        groupName: 'Global Nav (Top-bar)',
         components: [
           {
             id: 'floating',
             type: 'Toggle',
-            label: 'Enable Floating Nav',
-            tippy: 'Allows the top nav bar to float independently from the content.',
+            label: 'Enable Floating Navbar',
+            tippy: 'Allows the top navigation bar to float above the content.',
             isChecked: globalNav.floating,
             onChange: (floating) => state.setGlobalNav({ floating }),
           },
           {
             id: 'auto-hide',
             type: 'Toggle',
-            label: 'Auto Hide',
-            tippy: 'Hides the top nav when not hovered. Requires floating nav to be enabled.',
+            label: 'Auto-Hide Navbar',
+            tippy: 'Hides the navbar when not hovered. Requires floating mode and non-Windows OS.',
             visible: () => globalNav.floating && !isWindows(),
             isChecked: globalNav.autoHide,
             onChange: (autoHide) => state.setGlobalNav({ autoHide }),
@@ -142,9 +142,9 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
           {
             id: 'floating-sensitivity',
             type: 'Input',
-            label: 'Hover Width',
+            label: 'Hover Activation Height',
             visible: () => globalNav.floating && !isWindows(),
-            tippy: 'Trigger zone (in pixels) from the top edge to show the nav bar.',
+            tippy: 'Height (in pixels) from the top edge where hovering shows the navbar.',
             inputType: 'number',
             value: globalNav.hoverTargetWidth,
             validation: (value) => GlobalNavStateSchema.shape.hoverTargetWidth.safeParse(value),
@@ -159,7 +159,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
           {
             id: 'mode',
             type: 'Dropdown',
-            label: 'Sidebar Mode',
+            label: 'Sidebar Display Mode',
             options: [
               ['Default', 'default'],
               ['Compact', 'compact'],
@@ -170,7 +170,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
           {
             id: 'pos-x',
             type: 'Dropdown',
-            label: 'Position (Horizontal)',
+            label: 'Horizontal Position',
             options: [
               ['Left', 'left'],
               ['Right', 'right'],
@@ -182,7 +182,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
           {
             id: 'pos-y',
             type: 'Dropdown',
-            label: 'Position (Vertical)',
+            label: 'Vertical Position',
             options: [
               ['Top', 'top'],
               ['Bottom', 'bottom'],
@@ -195,7 +195,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
             id: 'auto-hide',
             type: 'Toggle',
             label: 'Floating Sidebar',
-            tippy: 'Automatically hides the sidebar when not hovered.',
+            tippy: 'Hides the sidebar when not hovered.',
             isChecked: rightSidebar.autoHide,
             visible: () => rightSidebar.mode === 'default',
             onChange: (autoHide) => state.setRightSidebar({ autoHide }),
@@ -203,9 +203,9 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
           {
             id: 'floating-sensitivity',
             type: 'Input',
-            label: 'Hover Width',
+            label: 'Hover Activation Width',
             visible: () => rightSidebar.autoHide,
-            tippy: 'Trigger zone (in pixels) from the right edge to show the sidebar.',
+            tippy: 'Width (in pixels) from the right edge where hovering shows the sidebar.',
             inputType: 'number',
             value: rightSidebar.hoverTargetWidth,
             validation: (value) => RightSidebarStateSchema.shape.hoverTargetWidth.safeParse(value),
@@ -215,13 +215,13 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
       },
       {
         id: 'fonts',
-        groupName: 'Fonts',
+        groupName: 'Typography',
         components: [
           {
             id: 'bodyFont',
             type: 'Font',
             label: 'Body Font',
-            tippy: 'Used for standard text and UI elements.',
+            tippy: 'Font used for general UI text.',
             value: uiPreferences.bodyFont.family,
             onChange: (font) =>
               state.setUIPreferences({
@@ -234,8 +234,8 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
           {
             id: 'titleFont',
             type: 'Font',
-            label: 'Title Font',
-            tippy: 'Used for titles and headings.',
+            label: 'Heading Font',
+            tippy: 'Font used for titles and section headings.',
             value: uiPreferences.titleFont.family,
             onChange: (font) =>
               state.setUIPreferences({
@@ -249,7 +249,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
       },
       {
         id: 'border',
-        groupName: 'Border',
+        groupName: 'Borders',
         components: [
           {
             id: 'thickness',
@@ -265,7 +265,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
             id: 'color',
             type: 'Color',
             label: 'Border Color',
-            tippy: 'Color of default borders.',
+            tippy: 'Color used for all borders.',
             color: uiPreferences.border.color,
             initialColor: DEFAULT_STATE.uiPreferences.border.color,
             onChangeComplete: (color) => state.setBorder({ color }),
@@ -274,7 +274,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
             id: 'h-color',
             type: 'Color',
             label: 'Hover Border Color',
-            tippy: 'Border color when hovered.',
+            tippy: 'Color shown when borders are hovered.',
             color: uiPreferences.border.hoverColor,
             initialColor: DEFAULT_STATE.uiPreferences.border.hoverColor,
             onChangeComplete: (hoverColor) => state.setBorder({ hoverColor }),
@@ -283,7 +283,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
             id: 'style',
             type: 'Dropdown',
             label: 'Border Style',
-            tippy: 'Select how borders appear visually.',
+            tippy: 'Visual appearance of borders.',
             value: uiPreferences.border.style,
             options: [
               ['None', 'none'],
