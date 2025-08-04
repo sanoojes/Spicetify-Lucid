@@ -1,6 +1,6 @@
 import appStore from '@store/appStore.ts';
-import setupHoverToggle from '@utils/setupHoverToggle.ts';
 import { isWindows } from '@utils/platform.ts';
+import setupHoverToggle from '@utils/setupHoverToggle.ts';
 
 export function setGlobalNav(globalNav = appStore.getState().globalNav) {
   document.body.classList.toggle('global-nav-floating', globalNav.floating);

@@ -682,7 +682,7 @@ body {
   font-size: clamp(2cqmax, var(--main-view-width) / 20, 5cqmax) !important;
 }
 .page-compact-card {
-  .eFZahdafW8vQ7xY1kfBg {
+  div.eFZahdafW8vQ7xY1kfBg {
     height: fit-content;
   }
   .main-entityHeader-container .contentSpacing {

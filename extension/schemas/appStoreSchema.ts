@@ -1,9 +1,9 @@
-import z from "zod";
-import CSSFilterSchema from "@schemas/cssFilterSchema.ts";
-import { boundedNumber } from "@utils/schema.ts";
+import CSSFilterSchema from '@schemas/cssFilterSchema.ts';
+import { boundedNumber } from '@utils/schema.ts';
+import z from 'zod';
 
 export const ColorStateSchema = z.object({
-  mode: z.enum(["default", "dynamic", "custom"]),
+  mode: z.enum(['default', 'dynamic', 'custom']),
   accentColor: z.string(),
   isTinted: z.boolean(),
   isDark: z.boolean(),
@@ -16,10 +16,10 @@ export const BodyClassStateSchema = z.object({
 });
 
 export const BackgroundStateSchema = z.object({
-  mode: z.enum(["solid", "static", "animated"]),
+  mode: z.enum(['solid', 'static', 'animated']),
   options: z.object({
     filter: CSSFilterSchema,
-    imageMode: z.enum(["custom", "player", "page"]),
+    imageMode: z.enum(['custom', 'player', 'page']),
     imageSrc: z.string().nullable(),
     color: z.string(),
     autoStopAnimation: z.boolean(),
@@ -34,17 +34,17 @@ export const FontStateSchema = z.object({
 export const BorderStateSchema = z.object({
   color: z.string(),
   hoverColor: z.string(),
-  thickness: boundedNumber({ name: "Thickness", min: 0, max: 10 }),
+  thickness: boundedNumber({ name: 'Thickness', min: 0, max: 10 }),
   style: z.enum([
-    "none",
-    "dotted",
-    "dashed",
-    "solid",
-    "double",
-    "groove",
-    "ridge",
-    "inset",
-    "outset",
+    'none',
+    'dotted',
+    'dashed',
+    'solid',
+    'double',
+    'groove',
+    'ridge',
+    'inset',
+    'outset',
   ]),
 });
 
@@ -53,14 +53,14 @@ export const UIPreferencesSchema = z.object({
   bodyFont: FontStateSchema,
   border: BorderStateSchema,
   windowControlHeight: boundedNumber({
-    name: "Window Control Height",
+    name: 'Window Control Height',
     min: 0,
     max: 512,
   }),
 });
 
 export const UnderMainViewStateSchema = z.object({
-  type: z.enum(["default", "playing", "custom-img", "custom-color", "none"]),
+  type: z.enum(['default', 'playing', 'custom-img', 'custom-color', 'none']),
   isScrolling: z.boolean(),
   isScaling: z.boolean(),
   filter: CSSFilterSchema,
@@ -69,7 +69,7 @@ export const UnderMainViewStateSchema = z.object({
 });
 
 export const SettingModalSchema = z.object({
-  accessPoint: z.enum(["menu", "nav"]),
+  accessPoint: z.enum(['menu', 'nav']),
   isFloating: z.boolean(),
   floatingPosition: z.object({
     x: z.number(),
@@ -78,17 +78,17 @@ export const SettingModalSchema = z.object({
 });
 
 export const PlayerStyleSchema = z.object({
-  height: boundedNumber({ name: "Player height", min: 0, max: 512 }),
+  height: boundedNumber({ name: 'Player height', min: 0, max: 512 }),
   bgColor: z.string().nullable(),
-  bgOpacity: boundedNumber({ name: "Background opacity", min: 0, max: 100 }),
-  paddingX: boundedNumber({ name: "Horizontal padding", min: 0, max: 256 }),
-  borderRadius: boundedNumber({ name: "Border radius", min: 0, max: 256 }),
-  coverArtRadius: boundedNumber({ name: "Cover art radius", min: 0, max: 256 }),
+  bgOpacity: boundedNumber({ name: 'Background opacity', min: 0, max: 100 }),
+  paddingX: boundedNumber({ name: 'Horizontal padding', min: 0, max: 256 }),
+  borderRadius: boundedNumber({ name: 'Border radius', min: 0, max: 256 }),
+  coverArtRadius: boundedNumber({ name: 'Cover art radius', min: 0, max: 256 }),
   backdropFilter: CSSFilterSchema,
 });
 
 export const PlayerStateSchema = z.object({
-  mode: z.enum(["compact", "default"]),
+  mode: z.enum(['compact', 'default']),
   isFloating: z.boolean(),
   autoHide: z.boolean(),
   hideExtraIcon: z.boolean(),
@@ -97,15 +97,15 @@ export const PlayerStateSchema = z.object({
 });
 
 export const PageStateSchema = z.object({
-  mode: z.enum(["card", "compact-card", "compact", "default"]),
-  coverMode: z.enum(["hidden", "as-bg", "default"]),
+  mode: z.enum(['card', 'compact-card', 'compact', 'default']),
+  coverMode: z.enum(['hidden', 'as-bg', 'default']),
   homeCardGap: z.number(),
   panelGap: z.number(),
 });
 
 const AutoHideBaseStateSchema = z.object({
   autoHide: z.boolean(),
-  hoverTargetWidth: boundedNumber({ name: "Hover Width", min: 4, max: 512 }),
+  hoverTargetWidth: boundedNumber({ name: 'Hover Width', min: 4, max: 512 }),
 });
 
 export const LibraryStateSchema = AutoHideBaseStateSchema.extend({});
@@ -113,9 +113,9 @@ export const GlobalNavStateSchema = AutoHideBaseStateSchema.extend({
   floating: z.boolean(),
 });
 export const RightSidebarStateSchema = AutoHideBaseStateSchema.extend({
-  mode: z.enum(["compact", "default"]),
-  positionX: z.enum(["right", "left"]),
-  positionY: z.enum(["bottom", "top"]),
+  mode: z.enum(['compact', 'default']),
+  positionX: z.enum(['right', 'left']),
+  positionY: z.enum(['bottom', 'top']),
 });
 
 export const AppStateSchema = z.object({

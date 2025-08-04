@@ -1,7 +1,12 @@
 import setBackground from '@features/setBackground.tsx';
 import setBodyClasses from '@features/setBodyClasses.ts';
 import setColors from '@features/setColors.ts';
+import setControls from '@features/setControls.ts';
+import { setGlobalNav } from '@features/setGlobalNav.ts';
+import { setLibrary } from '@features/setLibrary.ts';
+import setPageStyles from '@features/setPageStyles.ts';
 import { setPlayer } from '@features/setPlaybar.ts';
+import { setRightSidebar } from '@features/setRightSidebar.ts';
 import setUIPreferences from '@features/setUIPreferences.ts';
 import setUnderMainView from '@features/setUnderMainView.tsx';
 import appStore from '@store/appStore.ts';
@@ -9,16 +14,11 @@ import tempStore from '@store/tempStore.ts';
 import addRootCardSizeToDom from '@utils/addRootCardSizeToDom.ts';
 import { initNotificationSystem } from '@utils/initNotificationSystem.tsx';
 import addPageStyles from '@utils/page/addPageStyles.ts';
+import { patchIcons } from '@utils/patchIcons.ts';
+import { isVersionAtLeast, isWindows } from '@utils/platform.ts';
 import addPlayerData from '@utils/player/addPlayerData.ts';
 import resetTheme from '@utils/resetTheme.ts';
 import addSettings from '@utils/settings/addSettings.tsx';
-import { setLibrary } from '@features/setLibrary.ts';
-import { setRightSidebar } from '@features/setRightSidebar.ts';
-import { setGlobalNav } from '@features/setGlobalNav.ts';
-import setPageStyles from '@features/setPageStyles.ts';
-import { patchIcons } from '@utils/patchIcons.ts';
-import { isVersionAtLeast, isWindows } from '@utils/platform.ts';
-import setControls from '@features/setControls.ts';
 
 function main() {
   // Expose Lucid Methods

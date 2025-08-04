@@ -4,7 +4,7 @@ import {
   pendingQueue,
 } from '@components/NotificationManager.tsx';
 import generateId from '@utils/generateId.ts';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type ShowNotificationArgs = {
   message: ReactNode;

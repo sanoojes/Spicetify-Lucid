@@ -1,6 +1,6 @@
+import appStore from '@store/appStore.ts';
 import getOrCreateStyle from '@utils/dom/getOrCreateStyle.ts';
 import { isVersionAtLeast, isWindows } from '@utils/platform.ts';
-import appStore from '@store/appStore.ts';
 
 function getZoom() {
   const zoom = window.outerHeight / window.innerHeight;

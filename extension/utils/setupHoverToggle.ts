@@ -1,13 +1,13 @@
-import debounce from "@utils/debounce.ts";
-import getOrCreateElement from "@utils/dom/getOrCreateElement.ts";
-import waitForElements from "@utils/dom/waitForElements.ts";
+import debounce from '@utils/debounce.ts';
+import getOrCreateElement from '@utils/dom/getOrCreateElement.ts';
+import waitForElements from '@utils/dom/waitForElements.ts';
 
 export default function setupHoverToggle({
   containerSelector,
   onTopContainerSelectors,
-  className = "show",
+  className = 'show',
   condition = true,
-  hoverTargetId = "hover-target",
+  hoverTargetId = 'hover-target',
   bodyClass,
   onHoverBodyClass,
   onNotHoverBodyClass,
@@ -31,17 +31,12 @@ export default function setupHoverToggle({
 
   const isResizingOrContextMenuOpen = () =>
     targetElements.some((el) =>
-      el.querySelector(
-        '.LayoutResizer__resize-bar--resizing, [data-context-menu-open="true"]'
-      )
+      el.querySelector('.LayoutResizer__resize-bar--resizing, [data-context-menu-open="true"]')
     );
 
   const performUpdateVisibility = () => {
     if (onHoverBodyClass)
-      document.body.classList.toggle(
-        onHoverBodyClass,
-        isHoveringElements || isHoveringTarget
-      );
+      document.body.classList.toggle(onHoverBodyClass, isHoveringElements || isHoveringTarget);
     if (onNotHoverBodyClass)
       document.body.classList.toggle(
         onNotHoverBodyClass,
@@ -86,10 +81,10 @@ export default function setupHoverToggle({
 
   const attachHoverListeners = () => {
     targetElements.forEach((el) => {
-      el.removeEventListener("mouseenter", handleElementEnter);
-      el.removeEventListener("mouseleave", handleElementLeave);
-      el.addEventListener("mouseenter", handleElementEnter);
-      el.addEventListener("mouseleave", handleElementLeave);
+      el.removeEventListener('mouseenter', handleElementEnter);
+      el.removeEventListener('mouseleave', handleElementLeave);
+      el.addEventListener('mouseenter', handleElementEnter);
+      el.addEventListener('mouseleave', handleElementLeave);
     });
   };
 
@@ -142,8 +137,8 @@ export default function setupHoverToggle({
 
   const destroy = () => {
     targetElements.forEach((el) => {
-      el.removeEventListener("mouseenter", handleElementEnter);
-      el.removeEventListener("mouseleave", handleElementLeave);
+      el.removeEventListener('mouseenter', handleElementEnter);
+      el.removeEventListener('mouseleave', handleElementLeave);
       el.classList.remove(className);
     });
 
@@ -154,8 +149,7 @@ export default function setupHoverToggle({
 
     if (bodyClass) document.body.classList.remove(bodyClass);
     if (onHoverBodyClass) document.body.classList.remove(onHoverBodyClass);
-    if (onNotHoverBodyClass)
-      document.body.classList.remove(onNotHoverBodyClass);
+    if (onNotHoverBodyClass) document.body.classList.remove(onNotHoverBodyClass);
 
     if (mutationObserver) {
       mutationObserver.disconnect();
@@ -181,14 +175,14 @@ export default function setupHoverToggle({
 
       if (bodyClass) document.body.classList.toggle(bodyClass, condition);
 
-      hoverTarget = getOrCreateElement("div", hoverTargetId, container);
+      hoverTarget = getOrCreateElement('div', hoverTargetId, container);
 
-      hoverTarget.addEventListener("mouseenter", () => {
+      hoverTarget.addEventListener('mouseenter', () => {
         isHoveringTarget = true;
         updateVisibility();
       });
 
-      hoverTarget.addEventListener("mouseleave", () => {
+      hoverTarget.addEventListener('mouseleave', () => {
         isHoveringTarget = false;
         updateVisibility();
       });

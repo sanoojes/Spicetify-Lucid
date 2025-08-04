@@ -1,4 +1,5 @@
 import Button from '@components/ui/Button.tsx';
+import Carousel from '@components/ui/Carousel.tsx';
 import ColorPicker from '@components/ui/ColorPicker.tsx';
 import Dropdown from '@components/ui/Dropdown.tsx';
 import DropdownAction from '@components/ui/DropdownAction.tsx';
@@ -10,7 +11,6 @@ import Notification from '@components/ui/Notification.tsx';
 import TextArea from '@components/ui/TextArea.tsx';
 import Tippy from '@components/ui/Tippy.tsx';
 import Toggle from '@components/ui/Toggle.tsx';
-import Carousel from '@components/ui/Carousel.tsx';
 
 const UI = {
   List,

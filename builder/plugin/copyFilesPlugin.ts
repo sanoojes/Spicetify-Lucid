@@ -1,6 +1,6 @@
-import type { Plugin } from 'esbuild';
 import { dirname, resolve } from 'jsr:@std/path';
 import Logger from '@builder/logger.ts';
+import type { Plugin } from 'esbuild';
 
 export interface copy {
   from: string;

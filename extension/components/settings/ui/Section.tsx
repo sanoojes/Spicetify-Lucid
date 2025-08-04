@@ -1,6 +1,6 @@
 import type { SectionProps } from '@app/types/settingSchema.ts';
 import Group from '@components/settings/ui/Group.tsx';
-import React, { memo, type FC } from 'react';
+import React, { type FC, memo } from 'react';
 
 const Section: FC<SectionProps> = ({ groups, sectionName, visible }) => {
   const isVisible = visible ? visible() : true;

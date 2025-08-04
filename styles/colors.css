@@ -19,18 +19,9 @@
   --background-base: rgba(var(--clr-surface-rgb), var(--clr-bg-alpha));
   --background-highlight: rgba(var(--clr-surface-1-rgb), var(--clr-bg-alpha));
   --background-press: rgba(var(--clr-surface-rgb), var(--clr-bg-alpha));
-  --background-elevated-base: rgba(
-    var(--clr-surface-1-rgb),
-    var(--clr-bg-alpha)
-  );
-  --background-elevated-highlight: rgba(
-    var(--clr-surface-2-rgb),
-    var(--clr-bg-alpha)
-  );
-  --background-elevated-press: rgba(
-    var(--clr-surface-3-rgb),
-    var(--clr-bg-alpha)
-  );
+  --background-elevated-base: rgba(var(--clr-surface-1-rgb), var(--clr-bg-alpha));
+  --background-elevated-highlight: rgba(var(--clr-surface-2-rgb), var(--clr-bg-alpha));
+  --background-elevated-press: rgba(var(--clr-surface-3-rgb), var(--clr-bg-alpha));
 
   --background-tinted-base: #ffffff1a;
   --background-tinted-highlight: #ffffff24;

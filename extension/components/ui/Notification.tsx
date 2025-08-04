@@ -1,6 +1,6 @@
 import UI from '@components/UI.tsx';
 import { Dismiss16Filled } from '@fluentui/react-icons';
-import React, { type FC, ReactNode, useEffect, useState } from 'react';
+import React, { type FC, type ReactNode, useEffect, useState } from 'react';
 
 type NotificationProps = {
   message: ReactNode;
