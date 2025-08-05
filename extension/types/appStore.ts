@@ -106,6 +106,8 @@ export interface NextSongCardState {
   paddingY: number;
   coverArtSize: number;
   removeNextUp: boolean;
+  isFloating: boolean;
+  position: Stringify<'left' | 'right'>;
 }
 export type PlayerState = {
   mode: PlayerTypes;

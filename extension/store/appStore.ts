@@ -89,11 +89,13 @@ export const DEFAULT_STATE: AppState = {
     mode: 'default',
     nextSongCard: {
       show: true,
+      isFloating: true,
       height: 64,
       paddingX: 8,
       paddingY: 8,
       coverArtSize: 48,
       removeNextUp: true,
+      position: 'left',
     },
     autoHide: false,
     isFloating: true,

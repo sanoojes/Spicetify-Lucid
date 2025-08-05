@@ -1,12 +1,12 @@
 import type { SectionProps } from '@app/types/settingSchema.ts';
-import { NextSongCardStateSchema, PlayerStyleSchema } from '@schemas/appStoreSchema.ts';
+import { PlayerStyleSchema } from '@schemas/appStoreSchema.ts';
 import CSSFilterSchema from '@schemas/cssFilterSchema.ts';
 import type appStore from '@store/appStore.ts';
 import { DEFAULT_STATE } from '@store/appStore.ts';
 
 export const getPlayerSettings = (state: ReturnType<typeof appStore.getState>): SectionProps => {
   const { player } = state;
-  const { compactStyle, defaultStyle, nextSongCard } = player;
+  const { compactStyle, defaultStyle } = player;
 
   const createStyleGroups = (
     mode: 'compact' | 'default',
@@ -194,76 +194,6 @@ export const getPlayerSettings = (state: ReturnType<typeof appStore.getState>): 
             visible: () => player.isFloating,
             isChecked: player.autoHide,
             onChange: (autoHide) => state.setPlayer({ autoHide }),
-          },
-        ],
-      },
-      {
-        id: 'next-song-card',
-        groupName: 'Next Song Card',
-        components: [
-          {
-            id: 'show-card',
-            type: 'Toggle',
-            label: 'Show Next Song Card',
-            tippy:
-              'Display a preview of the upcoming song in a small card next to the now playing bar.',
-            isChecked: nextSongCard.show,
-            onChange: (show) => state.setPlayerNextCard({ show }),
-          },
-        ],
-      },
-      {
-        id: 'next-song-customize',
-        groupName: 'Next Song Card',
-        visible: () => nextSongCard.show,
-        components: [
-          {
-            id: 'rm-text',
-            type: 'Toggle',
-            label: 'Remove Next Up Text',
-            tippy: 'Remove the "Next Up" text above the next song card.',
-            isChecked: nextSongCard.removeNextUp,
-            onChange: (removeNextUp) => state.setPlayerNextCard({ removeNextUp }),
-          },
-          {
-            id: `height`,
-            type: 'Input',
-            label: 'Card Height (px)',
-            tippy: 'Adjust the height of the next song card displayed beside the player.',
-            inputType: 'number',
-            value: nextSongCard.height,
-            validation: (v) => NextSongCardStateSchema.shape.height.safeParse(v),
-            onChange: (height) => state.setPlayerNextCard({ height }),
-          },
-          {
-            id: `cover-size`,
-            type: 'Input',
-            label: 'Cover Size (px)',
-            tippy: 'Adjust the size of the next song card cover art.',
-            inputType: 'number',
-            value: nextSongCard.coverArtSize,
-            validation: (v) => NextSongCardStateSchema.shape.coverArtSize.safeParse(v),
-            onChange: (coverArtSize) => state.setPlayerNextCard({ coverArtSize }),
-          },
-          {
-            id: `padding-x`,
-            type: 'Input',
-            label: 'Horizontal Padding (px)',
-            tippy: 'Space inside the card on the left and right.',
-            inputType: 'number',
-            value: nextSongCard.paddingX,
-            validation: (v) => NextSongCardStateSchema.shape.paddingX.safeParse(v),
-            onChange: (paddingX) => state.setPlayerNextCard({ paddingX }),
-          },
-          {
-            id: `padding-y`,
-            type: 'Input',
-            label: 'Vertical Padding (px)',
-            tippy: 'Space inside the card on the top and bottom.',
-            inputType: 'number',
-            value: nextSongCard.paddingY,
-            validation: (v) => NextSongCardStateSchema.shape.paddingY.safeParse(v),
-            onChange: (paddingY) => state.setPlayerNextCard({ paddingY }),
           },
         ],
       },

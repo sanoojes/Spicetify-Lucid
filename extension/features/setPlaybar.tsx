@@ -5,8 +5,8 @@ import getOrCreateElement from '@utils/dom/getOrCreateElement.ts';
 import getOrCreateStyle from '@utils/dom/getOrCreateStyle.ts';
 import waitForElements from '@utils/dom/waitForElements.ts';
 import setupHoverToggle from '@utils/setupHoverToggle.ts';
-import { createRoot, type Root } from 'react-dom/client';
 import React from 'react';
+import { createRoot, type Root } from 'react-dom/client';
 
 let playerElem: HTMLDivElement | null = null;
 let hasResizeListener = false;
@@ -38,6 +38,8 @@ function applyPlayerClasses(player: PlayerState) {
   const { isFloating, autoHide, mode } = player;
 
   document.body.classList.toggle('player-compact', mode === 'compact');
+  document.body.classList.toggle('next-playing-on-left', player.nextSongCard.position === 'left');
+  document.body.classList.toggle('next-playing-on-right', player.nextSongCard.position === 'right');
   document.body.classList.toggle('player-floating', isFloating);
   playerElem?.classList.toggle('floating', isFloating);
   document.body.classList.toggle('player-auto-hide', isFloating && autoHide);

@@ -6,7 +6,7 @@ import React, { type CSSProperties, type FC, useEffect, useMemo, useState } from
 import { useStore } from 'zustand';
 
 const NextSongCard: FC = () => {
-  const { height, paddingX, paddingY, coverArtSize, removeNextUp } = useStore(
+  const { height, paddingX, paddingY, coverArtSize, removeNextUp, position, isFloating } = useStore(
     appStore,
     (state) => state.player.nextSongCard
   );
@@ -47,7 +47,7 @@ const NextSongCard: FC = () => {
 
   return (
     <div
-      className="next-playing-card"
+      className={`next-playing-card ${isFloating ? 'floating' : ''} ${position}`}
       style={
         {
           '--height': `${height}px`,

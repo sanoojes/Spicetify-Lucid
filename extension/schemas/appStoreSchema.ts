@@ -91,10 +91,12 @@ export const PlayerStyleSchema = z.object({
 export const NextSongCardStateSchema = z.object({
   show: z.boolean(),
   removeNextUp: z.boolean(),
+  isFloating: z.boolean(),
   height: boundedNumber({ name: 'Next Song Card Height', min: 0, max: 512 }),
   coverArtSize: boundedNumber({ name: 'Next Song Card Cover Art Size', min: 0, max: 512 }),
   paddingX: boundedNumber({ name: 'Next Song Card Padding X', min: 0, max: 256 }),
   paddingY: boundedNumber({ name: 'Next Song Card Padding Y', min: 0, max: 256 }),
+  position: z.enum(['left', 'right']),
 });
 
 export const PlayerStateSchema = z.object({
