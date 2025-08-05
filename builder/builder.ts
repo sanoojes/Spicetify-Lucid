@@ -1,142 +1,141 @@
-import { build, type BuildOptions, context } from "npm:esbuild";
-import { externalGlobalPlugin } from "./plugin/externalGlobalPlugin.ts";
-import { wrapWithLoader } from "./plugin/wrapWithLoader.ts";
-import { startWSServer } from "./wsServer.ts";
-import { notifyClientPlugin } from "./plugin/notifyClientPlugin.ts";
-import { copyFilesPlugin } from "./plugin/copyFilesPlugin.ts";
-import { loggerPlugin } from "./plugin/loggerPlugin.ts";
-import { join } from "@std/path";
-import { parseArgs } from "@std/cli";
-import Logger from "@lib/logger.ts";
+import { copyFilesPlugin } from '@builder/plugin/copyFilesPlugin.ts';
+import { externalGlobalPlugin } from '@builder/plugin/externalGlobalPlugin.ts';
+import { loggerPlugin } from '@builder/plugin/loggerPlugin.ts';
+import { notifyClientPlugin } from '@builder/plugin/notifyClientPlugin.ts';
+import { wrapWithLoader } from '@builder/plugin/wrapWithLoader.ts';
+import { parseArgs } from '@std/cli';
+import { join, normalize } from '@std/path';
+import { type BuildOptions, build, context } from 'esbuild';
+import svgrPlugin from 'esbuild-plugin-svgr';
+import Logger from './logger.ts';
+import { startWSServer } from './wsServer.ts';
 
-const THEME_NAME = "Lucid";
+const THEME_NAME = 'Lucid';
 
-const APPDATA_PATH = Deno.env.get("APPDATA");
-if (!APPDATA_PATH) {
-  Logger.info("Appdata path not found exiting...");
-  Deno.exit();
+const isWindows = Deno.build.os === 'windows';
+
+const HOME_PATH = isWindows
+  ? Deno.env.get('APPDATA')
+  : join(Deno.env.get('HOME') ?? '/home/jack', '.config');
+
+if (!HOME_PATH) {
+  Logger.error('Home Path not found.');
+  Deno.exit(1);
 }
 
-const THEME_PATH = join(APPDATA_PATH, "spicetify/Themes/Lucid");
-const EXTENSION_PATH = join(APPDATA_PATH, "spicetify/Extensions");
-const XPUI_PATH = join(APPDATA_PATH, "Spotify/Apps/xpui");
-const XPUI_EXTENSION_PATH = join(XPUI_PATH, "extensions");
-const DIST_PATH = join("src");
+const SPICETIFY_PATH = join(HOME_PATH, 'spicetify');
+const SPOTIFY_PATH = isWindows ? join(HOME_PATH, 'Spotify') : '/opt/spotify';
 
-const EXTENSION_ENTRY_POINTS = [join(Deno.cwd(), "extension/app.tsx")];
-const CSS_ENTRY_POINTS = [join(Deno.cwd(), "styles/app.css")];
-const LIVERELOAD_JS_PATH = join(Deno.cwd(), "builder/client/liveReload.js");
+const THEME_PATH = join(SPICETIFY_PATH, 'Themes', THEME_NAME);
+const EXTENSION_PATH = join(SPICETIFY_PATH, 'Extensions');
+const XPUI_PATH = join(SPOTIFY_PATH, 'Apps', 'xpui');
+const XPUI_EXTENSION_PATH = join(XPUI_PATH, 'extensions');
+const DIST_PATH = 'src';
+
+const EXTENSION_ENTRY_POINTS = [join(Deno.cwd(), 'extension', 'app.tsx')];
+const CSS_ENTRY_POINTS = [join(Deno.cwd(), 'styles', 'app.css')];
+const LIVERELOAD_JS_PATH = join(Deno.cwd(), 'builder', 'client', 'liveReload.js');
 
 const main = async () => {
-  const { watch } = parseArgs(Deno.args, {
-    default: { w: false },
-    alias: { w: "watch" },
+  const { watch, minify, reload } = parseArgs(Deno.args, {
+    default: { watch: false, minify: false, reload: false },
+    alias: { w: 'watch', m: 'minify', r: 'reload' },
   });
 
   if (watch) startWSServer();
 
-  const jsOutFilePath = join(DIST_PATH, "theme.js");
+  const jsOutFilePath = join(DIST_PATH, 'theme.js');
+  const jsCopyTargets = [
+    { from: jsOutFilePath, to: join(THEME_PATH, 'theme.js') },
+    ...(watch ? [{ from: jsOutFilePath, to: join(XPUI_EXTENSION_PATH, 'theme.js') }] : []),
+  ];
+
   const jsBuildOptions: BuildOptions = {
     bundle: true,
     entryPoints: EXTENSION_ENTRY_POINTS,
     outfile: jsOutFilePath,
-    external: ["react", "react-dom"],
-    jsx: "transform",
+    treeShaking: true,
+    minify,
+    legalComments: 'external',
+    external: ['react', 'react-dom'],
+    jsx: 'transform',
     plugins: [
-      loggerPlugin("JS"),
+      svgrPlugin(),
+      loggerPlugin('JS'),
       wrapWithLoader(),
       externalGlobalPlugin({
-        react: "Spicetify.React",
-        "react-dom": "Spicetify.ReactDOMServer",
-        "react-dom/client": "Spicetify.ReactDOM",
+        react: 'Spicetify.React',
+        'react-dom': 'Spicetify.ReactDOM',
+        'react-dom/client': 'Spicetify.ReactDOM',
+        'react-dom/server': 'Spicetify.ReactDOMServer',
       }),
-      copyFilesPlugin([
-        {
-          from: jsOutFilePath,
-          to: join(THEME_PATH, "theme.js"),
-        },
-        {
-          from: jsOutFilePath,
-          to: join(XPUI_EXTENSION_PATH, "theme.js"),
-        },
-      ]),
+      copyFilesPlugin(jsCopyTargets),
       ...(watch ? [notifyClientPlugin()] : []),
     ],
-  } satisfies BuildOptions;
+  };
 
-  const cssOutFilePath = join(DIST_PATH, "user.css");
+  const cssOutFilePath = join(DIST_PATH, 'user.css');
+  const cssCopyTargets = [
+    { from: cssOutFilePath, to: join(THEME_PATH, 'user.css') },
+    ...(watch ? [{ from: cssOutFilePath, to: join(XPUI_PATH, 'user.css') }] : []),
+  ];
 
   const cssBuildOptions: BuildOptions = {
     bundle: true,
     entryPoints: CSS_ENTRY_POINTS,
     outfile: cssOutFilePath,
-    platform: "browser",
-    tsconfig: "tsconfig.json",
+    platform: 'browser',
+    minify,
     plugins: [
-      loggerPlugin("CSS"),
-      copyFilesPlugin([
-        {
-          from: cssOutFilePath,
-          to: join(THEME_PATH, "user.css"),
-        },
-        {
-          from: cssOutFilePath,
-          to: join(XPUI_PATH, "user.css"),
-        },
-      ]),
+      loggerPlugin('CSS'),
+      copyFilesPlugin(cssCopyTargets),
       ...(watch ? [notifyClientPlugin()] : []),
     ],
-  } satisfies BuildOptions;
-
-  // Build theme
+  };
 
   const jsCtx = watch ? await context(jsBuildOptions) : null;
   const cssCtx = watch ? await context(cssBuildOptions) : null;
+
   if (watch) {
     await jsCtx?.watch();
     await cssCtx?.watch();
-
-    Logger.info("Watching for changes...");
+    Logger.info('Watching for changes...');
   } else {
     await build(jsBuildOptions);
-
     await build(cssBuildOptions);
   }
 
-  if (!watch) return;
-
-  // Apply Theme
-  const run = async (args: string[]) => {
-    const { code, stderr } = await new Deno.Command("spicetify", {
-      args,
-    }).output();
-    const log = (msg: string) => Logger.info(`[Spicetify] ${msg}`);
+  const runSpicetifyCommand = async (args: string[]) => {
+    const command = new Deno.Command('spicetify', { args });
+    const { code, stderr } = await command.output();
     const err = new TextDecoder().decode(stderr).trim();
+    const log = (msg: string) => Logger.info(`[Spicetify] ${msg}`);
 
     code === 0
       ? log(`✅ ${args[0]} succeeded.`)
-      : log(`❌ ${args[0]} failed (code ${code})${err ? `:\n${err}` : ""}`);
+      : log(`❌ ${args[0]} failed (code ${code})${err ? `:\n${err}` : ''}`);
   };
 
-  await run([
-    "config",
-    "current_theme",
-    "Lucid",
-    "color_scheme",
-    "dark",
-    ...(watch ? ["extensions", "liveReload.js"] : []),
-  ]);
+  if (watch || reload) {
+    await runSpicetifyCommand([
+      'config',
+      'current_theme',
+      THEME_NAME,
+      'color_scheme',
+      'dark',
+      ...(watch ? ['extensions', 'liveReload.js'] : []),
+    ]);
 
-  if (watch) {
-    // copy liveReload.js
-    const liveReloadPath = join(EXTENSION_PATH, "liveReload.js");
-    await Deno.copyFile(LIVERELOAD_JS_PATH, liveReloadPath);
-    Logger.debug(`Copied: ${LIVERELOAD_JS_PATH} → ${liveReloadPath}`);
+    if (watch) {
+      const liveReloadPath = join(EXTENSION_PATH, 'liveReload.js');
+      await Deno.copyFile(LIVERELOAD_JS_PATH, liveReloadPath);
+      Logger.debug(`Copied: ${LIVERELOAD_JS_PATH} → ${liveReloadPath}`);
+    }
+
+    await runSpicetifyCommand(['apply']);
   }
-
-  await run(["apply"]);
 };
 
 main().catch((e) => {
-  Logger.error("Error Building:", e);
+  Logger.error('Error Building:', e);
 });

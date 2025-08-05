@@ -10,13 +10,15 @@
     "lib": ["DOM", "ES2020", "DOM.Iterable"],
     "jsx": "react",
     "paths": {
+      "@icons/*": ["assets/icons/*"],
       "@app/*": ["extension/*"],
+      "@schemas/*": ["extension/schemas/*"],
       "@utils/*": ["extension/utils/*"],
-      "@components/*": ["extension/components/*"],
       "@store/*": ["extension/store/*"],
-      "@core/*": ["extension/core/*"],
-      "@styles/*": ["styles/*"],
-      "@colors/*": ["colors/*"]
+      "@components/*": ["extension/components/*"],
+      "@hooks/*": ["extension/hooks/*"],
+      "@features/*": ["extension/features/*"],
+      "@styles/*": ["styles/*"]
     }
   },
   "include": ["extension/**/*"],
