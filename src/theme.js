@@ -34605,7 +34605,7 @@ body.hide-transparent-controls:after { display: none; content: none; }`;
   // extension/features/setPageStyles.ts
   function setPageStyles(page = appStore_default.getState().page) {
     const { coverMode, homeCardGap, mode, panelGap } = page;
-    const coverModes = ["compact", "as-bg", "default"];
+    const coverModes = ["hidden", "as-bg", "default"];
     coverModes.forEach((type) => {
       document.body.classList.toggle(`page-cover-${type}`, coverMode === type);
     });

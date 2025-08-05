@@ -380,6 +380,47 @@ body {
   }
 }
 
+/* ========== Page Cover Art ========== */
+.page-cover-hidden,
+.page-cover-as-bg {
+  .Root__main-view .main-entityHeader-title h1 {
+    font-size: 3rem !important;
+  }
+}
+
+.page-cover-hidden {
+  .main-entityHeader-imageContainer,
+  .main-entityHeader-imageContainerNew {
+    display: none;
+    visibility: hidden;
+  }
+}
+.page-cover-as-bg {
+  .main-entityHeader-container {
+    --fluid-height: 50vh !important;
+  }
+  .main-entityHeader-imageContainer,
+  .main-entityHeader-imageContainerNew {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: none !important;
+
+    .main-entityHeader-image {
+      filter: blur(var(--image-as-bg-blur, 0.5rem)) brightness(var(--image-as-bg-brightness, 0.8))
+        saturate(var(--image-as-bg-saturate, 0.8));
+      transform: scale(1.25);
+      opacity: 0.75;
+    }
+    .main-editImageButton-overlay {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}
+
 /* ========== New Home Styles ========== */
 .new-home:not(.flexy-home) .cZrkCxXnCc7KLZqAqWoz
   .main-home-content

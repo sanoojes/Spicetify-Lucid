@@ -3,7 +3,7 @@ import appStore from '@store/appStore.ts';
 export default function setPageStyles(page = appStore.getState().page) {
   const { coverMode, homeCardGap, mode, panelGap } = page;
 
-  const coverModes = ['compact', 'as-bg', 'default'];
+  const coverModes = ['hidden', 'as-bg', 'default'];
   coverModes.forEach((type) => {
     document.body.classList.toggle(`page-cover-${type}`, coverMode === type);
   });
