@@ -138,6 +138,8 @@ export type RightSidebarState = AutoHideBaseState & {
   mode: Stringify<'compact' | 'default'>;
   positionX: Stringify<'right' | 'left'>;
   positionY: Stringify<'top' | 'bottom'>;
+  compactBackdropFilter: CSSFilter;
+  compactSize: number;
 };
 export type GlobalNavState = AutoHideBaseState & {
   floating: boolean;

@@ -129,6 +129,8 @@ export const RightSidebarStateSchema = AutoHideBaseStateSchema.extend({
   mode: z.enum(['compact', 'default']),
   positionX: z.enum(['right', 'left']),
   positionY: z.enum(['bottom', 'top']),
+  compactBackdropFilter: CSSFilterSchema,
+  compactSize: boundedNumber({ name: 'Compact Sidebar Size', min: 0, max: 512 }),
 });
 
 export const AppStateSchema = z.object({

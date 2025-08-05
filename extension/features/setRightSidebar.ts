@@ -1,11 +1,20 @@
 import appStore from '@store/appStore.ts';
 import setupHoverToggle from '@utils/setupHoverToggle.ts';
 import { updateCardBgAlpha } from '@utils/updateCardBgAlpha.ts';
+import serializeFilters from '@utils/dom/serializeFilters.ts';
 
 const FULL_SCREEN_CLASS_NAME = '.a7Ka5yznvrbSDPk1G36o,.pd3cZQBgtgOFLAp9ns7Q,.JVoVebPNAPKBLKSlIBXw';
 
 export function setRightSidebar(rightSidebar = appStore.getState().rightSidebar) {
-  const { mode, autoHide, hoverTargetWidth, positionX, positionY } = rightSidebar;
+  const {
+    mode,
+    autoHide,
+    hoverTargetWidth,
+    positionX,
+    positionY,
+    compactBackdropFilter,
+    compactSize,
+  } = rightSidebar;
 
   ['compact', 'default'].forEach((type) =>
     document.body.classList.toggle(`npv-${type}`, mode === type)
@@ -25,12 +34,16 @@ export function setRightSidebar(rightSidebar = appStore.getState().rightSidebar)
     document.body.style.removeProperty('--rs-target-width');
   }
 
+  if (mode === 'compact') {
+    document.body.style.setProperty('--rs-compact-blur', serializeFilters(compactBackdropFilter));
+    document.body.style.setProperty('--rs-compact-size', `${compactSize}px`);
+  }
   setupHoverToggle({
     containerSelector: '.Root__top-container',
     onTopContainerSelectors: ['.Root__right-sidebar'],
     hoverTargetId: 'rs-hover-target',
     className: 'show',
-    condition: autoHide,
+    condition: autoHide && mode === 'compact',
   });
 
   let currentTarget: Element | null = null;

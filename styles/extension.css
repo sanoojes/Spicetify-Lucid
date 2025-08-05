@@ -268,6 +268,7 @@ body {
 }
 /* ========== Compact Right Sidebar ========== */
 .npv-compact {
+  --npv-size: var(--rs-compact-size, 400px);
   .Root__main-view {
     grid-row-end: now-playing-bar !important;
   }
@@ -275,8 +276,8 @@ body {
   .Root__right-sidebar {
     position: fixed;
     z-index: 9;
-    -webkit-backdrop-filter: blur(var(--npv-blur, 16px));
-    backdrop-filter: blur(var(--npv-blur, 16px));
+    -webkit-backdrop-filter: var(--rs-compact-blur, blur(var(--npv-blur, 16px)));
+    backdrop-filter: var(--rs-compact-blur, blur(var(--npv-blur, 16px)));
     transition: var(--default-transition);
     transform-origin: bottom right;
     box-shadow: 0 0 4rem 2px var(--clr-shadow);
@@ -310,7 +311,9 @@ body {
   .AAdBM1nhG73supMfnYX7 {
     aspect-ratio: 1 / 1;
     width: var(--npv-size, 420px) !important;
-    height: var(--height, var(--npv-size, 420px)) !important;
+    height: var(--npv-size, 420px) !important;
+    min-width: var(--npv-size, 420px) !important;
+    min-height: var(--npv-size, 420px) !important;
     border-radius: 0.75rem;
   }
 
@@ -333,10 +336,6 @@ body {
 
   .os-scrollbar-horizontal {
     display: none;
-  }
-
-  .main-nowPlayingView-contextItemInfo {
-    padding: 2rem 8px 0;
   }
 
   .ylBRlfNqGnzVa4kjUQGP {

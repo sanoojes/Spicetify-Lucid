@@ -153,67 +153,6 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
         ],
       },
       {
-        id: 'right-sidebar',
-        groupName: 'Right Sidebar',
-        components: [
-          {
-            id: 'mode',
-            type: 'Dropdown',
-            label: 'Sidebar Display Mode',
-            options: [
-              ['Default', 'default'],
-              ['Compact', 'compact'],
-            ],
-            value: rightSidebar.mode,
-            onChange: (mode) => state.setRightSidebar({ mode }),
-          },
-          {
-            id: 'pos-x',
-            type: 'Dropdown',
-            label: 'Horizontal Position',
-            options: [
-              ['Left', 'left'],
-              ['Right', 'right'],
-            ],
-            visible: () => rightSidebar.mode === 'compact',
-            value: rightSidebar.positionX,
-            onChange: (positionX) => state.setRightSidebar({ positionX }),
-          },
-          {
-            id: 'pos-y',
-            type: 'Dropdown',
-            label: 'Vertical Position',
-            options: [
-              ['Top', 'top'],
-              ['Bottom', 'bottom'],
-            ],
-            visible: () => rightSidebar.mode === 'compact',
-            value: rightSidebar.positionY,
-            onChange: (positionY) => state.setRightSidebar({ positionY }),
-          },
-          {
-            id: 'auto-hide',
-            type: 'Toggle',
-            label: 'Floating Sidebar',
-            tippy: 'Hides the sidebar when not hovered.',
-            isChecked: rightSidebar.autoHide,
-            visible: () => rightSidebar.mode === 'default',
-            onChange: (autoHide) => state.setRightSidebar({ autoHide }),
-          },
-          {
-            id: 'floating-sensitivity',
-            type: 'Input',
-            label: 'Hover Activation Width',
-            visible: () => rightSidebar.autoHide,
-            tippy: 'Width (in pixels) from the right edge where hovering shows the sidebar.',
-            inputType: 'number',
-            value: rightSidebar.hoverTargetWidth,
-            validation: (value) => RightSidebarStateSchema.shape.hoverTargetWidth.safeParse(value),
-            onChange: (hoverTargetWidth) => state.setRightSidebar({ hoverTargetWidth }),
-          },
-        ],
-      },
-      {
         id: 'fonts',
         groupName: 'Typography',
         components: [

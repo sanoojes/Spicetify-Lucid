@@ -94,7 +94,7 @@ export const getPlayerSettings = (state: ReturnType<typeof appStore.getState>): 
       },
       {
         id: `filters-${mode}`,
-        groupName: 'Filters',
+        groupName: 'Backdrop Filters (Background)',
         visible: isVisible,
         components: [
           {

@@ -32,7 +32,7 @@ const PLAYER_BG_FILTER = {
 
 export const DEFAULT_STATE: AppState = {
   color: {
-    mode: 'default',
+    mode: 'dynamic',
     isDark: true,
     isTinted: true,
     accentColor: '#6200ee',
@@ -136,6 +136,8 @@ export const DEFAULT_STATE: AppState = {
     positionY: 'bottom', // only used in compact mode
     autoHide: false,
     hoverTargetWidth: 40,
+    compactBackdropFilter: PLAYER_BG_FILTER,
+    compactSize: 400,
   },
   globalNav: {
     floating: false,
@@ -172,6 +174,7 @@ type AppStateSetters = {
   setBodyClass: (bodyClass: Partial<BodyClassState>) => void;
   setLibrary: (library: Partial<LibraryState>) => void;
   setRightSidebar: (rightSidebar: Partial<RightSidebarState>) => void;
+  setRightSidebarCompactBlur: (blur: Partial<RightSidebarState['compactBackdropFilter']>) => void;
   setGlobalNav: (globalNav: Partial<GlobalNavState>) => void;
 
   exportConfig: () => string | null;
@@ -251,6 +254,16 @@ const appStore = createStore<AppState & AppStateSetters>()(
         setGlobalNav: (globalNav) => set({ globalNav: { ...get().globalNav, ...globalNav } }),
         setRightSidebar: (rightSidebar) =>
           set({ rightSidebar: { ...get().rightSidebar, ...rightSidebar } }),
+        setRightSidebarCompactBlur: (compactBackdropFilter) =>
+          set({
+            rightSidebar: {
+              ...get().rightSidebar,
+              compactBackdropFilter: {
+                ...get().rightSidebar.compactBackdropFilter,
+                ...compactBackdropFilter,
+              },
+            },
+          }),
         setBorder: (border) =>
           set({
             uiPreferences: {
