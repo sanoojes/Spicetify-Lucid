@@ -54,10 +54,8 @@ const Input: FC<InputProps> = (props) => {
           if (maxIssue) corrected = Math.min(corrected, maxIssue.maximum);
 
           if (corrected !== valueToValidate) {
-            setValue(corrected);
-            debouncedOnChange(corrected);
-            setIsValid(true);
-            return true;
+            setIsValid(false);
+            return false;
           }
         }
 
@@ -68,12 +66,13 @@ const Input: FC<InputProps> = (props) => {
       setIsValid(true);
       return true;
     },
-    [inputType, props, debouncedOnChange]
+    [inputType, props]
   );
 
   const updateValue = (raw: string | number) => {
     setValue(raw);
-    if (validate(raw)) {
+    const isValidInput = validate(raw);
+    if (isValidInput) {
       debouncedOnChange(raw);
     }
   };
@@ -121,7 +120,6 @@ const Input: FC<InputProps> = (props) => {
         type={inputType}
         {...(inputType === 'number' ? { inputMode: 'decimal' } : {})}
       />
-
       {inputType === 'number' && (
         <UI.Tippy label="Increment" hasIcon={false}>
           <UI.Button variant="icon-no-border" onClick={increment} aria-label="Increment">
