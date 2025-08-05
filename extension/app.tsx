@@ -5,7 +5,7 @@ import setControls from '@features/setControls.ts';
 import { setGlobalNav } from '@features/setGlobalNav.ts';
 import { setLibrary } from '@features/setLibrary.ts';
 import setPageStyles from '@features/setPageStyles.ts';
-import { setPlayer } from '@features/setPlaybar.ts';
+import { setPlayer } from '@features/setPlaybar.tsx';
 import { setRightSidebar } from '@features/setRightSidebar.ts';
 import setUIPreferences from '@features/setUIPreferences.ts';
 import setUnderMainView from '@features/setUnderMainView.tsx';

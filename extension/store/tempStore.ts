@@ -5,9 +5,10 @@ import { createStore } from 'zustand/vanilla';
 export interface PlayerData {
   url?: string;
   colors?: ExtractedColor;
+  data: Spicetify.PlayerTrack;
 }
 
-export interface PlayerState extends PlayerData {
+export interface PlayerState {
   current?: PlayerData;
   next?: PlayerData[];
   prev?: PlayerData[];
@@ -29,11 +30,11 @@ export interface TempSetter {
 }
 
 const tempStore = createStore<TempState & TempSetter>()(
-  subscribeWithSelector((set) => ({
+  subscribeWithSelector((set, get) => ({
     player: {},
     pageImg: {},
-    setPlayer: (player) => set({ player }),
-    setPageImg: (pageImg) => set({ pageImg }),
+    setPlayer: (player) => set({ player: { ...get().player, ...player } }),
+    setPageImg: (pageImg) => set({ pageImg: { ...get().pageImg, ...pageImg } }),
   }))
 );
 

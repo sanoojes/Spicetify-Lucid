@@ -16,6 +16,8 @@ const UnderMainView = () => {
   const { desktop, cover } = useStore(tempStore, (s) => s.pageImg);
   const imgUrl = useStore(tempStore, (s) => s.player?.current?.url);
 
+  if (type === 'none' && !desktop) return null;
+
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [styles, setStyles] = useState({
     scale: 1,
@@ -31,7 +33,7 @@ const UnderMainView = () => {
   }, [type, customUrl, cover, imgUrl, desktop]);
 
   useEffect(() => {
-    if (type === 'custom-color') return;
+    if (type === 'custom-color' || currentImage === '') return;
 
     const el = document.querySelector(SCROLL_SELECTOR) as HTMLDivElement;
     if (!el) return;
@@ -72,7 +74,6 @@ const UnderMainView = () => {
       className={`umv${isDesktop ? ' desktop' : isColor ? ' color' : ' img'}`}
       style={
         {
-          display: type === 'none' && !desktop ? 'none' : '',
           '--umv-bg': !isColor ? `url("${currentImage}")` : '',
           '--umv-bg-color': isColor && cover ? customColor : '',
           ...(type !== 'custom-color' && {

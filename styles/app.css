@@ -53,7 +53,6 @@
 .ChipInnerComponent-sm-isUsingKeyboard,
 .ChipInnerComponent-sm-selected,
 .ChipInnerComponent-sm,
-.main-card-card,
 .marketplace-add-snippet-btn,
 .Button-buttonSecondary-small-disabled-useBrowserDefaultFocusStyle,
 .Button-buttonSecondary-small-useBrowserDefaultFocusStyle {
@@ -435,7 +434,8 @@ div.main-trackList-trackListRow {
 .Box-group-naked-card-md-isInteractive-draggable {
   height: calc(100% - 1px);
 }
-
+.main-card-card,
+.mXNT9H2GU7lDW4cGx0q1,
 .JYoTSXH6KEr_MIwisdZi,
 .e9iXRrRXf6MAlkmd8J0s,
 .main-card-cardContainer {
@@ -790,4 +790,11 @@ dialog[aria-describedby="clear-cache-dialog-heading"] {
   &:hover {
     border: var(--hover-border);
   }
+}
+
+/* Settings page */
+div[data-testid="settings-page"] {
+  left: 50%;
+  position: relative;
+  transform: translate3d(-50%, 0, 0);
 }

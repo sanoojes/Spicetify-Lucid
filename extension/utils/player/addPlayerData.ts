@@ -19,16 +19,14 @@ async function addPlayerData(playerData?: typeof Spicetify.Player.data) {
 
   const currentUrl = getImageUrl(data.item);
   if (!currentUrl) return;
-
   const currentColors = await getExtractedColors([currentUrl]);
   document.body.style.setProperty('--np-img-url', `url("${currentUrl}")`);
   tempStore.getState().setPlayer({
     current: {
       url: currentUrl,
       colors: currentColors?.data?.extractedColors?.[0] ?? undefined,
+      data: data.item,
     },
-    prev: [],
-    next: [],
   });
 
   const { isDark, isTinted, mode } = appStore.getState().color;
@@ -45,6 +43,7 @@ async function addPlayerData(playerData?: typeof Spicetify.Player.data) {
             return {
               url,
               colors: colors?.data?.extractedColors?.[0] ?? undefined,
+              data: item,
             };
           }) ?? []
         )
@@ -54,11 +53,7 @@ async function addPlayerData(playerData?: typeof Spicetify.Player.data) {
     const prev = await loadItems(data.previousItems?.slice(-2));
     const next = await loadItems(data.nextItems?.slice(0, 2));
 
-    const state = tempStore.getState().player;
-    if (state?.current?.url !== stableCurrentUrl) return;
-
     tempStore.getState().setPlayer({
-      current: state.current,
       prev,
       next,
     });

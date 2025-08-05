@@ -79,12 +79,22 @@ export const SettingModalSchema = z.object({
 
 export const PlayerStyleSchema = z.object({
   height: boundedNumber({ name: 'Player height', min: 0, max: 512 }),
+  width: boundedNumber({ name: 'Player width', min: 0, max: 100 }),
   bgColor: z.string().nullable(),
   bgOpacity: boundedNumber({ name: 'Background opacity', min: 0, max: 100 }),
   paddingX: boundedNumber({ name: 'Horizontal padding', min: 0, max: 256 }),
   borderRadius: boundedNumber({ name: 'Border radius', min: 0, max: 256 }),
   coverArtRadius: boundedNumber({ name: 'Cover art radius', min: 0, max: 256 }),
   backdropFilter: CSSFilterSchema,
+});
+
+export const NextSongCardStateSchema = z.object({
+  show: z.boolean(),
+  removeNextUp: z.boolean(),
+  height: boundedNumber({ name: 'Next Song Card Height', min: 0, max: 512 }),
+  coverArtSize: boundedNumber({ name: 'Next Song Card Cover Art Size', min: 0, max: 512 }),
+  paddingX: boundedNumber({ name: 'Next Song Card Padding X', min: 0, max: 256 }),
+  paddingY: boundedNumber({ name: 'Next Song Card Padding Y', min: 0, max: 256 }),
 });
 
 export const PlayerStateSchema = z.object({
@@ -94,6 +104,7 @@ export const PlayerStateSchema = z.object({
   hideExtraIcon: z.boolean(),
   defaultStyle: PlayerStyleSchema,
   compactStyle: PlayerStyleSchema,
+  nextSongCard: NextSongCardStateSchema,
 });
 
 export const PageStateSchema = z.object({

@@ -90,6 +90,7 @@ export interface SettingModalState {
 type PlayerTypes = Stringify<'compact' | 'default'>;
 export type PlayerStyle = {
   height: number;
+  width: number; // !! width is in percentage
   bgColor: Color | null; // null for default
   bgOpacity: number;
   paddingX: number;
@@ -98,6 +99,14 @@ export type PlayerStyle = {
   backdropFilter: CSSFilter;
 };
 
+export interface NextSongCardState {
+  show: boolean;
+  height: number;
+  paddingX: number;
+  paddingY: number;
+  coverArtSize: number;
+  removeNextUp: boolean;
+}
 export type PlayerState = {
   mode: PlayerTypes;
   autoHide: boolean;
@@ -105,6 +114,7 @@ export type PlayerState = {
   hideExtraIcon: boolean;
   defaultStyle: PlayerStyle;
   compactStyle: PlayerStyle;
+  nextSongCard: NextSongCardState;
 };
 
 export type PageMode = Stringify<'card' | 'compact-card' | 'compact' | 'default'>;

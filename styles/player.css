@@ -19,11 +19,16 @@
 }
 
 .main-nowPlayingBar-container {
+  left: 50%;
   height: var(--player-height, 80px);
+  width: var(--player-width, 100%);
   background: var(--player-bg-color, var(--main-bg));
-  position: relative;
+  transform: translate3d(-50%, 0, 0);
   padding: 0 var(--player-padding-x);
-  overflow: hidden;
+}
+.next-playing-card,
+.main-nowPlayingBar-container {
+  position: relative;
   border: var(--default-border);
   border-radius: var(--player-border-radius, var(--m-br));
 }
@@ -173,5 +178,188 @@
     button[data-testid="fullscreen-mode-button"] {
       order: 2;
     }
+  }
+}
+
+.cover-art {
+  background-color: rgba(var(--clr-on-surface-rgb), 0.1);
+}
+div.cover-art-icon {
+  inset: 0 !important;
+  position: absolute;
+  color: var(--text-base);
+  transform-origin: center center;
+  transform: scale(0.5);
+}
+
+.next-playing-card {
+  --x-offset: calc((var(--height) + var(--panel-gap)) * -1);
+  --y-offset: 0;
+  position: fixed !important;
+  top: var(--x-offset);
+  left: var(--y-offset);
+  height: var(--height, 64px);
+  width: min(var(--width), fit-content);
+  padding: var(--x-padding, 8px) var(--y-padding, 8px);
+  gap: 4px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  box-shadow: 2px 2px 8px 0 var(--clr-shadow);
+  transition: all 0.3s linear;
+
+  &:before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    -webkit-backdrop-filter: blur(var(--player-blur, 1rem)) saturate(var(--player-saturate, 1.5))
+      brightness(var(--player-brightness, 60%)) contrast(var(--player-contrast))
+      opacity(var(--player-opacity, 1));
+    backdrop-filter: blur(var(--player-blur, 1rem)) saturate(var(--player-saturate, 1.5))
+      brightness(var(--player-brightness, 60%)) contrast(var(--player-contrast))
+      opacity(var(--player-opacity, 1));
+  }
+
+  * {
+    transition: all 0.3s linear;
+  }
+
+  .main-coverSlotCollapsed-container {
+    margin: 0;
+  }
+  .main-nowPlayingWidget-coverArt,
+  .cover-art,
+  .HD9s7U5E1RLSWKpXmrqx,
+  .main-coverSlotCollapsed-container,
+  .main-coverSlotCollapsed-container div,
+  .cover-art-image {
+    --cover-art-size: var(
+      --cover-size,
+      calc(var(--height) - (var(--y-padding, 8px) + var(--x-padding, 8px)))
+    );
+  }
+  .placeholder-title,
+  .placeholder-artist {
+    width: 10rem;
+    height: 18px;
+    background: linear-gradient(
+      90deg,
+      rgba(var(--clr-on-surface-rgb), 0.1) 0%,
+      rgba(var(--clr-on-surface-rgb), 0.3) 50%,
+      rgba(var(--clr-on-surface-rgb), 0.1) 100%
+    );
+    background-size: 200% 100%;
+    background-position: 200% 0;
+    border-radius: 99px;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  .placeholder-artist {
+    animation-delay: 1s;
+    height: 16px;
+    width: 7rem;
+  }
+
+  .main-nowPlayingWidget-trackInfo {
+    gap: 2px;
+  }
+}
+
+.main-entityHeader-container.main-entityHeader-withBackgroundImage {
+  height: var(--main-view-height);
+  background-image: linear-gradient(to bottom, transparent 75%, rgba(var(--clr-surface-rgb), 0.25));
+}
+.player-floating {
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage {
+    height: calc(var(--main-view-height, 800px) - (var(--player-height, 5rem)));
+  }
+}
+.global-nav-floating {
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage {
+    height: calc(var(--main-view-height) + var(--global-nav-height) - var(--panel-gap));
+  }
+}
+
+.global-nav-floating.global-nav-not-auto-hide,
+.global-nav-floating.global-nav-auto-hide {
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage {
+    height: var(--main-view-height);
+  }
+}
+
+.player-floating.global-nav-floating {
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage {
+    height: calc(var(--main-view-height) - var(--player-height));
+  }
+}
+
+.player-floating.player-auto-hide {
+  .main-entityHeader-container.main-entityHeader-withBackgroundImage {
+    height: var(--main-view-height);
+  }
+}
+
+.player-floating {
+  .Root__main-view {
+    grid-row-end: now-playing-bar !important;
+  }
+
+  .os-scrollbar-track,
+  .nw2W4ZMdICuBo08Tzxg9,
+  .lyrics-config-button-container,
+  .lyrics-lyricsContainer-SyncedLyricsPage,
+  div[data-testid="NPV_Panel_OpenDiv"],
+  .main-yourLibraryX-libraryRootlist {
+    padding-bottom: var(--player-height, 5rem) !important;
+  }
+  .marketplace-add-snippet-btn {
+    bottom: var(--player-height, 5rem) !important;
+  }
+
+  .main-view-container__scroll-node-child {
+    padding-bottom: calc(var(--player-height, 5rem) - var(--panel-gap)) !important;
+  }
+}
+
+.player-auto-hide {
+  z-index: var(--above-main-z-index, 5);
+
+  .Root__right-sidebar,
+  #Desktop_LeftSidebar_Id {
+    grid-row-end: now-playing-bar !important;
+  }
+
+  .QdB2YtfEq0ks5O4QbtwX /* now playing card in root */ {
+    grid-row-end: now-playing-bar !important;
+  }
+
+  .QdB2YtfEq0ks5O4QbtwX.FWlHsHhD0hSw1ldIXnOF,
+  .QdB2YtfEq0ks5O4QbtwX.poe3QmyrczMfT4aZNIok {
+    margin-bottom: calc(var(--panel-gap) * -1) !important;
+  }
+
+  #player-hover-target {
+    z-index: var(--hover-target-z-index, 4);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: var(--player-hover-height, 32px);
+    width: 100%;
+    background: none;
+  }
+
+  .floating.Root__now-playing-bar {
+    position: fixed;
+    bottom: -100%;
+    left: var(--panel-gap);
+    transition: bottom 0.3s ease-in-out;
+  }
+
+  .floating.Root__now-playing-bar.show {
+    bottom: var(--panel-gap);
   }
 }

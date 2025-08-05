@@ -12,14 +12,14 @@ import type {
   SettingModalState,
   UIPreferencesState,
   UnderMainViewState,
-} from "@app/types/appStore.ts";
-import { merge } from "lodash";
-import { combine, persist, subscribeWithSelector } from "zustand/middleware";
-import { createStore } from "zustand/vanilla";
+} from '@app/types/appStore.ts';
+import { merge } from 'lodash';
+import { combine, persist, subscribeWithSelector } from 'zustand/middleware';
+import { createStore } from 'zustand/vanilla';
 
 const DEFAULT_FONT = {
-  family: "Inter",
-  variants: ["100", "200", "300", "regular", "500", "600", "700", "800", "900"],
+  family: 'Inter',
+  variants: ['100', '200', '300', 'regular', '500', '600', '700', '800', '900'],
 };
 
 const PLAYER_BG_FILTER = {
@@ -32,13 +32,13 @@ const PLAYER_BG_FILTER = {
 
 export const DEFAULT_STATE: AppState = {
   color: {
-    mode: "default",
+    mode: 'default',
     isDark: true,
     isTinted: true,
-    accentColor: "#6200ee",
+    accentColor: '#6200ee',
   },
   bg: {
-    mode: "static",
+    mode: 'static',
     options: {
       filter: {
         blur: 32,
@@ -47,15 +47,15 @@ export const DEFAULT_STATE: AppState = {
         brightness: 40,
         opacity: 100,
       },
-      color: "#060606",
-      imageMode: "player",
-      imageSrc: "https://picsum.photos/1920/1080",
+      color: '#060606',
+      imageMode: 'player',
+      imageSrc: 'https://picsum.photos/1920/1080',
       autoStopAnimation: true,
     },
   },
   bodyClass: { hideHomeHeader: true, newHome: true, flexyHome: true },
   umv: {
-    type: "default",
+    type: 'default',
     isScrolling: false,
     isScaling: true,
     filter: {
@@ -65,33 +65,42 @@ export const DEFAULT_STATE: AppState = {
       brightness: 80,
       opacity: 80,
     },
-    customColor: "#060606",
-    customUrl: "https://picsum.photos/1920/1080",
+    customColor: '#060606',
+    customUrl: 'https://picsum.photos/1920/1080',
   },
   uiPreferences: {
     windowControlHeight: 64,
     bodyFont: DEFAULT_FONT,
     titleFont: DEFAULT_FONT,
     border: {
-      color: "rgba(255,255,255,.1)",
-      hoverColor: "rgba(255,255,255,.2)",
+      color: 'rgba(255,255,255,.1)',
+      hoverColor: 'rgba(255,255,255,.2)',
       thickness: 1,
-      style: "solid",
+      style: 'solid',
     },
   },
   page: {
-    mode: "card",
-    coverMode: "default",
+    mode: 'card',
+    coverMode: 'default',
     homeCardGap: 8,
     panelGap: 8,
   },
   player: {
-    mode: "default",
+    mode: 'default',
+    nextSongCard: {
+      show: true,
+      height: 64,
+      paddingX: 8,
+      paddingY: 8,
+      coverArtSize: 48,
+      removeNextUp: true,
+    },
     autoHide: false,
     isFloating: true,
     hideExtraIcon: true,
     defaultStyle: {
-      height: 80,
+      height: 80, // in px
+      width: 100, // in %
       borderRadius: 8,
       coverArtRadius: 8,
       bgOpacity: 50,
@@ -100,7 +109,8 @@ export const DEFAULT_STATE: AppState = {
       bgColor: `var(--main-bg)`,
     },
     compactStyle: {
-      height: 64,
+      height: 64, // in px
+      width: 100, // in %
       borderRadius: 8,
       coverArtRadius: 8,
       bgOpacity: 50,
@@ -110,7 +120,7 @@ export const DEFAULT_STATE: AppState = {
     },
   },
   settingModal: {
-    accessPoint: "nav",
+    accessPoint: 'nav',
     isFloating: false,
     floatingPosition: { x: 64, y: 64 },
   },
@@ -119,9 +129,9 @@ export const DEFAULT_STATE: AppState = {
     hoverTargetWidth: 40,
   },
   rightSidebar: {
-    mode: "default",
-    positionX: "right", // only used in compact mode
-    positionY: "bottom", // only used in compact mode
+    mode: 'default',
+    positionX: 'right', // only used in compact mode
+    positionY: 'bottom', // only used in compact mode
     autoHide: false,
     hoverTargetWidth: 40,
   },
@@ -135,29 +145,27 @@ export const DEFAULT_STATE: AppState = {
 type AppStateSetters = {
   setColor: (color: Partial<ColorState>) => void;
   setBg: (bg: Partial<BackgroundState>) => void;
-  setBgOptions: (options: Partial<BackgroundState["options"]>) => void;
-  setBgFilter: (filter: Partial<BackgroundState["options"]["filter"]>) => void;
+  setBgOptions: (options: Partial<BackgroundState['options']>) => void;
+  setBgFilter: (filter: Partial<BackgroundState['options']['filter']>) => void;
 
   setPlayer: (player: Partial<PlayerState>) => void;
+  setPlayerNextCard: (nextSongCard: Partial<PlayerState['nextSongCard']>) => void;
   setPlayerBackdropFilter: (
-    mode: PlayerState["mode"],
-    filter: Partial<PlayerStyle["backdropFilter"]>
+    mode: PlayerState['mode'],
+    filter: Partial<PlayerStyle['backdropFilter']>
   ) => void;
-  setPlayerStyles: (
-    mode: PlayerState["mode"],
-    styles: Partial<PlayerStyle>
-  ) => void;
+  setPlayerStyles: (mode: PlayerState['mode'], styles: Partial<PlayerStyle>) => void;
 
   setPage: (umv: Partial<PageState>) => void;
 
   setUMV: (umv: Partial<UnderMainViewState>) => void;
-  setUMVFilter: (filter: Partial<UnderMainViewState["filter"]>) => void;
+  setUMVFilter: (filter: Partial<UnderMainViewState['filter']>) => void;
 
   setSettingModal: (settingModal: Partial<SettingModalState>) => void;
   setSettingModalPosition: (x: number, y: number) => void;
 
   setUIPreferences: (uiPreferences: Partial<UIPreferencesState>) => void;
-  setBorder: (border: Partial<UIPreferencesState["border"]>) => void;
+  setBorder: (border: Partial<UIPreferencesState['border']>) => void;
 
   setBodyClass: (bodyClass: Partial<BodyClassState>) => void;
   setLibrary: (library: Partial<LibraryState>) => void;
@@ -203,8 +211,15 @@ const appStore = createStore<AppState & AppStateSetters>()(
           }),
 
         setPlayer: (player) => set({ player: { ...get().player, ...player } }),
+        setPlayerNextCard: (nextSongCard) =>
+          set({
+            player: {
+              ...get().player,
+              nextSongCard: { ...get().player.nextSongCard, ...nextSongCard },
+            },
+          }),
         setPlayerBackdropFilter: (mode, filter) => {
-          const key = mode === "compact" ? "compactStyle" : "defaultStyle";
+          const key = mode === 'compact' ? 'compactStyle' : 'defaultStyle';
           set({
             player: {
               ...get().player,
@@ -219,7 +234,7 @@ const appStore = createStore<AppState & AppStateSetters>()(
           });
         },
         setPlayerStyles: (mode, styles) => {
-          const key = mode === "compact" ? "compactStyle" : "defaultStyle";
+          const key = mode === 'compact' ? 'compactStyle' : 'defaultStyle';
           set({
             player: {
               ...get().player,
@@ -230,10 +245,8 @@ const appStore = createStore<AppState & AppStateSetters>()(
 
         setUIPreferences: (uiPreferences) =>
           set({ uiPreferences: { ...get().uiPreferences, ...uiPreferences } }),
-        setLibrary: (library) =>
-          set({ library: { ...get().library, ...library } }),
-        setGlobalNav: (globalNav) =>
-          set({ globalNav: { ...get().globalNav, ...globalNav } }),
+        setLibrary: (library) => set({ library: { ...get().library, ...library } }),
+        setGlobalNav: (globalNav) => set({ globalNav: { ...get().globalNav, ...globalNav } }),
         setRightSidebar: (rightSidebar) =>
           set({ rightSidebar: { ...get().rightSidebar, ...rightSidebar } }),
         setBorder: (border) =>
@@ -254,8 +267,7 @@ const appStore = createStore<AppState & AppStateSetters>()(
             },
           })),
 
-        setBodyClass: (bodyClass) =>
-          set({ bodyClass: { ...get().bodyClass, ...bodyClass } }),
+        setBodyClass: (bodyClass) => set({ bodyClass: { ...get().bodyClass, ...bodyClass } }),
 
         importConfig: (config) => set(() => merge({}, DEFAULT_STATE, config)),
         exportConfig: () => {
@@ -269,13 +281,13 @@ const appStore = createStore<AppState & AppStateSetters>()(
         resetStore: () => {
           try {
             set(DEFAULT_STATE);
-            localStorage.removeItem("lucid:settings");
+            localStorage.removeItem('lucid:settings');
           } catch {}
         },
       }))
     ),
     {
-      name: "lucid:settings",
+      name: 'lucid:settings',
       version: 1,
       migrate: (persistedState) => merge(DEFAULT_STATE, persistedState ?? {}),
     }
