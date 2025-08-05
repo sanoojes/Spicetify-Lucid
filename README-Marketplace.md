@@ -1,4 +1,4 @@
-# Docs are outdated and needs update !
+# Docs are outdated checkout new settings !
 
 <div align="center">
   <h1>Spiceity Lucid</h1>

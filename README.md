@@ -1,4 +1,4 @@
-# Docs are outdated and needs update !
+# Docs need update am lazy to do it.
 
 ## 🎨 Spicetify Lucid Theme
 
