@@ -52,7 +52,7 @@ export const patchIcons = () => {
         : LocaleAPI.get(value);
 
     waitForElements(
-      '.Root__globalNav .main-globalNav-navLink.custom-navlink[aria-label*="Marketplace"] > svg'
+      '.Root__globalNav .main-globalNav-navLink.custom-navlink[aria-label*="Marketplace"]'
     ).then((svg) => {
       svg.innerHTML = CART_ICON + CART_ICON_FILLED;
     });
@@ -311,7 +311,6 @@ button[data-testid="control-button-queue"] path,
 button[aria-label="${locales.queue}"] path{
   /* d: var(--queue-icon); */ /* TODO: add new queue icon */
 }
-
 
 button[aria-label="${locales.openMiniPlayer}"] path,
 button[data-testid="pip-toggle-button"] path{

@@ -32,50 +32,52 @@ async function addPlayerData(playerData?: typeof Spicetify.Player.data) {
   const { isDark, isTinted, mode } = appStore.getState().color;
   const stableCurrentUrl = currentUrl;
 
-  scheduleIdle(async () => {
-    const loadItems = async (items?: (typeof data.item)[]) => {
-      return (
-        await Promise.all(
-          items?.map(async (item) => {
-            const url = getImageUrl(item);
-            if (!url) return null;
-            const colors = await getExtractedColors([url]);
-            return {
-              url,
-              colors: colors?.data?.extractedColors?.[0] ?? undefined,
-              data: item,
-            };
-          }) ?? []
-        )
-      ).filter(Boolean) as PlayerData[];
-    };
+  const loadItems = async (items?: (typeof data.item)[]) => {
+    return (
+      await Promise.all(
+        items?.map(async (item) => {
+          const url = getImageUrl(item);
+          if (!url) return null;
+          const colors = await getExtractedColors([url]);
+          return {
+            url,
+            colors: colors?.data?.extractedColors?.[0] ?? undefined,
+            data: item,
+          };
+        }) ?? []
+      )
+    ).filter(Boolean) as PlayerData[];
+  };
 
-    const prev = await loadItems(data.previousItems?.slice(-2));
-    const next = await loadItems(data.nextItems?.slice(0, 2));
+  const prev = await loadItems(data.previousItems?.slice(-2));
+  const next = await loadItems(data.nextItems?.slice(0, 2));
 
-    tempStore.getState().setPlayer({
-      prev,
-      next,
-    });
+  tempStore.getState().setPlayer({
+    prev,
+    next,
+  });
 
-    if (mode !== 'dynamic') return;
+  if (mode !== 'dynamic') return;
 
-    [...prev, ...next].forEach((track) => {
-      const hex = track?.colors?.colorRaw?.hex;
-      if (!hex) return;
+  [...prev, ...next].forEach((track) => {
+    const hex = track?.colors?.colorRaw?.hex;
+    if (!hex) return;
 
-      scheduleIdle(() => {
-        const latestUrl = tempStore.getState().player?.current?.url;
-        if (latestUrl === stableCurrentUrl) {
-          cacheColorInBackground(hex, isDark, isTinted);
-        }
-      });
+    scheduleIdle(() => {
+      const latestUrl = tempStore.getState().player?.current?.url;
+      if (latestUrl === stableCurrentUrl) {
+        cacheColorInBackground(hex, isDark, isTinted);
+      }
     });
   });
 }
 
 waitForGlobal(() => Spicetify?.Player).then((player) =>
   player.addEventListener('songchange', (e) => addPlayerData(e?.data))
+);
+
+waitForGlobal(() => Spicetify?.Platform?.PlayerAPI?._queue?._events).then((events) =>
+  events?.addListener('queue_update', () => addPlayerData())
 );
 
 export default addPlayerData;

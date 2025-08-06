@@ -3,7 +3,6 @@ import getSettingsSections from '@components/settings/helper/getSettingsSections
 import Section from '@components/settings/ui/Section.tsx';
 import UI from '@components/UI.tsx';
 import appStore from '@store/appStore.ts';
-import addSocialButtonsToModal from '@utils/addSocialButtonsToModal.tsx';
 import setFloating from '@utils/dom/setFloating.ts';
 import React, { useEffect, useState } from 'react';
 import { useStore } from 'zustand';
@@ -18,7 +17,6 @@ const Settings = () => {
 
   useEffect(() => {
     document.body.classList.add('settings-open');
-    addSocialButtonsToModal();
 
     const initialSections = getSettingsSections();
     setSections(initialSections);
@@ -28,7 +26,6 @@ const Settings = () => {
       const updatedSections = getSettingsSections(state);
       setSections(updatedSections);
     });
-
     return () => {
       document.body.classList.remove('settings-open');
       unsubscribe();
@@ -37,7 +34,7 @@ const Settings = () => {
 
   useEffect(() => {
     if (!isFloating) return;
-    const target = document.querySelector('generic-modal .GenericModal') as HTMLElement | null;
+    const target = document.querySelector('.GenericModal') as HTMLElement | null;
     const dragTarget = document.querySelector(
       '.main-trackCreditsModal-header'
     ) as HTMLElement | null;

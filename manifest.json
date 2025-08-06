@@ -22,9 +22,7 @@
     "readme": "README-Marketplace.md",
     "usercss": "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/user.css",
     "schemes": "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/color.ini",
-    "include": [
-      "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/theme.js"
-    ],
+    "include": ["https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/theme.js"],
     "authors": [
       {
         "name": "Sanoojes",
@@ -40,9 +38,7 @@
     "readme": "README-Marketplace.md",
     "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv2/src/user.css",
     "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv2/src/color.ini",
-    "include": [
-      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv2/src/theme.js"
-    ],
+    "include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv2/src/theme.js"],
     "authors": [
       {
         "name": "Sanoojes",
@@ -58,9 +54,7 @@
     "readme": "README-Marketplace.md",
     "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv1/src/user.css",
     "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv1/src/color.ini",
-    "include": [
-      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv1/src/theme.js"
-    ],
+    "include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv1/src/theme.js"],
     "authors": [
       {
         "name": "Sanoojes",

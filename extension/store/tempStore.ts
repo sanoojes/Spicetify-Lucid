@@ -15,7 +15,7 @@ export interface PlayerState {
 }
 
 export interface TempState {
-  player?: PlayerState;
+  player: PlayerState;
   pageImg: {
     cover?: string;
     desktop?: string;

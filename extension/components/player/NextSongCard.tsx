@@ -10,35 +10,23 @@ const NextSongCard: FC = () => {
     appStore,
     (state) => state.player.nextSongCard
   );
-  const tmpPlayer = useStore(tempStore, (state) => state.player);
+  const nextSong = useStore(tempStore, (state) => state.player.next?.[0].data);
   const [songData, setSongData] = useState(() => Spicetify?.Player?.data?.nextItems?.[0] ?? null);
   const [loading, setLoading] = useState(false);
 
-  console.log(tmpPlayer?.next);
-
   useEffect(() => {
-    const next = tmpPlayer?.next?.[0]?.data ?? null;
+    const next = nextSong ?? null;
 
-    setSongData((prev) => {
-      if (!next || prev?.uri === next?.uri) return prev;
-      return next;
-    });
+    if (!next || songData?.uri === next?.uri) return;
+    setLoading(true);
+    setSongData(next);
 
-    if (loading && songData?.uri !== next?.uri) {
+    const timeout = setTimeout(() => {
       setLoading(false);
-    }
-  }, [tmpPlayer?.next?.[0]?.data?.uri]);
+    }, 200);
 
-  useEffect(() => {
-    const handle = () => {
-      setLoading(true);
-    };
-
-    Spicetify?.Player?.addEventListener?.('songchange', handle);
-    return () => {
-      Spicetify?.Player?.removeEventListener?.('songchange', handle);
-    };
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [nextSong?.uri]);
 
   const imageSrc = useMemo(() => {
     const images = songData?.images ?? [];

@@ -1,7 +1,6 @@
 import appStore from '@store/appStore.ts';
 import tempStore from '@store/tempStore.ts';
 import serializeFilters from '@utils/dom/serializeFilters.ts';
-import waitForElements from '@utils/dom/waitForElements.ts';
 import React, { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from 'zustand';
 

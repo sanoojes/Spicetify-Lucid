@@ -967,6 +967,7 @@ input:checked ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
   }
 
   .search-searchCategory-contentArea {
+    min-height: 2.25rem;
     overflow: hidden;
     position: relative;
     height: fit-content;
