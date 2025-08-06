@@ -1,7 +1,7 @@
 import appStore from '@store/appStore.ts';
+import serializeFilters from '@utils/dom/serializeFilters.ts';
 import setupHoverToggle from '@utils/setupHoverToggle.ts';
 import { updateCardBgAlpha } from '@utils/updateCardBgAlpha.ts';
-import serializeFilters from '@utils/dom/serializeFilters.ts';
 
 const FULL_SCREEN_CLASS_NAME = '.a7Ka5yznvrbSDPk1G36o,.pd3cZQBgtgOFLAp9ns7Q,.JVoVebPNAPKBLKSlIBXw';
 

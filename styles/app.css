@@ -516,6 +516,17 @@ div.main-trackList-trackListRow {
 }
 
 /* ========== Left Sidebar ========== */
+.Root__nav-bar {
+  transition: var(--default-transition);
+}
+.Root__nav-bar.TkqXOzhmCCuE6YI3hlgA {
+  backdrop-filter: blur(32px);
+}
+.p9p4xXN1mgRkvMNUhIWg /* cinema lib */,
+[data-transition="cinema-library"] .oDWO4yGAZ2kZlt3TTS4E {
+  width: 0;
+}
+
 [data-right-sidebar-hidden="true"] .TkqXOzhmCCuE6YI3hlgA.Root__nav-bar,
 [data-right-sidebar-hidden="true"] .TkqXOzhmCCuE6YI3hlgA /* Fullscreen */ {
   backdrop-filter: blur(32px) brightness(0.7);

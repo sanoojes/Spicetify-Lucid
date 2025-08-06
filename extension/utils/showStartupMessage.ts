@@ -1,6 +1,6 @@
+import Startup from '@components/Startup.tsx';
 import { createElement } from 'react';
 import waitForGlobal from './dom/waitForGlobal.ts';
-import Startup from '@components/Startup.tsx';
 
 const STARTUP_SHOWN_KEY = 'lucid-startup-shown';
 

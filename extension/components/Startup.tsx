@@ -1,6 +1,6 @@
-import React from 'react';
 import UI from '@components/UI.tsx';
 import { openModal } from '@utils/settings/addSettings.tsx';
+import React from 'react';
 
 const Startup = () => {
   return (

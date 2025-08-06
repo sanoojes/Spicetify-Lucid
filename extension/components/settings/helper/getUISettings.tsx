@@ -10,7 +10,7 @@ import { DEFAULT_STATE } from '@store/appStore.ts';
 import { isWindows } from '@utils/platform.ts';
 
 export const getUISettings = (state: ReturnType<typeof appStore.getState>): SectionProps => {
-  const { uiPreferences, bodyClass, library, rightSidebar, globalNav, page } = state;
+  const { uiPreferences, bodyClass, library, globalNav, page } = state;
 
   return {
     id: 'ui-settings',
