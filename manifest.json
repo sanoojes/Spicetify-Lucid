@@ -22,7 +22,9 @@
     "readme": "README-Marketplace.md",
     "usercss": "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/user.css",
     "schemes": "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/color.ini",
-    "include": ["https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/theme.js"],
+    "include": [
+      "https://raw.githubusercontent.com/sanoojes/Spicetify-Lucid/beta/src/theme.js"
+    ],
     "authors": [
       {
         "name": "Sanoojes",
@@ -36,9 +38,11 @@
     "description": "Legacy version of Lucid V2, compatible with Spotify versions v1.2.45 to v1.2.60. No longer maintained.",
     "preview": "assets/images/base.png",
     "readme": "README-Marketplace.md",
-    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@v2/src/user.css",
-    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@v2/src/color.ini",
-    "include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@v2/src/theme.js"],
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv2/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv2/src/color.ini",
+    "include": [
+      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv2/src/theme.js"
+    ],
     "authors": [
       {
         "name": "Sanoojes",
@@ -52,9 +56,11 @@
     "description": "Original legacy version of Lucid, designed for Spotify versions v1.2.45 to v1.2.55. Unmaintained.",
     "preview": "assets/images/base.png",
     "readme": "README-Marketplace.md",
-    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@v2/src/user.css",
-    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@v2/src/color.ini",
-    "include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@v2/src/theme.js"],
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv1/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv1/src/color.ini",
+    "include": [
+      "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@vv1/src/theme.js"
+    ],
     "authors": [
       {
         "name": "Sanoojes",
