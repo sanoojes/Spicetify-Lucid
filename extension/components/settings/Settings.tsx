@@ -1,7 +1,7 @@
 import type { Component, GroupProps, SectionProps } from '@app/types/settingSchema.ts';
 import getSettingsSections from '@components/settings/helper/getSettingsSections.ts';
 import Section from '@components/settings/ui/Section.tsx';
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import appStore from '@store/appStore.ts';
 import setFloating from '@utils/dom/setFloating.ts';
 import React, { useEffect, useState } from 'react';

@@ -1,5 +1,5 @@
 import type { InputProps } from '@app/types/uiSchema.ts';
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import { Add16Filled, Subtract16Filled } from '@fluentui/react-icons';
 import debounce from '@utils/debounce.ts';
 import { showNotification } from '@utils/showNotification.tsx';

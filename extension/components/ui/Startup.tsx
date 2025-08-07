@@ -1,4 +1,4 @@
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import { openModal } from '@utils/settings/addSettings.tsx';
 import React from 'react';
 

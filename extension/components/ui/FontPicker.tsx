@@ -1,5 +1,5 @@
 import type { FontPickerProps } from '@app/types/uiSchema.ts';
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import { CheckboxChecked16Filled, CheckboxUnchecked16Filled } from '@fluentui/react-icons';
 import { fetchGoogleFonts, type GoogleFont, loadFont } from '@utils/font.ts';
 import { showNotification } from '@utils/showNotification.tsx';

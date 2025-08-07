@@ -1,4 +1,4 @@
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import { Dismiss16Filled } from '@fluentui/react-icons';
 import DiscordIcon from '@icons/discord-16.svg';
 import GithubIcon from '@icons/github-16.svg';

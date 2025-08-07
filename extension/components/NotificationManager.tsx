@@ -1,4 +1,4 @@
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import generateId from '@utils/generateId.ts';
 import React, { type FC, type ReactNode, useEffect, useRef, useState } from 'react';
 

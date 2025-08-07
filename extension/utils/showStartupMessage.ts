@@ -1,6 +1,6 @@
-import Startup from '@components/Startup.tsx';
+import UI from '@components/ui';
+import waitForGlobal from '@utils/dom/waitForGlobal.ts';
 import { createElement } from 'react';
-import waitForGlobal from './dom/waitForGlobal.ts';
 
 const STARTUP_SHOWN_KEY = 'lucid-startup-shown';
 
@@ -11,7 +11,7 @@ export default function showStartupMessage() {
     waitForGlobal(() => Spicetify?.PopupModal).then((modal) => {
       modal.display({
         title: 'Lucid v3 Is Here!',
-        content: createElement(Startup),
+        content: createElement(UI.Startup),
         isLarge: true,
       });
 

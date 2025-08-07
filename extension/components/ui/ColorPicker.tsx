@@ -1,5 +1,5 @@
 import type { ColorPickerProps } from '@app/types/uiSchema.ts';
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import { ArrowResetRegular, Dismiss16Filled } from '@fluentui/react-icons';
 import getContrastColor from '@utils/colors/getContrastColor.ts';
 import setFloating from '@utils/dom/setFloating.ts';

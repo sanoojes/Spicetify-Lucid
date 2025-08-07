@@ -90,7 +90,9 @@ export const DEFAULT_STATE: AppState = {
     nextSongCard: {
       show: true,
       isFloating: true,
+      gap: 4,
       height: 64,
+      maxWidth: 256,
       paddingX: 8,
       paddingY: 8,
       coverArtSize: 48,

@@ -1,5 +1,5 @@
 import type { Component } from '@app/types/settingSchema.ts';
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import React, { type FC } from 'react';
 
 const Row: FC<{ data: Component }> = ({ data }) => {

@@ -1,14 +1,14 @@
+import Logger from '@builder/logger.ts';
 import { copyFilesPlugin } from '@builder/plugin/copyFilesPlugin.ts';
 import { externalGlobalPlugin } from '@builder/plugin/externalGlobalPlugin.ts';
 import { loggerPlugin } from '@builder/plugin/loggerPlugin.ts';
 import { notifyClientPlugin } from '@builder/plugin/notifyClientPlugin.ts';
 import { wrapWithLoader } from '@builder/plugin/wrapWithLoader.ts';
+import { startWSServer } from '@builder/wsServer.ts';
 import { parseArgs } from '@std/cli';
 import { join, normalize } from '@std/path';
 import { type BuildOptions, build, context } from 'esbuild';
 import svgrPlugin from 'esbuild-plugin-svgr';
-import Logger from './logger.ts';
-import { startWSServer } from './wsServer.ts';
 
 const THEME_NAME = 'Lucid';
 

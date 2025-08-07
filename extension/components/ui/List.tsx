@@ -1,4 +1,4 @@
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import { Search16Filled } from '@fluentui/react-icons';
 import React, { type CSSProperties, type ReactNode, useMemo, useState } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';

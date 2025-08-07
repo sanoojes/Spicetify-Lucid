@@ -1,6 +1,6 @@
+import UI from '@components/ui';
 import React, { type FC, type ReactNode, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import HeaderButtons from './HeaderButtons.tsx';
 
 type ModalProps = {
   isOpen: boolean;
@@ -35,7 +35,7 @@ const Modal: FC<ModalProps> = ({ isOpen, title, children, onClose }) => {
           <div className="main-trackCreditsModal-header">
             <h1 className="main-type-alto">{title}</h1>
             <div className="btn-wrapper">
-              <HeaderButtons closeModal={onClose} />
+              <UI.HeaderButtons closeModal={onClose} />
             </div>
           </div>
           <div className="main-trackCreditsModal-mainSection">

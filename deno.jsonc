@@ -13,6 +13,7 @@
     "@app/": "./extension/",
     "@app/types/": "./extension/types/",
     "@components/": "./extension/components/",
+    "@components/ui": "./extension/components/ui/index.ts",
     "@hooks/": "./extension/hooks/",
     "@store/": "./extension/store/",
     "@features/": "./extension/features/",

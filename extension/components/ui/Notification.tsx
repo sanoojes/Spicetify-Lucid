@@ -1,4 +1,4 @@
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import { Dismiss16Filled } from '@fluentui/react-icons';
 import React, { type FC, type ReactNode, useEffect, useState } from 'react';
 

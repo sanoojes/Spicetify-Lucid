@@ -1,4 +1,4 @@
-import UI from '@components/UI.tsx';
+import UI from '@components/ui';
 import { ChevronLeft16Filled, ChevronRight16Filled } from '@fluentui/react-icons';
 import React, { useEffect, useRef, useState } from 'react';
 

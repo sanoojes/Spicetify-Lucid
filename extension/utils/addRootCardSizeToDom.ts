@@ -1,4 +1,4 @@
-import waitForElements from './dom/waitForElements.ts';
+import waitForElements from '@utils/dom/waitForElements.ts';
 
 type ObservedElement = {
   selector: string;

@@ -94,6 +94,8 @@ export const NextSongCardStateSchema = z.object({
   removeNextUp: z.boolean(),
   isFloating: z.boolean(),
   height: boundedNumber({ name: 'Next Song Card Height', min: 0, max: 512 }),
+  gap: boundedNumber({ name: 'Next Song Gap', min: 0, max: 64 }),
+  maxWidth: boundedNumber({ name: 'Next Song Card Max Width', min: 8, max: 1024 }),
   coverArtSize: boundedNumber({ name: 'Next Song Card Cover Art Size', min: 0, max: 512 }),
   paddingX: boundedNumber({ name: 'Next Song Card Padding X', min: 0, max: 256 }),
   paddingY: boundedNumber({ name: 'Next Song Card Padding Y', min: 0, max: 256 }),
