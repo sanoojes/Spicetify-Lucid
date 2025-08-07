@@ -1,7 +1,7 @@
 import appStore from '@store/appStore.ts';
 import setupHoverToggle from '@utils/setupHoverToggle.ts';
 
-export function setLibrary(library = appStore.getState().library) {
+export default function setLibrary(library = appStore.getState().library) {
   document.body.classList.toggle('library-auto-hide', library.autoHide);
   if (library.autoHide)
     document.body.style.setProperty('--lib-target-width', `${library.hoverTargetWidth}px`);

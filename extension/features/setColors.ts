@@ -41,7 +41,7 @@ function getCachedColorCSS(color: string, isDark: boolean, isTinted: boolean): s
 
   if (colorCache.has(cacheKey)) {
     console.debug(`[Lucid] Color Cache -> Hit: ${cacheKey}`);
-    return colorCache.get(cacheKey)!;
+    return colorCache.get(cacheKey) as string;
   }
 
   console.debug(`[Lucid] Color Cache -> Miss: ${cacheKey}`);

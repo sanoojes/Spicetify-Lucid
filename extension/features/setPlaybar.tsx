@@ -12,7 +12,7 @@ let playerElem: HTMLDivElement | null = null;
 let hasResizeListener = false;
 let nextCardRoot: Root | null = null;
 
-export function setPlayer(player = appStore.getState().player) {
+export default function setPlayer(player = appStore.getState().player) {
   if (!playerElem) {
     waitForElements('.Root__now-playing-bar').then((elem) => {
       playerElem = elem as HTMLDivElement;
@@ -54,6 +54,7 @@ function applyDynamicStyles(player: PlayerState) {
     paddingX,
     borderRadius,
     coverArtRadius,
+    sliderHeight,
     bgColor,
     bgOpacity,
     backdropFilter,
@@ -65,6 +66,7 @@ function applyDynamicStyles(player: PlayerState) {
 :root,
 .Root__now-playing-bar {
   --player-height: ${height}px;
+  --slider-height: ${sliderHeight}px;
   --player-width: ${width}%;
   --player-padding-x: ${paddingX}px;
   --player-border-radius: ${borderRadius}px;

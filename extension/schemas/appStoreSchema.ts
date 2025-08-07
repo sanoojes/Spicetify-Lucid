@@ -79,6 +79,7 @@ export const SettingModalSchema = z.object({
 
 export const PlayerStyleSchema = z.object({
   height: boundedNumber({ name: 'Player height', min: 0, max: 512 }),
+  sliderHeight: boundedNumber({ name: 'Slider height', min: 1, max: 512 }),
   width: boundedNumber({ name: 'Player width', min: 0, max: 100 }),
   bgColor: z.string().nullable(),
   bgOpacity: boundedNumber({ name: 'Background opacity', min: 0, max: 100 }),

@@ -44,8 +44,8 @@
     display: none;
   }
 }
-.spotify__os--is-windows {
-}
+/* .spotify__os--is-windows {
+} */
 
 /* ========== Global ========== */
 .Button-buttonSecondary-medium-useBrowserDefaultFocusStyle,
@@ -808,4 +808,13 @@ div[data-testid="settings-page"] {
   left: 50%;
   position: relative;
   transform: translate3d(-50%, 0, 0);
+}
+
+/* Lyrics */
+.lyrics-lyricsContainer-Provider /* No one cares about the provider :3 */ {
+  display: none;
+}
+
+.lyrics-lyrics-background {
+  background: rgba(var(--clr-primary-container-rgb), 0.1);
 }

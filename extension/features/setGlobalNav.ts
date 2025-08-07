@@ -2,7 +2,7 @@ import appStore from '@store/appStore.ts';
 import { isWindows } from '@utils/platform.ts';
 import setupHoverToggle from '@utils/setupHoverToggle.ts';
 
-export function setGlobalNav(globalNav = appStore.getState().globalNav) {
+export default function setGlobalNav(globalNav = appStore.getState().globalNav) {
   document.body.classList.toggle('global-nav-floating', globalNav.floating);
 
   if (isWindows()) return; // auto hide will not be supported because it interferes with -webkit-app-region (makes the top bar for dragging)

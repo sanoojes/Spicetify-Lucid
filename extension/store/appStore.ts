@@ -50,7 +50,7 @@ export const DEFAULT_STATE: AppState = {
       color: '#060606',
       imageMode: 'player',
       imageSrc: 'https://picsum.photos/1920/1080',
-      autoStopAnimation: true,
+      autoStopAnimation: false,
     },
   },
   bodyClass: { hideHomeHeader: true, newHome: true, flexyHome: true },
@@ -102,6 +102,7 @@ export const DEFAULT_STATE: AppState = {
     hideExtraIcon: true,
     defaultStyle: {
       height: 80, // in px
+      sliderHeight: 4,
       width: 100, // in %
       borderRadius: 8,
       coverArtRadius: 8,
@@ -112,6 +113,7 @@ export const DEFAULT_STATE: AppState = {
     },
     compactStyle: {
       height: 64, // in px
+      sliderHeight: 4,
       width: 100, // in %
       borderRadius: 8,
       coverArtRadius: 8,

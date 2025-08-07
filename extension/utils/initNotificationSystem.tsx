@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 
 let root: ReactDOM.Root | null = null;
 
-export const initNotificationSystem = () => {
+export default function initNotificationSystem() {
   if (root) return;
 
   const container = document.createElement('div');
@@ -13,4 +13,4 @@ export const initNotificationSystem = () => {
 
   root = ReactDOM.createRoot(container);
   root.render(<NotificationManager />);
-};
+}

@@ -90,6 +90,7 @@ export interface SettingModalState {
 type PlayerTypes = Stringify<'compact' | 'default'>;
 export type PlayerStyle = {
   height: number;
+  sliderHeight: number;
   width: number; // !! width is in percentage
   bgColor: Color | null; // null for default
   bgOpacity: number;

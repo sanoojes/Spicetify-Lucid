@@ -39,6 +39,16 @@ export const getPlayerSettings = (state: ReturnType<typeof appStore.getState>): 
             onChange: (width) => state.setPlayerStyles(mode, { width }),
           },
           {
+            id: `slider-height-${mode}`,
+            type: 'Input',
+            label: 'Slider Height (in px)',
+            inputType: 'number',
+            value: styles.sliderHeight,
+            tippy: 'Height of slider/progress bar',
+            validation: (v) => PlayerStyleSchema.shape.sliderHeight.safeParse(v),
+            onChange: (sliderHeight) => state.setPlayerStyles(mode, { sliderHeight }),
+          },
+          {
             id: `padding-x-${mode}`,
             type: 'Input',
             label: 'Horizontal Padding',

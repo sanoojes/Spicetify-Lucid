@@ -5,7 +5,7 @@ import { updateCardBgAlpha } from '@utils/updateCardBgAlpha.ts';
 
 const FULL_SCREEN_CLASS_NAME = '.a7Ka5yznvrbSDPk1G36o,.pd3cZQBgtgOFLAp9ns7Q,.JVoVebPNAPKBLKSlIBXw';
 
-export function setRightSidebar(rightSidebar = appStore.getState().rightSidebar) {
+export default function setRightSidebar(rightSidebar = appStore.getState().rightSidebar) {
   const {
     mode,
     autoHide,

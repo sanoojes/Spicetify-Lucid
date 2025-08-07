@@ -18,6 +18,9 @@
   padding: 0;
   width: 100%;
 }
+.Root__now-playing-bar .progress-bar {
+  --progress-bar-height: var(--slider-height, 4px) !important;
+}
 
 .main-nowPlayingBar-container {
   display: flex;
@@ -205,7 +208,7 @@
   }
 }
 
-.cover-art {
+div.cover-art {
   background-color: rgba(var(--clr-on-surface-rgb), 0.1);
 }
 div.cover-art-icon {

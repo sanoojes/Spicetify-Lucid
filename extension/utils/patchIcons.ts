@@ -42,7 +42,7 @@ type Locales = {
   [key in LocaleKeys]: string;
 };
 
-export const patchIcons = () => {
+export default function patchIcons() {
   try {
     const g = (value: string, clean = false) =>
       clean
@@ -321,4 +321,4 @@ button[data-testid="pip-toggle-button"] path{
     console.error('Error patching icons.', error);
     showNotification({ message: 'Error patching icons.', isError: true });
   }
-};
+}
