@@ -567,7 +567,6 @@ div.main-trackList-trackListRow {
   height: 4rem;
   width: 100%;
   z-index: 1;
-  border-bottom: var(--default-border);
 
   &:before {
     content: "";
@@ -586,6 +585,7 @@ div.main-trackList-trackListRow {
 }
 .mdMUqcSHFw1lZIcYEblu /* Header - box shadow */ {
   background-color: var(--background-base);
+  border-bottom: var(--default-border);
   &:before {
     backdrop-filter: blur(2rem) saturate(1.5) brightness(0.75);
   }
