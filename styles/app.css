@@ -562,6 +562,7 @@ div.main-trackList-trackListRow {
   height: 4rem;
   width: 100%;
   z-index: 1;
+  border-bottom: var(--default-border);
 
   &:before {
     content: "";

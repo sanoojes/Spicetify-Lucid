@@ -103,6 +103,8 @@ export type PlayerStyle = {
 export interface NextSongCardState {
   show: boolean;
   height: number;
+  gap: number;
+  maxWidth: number;
   paddingX: number;
   paddingY: number;
   coverArtSize: number;

@@ -48,3 +48,23 @@
     background-position: -200% 0;
   }
 }
+
+@keyframes puff-1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes puff-2 {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

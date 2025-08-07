@@ -6,11 +6,18 @@ import React, { type CSSProperties, type FC, useEffect, useMemo, useState } from
 import { useStore } from 'zustand';
 
 const NextSongCard: FC = () => {
-  const { height, paddingX, paddingY, coverArtSize, removeNextUp, position, isFloating } = useStore(
-    appStore,
-    (state) => state.player.nextSongCard
-  );
-  const nextSong = useStore(tempStore, (state) => state.player.next?.[0].data);
+  const {
+    height,
+    maxWidth,
+    gap,
+    paddingX,
+    paddingY,
+    coverArtSize,
+    removeNextUp,
+    position,
+    isFloating,
+  } = useStore(appStore, (state) => state.player.nextSongCard);
+  const nextSong = useStore(tempStore, (state) => state.player?.next?.[0].data);
   const [songData, setSongData] = useState(() => Spicetify?.Player?.data?.nextItems?.[0] ?? null);
   const [loading, setLoading] = useState(false);
 
@@ -41,7 +48,9 @@ const NextSongCard: FC = () => {
           '--height': `${height}px`,
           '--x-padding': `${paddingX}px`,
           '--y-padding': `${paddingY}px`,
+          '--gap': `${gap}px`,
           '--cover-size': `${coverArtSize}px`,
+          maxWidth: `${maxWidth}px`,
         } as CSSProperties
       }
     >

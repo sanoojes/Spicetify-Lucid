@@ -48,7 +48,6 @@
 }
 .next-playing-on-left {
   .next-playing-card {
-    margin-right: 4px;
     order: 0;
   }
   .main-nowPlayingBar-nowPlayingBar {
@@ -220,17 +219,15 @@ div.cover-art-icon {
 }
 
 .next-playing-card {
-  --width: fit-content !important;
   height: var(--height, 64px);
-  width: min(var(--width), fit-content);
-  min-width: fit-content;
   padding: var(--x-padding, 8px) var(--y-padding, 8px);
-  gap: 4px;
+  gap: var(--gap, 4px);
   display: flex;
   justify-content: start;
   align-items: center;
   box-shadow: 2px 2px 8px 0 var(--clr-shadow);
   transition: var(--default-transition);
+  overflow: hidden;
 
   &.floating {
     --x-offset: calc((var(--height) + var(--panel-gap)) * -1);
@@ -263,6 +260,10 @@ div.cover-art-icon {
     backdrop-filter: blur(var(--player-blur, 1rem)) saturate(var(--player-saturate, 1.5))
       brightness(var(--player-brightness, 60%)) contrast(var(--player-contrast))
       opacity(var(--player-opacity, 1));
+  }
+
+  .main-trackInfo-artists {
+    display: block;
   }
   .main-coverSlotCollapsed-container {
     margin: 0;
