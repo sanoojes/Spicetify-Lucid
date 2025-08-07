@@ -218,6 +218,23 @@ div.cover-art-icon {
   transform: scale(0.5);
 }
 
+.main-connectBar-connectBar {
+  --height: 32px;
+  --x-offset: calc((var(--height) + var(--panel-gap)) * -1);
+  --y-offset: var(--panel-gap);
+  height: var(--height);
+  position: fixed !important;
+  top: var(--x-offset);
+  right: var(--y-offset);
+  padding-inline: 8px;
+  border: var(--default-border);
+}
+
+.next-playing-on-right .main-connectBar-connectBar {
+  right: unset;
+  left: var(--y-offset);
+}
+
 .next-playing-card {
   height: var(--height, 64px);
   padding: var(--x-padding, 8px) var(--y-padding, 8px);
@@ -225,12 +242,11 @@ div.cover-art-icon {
   display: flex;
   justify-content: start;
   align-items: center;
-  box-shadow: 2px 2px 8px 0 var(--clr-shadow);
   transition: var(--default-transition);
   overflow: hidden;
 
   &.floating {
-    --x-offset: calc((var(--height) + var(--panel-gap)) * -1);
+    --x-offset: calc((var(--height) + (var(--panel-gap) / 2)) * -1);
     --y-offset: var(--panel-gap);
     position: fixed !important;
     top: var(--x-offset);
