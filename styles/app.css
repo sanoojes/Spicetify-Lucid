@@ -819,3 +819,24 @@ div[data-testid="settings-page"] {
 .lyrics-lyrics-background {
   background: rgba(var(--clr-primary-container-rgb), 0.1);
 }
+
+/* Fix for specific extensions */
+#sleep-timer-menu > div,
+#sesh-stats-overlay {
+  border-radius: var(--m-br);
+  border: var(--default-border);
+  &:before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    -webkit-backdrop-filter: blur(22px) saturate(1.5) brightness(0.75);
+    backdrop-filter: blur(22px) saturate(1.5) brightness(0.75);
+  }
+}
+#sesh-stats-overlay .stat-row {
+  border-bottom: var(--default-border);
+}
