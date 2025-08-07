@@ -199,8 +199,13 @@
   border-radius: 16px;
 }
 
+.RHoNK4qVATbstzJZm5G8._iJX4yzDZzSHy_g9vp3G:after /* form context menu border */ {
+  border-bottom: var(--default-border);
+}
+
 /* ========== Context Menu ========== */
 .wlb3dYO07PZuYfmNfmkS,
+.DquSH3YjnaIIXMZiOvwA,
 .main-contextMenu-menu {
   scrollbar-width: thin;
   background: var(--background-base);
@@ -623,14 +628,15 @@ div.main-trackList-trackListRow {
 .floating.main-embedWidgetGenerator-container {
   box-shadow: 4px 4px 32px 2px var(--clr-shadow);
 }
-
+.N9tnwm0XDrt_eGJd2D2A:has(._kfmGT75UTPoF_D2afwa) /* ctrl + k modal has cards */,
+.zZMsUUWG29PYcwWPXhOV:not(._kfmGT75UTPoF_D2afwa) /* ctrl + k search bar not having cards */,
 .aOxbsZDBlepfQptv_EfI,
-dialog .main-trackCreditsModal-container,
+.main-trackCreditsModal-container,
 .t1hN4Ju87afc5N5fDTnm /* clear cache modal */,
 .NiqTdDnFi5KAXoGukrdo /* artist modal dialog */,
 .main-embedWidgetGenerator-container {
   background-color: rgba(var(--clr-surface-rgb), 0.7);
-  backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px) saturate(1.5);
   border: var(--default-border);
   border-radius: var(--l-br);
   max-height: 80vh;
