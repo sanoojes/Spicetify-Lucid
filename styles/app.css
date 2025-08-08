@@ -620,6 +620,10 @@ div.main-trackList-trackListRow {
   transform: translate3d(var(--x), 0, 0);
 }
 
+.OemaZktMXaRcYQ5bcfLZ /* Friend activity card wrapper */ {
+  gap: 8px;
+}
+
 /* ========== Modals ========== */
 .GenericModal__overlay {
   background-color: rgba(var(--clr-shadow-rgb), 0.5);
