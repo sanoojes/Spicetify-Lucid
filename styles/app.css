@@ -677,6 +677,10 @@ dialog[aria-describedby="clear-cache-dialog-heading"] {
   color: var(--clr-on-secondary-container) !important;
 }
 
+.main-trackCreditsModal-originalCredits > * {
+  overflow-wrap: break-word;
+}
+
 .main-trackCreditsModal-container h1,
 .main-type-alto {
   font-family: var(--encore-title-font-stack);
