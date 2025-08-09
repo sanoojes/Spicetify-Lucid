@@ -8,12 +8,12 @@ import type {
 } from '@app/types/uiSchema.ts';
 import type { ReactNode } from 'react';
 
-interface BaseComponentProps {
+type BaseComponentProps = {
   id: string;
   label: string;
   tippy?: string | ReactNode;
   visible?: () => boolean;
-}
+};
 
 type DropdownComponent = {
   type: 'Dropdown';
@@ -53,16 +53,16 @@ export type Component =
   | ColorPickerComponent
   | FontPickerComponent;
 
-export interface GroupProps {
+export type GroupProps = {
   id: string;
   groupName?: string;
   visible?: () => boolean;
   components: Component[];
-}
+};
 
-export interface SectionProps {
+export type SectionProps = {
   id: string;
   sectionName: string;
   groups: GroupProps[];
   visible?: () => boolean;
-}
+};

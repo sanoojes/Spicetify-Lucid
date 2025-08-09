@@ -1,12 +1,11 @@
 import { QuestionCircle20Regular } from '@fluentui/react-icons';
 import React, { type FC, type ReactNode } from 'react';
 
-interface TippyProps {
+type TippyProps = {
   label: ReactNode;
   children?: ReactNode;
-
   hasIcon?: boolean;
-}
+};
 
 const Tippy: FC<TippyProps> = ({ label, children, hasIcon = true }) => {
   if (!label || !Spicetify?.ReactComponent?.TooltipWrapper) return null;

@@ -1,11 +1,11 @@
 // Copyright 2018-2025 the Deno authors. MIT license.
 
-export interface DebouncedFunction<T extends Array<unknown>> {
+export type DebouncedFunction<T extends Array<unknown>> = {
   (...args: T): void;
   clear(): void;
   flush(): void;
   readonly pending: boolean;
-}
+};
 
 /**
  * Creates a debounced function that delays the given `func`

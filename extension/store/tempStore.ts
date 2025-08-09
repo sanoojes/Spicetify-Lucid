@@ -2,32 +2,32 @@ import type { ExtractedColor } from '@utils/graphql/getters.ts';
 import { subscribeWithSelector } from 'zustand/middleware';
 import { createStore } from 'zustand/vanilla';
 
-export interface PlayerData {
+export type PlayerData = {
   url?: string;
   colors?: ExtractedColor;
   data: Spicetify.PlayerTrack;
-}
+};
 
-export interface PlayerState {
+export type PlayerState = {
   current?: PlayerData;
   next?: PlayerData[];
   prev?: PlayerData[];
-}
+};
 
-export interface TempState {
+export type TempState = {
   player: PlayerState;
   pageImg: {
     cover?: string;
     desktop?: string;
   };
   //   currentColorScheme: string[];
-}
+};
 
-export interface TempSetter {
+export type TempSetter = {
   setPlayer: (player: TempState['player']) => void;
   setPageImg: (pageImg: TempState['pageImg']) => void;
   //   setCurrentColorScheme: (currentColorScheme: TempState['currentColorScheme']) => void;
-}
+};
 
 const tempStore = createStore<TempState & TempSetter>()(
   subscribeWithSelector((set, get) => ({

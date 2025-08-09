@@ -15,11 +15,11 @@ import React, {
 import { createPortal } from 'react-dom';
 
 // Context
-interface DropdownContextType {
+type DropdownContextType = {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   buttonRef: RefObject<HTMLButtonElement | null>;
-}
+};
 
 const DropdownContext = createContext<DropdownContextType>({
   open: false,
@@ -28,9 +28,9 @@ const DropdownContext = createContext<DropdownContextType>({
 });
 
 // Dropdown Root
-interface DropdownProps {
+type DropdownProps = {
   children: ReactNode;
-}
+};
 
 function Dropdown({ children }: DropdownProps) {
   const [open, setOpen] = useState(false);
@@ -47,10 +47,10 @@ function Dropdown({ children }: DropdownProps) {
 }
 
 // Dropdown Button
-interface DropdownButtonProps {
+type DropdownButtonProps = {
   children: ReactNode;
   icon?: ReactNode;
-}
+};
 
 function DropdownButton({ children }: DropdownButtonProps) {
   const { open, setOpen, buttonRef } = useContext(DropdownContext);
@@ -65,9 +65,9 @@ function DropdownButton({ children }: DropdownButtonProps) {
   );
 }
 
-interface DropdownContentProps {
+type DropdownContentProps = {
   children: ReactNode;
-}
+};
 
 function DropdownContent({ children }: DropdownContentProps) {
   const { open, buttonRef, setOpen } = useContext(DropdownContext);
@@ -151,9 +151,9 @@ function DropdownContent({ children }: DropdownContentProps) {
 }
 
 // Dropdown List
-interface DropdownListProps extends HTMLAttributes<HTMLUListElement> {
+type DropdownListProps = HTMLAttributes<HTMLUListElement> & {
   children: ReactNode;
-}
+};
 
 function DropdownList({ children, ...props }: DropdownListProps) {
   const { setOpen } = useContext(DropdownContext);
@@ -166,9 +166,9 @@ function DropdownList({ children, ...props }: DropdownListProps) {
 }
 
 // Dropdown Item
-interface DropdownItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type DropdownItemProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
-}
+};
 
 function DropdownItem({ children, ...props }: DropdownItemProps) {
   return (

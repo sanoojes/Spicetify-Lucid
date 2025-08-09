@@ -2,30 +2,30 @@
 type Stringify<T extends string> = T | (string & {}); // just to trick the compiler
 
 type Color = string;
-export interface ColorState {
+export type ColorState = {
   mode: Stringify<'default' | 'dynamic' | 'custom'>;
   accentColor: Color;
   isTinted: boolean;
   isDark: boolean;
-}
+};
 
-export interface CSSFilter {
+export type CSSFilter = {
   brightness?: number;
   contrast?: number;
   saturation?: number;
   opacity?: number;
   blur?: number;
-}
+};
 
-export interface BodyClassState {
+export type BodyClassState = {
   hideHomeHeader: boolean;
   newHome: boolean;
   flexyHome: boolean;
-}
+};
 
 type BackgroundMode = Stringify<'solid' | 'static' | 'animated'>;
 type BackgroundImageMode = Stringify<'custom' | 'player' | 'page'>;
-export interface BackgroundState {
+export type BackgroundState = {
   mode: BackgroundMode;
   options: {
     // For Animated and Static
@@ -39,7 +39,7 @@ export interface BackgroundState {
     // Animated Background
     autoStopAnimation: boolean;
   };
-}
+};
 
 type FontState = {
   family: string;
@@ -57,7 +57,7 @@ type BorderState = {
   style: BorderStyle;
 };
 
-export interface UIPreferencesState {
+export type UIPreferencesState = {
   titleFont: FontState;
   // variableFont: GoogleFont;
   bodyFont: FontState;
@@ -65,10 +65,10 @@ export interface UIPreferencesState {
   border: BorderState;
 
   windowControlHeight: number;
-}
+};
 
 type UnderMainViewTypes = Stringify<'default' | 'playing' | 'custom-img' | 'custom-color' | 'none'>;
-export interface UnderMainViewState {
+export type UnderMainViewState = {
   type: UnderMainViewTypes;
 
   isScrolling: boolean;
@@ -78,14 +78,14 @@ export interface UnderMainViewState {
   customUrl: string;
 
   customColor: Color;
-}
+};
 
 type SettingModalAccessPoint = Stringify<'menu' | 'nav'>;
-export interface SettingModalState {
+export type SettingModalState = {
   accessPoint: SettingModalAccessPoint;
   isFloating: boolean;
   floatingPosition: { x: number; y: number };
-}
+};
 
 type PlayerTypes = Stringify<'compact' | 'default'>;
 export type PlayerStyle = {
@@ -100,7 +100,7 @@ export type PlayerStyle = {
   backdropFilter: CSSFilter;
 };
 
-export interface NextSongCardState {
+export type NextSongCardState = {
   show: boolean;
   height: number;
   gap: number;
@@ -111,7 +111,7 @@ export interface NextSongCardState {
   removeNextUp: boolean;
   isFloating: boolean;
   position: Stringify<'left' | 'right'>;
-}
+};
 export type PlayerState = {
   mode: PlayerTypes;
   autoHide: boolean;
@@ -148,7 +148,7 @@ export type GlobalNavState = AutoHideBaseState & {
   floating: boolean;
 };
 
-export interface AppState {
+export type AppState = {
   color: ColorState;
   bg: BackgroundState;
   umv: UnderMainViewState;
@@ -160,4 +160,4 @@ export interface AppState {
   library: LibraryState;
   rightSidebar: RightSidebarState;
   globalNav: GlobalNavState;
-}
+};

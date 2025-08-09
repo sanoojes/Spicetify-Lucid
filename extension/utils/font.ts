@@ -1,4 +1,4 @@
-export interface GoogleFont {
+export type GoogleFont = {
   family: string;
   variants: string[];
   subsets: string[];
@@ -7,7 +7,7 @@ export interface GoogleFont {
   files: Record<string, string>;
   category: string;
   kind: string;
-}
+};
 
 const API_KEY = 'AIzaSyAwBDuGYjhn4LTTkLShD0LLRTs8oGsxVhw'; // public key ??
 const API_URL = 'https://www.googleapis.com/webfonts/v1/webfonts';

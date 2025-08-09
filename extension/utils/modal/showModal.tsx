@@ -3,10 +3,10 @@ import getOrCreateElement from '@utils/dom/getOrCreateElement.ts';
 import React, { type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-interface ModalProps {
+type ModalProps = {
   title: string;
   content: ReactNode;
-}
+};
 
 export function showModal({ title, content }: ModalProps) {
   const rootElem = getOrCreateElement('div', 'modal-root', document.body);

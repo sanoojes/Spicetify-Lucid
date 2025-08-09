@@ -3,16 +3,16 @@
 import type { CSSProperties, DetailedHTMLProps, HTMLAttributes } from 'react';
 import React from 'react';
 
-interface CommonProps extends DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {
+type CommonProps = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> & {
   color?: string;
   loading?: boolean;
   cssOverride?: CSSProperties;
   speedMultiplier?: number;
-}
+};
 
-interface LoaderSizeProps extends CommonProps {
+type LoaderSizeProps = CommonProps & {
   size?: number;
-}
+};
 
 function Loader({
   loading = true,

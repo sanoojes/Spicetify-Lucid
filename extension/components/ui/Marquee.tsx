@@ -1,10 +1,10 @@
 import React, { type FC, type ReactNode, useCallback, useEffect, useRef } from 'react';
 
-interface MarqueeProps {
+type MarqueeProps = {
   children: ReactNode;
   className?: string;
   speed?: number;
-}
+};
 
 const Marquee: FC<MarqueeProps> = ({ children, speed = 12, className = '' }) => {
   const containerRef = useRef<HTMLDivElement>(null);

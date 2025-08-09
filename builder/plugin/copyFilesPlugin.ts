@@ -2,10 +2,10 @@ import { dirname, resolve } from 'jsr:@std/path';
 import Logger from '@builder/logger.ts';
 import type { Plugin } from 'esbuild';
 
-export interface copy {
+export type copy = {
   from: string;
   to: string;
-}
+};
 
 let hasRunOnce = false;
 

@@ -4,7 +4,7 @@ import React, { type CSSProperties, type ReactNode, useMemo, useState } from 're
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList } from 'react-window';
 
-interface ListProps<T> {
+type ListProps<T> = {
   items: T[];
   itemSize: number;
   className?: string;
@@ -14,7 +14,7 @@ interface ListProps<T> {
   selectedItem?: T | null;
   headerContent?: ReactNode;
   onItemSelect?: (item: T) => void;
-}
+};
 
 const List = <T,>({
   items,
