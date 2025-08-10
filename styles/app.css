@@ -397,6 +397,47 @@ div.main-trackList-trackListRow {
   border-radius: var(--br);
 }
 
+/* new playlist preview modal */
+.DJxOEatMU2PHk0cCYWoX {
+  background-color: rgba(var(--clr-shadow-rgb), 0.5);
+  backdrop-filter: none !important;
+}
+
+.FP_XXx0FMQPJEu3WzfpM {
+  --icon-color: color-mix(in oklab, rgb(var(--accent-color)) 70%, white 100%);
+  backdrop-filter: blur(1rem) saturate(2);
+  background-color: transparent !important;
+  background-image: radial-gradient(
+    circle at center right,
+    rgba(var(--accent-color), 0.35),
+    rgba(var(--clr-surface-rgb), 0.6) 100%
+  ) !important;
+  border: var(--default-border);
+
+  .e-9640-progress-bar__indicator {
+    --progress-bar-color: var(--icon-color, var(--clr-on-surface, #fafafa)) !important;
+  }
+
+  .V795GKOEZNiChr8dJcD4 {
+    background-color: var(--icon-color);
+  }
+  .e-9640-icon,
+  svg {
+    --encore-icon-fill: var(--icon-color, var(--text-subdued, #fafafa));
+    fill: var(--icon-color) !important;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 /* ========== Carrousel Shadow ========== */
 .a2NTH51fJWzWsds0OYv_ {
   -webkit-mask-image: var(--mask-gradient);
