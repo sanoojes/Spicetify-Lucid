@@ -2,25 +2,25 @@ import debounce from '@utils/debounce.ts';
 import getOrCreateElement from '@utils/dom/getOrCreateElement.ts';
 import waitForElements from '@utils/dom/waitForElements.ts';
 
-export default function setupHoverToggle({
-  containerSelector,
-  onTopContainerSelectors,
-  className = 'show',
-  condition = true,
-  hoverTargetId = 'hover-target',
-  bodyClass,
-  onHoverBodyClass,
-  onNotHoverBodyClass,
-}: {
+interface HoverToggleOptions {
   bodyClass?: string;
   onHoverBodyClass?: string;
   onNotHoverBodyClass?: string;
   containerSelector: string;
   onTopContainerSelectors: string[];
   className?: string;
-  condition?: boolean;
   hoverTargetId?: string;
-}) {
+}
+
+export default function setupHoverToggle({
+  containerSelector,
+  onTopContainerSelectors,
+  className = 'show',
+  hoverTargetId = 'hover-target',
+  bodyClass,
+  onHoverBodyClass,
+  onNotHoverBodyClass,
+}: HoverToggleOptions) {
   let hoverTarget: HTMLElement | null = null;
   let targetElements: HTMLElement[] = [];
   let isHoveringTarget = false;
@@ -55,7 +55,7 @@ export default function setupHoverToggle({
         resizeTimeout = setTimeout(() => {
           isDelayingUpdate = false;
           updateVisibility();
-        }, 2500);
+        }, 1000);
       }
       return;
     }
@@ -168,12 +168,7 @@ export default function setupHoverToggle({
 
   const init = () => {
     waitForElements(containerSelector).then((container) => {
-      if (!condition) {
-        destroy();
-        return;
-      }
-
-      if (bodyClass) document.body.classList.toggle(bodyClass, condition);
+      if (bodyClass) document.body.classList.add(bodyClass);
 
       hoverTarget = getOrCreateElement('div', hoverTargetId, container);
 
@@ -193,4 +188,6 @@ export default function setupHoverToggle({
   };
 
   init();
+
+  return destroy;
 }

@@ -4,7 +4,7 @@ import setupHoverToggle from '@utils/setupHoverToggle.ts';
 import { updateCardBgAlpha } from '@utils/updateCardBgAlpha.ts';
 
 const FULL_SCREEN_CLASS_NAME = '.a7Ka5yznvrbSDPk1G36o,.pd3cZQBgtgOFLAp9ns7Q,.JVoVebPNAPKBLKSlIBXw';
-
+let hoverTarget: null | ReturnType<typeof setupHoverToggle> = null;
 export default function setRightSidebar(rightSidebar = appStore.getState().rightSidebar) {
   const {
     mode,
@@ -38,14 +38,20 @@ export default function setRightSidebar(rightSidebar = appStore.getState().right
     document.body.style.setProperty('--rs-compact-blur', serializeFilters(compactBackdropFilter));
     document.body.style.setProperty('--rs-compact-size', `${compactSize}px`);
   }
-  setupHoverToggle({
-    containerSelector: '.Root__top-container',
-    onTopContainerSelectors: ['.Root__right-sidebar'],
-    hoverTargetId: 'rs-hover-target',
-    className: 'show',
-    condition: autoHide && mode === 'compact',
-  });
 
+  if (hoverTarget) {
+    hoverTarget();
+    hoverTarget = null;
+  }
+
+  if (autoHide && mode !== 'compact') {
+    hoverTarget = setupHoverToggle({
+      containerSelector: '.Root__top-container',
+      onTopContainerSelectors: ['.Root__right-sidebar'],
+      hoverTargetId: 'rs-hover-target',
+      className: 'show',
+    });
+  }
   let currentTarget: Element | null = null;
   let targetObserver: MutationObserver | null = null;
 

@@ -2,6 +2,7 @@ import appStore from '@store/appStore.ts';
 import { isWindows } from '@utils/platform.ts';
 import setupHoverToggle from '@utils/setupHoverToggle.ts';
 
+let hoverTarget: null | ReturnType<typeof setupHoverToggle> = null;
 export default function setGlobalNav(globalNav = appStore.getState().globalNav) {
   document.body.classList.toggle('global-nav-floating', globalNav.floating);
 
@@ -15,14 +16,18 @@ export default function setGlobalNav(globalNav = appStore.getState().globalNav) 
     'global-nav-not-auto-hide',
     globalNav.floating && !globalNav.autoHide
   );
-  setupHoverToggle({
-    onHoverBodyClass: 'global-nav--hovering',
-    onNotHoverBodyClass: 'global-nav-not--hovering',
-    containerSelector: '.Root__top-container',
-    onTopContainerSelectors: ['.Root__globalNav'],
-    hoverTargetId: 'global-nav-hover-target',
-    className: 'show',
-    condition: globalNav.autoHide,
-  });
+  if (hoverTarget) {
+    hoverTarget();
+    hoverTarget = null;
+  }
+  if (globalNav.autoHide)
+    setupHoverToggle({
+      onHoverBodyClass: 'global-nav--hovering',
+      onNotHoverBodyClass: 'global-nav-not--hovering',
+      containerSelector: '.Root__top-container',
+      onTopContainerSelectors: ['.Root__globalNav'],
+      hoverTargetId: 'global-nav-hover-target',
+      className: 'show',
+    });
 }
 appStore.subscribe((state) => state.globalNav, setGlobalNav);

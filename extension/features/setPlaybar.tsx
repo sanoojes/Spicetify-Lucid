@@ -11,6 +11,7 @@ import { createRoot, type Root } from 'react-dom/client';
 let playerElem: HTMLDivElement | null = null;
 let hasResizeListener = false;
 let nextCardRoot: Root | null = null;
+let hoverTarget: null | ReturnType<typeof setupHoverToggle> = null;
 
 export default function setPlayer(player = appStore.getState().player) {
   if (!playerElem) {
@@ -84,15 +85,19 @@ function applyDynamicStyles(player: PlayerState) {
 function setupPlayerHover(player: PlayerState) {
   const { isFloating, autoHide } = player;
 
-  setupHoverToggle({
-    onHoverBodyClass: 'player--hovering',
-    onNotHoverBodyClass: 'player--not-hovering',
-    containerSelector: '.Root__top-container',
-    onTopContainerSelectors: ['.Root__now-playing-bar', '.main-nowPlayingBar-container'],
-    hoverTargetId: 'player-hover-target',
-    className: 'show',
-    condition: isFloating && autoHide,
-  });
+  if (hoverTarget) {
+    hoverTarget();
+    hoverTarget = null;
+  }
+  if (isFloating && autoHide)
+    hoverTarget = setupHoverToggle({
+      onHoverBodyClass: 'player--hovering',
+      onNotHoverBodyClass: 'player--not-hovering',
+      containerSelector: '.Root__top-container',
+      onTopContainerSelectors: ['.Root__now-playing-bar', '.main-nowPlayingBar-container'],
+      hoverTargetId: 'player-hover-target',
+      className: 'show',
+    });
 }
 
 function updatePlayerSize(player: PlayerState) {

@@ -1,7 +1,4 @@
 import appStore from '@store/appStore.ts';
-import getOrCreateElement from '@utils/dom/getOrCreateElement.ts';
-import waitForElements from '@utils/dom/waitForElements.ts';
-import setupHoverToggle from '@utils/setupHoverToggle.ts';
 
 function camelToKebab(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
