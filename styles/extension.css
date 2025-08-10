@@ -240,6 +240,7 @@ body {
   }
 
   .Root__globalNav {
+    display: flex !important;
     top: -100%;
   }
 
@@ -957,6 +958,7 @@ input:checked ~ .x-toggle-indicatorWrapper .x-toggle-indicator {
   button.lucid-button.hide {
     pointer-events: none;
     opacity: 0;
+    display: flex !important;
   }
 
   .lucid-button.icon-no-border {
