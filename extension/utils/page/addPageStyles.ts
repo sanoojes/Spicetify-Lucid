@@ -16,6 +16,7 @@ export const addPageStyles = async (url = Spicetify?.Platform?.History?.location
     const intervalId = setInterval(() => updateCardBgAlpha('.Vn9yz8P5MjIvDT8c0U6w'), 300);
     setTimeout(() => clearInterval(intervalId), 6000);
   }
+  document.body.classList.toggle('at-disco', url.pathname?.includes('/discography'));
 
   const { imageUrl, desktopImageUrl } = await getArtworkByPageUrl(url.pathname);
   tempStore.getState().setPageImg({ cover: imageUrl, desktop: desktopImageUrl });

@@ -637,8 +637,8 @@ body {
     height: fit-content;
   }
   .main-entityHeader-container .contentSpacing {
-    min-width: calc(var(--main-view-width) / 2);
-    width: calc(var(--main-view-width) / 1.5);
+    min-width: 10rem;
+    width: calc(var(--main-view-width) / 2);
   }
   .main-entityHeader-imageContainer,
   .main-entityHeader-imageContainerNew {
@@ -646,7 +646,7 @@ body {
     width: 8rem;
   }
   *.encore-text-headline-large {
-    font-size: 2cqmax !important;
+    font-size: 1.5rem !important;
   }
 }
 

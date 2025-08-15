@@ -858,6 +858,40 @@ dialog[aria-describedby="clear-cache-dialog-heading"] {
     border: var(--hover-border);
   }
 }
+/* ===== Discography page =====*/
+.at-disco {
+  .umv,
+  .umv.desktop {
+    --umv-height: 50vh;
+    mask-image: linear-gradient(rgb(0, 0, 0) 28vh, rgba(0, 0, 0, 0) 100%);
+  }
+  .mxGhI8Lr7MoGOnFrbsUa,
+  .BHHXR8xc6m009ohY6aKU {
+    top: 0;
+    height: inherit !important;
+    padding: 12px calc(var(--content-spacing, 8px) + var(--panel-gap, 8px));
+    margin: 0 calc((var(--content-spacing) * -1) - 6px) calc(var(--content-spacing) - 12px);
+    max-width: none !important;
+  }
+  .BHHXR8xc6m009ohY6aKU {
+    backdrop-filter: blur(24px) saturate(1.5);
+  }
+  .main-trackList-trackListHeader,
+  .main-topBar-container {
+    display: none;
+  }
+  .artist-artistDiscography-headerContainer.artist-artistDiscography-firstAlbum,
+  .artist-artistDiscography-firstAlbum {
+    padding-top: 0.75rem !important;
+    margin-top: 32vh;
+  }
+  .artist-artistDiscography-headerContainer {
+    border: var(--default-border);
+    padding: 0.75rem 1rem;
+    border-radius: var(--m-br);
+    margin-bottom: 8px;
+  }
+}
 
 /* Settings page */
 div[data-testid="settings-page"] {

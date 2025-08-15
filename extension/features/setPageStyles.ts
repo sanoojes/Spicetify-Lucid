@@ -1,7 +1,7 @@
 import appStore from '@store/appStore.ts';
+import debounce from '@utils/debounce.ts';
 import waitForElements from '@utils/dom/waitForElements.ts';
 import { updateCardBgAlpha } from '@utils/updateCardBgAlpha.ts';
-import debounce from '@utils/debounce.ts';
 
 export default function setPageStyles(page = appStore.getState().page) {
   const { coverMode, homeCardGap, mode, panelGap } = page;
