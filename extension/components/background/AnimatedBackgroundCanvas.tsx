@@ -1,6 +1,7 @@
 import { FragmentShader, GetShaderUniforms, VertexShader } from '@app/shader/animatedBg.ts';
 import loadAndProcessImage from '@components/background/helper/loadAndProcessImage.ts';
 import appStore from '@store/appStore.ts';
+import waitForGlobal from '@utils/dom/waitForGlobal.ts';
 import React, { type FC, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { useStore } from 'zustand';
