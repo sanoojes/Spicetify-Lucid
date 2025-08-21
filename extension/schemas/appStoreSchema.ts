@@ -4,7 +4,7 @@ import z from 'zod';
 
 const AutoHideBaseStateSchema = z.object({
   autoHide: z.boolean(),
-  hoverTargetSize: boundedNumber({ name: 'Hover Width', min: 4, max: 512 }),
+  hoverTargetSize: boundedNumber({ name: 'Hover Width', min: 4, max: 1024 }),
 });
 
 export const ColorStateSchema = z.object({
@@ -60,7 +60,7 @@ export const UIPreferencesSchema = z.object({
   windowControlHeight: boundedNumber({
     name: 'Window Control Height',
     min: 0,
-    max: 512,
+    max: 1024,
   }),
 });
 
