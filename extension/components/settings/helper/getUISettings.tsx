@@ -148,7 +148,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
             inputType: 'number',
             value: globalNav.hoverTargetSize,
             validation: (value) => GlobalNavStateSchema.shape.hoverTargetSize.safeParse(value),
-            onChange: (hoverTargetSize) => state.setLibrary({ hoverTargetSize }),
+            onChange: (hoverTargetSize) => state.setGlobalNav({ hoverTargetSize }),
           },
         ],
       },
