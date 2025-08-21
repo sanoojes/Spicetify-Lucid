@@ -67,9 +67,9 @@ export const getRightSidebarSettings = (
             visible: () => rightSidebar.autoHide,
             tippy: 'Width (in pixels) from the right edge where hovering shows the sidebar.',
             inputType: 'number',
-            value: rightSidebar.hoverTargetWidth,
-            validation: (value) => RightSidebarStateSchema.shape.hoverTargetWidth.safeParse(value),
-            onChange: (hoverTargetWidth) => state.setRightSidebar({ hoverTargetWidth }),
+            value: rightSidebar.hoverTargetSize,
+            validation: (value) => RightSidebarStateSchema.shape.hoverTargetSize.safeParse(value),
+            onChange: (hoverTargetSize) => state.setRightSidebar({ hoverTargetSize }),
           },
           {
             id: 'compact-size',

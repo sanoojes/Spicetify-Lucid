@@ -114,13 +114,12 @@ export type NextSongCardState = {
 };
 export type PlayerState = {
   mode: PlayerTypes;
-  autoHide: boolean;
   isFloating: boolean;
   hideExtraIcon: boolean;
   defaultStyle: PlayerStyle;
   compactStyle: PlayerStyle;
   nextSongCard: NextSongCardState;
-};
+} & AutoHideBaseState;
 
 export type PageMode = Stringify<'card' | 'compact-card' | 'compact' | 'default'>;
 export type PageCoverImageMode = Stringify<'hidden' | 'as-bg' | 'default'>;
@@ -133,7 +132,7 @@ export type PageState = {
 
 type AutoHideBaseState = {
   autoHide: boolean;
-  hoverTargetWidth: number;
+  hoverTargetSize: number;
 };
 
 export type LibraryState = AutoHideBaseState & {};

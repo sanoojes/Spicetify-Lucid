@@ -401,7 +401,7 @@ div.cover-art-icon {
     position: fixed;
     left: 0;
     bottom: 0;
-    height: var(--player-hover-height, 32px);
+    height: var(--player-target-size, 32px);
     width: 100%;
     background: none;
   }

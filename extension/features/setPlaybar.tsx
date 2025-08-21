@@ -79,6 +79,7 @@ function applyDynamicStyles(player: PlayerState) {
   --player-brightness: ${backdropFilter.brightness}%;
   --player-opacity: ${backdropFilter.opacity}%;
   --player-contrast: ${backdropFilter.contrast}%;
+  --player-target-size: ${player.hoverTargetSize}px;
 }`;
 }
 

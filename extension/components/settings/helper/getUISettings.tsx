@@ -7,7 +7,7 @@ import {
 } from '@schemas/appStoreSchema.ts';
 import type appStore from '@store/appStore.ts';
 import { DEFAULT_STATE } from '@store/appStore.ts';
-import { isLinux } from '@utils/platform.ts';
+import { isLinux, isWindows } from '@utils/platform.ts';
 
 export const getUISettings = (state: ReturnType<typeof appStore.getState>): SectionProps => {
   const { uiPreferences, bodyClass, library, globalNav, page } = state;
@@ -112,9 +112,9 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
             visible: () => library.autoHide,
             tippy: 'Width (in pixels) from the left edge where hovering shows the library.',
             inputType: 'number',
-            value: library.hoverTargetWidth,
-            validation: (value) => LibraryStateSchema.shape.hoverTargetWidth.safeParse(value),
-            onChange: (hoverTargetWidth) => state.setLibrary({ hoverTargetWidth }),
+            value: library.hoverTargetSize,
+            validation: (value) => LibraryStateSchema.shape.hoverTargetSize.safeParse(value),
+            onChange: (hoverTargetSize) => state.setLibrary({ hoverTargetSize }),
           },
         ],
       },
@@ -146,9 +146,9 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
             visible: () => globalNav.floating && !isWindows(),
             tippy: 'Height (in pixels) from the top edge where hovering shows the navbar.',
             inputType: 'number',
-            value: globalNav.hoverTargetWidth,
-            validation: (value) => GlobalNavStateSchema.shape.hoverTargetWidth.safeParse(value),
-            onChange: (hoverTargetWidth) => state.setLibrary({ hoverTargetWidth }),
+            value: globalNav.hoverTargetSize,
+            validation: (value) => GlobalNavStateSchema.shape.hoverTargetSize.safeParse(value),
+            onChange: (hoverTargetSize) => state.setLibrary({ hoverTargetSize }),
           },
         ],
       },

@@ -2,6 +2,11 @@ import CSSFilterSchema from '@schemas/cssFilterSchema.ts';
 import { boundedNumber } from '@utils/schema.ts';
 import z from 'zod';
 
+const AutoHideBaseStateSchema = z.object({
+  autoHide: z.boolean(),
+  hoverTargetSize: boundedNumber({ name: 'Hover Width', min: 4, max: 512 }),
+});
+
 export const ColorStateSchema = z.object({
   mode: z.enum(['default', 'dynamic', 'custom']),
   accentColor: z.string(),
@@ -95,17 +100,32 @@ export const NextSongCardStateSchema = z.object({
   isFloating: z.boolean(),
   height: boundedNumber({ name: 'Next Song Card Height', min: 0, max: 512 }),
   gap: boundedNumber({ name: 'Next Song Gap', min: 0, max: 64 }),
-  maxWidth: boundedNumber({ name: 'Next Song Card Max Width', min: 8, max: 1024 }),
-  coverArtSize: boundedNumber({ name: 'Next Song Card Cover Art Size', min: 0, max: 512 }),
-  paddingX: boundedNumber({ name: 'Next Song Card Padding X', min: 0, max: 256 }),
-  paddingY: boundedNumber({ name: 'Next Song Card Padding Y', min: 0, max: 256 }),
+  maxWidth: boundedNumber({
+    name: 'Next Song Card Max Width',
+    min: 8,
+    max: 1024,
+  }),
+  coverArtSize: boundedNumber({
+    name: 'Next Song Card Cover Art Size',
+    min: 0,
+    max: 512,
+  }),
+  paddingX: boundedNumber({
+    name: 'Next Song Card Padding X',
+    min: 0,
+    max: 256,
+  }),
+  paddingY: boundedNumber({
+    name: 'Next Song Card Padding Y',
+    min: 0,
+    max: 256,
+  }),
   position: z.enum(['left', 'right']),
 });
 
-export const PlayerStateSchema = z.object({
+export const PlayerStateSchema = AutoHideBaseStateSchema.extend({
   mode: z.enum(['compact', 'default']),
   isFloating: z.boolean(),
-  autoHide: z.boolean(),
   hideExtraIcon: z.boolean(),
   defaultStyle: PlayerStyleSchema,
   compactStyle: PlayerStyleSchema,
@@ -119,11 +139,6 @@ export const PageStateSchema = z.object({
   panelGap: z.number(),
 });
 
-const AutoHideBaseStateSchema = z.object({
-  autoHide: z.boolean(),
-  hoverTargetWidth: boundedNumber({ name: 'Hover Width', min: 4, max: 512 }),
-});
-
 export const LibraryStateSchema = AutoHideBaseStateSchema.extend({});
 export const GlobalNavStateSchema = AutoHideBaseStateSchema.extend({
   floating: z.boolean(),
@@ -133,7 +148,11 @@ export const RightSidebarStateSchema = AutoHideBaseStateSchema.extend({
   positionX: z.enum(['right', 'left']),
   positionY: z.enum(['bottom', 'top']),
   compactBackdropFilter: CSSFilterSchema,
-  compactSize: boundedNumber({ name: 'Compact Sidebar Size', min: 0, max: 512 }),
+  compactSize: boundedNumber({
+    name: 'Compact Sidebar Size',
+    min: 0,
+    max: 512,
+  }),
 });
 
 export const AppStateSchema = z.object({

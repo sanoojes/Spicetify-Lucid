@@ -132,21 +132,21 @@ export const DEFAULT_STATE: AppState = {
   },
   library: {
     autoHide: false,
-    hoverTargetWidth: 40,
+    hoverTargetSize: 40,
   },
   rightSidebar: {
     mode: 'default',
     positionX: 'right', // only used in compact mode
     positionY: 'bottom', // only used in compact mode
     autoHide: false,
-    hoverTargetWidth: 40,
+    hoverTargetSize: 40,
     compactBackdropFilter: PLAYER_BG_FILTER,
     compactSize: 400,
   },
   globalNav: {
     floating: false,
     autoHide: false,
-    hoverTargetWidth: 40,
+    hoverTargetSize: 40,
   },
 };
 
