@@ -9,19 +9,13 @@
 }
 body {
   & * {
-    --main-view-display-height: calc(
-      var(--main-view-height) - var(--panel-gap)
-    );
-    --x-hover-target-top: calc(
-      var(--lib-top-offset, 64px) + (var(--panel-gap) * 2)
-    );
+    --main-view-display-height: calc(var(--main-view-height) - var(--panel-gap));
+    --x-hover-target-top: calc(var(--lib-top-offset, 64px) + (var(--panel-gap) * 2));
     --x-hover-target-size: var(--main-view-height);
   }
 
   &.global-nav-floating * {
-    --x-hover-target-top: calc(
-      var(--lib-top-offset, 64px) + (var(--panel-gap) * 3)
-    );
+    --x-hover-target-top: calc(var(--lib-top-offset, 64px) + (var(--panel-gap) * 3));
   }
 
   &.global-nav-floating.global-nav-auto-hide * {
@@ -31,38 +25,36 @@ body {
 
   &.player-floating * {
     --main-view-display-height: calc(
-      var(--main-view-height) - var(--player-height) - (var(--panel-gap) * 2)
+      var(--main-view-height) -
+      var(--player-height) -
+      (var(--panel-gap) * 2)
     );
   }
 
   &.global-nav-floating.player-floating * {
-    --x-hover-target-top: calc(
-      var(--lib-top-offset, 64px) + (var(--panel-gap) * 3.5)
-    );
+    --x-hover-target-top: calc(var(--lib-top-offset, 64px) + (var(--panel-gap) * 3.5));
     --main-view-display-height: calc(
-      var(--main-view-height) - var(--player-height) - var(--global-nav-height) -
-        var(--panel-gap)
+      var(--main-view-height) -
+      var(--player-height) -
+      var(--global-nav-height) -
+      var(--panel-gap)
     );
   }
 
   &.player-floating.player-auto-hide * {
     --main-view-display-height: calc(
-      var(--main-view-height) - var(--global-nav-height) +
-        (var(--panel-gap) * 2)
+      var(--main-view-height) -
+      var(--global-nav-height) +
+      (var(--panel-gap) * 2)
     );
   }
 
   &.player-floating.player-auto-hide.global-nav-floating * {
-    --main-view-display-height: calc(
-      var(--main-view-height) - var(--global-nav-height)
-    );
+    --main-view-display-height: calc(var(--main-view-height) - var(--global-nav-height));
   }
 
-  &.player-floating.player-auto-hide.global-nav-floating.global-nav-auto-hide
-    * {
-    --main-view-display-height: calc(
-      var(--main-view-height) + var(--panel-gap)
-    );
+  &.player-floating.player-auto-hide.global-nav-floating.global-nav-auto-hide * {
+    --main-view-display-height: calc(var(--main-view-height) + var(--panel-gap));
   }
 }
 
@@ -285,10 +277,7 @@ body {
   .Root__right-sidebar {
     position: fixed;
     z-index: 9;
-    -webkit-backdrop-filter: var(
-      --rs-compact-blur,
-      blur(var(--npv-blur, 16px))
-    );
+    -webkit-backdrop-filter: var(--rs-compact-blur, blur(var(--npv-blur, 16px)));
     backdrop-filter: var(--rs-compact-blur, blur(var(--npv-blur, 16px)));
     transition: var(--default-transition);
     transform-origin: bottom right;
@@ -421,8 +410,7 @@ body {
     transform: none !important;
 
     .main-entityHeader-image {
-      filter: blur(var(--image-as-bg-blur, 0.5rem))
-        brightness(var(--image-as-bg-brightness, 0.8))
+      filter: blur(var(--image-as-bg-blur, 0.5rem)) brightness(var(--image-as-bg-brightness, 0.8))
         saturate(var(--image-as-bg-saturate, 0.8));
       transform: scale(1.25);
       opacity: 0.75;
@@ -435,8 +423,7 @@ body {
 }
 
 /* ========== New Home Styles ========== */
-.new-home:not(.flexy-home)
-  .cZrkCxXnCc7KLZqAqWoz
+.new-home:not(.flexy-home) .cZrkCxXnCc7KLZqAqWoz
   .main-home-content
   > [data-shelf-collapsable]
   + [data-shelf]:nth-child(2),
@@ -625,10 +612,8 @@ body {
     border: var(--default-border);
     transition: var(--default-transition);
     background-color: rgba(var(--clr-surface-1-rgb), 0.5);
-    -webkit-backdrop-filter: blur(var(--page-blur, 12px))
-      saturate(var(--page-saturate, 1.5));
-    backdrop-filter: blur(var(--page-blur, 12px))
-      saturate(var(--page-saturate, 1.5));
+    -webkit-backdrop-filter: blur(var(--page-blur, 12px)) saturate(var(--page-saturate, 1.5));
+    backdrop-filter: blur(var(--page-blur, 12px)) saturate(var(--page-saturate, 1.5));
 
     &:hover {
       border: var(--hover-border);
@@ -641,11 +626,7 @@ body {
 }
 .page-card {
   .main-entityHeader-container {
-    --min-fluid-height: clamp(
-      250px,
-      200px + (var(--main-view-width) - 600px) / 424 * 90,
-      40vh
-    );
+    --min-fluid-height: clamp(250px, 200px + (var(--main-view-width) - 600px) / 424 * 90, 40vh);
   }
 }
 .page-card .main-entityHeader-container .encore-text-headline-large {
@@ -678,11 +659,7 @@ body {
     font-size: clamp(2.5cqmax, var(--main-view-width) / 50, 3cqmax) !important;
   }
   .main-entityHeader-imageContainer {
-    --img-size: clamp(
-      80px,
-      80px + (var(--main-view-width) - 600px) / 424 * 104,
-      140px
-    );
+    --img-size: clamp(80px, 80px + (var(--main-view-width) - 600px) / 424 * 104, 140px);
     height: var(--img-size);
     width: var(--img-size);
   }
@@ -754,10 +731,7 @@ body {
   will-change: transform, filter;
   transition: all 0s linear;
 
-  mask-image: linear-gradient(
-    rgb(0, 0, 0) calc(var(--umv-height) / 2),
-    rgba(0, 0, 0, 0) 100%
-  );
+  mask-image: linear-gradient(rgb(0, 0, 0) calc(var(--umv-height) / 2), rgba(0, 0, 0, 0) 100%);
   transform-origin: center center;
 
   &.color {
@@ -766,10 +740,7 @@ body {
 
   &.desktop {
     --umv-height: calc(var(--main-view-height, 95vh) * 1.125);
-    mask-image: linear-gradient(
-      rgb(0, 0, 0) calc(var(--umv-height) / 1.125),
-      rgba(0, 0, 0, 0) 100%
-    );
+    mask-image: linear-gradient(rgb(0, 0, 0) calc(var(--umv-height) / 1.125), rgba(0, 0, 0, 0) 100%);
   }
 
   &.fade-in {
@@ -1274,8 +1245,8 @@ input.lucid-input {
   cursor: all-scroll;
   width: 100%;
   position: relative;
-  background-image: linear-gradient(to bottom, transparent, black),
-    linear-gradient(to right, white, transparent);
+  background-image:
+    linear-gradient(to bottom, transparent, black), linear-gradient(to right, white, transparent);
   border-radius: 8px 8px 0 0;
 }
 
@@ -1295,16 +1266,7 @@ input.lucid-input {
   position: relative;
   width: 100%;
   height: 2rem;
-  background-image: linear-gradient(
-    to right,
-    red,
-    #ff0,
-    #0f0,
-    #0ff,
-    #00f,
-    #f0f,
-    red
-  );
+  background-image: linear-gradient(to right, red, #ff0, #0f0, #0ff, #00f, #f0f, red);
   border-radius: 8px;
 }
 

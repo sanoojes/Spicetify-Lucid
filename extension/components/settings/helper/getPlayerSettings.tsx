@@ -1,5 +1,5 @@
 import type { SectionProps } from '@app/types/settingSchema.ts';
-import { PlayerStyleSchema } from '@schemas/appStoreSchema.ts';
+import { PlayerStateSchema, PlayerStyleSchema } from '@schemas/appStoreSchema.ts';
 import CSSFilterSchema from '@schemas/cssFilterSchema.ts';
 import type appStore from '@store/appStore.ts';
 import { DEFAULT_STATE } from '@store/appStore.ts';
@@ -204,6 +204,17 @@ export const getPlayerSettings = (state: ReturnType<typeof appStore.getState>): 
             visible: () => player.isFloating,
             isChecked: player.autoHide,
             onChange: (autoHide) => state.setPlayer({ autoHide }),
+          },
+          {
+            id: 'floating-sensitivity',
+            type: 'Input',
+            label: 'Hover Activation Width',
+            visible: () => player.autoHide,
+            tippy: 'Width (in pixels) from the right edge where hovering shows the sidebar.',
+            inputType: 'number',
+            value: player.hoverTargetSize,
+            validation: (value) => PlayerStateSchema.shape.hoverTargetSize.safeParse(value),
+            onChange: (hoverTargetSize) => state.setRightSidebar({ hoverTargetSize }),
           },
         ],
       },
