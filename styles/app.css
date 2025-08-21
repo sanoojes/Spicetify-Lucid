@@ -563,7 +563,7 @@ div.main-trackList-trackListRow {
 
 /* ========== Left Sidebar ========== */
 .Root__nav-bar {
-  transition: var(--default-transition);
+  transition: none;
 }
 .Root__nav-bar.TkqXOzhmCCuE6YI3hlgA {
   backdrop-filter: blur(32px);
