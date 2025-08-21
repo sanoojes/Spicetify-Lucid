@@ -9,8 +9,8 @@ export default function setGlobalNav(globalNav = appStore.getState().globalNav) 
   if (isWindows()) return; // auto hide will not be supported because it interferes with -webkit-app-region (makes the top bar for dragging)
 
   if (globalNav.autoHide)
-    document.body.style.setProperty('--global-nav-target-width', `${globalNav.hoverTargetWidth}px`);
-  else document.body.style.removeProperty('--global-nav-target-width');
+    document.body.style.setProperty('--global-nav-target-height', `${globalNav.hoverTargetSize}px`);
+  else document.body.style.removeProperty('--global-nav-target-height');
   document.body.classList.toggle('global-nav-auto-hide', globalNav.floating && globalNav.autoHide);
   document.body.classList.toggle(
     'global-nav-not-auto-hide',

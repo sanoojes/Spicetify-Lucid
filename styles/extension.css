@@ -234,7 +234,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    height: var(--global-nav-hover-height, 32px);
+    height: var(--global-nav-target-height, 32px);
     width: 100%;
     background: none;
   }
