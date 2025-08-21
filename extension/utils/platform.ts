@@ -9,6 +9,24 @@ export function isVersionAtLeast(targetVersion: string) {
   return true;
 }
 
+export function isLinux() {
+  if (Spicetify?.Platform?.operatingSystem.toLowerCase().includes('linux')) return true;
+
+  if (Spicetify.Platform?.PlatformData?.os_name)
+    return Spicetify.Platform.PlatformData.os_name.toLowerCase().includes('linux');
+
+  return false;
+}
+
+export function isMac() {
+  if (Spicetify?.Platform?.operatingSystem.toLowerCase().includes('mac')) return true;
+
+  if (Spicetify.Platform?.PlatformData?.os_name)
+    return Spicetify.Platform.PlatformData.os_name.toLowerCase().includes('mac');
+
+  return false;
+}
+
 export function isWindows() {
   if (Spicetify?.Platform?.operatingSystem === 'Windows') return true;
 

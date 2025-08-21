@@ -7,7 +7,7 @@ import {
 } from '@schemas/appStoreSchema.ts';
 import type appStore from '@store/appStore.ts';
 import { DEFAULT_STATE } from '@store/appStore.ts';
-import { isWindows } from '@utils/platform.ts';
+import { isLinux } from '@utils/platform.ts';
 
 export const getUISettings = (state: ReturnType<typeof appStore.getState>): SectionProps => {
   const { uiPreferences, bodyClass, library, globalNav, page } = state;
@@ -18,7 +18,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
     groups: [
       {
         id: 'window-controls',
-        visible: isWindows,
+        visible: () => !isLinux(),
         groupName: 'Window Controls',
         components: [
           {

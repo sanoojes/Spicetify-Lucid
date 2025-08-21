@@ -15,7 +15,7 @@ import addRootCardSizeToDom from '@utils/addRootCardSizeToDom.ts';
 import initNotificationSystem from '@utils/initNotificationSystem.tsx';
 import addPageStyles from '@utils/page/addPageStyles.ts';
 import patchIcons from '@utils/patchIcons.ts';
-import { isVersionAtLeast, isWindows } from '@utils/platform.ts';
+import { isLinux, isVersionAtLeast } from '@utils/platform.ts';
 import addPlayerData from '@utils/player/addPlayerData.ts';
 import resetTheme from '@utils/resetTheme.ts';
 import addSettings from '@utils/settings/addSettings.tsx';
@@ -37,7 +37,7 @@ function main() {
   patchIcons(); // TODO: add customisability
 
   // Initialize features
-  if (isWindows()) setControls();
+  if (!isLinux()) setControls();
   setUIPreferences();
   setColors();
   setBackground();
