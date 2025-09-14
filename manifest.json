@@ -4,9 +4,9 @@
     "description": "A modern, customizable Spicetify theme inspired by Bloom and Microsoft's Fluent Design System.",
     "preview": "assets/images/base.png",
     "readme": "README-Marketplace.md",
-    "usercss": "https://sanooj.uk/spicetify-lucid/src/user.css",
-    "schemes": "https://sanooj.uk/spicetify-lucid/src/color.ini",
-    "include": ["https://sanooj.uk/spicetify-lucid/src/theme.js"],
+    "usercss": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main/src/user.css",
+    "schemes": "https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main/src/color.ini",
+    "include": ["https://cdn.jsdelivr.net/gh/sanoojes/Spicetify-Lucid@main/src/theme.js"],
     "authors": [
       {
         "name": "Sachu",
