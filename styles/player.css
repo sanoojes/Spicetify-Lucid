@@ -284,6 +284,9 @@ div.cover-art-icon {
   .main-coverSlotCollapsed-container {
     margin: 0;
   }
+  .main-coverSlotCollapsed-container button {
+    background: transparent;
+  }
   .main-nowPlayingWidget-coverArt,
   .cover-art,
   .HD9s7U5E1RLSWKpXmrqx,
