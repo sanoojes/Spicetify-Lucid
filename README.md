@@ -5,11 +5,8 @@ enhance your Spotify experience. It offers **dynamic visuals**, seamless
 animations, and **highly customizable** features so you can tailor the interface
 to match your style and preferences.
 
-With Lucid, enjoy a refined look without compromising functionality — whether
-you want minimal aesthetics or bold visual effects, it's all configurable.
-
 🔗 Explore the full documentation:
-[Lucid Theme Docs](https://projects.sanooj.uk/spicetify/lucid-lyrics/)
+[Lucid Docs](https://projects.sanooj.uk/spicetify/lucid/)
 
 ## 📄 License
 
