@@ -51706,7 +51706,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
                 /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("br", {}),
                 "Recommended as tooltip might cause performance issues. ",
                 /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("br", {}),
-                "NOTE: Does not remote tooltips from Spicetify"
+                "NOTE: Does not remote tooltips from Spotify"
               ] }),
               isChecked: state.disableTippy,
               onChange: (disableTippy) => state.setDisableTippy(disableTippy)

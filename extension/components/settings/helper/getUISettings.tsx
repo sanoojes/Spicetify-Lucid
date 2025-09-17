@@ -250,7 +250,7 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
               <div>
                 Disable Tooltip shown <br />
                 Recommended as tooltip might cause performance issues. <br />
-                NOTE: Does not remote tooltips from Spicetify
+                NOTE: Does not remote tooltips from Spotify
               </div>
             ),
             isChecked: state.disableTippy,
