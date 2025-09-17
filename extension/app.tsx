@@ -19,7 +19,7 @@ import { isLinux, isVersionAtLeast } from '@utils/platform.ts';
 import addPlayerData from '@utils/player/addPlayerData.ts';
 import resetTheme from '@utils/resetTheme.ts';
 import addSettings from '@utils/settings/addSettings.tsx';
-import showStartupMessage from '@utils/showStartupMessage.ts';
+// import showStartupMessage from '@utils/showStartupMessage.ts';
 
 function main() {
   // Expose Lucid Methods
@@ -57,7 +57,7 @@ function main() {
   // Add settings
   addSettings();
 
-  showStartupMessage();
+  // showStartupMessage();
 
   // add support to add version specific styles (if needed)
   // const version = Spicetify?.Platform?.version ?? '0.0.0';
