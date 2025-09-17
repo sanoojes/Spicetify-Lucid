@@ -1,38 +1,36 @@
-/** biome-ignore-all lint/a11y: no a11y for now  */
-
 import UI from '@components/ui';
 import { ChevronDown16Filled } from '@fluentui/react-icons';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-// Context
 type DropdownContextType = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   buttonRef: React.RefObject<HTMLButtonElement | null>;
 };
 
-const DropdownContext = createContext<DropdownContextType>({
-  open: false,
-  setOpen: () => {},
-  buttonRef: { current: null },
-});
+const DropdownContext = createContext<DropdownContextType | null>(null);
 
-// Dropdown Root
+function useDropdownContext() {
+  const context = useContext(DropdownContext);
+  if (!context) {
+    throw new Error('Dropdown components must be used within a Dropdown');
+  }
+  return context;
+}
+
+// Dropdown Component
 type DropdownProps = {
   children: React.ReactNode;
 };
 
 const Dropdown = ({ children }: DropdownProps) => {
   const [open, setOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <DropdownContext.Provider value={{ open, setOpen, buttonRef }}>
-      <div ref={dropdownRef} className="dropdown">
-        {children}
-      </div>
+      <div className="dropdown">{children}</div>
     </DropdownContext.Provider>
   );
 };
@@ -40,30 +38,38 @@ const Dropdown = ({ children }: DropdownProps) => {
 // Dropdown Button
 type DropdownButtonProps = {
   children: React.ReactNode;
-  icon?: React.ReactNode;
 };
 
-function DropdownButton({ children }: DropdownButtonProps) {
-  const { open, setOpen, buttonRef } = useContext(DropdownContext);
+const DropdownButton = ({ children }: DropdownButtonProps) => {
+  const { open, setOpen, buttonRef } = useDropdownContext();
 
   const toggleOpen = () => setOpen(!open);
 
   return (
     <UI.Tippy label={open ? 'Close' : 'Open'}>
-      <button ref={buttonRef} onClick={toggleOpen} className="dropdown-button" type="button">
+      <button
+        ref={buttonRef}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleOpen();
+        }}
+        className="dropdown-button"
+        type="button"
+      >
         {children}
         <ChevronDown16Filled className={`dropdown-icon ${open ? 'rotate' : ''}`} />
       </button>
     </UI.Tippy>
   );
-}
+};
 
+// Dropdown Content
 type DropdownContentProps = {
   children: React.ReactNode;
 };
 
-function DropdownContent({ children }: DropdownContentProps) {
-  const { open, buttonRef, setOpen } = useContext(DropdownContext);
+const DropdownContent = ({ children }: DropdownContentProps) => {
+  const { open, buttonRef, setOpen } = useDropdownContext();
   const contentRef = useRef<HTMLDivElement>(null);
   const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
   const [ready, setReady] = useState(false);
@@ -72,7 +78,6 @@ function DropdownContent({ children }: DropdownContentProps) {
   const updatePosition = () => {
     const button = buttonRef.current;
     const content = contentRef.current;
-
     if (button && content) {
       const buttonRect = button.getBoundingClientRect();
       const contentWidth = content.offsetWidth || buttonRect.width;
@@ -105,21 +110,19 @@ function DropdownContent({ children }: DropdownContentProps) {
   };
 
   useEffect(() => {
-    document.body.classList.toggle('dropdown-open', open);
-  }, [open]);
-
-  useEffect(() => {
     if (open) {
       setReady(false);
       setShow(false);
       updatePosition();
-
       window.addEventListener('resize', updatePosition);
-
       return () => {
         window.removeEventListener('resize', updatePosition);
       };
     }
+  }, [open]);
+
+  useEffect(() => {
+    document.body.classList.toggle('dropdown-open', open);
   }, [open]);
 
   if (!open) return null;
@@ -137,35 +140,43 @@ function DropdownContent({ children }: DropdownContentProps) {
           left: coords.left,
           minWidth: coords.width,
         }}
+        onClick={(e) => e.stopPropagation()}
       >
         {children}
       </div>
     </div>,
     document.body
   );
-}
+};
 
 // Dropdown List
 type DropdownListProps = React.HTMLAttributes<HTMLUListElement> & {
   children: React.ReactNode;
 };
 
-function DropdownList({ children, ...props }: DropdownListProps) {
-  const { setOpen } = useContext(DropdownContext);
+const DropdownList = ({ children, ...props }: DropdownListProps) => {
+  const { setOpen } = useDropdownContext();
 
   return (
-    <ul onClick={() => setOpen(false)} className="dropdown-list" {...props}>
+    <ul
+      className="dropdown-list"
+      {...props}
+      onClick={(e) => {
+        e.stopPropagation();
+        setOpen(false);
+      }}
+    >
       {children}
     </ul>
   );
-}
+};
 
 // Dropdown Item
 type DropdownItemProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
 };
 
-function DropdownItem({ children, ...props }: DropdownItemProps) {
+const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
   return (
     <li className="dropdown-item">
       <button className="dropdown-item-button" {...props}>
@@ -173,7 +184,7 @@ function DropdownItem({ children, ...props }: DropdownItemProps) {
       </button>
     </li>
   );
-}
+};
 
 // Attach subcomponents
 Dropdown.Button = DropdownButton;
