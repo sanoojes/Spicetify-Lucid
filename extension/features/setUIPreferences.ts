@@ -42,7 +42,7 @@ function setFonts(uiPreferences = appStore.getState().uiPreferences) {
   }
 
   const fallbackFonts =
-    'CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif)';
+    'CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,var(--fallback-fonts))';
   const titleFontStack = `${titleFont?.family || 'SpotifyMixUITitle'},${fallbackFonts}`;
   const variableFontStack = `${bodyFont?.family || 'SpotifyMixUITitleVariable'},${fallbackFonts}`;
   const bodyFontStack = `${bodyFont?.family || 'SpotifyMixUI'},${fallbackFonts}`;
@@ -57,16 +57,22 @@ function setFonts(uiPreferences = appStore.getState().uiPreferences) {
     })();
 
   const newFontStyles = `
-  * {
-  font-family: ${bodyFont.family}, sans-serif;
-  }
-  :root {
-    --font-family: ${bodyFont.family}, sans-serif;
-    --encore-title-font-stack: ${titleFontStack} !important;
-    --encore-variable-font-stack: ${variableFontStack} !important;
-    --encore-body-font-stack: ${bodyFontStack} !important;
-    }
-    `;
+* {
+font-family: "${bodyFont.family}", var(--fallback-fonts);
+}
+:root {
+  --font-family: "${bodyFont.family}", var(--fallback-fonts);
+  --encore-title-font-stack: ${titleFontStack} !important;
+  --encore-variable-font-stack: ${variableFontStack} !important;
+  --encore-body-font-stack: ${bodyFontStack} !important;
+}
+a, button, input, select, textarea, nav, section, article, aside, footer {
+  font-family: "${bodyFont.family}", var(--fallback-fonts) !important;
+}
+header, h1, h2, h3, h4, h5, h6, strong, b {
+  font-family: "${titleFont.family}", var(--fallback-fonts);
+}
+`;
 
   if (style.textContent !== newFontStyles) {
     style.textContent = newFontStyles;
