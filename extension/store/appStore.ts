@@ -87,6 +87,10 @@ export const DEFAULT_STATE: AppState = {
   },
   player: {
     mode: 'default',
+    autoHide: false,
+    hoverTargetSize: 40,
+    isFloating: true,
+    hideExtraIcon: true,
     nextSongCard: {
       show: true,
       isFloating: true,
@@ -99,9 +103,6 @@ export const DEFAULT_STATE: AppState = {
       removeNextUp: true,
       position: 'left',
     },
-    autoHide: false,
-    isFloating: true,
-    hideExtraIcon: true,
     defaultStyle: {
       height: 80, // in px
       sliderHeight: 4,
@@ -148,6 +149,7 @@ export const DEFAULT_STATE: AppState = {
     autoHide: false,
     hoverTargetSize: 40,
   },
+  disableTippy: false,
 };
 
 type AppStateSetters = {
@@ -180,6 +182,8 @@ type AppStateSetters = {
   setRightSidebar: (rightSidebar: Partial<RightSidebarState>) => void;
   setRightSidebarCompactBlur: (blur: Partial<RightSidebarState['compactBackdropFilter']>) => void;
   setGlobalNav: (globalNav: Partial<GlobalNavState>) => void;
+
+  setDisableTippy: (disableTippy: boolean) => void;
 
   exportConfig: () => string | null;
   importConfig: (config: AppState) => void;
@@ -285,6 +289,8 @@ const appStore = createStore<AppState & AppStateSetters>()(
               floatingPosition: { x, y },
             },
           })),
+
+        setDisableTippy: (disableTippy) => set({ disableTippy }),
 
         setBodyClass: (bodyClass) => set({ bodyClass: { ...get().bodyClass, ...bodyClass } }),
 

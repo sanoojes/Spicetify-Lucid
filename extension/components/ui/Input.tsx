@@ -3,9 +3,9 @@ import UI from '@components/ui';
 import { Add16Filled, Subtract16Filled } from '@fluentui/react-icons';
 import debounce from '@utils/debounce.ts';
 import { showNotification } from '@utils/showNotification.tsx';
-import React, { type ChangeEvent, type FC, useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-const Input: FC<InputProps> = (props) => {
+const Input: React.FC<InputProps> = (props) => {
   const { inputType, placeholder, className, icon } = props;
 
   const [isValid, setIsValid] = useState(true);
@@ -77,7 +77,7 @@ const Input: FC<InputProps> = (props) => {
     }
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateValue(e.target.value);
   };
 

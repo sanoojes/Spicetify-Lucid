@@ -2,12 +2,12 @@ import { FragmentShader, GetShaderUniforms, VertexShader } from '@app/shader/ani
 import loadAndProcessImage from '@components/background/helper/loadAndProcessImage.ts';
 import appStore from '@store/appStore.ts';
 import waitForGlobal from '@utils/dom/waitForGlobal.ts';
-import React, { type FC, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { useStore } from 'zustand';
 
 // TODO: Migrate to webworker
-const AnimatedBackgroundCanvas: FC<{ imageSrc?: string }> = ({ imageSrc }) => {
+const AnimatedBackgroundCanvas: React.FC<{ imageSrc?: string }> = ({ imageSrc }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const uniformsRef = useRef<ReturnType<typeof GetShaderUniforms> | null>(null);

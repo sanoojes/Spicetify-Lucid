@@ -1,7 +1,6 @@
 // taken from: https://github.com/davidhu2000/react-spinners/blob/main/src/PuffLoader.tsx
 
 import type { CSSProperties, DetailedHTMLProps, HTMLAttributes } from 'react';
-import React from 'react';
 
 type CommonProps = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> & {
   color?: string;
@@ -21,7 +20,7 @@ function Loader({
   cssOverride = {},
   size = 60,
   ...additionalprops
-}: LoaderSizeProps) {
+}) {
   const wrapper: CSSProperties = {
     display: 'inherit',
     position: 'relative',

@@ -3,7 +3,6 @@ import {
   BorderStateSchema,
   GlobalNavStateSchema,
   LibraryStateSchema,
-  RightSidebarStateSchema,
 } from '@schemas/appStoreSchema.ts';
 import type appStore from '@store/appStore.ts';
 import { DEFAULT_STATE } from '@store/appStore.ts';
@@ -236,6 +235,26 @@ export const getUISettings = (state: ReturnType<typeof appStore.getState>): Sect
               ['Outset', 'outset'],
             ],
             onChange: (style) => state.setBorder({ style }),
+          },
+        ],
+      },
+      {
+        id: 'misc',
+        groupName: 'Miscellaneous',
+        components: [
+          {
+            id: 'disable-tippy',
+            type: 'Toggle',
+            label: 'Disable Tooltip',
+            tippy: (
+              <div>
+                Disable Tooltip shown <br />
+                Recommended as tooltip might cause performance issues. <br />
+                NOTE: Does not remote tooltips from Spicetify
+              </div>
+            ),
+            isChecked: state.disableTippy,
+            onChange: (disableTippy) => state.setDisableTippy(disableTippy),
           },
         ],
       },

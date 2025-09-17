@@ -1,13 +1,13 @@
 import appStore from '@store/appStore.ts';
 import tempStore from '@store/tempStore.ts';
 import serializeFilters from '@utils/dom/serializeFilters.ts';
-import React, { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from 'zustand';
 
 export const SCROLL_SELECTOR =
   '.Root__main-view [data-overlayscrollbars-viewport], .Root__main-view .os-viewport, .Root__main-view .main-view-container > .main-view-container__scroll-node:not([data-overlayscrollbars-initialize]), .Root__main-view .main-view-container__scroll-node > [data-overlayscrollbars-viewport], .main-view-container__scroll-node div:nth-child(2)';
 
-const UnderMainView = () => {
+const UnderMainView: React.FC = () => {
   const { type, customUrl, customColor, filter, isScaling, isScrolling } = useStore(
     appStore,
     (s) => s.umv
@@ -80,7 +80,7 @@ const UnderMainView = () => {
             })}`,
             transform: `translate3d(0, ${styles.translateY}px, 0) scale(${styles.scale})`,
           }),
-        } as CSSProperties
+        } as React.CSSProperties
       }
     />
   );

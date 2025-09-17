@@ -1,10 +1,10 @@
 import UI from '@components/ui';
 import generateId from '@utils/generateId.ts';
-import React, { type FC, type ReactNode, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export type Notification = {
   id?: string;
-  message: ReactNode;
+  message: React.ReactNode;
   isError: boolean;
   timeout: number;
 };
@@ -15,7 +15,7 @@ export const pendingQueue: Notification[] = [];
 
 export let addNotification: ((item: Notification) => void) | null = null;
 
-const NotificationManager: FC = () => {
+const NotificationManager: React.FC = () => {
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const notificationTimers = useRef<Map<string, number>>(new Map());
 

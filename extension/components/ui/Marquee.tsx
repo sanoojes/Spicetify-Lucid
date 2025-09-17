@@ -1,12 +1,12 @@
-import React, { type FC, type ReactNode, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 type MarqueeProps = {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
   speed?: number;
 };
 
-const Marquee: FC<MarqueeProps> = ({ children, speed = 12, className = '' }) => {
+const Marquee: React.FC<MarqueeProps> = ({ children, speed = 12, className = '' }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLSpanElement>(null);
   const animationRef = useRef<Animation | null>(null);

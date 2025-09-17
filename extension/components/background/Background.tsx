@@ -2,10 +2,9 @@ import AnimatedBackgroundCanvas from '@components/background/AnimatedBackgroundC
 import StaticBackground from '@components/background/StaticBackground.tsx';
 import appStore from '@store/appStore.ts';
 import tempStore from '@store/tempStore.ts';
-import React, { type FC } from 'react';
 import { useStore } from 'zustand';
 
-const Background: FC = () => {
+const Background: React.FC = () => {
   const mode = useStore(appStore, (state) => state.bg.mode);
   const color = useStore(appStore, (state) => state.bg.options.color);
   const imageMode = useStore(appStore, (state) => state.bg.options.imageMode);

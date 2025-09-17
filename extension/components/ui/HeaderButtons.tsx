@@ -2,9 +2,8 @@ import UI from '@components/ui';
 import { Dismiss16Filled } from '@fluentui/react-icons';
 import DiscordIcon from '@icons/discord-16.svg';
 import GithubIcon from '@icons/github-16.svg';
-import React, { type FC } from 'react';
 
-const HeaderButtons: FC<{ closeModal: () => void }> = ({ closeModal }) => {
+const HeaderButtons: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
   const openLink = (url: string) => open(url, '_blank', 'noopener,noreferrer');
 
   return (

@@ -6,7 +6,7 @@ import { notifyClientPlugin } from '@builder/plugin/notifyClientPlugin.ts';
 import { wrapWithLoader } from '@builder/plugin/wrapWithLoader.ts';
 import { startWSServer } from '@builder/wsServer.ts';
 import { parseArgs } from '@std/cli';
-import { join, normalize } from '@std/path';
+import { join } from '@std/path';
 import { type BuildOptions, build, context } from 'esbuild';
 import svgrPlugin from 'esbuild-plugin-svgr';
 
@@ -65,6 +65,7 @@ const main = async () => {
       wrapWithLoader(),
       externalGlobalPlugin({
         react: 'Spicetify.React',
+        'react/jsx-runtime': 'Spicetify.ReactJSX',
         'react-dom': 'Spicetify.ReactDOM',
         'react-dom/client': 'Spicetify.ReactDOM',
         'react-dom/server': 'Spicetify.ReactDOMServer',

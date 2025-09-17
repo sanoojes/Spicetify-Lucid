@@ -1,24 +1,15 @@
+/** biome-ignore-all lint/a11y: no a11y for now  */
+
+import UI from '@components/ui';
 import { ChevronDown16Filled } from '@fluentui/react-icons';
-import React, {
-  type ButtonHTMLAttributes,
-  createContext,
-  type Dispatch,
-  type HTMLAttributes,
-  type ReactNode,
-  type RefObject,
-  type SetStateAction,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 // Context
 type DropdownContextType = {
   open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-  buttonRef: RefObject<HTMLButtonElement | null>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  buttonRef: React.RefObject<HTMLButtonElement | null>;
 };
 
 const DropdownContext = createContext<DropdownContextType>({
@@ -29,10 +20,10 @@ const DropdownContext = createContext<DropdownContextType>({
 
 // Dropdown Root
 type DropdownProps = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
-function Dropdown({ children }: DropdownProps) {
+const Dropdown = ({ children }: DropdownProps) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -44,12 +35,12 @@ function Dropdown({ children }: DropdownProps) {
       </div>
     </DropdownContext.Provider>
   );
-}
+};
 
 // Dropdown Button
 type DropdownButtonProps = {
-  children: ReactNode;
-  icon?: ReactNode;
+  children: React.ReactNode;
+  icon?: React.ReactNode;
 };
 
 function DropdownButton({ children }: DropdownButtonProps) {
@@ -58,15 +49,17 @@ function DropdownButton({ children }: DropdownButtonProps) {
   const toggleOpen = () => setOpen(!open);
 
   return (
-    <button ref={buttonRef} onClick={toggleOpen} className="dropdown-button" type="button">
-      {children}
-      <ChevronDown16Filled className={`dropdown-icon ${open ? 'rotate' : ''}`} />
-    </button>
+    <UI.Tippy label={open ? 'Close' : 'Open'}>
+      <button ref={buttonRef} onClick={toggleOpen} className="dropdown-button" type="button">
+        {children}
+        <ChevronDown16Filled className={`dropdown-icon ${open ? 'rotate' : ''}`} />
+      </button>
+    </UI.Tippy>
   );
 }
 
 type DropdownContentProps = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 function DropdownContent({ children }: DropdownContentProps) {
@@ -132,8 +125,10 @@ function DropdownContent({ children }: DropdownContentProps) {
   if (!open) return null;
 
   return createPortal(
-    <>
-      <div className="GenericModal__overlay dropdown-overlay" onClick={() => setOpen(false)} />
+    <div
+      className="GenericModal__overlay lyrics-modal dropdown-overlay"
+      onClick={() => setOpen(false)}
+    >
       <div
         ref={contentRef}
         className={`dropdown-content ${ready && show ? 'visible' : ''}`}
@@ -145,14 +140,14 @@ function DropdownContent({ children }: DropdownContentProps) {
       >
         {children}
       </div>
-    </>,
+    </div>,
     document.body
   );
 }
 
 // Dropdown List
-type DropdownListProps = HTMLAttributes<HTMLUListElement> & {
-  children: ReactNode;
+type DropdownListProps = React.HTMLAttributes<HTMLUListElement> & {
+  children: React.ReactNode;
 };
 
 function DropdownList({ children, ...props }: DropdownListProps) {
@@ -166,8 +161,8 @@ function DropdownList({ children, ...props }: DropdownListProps) {
 }
 
 // Dropdown Item
-type DropdownItemProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  children: ReactNode;
+type DropdownItemProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: React.ReactNode;
 };
 
 function DropdownItem({ children, ...props }: DropdownItemProps) {

@@ -1,7 +1,6 @@
 import UI from '@components/ui';
-import React, { type FC } from 'react';
 
-const TrackInfo: FC<{
+const TrackInfo: React.FC<{
   metadata?: Spicetify.PlayerTrack['metadata'];
   artists?: Spicetify.ArtistsEntity[];
   loading: boolean;

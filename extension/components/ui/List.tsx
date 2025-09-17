@@ -1,6 +1,6 @@
 import UI from '@components/ui';
 import { Search16Filled } from '@fluentui/react-icons';
-import React, { type CSSProperties, type ReactNode, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList } from 'react-window';
 
@@ -10,9 +10,9 @@ type ListProps<T> = {
   className?: string;
   inputPlaceholder?: string;
   filterFn?: (item: T, filter: string) => boolean;
-  renderItem: (item: T, index: number, isSelected: boolean) => ReactNode;
+  renderItem: (item: T, index: number, isSelected: boolean) => React.ReactNode;
   selectedItem?: T | null;
-  headerContent?: ReactNode;
+  headerContent?: React.ReactNode;
   onItemSelect?: (item: T) => void;
 };
 
@@ -78,20 +78,16 @@ const List = <T,>({
   );
 };
 
-const Row = ({
-  index,
-  style,
-  data,
-}: {
+const Row: React.FC<{
   index: number;
-  style: CSSProperties;
+  style: React.CSSProperties;
   data: {
     items: any[];
     selectedIndex: number | null;
     handleItemClick: (index: number) => void;
-    renderItem: (item: any, index: number, isSelected: boolean) => ReactNode;
+    renderItem: (item: any, index: number, isSelected: boolean) => React.ReactNode;
   };
-}) => {
+}> = ({ index, style, data }) => {
   const item = data.items[index];
   const isSelected = index === data.selectedIndex;
 

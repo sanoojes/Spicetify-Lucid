@@ -1,8 +1,8 @@
 import type { InputProps } from '@app/types/uiSchema.ts';
 import { showNotification } from '@utils/showNotification.tsx';
-import React, { type ChangeEvent, type FC, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-const TextArea: FC<Extract<InputProps, { inputType: 'text' }>> = ({
+const TextArea: React.FC<Extract<InputProps, { inputType: 'text' }>> = ({
   placeholder,
   value: defaultValue = '',
   onChange,
@@ -33,7 +33,7 @@ const TextArea: FC<Extract<InputProps, { inputType: 'text' }>> = ({
     [validation]
   );
 
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
     if (validate(newValue)) {

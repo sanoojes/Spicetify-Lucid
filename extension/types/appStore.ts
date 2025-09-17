@@ -159,4 +159,5 @@ export type AppState = {
   library: LibraryState;
   rightSidebar: RightSidebarState;
   globalNav: GlobalNavState;
+  disableTippy: boolean;
 };

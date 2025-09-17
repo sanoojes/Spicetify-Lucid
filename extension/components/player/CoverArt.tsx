@@ -1,7 +1,6 @@
 import { MusicNote2Filled } from '@fluentui/react-icons';
-import React, { type FC } from 'react';
 
-const CoverArt: FC<{ imageSrc: string | null; href?: string }> = ({ imageSrc, href }) => (
+const CoverArt: React.FC<{ imageSrc: string | null; href?: string }> = ({ imageSrc, href }) => (
   <div className="main-coverSlotCollapsed-container main-coverSlotCollapsed-navAltContainer">
     <div draggable="false">
       <div className="GlueDropTarget GlueDropTarget--albums GlueDropTarget--tracks GlueDropTarget--episodes GlueDropTarget--local-tracks">

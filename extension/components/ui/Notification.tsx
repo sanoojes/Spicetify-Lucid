@@ -1,9 +1,9 @@
 import UI from '@components/ui';
 import { Dismiss16Filled } from '@fluentui/react-icons';
-import React, { type FC, type ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type NotificationProps = {
-  message: ReactNode;
+  message: React.ReactNode;
   isError?: boolean;
   timeout?: number;
   onClose: () => void;
@@ -11,7 +11,7 @@ type NotificationProps = {
 
 const FADE_DURATION = 500;
 
-const Notification: FC<NotificationProps> = ({
+const Notification: React.FC<NotificationProps> = ({
   message,
   isError = false,
   timeout = 3000,

@@ -4,7 +4,7 @@ import { ArrowResetRegular, Dismiss16Filled } from '@fluentui/react-icons';
 import getContrastColor from '@utils/colors/getContrastColor.ts';
 import setFloating from '@utils/dom/setFloating.ts';
 import { showNotification } from '@utils/showNotification.tsx';
-import React, { type CSSProperties, type FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ColorPicker as CP, useColor } from 'react-color-palette';
 import ReactDOM from 'react-dom';
 
@@ -19,7 +19,7 @@ const isCssVar = (val?: string) => val?.startsWith('var(');
 const getResolvedColor = (val: string) =>
   isCssVar(val) ? (resolveCssVariable(val) ?? '#000000') : (val ?? '#000000');
 
-const ColorPickerPortal: FC<ColorPickerProps> = ({
+const ColorPickerPortal: React.FC<ColorPickerProps> = ({
   color,
   initialColor,
   onChange,
@@ -120,7 +120,7 @@ const ColorPickerPortal: FC<ColorPickerProps> = ({
       />
       <div
         className="rcp-current-color"
-        style={{ '--current-color': currentColor.hex } as CSSProperties}
+        style={{ '--current-color': currentColor.hex } as React.CSSProperties}
       >
         <p
           className="encore-text encore-text-body-small-bold"

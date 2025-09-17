@@ -1419,3 +1419,24 @@ input.lucid-input {
   will-change: transform;
   transform: translateZ(0px);
 }
+
+.tooltip-icon-wrapper {
+  margin-left: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tooltip-content {
+  position: absolute;
+  transform: translateX(-50%);
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}

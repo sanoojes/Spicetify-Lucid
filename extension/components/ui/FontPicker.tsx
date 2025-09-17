@@ -3,9 +3,9 @@ import UI from '@components/ui';
 import { CheckboxChecked16Filled, CheckboxUnchecked16Filled } from '@fluentui/react-icons';
 import { fetchGoogleFonts, type GoogleFont, loadFont } from '@utils/font.ts';
 import { showNotification } from '@utils/showNotification.tsx';
-import React, { type FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 
-const FontPicker: FC<FontPickerProps> = ({ value, onChange }) => {
+const FontPicker: React.FC<FontPickerProps> = ({ value, onChange }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isLoading, setIsLoading] = useState(false);
   const [fonts, setFonts] = useState<GoogleFont[]>([]);
@@ -101,7 +101,7 @@ const FontPicker: FC<FontPickerProps> = ({ value, onChange }) => {
 
 export default FontPicker;
 
-const FontItem: FC<{ font: GoogleFont; isSelected: boolean }> = memo(
+const FontItem: React.FC<{ font: GoogleFont; isSelected: boolean }> = memo(
   ({ font, isSelected }) => {
     const [isFontLoaded, setIsFontLoaded] = useState(false);
 

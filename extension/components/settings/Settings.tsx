@@ -4,10 +4,10 @@ import Section from '@components/settings/ui/Section.tsx';
 import UI from '@components/ui';
 import appStore from '@store/appStore.ts';
 import setFloating from '@utils/dom/setFloating.ts';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from 'zustand';
 
-const Settings = () => {
+const Settings: React.FC = () => {
   const [sections, setSections] = useState<SectionProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');

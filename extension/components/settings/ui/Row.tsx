@@ -1,8 +1,7 @@
 import type { Component } from '@app/types/settingSchema.ts';
 import UI from '@components/ui';
-import React, { type FC } from 'react';
 
-const Row: FC<{ data: Component }> = ({ data }) => {
+const Row: React.FC<{ data: Component }> = ({ data }) => {
   const isVisible = data.visible ? data.visible() : true;
 
   return (
@@ -11,7 +10,7 @@ const Row: FC<{ data: Component }> = ({ data }) => {
         <p className="encore-text encore-text-body-small encore-internal-color-text-base">
           {data.label}
         </p>
-        {data.tippy ? <UI.Tippy label={data.tippy} /> : null}
+        {data.tippy ? <UI.Tippy label={data.tippy} hasIcon /> : null}
       </div>
       <div className="x-settings-secondColumn">
         {data.type === 'Dropdown' ? (

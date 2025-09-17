@@ -1,11 +1,9 @@
 import type { BackgroundState } from '@app/types/appStore.ts';
 import appStore from '@store/appStore.ts';
 import serializeFilters from '@utils/dom/serializeFilters.ts';
-import type { FC } from 'react';
-import React from 'react';
 import { useStore } from 'zustand';
 
-const StaticBackground: FC<{ imageSrc?: string }> = ({ imageSrc }) => {
+const StaticBackground: React.FC<{ imageSrc?: string }> = ({ imageSrc }) => {
   const filter = useStore(appStore, (state) => state.bg.options.filter);
   const imageMode = useStore(appStore, (state) => state.bg.options.imageMode);
 

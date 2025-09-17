@@ -1,8 +1,7 @@
 import type { GroupProps } from '@app/types/settingSchema.ts';
 import Row from '@components/settings/ui/Row.tsx';
-import React, { type FC } from 'react';
 
-const Group: FC<GroupProps> = ({ groupName, components, visible }) => {
+const Group: React.FC<GroupProps> = ({ groupName, components, visible }) => {
   const isVisible = visible ? visible() : true;
   return (
     <div className={`x-settings-section ${!isVisible ? ' hidden' : ''}`}>

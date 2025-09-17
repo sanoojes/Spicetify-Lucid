@@ -47,7 +47,7 @@
   "compilerOptions": {
     "strict": true,
     "lib": ["deno.window", "dom", "es2020"],
-    "jsx": "react"
+    "jsx": "react-jsx"
   },
   "nodeModulesDir": "auto"
 }

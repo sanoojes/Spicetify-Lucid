@@ -2,10 +2,10 @@ import CoverArt from '@components/player/CoverArt.tsx';
 import TrackInfo from '@components/player/TrackInfo.tsx';
 import appStore from '@store/appStore.ts';
 import tempStore from '@store/tempStore.ts';
-import React, { type CSSProperties, type FC, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useStore } from 'zustand';
 
-const NextSongCard: FC = () => {
+const NextSongCard: React.FC = () => {
   const {
     height,
     maxWidth,
@@ -51,7 +51,7 @@ const NextSongCard: FC = () => {
           '--gap': `${gap}px`,
           '--cover-size': `${coverArtSize}px`,
           maxWidth: `${maxWidth}px`,
-        } as CSSProperties
+        } as React.CSSProperties
       }
     >
       <CoverArt imageSrc={loading ? null : imageSrc} href={songData?.metadata?.album_uri} />
