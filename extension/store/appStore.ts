@@ -150,6 +150,7 @@ export const DEFAULT_STATE: AppState = {
     hoverTargetSize: 40,
   },
   disableTippy: false,
+  isAnalyticsActive: true,
 };
 
 type AppStateSetters = {
@@ -170,6 +171,8 @@ type AppStateSetters = {
 
   setUMV: (umv: Partial<UnderMainViewState>) => void;
   setUMVFilter: (filter: Partial<UnderMainViewState['filter']>) => void;
+
+  setIsAnalyticsActive: (isAnalyticsActive: boolean) => void;
 
   setSettingModal: (settingModal: Partial<SettingModalState>) => void;
   setSettingModalPosition: (x: number, y: number) => void;
@@ -293,6 +296,7 @@ const appStore = createStore<AppState & AppStateSetters>()(
         setDisableTippy: (disableTippy) => set({ disableTippy }),
 
         setBodyClass: (bodyClass) => set({ bodyClass: { ...get().bodyClass, ...bodyClass } }),
+        setIsAnalyticsActive: (isAnalyticsActive) => set({ isAnalyticsActive }),
 
         importConfig: (config) => set(() => merge({}, DEFAULT_STATE, config)),
         exportConfig: () => {

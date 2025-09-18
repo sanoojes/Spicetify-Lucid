@@ -1,8 +1,8 @@
+import getOrCreateElement from '@app/utils/dom/getOrCreateElement.ts';
 import { QuestionCircle20Regular } from '@fluentui/react-icons';
+import appStore from '@store/appStore.ts';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import appStore from '@store/appStore.ts';
-import getOrCreateElement from '@app/utils/dom/getOrCreateElement.ts';
 import { useStore } from 'zustand';
 
 type TippyProps = {

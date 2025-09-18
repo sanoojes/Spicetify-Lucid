@@ -1,3 +1,4 @@
+import { setupAnalytics } from '@app/setupAnalytics.ts';
 import setBackground from '@features/setBackground.tsx';
 import setBodyClasses from '@features/setBodyClasses.ts';
 import setColors from '@features/setColors.ts';
@@ -65,6 +66,8 @@ function main() {
   // const versionClass = `spotify-version-${formattedVersion}`;
   // document.body.classList.add(versionClass);
   document.body.classList.toggle('spotify-version-at-least-1-2-65', isVersionAtLeast('1.2.65'));
+
+  setupAnalytics();
 }
 
 main();

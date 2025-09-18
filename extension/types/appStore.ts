@@ -160,4 +160,5 @@ export type AppState = {
   rightSidebar: RightSidebarState;
   globalNav: GlobalNavState;
   disableTippy: boolean;
+  isAnalyticsActive: boolean;
 };

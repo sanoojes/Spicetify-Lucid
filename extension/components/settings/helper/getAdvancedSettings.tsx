@@ -4,7 +4,6 @@ import type appStore from '@store/appStore.ts';
 import { copyToClipboard } from '@utils/dom/copyToClipboard.ts';
 import resetTheme from '@utils/resetTheme.ts';
 import { showNotification } from '@utils/showNotification.tsx';
-import React from 'react';
 
 export const getAdvancedSettings = (state: ReturnType<typeof appStore.getState>): SectionProps =>
   ({
@@ -14,6 +13,21 @@ export const getAdvancedSettings = (state: ReturnType<typeof appStore.getState>)
       {
         id: 'advanced-actions',
         components: [
+          {
+            id: 'disable-analytics',
+            type: 'Toggle',
+            label: 'Analytics',
+            tippy: (
+              <div style={{ whiteSpace: 'pre-line' }}>
+                {`Don't be a ghost 👻!
+Keep this on to let others know you're here
+and help boost the live user count.
+Every user counts - literally!`}
+              </div>
+            ),
+            isChecked: state.isAnalyticsActive,
+            onChange: (isAnalyticsActive) => state.setIsAnalyticsActive(isAnalyticsActive),
+          },
           {
             id: 'export-settings',
             type: 'Button',

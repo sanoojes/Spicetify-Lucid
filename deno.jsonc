@@ -39,6 +39,7 @@
     "lodash": "npm:lodash@^4.17.21",
     "react-virtualized-auto-sizer": "npm:react-virtualized-auto-sizer@^1.0.26",
     "react-window": "npm:react-window@^1.8.11",
+    "socket.io-client": "npm:socket.io-client@^4.8.1",
     "three": "npm:three@^0.178.0",
     "zod": "npm:zod@^4.0.14",
     "zustand": "npm:zustand@^5.0.7"
