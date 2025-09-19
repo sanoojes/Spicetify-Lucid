@@ -1,59 +1,15 @@
 import { createLogger } from '@app/logger.ts';
 import appStore from '@store/appStore.ts';
-// import { getSpotifyTokenHeader } from '@/utils/fetch/getSpotifyToken.ts';
 import { io, type Socket } from 'socket.io-client';
 
 const logger = createLogger('[Analytics]');
 const ANALYTIC_SERVER_URL = 'https://analytics.lucid.sanooj.is-a.dev';
+const USER_ID_LOCAL_KEY = 'lucid:lyrics:userId';
 
 type AnalyticType = 'theme' | 'lyrics_extension' | 'glassify_theme';
 const TYPE: AnalyticType = 'theme';
 
 let socket: Socket | null = null;
-
-// function setToken(key: string, value: string, expiresAt: number) {
-//   localStorage.setItem(key, JSON.stringify({ value, expiresAt }));
-// }
-
-// function getToken(key: string) {
-//   const stored = localStorage.getItem(key);
-//   if (!stored) return null;
-
-//   try {
-//     const { value, expiresAt } = JSON.parse(stored);
-//     if (Date.now() > expiresAt) {
-//       localStorage.removeItem(key);
-//       return null;
-//     }
-//     return value;
-//   } catch {
-//     localStorage.removeItem(key);
-//     return null;
-//   }
-// }
-
-// async function getAuth(): Promise<string> {
-//   let token = getToken('lyrics_auth');
-//   if (token) return token;
-
-//   const Authorization = await getSpotifyTokenHeader();
-//   if (!Authorization) throw new Error('Failed to get Spotify Auth token');
-
-//   const res = await fetch(`${ANALYTIC_SERVER_URL}/token`, {
-//     headers: new Headers({ Authorization }),
-//   });
-
-//   if (!res.ok) throw new Error('Failed to get JWT token from server');
-
-//   const data = await res.json();
-//   token = data.token;
-//   const expiresAt = data.expiresAt;
-
-//   if (!token || !expiresAt) throw new Error('Failed to parse JWT token');
-
-//   setToken('lyrics_auth', token, expiresAt);
-//   return token;
-// }
 
 export async function setupAnalytics(
   isAnalyticsActive: boolean = appStore.getState().isAnalyticsActive
@@ -78,20 +34,24 @@ export async function setupAnalytics(
       logger.error('Server ping failed, not starting socket.');
       if (socket) {
         socket.disconnect();
-        socket.close();
         socket = null;
       }
       return;
     }
 
-    // const JWT_TOKEN = await getAuth();
+    const userId = getUserId() ?? undefined;
 
     socket = io(`${ANALYTIC_SERVER_URL}/ws/users`, {
-      auth: { type: TYPE },
+      auth: { type: TYPE, userId },
       closeOnBeforeunload: true,
     });
 
-    console.log(socket);
+    socket.on('assignedUserId', ({ userId: assignedId }: { userId: string }) => {
+      if (!getUserId()) {
+        setUserId(assignedId);
+        logger.info('Assigned new userId:', assignedId);
+      }
+    });
 
     let connectionAttempts = 0;
     const MAX_RETRIES = 3;
@@ -107,17 +67,11 @@ export async function setupAnalytics(
 
     socket.on('connect_error', (err: Error) => {
       logger.error('Connection error:', err.message);
-
       connectionAttempts++;
-      // if (err.message.includes("Authentication")) {
-      //   localStorage.removeItem("lyrics_auth");
-      //   logger.debug("Cleared invalid JWT token, please reconnect.");
-      // }
 
       if (connectionAttempts >= MAX_RETRIES) {
         logger.error(`Server unreachable after ${MAX_RETRIES} attempts. Stopping socket.`);
         socket?.disconnect();
-        socket?.close();
         socket = null;
         return;
       }
@@ -128,8 +82,16 @@ export async function setupAnalytics(
       }, 5000);
     });
   } catch (err: any) {
-    logger.error('Setup Error:', err?.message ?? err);
+    logger.error('Setup Error:', err.message ?? err);
   }
 }
 
 appStore.subscribe((state) => state.isAnalyticsActive, setupAnalytics);
+
+function getUserId(): string | null {
+  return localStorage.getItem(USER_ID_LOCAL_KEY) ?? null;
+}
+
+function setUserId(userId: string) {
+  localStorage.setItem(USER_ID_LOCAL_KEY, userId);
+}
