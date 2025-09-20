@@ -4,7 +4,7 @@ import { io, type Socket } from 'socket.io-client';
 
 const logger = createLogger('[Analytics]');
 const ANALYTIC_SERVER_URL = 'https://analytics.lucid.sanooj.is-a.dev';
-const USER_ID_LOCAL_KEY = 'lucid:lyrics:userId';
+const USER_ID_LOCAL_KEY = 'lucid:theme:userId';
 
 type AnalyticType = 'theme' | 'lyrics_extension' | 'glassify_theme';
 const TYPE: AnalyticType = 'theme';
