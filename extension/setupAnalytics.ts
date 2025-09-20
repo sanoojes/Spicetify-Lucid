@@ -39,10 +39,8 @@ export async function setupAnalytics(
       return;
     }
 
-    const userId = getUserId() ?? undefined;
-
     socket = io(`${ANALYTIC_SERVER_URL}/ws/users`, {
-      auth: { type: TYPE, userId },
+      auth: { type: TYPE },
       closeOnBeforeunload: true,
     });
 
@@ -57,6 +55,9 @@ export async function setupAnalytics(
     const MAX_RETRIES = 3;
 
     socket.on('connect', () => {
+      const userId = getUserId() ?? undefined;
+      socket?.emit('getUserId', userId);
+
       logger.info('Connected');
       connectionAttempts = 0;
     });
