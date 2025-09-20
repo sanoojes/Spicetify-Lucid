@@ -20,6 +20,7 @@ import { isLinux, isVersionAtLeast } from '@utils/platform.ts';
 import addPlayerData from '@utils/player/addPlayerData.ts';
 import resetTheme from '@utils/resetTheme.ts';
 import addSettings from '@utils/settings/addSettings.tsx';
+
 // import showStartupMessage from '@utils/showStartupMessage.ts';
 
 function main() {
